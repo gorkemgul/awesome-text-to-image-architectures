@@ -1,0 +1,79 @@
+{
+ "schema_version": 1,
+ "as_of": "2026-09-29",
+ "models": [
+  {
+   "id": "midjourney",
+   "name": "Midjourney",
+   "category": "api",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Commercial text-to-image service with undisclosed architecture",
+   "notes": "The developer does not publish a model architecture. Optional reference-image features and version-specific controls are documented by the service and are not treated as architectural claims.",
+   "variants": [],
+   "source_date": null,
+   "source_date_kind": null,
+   "sources": [
+    {
+     "kind": "documentation",
+     "title": "Midjourney documentation",
+     "url": "https://docs.midjourney.com/hc/en-us",
+     "reviewed_on": "2026-09-29",
+     "review_level": "documentation"
+    }
+   ]
+  },
+  {
+   "id": "pixart-alpha",
+   "name": "PixArt-α",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Latent diffusion transformer with T5 cross-attention in every block",
+   "notes": "Each DiT block adds a cross-attention module for T5 text features, and all blocks share one adaLN-single parameter set for timestep conditioning (paper Figure 4). Training is decomposed into stages and uses LLaVA-refined captions with high concept density.",
+   "variants": [
+    "PixArt-XL-2-512x512",
+    "PixArt-XL-2-1024-MS"
+   ],
+   "source_date": "2023-09-30",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": "CreativeML Open RAIL++-M"
+   },
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "PixArt-α: Fast Training of Diffusion Transformer for Photorealistic Text-to-Image Synthesis",
+     "url": "https://arxiv.org/abs/2310.00426",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "PixArt-alpha/PixArt-alpha — official repository",
+     "url": "https://github.com/PixArt-alpha/PixArt-alpha",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "PixArt-alpha/PixArt-XL-2-1024-MS — model card",
+     "url": "https://huggingface.co/PixArt-alpha/PixArt-XL-2-1024-MS",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  }
+ ]
+}

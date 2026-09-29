@@ -1,0 +1,21 @@
+{
+ "schema_version": 1,
+ "models": {
+  "midjourney": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/midjourney.svg",
+   "source_url": "https://docs.midjourney.com/hc/en-us",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "pixart-alpha": {
+   "kind": "source-figure",
+   "path": "assets/architectures/pixart-alpha.png",
+   "source_url": "https://arxiv.org/abs/2310.00426",
+   "origin_url": "https://arxiv.org/html/2310.00426v3/model_arch.png",
+   "locator": "Figure 4",
+   "sha256": "8716d37984e7a08e7f507951fc9a6c3a9d8cb39c6d0d6166305e6a05ce522667"
+  }
+ }
+}
