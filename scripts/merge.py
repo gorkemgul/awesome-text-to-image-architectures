@@ -4,7 +4,7 @@
 A fragment lets parallel contributors work without editing the shared files:
 
   {
-    "owner": "dit",                      # category key, or "arxiv-<batch>" for screening batches
+    "owner": "dit",                      # category key (optionally "category:part"), or "arxiv-<batch>"
     "models": [ {model record}, ... ],   # new or replacement records (matched by id)
     "figures": { "<id>": {figure record}, ... },
     "daily": [ {ledger row}, ... ]       # screened rows replacing pending rows (matched by arxiv_id)
@@ -45,8 +45,9 @@ def apply(fragments, catalog, manifest, ledger):
             if mid in seen_models:
                 raise ValueError(f"{path}: model {mid} also appears in {seen_models[mid]}")
             seen_models[mid] = path
-            if owner in CATEGORIES and model["category"] != owner:
-                raise ValueError(f"{path}: {mid} is not in owner category {owner}")
+            category = owner.split(":")[0]
+            if category in CATEGORIES and model["category"] != category:
+                raise ValueError(f"{path}: {mid} is not in owner category {category}")
             if mid in models:
                 catalog["models"][models[mid]] = model
                 replaced += 1
