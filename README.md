@@ -4,7 +4,7 @@
 
 A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.
 
-**228 models and families · Reviewed 2026-09-29**
+**256 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -13,7 +13,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every paper with "
 | Collection | Models |
 | --- | ---: |
 | [Early neural text-to-image models](models/early.md) | 3 |
-| [Generative adversarial networks](models/gan.md) | 17 |
+| [Generative adversarial networks](models/gan.md) | 45 |
 | [Autoregressive image-token models](models/ar-token.md) | 20 |
 | [Masked and parallel image-token models](models/masked.md) | 8 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 11 |
@@ -29,17 +29,19 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every paper with "
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 228 entries</summary>
+<summary>Alphabetical model list · 256 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
 | [Adobe Firefly Image](#adobe-firefly) | API | T, I → I |
 | [alignDRAW](#aligndraw) | Early | T → I |
+| [ALR-GAN](#alr-gan) | GAN | T → I |
 | [AltDiffusion](#altdiffusion) | Latent U-Net | T → I |
 | [Amazon Titan Image Generator](#amazon-titan-image-generator) | API | T, I → I |
 | [aMUSEd](#amused) | Masked token | T → I |
 | [AttnGAN](#attngan) | GAN | T → I |
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
+| [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | GAN | T → I |
 | [BAGEL](#bagel) | Unified | T, I → T, I |
 | [BitDance](#bitdance) | Continuous AR | T → I |
 | [BK-SDM](#bk-sdm) | Efficient | T → I |
@@ -47,9 +49,11 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [BLIP3o-NEXT](#blip3o-next) | Unified | T, I → I |
 | [Bridge Diffusion Model (BDM)](#bridge-diffusion) | Latent U-Net | T → I |
 | [C4Synth](#c4synth) | GAN | T → I |
+| [CAGAN](#cagan) | GAN | T → I |
 | [CanvasGAN](#canvasgan) | GAN | T → I |
 | [Chameleon](#chameleon) | Unified | T, I → T, I |
 | [ChatPainter](#chatpainter) | GAN | T → I |
+| [CI-GAN](#ci-gan) | GAN | T → I |
 | [CM3](#cm3) | Unified | T, I → T, I |
 | [CoDi](#codi) | Unified | T, I, V, A → T, I, V, A |
 | [CogView](#cogview) | AR token | T → I |
@@ -60,15 +64,23 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Composer](#composer) | Pixel diffusion | T, I → I |
 | [ControlGAN](#controlgan) | GAN | T → I |
 | [Cosmos 3](#cosmos3) | Unified | T, I, V → T, I, V, A |
+| [CPGAN](#cpgan) | GAN | T → I |
+| [CRD-CGAN](#crd-cgan) | GAN | T → I |
+| [DAE-GAN](#dae-gan) | GAN | T → I |
 | [DALL·E](#dall-e) | AR token | T → I |
 | [DALL·E 2 (unCLIP)](#dall-e-2) | Pixel diffusion | T, I → I |
 | [DALL·E 3](#dall-e-3) | API | T → I |
 | [DALL·E Mini](#dall-e-mini) | AR token | T → I |
 | [DART](#dart) | Continuous AR | T → I |
 | [DeepFloyd IF](#deepfloyd-if) | Pixel diffusion | T, I → I |
+| [DF-GAN](#df-gan) | GAN | T → I |
+| [DiverGAN](#divergan) | GAN | T → I |
 | [DM-GAN](#dm-gan) | GAN | T → I |
 | [DMD2 (Distribution Matching Distillation)](#dmd2) | Efficient | T → I |
+| [DR-GAN](#dr-gan) | GAN | T → I |
 | [DreamLLM](#dreamllm) | Unified | T, I → T, I |
+| [DSE-GAN](#dse-gan) | GAN | T → I |
+| [DTGAN](#dtgan) | GAN | T → I |
 | [E-MMDiT (AMD Nitro-E)](#e-mmdit) | Efficient | T → I |
 | [eDiff-I](#ediff-i) | Pixel diffusion | T, I → I |
 | [Emu (BAAI)](#emu-baai) | Unified | T, I, V → T, I |
@@ -79,20 +91,24 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [ERNIE-Image](#ernie-image) | DiT / flow | T → I |
 | [ERNIE-ViLG](#ernie-vilg) | AR token | T → I |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | Latent U-Net | T → I |
+| [FA-GAN](#fa-gan) | GAN | T → I |
 | [Fluid](#fluid) | Continuous AR | T → I |
 | [FLUX.1](#flux-1) | DiT / flow | T → I |
 | [FLUX.1 Kontext](#flux-1-kontext) | DiT / flow | T, I → I |
 | [FLUX.2](#flux-2) | DiT / flow | T, I → I |
 | [Frido](#frido) | Latent U-Net | T → I |
+| [GALIP](#galip) | GAN | T → I |
 | [GAN-INT-CLS](#gan-int-cls) | GAN | T → I |
 | [GAWWN](#gawwn) | GAN | T → I |
 | [Gemini native image generation](#gemini-image) | API | T, I → T, I |
 | [GenTron](#gentron) | DiT / flow | T → I |
+| [GigaGAN](#gigagan) | GAN | T → I |
 | [GILL](#gill) | Unified | T, I → T, I |
 | [GLIDE](#glide) | Pixel diffusion | T, I → I |
 | [GLM-Image](#glm-image) | Continuous AR | T, I → I |
 | [GPT Image 1](#gpt-image-1) | API | T, I → I |
 | [GPT Image 2](#gpt-image-2) | API | T, I → I |
+| [GR-GAN](#gr-gan) | GAN | T → I |
 | [Grok Aurora](#grok-aurora) | API | T → I |
 | [Grok Imagine Image](#grok-imagine-image) | API | T, I → I |
 | [HART](#hart) | Continuous AR | T → I |
@@ -131,6 +147,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Kolors 2.0](#kolors-2) | API | T, I → I |
 | [Krea 2](#krea-2) | DiT / flow | T → I |
 | [L-Verse](#l-verse) | AR token | T → I |
+| [LAFITE](#lafite) | GAN | T → I |
 | [Latent Consistency Models (LCM)](#lcm) | Efficient | T → I |
 | [Latent Diffusion Models (LDM)](#ldm) | Latent U-Net | T → I |
 | [Lavida-O](#lavida-o) | Unified | T, I → T, I |
@@ -172,6 +189,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MobileDiffusion](#mobilediffusion) | Efficient | T → I |
 | [Mogao](#mogao) | Unified | T, I → T, I |
 | [MonoFormer](#monoformer) | Unified | T → T, I |
+| [MSMT-GAN](#msmt-gan) | GAN | T → I |
 | [Muse](#muse) | Masked token | T → I |
 | [Muse Image](#muse-image) | API | T, I → I |
 | [NExT-GPT](#next-gpt) | Unified | T, I, V, A → T, I, V, A |
@@ -184,6 +202,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [OmniGen](#omnigen) | Unified | T, I → I |
 | [OmniGen2](#omnigen2) | Unified | T, I → T, I |
 | [OneCAT](#onecat) | Unified | T, I → T, I |
+| [OP-GAN](#op-gan) | GAN | T → I |
 | [Orthus](#orthus) | Unified | T, I → T, I |
 | [Ovis-Image](#ovis-image) | DiT / flow | T → I |
 | [Ovis-U1](#ovis-u1) | Unified | T, I → T, I |
@@ -201,6 +220,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Qwen-Image](#qwen-image) | DiT / flow | T → I |
 | [Qwen-Image-2.0](#qwen-image-2) | DiT / flow | T, I → I |
 | [RAPHAEL](#raphael) | Latent U-Net | T → I |
+| [RAT-GAN](#rat-gan) | GAN | T → I |
 | [Re-Imagen](#re-imagen) | Pixel diffusion | T, I → I |
 | [Recraft](#recraft) | API | T, I → I |
 | [Retrieval-Augmented Diffusion Models (RDM)](#rdm) | Latent U-Net | T → I |
@@ -211,6 +231,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [SANA-Sprint](#sana-sprint) | Efficient | T → I |
 | [SD-GAN](#sd-gan) | GAN | T → I |
 | [SD3-Turbo (Latent Adversarial Diffusion Distillation)](#sd3-turbo) | Efficient | T → I |
+| [SDN (Symmetrical Distillation Networks)](#sdn-t2i) | GAN | T → I |
 | [SDXL](#sdxl) | Latent U-Net | T → I |
 | [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | Efficient | T → I |
 | [SDXL-Lightning](#sdxl-lightning) | Efficient | T → I |
@@ -221,6 +242,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Seedream 3.0](#seedream-3) | DiT / flow | T → I |
 | [Seedream 4.0](#seedream-4) | DiT / flow | T, I → I |
 | [Seedream 5.0](#seedream-5) | API | T, I → I |
+| [SegAttnGAN](#segattngan) | GAN | T → I |
 | [SenseNova-U1](#sensenova-u1) | Unified | T, I → T, I |
 | [Show-o](#show-o) | Unified | T, I → T, I |
 | [Show-o2](#show-o2) | Unified | T, I, V → T, I, V |
@@ -228,6 +250,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Skywork UniPic](#skywork-unipic) | Unified | T, I → T, I |
 | [SnapFusion](#snapfusion) | Efficient | T → I |
 | [SnapGen](#snapgen) | Efficient | T → I |
+| [SSA-GAN](#ssa-gan) | GAN | T → I |
 | [SSD-1B](#ssd-1b) | Efficient | T → I |
 | [Stable Diffusion 1.x](#stable-diffusion-1) | Latent U-Net | T, I → I |
 | [Stable Diffusion 2.x](#stable-diffusion-2) | Latent U-Net | T, I → I |
@@ -237,15 +260,19 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [STAR](#star-t2i) | AR token | T → I |
 | [STARFlow](#starflow) | Continuous AR | T, I → I |
 | [STARFlow2](#starflow2) | Unified | T, I → T, I |
+| [StyleGAN-T](#stylegan-t) | GAN | T → I |
 | [SwiftBrush](#swiftbrush) | Efficient | T → I |
 | [Switti](#switti) | AR token | T → I |
 | [SynerGen-VL](#synergen-vl) | Unified | T, I → T, I |
 | [TAC-GAN](#tac-gan) | GAN | T → I |
 | [Taiyi-Diffusion-XL](#taiyi-diffusion-xl) | Latent U-Net | T → I |
 | [Tar](#tar) | Unified | T, I → T, I |
+| [TediGAN](#tedigan) | GAN | T, I → I |
 | [Text-SeGAN](#text-segan) | GAN | T → I |
 | [Text2Scene](#text2scene) | Early | T → I |
+| [TIME (Text and Image Mutual-Translation)](#time-gan) | GAN | T → I |
 | [Transfusion](#transfusion) | Unified | T, I → T, I |
+| [TReCS](#trecs) | GAN | T → I |
 | [UFOGen](#ufogen) | Efficient | T → I |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | Masked token | T → I |
 | [UniDiffuser](#unidiffuser) | Unified | T, I → T, I |
@@ -260,6 +287,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Würstchen](#wuerstchen) | Latent U-Net | T → I |
 | [X-LXMERT](#x-lxmert) | Masked token | T → I |
 | [X-Omni](#x-omni) | Unified | T, I → T, I |
+| [XMC-GAN](#xmc-gan) | GAN | T → I |
 | [Z-Image](#z-image) | DiT / flow | T → I |
 
 </details>
@@ -293,6 +321,18 @@ alignDRAW (ICLR 2016) is one of the first neural models to generate images from 
 ![alignDRAW — Figure 2](assets/architectures/aligndraw.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/1511.02793)*
+
+<a id="alr-gan"></a>
+
+### ALR-GAN
+
+Multi-stage GAN adding an Adaptive Layout Refinement (ALR) module at each stage that aligns the synthesized image's object/background layout with the corresponding real image's layout during training, followed by a Layout Visual Refinement (LVR) loss over the aligned regions.
+
+[Paper](https://arxiv.org/abs/2304.06297) · [Details](models/gan.md#alr-gan)
+
+![ALR-GAN — Figure 2](assets/architectures/alr-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2304.06297)*
 
 <a id="altdiffusion"></a>
 
@@ -353,6 +393,18 @@ AuraFlow is an open text-to-image model from fal, developed with researcher Simo
 ![AuraFlow — Editorial input/output diagram](assets/architectures/auraflow.svg)
 
 *Editorial input/output diagram · [Source](https://blog.fal.ai/auraflow/)*
+
+<a id="aurora-moe-gan"></a>
+
+### Aurora (Sparse MoE GAN)
+
+Text-to-image GAN whose generator blocks route feature points through a sparsely-activated mixture-of-experts, selected per pixel by a router conditioned on the text-integrated global latent code.
+
+[Paper](https://arxiv.org/abs/2309.03904) · [GitHub](https://github.com/zhujiapeng/Aurora) · [Details](models/gan.md#aurora-moe-gan)
+
+![Aurora (Sparse MoE GAN) — Figure 2](assets/architectures/aurora-moe-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2309.03904)*
 
 <a id="bagel"></a>
 
@@ -438,6 +490,18 @@ Multi-caption text-to-image GAN that consumes several captions in sequence, with
 
 *Figure 3 · [Source](https://arxiv.org/abs/1809.10238)*
 
+<a id="cagan"></a>
+
+### CAGAN
+
+AttnGAN-based multi-stage generator combining per-stage word-level attention with a squeeze-and-excitation channel attention module, plus an optional local self-attention module.
+
+[Paper](https://arxiv.org/abs/2104.12663) · [Details](models/gan.md#cagan)
+
+![CAGAN — Figure 2](assets/architectures/cagan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2104.12663)*
+
 <a id="canvasgan"></a>
 
 ### CanvasGAN
@@ -473,6 +537,18 @@ StackGAN-style two-stage GAN (64×64 then 256×256) conditioned on a caption emb
 ![ChatPainter — Figure 3 (PDF p. 3)](assets/architectures/chatpainter.png)
 
 *Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/1802.08216)*
+
+<a id="ci-gan"></a>
+
+### CI-GAN
+
+Three-stage pipeline that trains an unconditional StyleGAN, inverts it with a cycle-consistent GAN-inversion encoder, then aligns a text encoder to the learned StyleGAN W latent space so captions can be mapped to inversion codes at inference.
+
+[Paper](https://arxiv.org/abs/2108.01361) · [Details](models/gan.md#ci-gan)
+
+![CI-GAN — Figure 2](assets/architectures/ci-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2108.01361)*
 
 <a id="cm3"></a>
 
@@ -594,6 +670,42 @@ Cosmos 3 is NVIDIA's family of omnimodal world models for Physical AI, which joi
 
 *Figure 5 (PDF p. 11) · [Source](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf)*
 
+<a id="cpgan"></a>
+
+### CPGAN
+
+Coarse-to-fine multi-stage GAN with a memory-attended text parser and an object-aware image encoder feeding a fine-grained conditional discriminator.
+
+[Paper](https://arxiv.org/abs/1912.08562) · [GitHub](https://github.com/dongdongdong666/CPGAN) · [Details](models/gan.md#cpgan)
+
+![CPGAN — Figure 2](assets/architectures/cpgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1912.08562)*
+
+<a id="crd-cgan"></a>
+
+### CRD-CGAN
+
+Multi-generator conditional GAN that synthesizes K diverse images per caption in parallel and trains them with a relativistic conditional loss and a category-consistency loss to balance diversity against semantic fidelity.
+
+[Paper](https://arxiv.org/abs/2107.13516) · [Details](models/gan.md#crd-cgan)
+
+![CRD-CGAN — Figure 2](assets/architectures/crd-cgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2107.13516)*
+
+<a id="dae-gan"></a>
+
+### DAE-GAN
+
+Multi-stage GAN that extracts noun-phrase "aspects" from the caption alongside sentence and word features, then refines the image over several steps with an Aspect-aware Global Refinement (AGR) and Attention-based Local Refinement (ALR) module per step.
+
+[Paper](https://arxiv.org/abs/2108.12141) · [GitHub](https://github.com/hiarsal/DAE-GAN) · [Details](models/gan.md#dae-gan)
+
+![DAE-GAN — Figure 2](assets/architectures/dae-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2108.12141)*
+
 <a id="dall-e"></a>
 
 ### DALL·E
@@ -666,6 +778,30 @@ Frozen T5-XXL text encoder feeding three cascaded pixel-space diffusion U-Nets w
 
 *README architecture scheme · [Source](https://github.com/deep-floyd/IF)*
 
+<a id="df-gan"></a>
+
+### DF-GAN
+
+Single-stage GAN that generates high-resolution images directly with one generator-discriminator pair, fusing text and image features at each generator block via stacked deep text-image fusion blocks.
+
+[Paper](https://arxiv.org/abs/2008.05865) · [GitHub](https://github.com/tobran/DF-GAN) · [Details](models/gan.md#df-gan)
+
+![DF-GAN — Figure 2](assets/architectures/df-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2008.05865)*
+
+<a id="divergan"></a>
+
+### DiverGAN
+
+Single-stage GAN with a channel-attention and a pixel-attention module in each residual generator block, a fully-connected image-feature layer for diversity, and Conditional Adaptive Instance-Layer Normalization (CAdaILN) that flexibly linearly-combines instance and layer normalization statistics from the sentence vector.
+
+[Paper](https://arxiv.org/abs/2111.09267) · [Details](models/gan.md#divergan)
+
+![DiverGAN — Figure 2](assets/architectures/divergan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2111.09267)*
+
 <a id="dm-gan"></a>
 
 ### DM-GAN
@@ -690,6 +826,18 @@ Distribution Matching Distillation (MIT and Adobe Research) turns a diffusion mo
 
 *Figure 3 (PDF p. 6) · [Source](https://arxiv.org/abs/2405.14867)*
 
+<a id="dr-gan"></a>
+
+### DR-GAN
+
+Multi-stage GAN whose per-stage Semantic Disentangling Module (SDM) separates word-context features into content-relevant and content-irrelevant parts before fusing them into image features, regularized by a Distribution Normalization Module (DNM) that aligns generated and real image feature distributions.
+
+[Paper](https://arxiv.org/abs/2204.07945) · [GitHub](https://github.com/Tan-H-C/DR-GAN-Distribution-Regularization-for-Text-to-Image-Generation) · [Details](models/gan.md#dr-gan)
+
+![DR-GAN — Figure 1](assets/architectures/dr-gan.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2204.07945)*
+
 <a id="dreamllm"></a>
 
 ### DreamLLM
@@ -701,6 +849,30 @@ DreamLLM, from Xi'an Jiaotong University, MEGVII, Tsinghua and others, is a lear
 ![DreamLLM — Figure 2](assets/architectures/dreamllm.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.11499)*
+
+<a id="dse-gan"></a>
+
+### DSE-GAN
+
+Single adversarial-pair generator whose stages are connected by Dynamic Semantic Evolution (DSE) modules that re-derive fresh, generation-feedback-aware text features at every stage instead of reusing the same static word/sentence features throughout.
+
+[Paper](https://arxiv.org/abs/2209.01339) · [Details](models/gan.md#dse-gan)
+
+![DSE-GAN — Figure 2](assets/architectures/dse-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2209.01339)*
+
+<a id="dtgan"></a>
+
+### DTGAN
+
+Single-stage generator with seven upsampling layers, each carrying a channel-aware attention module and a pixel-aware attention module conditioned on word features, plus conditional normalization and a visual loss.
+
+[Paper](https://arxiv.org/abs/2011.02709) · [Details](models/gan.md#dtgan)
+
+![DTGAN — Figure 2](assets/architectures/dtgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2011.02709)*
 
 <a id="e-mmdit"></a>
 
@@ -822,6 +994,18 @@ Chinese latent diffusion model with a 1.3B transformer text encoder and a mixtur
 
 *Figure 2 · [Source](https://arxiv.org/abs/2210.15257)*
 
+<a id="fa-gan"></a>
+
+### FA-GAN
+
+Single-stage GAN with a self-supervised, auto-encoding discriminator and a feature-aware loss that encourages diverse generator outputs for similar input sentences.
+
+[Paper](https://arxiv.org/abs/2109.00907) · [Details](models/gan.md#fa-gan)
+
+![FA-GAN — Figure 2](assets/architectures/fa-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2109.00907)*
+
 <a id="fluid"></a>
 
 ### Fluid
@@ -882,6 +1066,18 @@ Feature-pyramid latent diffusion model that denoises multi-scale MS-VQGAN latent
 
 *Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2208.13753)*
 
+<a id="galip"></a>
+
+### GALIP
+
+CLIP-empowered GAN that bridges a frozen CLIP-ViT into both the generator (via a bridge feature predictor and prompt predictor) and the discriminator (Mate-D), so adversarial training reuses CLIP's pretrained vision-language representations instead of learning them from scratch.
+
+[Paper](https://arxiv.org/abs/2301.12959) · [GitHub](https://github.com/tobran/GALIP) · [Details](models/gan.md#galip)
+
+![GALIP — Figure 3](assets/architectures/galip.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2301.12959)*
+
 <a id="gan-int-cls"></a>
 
 ### GAN-INT-CLS
@@ -929,6 +1125,18 @@ GenTron is a 2023 study from Adobe and Johns Hopkins that adapts the class-condi
 ![GenTron — Figure 2 (PDF p. 3)](assets/architectures/gentron.png)
 
 *Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2312.04557)*
+
+<a id="gigagan"></a>
+
+### GigaGAN
+
+Scaled-up StyleGAN-family text-to-image generator (~1B parameters) with sample-adaptive kernel selection, attention interleaved with convolution, and a multi-scale text-conditioned discriminator, plus a separate GAN-based upsampler for higher resolutions.
+
+[Paper](https://arxiv.org/abs/2303.05511) · [GitHub](https://github.com/mingukkang/GigaGAN) · [Details](models/gan.md#gigagan)
+
+![GigaGAN — Figure 4](assets/architectures/gigagan.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2303.05511)*
 
 <a id="gill"></a>
 
@@ -989,6 +1197,18 @@ GPT Image 2 (`gpt-image-2`) is the OpenAI image model released in the API on 202
 ![GPT Image 2 — Editorial input/output diagram](assets/architectures/gpt-image-2.svg)
 
 *Editorial input/output diagram · [Source](https://developers.openai.com/api/docs/models/gpt-image-2)*
+
+<a id="gr-gan"></a>
+
+### GR-GAN
+
+Three-stage GAN whose Gradual Refinement Generator (GRG) conditions each successive stage on text at a coarser-to-finer granularity (image-level, then sentence-level, then word-level), paired with an Image-Text Matching (ITM) module providing sentence- and word-region-level matching losses.
+
+[Paper](https://arxiv.org/abs/2205.11273) · [GitHub](https://github.com/BoO-18/GR-GAN) · [Details](models/gan.md#gr-gan)
+
+![GR-GAN — Figure 1](assets/architectures/gr-gan.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2205.11273)*
 
 <a id="grok-aurora"></a>
 
@@ -1445,6 +1665,18 @@ L-Verse (LG AI Research) pairs an improved image tokenizer, AugVAE, with a singl
 ![L-Verse — Figure 2](assets/architectures/l-verse.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2111.11133)*
+
+<a id="lafite"></a>
+
+### LAFITE
+
+StyleGAN2-based generator trained language-free: real images are encoded by a pretrained CLIP model and perturbed into pseudo text features that stand in for captions, with the generator injecting this CLIP-space conditioning into every layer.
+
+[Paper](https://arxiv.org/abs/2111.13792) · [GitHub](https://github.com/drboog/Lafite) · [Details](models/gan.md#lafite)
+
+![LAFITE — Figure 3](assets/architectures/lafite.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2111.13792)*
 
 <a id="lcm"></a>
 
@@ -1938,6 +2170,18 @@ MonoFormer, from a group at Zhejiang University and Alibaba, uses a single trans
 
 *Figure 1 (PDF p. 2) · [Source](https://arxiv.org/abs/2409.16280)*
 
+<a id="msmt-gan"></a>
+
+### MSMT-GAN
+
+Multi-stage GAN whose initial stage generates separate word-n-gram-conditioned ("multi-tailed") image features that are fused together, followed by refinement stages reading a multi-headed spatial dynamic memory keyed on word features.
+
+[Paper](https://arxiv.org/abs/2110.08143) · [Details](models/gan.md#msmt-gan)
+
+![MSMT-GAN — Figure 1](assets/architectures/msmt-gan.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2110.08143)*
+
 <a id="muse"></a>
 
 ### Muse
@@ -2081,6 +2325,18 @@ OneCAT unifies multimodal understanding, text-to-image generation and instructio
 ![OneCAT — Figure 3](assets/architectures/onecat.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2509.03498)*
+
+<a id="op-gan"></a>
+
+### OP-GAN
+
+Multi-stage AttnGAN-style GAN augmented with a per-object pathway, alongside the global image pathway, in both the generator and discriminator so that individual objects can be placed and refined at their bounding-box locations.
+
+[Paper 1](https://arxiv.org/abs/1910.13321) · [Paper 2](https://arxiv.org/abs/1901.00686) · [GitHub](https://github.com/tohinz/semantic-object-accuracy-for-generative-text-to-image-synthesis) · [Details](models/gan.md#op-gan)
+
+![OP-GAN — Figure 1](assets/architectures/op-gan.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/1910.13321)*
 
 <a id="orthus"></a>
 
@@ -2286,6 +2542,18 @@ Latent diffusion U-Net of 16 transformer blocks, each with self-attention, cross
 
 *Figure 3 · [Source](https://arxiv.org/abs/2305.18295)*
 
+<a id="rat-gan"></a>
+
+### RAT-GAN
+
+Single generator built from fusion blocks whose text-conditioned affine parameters are produced by a recurrent network (an RNN/LSTM over the sequence of fusion blocks) instead of being predicted independently at each block.
+
+[Paper](https://arxiv.org/abs/2204.10482) · [GitHub](https://github.com/senmaoy/RAT-GAN) · [Details](models/gan.md#rat-gan)
+
+![RAT-GAN — Figure 1](assets/architectures/rat-gan.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2204.10482)*
+
 <a id="re-imagen"></a>
 
 ### Re-Imagen
@@ -2405,6 +2673,18 @@ Latent Adversarial Diffusion Distillation (LADD, Stability AI, 2024) is the succ
 ![SD3-Turbo (Latent Adversarial Diffusion Distillation) — Figure 3](assets/architectures/sd3-turbo.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2403.12015)*
+
+<a id="sdn-t2i"></a>
+
+### SDN (Symmetrical Distillation Networks)
+
+Text-to-image GAN whose generator is trained with a two-stage symmetrical distillation loss that matches its feature maps, layer by layer, against a pretrained discriminative model (e.g. VGG19) processing the corresponding real image.
+
+[Paper](https://arxiv.org/abs/1808.06801) · [Details](models/gan.md#sdn-t2i)
+
+![SDN (Symmetrical Distillation Networks) — Figure 2](assets/architectures/sdn-t2i.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1808.06801)*
 
 <a id="sdxl"></a>
 
@@ -2526,6 +2806,18 @@ Seedream 5.0 is ByteDance Seed's closed image creation line released after Seedr
 
 *Editorial input/output diagram · [Source](https://seed.bytedance.com/en/seedream5_0_lite)*
 
+<a id="segattngan"></a>
+
+### SegAttnGAN
+
+AttnGAN-style multi-stage generator augmented with a segmentation attention module that injects a semantic segmentation map into each generator stage through a SPADE-like spatial modulation.
+
+[Paper](https://arxiv.org/abs/2005.12444) · [Details](models/gan.md#segattngan)
+
+![SegAttnGAN — Figure 2](assets/architectures/segattngan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2005.12444)*
+
 <a id="sensenova-u1"></a>
 
 ### SenseNova-U1
@@ -2609,6 +2901,18 @@ SnapGen (Snap Inc. with the University of Melbourne, HKUST and MBZUAI, 2024) is 
 ![SnapGen — Figure 2 (PDF p. 4)](assets/architectures/snapgen.png)
 
 *Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2412.09619)*
+
+<a id="ssa-gan"></a>
+
+### SSA-GAN
+
+Single generator-discriminator pair whose generator is a stack of seven Semantic-Spatial Aware Convolutional Network (SSACN) blocks that each predict a spatial mask from image features and use it to gate where text conditioning affine-modulates the image.
+
+[Paper](https://arxiv.org/abs/2104.00567) · [GitHub](https://github.com/wtliao/text2image) · [Details](models/gan.md#ssa-gan)
+
+![SSA-GAN — Figure 2](assets/architectures/ssa-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2104.00567)*
 
 <a id="ssd-1b"></a>
 
@@ -2718,6 +3022,18 @@ STARFlow2, from Apple, unifies multimodal understanding and text-to-image genera
 
 *Figure 2 · [Source](https://arxiv.org/abs/2605.08029)*
 
+<a id="stylegan-t"></a>
+
+### StyleGAN-T
+
+Large-scale StyleGAN2-derived generator with Fourier-feature input, layer-scaled residual generator/discriminator blocks and a trained CLIP text encoder, paired with a multi-scale CLIP-and-vision-aided discriminator, for fast one-step large-scale text-to-image synthesis.
+
+[Paper](https://arxiv.org/abs/2301.09515) · [GitHub](https://github.com/autonomousvision/stylegan-t) · [Details](models/gan.md#stylegan-t)
+
+![StyleGAN-T — Figure 3](assets/architectures/stylegan-t.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2301.09515)*
+
 <a id="swiftbrush"></a>
 
 ### SwiftBrush
@@ -2790,6 +3106,18 @@ Tar ("Vision as a Dialect") unifies visual understanding and generation by makin
 
 *Figure 2 · [Source](https://arxiv.org/abs/2506.18898)*
 
+<a id="tedigan"></a>
+
+### TediGAN
+
+StyleGAN-inversion framework that maps both images and text descriptions into a shared StyleGAN W latent space through visual and linguistic encoders, so a caption alone can generate a face or edit an inverted real face by style mixing.
+
+[Paper](https://arxiv.org/abs/2012.03308) · [GitHub](https://github.com/IIGROUP/TediGAN) · [Details](models/gan.md#tedigan)
+
+![TediGAN — Figure 2](assets/architectures/tedigan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2012.03308)*
+
 <a id="text-segan"></a>
 
 ### Text-SeGAN
@@ -2814,6 +3142,18 @@ Text2Scene (CVPR 2019) generates scenes from text by predicting a sequence of ob
 
 *Figure 2 · [Source](https://arxiv.org/abs/1809.01110)*
 
+<a id="time-gan"></a>
+
+### TIME (Text and Image Mutual-Translation)
+
+Single-discriminator StackGAN-style aggregated generator paired with an image-captioning Transformer discriminator, jointly trained so text-to-image generation and image-to-text captioning act as mutual-translation adversarial tasks.
+
+[Paper](https://arxiv.org/abs/2005.13192) · [Details](models/gan.md#time-gan)
+
+![TIME (Text and Image Mutual-Translation) — Figure 2](assets/architectures/time-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2005.13192)*
+
 <a id="transfusion"></a>
 
 ### Transfusion
@@ -2825,6 +3165,18 @@ Transfusion is a training recipe from Meta, Waymo and USC for one multimodal mod
 ![Transfusion — Figure 1](assets/architectures/transfusion.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2408.11039)*
+
+<a id="trecs"></a>
+
+### TReCS
+
+Multi-stage retrieval-and-composition pipeline that tags mouse-trace-aligned objects from a localized narrative, retrieves per-object semantic masks, composes them into a scene mask and renders it with a mask-to-image GAN.
+
+[Paper](https://arxiv.org/abs/2011.03775) · [Details](models/gan.md#trecs)
+
+![TReCS — Figure 2 (PDF p. 2)](assets/architectures/trecs.png)
+
+*Figure 2 (PDF p. 2) · [Source](https://arxiv.org/abs/2011.03775)*
 
 <a id="ufogen"></a>
 
@@ -2993,6 +3345,18 @@ X-Omni, from Tencent Hunyuan, argues that discrete autoregressive image generati
 ![X-Omni — Figure 3](assets/architectures/x-omni.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2507.22058)*
+
+<a id="xmc-gan"></a>
+
+### XMC-GAN
+
+Single-stage self-modulation GAN trained with cross-modal contrastive losses between image, region and sentence/word (BERT) representations instead of a hand-designed attention mechanism.
+
+[Paper](https://arxiv.org/abs/2101.04702) · [GitHub](https://github.com/google-research/xmcgan_image_generation) · [Details](models/gan.md#xmc-gan)
+
+![XMC-GAN — Figure 2 (PDF p. 3)](assets/architectures/xmc-gan.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2101.04702)*
 
 <a id="z-image"></a>
 

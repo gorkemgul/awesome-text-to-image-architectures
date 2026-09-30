@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 224 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 252 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -164,6 +164,7 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2023-09-12 | [InstaFlow](../models/efficient.md#instaflow) | paper | [Paper](https://arxiv.org/abs/2309.06380) · [GitHub](https://github.com/gnobitab/InstaFlow) · [Model card](https://huggingface.co/XCLiu/instaflow_0_9B_from_sd_1_5) |
 | 2023-09-11 | [NExT-GPT](../models/unified.md#next-gpt) | paper | [Paper](https://arxiv.org/abs/2309.05519) · [GitHub](https://github.com/NExT-GPT/NExT-GPT) |
 | 2023-09-09 | [LaVIT](../models/unified.md#lavit) | paper | [Paper](https://arxiv.org/abs/2309.04669) · [GitHub](https://github.com/jy0205/LaVIT) · [Model card](https://huggingface.co/rain1011/LaVIT-7B-v2) |
+| 2023-09-07 | [Aurora (Sparse MoE GAN)](../models/gan.md#aurora-moe-gan) | paper | [Paper](https://arxiv.org/abs/2309.03904) · [GitHub](https://github.com/zhujiapeng/Aurora) |
 | 2023-09-02 | [Bridge Diffusion Model (BDM)](../models/latent-unet.md#bridge-diffusion) | paper | [Paper](https://arxiv.org/abs/2309.00952) · [GitHub](https://github.com/360CVGroup/Bridge_Diffusion_Model) · [Model card](https://huggingface.co/qihoo360/BDM1.0) |
 | 2023-08-22 | [Ideogram](../models/api.md#ideogram) | announcement | [Announcement 1](https://docs.ideogram.ai/about-ideogram/blog-posts) · [Announcement 2](https://ideogram.ai/models/3.0/) · [Docs 1](https://developer.ideogram.ai/api-reference/legacy-endpoints/generate) · [Docs 2](https://developer.ideogram.ai/api-reference/generate-images/generate-v3) · [Docs 3](https://developer.ideogram.ai/api-reference/edit-images/inpaint-v3) |
 | 2023-08-19 | [AltDiffusion](../models/latent-unet.md#altdiffusion) | paper | [Paper](https://arxiv.org/abs/2308.09991) · [GitHub](https://github.com/superhero-7/AltDiffusion) · [Model card 1](https://huggingface.co/BAAI/AltDiffusion-m18) · [Model card 2](https://huggingface.co/BAAI/AltDiffusion-m9) |
@@ -176,9 +177,13 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2023-05-25 | [BK-SDM](../models/efficient.md#bk-sdm) | paper | [Paper](https://arxiv.org/abs/2305.15798) · [GitHub](https://github.com/Nota-NetsPresso/BK-SDM) · [Model card](https://huggingface.co/nota-ai/bk-sdm-small) |
 | 2023-05-19 | [CoDi](../models/unified.md#codi) | paper | [Paper](https://arxiv.org/abs/2305.11846) · [GitHub](https://github.com/microsoft/i-Code) |
 | 2023-04-28 | [DeepFloyd IF](../models/pixel-diffusion.md#deepfloyd-if) | announcement | [Announcement](https://stability.ai/news/deepfloyd-if-text-to-image-model) · [GitHub](https://github.com/deep-floyd/IF) · [Model card](https://huggingface.co/DeepFloyd/IF-I-XL-v1.0) |
+| 2023-04-13 | [ALR-GAN](../models/gan.md#alr-gan) | paper | [Paper](https://arxiv.org/abs/2304.06297) |
 | 2023-03-21 | [Adobe Firefly Image](../models/api.md#adobe-firefly) | announcement | [Announcement 1](https://news.adobe.com/news/news-details/2023/Adobe-Unveils-Firefly-a-Family-of-new-Creative-Generative-AI/default.aspx) · [Announcement 2](https://news.adobe.com/news/news-details/2023/adobe-releases-next-generation-of-firefly-models) · [Announcement 3](https://news.adobe.com/news/news-details/2024/adobe-introduces-firefly-image-3-foundation-model-to-take-creative-exploration-and-ideation-to-new-heights) · [Announcement 4](https://news.adobe.com/news/2025/04/adobe-revolutionizes-ai-assisted-creativity-firefly) · [Announcement 5](https://news.adobe.com/news/2025/10/adobe-max-2025-firefly) · [Docs 1](https://developer.adobe.com/firefly-services/docs/firefly-api/) · [Docs 2](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/how-tos/firefly-generate-image-api-tutorial) |
 | 2023-03-12 | [UniDiffuser](../models/unified.md#unidiffuser) | paper | [Paper](https://arxiv.org/abs/2303.06555) · [GitHub](https://github.com/thu-ml/unidiffuser) · [Model card](https://huggingface.co/thu-ml/unidiffuser-v1) |
+| 2023-03-09 | [GigaGAN](../models/gan.md#gigagan) | paper | [Paper](https://arxiv.org/abs/2303.05511) · [GitHub](https://github.com/mingukkang/GigaGAN) |
 | 2023-02-20 | [Composer](../models/pixel-diffusion.md#composer) | paper | [Paper](https://arxiv.org/abs/2302.09778) · [GitHub](https://github.com/ali-vilab/composer) |
+| 2023-01-30 | [GALIP](../models/gan.md#galip) | paper | [Paper](https://arxiv.org/abs/2301.12959) · [GitHub](https://github.com/tobran/GALIP) |
+| 2023-01-23 | [StyleGAN-T](../models/gan.md#stylegan-t) | paper | [Paper](https://arxiv.org/abs/2301.09515) · [GitHub](https://github.com/autonomousvision/stylegan-t) |
 | 2023-01-02 | [Muse](../models/masked.md#muse) | paper | [Paper](https://arxiv.org/abs/2301.00704) · GitHub: no author-linked repository found |
 | 2022-12-01 | [Karlo](../models/pixel-diffusion.md#karlo) | announcement | [GitHub](https://github.com/kakaobrain/karlo) · [Model card](https://huggingface.co/kakaobrain/karlo-v1-alpha) |
 | 2022-11-24 | [Stable Diffusion 2.x](../models/latent-unet.md#stable-diffusion-2) | announcement | [Announcement 1](https://stability.ai/news/stable-diffusion-v2-release) · [Announcement 2](https://stability.ai/news/stablediffusion2-1-release7-dec-2022) · [Paper](https://arxiv.org/abs/2307.01952) · GitHub: no author-linked repository found |
@@ -188,13 +193,17 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2022-10-28 | [UPainting](../models/latent-unet.md#upainting) | paper | [Paper](https://arxiv.org/abs/2210.16031) |
 | 2022-10-27 | [ERNIE-ViLG 2.0](../models/latent-unet.md#ernie-vilg-2) | paper | [Paper](https://arxiv.org/abs/2210.15257) |
 | 2022-09-29 | [Re-Imagen](../models/pixel-diffusion.md#re-imagen) | paper | [Paper](https://arxiv.org/abs/2209.14491) · GitHub: no author-linked repository found |
+| 2022-09-03 | [DSE-GAN](../models/gan.md#dse-gan) | paper | [Paper](https://arxiv.org/abs/2209.01339) |
 | 2022-08-29 | [Frido](../models/latent-unet.md#frido) | paper | [Paper](https://arxiv.org/abs/2208.13753) · [GitHub](https://github.com/chrisfan-wc/Frido) |
 | 2022-08-22 | [Stable Diffusion 1.x](../models/latent-unet.md#stable-diffusion-1) | announcement | [Announcement](https://stability.ai/news/stable-diffusion-public-release) · [GitHub](https://github.com/CompVis/stable-diffusion) · [Model card](https://huggingface.co/CompVis/stable-diffusion-v1-4) · [Paper](https://arxiv.org/abs/2112.10752) |
 | 2022-06-22 | [Parti](../models/ar-token.md#parti) | paper | [Paper](https://arxiv.org/abs/2206.10789) · [GitHub](https://github.com/google-research/parti) |
 | 2022-06-17 | [Unified-IO](../models/unified.md#unified-io) | paper | [Paper](https://arxiv.org/abs/2206.08916) · [GitHub](https://github.com/allenai/unified-io-inference) |
 | 2022-05-23 | [Imagen](../models/pixel-diffusion.md#imagen) | paper | [Paper](https://arxiv.org/abs/2205.11487) · [Project](https://imagen.research.google/) · GitHub: no author-linked repository found |
+| 2022-05-23 | [GR-GAN](../models/gan.md#gr-gan) | paper | [Paper](https://arxiv.org/abs/2205.11273) · [GitHub](https://github.com/BoO-18/GR-GAN) |
 | 2022-04-28 | [CogView2](../models/ar-token.md#cogview2) | paper | [Paper](https://arxiv.org/abs/2204.14217) · [GitHub](https://github.com/zai-org/CogView2) |
 | 2022-04-25 | [Retrieval-Augmented Diffusion Models (RDM)](../models/latent-unet.md#rdm) | paper | [Paper](https://arxiv.org/abs/2204.11824) · [GitHub 1](https://github.com/CompVis/retrieval-augmented-diffusion-models) · [GitHub 2](https://github.com/CompVis/latent-diffusion) |
+| 2022-04-22 | [RAT-GAN](../models/gan.md#rat-gan) | paper | [Paper](https://arxiv.org/abs/2204.10482) · [GitHub](https://github.com/senmaoy/RAT-GAN) |
+| 2022-04-17 | [DR-GAN](../models/gan.md#dr-gan) | paper | [Paper](https://arxiv.org/abs/2204.07945) · [GitHub](https://github.com/Tan-H-C/DR-GAN-Distribution-Regularization-for-Text-to-Image-Generation) |
 | 2022-04-13 | [DALL·E 2 (unCLIP)](../models/pixel-diffusion.md#dall-e-2) | paper | [Paper](https://arxiv.org/abs/2204.06125) · [GitHub](https://github.com/openai/dalle-2-preview) |
 | 2022-03-24 | [Make-A-Scene](../models/ar-token.md#make-a-scene) | paper | [Paper](https://arxiv.org/abs/2203.13131) · GitHub: no author-linked repository found |
 | 2022-02-07 | [OFA](../models/unified.md#ofa) | paper | [Paper](https://arxiv.org/abs/2202.03052) · [GitHub](https://github.com/OFA-Sys/OFA) |
@@ -203,17 +212,35 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2021-12-20 | [Latent Diffusion Models (LDM)](../models/latent-unet.md#ldm) | paper | [Paper](https://arxiv.org/abs/2112.10752) · [GitHub](https://github.com/CompVis/latent-diffusion) |
 | 2021-12-20 | [GLIDE](../models/pixel-diffusion.md#glide) | paper | [Paper](https://arxiv.org/abs/2112.10741) · [GitHub](https://github.com/openai/glide-text2im) |
 | 2021-11-29 | [VQ-Diffusion](../models/masked.md#vq-diffusion) | paper | [Paper](https://arxiv.org/abs/2111.14822) · [GitHub](https://github.com/microsoft/VQ-Diffusion) |
+| 2021-11-27 | [LAFITE](../models/gan.md#lafite) | paper | [Paper](https://arxiv.org/abs/2111.13792) · [GitHub](https://github.com/drboog/Lafite) |
 | 2021-11-24 | [NÜWA](../models/ar-token.md#nuwa) | paper | [Paper](https://arxiv.org/abs/2111.12417) · [GitHub](https://github.com/microsoft/NUWA) |
 | 2021-11-22 | [L-Verse](../models/ar-token.md#l-verse) | paper | [Paper](https://arxiv.org/abs/2111.11133) · GitHub: no author-linked repository found |
+| 2021-11-17 | [DiverGAN](../models/gan.md#divergan) | paper | [Paper](https://arxiv.org/abs/2111.09267) |
 | 2021-11-02 | [ruDALL-E](../models/ar-token.md#rudall-e) | announcement | [Announcement 1](https://habr.com/ru/company/sberdevices/blog/586926/) · [Announcement 2](https://habr.com/ru/company/sberbank/blog/589673/) · [GitHub](https://github.com/ai-forever/ru-dalle) · [Model card](https://huggingface.co/ai-forever/rudalle-Malevich) |
 | 2021-10-19 | [UMT-BITG (Unifying Multimodal Transformer)](../models/masked.md#generate-it) | paper | [Paper](https://arxiv.org/abs/2110.09753) · [GitHub](https://github.com/researchmm/generate-it) |
+| 2021-10-15 | [MSMT-GAN](../models/gan.md#msmt-gan) | paper | [Paper](https://arxiv.org/abs/2110.08143) |
+| 2021-09-02 | [FA-GAN](../models/gan.md#fa-gan) | paper | [Paper](https://arxiv.org/abs/2109.00907) |
+| 2021-08-27 | [DAE-GAN](../models/gan.md#dae-gan) | paper | [Paper](https://arxiv.org/abs/2108.12141) · [GitHub](https://github.com/hiarsal/DAE-GAN) |
 | 2021-08-19 | [ImageBART](../models/ar-token.md#imagebart) | paper | [Paper](https://arxiv.org/abs/2108.08827) · [GitHub](https://github.com/CompVis/imagebart) |
+| 2021-08-03 | [CI-GAN](../models/gan.md#ci-gan) | paper | [Paper](https://arxiv.org/abs/2108.01361) |
+| 2021-07-28 | [CRD-CGAN](../models/gan.md#crd-cgan) | paper | [Paper](https://arxiv.org/abs/2107.13516) |
 | 2021-07-18 | [DALL·E Mini](../models/ar-token.md#dall-e-mini) | announcement | [GitHub](https://github.com/borisdayma/dalle-mini) · [Model card 1](https://huggingface.co/dalle-mini/dalle-mini) · [Model card 2](https://huggingface.co/dalle-mini/dalle-mega) · [Announcement](https://wandb.ai/dalle-mini/dalle-mini/reports/DALL-E-Mini-Explained-with-Demo--Vmlldzo4NjIxODA) |
 | 2021-05-29 | [M6-UFC](../models/masked.md#m6-ufc) | paper | [Paper](https://arxiv.org/abs/2105.14211) · GitHub: no author-linked repository found |
 | 2021-05-26 | [CogView](../models/ar-token.md#cogview) | paper | [Paper](https://arxiv.org/abs/2105.13290) · [GitHub](https://github.com/zai-org/CogView) |
+| 2021-04-26 | [CAGAN](../models/gan.md#cagan) | paper | [Paper](https://arxiv.org/abs/2104.12663) |
+| 2021-04-01 | [SSA-GAN](../models/gan.md#ssa-gan) | paper | [Paper](https://arxiv.org/abs/2104.00567) · [GitHub](https://github.com/wtliao/text2image) |
 | 2021-03-01 | [M6](../models/ar-token.md#m6) | paper | [Paper](https://arxiv.org/abs/2103.00823) · GitHub: no author-linked repository found |
 | 2021-02-24 | [DALL·E](../models/ar-token.md#dall-e) | paper | [Paper](https://arxiv.org/abs/2102.12092) · [GitHub](https://github.com/openai/DALL-E) |
+| 2021-01-12 | [XMC-GAN](../models/gan.md#xmc-gan) | paper | [Paper](https://arxiv.org/abs/2101.04702) · [GitHub](https://github.com/google-research/xmcgan_image_generation) |
+| 2020-12-06 | [TediGAN](../models/gan.md#tedigan) | paper | [Paper](https://arxiv.org/abs/2012.03308) · [GitHub](https://github.com/IIGROUP/TediGAN) |
+| 2020-11-07 | [TReCS](../models/gan.md#trecs) | paper | [Paper](https://arxiv.org/abs/2011.03775) |
+| 2020-11-05 | [DTGAN](../models/gan.md#dtgan) | paper | [Paper](https://arxiv.org/abs/2011.02709) |
 | 2020-09-23 | [X-LXMERT](../models/masked.md#x-lxmert) | paper | [Paper](https://arxiv.org/abs/2009.11278) · [GitHub](https://github.com/allenai/x-lxmert) |
+| 2020-08-13 | [DF-GAN](../models/gan.md#df-gan) | paper | [Paper](https://arxiv.org/abs/2008.05865) · [GitHub](https://github.com/tobran/DF-GAN) |
+| 2020-05-27 | [TIME (Text and Image Mutual-Translation)](../models/gan.md#time-gan) | paper | [Paper](https://arxiv.org/abs/2005.13192) |
+| 2020-05-25 | [SegAttnGAN](../models/gan.md#segattngan) | paper | [Paper](https://arxiv.org/abs/2005.12444) |
+| 2019-12-18 | [CPGAN](../models/gan.md#cpgan) | paper | [Paper](https://arxiv.org/abs/1912.08562) · [GitHub](https://github.com/dongdongdong666/CPGAN) |
+| 2019-10-29 | [OP-GAN](../models/gan.md#op-gan) | paper | [Paper 1](https://arxiv.org/abs/1910.13321) · [Paper 2](https://arxiv.org/abs/1901.00686) · [GitHub](https://github.com/tohinz/semantic-object-accuracy-for-generative-text-to-image-synthesis) |
 | 2019-09-16 | [ControlGAN](../models/gan.md#controlgan) | paper | [Paper](https://arxiv.org/abs/1909.07083) · [GitHub](https://github.com/mrlibw/ControlGAN) |
 | 2019-04-02 | [SD-GAN](../models/gan.md#sd-gan) | paper | [Paper](https://arxiv.org/abs/1904.01480) · GitHub: no author-linked repository found |
 | 2019-04-02 | [DM-GAN](../models/gan.md#dm-gan) | paper | [Paper](https://arxiv.org/abs/1904.01310) · [GitHub](https://github.com/MinfengZhu/DM-GAN) |
@@ -223,6 +250,7 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2018-10-05 | [CanvasGAN](../models/gan.md#canvasgan) | paper | [Paper](https://arxiv.org/abs/1810.02833) · GitHub: no author-linked repository found |
 | 2018-09-20 | [C4Synth](../models/gan.md#c4synth) | paper | [Paper](https://arxiv.org/abs/1809.10238) · GitHub: no author-linked repository found |
 | 2018-09-04 | [Text2Scene](../models/early.md#text2scene) | paper | [Paper](https://arxiv.org/abs/1809.01110) · [GitHub](https://github.com/uvavision/Text2Scene) |
+| 2018-08-21 | [SDN (Symmetrical Distillation Networks)](../models/gan.md#sdn-t2i) | paper | [Paper](https://arxiv.org/abs/1808.06801) |
 | 2018-02-26 | [HDGAN](../models/gan.md#hdgan) | paper | [Paper](https://arxiv.org/abs/1802.09178) · [GitHub](https://github.com/ypxie/HDGan) |
 | 2018-02-22 | [ChatPainter](../models/gan.md#chatpainter) | paper | [Paper](https://arxiv.org/abs/1802.08216) · GitHub: no author-linked repository found |
 | 2018-01-16 | [Hierarchical text-to-image via inferred semantic layout (Hong et al.)](../models/gan.md#hong-semantic-layout) | paper | [Paper](https://arxiv.org/abs/1801.05091) · GitHub: no author-linked repository found |

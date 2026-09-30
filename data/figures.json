@@ -17,6 +17,14 @@
    "locator": "Figure 2",
    "sha256": "3bf33deb6453eda6144db848be4042dfd4517cf232f36d987bcbc6f7e1518a61"
   },
+  "alr-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/alr-gan.png",
+   "source_url": "https://arxiv.org/abs/2304.06297",
+   "origin_url": "https://arxiv.org/html/2304.06297v1/ALR-GAN.png",
+   "locator": "Figure 2",
+   "sha256": "936f4c1e93a9ad4a5b0bc2c047f020f3ed053718bb6c73b6d84cb5eb1dbf8396"
+  },
   "altdiffusion": {
    "kind": "source-figure",
    "path": "assets/architectures/altdiffusion.png",
@@ -56,6 +64,14 @@
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
+  },
+  "aurora-moe-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/aurora-moe-gan.png",
+   "source_url": "https://arxiv.org/abs/2309.03904",
+   "origin_url": "https://arxiv.org/html/2309.03904v1/framework.png",
+   "locator": "Figure 2",
+   "sha256": "6d6544cff9f731f71e43badf2b176994058839c1ffbd5319222b3866f3d52ed0"
   },
   "bagel": {
    "kind": "source-figure",
@@ -113,6 +129,14 @@
    "locator": "Figure 3",
    "sha256": "29d6615df5a2d7e74fb240e8ace7cc5376ee7a863587a1ba508d95dada23b5d8"
   },
+  "cagan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/cagan.png",
+   "source_url": "https://arxiv.org/abs/2104.12663",
+   "origin_url": "https://arxiv.org/html/2104.12663v4/diagrams/CAGAN.png",
+   "locator": "Figure 2",
+   "sha256": "4dbc957df23a2af07175da518eb632b2cb5846dd0207b91161d3bfb5282f5347"
+  },
   "canvasgan": {
    "kind": "source-figure",
    "path": "assets/architectures/canvasgan.png",
@@ -136,6 +160,14 @@
    "origin_url": "https://arxiv.org/pdf/1802.08216v1",
    "locator": "Figure 3 (PDF p. 3)",
    "sha256": "c2e14f5ba7e85026453a7d3ed1cf8f9f2d138e7e3eb17433972cbe772b3d6ba3"
+  },
+  "ci-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ci-gan.png",
+   "source_url": "https://arxiv.org/abs/2108.01361",
+   "origin_url": "https://arxiv.org/html/2108.01361v2/training.png",
+   "locator": "Figure 2",
+   "sha256": "cb17734ea4c29cd41f5ac0334646be2a6dee29de5708c169393c626052a3b7f1"
   },
   "cm3": {
    "kind": "source-figure",
@@ -221,6 +253,30 @@
    "locator": "Figure 5 (PDF p. 11)",
    "sha256": "9e6ddfbc16954c3bf6be34c8c609357c2b416befe66cb279e6448b1f06aadcbb"
   },
+  "cpgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/cpgan.png",
+   "source_url": "https://arxiv.org/abs/1912.08562",
+   "origin_url": "https://arxiv.org/html/1912.08562v2/model_structure.png",
+   "locator": "Figure 2",
+   "sha256": "8e744fa841bc8f458f2664be06585c3f30d6af6366259127aff0731b42b06e75"
+  },
+  "crd-cgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/crd-cgan.png",
+   "source_url": "https://arxiv.org/abs/2107.13516",
+   "origin_url": "https://arxiv.org/html/2107.13516v1/framework.png",
+   "locator": "Figure 2",
+   "sha256": "1d3824ece39f56b3cc563c97ebb5e7ca2f599ec2c4279003076657b8f765f9c7"
+  },
+  "dae-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dae-gan.png",
+   "source_url": "https://arxiv.org/abs/2108.12141",
+   "origin_url": "https://arxiv.org/html/2108.12141v1/framework_v5.png",
+   "locator": "Figure 2",
+   "sha256": "000156f4cf8e047c1b36011d5dd00cb9f9157de3570a2a8fbcc730cca6c618d0"
+  },
   "dall-e": {
    "kind": "io-diagram",
    "path": "assets/architectures/dall-e.svg",
@@ -269,6 +325,22 @@
    "locator": "README architecture scheme",
    "sha256": "3f9115893ad2ace4f0c2bd8cfde0b1d2dbdaaba7685e6555a967b97a9bf5e9b5"
   },
+  "df-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/df-gan.png",
+   "source_url": "https://arxiv.org/abs/2008.05865",
+   "origin_url": "https://arxiv.org/html/2008.05865v4/i2.jpeg",
+   "locator": "Figure 2",
+   "sha256": "f0587d90cea7834819bca31d12f9eb2d3c5126599cdf744f228a2182c43a5a77"
+  },
+  "divergan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/divergan.png",
+   "source_url": "https://arxiv.org/abs/2111.09267",
+   "origin_url": "https://arxiv.org/html/2111.09267v1/architecture1.png",
+   "locator": "Figure 2",
+   "sha256": "67d2a3032e6a1285774f106134c5a7034cac461556e7c1be5245a1b6af473c72"
+  },
   "dm-gan": {
    "kind": "source-figure",
    "path": "assets/architectures/dm-gan.png",
@@ -285,6 +357,14 @@
    "locator": "Figure 3 (PDF p. 6)",
    "sha256": "808bd93318c301e07ecde0849ea7fb62dc117ee6cea8ac0e0e35f65842c8a45f"
   },
+  "dr-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dr-gan.png",
+   "source_url": "https://arxiv.org/abs/2204.07945",
+   "origin_url": "https://arxiv.org/html/2204.07945v1/TNNLS-1.png",
+   "locator": "Figure 1",
+   "sha256": "63a8458be8010f95ddfec92910c16be4663743beacdff4e70fa950d2575ee973"
+  },
   "dreamllm": {
    "kind": "source-figure",
    "path": "assets/architectures/dreamllm.png",
@@ -292,6 +372,22 @@
    "origin_url": "https://arxiv.org/html/2309.11499v2/framework.png",
    "locator": "Figure 2",
    "sha256": "69a322f9b96682e5b8052d4846538f7b3e2622f0ef9c0ef57c833dc1ab01810d"
+  },
+  "dse-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dse-gan.png",
+   "source_url": "https://arxiv.org/abs/2209.01339",
+   "origin_url": "https://arxiv.org/html/2209.01339v1/framework.png",
+   "locator": "Figure 2",
+   "sha256": "9bd36a6463c0828f81336373c49d6dcb23febfb2fe73bf372ae81951b6a89bae"
+  },
+  "dtgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dtgan.png",
+   "source_url": "https://arxiv.org/abs/2011.02709",
+   "origin_url": "https://arxiv.org/html/2011.02709v3/img01.png",
+   "locator": "Figure 2",
+   "sha256": "783a632611b29c6e2200e7c7c16817fed6d6bf8e1ad2cf7146df6522f5dba580"
   },
   "e-mmdit": {
    "kind": "source-figure",
@@ -373,6 +469,14 @@
    "locator": "Figure 2",
    "sha256": "da492490dec788d2b3679cfee19513687cd8966d7d36b90eb4a7ed251dcc610f"
   },
+  "fa-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/fa-gan.png",
+   "source_url": "https://arxiv.org/abs/2109.00907",
+   "origin_url": "https://arxiv.org/html/2109.00907v1/fig22.png",
+   "locator": "Figure 2",
+   "sha256": "072d379cbb225e6a851239ddd5c78c19a38bd4ae62cfdf8795d50af855851b26"
+  },
   "fluid": {
    "kind": "source-figure",
    "path": "assets/architectures/fluid.png",
@@ -412,6 +516,14 @@
    "origin_url": "https://arxiv.org/pdf/2208.13753v2",
    "locator": "Figure 3 (PDF p. 4)",
    "sha256": "59780bcdfeab6543c0745be0379cd282d9a853485bd315e9051b7a3c77b2b6b6"
+  },
+  "galip": {
+   "kind": "source-figure",
+   "path": "assets/architectures/galip.png",
+   "source_url": "https://arxiv.org/abs/2301.12959",
+   "origin_url": "https://arxiv.org/html/2301.12959v1/a3.png",
+   "locator": "Figure 3",
+   "sha256": "6b540fc2f75e6e0493648e08ea98a75eb99c1dd94bd29f1c437eae70774a05cb"
   },
   "gan-int-cls": {
    "kind": "source-figure",
@@ -453,6 +565,14 @@
    "locator": "Figure 2 (PDF p. 3)",
    "sha256": "279ed7be4b95d47b2981459f4627755338153ba6821420aa3ccde3959c203bdf"
   },
+  "gigagan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/gigagan.png",
+   "source_url": "https://arxiv.org/abs/2303.05511",
+   "origin_url": "https://arxiv.org/html/2303.05511v2/architecture.png",
+   "locator": "Figure 4",
+   "sha256": "609dfffb0377da188e7baa035297c20a229788af0fe21302d14eeebc7f62a014"
+  },
   "gill": {
    "kind": "source-figure",
    "path": "assets/architectures/gill.png",
@@ -492,6 +612,14 @@
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
+  },
+  "gr-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/gr-gan.png",
+   "source_url": "https://arxiv.org/abs/2205.11273",
+   "origin_url": "https://arxiv.org/html/2205.11273v2/Image/GAN_Model_V4.png",
+   "locator": "Figure 1",
+   "sha256": "104b7d8c17368ce993bdd02105e32223bfa31e44d343f840a389f782cc4f8061"
   },
   "grok-aurora": {
    "kind": "io-diagram",
@@ -796,6 +924,14 @@
    "origin_url": "https://arxiv.org/html/2111.11133v11/f_l_verse.png",
    "locator": "Figure 2",
    "sha256": "b8d0c86ffc1eae17eef8b7b8ea618ee1282ab15e828b8e1feae18d1b08e03958"
+  },
+  "lafite": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lafite.png",
+   "source_url": "https://arxiv.org/abs/2111.13792",
+   "origin_url": "https://arxiv.org/html/2111.13792v3/figures/model.png",
+   "locator": "Figure 3",
+   "sha256": "416735425933288241def1070e07869d0715d6e7d8ccba21d3dfe182b8874419"
   },
   "lavida-o": {
    "kind": "source-figure",
@@ -1125,6 +1261,14 @@
    "locator": "Figure 1 (PDF p. 2)",
    "sha256": "8bb697bbe71753a3b58f05cc49c078e6efa0db8db0bb96eb523ce766892565a9"
   },
+  "msmt-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/msmt-gan.png",
+   "source_url": "https://arxiv.org/abs/2110.08143",
+   "origin_url": "https://arxiv.org/html/2110.08143v1/MSDM-V4-P1.png",
+   "locator": "Figure 1",
+   "sha256": "203801568f1c803216609e08e85e60ddd88dc1829c5fce77c5c1c17d12a4949b"
+  },
   "multiscale-pixelcnn": {
    "kind": "source-figure",
    "path": "assets/architectures/multiscale-pixelcnn.png",
@@ -1228,6 +1372,14 @@
    "origin_url": "https://arxiv.org/html/2509.03498v3/onecat_overview.png",
    "locator": "Figure 3",
    "sha256": "e37754be3772a69a2af0e4263ae8f3302f2bd823d25748a04f886f6e80753541"
+  },
+  "op-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/op-gan.png",
+   "source_url": "https://arxiv.org/abs/1910.13321",
+   "origin_url": "https://arxiv.org/html/1910.13321v2/figures/model/model.jpg",
+   "locator": "Figure 1",
+   "sha256": "99dcaacac4ad60877cab929536497bf6d08da0f15a308d81f4ac73584f38531a"
   },
   "orthus": {
    "kind": "source-figure",
@@ -1357,6 +1509,14 @@
    "locator": "Figure 3",
    "sha256": "3027a8849c963a423e9c3afe3a52f1c5546c244178f798afff2617101a73d614"
   },
+  "rat-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/rat-gan.png",
+   "source_url": "https://arxiv.org/abs/2204.10482",
+   "origin_url": "https://arxiv.org/html/2204.10482v1/framework_g.png",
+   "locator": "Figure 1",
+   "sha256": "0502062a5708c2d5915f27232b57d7dcff495639cf13c49c3f167a969adb77b5"
+  },
   "rdm": {
    "kind": "source-figure",
    "path": "assets/architectures/rdm.png",
@@ -1436,6 +1596,14 @@
    "origin_url": "https://arxiv.org/html/2403.12015v1/ladd-v3.drawio.png",
    "locator": "Figure 3",
    "sha256": "b3e2edcf98b494d4fca901224cb4e69b974e7704603c8956aecad277da4f671d"
+  },
+  "sdn-t2i": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sdn-t2i.png",
+   "source_url": "https://arxiv.org/abs/1808.06801",
+   "origin_url": "https://arxiv.org/html/1808.06801v1/Framework.png",
+   "locator": "Figure 2",
+   "sha256": "48de4c105eb6064cfa96754c08e544f54f83379151ad2a2770137094fc0073ea"
   },
   "sdxl": {
    "kind": "source-figure",
@@ -1517,6 +1685,14 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "segattngan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/segattngan.png",
+   "source_url": "https://arxiv.org/abs/2005.12444",
+   "origin_url": "https://arxiv.org/html/2005.12444v1/images/segattngan.png",
+   "locator": "Figure 2",
+   "sha256": "98a6af8ef044ab1a812a775b27a8a5c389b881df7b3f63805c02962e474c947a"
+  },
   "sensenova-u1": {
    "kind": "source-figure",
    "path": "assets/architectures/sensenova-u1.png",
@@ -1572,6 +1748,14 @@
    "origin_url": "https://arxiv.org/pdf/2412.09619v1",
    "locator": "Figure 2 (PDF p. 4)",
    "sha256": "cbcc9360f9b475b453bc6eee6c3970519eeb305575a742beda00053fd7ac8dda"
+  },
+  "ssa-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ssa-gan.png",
+   "source_url": "https://arxiv.org/abs/2104.00567",
+   "origin_url": "https://arxiv.org/html/2104.00567v6/pipeline2.png",
+   "locator": "Figure 2",
+   "sha256": "d3097e5ba54f0cc9be0b98235cb396a727c039b7d1b5037aadb82a995cee80f1"
   },
   "ssd-1b": {
    "kind": "source-figure",
@@ -1645,6 +1829,14 @@
    "locator": "Figure 2",
    "sha256": "879207b1673c3360fbe4241200c431acd115c2bae08936dd04c746b42d69eb80"
   },
+  "stylegan-t": {
+   "kind": "source-figure",
+   "path": "assets/architectures/stylegan-t.png",
+   "source_url": "https://arxiv.org/abs/2301.09515",
+   "origin_url": "https://arxiv.org/html/2301.09515v1/system-diagram-4.png",
+   "locator": "Figure 3",
+   "sha256": "a8daf905efe8450369ec5872a5a5fe4e5a0bd975bae7d1eb8e3746d70595e27b"
+  },
   "swiftbrush": {
    "kind": "source-figure",
    "path": "assets/architectures/swiftbrush.png",
@@ -1693,6 +1885,14 @@
    "locator": "Figure 2",
    "sha256": "8951ea459d7408b85c049574e6db4df3f5532d8f96e4194d524667c704c21cba"
   },
+  "tedigan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/tedigan.png",
+   "source_url": "https://arxiv.org/abs/2012.03308",
+   "origin_url": "https://arxiv.org/html/2012.03308v3/mapping.png",
+   "locator": "Figure 2",
+   "sha256": "75541ff3a2650a451ac5e86a44bba9755ca4f3fb264a9adc987e0d7ef414d87a"
+  },
   "text-segan": {
    "kind": "source-figure",
    "path": "assets/architectures/text-segan.png",
@@ -1709,6 +1909,14 @@
    "locator": "Figure 2",
    "sha256": "ec266ecd918b43ae943231479531b1700549378996900868901e4f492bf71967"
   },
+  "time-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/time-gan.png",
+   "source_url": "https://arxiv.org/abs/2005.13192",
+   "origin_url": "https://arxiv.org/html/2005.13192v2/model_overview.png",
+   "locator": "Figure 2",
+   "sha256": "f0798a370df6c5011094b2eac8f56ae32a26f6edf94d24c7b13ebebdc21b75dd"
+  },
   "transfusion": {
    "kind": "source-figure",
    "path": "assets/architectures/transfusion.png",
@@ -1716,6 +1924,14 @@
    "origin_url": "https://arxiv.org/html/2408.11039v1/model_diagram-crop.png",
    "locator": "Figure 1",
    "sha256": "5a3938fbbd8e684d065db538193b2d4d708f6d18068ddf0314375058d59ac8ed"
+  },
+  "trecs": {
+   "kind": "source-figure",
+   "path": "assets/architectures/trecs.png",
+   "source_url": "https://arxiv.org/abs/2011.03775",
+   "origin_url": "https://arxiv.org/pdf/2011.03775v2",
+   "locator": "Figure 2 (PDF p. 2)",
+   "sha256": "f2db7cc9321e9db5ec3c9f936ee0d06bf8ec0b1ad1aca35b5d3d73cecf486310"
   },
   "ufogen": {
    "kind": "source-figure",
@@ -1820,6 +2036,14 @@
    "origin_url": "https://arxiv.org/html/2507.22058v1/fig3.png",
    "locator": "Figure 3",
    "sha256": "f5db8e37ddebd557dea1899b388da3cbde0c0c83e38889409a6b62e7262abde2"
+  },
+  "xmc-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/xmc-gan.png",
+   "source_url": "https://arxiv.org/abs/2101.04702",
+   "origin_url": "https://arxiv.org/pdf/2101.04702v5",
+   "locator": "Figure 2 (PDF p. 3)",
+   "sha256": "20fad83e6269970a0bc198307ca53149db65333549aa147dde350627eb51e632"
   },
   "z-image": {
    "kind": "source-figure",
