@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**10 models · Reviewed 2026-09-29**
+**21 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,20 +17,112 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [BK-SDM](#bk-sdm) | 2023-05-25 | T → I | generation |
+| [DMD2 (Distribution Matching Distillation)](#dmd2) | 2023-11-30 | T → I | generation |
+| [E-MMDiT (AMD Nitro-E)](#e-mmdit) | 2025-10-31 | T → I | generation |
 | [Hyper-SD](#hyper-sd) | 2024-04-21 | T → I | generation |
+| [Imagine Flash](#imagine-flash) | 2024-05-08 | T → I | generation |
 | [InstaFlow](#instaflow) | 2023-09-12 | T → I | generation |
+| [KOALA](#koala) | 2023-12-07 | T → I | generation |
 | [Latent Consistency Models (LCM)](#lcm) | 2023-10-06 | T → I | generation |
+| [Mobile-O](#mobile-o) | 2026-02-23 | T, I → T, I | editing |
 | [MobileDiffusion](#mobilediffusion) | 2023-11-28 | T → I | generation |
 | [PixArt-δ](#pixart-delta) | 2024-01-10 | T → I | generation |
+| [SANA-Sprint](#sana-sprint) | 2025-03-12 | T → I | generation |
 | [SD3-Turbo (Latent Adversarial Diffusion Distillation)](#sd3-turbo) | 2024-03-18 | T → I | generation |
 | [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | 2023-11-28 | T → I | generation |
 | [SDXL-Lightning](#sdxl-lightning) | 2024-02-21 | T → I | generation |
+| [SDXS](#sdxs) | 2024-03-25 | T → I | generation |
 | [SnapFusion](#snapfusion) | 2023-06-01 | T → I | generation |
+| [SnapGen](#snapgen) | 2024-12-12 | T → I | generation |
+| [SSD-1B](#ssd-1b) | 2024-01-05 | T → I | generation |
+| [SwiftBrush](#swiftbrush) | 2023-12-08 | T → I | generation |
 | [UFOGen](#ufogen) | 2023-11-14 | T → I | generation |
 
 </details>
 
 ## Architectures
+
+<a id="bk-sdm"></a>
+
+### BK-SDM
+
+Block-removed Stable Diffusion U-Net (residual and cross-attention blocks, optionally the mid-stage and innermost stages, pruned) retrained with task loss plus output-level and feature-level knowledge distillation from the original U-Net.
+
+BK-SDM (Nota Inc., 2023) compresses Stable Diffusion architecturally rather than by reducing steps. Pairs of residual and cross-attention blocks are removed from the down and up stages of the U-Net; the Small variant also removes the mid-stage, and Tiny removes the innermost stages as well, giving 30–50% reductions in size, compute and latency. The pruned U-Net is initialized from the original weights and retrained to imitate the original U-Net's noise predictions and intermediate feature maps, which the paper shows works with only 0.22M LAION image-text pairs and about 13 A100 days. The same recipe is applied to SD v1.4 and SD v2.1-base, and the compressed models are also used for DreamBooth personalization, image-to-image translation and on-device deployment.
+
+[Paper](https://arxiv.org/abs/2305.15798) · [GitHub](https://github.com/Nota-NetsPresso/BK-SDM) · [Model card](https://huggingface.co/nota-ai/bk-sdm-small)
+
+![BK-SDM — Figure 3 (PDF p. 5)](../assets/architectures/bk-sdm.png)
+
+*Figure 3 (PDF p. 5) · [Source](https://arxiv.org/abs/2305.15798)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Parameter counts (U-Net): BK-SDM-Base 0.76B, Small 0.66B, Tiny 0.50B from SD v1.4 (0.86B); v2 counterparts 0.98B, 0.88B and 0.72B from SD v2.1-base (1.26B). In down stages the first R-A pair of each stage is kept and the second removed; in up stages the first R-A pair is kept, preserving the channel dimensions for initialization. The training objective sums the denoising task loss, output-level KD on the teacher's predicted noise and feature-level KD at the end of each stage. Text and image encoders are the frozen SD encoders, and the models keep standard multi-step sampling. The repository reports 2M-pair variants trained on 2.3M LAION pairs and Core ML conversions with about 4-second inference on iPhone 14 at 10 denoising steps; the paper also reports deployment on Jetson AGX Orin.
+
+**License:** code: CreativeML Open RAIL-M; weights: CreativeML Open RAIL-M.
+
+**Variants:** BK-SDM-Base; BK-SDM-Small; BK-SDM-Tiny; BK-SDM-Base-2M, Small-2M, Tiny-2M; BK-SDM-v2-Base, v2-Small, v2-Tiny.
+
+</details>
+
+<a id="dmd2"></a>
+
+### DMD2 (Distribution Matching Distillation)
+
+One- or few-step student U-Net distilled from SD v1.5 or SDXL by distribution matching, where the gradient is the difference between a frozen real-score diffusion model and a continually trained fake-score diffusion model, plus a GAN loss from a classifier branch on the fake-score network.
+
+Distribution Matching Distillation (MIT and Adobe Research) turns a diffusion model into a one-step generator by matching output distributions rather than individual sampling trajectories. DMD (2023) minimizes an approximate KL divergence whose gradient is the difference between two scores: that of the frozen teacher (real distribution) and that of a second diffusion model trained online on the generator's samples (fake distribution); it also needed an LPIPS regression loss on precomputed teacher noise–image pairs. DMD2 (2024) removes the regression loss and its costly dataset, stabilizes training by updating the fake-score model more often than the generator, adds a GAN loss against real images so the student can surpass the teacher, and supports multi-step students trained on simulated inference-time inputs. Released DMD2 models distill SDXL into one- and four-step generators at 1024px.
+
+[Paper 1](https://arxiv.org/abs/2311.18828) · [Paper 2](https://arxiv.org/abs/2405.14867) · [GitHub](https://github.com/tianweiy/DMD2) · [Model card](https://huggingface.co/tianweiy/DMD2)
+
+![DMD2 (Distribution Matching Distillation) — Figure 3 (PDF p. 6)](../assets/architectures/dmd2.png)
+
+*Figure 3 (PDF p. 6) · [Source](https://arxiv.org/abs/2405.14867)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+DMD2 details: five fake-score updates per generator update (two time-scale update rule); the GAN discriminator is a classification branch on the bottleneck of the fake diffusion denoiser, with real images from 500K LAION-Aesthetics samples; distillation uses 3M LAION-Aesthetics prompts and a fixed guidance scale. Multi-step (4-step) generators alternate denoising and noise injection, and training uses "backward simulation" of the student's own intermediate samples to remove the train–test mismatch of forward-diffused inputs. The released one-step SDXL model conditions on timestep 399. DMD (arXiv 2311.18828) distilled SD v1.5 into a one-step generator (reported 11.49 FID on zero-shot COCO-30k at about 20 FPS in FP16); no official DMD code repository was found. Released DMD2 checkpoints: SDXL 4-step U-Net and LoRA, SDXL 1-step U-Net, plus research checkpoints for SD v1.5 and ImageNet.
+
+**License:** code: CC BY-NC-SA 4.0; weights: CC-BY-NC-4.0.
+
+**Variants:** DMD (one-step, SD v1.5); DMD2 SDXL 4-step (U-Net and LoRA); DMD2 SDXL 1-step; DMD2 SD v1.5 1-step.
+
+</details>
+
+<a id="e-mmdit"></a>
+
+### E-MMDiT (AMD Nitro-E)
+
+304M-parameter multimodal diffusion transformer trained from scratch with rectified flow on DC-AE 32× latents and Llama 3.2-1B text features, using multi-path token compression (2× and 4×) with Position Reinforcement, Alternating Subregion Attention and AdaLN-affine modulation, with an adversarially distilled 4-step variant.
+
+E-MMDiT (AMD, 2025), released as Nitro-E, is a small MMDiT-style text-to-image model designed around token reduction so that it can be trained cheaply and run fast. Images are encoded by the highly compressive DC-AE (32× downsampling) and prompts by Llama 3.2-1B. Inside the transformer, a multi-path compression module condenses image tokens by 2× and 4× for the middle blocks and a reconstructor restores them, with positional embeddings re-injected (Position Reinforcement) to keep spatial coherence; Alternating Subregion Attention restricts attention to alternating token subregions, and AdaLN-affine computes modulation parameters cheaply. The 512px model was trained on about 25M public images in 1.5 days on one node of eight AMD MI300X GPUs and reaches 0.66 GenEval (0.72 after GRPO post-training). Distilled checkpoints sample in four steps and roughly double throughput.
+
+[Paper](https://arxiv.org/abs/2510.27135) · [GitHub](https://github.com/AMD-AGI/Nitro-E) · [Model card](https://huggingface.co/amd/Nitro-E)
+
+![E-MMDiT (AMD Nitro-E) — Figure 3 (PDF p. 3)](../assets/architectures/e-mmdit.png)
+
+*Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/2510.27135)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Training uses the rectified-flow objective with a REPA representation-alignment regularizer, in two stages (100k iterations on all data at learning rate 3e-4, then 50k iterations on the synthetic data only at 512px or 1024px, since SA-1B contains privacy blurring); image and text features are precomputed. Data combine SA-1B (11.1M real images with generated captions), JourneyDB and FLUX-generated images (FLUXDB, 9.5M) with prompts from DiffusionDB and DataComp. Optional GRPO post-training is released as LoRA adapters. The few-step models use adversarial distillation (the paper cites ADD) and are run at 4 steps without guidance per the model card, versus 20 steps for the base models. The Nitro-E repository later added an unrelated autoregressive model, Nitro-AR, which is not covered here.
+
+**License:** code: MIT; weights: MIT.
+
+**Variants:** Nitro-E-512px; Nitro-E-1024px; Nitro-E-512px-dist; Nitro-E-1024px-dist; Nitro-E GRPO (512px, 1024px).
+
+</details>
 
 <a id="hyper-sd"></a>
 
@@ -54,6 +146,31 @@ Hyper-SD (ByteDance, 2024) accelerates SD 1.5 and SDXL to one to eight sampling 
 TSCD uses a hybrid distance of MSE and the SDXL-Lightning adversarial loss, shifting weight toward the adversarial term as the number of segments falls, plus noise perturbation for stability. Feedback learning combines LAION aesthetic predictor and ImageReward rewards (hinge loss) with a SOLO instance-segmentation loss on COCO2017, trained as a separate LoRA that can be merged with the TSCD LoRAs. One-step enhancement uses DMD with an added MSE loss; the unified all-timesteps LoRA uses timestep input 999 and the dedicated one-step model 800. Distillation data are LAION and COYO subsets; each stage costs about 200 A100 GPU hours, and all distillation stages were trained as LoRA. The Hugging Face repository also hosts later LoRAs for SD3 and FLUX.1-dev that the paper does not describe. The model card has no license metadata; the repository's LICENSE.md contains the FLUX.1 [dev] Non-Commercial License for the FLUX-related files only, so no overall license is recorded. Because the release is mainly LoRA adapters, the card covers the few-step sampling regime rather than a standalone base model.
 
 **Variants:** Hyper-SD15 1/2/4/8-step LoRAs; Hyper-SDXL 1/2/4/8-step LoRAs; Hyper-SDXL-1step-Unet; Hyper-SD15 and Hyper-SDXL 1-step unified LoRAs; Hyper-SD3 4/8/16-step CFG LoRAs; Hyper-FLUX.1-dev 8/16-step LoRAs.
+
+</details>
+
+<a id="imagine-flash"></a>
+
+### Imagine Flash
+
+Meta's Emu latent diffusion U-Net (2.7B parameters, 768×768) distilled to one to three steps with backward distillation, a timestep-shifted reconstruction loss from the teacher and an adversarial loss.
+
+Imagine Flash (Meta GenAI, 2024) accelerates Meta's Emu text-to-image diffusion model to one, two or three sampling steps. Its main idea, backward distillation, trains the student on latents produced by its own backward (denoising) trajectory rather than on forward-noised real images, removing the mismatch between training inputs and what the student sees at inference. A Shifted Reconstruction Loss makes the teacher's target depend on the timestep, transferring global structure at high noise and fine detail at low noise, and an inference-time Noise Correction addresses singularities in noise prediction. The paper reports quality comparable to the 25-step Emu teacher with three steps.
+
+[Paper](https://arxiv.org/abs/2405.05224) · GitHub: no author-linked repository found
+
+![Imagine Flash — Figure 3](../assets/architectures/imagine-flash.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2405.05224)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The student starts from Emu and is trained for 15k iterations on 8 A100 GPUs on a commissioned image dataset; 3-step models use timesteps {999, 750, 500} and 2-step models {999, 666}. For SRL, the student's prediction is re-noised to a shifted timestep (990, 950 or 200 depending on t) and the teacher denoises it with 8 uniformly spaced steps to form the target. Following ADD, an adversarial loss with a StyleGAN-T discriminator is added; single-step models use a U-Net discriminator built from the teacher U-Net. Baselines (step distillation, LCM, ADD) were re-implemented on Emu for comparison. No code or weights were found; the Emu base model is a separate family (emu-meta).
+
+**Variants:** Imagine Flash 1-step; Imagine Flash 2-step; Imagine Flash 3-step.
 
 </details>
 
@@ -84,6 +201,31 @@ Training data are 1.6M teacher-generated pairs each for reflow and distillation,
 
 </details>
 
+<a id="koala"></a>
+
+### KOALA
+
+Compressed SDXL U-Net (1.16B or 782M parameters) built by block removal plus transformer-depth reduction at the lowest resolution, trained with self-attention-based feature distillation from a step-distilled SDXL teacher (SDXL-Turbo or SDXL-Lightning).
+
+KOALA (ETRI and KAIST, 2023) builds smaller SDXL-class text-to-image models that run on 8GB consumer GPUs. On top of BK-SDM-style block removal, it cuts the number of transformer layers in SDXL's lowest-resolution blocks from 10 to 6 (KOALA-1B) or 5 (KOALA-700M, which also drops the mid-block), roughly halving or thirding the U-Net. The paper draws three lessons for distilling such a student: matching the teacher's self-attention features works better than matching only each stage's last feature map, high-resolution images with detailed captions matter more than data volume, and a step-distilled teacher lets the student sample in fewer steps. The released KOALA-Turbo (512px) and KOALA-Lightning (1024px) models are distilled from SDXL-Turbo and SDXL-Lightning on LAION-POP; KOALA-Lightning-700M generates a 1024px image in about 0.66 s at 10 steps on an RTX 4090.
+
+[Paper](https://arxiv.org/abs/2312.04005) · [GitHub](https://github.com/youngwanLEE/sdxl-koala) · [Model card](https://huggingface.co/etri-vilab/koala-lightning-700m) · [Project](https://youngwanlee.github.io/KOALA/)
+
+![KOALA — Figure 2](../assets/architectures/koala.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2312.04005)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The student keeps SDXL's text encoders (OpenCLIP ViT-bigG and CLIP ViT-L) and VAE, and retains more blocks in the decoder (up) stages than the encoder, since ablations show the decoder matters more for distillation. Feature distillation is applied to self-attention outputs of the transformer blocks (paper Figure 2) together with output-level KD on the predicted noise. Training data are LAION-POP (491K high-resolution images with descriptive captions); the KOALA-Lightning-700M card reports 500K iterations at batch size 128 on 4 A100 80GB GPUs. The same Hugging Face organization also hosts koala-1b, koala-700m, their LLaVA-caption versions and koala-lightning-1.7b; those cards were not reviewed. The model cards have no license metadata; the sdxl-koala repository's LICENSE.md is dual: CreativeML Open RAIL++-M for non-commercial use and a proprietary license for commercial use. Training code is listed as not yet released.
+
+**Variants:** KOALA-Turbo-1B; KOALA-Turbo-700M; KOALA-Lightning-1B; KOALA-Lightning-700M.
+
+</details>
+
 <a id="lcm"></a>
 
 ### Latent Consistency Models (LCM)
@@ -110,6 +252,33 @@ Latent consistency distillation initializes the student from the teacher U-Net a
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** LCM_Dreamshaper_v7; LCM SDXL (full-parameter); LCM SSD-1B (full-parameter); LCM-LoRA (SD-V1.5, SSD-1B, SDXL).
+
+</details>
+
+<a id="mobile-o"></a>
+
+### Mobile-O
+
+On-device unified model pairing the FastVLM-0.5B vision-language model (FastViT encoder, Qwen2-0.5B) with a SANA-600M-512 diffusion transformer, connected by a lightweight Mobile Conditioning Projector that fuses the VLM's last hidden layers into cross-attention conditioning; the generator is trained with a flow-matching objective.
+
+Mobile-O (MBZUAI with CMU and Linköping University, 2026) is a unified multimodal understanding and image-generation model small enough, about 1.6B parameters in total, to run fully on a phone. Instead of the learnable query tokens used by larger unified models, its Mobile Conditioning Projector (about 2.4M parameters) takes a learned, temperature-weighted fusion of the VLM's final layers, compresses and refines it with depthwise-separable 1D convolutions and channel attention, and feeds it to every cross-attention layer of the SANA diffusion decoder. Training proceeds in three stages: alignment pre-training of the DiT and projector on about 9M text-image pairs with the VLM frozen, supervised fine-tuning on about 105K curated pairs, and a unified post-training stage on quadruplets (generation prompt, image, question, answer) that improves understanding and generation together. The paper reports 0.74 on GenEval and about 3 seconds per 512×512 image on an iPhone.
+
+[Paper](https://arxiv.org/abs/2602.20161) · [GitHub](https://github.com/Amshaker/Mobile-O) · [Model card](https://huggingface.co/Amshaker/Mobile-O-0.5B)
+
+![Mobile-O — Figure 2](../assets/architectures/mobile-o.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2602.20161)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Generation runs at 512×512 and understanding at 1024×1024 input resolution. Pre-training data are JourneyDB (4M) and BLIP3o-Short-Caption (5M), about 20% of BLIP-3o's corpus; SFT uses 60K BLIP3o and 45K ShareGPT-4o-Image samples; the vision encoder and LLM are frozen in stages 1–2 and LoRA-trained in the unified post-training. Training takes about 3 days for 50k pre-training steps on 8 A100 GPUs. Editing is obtained by fine-tuning on 46K editing samples with no architectural change: the source image goes through the vision encoder and projector together with the instruction. A larger Mobile-O-1.5B (FastVLM-1.5B with SANA-1.5B, about 3.5B parameters) is reported in the supplement. The repository releases models, training code, and an iOS app with MLX and Core ML components. Licenses: the repository README states CC BY-NC-SA 4.0 for models, code and app, while the Mobile-O-0.5B model card metadata states cc-by-nc-4.0. Its placement under Efficient reflects the on-device focus; it is also a unified model.
+
+**License:** code: CC BY-NC-SA 4.0; weights: CC-BY-NC-4.0.
+
+**Variants:** Mobile-O-0.5B; Mobile-O-1.5B; Mobile-O-0.5B-iOS.
 
 </details>
 
@@ -160,6 +329,33 @@ Distillation follows LCM with teacher, student and EMA models (paper Figure 1), 
 **License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
 
 **Variants:** PixArt-LCM-XL-2-1024-MS.
+
+</details>
+
+<a id="sana-sprint"></a>
+
+### SANA-Sprint
+
+SANA linear diffusion transformer (0.6B or 1.6B) distilled into a step-adaptive 1–4-step generator by hybrid continuous-time consistency distillation (sCM) and latent adversarial distillation (LADD), after a training-free conversion of the flow-matching teacher to TrigFlow.
+
+SANA-Sprint (NVIDIA, MIT, Tsinghua and Hugging Face, 2025) makes the SANA text-to-image transformer generate 1024×1024 images in one to four steps, about 0.1 s on an H100. Continuous-time consistency models require a TrigFlow parameterization, so the paper converts the pretrained flow-matching SANA model to TrigFlow by transforming its inputs and outputs mathematically instead of pretraining a new model. The student is then trained with an sCM loss that keeps it consistent with the teacher's trajectory and a LADD-style GAN loss, with discriminator heads on the frozen teacher's features, that sharpens one-step samples. A single model serves all step counts from one to four. The paper also combines SANA-Sprint with ControlNet for interactive generation.
+
+[Paper](https://arxiv.org/abs/2503.09641) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_Sprint_1.6B_1024px) · [Project](https://nvlabs.github.io/Sana/Sprint/)
+
+![SANA-Sprint — Figure 2](../assets/architectures/sana-sprint.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.09641)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Teachers are pruned and fine-tuned from SANA-1.5 4.8B. Before distillation the teacher is fine-tuned briefly (about 5k iterations) with a dense time embedding (c_noise(t) = t instead of 1000t) and, for the 1.6B model, RMS QK-normalization in self- and cross-attention, both to control large gradient norms in sCM training; the student is initialized from the fine-tuned teacher. The student generates x̂0 and the JVP for the consistency loss while the teacher provides the velocity dx/dt; the adversarial term uses a hinge loss. Reported one-step results: 7.59 FID and 0.74 GenEval for the 1.6B model; 0.31 s per 1024px image on an RTX 4090. Training and inference code are in the NVlabs/Sana repository, and teacher checkpoints are released alongside the Sprint models.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+**Variants:** Sana_Sprint_0.6B_1024px; Sana_Sprint_1.6B_1024px.
 
 </details>
 
@@ -242,6 +438,33 @@ Editorial summary of documented inputs and outputs; internal architecture is not
 
 </details>
 
+<a id="sdxs"></a>
+
+### SDXS
+
+One-step latent diffusion model with a block-removed U-Net distilled from SD 2.1-base (SDXS-512, 0.32B) or SDXL (SDXS-1024, 0.74B) and a 1.2M-parameter distilled image decoder, trained for one-step sampling with feature-matching warmup and segmented score distillation.
+
+SDXS (Xiaomi, 2024) reduces both model size and step count. The VAE decoder is replaced by a tiny convolutional decoder trained to reproduce the original decoder's outputs with a distillation and GAN loss, and the U-Net is shrunk with BK-SDM-style block removal and knowledge distillation (SD 2.1-base loses its mid-stage, innermost stages and highest-resolution transformer blocks; SDXL loses most transformer blocks). The small U-Net is then turned into a one-step generator: a warmup matches features of its one-step outputs to multi-step teacher outputs with an SSIM-based feature loss, and training continues with Diff-Instruct-style score distillation on low-noise timesteps while feature matching covers the high-noise segment. The paper reports about 100 FPS at 512px and 30 FPS at 1024px on one GPU.
+
+[Paper](https://arxiv.org/abs/2403.16627) · [GitHub](https://github.com/IDKiro/sdxs) · [Model card](https://huggingface.co/IDKiro/sdxs-512-0.9)
+
+![SDXS — Figure 3](../assets/architectures/sdxs.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2403.16627)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Distillation of the U-Net uses output-level and feature-level KD without the original denoising loss. Score distillation uses an online diffusion model initialized from an offline pretrained model; the timeline is split at αT, with feature matching replacing the unreliable high-noise score gradients. Few-step teachers (LCM or public few-step models) are used to straighten trajectories before the feature-matching warmup. The paper also applies the method to LoRA-style fine-tuning and to a tiny one-step ControlNet for image-conditioned generation (outside this catalog's scope). Released weights: SDXS-512-0.9 (teacher SD Turbo, offline model SD 2.1-base, TAESD decoder, cross-attention in place of self-attention at the highest resolution) and later DreamShaper-based 512px versions; the model card states SDXS-512-1.0 and SDXS-1024-1.0 will not be released for commercial and copyright reasons. The weights license is taken from the SDXS-512-0.9 card (openrail++); other checkpoints were not checked.
+
+**License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
+
+**Variants:** SDXS-512; SDXS-1024; SDXS-512-0.9; SDXS-512-DreamShaper; SDXS-512-DreamShaper-Anime.
+
+</details>
+
 <a id="snapfusion"></a>
 
 ### SnapFusion
@@ -262,6 +485,83 @@ SnapFusion (Snap Inc. and Northeastern University, 2023) runs text-to-image diff
 **Input → output:** T → I · **Interaction:** generation
 
 Measured on an iPhone 14 Pro: the efficient U-Net (848M parameters) takes 230 ms per step, 1,840 ms for 8 steps, and the image decoder (13M parameters, versus 50M in SD v1.5) 116 ms; the CLIP text encoder is unchanged. Distillation pipeline: SD v1.5 is fine-tuned to v-prediction; a 32-step SD v1.5 teacher is distilled directly (not progressively) to 16 steps, the efficient U-Net is trained at 16 steps, then distilled to 8 steps using the 16-step SD v1.5 as teacher. The CFG-aware distillation loss improves CLIP score and is mixed with the vanilla loss by a CFG probability. The author GitHub repository contains the project page only; no code or weights were found.
+
+</details>
+
+<a id="snapgen"></a>
+
+### SnapGen
+
+379M-parameter efficient UNet trained from scratch with rectified flow in the SD3 autoencoder latent space, conditioned on CLIP-L, CLIP-G and Gemma-2-2B text embeddings, with a tiny separable-convolution decoder, multi-level knowledge distillation from SD3.5-Large and LADD-style adversarial step distillation from SD3.5-Large-Turbo.
+
+SnapGen (Snap Inc. with the University of Melbourne, HKUST and MBZUAI, 2024) is a small text-to-image model that generates 1024×1024 images on an iPhone 16 Pro Max in about 1.4 seconds. Instead of compressing an existing model, it designs a new UNet starting from a thinned SDXL layout: self-attention only at the lowest resolution, expanded separable convolutions, a narrower feed-forward ratio, multi-query attention with QK RMSNorm and RoPE, and conditioning inserted from the first stage. A decoder 35.9× smaller than the SD3/SDXL decoder makes high-resolution decoding feasible on the phone. The model is trained with flow matching so that it can learn from SD3.5-Large through output- and feature-level distillation with timestep-aware loss scaling, and is then distilled to a few steps with an adversarial objective whose discriminator uses SD3.5-Large-Turbo features.
+
+[Paper](https://arxiv.org/abs/2412.09619) · [Project](https://snap-research.github.io/snapgen) · GitHub: no author-linked repository found
+
+![SnapGen — Figure 2 (PDF p. 4)](../assets/architectures/snapgen.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2412.09619)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Training recipe: pretraining on ImageNet-1K at 256 px, progressive text-to-image fine-tuning 256 → 512 → 1024 px, multi-level knowledge distillation from SD3.5-Large with all three text encoders, then step distillation. The three text-encoder embeddings are combined following SD3 and dropped out independently, so a subset can be used at inference to fit resource limits. Timestep-aware scaling balances the task and distillation losses by their magnitude and prediction difficulty across t. Step distillation follows LADD: the discriminator is partly initialized from the frozen SD3.5-Large-Turbo teacher and only a few linear layers are trained, combined with the scaled output-distillation loss. The decoder keeps the SD3 encoder (f = 8, 16 channels) and is trained with MSE, LPIPS and adversarial losses. On iPhone 16 Pro Max the decoder takes 119 ms and each UNet step 274 ms, giving 1.2–2.3 s for 4–8 steps; default non-distilled sampling uses 28 steps. A 372M class-conditional variant reaches FID 2.06 on ImageNet 256 px. No code or weights were found.
+
+</details>
+
+<a id="ssd-1b"></a>
+
+### SSD-1B
+
+Layer-pruned SDXL U-Net (1.3B parameters; transformer blocks and mid-block attention removed) retrained by progressive knowledge distillation with task, output-level and layer-level feature losses from SDXL and fine-tuned SDXL teachers.
+
+SSD-1B (Segmind with Hugging Face, 2024) is a compressed version of SDXL. Following BK-SDM, it removes redundant parts of the SDXL U-Net, but at a finer grain: individual transformer blocks inside the attention layers, the mid-block's attention layers and its second residual block. The pruned network is retrained to imitate the teacher's noise prediction and the features of every attention and ResNet layer, with the teacher switched in succession from SDXL base to the fine-tuned ZavyChromaXL and JuggernautXL. SSD-1B has a 1.3B-parameter U-Net, about half of SDXL's, and the smaller Segmind-Vega has 0.74B; the report cites up to 60% and 100% speedups, respectively, at the same step count.
+
+[Paper](https://arxiv.org/abs/2401.02677) · [GitHub](https://github.com/segmind/SSD-1B) · [Model card 1](https://huggingface.co/segmind/SSD-1B) · [Model card 2](https://huggingface.co/segmind/Segmind-Vega)
+
+![SSD-1B — Figure 2](../assets/architectures/ssd-1b.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2401.02677)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+SSD-1B removes the 4th, 5th and 7th–10th transformer blocks of all attention layers in the third down stage and the first two attention layers of the first up stage, the second transformer block of two attention layers in the second up stage, and the mid-block's attention layers and second residual block (paper Figures 1–3 compare SDXL, SSD-1B and Vega). Model size is reduced progressively (20% → 70%). Training: SSD-1B 251K steps at 1024×1024 on four A100 80GB GPUs (effective batch 32); Vega 540K steps (batch 128); data are GRIT and Midjourney-generated images. Sampling is unchanged (evaluated with 25 DDPM steps, guidance 9). The report states that LoRA weights trained for the parent model tend to transfer without retraining. The github.com/segmind/SSD-1B repository mirrors the model card and links the paper; LCM distillations of SSD-1B are listed under the lcm entry.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+**Variants:** SSD-1B; Segmind-Vega.
+
+</details>
+
+<a id="swiftbrush"></a>
+
+### SwiftBrush
+
+One-step student U-Net initialized from Stable Diffusion 2.1 and distilled image-free with Variational Score Distillation, using a frozen text-to-image teacher and an online LoRA teacher trained on the student's outputs.
+
+SwiftBrush (VinAI Research, 2023) distills Stable Diffusion 2.1 into a one-step text-to-image generator without any training images. It borrows Variational Score Distillation from text-to-3D generation (ProlificDreamer): the student turns noise and a prompt into an image, the image is re-noised, and the student is updated with the difference between the frozen teacher's noise prediction and that of a LoRA teacher that is trained alternately to model the student's output distribution. Only text prompts are needed. SwiftBrush v2 (2024) initializes the student from SD Turbo, adds a clamped CLIP loss for text alignment, trains full and LoRA versions and merges them by weight interpolation, and reports a one-step student that surpasses its SD 2.1 teacher on zero-shot COCO FID.
+
+[Paper 1](https://arxiv.org/abs/2312.05239) · [Paper 2](https://arxiv.org/abs/2408.14176) · [GitHub 1](https://github.com/VinAIResearch/SwiftBrush) · [GitHub 2](https://github.com/VinAIResearch/SwiftBrushV2)
+
+![SwiftBrush — Figure 2 (PDF p. 6)](../assets/architectures/swiftbrush.png)
+
+*Figure 2 (PDF p. 6) · [Source](https://arxiv.org/abs/2312.05239)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+SwiftBrush v1: both teachers and the student are initialized from SD 2.1; the LoRA teacher (rank 64) is updated with the standard diffusion loss; training uses 1.38M deduplicated JourneyDB captions; reported zero-shot COCO-30K FID 16.67 and CLIP score 0.29. SwiftBrush v2 adds 2M LAION prompts to 1.5M JourneyDB prompts, combines a fully fine-tuned student trained with VSD and a LoRA student trained with the additional clamped CLIP loss via linear weight interpolation (FID-30K 8.77), and reaches 8.14 with an extra regularization on a small amount of real data. License: the SwiftBrush repository's LICENSE.md is CC BY-NC-SA 4.0 while its README states CC BY-NC 4.0; the SwiftBrushV2 repository code is BSD-3-Clause, and its README says the released checkpoint (distributed via Google Drive) must comply with SD-Turbo's license. The v1 repository provides training and inference code but no pretrained weights.
+
+**License:** code: CC BY-NC-SA 4.0 (SwiftBrush); BSD-3-Clause (SwiftBrush v2).
+
+**Variants:** SwiftBrush; SwiftBrush v2.
 
 </details>
 

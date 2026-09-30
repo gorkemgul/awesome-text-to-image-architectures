@@ -4,7 +4,7 @@
 
 A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.
 
-**118 models and families · Reviewed 2026-09-29**
+**154 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -17,36 +17,41 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every paper with "
 | [Autoregressive image-token models](models/ar-token.md) | 9 |
 | [Masked and parallel image-token models](models/masked.md) | 1 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 11 |
-| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 10 |
+| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 21 |
 | [Diffusion transformers and flow matching](models/dit.md) | 14 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 0 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 8 |
 | [Unified multimodal understanding and generation](models/unified.md) | 28 |
-| [Few-step, distilled and on-device models](models/efficient.md) | 10 |
-| [Commercial image-generation interfaces](models/api.md) | 15 |
+| [Few-step, distilled and on-device models](models/efficient.md) | 21 |
+| [Commercial image-generation interfaces](models/api.md) | 21 |
 
 ## Models
 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 118 entries</summary>
+<summary>Alphabetical model list · 154 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
 | [Adobe Firefly Image](#adobe-firefly) | API | T, I → I |
 | [alignDRAW](#aligndraw) | Early | T → I |
+| [AltDiffusion](#altdiffusion) | Latent U-Net | T → I |
 | [Amazon Titan Image Generator](#amazon-titan-image-generator) | API | T, I → I |
 | [AttnGAN](#attngan) | GAN | T → I |
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
 | [BAGEL](#bagel) | Unified | T, I → T, I |
+| [BitDance](#bitdance) | Continuous AR | T → I |
+| [BK-SDM](#bk-sdm) | Efficient | T → I |
 | [BLIP3-o](#blip3-o) | Unified | T, I → T, I |
 | [BLIP3o-NEXT](#blip3o-next) | Unified | T, I → I |
+| [Bridge Diffusion Model (BDM)](#bridge-diffusion) | Latent U-Net | T → I |
 | [C4Synth](#c4synth) | GAN | T → I |
 | [CanvasGAN](#canvasgan) | GAN | T → I |
 | [Chameleon](#chameleon) | Unified | T, I → T, I |
 | [ChatPainter](#chatpainter) | GAN | T → I |
 | [CogView](#cogview) | AR token | T → I |
 | [CogView-3Plus](#cogview3-plus) | DiT / flow | T → I |
+| [CogView3](#cogview3) | Latent U-Net | T → I |
 | [CogView4](#cogview4) | DiT / flow | T → I |
 | [Composer](#composer) | Pixel diffusion | T, I → I |
 | [ControlGAN](#controlgan) | GAN | T → I |
@@ -55,26 +60,34 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [DALL·E 2 (unCLIP)](#dall-e-2) | Pixel diffusion | T, I → I |
 | [DALL·E 3](#dall-e-3) | API | T → I |
 | [DALL·E Mini](#dall-e-mini) | AR token | T → I |
+| [DART](#dart) | Continuous AR | T → I |
 | [DeepFloyd IF](#deepfloyd-if) | Pixel diffusion | T, I → I |
 | [DM-GAN](#dm-gan) | GAN | T → I |
+| [DMD2 (Distribution Matching Distillation)](#dmd2) | Efficient | T → I |
 | [DreamLLM](#dreamllm) | Unified | T, I → T, I |
+| [E-MMDiT (AMD Nitro-E)](#e-mmdit) | Efficient | T → I |
 | [eDiff-I](#ediff-i) | Pixel diffusion | T, I → I |
 | [Emu (BAAI)](#emu-baai) | Unified | T, I, V → T, I |
+| [Emu (Meta)](#emu-meta) | Latent U-Net | T → I |
 | [Emu2](#emu2) | Unified | T, I, V → T, I |
 | [Emu3](#emu3) | Unified | T, I, V → T, I, V |
 | [Emu3.5](#emu3-5) | Unified | T, I → T, I |
 | [ERNIE-ViLG](#ernie-vilg) | AR token | T → I |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | Latent U-Net | T → I |
+| [Fluid](#fluid) | Continuous AR | T → I |
 | [FLUX.1](#flux-1) | DiT / flow | T → I |
 | [FLUX.1 Kontext](#flux-1-kontext) | DiT / flow | T, I → I |
+| [Frido](#frido) | Latent U-Net | T → I |
 | [GAN-INT-CLS](#gan-int-cls) | GAN | T → I |
 | [GAWWN](#gawwn) | GAN | T → I |
 | [Gemini native image generation](#gemini-image) | API | T, I → T, I |
 | [GLIDE](#glide) | Pixel diffusion | T, I → I |
+| [GLM-Image](#glm-image) | Continuous AR | T, I → I |
 | [GPT Image 1](#gpt-image-1) | API | T, I → I |
 | [GPT Image 2](#gpt-image-2) | API | T, I → I |
 | [Grok Aurora](#grok-aurora) | API | T → I |
 | [Grok Imagine Image](#grok-imagine-image) | API | T, I → I |
+| [HART](#hart) | Continuous AR | T → I |
 | [HDGAN](#hdgan) | GAN | T → I |
 | [HiDream-O1-Image](#hidream-o1-image) | Pixel diffusion | T, I → I |
 | [Hierarchical text-to-image via inferred semantic layout (Hong et al.)](#hong-semantic-layout) | GAN | T → I |
@@ -87,31 +100,42 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Imagen 2](#imagen-2) | API | T, I → I |
 | [Imagen 3](#imagen-3) | API | T, I → I |
 | [Imagen 4](#imagen-4) | API | T, I → I |
+| [Imagine Flash](#imagine-flash) | Efficient | T → I |
 | [InstaFlow](#instaflow) | Efficient | T → I |
 | [Janus](#janus) | Unified | T, I → T, I |
 | [Janus-Pro](#janus-pro) | Unified | T, I → T, I |
 | [JanusFlow](#janusflow) | Unified | T, I → T, I |
+| [JetFormer](#jetformer) | Continuous AR | T, I → I, T |
 | [Kandinsky 2](#kandinsky-2) | Latent U-Net | T, I → I |
 | [Kandinsky 3](#kandinsky-3) | Latent U-Net | T, I → I |
 | [Karlo](#karlo) | Pixel diffusion | T, I → I |
+| [KOALA](#koala) | Efficient | T → I |
 | [Kolors](#kolors) | Latent U-Net | T → I |
+| [Kolors 2.0](#kolors-2) | API | T, I → I |
 | [L-Verse](#l-verse) | AR token | T → I |
 | [Latent Consistency Models (LCM)](#lcm) | Efficient | T → I |
 | [Latent Diffusion Models (LDM)](#ldm) | Latent U-Net | T → I |
 | [LaVIT](#lavit) | Unified | T, I → T, I |
+| [Luma Uni-1](#luma-uni-1) | API | T, I → I |
 | [Lumina-Next](#lumina-next) | DiT / flow | T → I |
 | [Lumina-T2X (Lumina-T2I)](#lumina-t2x) | DiT / flow | T → I |
 | [M6](#m6) | AR token | T → I |
+| [MAI-Image](#mai-image) | API | T, I → I |
 | [Matryoshka Diffusion Models](#matryoshka-diffusion) | Pixel diffusion | T → I |
 | [MetaQuery](#metaquery) | Unified | T, I → T, I |
 | [Midjourney](#midjourney) | API | T, I → I |
+| [MiniMax Image-01](#minimax-image-01) | API | T, I → I |
 | [MirrorGAN](#mirrorgan) | GAN | T → I |
 | [MM-Interleaved](#mm-interleaved) | Unified | T, I → T, I |
+| [Mobile-O](#mobile-o) | Efficient | T, I → T, I |
 | [MobileDiffusion](#mobilediffusion) | Efficient | T → I |
 | [Mogao](#mogao) | Unified | T, I → T, I |
+| [Muse Image](#muse-image) | API | T, I → I |
+| [NextStep-1](#nextstep-1) | Continuous AR | T, I → I |
 | [NÜWA](#nuwa) | AR token | T, I → I |
 | [Obj-GAN](#obj-gan) | GAN | T → I |
 | [OmniGen2](#omnigen2) | Unified | T, I → T, I |
+| [PanGu-Draw](#pangu-draw) | Latent U-Net | T → I |
 | [Parallel Multiscale PixelCNN](#multiscale-pixelcnn) | Early | T → I |
 | [PixArt-α](#pixart-alpha) | DiT / flow | T → I |
 | [PixArt-δ](#pixart-delta) | Efficient | T → I |
@@ -119,34 +143,46 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [PixelFlow](#pixelflow) | Pixel diffusion | T → I |
 | [Playground v2](#playground-v2) | Latent U-Net | T → I |
 | [Playground v3](#playground-v3) | DiT / flow | T → I |
+| [RAPHAEL](#raphael) | Latent U-Net | T → I |
 | [Re-Imagen](#re-imagen) | Pixel diffusion | T, I → I |
 | [Recraft](#recraft) | API | T, I → I |
+| [Retrieval-Augmented Diffusion Models (RDM)](#rdm) | Latent U-Net | T → I |
 | [Reve Image](#reve-image) | API | T, I → I |
 | [ruDALL-E](#rudall-e) | AR token | T → I |
 | [SANA](#sana) | DiT / flow | T → I |
 | [SANA 1.5](#sana-1-5) | DiT / flow | T → I |
+| [SANA-Sprint](#sana-sprint) | Efficient | T → I |
 | [SD-GAN](#sd-gan) | GAN | T → I |
 | [SD3-Turbo (Latent Adversarial Diffusion Distillation)](#sd3-turbo) | Efficient | T → I |
 | [SDXL](#sdxl) | Latent U-Net | T → I |
 | [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | Efficient | T → I |
 | [SDXL-Lightning](#sdxl-lightning) | Efficient | T → I |
+| [SDXS](#sdxs) | Efficient | T → I |
 | [SEED-LLaMA](#seed-llama) | Unified | T, I → T, I |
 | [SEED-X](#seed-x) | Unified | T, I → T, I |
+| [Seedream 5.0](#seedream-5) | API | T, I → I |
 | [Show-o](#show-o) | Unified | T, I → T, I |
 | [Show-o2](#show-o2) | Unified | T, I, V → T, I, V |
 | [SnapFusion](#snapfusion) | Efficient | T → I |
+| [SnapGen](#snapgen) | Efficient | T → I |
+| [SSD-1B](#ssd-1b) | Efficient | T → I |
 | [Stable Diffusion 1.x](#stable-diffusion-1) | Latent U-Net | T, I → I |
 | [Stable Diffusion 2.x](#stable-diffusion-2) | Latent U-Net | T, I → I |
 | [Stable Diffusion 3](#stable-diffusion-3) | DiT / flow | T → I |
 | [StackGAN](#stackgan) | GAN | T → I |
 | [StackGAN++ (StackGAN-v2)](#stackgan-v2) | GAN | T → I |
+| [STARFlow](#starflow) | Continuous AR | T, I → I |
+| [SwiftBrush](#swiftbrush) | Efficient | T → I |
 | [TAC-GAN](#tac-gan) | GAN | T → I |
+| [Taiyi-Diffusion-XL](#taiyi-diffusion-xl) | Latent U-Net | T → I |
 | [Text-SeGAN](#text-segan) | GAN | T → I |
 | [Text2Scene](#text2scene) | Early | T → I |
 | [Transfusion](#transfusion) | Unified | T, I → T, I |
 | [UFOGen](#ufogen) | Efficient | T → I |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | Masked token | T → I |
 | [UniWorld-V1](#uniworld) | Unified | T, I → T, I |
+| [UPainting](#upainting) | Latent U-Net | T → I |
+| [Versatile Diffusion](#versatile-diffusion) | Latent U-Net | T, I → I, T |
 | [VILA-U](#vila-u) | Unified | T, I, V → T, I, V |
 | [VL-GPT](#vl-gpt) | Unified | T, I → T, I |
 | [Würstchen](#wuerstchen) | Latent U-Net | T → I |
@@ -183,6 +219,18 @@ alignDRAW (ICLR 2016) is one of the first neural models to generate images from 
 ![alignDRAW — Figure 2](assets/architectures/aligndraw.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/1511.02793)*
+
+<a id="altdiffusion"></a>
+
+### AltDiffusion
+
+Stable Diffusion 2.1 latent U-Net re-aligned to a frozen 18-language XLM-R text encoder distilled from the OpenCLIP ViT-H text encoder (AltCLIP-style).
+
+[Paper](https://arxiv.org/abs/2308.09991) · [GitHub](https://github.com/superhero-7/AltDiffusion) · [Model card 1](https://huggingface.co/BAAI/AltDiffusion-m18) · [Model card 2](https://huggingface.co/BAAI/AltDiffusion-m9) · [Details](models/latent-unet.md#altdiffusion)
+
+![AltDiffusion — Figure 2](assets/architectures/altdiffusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2308.09991)*
 
 <a id="amazon-titan-image-generator"></a>
 
@@ -232,6 +280,30 @@ BAGEL (Scalable Generative Cognitive Model) is ByteDance Seed's open unified mod
 
 *Figure 2 · [Source](https://arxiv.org/abs/2505.14683)*
 
+<a id="bitdance"></a>
+
+### BitDance
+
+BitDance (ByteDance with CUHK and other institutions) is an autoregressive image generator whose visual tokens are binary vectors from a lookup-free quantization tokenizer with vocabularies up to 2^256 states. Because a softmax over that many indices is impractical, a small DiT-style diffusion head treats each token as a vertex of a hypercube, generates it with rectified-flow sampling in continuous space conditioned on the transformer's hidden state, and snaps the result back to ±1. The same head samples a whole p×p patch of tokens at once (next-patch diffusion), under a block-wise causal mask, so many tokens are produced per step. For text-to-image generation a 14B model initialized from Qwen3-14B serves as both text encoder and image generator, uses a 16×-downsampling tokenizer and generates up to 1024×1024 images, with 16 or, after a short distillation stage, 64 tokens per step; the paper reports over 30× speedup over prior next-token AR models at 1024px.
+
+[Paper](https://arxiv.org/abs/2602.14041) · [GitHub](https://github.com/shallowdream204/BitDance) · [Model card](https://huggingface.co/shallowdream204/BitDance-14B-64x) · [Details](models/continuous-ar.md#bitdance)
+
+![BitDance — Figure 4 (PDF p. 6)](assets/architectures/bitdance.png)
+
+*Figure 4 (PDF p. 6) · [Source](https://arxiv.org/abs/2602.14041)*
+
+<a id="bk-sdm"></a>
+
+### BK-SDM
+
+BK-SDM (Nota Inc., 2023) compresses Stable Diffusion architecturally rather than by reducing steps. Pairs of residual and cross-attention blocks are removed from the down and up stages of the U-Net; the Small variant also removes the mid-stage, and Tiny removes the innermost stages as well, giving 30–50% reductions in size, compute and latency. The pruned U-Net is initialized from the original weights and retrained to imitate the original U-Net's noise predictions and intermediate feature maps, which the paper shows works with only 0.22M LAION image-text pairs and about 13 A100 days. The same recipe is applied to SD v1.4 and SD v2.1-base, and the compressed models are also used for DreamBooth personalization, image-to-image translation and on-device deployment.
+
+[Paper](https://arxiv.org/abs/2305.15798) · [GitHub](https://github.com/Nota-NetsPresso/BK-SDM) · [Model card](https://huggingface.co/nota-ai/bk-sdm-small) · [Details](models/efficient.md#bk-sdm)
+
+![BK-SDM — Figure 3 (PDF p. 5)](assets/architectures/bk-sdm.png)
+
+*Figure 3 (PDF p. 5) · [Source](https://arxiv.org/abs/2305.15798)*
+
 <a id="blip3-o"></a>
 
 ### BLIP3-o
@@ -255,6 +327,18 @@ BLIP3o-NEXT is the successor to BLIP3-o in the BLIP3 series, positioned as a nat
 ![BLIP3o-NEXT — Figure 1](assets/architectures/blip3o-next.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2510.15857)*
+
+<a id="bridge-diffusion"></a>
+
+### Bridge Diffusion Model (BDM)
+
+Frozen Stable Diffusion 1.5 U-Net backbone with a trainable ControlNet-like encoder branch conditioned on Chinese CLIP text features, keeping the latent space compatible with the English SD ecosystem.
+
+[Paper](https://arxiv.org/abs/2309.00952) · [GitHub](https://github.com/360CVGroup/Bridge_Diffusion_Model) · [Model card](https://huggingface.co/qihoo360/BDM1.0) · [Details](models/latent-unet.md#bridge-diffusion)
+
+![Bridge Diffusion Model (BDM) — Figure 2](assets/architectures/bridge-diffusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2309.00952)*
 
 <a id="c4synth"></a>
 
@@ -327,6 +411,18 @@ CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-im
 ![CogView-3Plus — Editorial input/output diagram](assets/architectures/cogview3-plus.svg)
 
 *Editorial input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+
+<a id="cogview3"></a>
+
+### CogView3
+
+CogView3, from Zhipu AI and Tsinghua University, is the first text-to-image system to apply relay diffusion. A 3-billion-parameter U-Net diffusion model works in the 8× compressed latent space of a KL-regularized autoencoder, conditioned on a frozen T5-XXL encoder with prompts of up to 225 tokens that are first expanded by a language model. The base stage generates 512×512 images; the super-resolution stage encodes the bilinearly upsampled result, adds noise from an intermediate point and denoises and deblurs it with a linear blurring schedule to reach 1024×1024, and it can be applied iteratively for 2048×2048. Training uses LAION-2B with captions rewritten by a fine-tuned CogVLM recaptioner. The paper reports that CogView3 beats SDXL in human evaluation at about half its inference time, and a progressively distilled variant needs about a tenth of SDXL's inference time.
+
+[Paper](https://arxiv.org/abs/2403.05121) · [GitHub](https://github.com/zai-org/CogView4) · [Details](models/latent-unet.md#cogview3)
+
+![CogView3 — Figure 3](assets/architectures/cogview3.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2403.05121)*
 
 <a id="cogview4"></a>
 
@@ -424,6 +520,18 @@ DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed 
 
 *Editorial input/output diagram · [Source](https://github.com/borisdayma/dalle-mini)*
 
+<a id="dart"></a>
+
+### DART
+
+DART (Apple, with CUHK and Mila) merges autoregression and diffusion. Instead of denoising from only the current noisy image, as Markovian diffusion does, its transformer sees the concatenated sequence of all earlier noisy versions of the image and predicts the next, cleaner one, using a chunk-based causal mask and KV caching like a language model; no image quantization is involved. Two extensions add token-level autoregression inside each denoising step (DART-AR) and a small flow-matching head that models each token's distribution (DART-FM). Matryoshka-DART handles several resolutions in one sequence, and Kaleido-DART jointly trains discrete text-token prediction. Text-to-image models are trained on CC12M, mostly at 256×256 with 512×512 fine-tuning for Matryoshka-DART.
+
+[Paper](https://arxiv.org/abs/2410.08159) · GitHub: no author-linked repository found · [Details](models/continuous-ar.md#dart)
+
+![DART — Figure 2](assets/architectures/dart.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2410.08159)*
+
 <a id="deepfloyd-if"></a>
 
 ### DeepFloyd IF
@@ -448,6 +556,18 @@ Initial-image GAN followed by refinement stages that read word features from a g
 
 *Figure 2 · [Source](https://arxiv.org/abs/1904.01310)*
 
+<a id="dmd2"></a>
+
+### DMD2 (Distribution Matching Distillation)
+
+Distribution Matching Distillation (MIT and Adobe Research) turns a diffusion model into a one-step generator by matching output distributions rather than individual sampling trajectories. DMD (2023) minimizes an approximate KL divergence whose gradient is the difference between two scores: that of the frozen teacher (real distribution) and that of a second diffusion model trained online on the generator's samples (fake distribution); it also needed an LPIPS regression loss on precomputed teacher noise–image pairs. DMD2 (2024) removes the regression loss and its costly dataset, stabilizes training by updating the fake-score model more often than the generator, adds a GAN loss against real images so the student can surpass the teacher, and supports multi-step students trained on simulated inference-time inputs. Released DMD2 models distill SDXL into one- and four-step generators at 1024px.
+
+[Paper 1](https://arxiv.org/abs/2311.18828) · [Paper 2](https://arxiv.org/abs/2405.14867) · [GitHub](https://github.com/tianweiy/DMD2) · [Model card](https://huggingface.co/tianweiy/DMD2) · [Details](models/efficient.md#dmd2)
+
+![DMD2 (Distribution Matching Distillation) — Figure 3 (PDF p. 6)](assets/architectures/dmd2.png)
+
+*Figure 3 (PDF p. 6) · [Source](https://arxiv.org/abs/2405.14867)*
+
 <a id="dreamllm"></a>
 
 ### DreamLLM
@@ -459,6 +579,18 @@ DreamLLM, from Xi'an Jiaotong University, MEGVII, Tsinghua and others, is a lear
 ![DreamLLM — Figure 2](assets/architectures/dreamllm.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.11499)*
+
+<a id="e-mmdit"></a>
+
+### E-MMDiT (AMD Nitro-E)
+
+E-MMDiT (AMD, 2025), released as Nitro-E, is a small MMDiT-style text-to-image model designed around token reduction so that it can be trained cheaply and run fast. Images are encoded by the highly compressive DC-AE (32× downsampling) and prompts by Llama 3.2-1B. Inside the transformer, a multi-path compression module condenses image tokens by 2× and 4× for the middle blocks and a reconstructor restores them, with positional embeddings re-injected (Position Reinforcement) to keep spatial coherence; Alternating Subregion Attention restricts attention to alternating token subregions, and AdaLN-affine computes modulation parameters cheaply. The 512px model was trained on about 25M public images in 1.5 days on one node of eight AMD MI300X GPUs and reaches 0.66 GenEval (0.72 after GRPO post-training). Distilled checkpoints sample in four steps and roughly double throughput.
+
+[Paper](https://arxiv.org/abs/2510.27135) · [GitHub](https://github.com/AMD-AGI/Nitro-E) · [Model card](https://huggingface.co/amd/Nitro-E) · [Details](models/efficient.md#e-mmdit)
+
+![E-MMDiT (AMD Nitro-E) — Figure 3 (PDF p. 3)](assets/architectures/e-mmdit.png)
+
+*Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/2510.27135)*
 
 <a id="ediff-i"></a>
 
@@ -483,6 +615,18 @@ Emu is BAAI's generative multimodal foundation model trained with one autoregres
 ![Emu (BAAI) — Figure 2](assets/architectures/emu-baai.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2307.05222)*
+
+<a id="emu-meta"></a>
+
+### Emu (Meta)
+
+Quality-tuned 1024×1024 latent diffusion model with a 2.8B-parameter U-Net, a 16-channel autoencoder, and CLIP ViT-L plus T5-XXL text conditioning.
+
+[Paper](https://arxiv.org/abs/2309.15807) · [Details](models/latent-unet.md#emu-meta)
+
+![Emu (Meta) — Editorial input/output diagram](assets/architectures/emu-meta.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2309.15807)*
 
 <a id="emu2"></a>
 
@@ -544,6 +688,18 @@ Chinese latent diffusion model with a 1.3B transformer text encoder and a mixtur
 
 *Figure 2 · [Source](https://arxiv.org/abs/2210.15257)*
 
+<a id="fluid"></a>
+
+### Fluid
+
+Fluid (Google DeepMind and MIT) studies why autoregressive image models scale worse than language models by comparing discrete versus continuous tokens and raster versus random generation order in a controlled text-to-image setup. Continuous tokens gave clearly better visual quality, and random-order models with bidirectional attention scored higher on GenEval than raster-order causal models, so the final Fluid model combines both: it predicts masked continuous tokens in random order, one or several at a time, and models each token with a small diffusion head following the MAR diffusion-loss approach. The largest model has 10.5B parameters and is trained on WebLI at 256×256.
+
+[Paper](https://arxiv.org/abs/2410.13863) · GitHub: no author-linked repository found · [Details](models/continuous-ar.md#fluid)
+
+![Fluid — Figure 3](assets/architectures/fluid.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2410.13863)*
+
 <a id="flux-1"></a>
 
 ### FLUX.1
@@ -567,6 +723,18 @@ FLUX.1 Kontext is Black Forest Labs' in-context image generation and editing mod
 ![FLUX.1 Kontext — Figure 4](assets/architectures/flux-1-kontext.png)
 
 *Figure 4 · [Source](https://arxiv.org/abs/2506.15742)*
+
+<a id="frido"></a>
+
+### Frido
+
+Feature-pyramid latent diffusion model that denoises multi-scale MS-VQGAN latents coarse to fine with a shared pyramid U-Net (PyU-Net) using coarse-to-fine modulation.
+
+[Paper](https://arxiv.org/abs/2208.13753) · [GitHub](https://github.com/chrisfan-wc/Frido) · [Details](models/latent-unet.md#frido)
+
+![Frido — Figure 3 (PDF p. 4)](assets/architectures/frido.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2208.13753)*
 
 <a id="gan-int-cls"></a>
 
@@ -616,6 +784,18 @@ Cascaded pixel-space diffusion: a text-conditional ADM U-Net at 64×64 plus a te
 
 *Editorial input/output diagram · [Source](https://arxiv.org/abs/2112.10741)*
 
+<a id="glm-image"></a>
+
+### GLM-Image
+
+GLM-Image (Z.ai) splits image generation into a semantic stage and a detail stage. The autoregressive part, built on the GLM-4-9B-0414 language model with an added vision embedding layer and a vision LM head, generates semantic-VQ tokens from the X-Omni tokenizer scheme; it first produces about 256 low-resolution layout tokens and then 1K–4K higher-resolution tokens. A 7B single-stream DiT decoder trained with flow matching receives these tokens, projected and concatenated with the VAE latent along the channel dimension, and adds the high-frequency detail; it needs no prompt text encoder, only a lightweight Glyph-ByT5 module for rendering text in the image. Final outputs range from 1024 to 2048 px. The same model also handles image-to-image tasks such as editing, style transfer and identity-preserving or multi-subject generation, and both stages are post-trained separately with GRPO-based reinforcement learning.
+
+[Announcement](https://z.ai/blog/glm-image) · [GitHub](https://github.com/zai-org/GLM-Image) · [Model card](https://huggingface.co/zai-org/GLM-Image) · [Details](models/continuous-ar.md#glm-image)
+
+![GLM-Image — README architecture figure (architecture_1)](assets/architectures/glm-image.png)
+
+*README architecture figure (architecture_1) · [Source](https://github.com/zai-org/GLM-Image)*
+
 <a id="gpt-image-1"></a>
 
 ### GPT Image 1
@@ -663,6 +843,18 @@ Grok Imagine Image is xAI's line of image models served in the Grok Imagine app 
 ![Grok Imagine Image — Editorial input/output diagram](assets/architectures/grok-imagine-image.svg)
 
 *Editorial input/output diagram · [Source](https://docs.x.ai/docs/guides/image-generations)*
+
+<a id="hart"></a>
+
+### HART
+
+HART (Hybrid Autoregressive Transformer, from MIT, NVIDIA and Tsinghua) generates 1024×1024 images directly with an autoregressive model. Its hybrid tokenizer splits an autoencoder's continuous latent into the sum of discrete multi-scale VAR tokens, which capture overall structure, and a continuous residual that holds fine detail. A VAR-style transformer predicts the discrete tokens scale by scale, with text tokens from a frozen Qwen2-1.5B language model concatenated in front and visible to all visual tokens, and a lightweight MLP diffusion head predicts the residual in 8 sampling steps, conditioned on the transformer's final hidden states and the last discrete tokens. The paper reports quality comparable to diffusion models of similar size with 4.5–7.7× higher throughput.
+
+[Paper](https://arxiv.org/abs/2410.10812) · [GitHub](https://github.com/mit-han-lab/hart) · [Model card](https://huggingface.co/mit-han-lab/hart-0.7b-1024px) · [Details](models/continuous-ar.md#hart)
+
+![HART — Figure 6](assets/architectures/hart.png)
+
+*Figure 6 · [Source](https://arxiv.org/abs/2410.10812)*
 
 <a id="hdgan"></a>
 
@@ -808,6 +1000,18 @@ Imagen 4 is Google's fourth-generation Imagen model, announced at Google I/O on 
 
 *Editorial input/output diagram · [Source](https://storage.googleapis.com/deepmind-media/Model-Cards/Imagen-4-Model-Card.pdf)*
 
+<a id="imagine-flash"></a>
+
+### Imagine Flash
+
+Imagine Flash (Meta GenAI, 2024) accelerates Meta's Emu text-to-image diffusion model to one, two or three sampling steps. Its main idea, backward distillation, trains the student on latents produced by its own backward (denoising) trajectory rather than on forward-noised real images, removing the mismatch between training inputs and what the student sees at inference. A Shifted Reconstruction Loss makes the teacher's target depend on the timestep, transferring global structure at high noise and fine detail at low noise, and an inference-time Noise Correction addresses singularities in noise prediction. The paper reports quality comparable to the 25-step Emu teacher with three steps.
+
+[Paper](https://arxiv.org/abs/2405.05224) · GitHub: no author-linked repository found · [Details](models/efficient.md#imagine-flash)
+
+![Imagine Flash — Figure 3](assets/architectures/imagine-flash.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2405.05224)*
+
 <a id="instaflow"></a>
 
 ### InstaFlow
@@ -856,6 +1060,18 @@ JanusFlow, from DeepSeek-AI with Peking University, HKU and Tsinghua, integrates
 
 *Figure 2 · [Source](https://arxiv.org/abs/2411.07975)*
 
+<a id="jetformer"></a>
+
+### JetFormer
+
+JetFormer (Google DeepMind) is trained end to end to maximize the likelihood of raw images and text, with no separately pretrained image encoder, VAE or tokenizer. A transformer-based normalizing flow maps image patches losslessly to soft tokens; the same flow serves as image encoder for understanding and, inverted, as image decoder for generation. The autoregressive transformer predicts text tokens with a softmax and soft image tokens with a Gaussian mixture, trained on WebLI image-text pairs in both orders so that one model does text-to-image generation and image-to-text tasks such as captioning and VQA at 256×256. A noise curriculum that adds strong pixel noise early in training steers the model toward high-level image structure.
+
+[Paper](https://arxiv.org/abs/2411.19722) · [GitHub](https://github.com/google-research/big_vision) · [Details](models/continuous-ar.md#jetformer)
+
+![JetFormer — Figure 1 (PDF p. 2)](assets/architectures/jetformer.png)
+
+*Figure 1 (PDF p. 2) · [Source](https://arxiv.org/abs/2411.19722)*
+
 <a id="kandinsky-2"></a>
 
 ### Kandinsky 2
@@ -892,6 +1108,18 @@ Open unCLIP-based model: a prior maps the prompt to a CLIP ViT-L/14 image embedd
 
 *README figure: improved 64→256 super-resolution module · [Source](https://github.com/kakaobrain/karlo)*
 
+<a id="koala"></a>
+
+### KOALA
+
+KOALA (ETRI and KAIST, 2023) builds smaller SDXL-class text-to-image models that run on 8GB consumer GPUs. On top of BK-SDM-style block removal, it cuts the number of transformer layers in SDXL's lowest-resolution blocks from 10 to 6 (KOALA-1B) or 5 (KOALA-700M, which also drops the mid-block), roughly halving or thirding the U-Net. The paper draws three lessons for distilling such a student: matching the teacher's self-attention features works better than matching only each stage's last feature map, high-resolution images with detailed captions matter more than data volume, and a step-distilled teacher lets the student sample in fewer steps. The released KOALA-Turbo (512px) and KOALA-Lightning (1024px) models are distilled from SDXL-Turbo and SDXL-Lightning on LAION-POP; KOALA-Lightning-700M generates a 1024px image in about 0.66 s at 10 steps on an RTX 4090.
+
+[Paper](https://arxiv.org/abs/2312.04005) · [GitHub](https://github.com/youngwanLEE/sdxl-koala) · [Model card](https://huggingface.co/etri-vilab/koala-lightning-700m) · [Project](https://youngwanlee.github.io/KOALA/) · [Details](models/efficient.md#koala)
+
+![KOALA — Figure 2](assets/architectures/koala.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2312.04005)*
+
 <a id="kolors"></a>
 
 ### Kolors
@@ -903,6 +1131,18 @@ Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model
 ![Kolors — Editorial input/output diagram](assets/architectures/kolors.svg)
 
 *Editorial input/output diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
+
+<a id="kolors-2"></a>
+
+### Kolors 2.0
+
+Kolors 2.0 is Kuaishou's closed image generation model, unveiled together with the Kling AI 2.0 video model at the "From Vision to Screen" launch event announced on 2025-04-15. Kuaishou's release says it improves prompt adherence, cinematic visual quality and artistic style expression over its predecessor. It adds controllable image editing on the Kling AI platform, including partial redrawing and expanding and the addition, modification and repair of image content, plus a stylized transcription function that restyles an uploaded image from a style description while keeping its content. Kuaishou gives no architecture details for Kolors 2.0.
+
+[Announcement](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15) · [Details](models/api.md#kolors-2)
+
+![Kolors 2.0 — Editorial input/output diagram](assets/architectures/kolors-2.svg)
+
+*Editorial input/output diagram · [Source](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15)*
 
 <a id="l-verse"></a>
 
@@ -952,6 +1192,18 @@ LaVIT (Language-VIsion Transformer), from Peking University and Kuaishou Technol
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.04669)*
 
+<a id="luma-uni-1"></a>
+
+### Luma Uni-1
+
+Uni-1 is Luma AI's first unified understanding and generation model, offered for image generation and editing in the Luma app. Luma says unified models represent different modalities in one interleaved sequence, and its Uni-1.1 API announcement (2026-05-05) describes the model as a decoder-only autoregressive transformer in which text and image tokens share a single sequence for both input and output. The documented interface covers text-to-image generation, up to nine reference images to preserve identity, composition or style, and natural-language editing such as background swaps, lighting changes and localized edits, plus control of camera angle, lighting and composition. The Uni-1.1 API offers Uni-1.1 and Uni-1.1 Max. No technical report has been published.
+
+[Project](https://lumalabs.ai/uni-1) · [Announcement](https://lumalabs.ai/news/uni-1-1-api) · [Details](models/api.md#luma-uni-1)
+
+![Luma Uni-1 — Editorial input/output diagram](assets/architectures/luma-uni-1.svg)
+
+*Editorial input/output diagram · [Source](https://lumalabs.ai/uni-1)*
+
 <a id="lumina-next"></a>
 
 ### Lumina-Next
@@ -987,6 +1239,18 @@ M6 (Alibaba and Tsinghua, 2021) is a large Chinese multimodal pretrained model s
 ![M6 — Figure 3](assets/architectures/m6.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2103.00823)*
+
+<a id="mai-image"></a>
+
+### MAI-Image
+
+MAI-Image is Microsoft AI's in-house image model line. MAI-Image-1, announced on 2025-10-13 as Microsoft's first image generation model developed entirely in-house, targeted photorealistic scenes and fast iteration and shipped in Bing Image Creator and Copilot. MAI-Image-2 (March 2026) emphasized text rendering for infographics, slides and diagrams, and photorealism, with API access through Microsoft Foundry; MAI-Image-2-Efficient (April 2026) is a faster, cheaper variant. MAI-Image-2.5 (June 2026) added precise localized editing of images with text and reference-image inputs, and MAI-Image-2.6 with a Flash variant (September 2026) added multi-reference editing, web grounding and higher resolutions. Microsoft publishes no architecture for these models.
+
+[Announcement 1](https://microsoft.ai/news/introducing-mai-image-1-debuting-in-the-top-10-on-lmarena/) · [Announcement 2](https://microsoft.ai/news/introducing-mai-image-2/) · [Announcement 3](https://microsoft.ai/news/mai-image-2-efficient/) · [Announcement 4](https://microsoft.ai/news/introducing-mai-image-2-5/) · [Announcement 5](https://microsoft.ai/news/pushing-the-quality-cost-frontier-with-mai-image-2-6/) · [Details](models/api.md#mai-image)
+
+![MAI-Image — Editorial input/output diagram](assets/architectures/mai-image.svg)
+
+*Editorial input/output diagram · [Source](https://microsoft.ai/news/introducing-mai-image-2/)*
 
 <a id="matryoshka-diffusion"></a>
 
@@ -1024,6 +1288,18 @@ Midjourney is a closed text-to-image service offered through its web app and Dis
 
 *Editorial input/output diagram · [Source](https://updates.midjourney.com/v8-alpha/)*
 
+<a id="minimax-image-01"></a>
+
+### MiniMax Image-01
+
+Image-01 is MiniMax's first text-to-image model, launched on its API platform on 2025-02-28. MiniMax says it draws on prompt-adherence know-how from its Hailuo video models and supports several aspect ratios with up to nine images per request. The API documents a text-to-image endpoint with optional prompt optimization, custom sizes from 512 to 2048 pixels and seeds, and an image-to-image endpoint in which a character (portrait) reference image guides generation, available for `image-01` and `image-01-live`. No architecture is published.
+
+[Announcement](https://www.minimax.io/news/image-01) · [Docs 1](https://platform.minimax.io/docs/api-reference/image-generation-t2i) · [Docs 2](https://platform.minimax.io/docs/api-reference/image-generation-i2i) · [Details](models/api.md#minimax-image-01)
+
+![MiniMax Image-01 — Editorial input/output diagram](assets/architectures/minimax-image-01.svg)
+
+*Editorial input/output diagram · [Source](https://www.minimax.io/news/image-01)*
+
 <a id="mirrorgan"></a>
 
 ### MirrorGAN
@@ -1048,6 +1324,18 @@ MM-Interleaved, from OpenGVLab (Shanghai AI Laboratory) with CUHK, Tsinghua, Sen
 
 *Figure 4 · [Source](https://arxiv.org/abs/2401.10208)*
 
+<a id="mobile-o"></a>
+
+### Mobile-O
+
+Mobile-O (MBZUAI with CMU and Linköping University, 2026) is a unified multimodal understanding and image-generation model small enough, about 1.6B parameters in total, to run fully on a phone. Instead of the learnable query tokens used by larger unified models, its Mobile Conditioning Projector (about 2.4M parameters) takes a learned, temperature-weighted fusion of the VLM's final layers, compresses and refines it with depthwise-separable 1D convolutions and channel attention, and feeds it to every cross-attention layer of the SANA diffusion decoder. Training proceeds in three stages: alignment pre-training of the DiT and projector on about 9M text-image pairs with the VLM frozen, supervised fine-tuning on about 105K curated pairs, and a unified post-training stage on quadruplets (generation prompt, image, question, answer) that improves understanding and generation together. The paper reports 0.74 on GenEval and about 3 seconds per 512×512 image on an iPhone.
+
+[Paper](https://arxiv.org/abs/2602.20161) · [GitHub](https://github.com/Amshaker/Mobile-O) · [Model card](https://huggingface.co/Amshaker/Mobile-O-0.5B) · [Details](models/efficient.md#mobile-o)
+
+![Mobile-O — Figure 2](assets/architectures/mobile-o.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2602.20161)*
+
 <a id="mobilediffusion"></a>
 
 ### MobileDiffusion
@@ -1071,6 +1359,30 @@ Mogao is a ByteDance Seed unified model aimed at interleaved multimodal generati
 ![Mogao — Figure 3](assets/architectures/mogao.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2505.05472)*
+
+<a id="muse-image"></a>
+
+### Muse Image
+
+Muse Image is the image generation model from Meta Superintelligence Labs, announced on 2026-07-07 together with the separate Muse Video model and deployed in Meta AI. Meta says it follows instructions faithfully, edits images precisely by changing only what the user asks for, and composes people, objects, clothing, styles and environments from many reference images. Meta also describes agentic behaviour: the model learns to write and execute code for accurate plots and QR codes, to search the web to ground images in factual and real-time information, and to reflect on and refine its work within its chain of thought. It is available in the Meta AI app and website, Instagram Stories in the US and WhatsApp in some countries; no API or technical report is announced.
+
+[Announcement 1](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/) · [Announcement 2](https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/) · [Details](models/api.md#muse-image)
+
+![Muse Image — Editorial input/output diagram](assets/architectures/muse-image.svg)
+
+*Editorial input/output diagram · [Source](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/)*
+
+<a id="nextstep-1"></a>
+
+### NextStep-1
+
+NextStep-1 (StepFun) applies plain next-token prediction to a sequence of discrete text tokens followed by continuous image tokens, without vector quantization and without a large diffusion decoder. A 14B causal transformer, initialized from Qwen2.5-14B and using standard 1D RoPE, reads the prompt and previously generated image patches; its hidden state conditions a small MLP flow-matching head that turns noise into the next image patch. Images come from a tokenizer fine-tuned from the FLUX.1-dev VAE, whose 16-channel latents are channel-normalized and noise-perturbed during training to keep the latent space robust, then packed 2×2 into 64-channel tokens. An editing model (NextStep-1-Large-Edit) extends the same architecture to instruction-based image editing, and the later NextStep-1.1 release adds extended training and flow-based RL post-training.
+
+[Paper](https://arxiv.org/abs/2508.10711) · [GitHub](https://github.com/stepfun-ai/NextStep-1) · [Model card](https://huggingface.co/stepfun-ai/NextStep-1-Large) · [Details](models/continuous-ar.md#nextstep-1)
+
+![NextStep-1 — Figure 2](assets/architectures/nextstep-1.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2508.10711)*
 
 <a id="nuwa"></a>
 
@@ -1107,6 +1419,18 @@ OmniGen2 is an open generative model from the OmniGen team (VectorSpaceLab) for 
 ![OmniGen2 — Figure 2](assets/architectures/omnigen2.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2506.18871)*
+
+<a id="pangu-draw"></a>
+
+### PanGu-Draw
+
+Bilingual latent diffusion model (5B in its largest version) whose denoising is split in time between two SDXL-style U-Nets: a structure generator for high-noise timesteps and a texture generator for low-noise timesteps.
+
+[Paper](https://arxiv.org/abs/2312.16486) · [Details](models/latent-unet.md#pangu-draw)
+
+![PanGu-Draw — Figure 1](assets/architectures/pangu-draw.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2312.16486)*
 
 <a id="multiscale-pixelcnn"></a>
 
@@ -1192,6 +1516,18 @@ Playground v3 is Playground's third-generation text-to-image model and a departu
 
 *Figure 2 · [Source](https://arxiv.org/abs/2409.10695)*
 
+<a id="raphael"></a>
+
+### RAPHAEL
+
+Latent diffusion U-Net of 16 transformer blocks, each with self-attention, cross-attention to OpenCLIP-g/14 text tokens, a time-MoE layer and a space-MoE layer.
+
+[Paper](https://arxiv.org/abs/2305.18295) · [Details](models/latent-unet.md#raphael)
+
+![RAPHAEL — Figure 3](assets/architectures/raphael.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2305.18295)*
+
 <a id="re-imagen"></a>
 
 ### Re-Imagen
@@ -1215,6 +1551,18 @@ Recraft is a design-oriented image generation service and API whose models produ
 ![Recraft — Editorial input/output diagram](assets/architectures/recraft.svg)
 
 *Editorial input/output diagram · [Source](https://www.recraft.ai/docs/api-reference/endpoints)*
+
+<a id="rdm"></a>
+
+### Retrieval-Augmented Diffusion Models (RDM)
+
+Semi-parametric latent diffusion model whose U-Net is conditioned by cross-attention on CLIP embeddings of nearest neighbours retrieved from an external image database, enabling text-to-image by conditioning on CLIP text embeddings.
+
+[Paper](https://arxiv.org/abs/2204.11824) · [GitHub 1](https://github.com/CompVis/retrieval-augmented-diffusion-models) · [GitHub 2](https://github.com/CompVis/latent-diffusion) · [Details](models/latent-unet.md#rdm)
+
+![Retrieval-Augmented Diffusion Models (RDM) — Figure 3](assets/architectures/rdm.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2204.11824)*
 
 <a id="reve-image"></a>
 
@@ -1263,6 +1611,18 @@ SANA 1.5 is NVIDIA's follow-up to SANA that studies how to scale a linear diffus
 ![SANA 1.5 — Figure 1](assets/architectures/sana-1-5.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2501.18427)*
+
+<a id="sana-sprint"></a>
+
+### SANA-Sprint
+
+SANA-Sprint (NVIDIA, MIT, Tsinghua and Hugging Face, 2025) makes the SANA text-to-image transformer generate 1024×1024 images in one to four steps, about 0.1 s on an H100. Continuous-time consistency models require a TrigFlow parameterization, so the paper converts the pretrained flow-matching SANA model to TrigFlow by transforming its inputs and outputs mathematically instead of pretraining a new model. The student is then trained with an sCM loss that keeps it consistent with the teacher's trajectory and a LADD-style GAN loss, with discriminator heads on the frozen teacher's features, that sharpens one-step samples. A single model serves all step counts from one to four. The paper also combines SANA-Sprint with ControlNet for interactive generation.
+
+[Paper](https://arxiv.org/abs/2503.09641) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_Sprint_1.6B_1024px) · [Project](https://nvlabs.github.io/Sana/Sprint/) · [Details](models/efficient.md#sana-sprint)
+
+![SANA-Sprint — Figure 2](assets/architectures/sana-sprint.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.09641)*
 
 <a id="sd-gan"></a>
 
@@ -1324,6 +1684,18 @@ SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need 
 
 *Editorial input/output diagram · [Source](https://arxiv.org/abs/2402.13929)*
 
+<a id="sdxs"></a>
+
+### SDXS
+
+SDXS (Xiaomi, 2024) reduces both model size and step count. The VAE decoder is replaced by a tiny convolutional decoder trained to reproduce the original decoder's outputs with a distillation and GAN loss, and the U-Net is shrunk with BK-SDM-style block removal and knowledge distillation (SD 2.1-base loses its mid-stage, innermost stages and highest-resolution transformer blocks; SDXL loses most transformer blocks). The small U-Net is then turned into a one-step generator: a warmup matches features of its one-step outputs to multi-step teacher outputs with an SSIM-based feature loss, and training continues with Diff-Instruct-style score distillation on low-noise timesteps while feature matching covers the high-noise segment. The paper reports about 100 FPS at 512px and 30 FPS at 1024px on one GPU.
+
+[Paper](https://arxiv.org/abs/2403.16627) · [GitHub](https://github.com/IDKiro/sdxs) · [Model card](https://huggingface.co/IDKiro/sdxs-512-0.9) · [Details](models/efficient.md#sdxs)
+
+![SDXS — Figure 3](assets/architectures/sdxs.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2403.16627)*
+
 <a id="seed-llama"></a>
 
 ### SEED-LLaMA
@@ -1347,6 +1719,18 @@ SEED-X, from Tencent AI Lab and ARC Lab (Tencent PCG), is a unified multimodal f
 ![SEED-X — Figure 4](assets/architectures/seed-x.png)
 
 *Figure 4 · [Source](https://arxiv.org/abs/2404.14396)*
+
+<a id="seedream-5"></a>
+
+### Seedream 5.0
+
+Seedream 5.0 is ByteDance Seed's closed image creation line released after Seedream 4.0. Seedream 5.0 Lite (announced 2026-02-13) is described as a unified multimodal image generation model with deep thinking and online search: it reasons through complex prompts step by step, uses real-time web search for time-sensitive content, follows reference images more closely and supports single-image editing and style transfer from references. Seedream 5.0 Pro (2026-07-08) targets information visualization and professional layouts, multilingual text rendering, realistic imagery and interactive precision editing with point and lasso selection, sketch rendering, color and material replacement, layer separation and multi-image fusion. No technical report or architecture details have been published for version 5.0.
+
+[Announcement 1](https://seed.bytedance.com/en/blog/deeper-thinking-more-accurate-generation-introducing-seedream-5-0-lite) · [Announcement 2](https://seed.bytedance.com/en/blog/beyond-generation-it-understands-design-introducing-seedream-5-0-pro) · [Project](https://seed.bytedance.com/en/seedream5_0_lite) · [Details](models/api.md#seedream-5)
+
+![Seedream 5.0 — Editorial input/output diagram](assets/architectures/seedream-5.svg)
+
+*Editorial input/output diagram · [Source](https://seed.bytedance.com/en/seedream5_0_lite)*
 
 <a id="show-o"></a>
 
@@ -1383,6 +1767,30 @@ SnapFusion (Snap Inc. and Northeastern University, 2023) runs text-to-image diff
 ![SnapFusion — Figure 3 (PDF p. 4)](assets/architectures/snapfusion.png)
 
 *Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2306.00980)*
+
+<a id="snapgen"></a>
+
+### SnapGen
+
+SnapGen (Snap Inc. with the University of Melbourne, HKUST and MBZUAI, 2024) is a small text-to-image model that generates 1024×1024 images on an iPhone 16 Pro Max in about 1.4 seconds. Instead of compressing an existing model, it designs a new UNet starting from a thinned SDXL layout: self-attention only at the lowest resolution, expanded separable convolutions, a narrower feed-forward ratio, multi-query attention with QK RMSNorm and RoPE, and conditioning inserted from the first stage. A decoder 35.9× smaller than the SD3/SDXL decoder makes high-resolution decoding feasible on the phone. The model is trained with flow matching so that it can learn from SD3.5-Large through output- and feature-level distillation with timestep-aware loss scaling, and is then distilled to a few steps with an adversarial objective whose discriminator uses SD3.5-Large-Turbo features.
+
+[Paper](https://arxiv.org/abs/2412.09619) · [Project](https://snap-research.github.io/snapgen) · GitHub: no author-linked repository found · [Details](models/efficient.md#snapgen)
+
+![SnapGen — Figure 2 (PDF p. 4)](assets/architectures/snapgen.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2412.09619)*
+
+<a id="ssd-1b"></a>
+
+### SSD-1B
+
+SSD-1B (Segmind with Hugging Face, 2024) is a compressed version of SDXL. Following BK-SDM, it removes redundant parts of the SDXL U-Net, but at a finer grain: individual transformer blocks inside the attention layers, the mid-block's attention layers and its second residual block. The pruned network is retrained to imitate the teacher's noise prediction and the features of every attention and ResNet layer, with the teacher switched in succession from SDXL base to the fine-tuned ZavyChromaXL and JuggernautXL. SSD-1B has a 1.3B-parameter U-Net, about half of SDXL's, and the smaller Segmind-Vega has 0.74B; the report cites up to 60% and 100% speedups, respectively, at the same step count.
+
+[Paper](https://arxiv.org/abs/2401.02677) · [GitHub](https://github.com/segmind/SSD-1B) · [Model card 1](https://huggingface.co/segmind/SSD-1B) · [Model card 2](https://huggingface.co/segmind/Segmind-Vega) · [Details](models/efficient.md#ssd-1b)
+
+![SSD-1B — Figure 2](assets/architectures/ssd-1b.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2401.02677)*
 
 <a id="stable-diffusion-1"></a>
 
@@ -1444,6 +1852,30 @@ End-to-end tree-structured GAN whose shared trunk branches into generators at 64
 
 *Fig. 2 (PDF p. 6) · [Source](https://arxiv.org/abs/1710.10916)*
 
+<a id="starflow"></a>
+
+### STARFlow
+
+STARFlow (Apple) shows that normalizing flows can scale to high-resolution text-to-image generation. The model is a single invertible flow trained by exact maximum likelihood on continuous autoencoder latents, without quantization or iterative denoising. Each flow block is an autoregressive transformer; almost all capacity sits in one deep block that behaves like a Gaussian language model over latent tokens and is the only block that sees the caption, while a few cheap shallow blocks refine local detail. Sampling runs the deep block autoregressively from Gaussian noise, then the shallow blocks, and a decoder fine-tuned on noise-injected latents maps the result to pixels. A revised classifier-free guidance algorithm for autoregressive flows improves quality at high guidance weights. The text-to-image model has 3.8B parameters and supports variable aspect ratios.
+
+[Paper](https://arxiv.org/abs/2506.06276) · [GitHub](https://github.com/apple-aiml-research/ml-starflow) · [Model card](https://huggingface.co/apple/starflow) · [Details](models/continuous-ar.md#starflow)
+
+![STARFlow — Figure 4 (PDF p. 5)](assets/architectures/starflow.png)
+
+*Figure 4 (PDF p. 5) · [Source](https://arxiv.org/abs/2506.06276)*
+
+<a id="swiftbrush"></a>
+
+### SwiftBrush
+
+SwiftBrush (VinAI Research, 2023) distills Stable Diffusion 2.1 into a one-step text-to-image generator without any training images. It borrows Variational Score Distillation from text-to-3D generation (ProlificDreamer): the student turns noise and a prompt into an image, the image is re-noised, and the student is updated with the difference between the frozen teacher's noise prediction and that of a LoRA teacher that is trained alternately to model the student's output distribution. Only text prompts are needed. SwiftBrush v2 (2024) initializes the student from SD Turbo, adds a clamped CLIP loss for text alignment, trains full and LoRA versions and merges them by weight interpolation, and reports a one-step student that surpasses its SD 2.1 teacher on zero-shot COCO FID.
+
+[Paper 1](https://arxiv.org/abs/2312.05239) · [Paper 2](https://arxiv.org/abs/2408.14176) · [GitHub 1](https://github.com/VinAIResearch/SwiftBrush) · [GitHub 2](https://github.com/VinAIResearch/SwiftBrushV2) · [Details](models/efficient.md#swiftbrush)
+
+![SwiftBrush — Figure 2 (PDF p. 6)](assets/architectures/swiftbrush.png)
+
+*Figure 2 (PDF p. 6) · [Source](https://arxiv.org/abs/2312.05239)*
+
 <a id="tac-gan"></a>
 
 ### TAC-GAN
@@ -1455,6 +1887,18 @@ AC-GAN variant conditioned on Skip-Thought text embeddings, whose discriminator 
 ![TAC-GAN — Figure 2 (PDF p. 2)](assets/architectures/tac-gan.png)
 
 *Figure 2 (PDF p. 2) · [Source](https://arxiv.org/abs/1703.06412)*
+
+<a id="taiyi-diffusion-xl"></a>
+
+### Taiyi-Diffusion-XL
+
+Taiyi-Diffusion-XL (Taiyi-XL) is a Chinese-English bilingual text-to-image model from IDEA-CCNL built by continued pre-training of Stable Diffusion XL. The team first extends an English CLIP model with the most frequently used Chinese characters in its tokenizer and embedding layers and with expanded absolute position encoding, trains it contrastively on bilingual data such as LAION and Wukong, and then swaps it in as SDXL's text encoder. The U-Net and text encoder are trained together at mixed 512×512 and 1024×1024 resolutions and aspect ratios on images re-captioned by a large vision-language model. The technical report shows gains over earlier Chinese and bilingual open models on COCO and COCO-CN, and the 3.5B checkpoint and training code are public.
+
+[Paper](https://arxiv.org/abs/2401.14688) · [Model card](https://huggingface.co/IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B) · [GitHub](https://github.com/IDEA-CCNL/Taiyi-Diffusion-XL) · [Details](models/latent-unet.md#taiyi-diffusion-xl)
+
+![Taiyi-Diffusion-XL — Figure 2](assets/architectures/taiyi-diffusion-xl.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2401.14688)*
 
 <a id="text-segan"></a>
 
@@ -1527,6 +1971,30 @@ UniWorld-V1, from Peking University's Yuan group and collaborators, is a unified
 ![UniWorld-V1 — Figure 3](assets/architectures/uniworld.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2506.03147)*
+
+<a id="upainting"></a>
+
+### UPainting
+
+Text-conditional U-Net diffusion model with a jointly fine-tuned pretrained transformer language model encoder, combined at inference with image-text matching (CLIP) guidance.
+
+[Paper](https://arxiv.org/abs/2210.16031) · [Details](models/latent-unet.md#upainting)
+
+![UPainting — Figure 2](assets/architectures/upainting.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2210.16031)*
+
+<a id="versatile-diffusion"></a>
+
+### Versatile Diffusion
+
+Multi-flow latent diffusion U-Net with shared global layers and swappable data layers (image ResBlocks or text FCResBlocks) and context layers (CLIP image or text cross-attention), covering text-to-image, image variation, image-to-text and text variation.
+
+[Paper](https://arxiv.org/abs/2211.08332) · [GitHub](https://github.com/SHI-Labs/Versatile-Diffusion) · [Model card](https://huggingface.co/shi-labs/versatile-diffusion) · [Details](models/latent-unet.md#versatile-diffusion)
+
+![Versatile Diffusion — Figure 3](assets/architectures/versatile-diffusion.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2211.08332)*
 
 <a id="vila-u"></a>
 

@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**15 models · Reviewed 2026-09-29**
+**21 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -29,9 +29,15 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Imagen 2](#imagen-2) | 2023-12-13 | T, I → I | editing |
 | [Imagen 3](#imagen-3) | 2024-08-13 | T, I → I | editing |
 | [Imagen 4](#imagen-4) | 2025-05-20 | T, I → I | generation |
+| [Kolors 2.0](#kolors-2) | 2025-04-15 | T, I → I | editing |
+| [Luma Uni-1](#luma-uni-1) | — | T, I → I | editing |
+| [MAI-Image](#mai-image) | 2025-10-13 | T, I → I | editing |
 | [Midjourney](#midjourney) | — | T, I → I | editing |
+| [MiniMax Image-01](#minimax-image-01) | 2025-02-28 | T, I → I | generation |
+| [Muse Image](#muse-image) | 2026-07-07 | T, I → I | editing |
 | [Recraft](#recraft) | 2024-10-30 | T, I → I | editing |
 | [Reve Image](#reve-image) | — | T, I → I | editing |
+| [Seedream 5.0](#seedream-5) | 2026-02-13 | T, I → I | editing |
 
 </details>
 
@@ -357,6 +363,85 @@ Editorial summary of documented inputs and outputs; internal architecture is not
 
 </details>
 
+<a id="kolors-2"></a>
+
+### Kolors 2.0
+
+Closed image generation and editing model on the Kling AI platform; architecture not disclosed.
+
+Kolors 2.0 is Kuaishou's closed image generation model, unveiled together with the Kling AI 2.0 video model at the "From Vision to Screen" launch event announced on 2025-04-15. Kuaishou's release says it improves prompt adherence, cinematic visual quality and artistic style expression over its predecessor. It adds controllable image editing on the Kling AI platform, including partial redrawing and expanding and the addition, modification and repair of image content, plus a stylized transcription function that restyles an uploaded image from a style description while keeping its content. Kuaishou gives no architecture details for Kolors 2.0.
+
+[Announcement](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15)
+
+![Kolors 2.0 — Input/output diagram](../assets/architectures/kolors-2.svg)
+
+*Input/output diagram · [Source](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Date and features from Kuaishou's press release of 2025-04-15 (GlobeNewswire). Kuaishou's investor-relations copy returned HTTP 403 on the review date, so the wire copy hosted by Nasdaq is cited. The open-weight Kolors (1.0, 2024) latent U-Net model is a separate card; no architectural continuity between the two is claimed. Kolors 2.1 and API access details were not verified from a primary source.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="luma-uni-1"></a>
+
+### Luma Uni-1
+
+Closed unified understanding-and-generation model that Luma describes as a decoder-only autoregressive transformer over one shared sequence of text and image tokens.
+
+Uni-1 is Luma AI's first unified understanding and generation model, offered for image generation and editing in the Luma app. Luma says unified models represent different modalities in one interleaved sequence, and its Uni-1.1 API announcement (2026-05-05) describes the model as a decoder-only autoregressive transformer in which text and image tokens share a single sequence for both input and output. The documented interface covers text-to-image generation, up to nine reference images to preserve identity, composition or style, and natural-language editing such as background swaps, lighting changes and localized edits, plus control of camera angle, lighting and composition. The Uni-1.1 API offers Uni-1.1 and Uni-1.1 Max. No technical report has been published.
+
+[Project](https://lumalabs.ai/uni-1) · [Announcement](https://lumalabs.ai/news/uni-1-1-api)
+
+![Luma Uni-1 — Input/output diagram](../assets/architectures/luma-uni-1.svg)
+
+*Input/output diagram · [Source](https://lumalabs.ai/uni-1)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Kept in API: the only architectural statement is one sentence in Luma's own API announcement ("a decoder-only autoregressive transformer where text and image tokens share a single sequence"); no report, tokenizer or model size is published. The Uni-1 product page (undated) documents generation, editing and reference-guided generation with up to 9 images, and API access via platform.lumalabs.ai. The Uni-1 launch date was not found on a readable dated Luma page (the launch was announced on X, which was not verified), so the family date is left blank; the Uni-1.1 API post is dated 2026-05-05.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Uni-1; Uni-1.1 (API, 2026-05-05); Uni-1.1 Max.
+
+</details>
+
+<a id="mai-image"></a>
+
+### MAI-Image
+
+Closed in-house Microsoft AI image generation and editing models; architecture not disclosed.
+
+MAI-Image is Microsoft AI's in-house image model line. MAI-Image-1, announced on 2025-10-13 as Microsoft's first image generation model developed entirely in-house, targeted photorealistic scenes and fast iteration and shipped in Bing Image Creator and Copilot. MAI-Image-2 (March 2026) emphasized text rendering for infographics, slides and diagrams, and photorealism, with API access through Microsoft Foundry; MAI-Image-2-Efficient (April 2026) is a faster, cheaper variant. MAI-Image-2.5 (June 2026) added precise localized editing of images with text and reference-image inputs, and MAI-Image-2.6 with a Flash variant (September 2026) added multi-reference editing, web grounding and higher resolutions. Microsoft publishes no architecture for these models.
+
+[Announcement 1](https://microsoft.ai/news/introducing-mai-image-1-debuting-in-the-top-10-on-lmarena/) · [Announcement 2](https://microsoft.ai/news/introducing-mai-image-2/) · [Announcement 3](https://microsoft.ai/news/mai-image-2-efficient/) · [Announcement 4](https://microsoft.ai/news/introducing-mai-image-2-5/) · [Announcement 5](https://microsoft.ai/news/pushing-the-quality-cost-frontier-with-mai-image-2-6/)
+
+![MAI-Image — Input/output diagram](../assets/architectures/mai-image.svg)
+
+*Input/output diagram · [Source](https://microsoft.ai/news/introducing-mai-image-2/)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+All dates and features from microsoft.ai news posts: MAI-Image-1 2025-10-13 (update: in Bing Image Creator and Copilot Audio Expressions from 2025-11-04); MAI-Image-2 2026-03-19 (MAI Playground; rolling out in Copilot and Bing Image Creator; API for select customers, Foundry to follow); MAI-Image-2-Efficient 2026-04-14 (Foundry and MAI Playground); MAI-Image-2.5 and 2.5-Flash 2026-06-02 (localized edits such as replacing objects or updating text, identity consistency across edits; text and image input tokens, image output tokens; Foundry); MAI-Image-2.6 and 2.6-Flash 2026-09-04 (multi-reference editing, web grounding, up to 1.5K resolution; Foundry public preview). Image input and editing are documented from MAI-Image-2.5 onward; earlier versions are documented as text-to-image only.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** MAI-Image-1 (2025-10-13); MAI-Image-2 (2026-03-19); MAI-Image-2-Efficient (2026-04-14); MAI-Image-2.5 and MAI-Image-2.5-Flash (2026-06-02); MAI-Image-2.6 and MAI-Image-2.6-Flash (2026-09-04).
+
+</details>
+
 <a id="midjourney"></a>
 
 ### Midjourney
@@ -381,6 +466,58 @@ The developer does not publish a model architecture; nothing here is an architec
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** V7 (alpha 2025-04-04; default from 2025-06-17); V8 (alpha 2026-03-17); V8.1 (default from 2026-06-11); V8.2 edit model (2026-08-27).
+
+</details>
+
+<a id="minimax-image-01"></a>
+
+### MiniMax Image-01
+
+Closed text-to-image model served through the MiniMax API; architecture not disclosed.
+
+Image-01 is MiniMax's first text-to-image model, launched on its API platform on 2025-02-28. MiniMax says it draws on prompt-adherence know-how from its Hailuo video models and supports several aspect ratios with up to nine images per request. The API documents a text-to-image endpoint with optional prompt optimization, custom sizes from 512 to 2048 pixels and seeds, and an image-to-image endpoint in which a character (portrait) reference image guides generation, available for `image-01` and `image-01-live`. No architecture is published.
+
+[Announcement](https://www.minimax.io/news/image-01) · [Docs 1](https://platform.minimax.io/docs/api-reference/image-generation-t2i) · [Docs 2](https://platform.minimax.io/docs/api-reference/image-generation-i2i)
+
+![MiniMax Image-01 — Input/output diagram](../assets/architectures/minimax-image-01.svg)
+
+*Input/output diagram · [Source](https://www.minimax.io/news/image-01)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** generation
+
+Date: MiniMax news post "MiniMax Launches Image-01: Expanding Multimodal Vision with Text-to-Image Generation" dated 2025.02.28. API (MiniMax platform docs): text-to-image with `model` `image-01`, prompts up to 1,500 characters, eight aspect ratios from 1:1 (1024×1024) to 21:9 (1344×576) or custom width/height, `n` 1–9, `seed`, `prompt_optimizer`; image-to-image with `subject_reference`, which currently supports only the `character` type (a front-facing portrait photo recommended), for `image-01` and `image-01-live`. No text-guided editing of a source image is documented, so the interaction is generation. `image-01-live` is listed without a separate announcement.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** image-01-live.
+
+</details>
+
+<a id="muse-image"></a>
+
+### Muse Image
+
+Closed Meta Superintelligence Labs image generation and editing model with announced tool use (web search, code execution); architecture not disclosed.
+
+Muse Image is the image generation model from Meta Superintelligence Labs, announced on 2026-07-07 together with the separate Muse Video model and deployed in Meta AI. Meta says it follows instructions faithfully, edits images precisely by changing only what the user asks for, and composes people, objects, clothing, styles and environments from many reference images. Meta also describes agentic behaviour: the model learns to write and execute code for accurate plots and QR codes, to search the web to ground images in factual and real-time information, and to reflect on and refine its work within its chain of thought. It is available in the Meta AI app and website, Instagram Stories in the US and WhatsApp in some countries; no API or technical report is announced.
+
+[Announcement 1](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/) · [Announcement 2](https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/)
+
+![Muse Image — Input/output diagram](../assets/architectures/muse-image.svg)
+
+*Input/output diagram · [Source](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Date and all claims from Meta's announcements of 2026-07-07: the Meta AI blog "Introducing Muse Image and Muse Video" and the Meta newsroom post "Introducing Muse Image: Image Generation Built for Your World" (conversational editing, markup to circle, sketch or annotate edits, multi-photo blending; the model plans its layout and looks up web context behind the scenes). Tool use and self-refinement are Meta's descriptions; no architecture, model size or training details are published. Listed under API as a closed commercial interface even though no developer API is announced. Muse Video (text-to-video) is out of scope.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -435,5 +572,32 @@ Architecture statements are the developer's blog descriptions, not a technical r
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Reve Image 1.0; Reve editing model (2025-10-01); Reve v1.5 (2026-02-23); Reve 2.0 (2026-06-03); Reve 2.1 (2026-07-09; API 2026-07-14).
+
+</details>
+
+<a id="seedream-5"></a>
+
+### Seedream 5.0
+
+Closed image generation and editing models that ByteDance Seed describes as a unified multimodal architecture; details not disclosed.
+
+Seedream 5.0 is ByteDance Seed's closed image creation line released after Seedream 4.0. Seedream 5.0 Lite (announced 2026-02-13) is described as a unified multimodal image generation model with deep thinking and online search: it reasons through complex prompts step by step, uses real-time web search for time-sensitive content, follows reference images more closely and supports single-image editing and style transfer from references. Seedream 5.0 Pro (2026-07-08) targets information visualization and professional layouts, multilingual text rendering, realistic imagery and interactive precision editing with point and lasso selection, sketch rendering, color and material replacement, layer separation and multi-image fusion. No technical report or architecture details have been published for version 5.0.
+
+[Announcement 1](https://seed.bytedance.com/en/blog/deeper-thinking-more-accurate-generation-introducing-seedream-5-0-lite) · [Announcement 2](https://seed.bytedance.com/en/blog/beyond-generation-it-understands-design-introducing-seedream-5-0-pro) · [Project](https://seed.bytedance.com/en/seedream5_0_lite)
+
+![Seedream 5.0 — Input/output diagram](../assets/architectures/seedream-5.svg)
+
+*Input/output diagram · [Source](https://seed.bytedance.com/en/seedream5_0_lite)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Kept in API: ByteDance Seed's posts say only that Seedream 5.0 Lite uses "a unified multimodal architecture" with chain-of-thought reasoning and search enhancement; no report, backbone or parameter count is given. Dates: Seed blog "Deeper Thinking, More Accurate Generation | Introducing Seedream 5.0 Lite" (2026-02-13; live on Dreamina AI and Volcano Ark Experience Center) and "Beyond Generation, It Understands Design | Introducing Seedream 5.0 Pro" (2026-07-08). The Seedream 5.0 Lite product page lists image generation, single-image editing, multimodal input, deep thinking and online search, and mentions API access. Seedream 2.0, 3.0 and 4.0 have technical reports and separate cards.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Seedream 5.0 Lite (2026-02-13); Seedream 5.0 Pro (2026-07-08).
 
 </details>

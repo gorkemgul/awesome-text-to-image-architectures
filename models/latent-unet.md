@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**10 models · Reviewed 2026-09-29**
+**21 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,20 +17,129 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [AltDiffusion](#altdiffusion) | 2023-08-19 | T → I | generation |
+| [Bridge Diffusion Model (BDM)](#bridge-diffusion) | 2023-09-02 | T → I | generation |
+| [CogView3](#cogview3) | 2024-03-08 | T → I | generation |
+| [Emu (Meta)](#emu-meta) | 2023-09-27 | T → I | generation |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | 2022-10-27 | T → I | generation |
+| [Frido](#frido) | 2022-08-29 | T → I | generation |
 | [Kandinsky 2](#kandinsky-2) | 2023-10-05 | T, I → I | editing |
 | [Kandinsky 3](#kandinsky-3) | 2023-12-06 | T, I → I | editing |
 | [Kolors](#kolors) | 2024-07-06 | T → I | generation |
 | [Latent Diffusion Models (LDM)](#ldm) | 2021-12-20 | T → I | generation |
+| [PanGu-Draw](#pangu-draw) | 2023-12-27 | T → I | generation |
 | [Playground v2](#playground-v2) | 2024-02-27 | T → I | generation |
+| [RAPHAEL](#raphael) | 2023-05-29 | T → I | generation |
+| [Retrieval-Augmented Diffusion Models (RDM)](#rdm) | 2022-04-25 | T → I | generation |
 | [SDXL](#sdxl) | 2023-07-04 | T → I | generation |
 | [Stable Diffusion 1.x](#stable-diffusion-1) | 2022-08-22 | T, I → I | editing |
 | [Stable Diffusion 2.x](#stable-diffusion-2) | 2022-11-24 | T, I → I | editing |
+| [Taiyi-Diffusion-XL](#taiyi-diffusion-xl) | 2024-01-26 | T → I | generation |
+| [UPainting](#upainting) | 2022-10-28 | T → I | generation |
+| [Versatile Diffusion](#versatile-diffusion) | 2022-11-15 | T, I → I, T | generation |
 | [Würstchen](#wuerstchen) | 2023-06-01 | T → I | generation |
 
 </details>
 
 ## Architectures
+
+<a id="altdiffusion"></a>
+
+### AltDiffusion
+
+Stable Diffusion 2.1 latent U-Net re-aligned to a frozen 18-language XLM-R text encoder distilled from the OpenCLIP ViT-H text encoder (AltCLIP-style).
+
+[Paper](https://arxiv.org/abs/2308.09991) · [GitHub](https://github.com/superhero-7/AltDiffusion) · [Model card 1](https://huggingface.co/BAAI/AltDiffusion-m18) · [Model card 2](https://huggingface.co/BAAI/AltDiffusion-m9)
+
+![AltDiffusion — Figure 2](../assets/architectures/altdiffusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2308.09991)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A multilingual XLM-R encoder with a fully connected projection is first trained by knowledge distillation to match the OpenCLIP text encoder used by SD v2, then frozen and plugged into the SD v2.1 512-base-ema U-Net. Training has two stages: concept alignment trains only the cross-attention key/value matrices at 256×256 on LAION2B-en and LAION2B-multi, and quality improvement unfreezes the whole U-Net at 512×512 on LAION Aesthetics V1-en/multi, followed by classifier-free-guidance training with 10% text dropout (paper Figure 2). The paper introduces the MG-18 and MC-18 multilingual benchmarks. The authors' README lists released checkpoints m2, m9 and m18; the m9 model card describes a model trained with AltCLIP-m9 from the original CompVis Stable Diffusion, and the m2 and m9 cards list creativeml-openrail-m while the m18 card lists no license.
+
+**Variants:** AltDiffusion (m2); AltDiffusion-m9; AltDiffusion-m18.
+
+</details>
+
+<a id="bridge-diffusion"></a>
+
+### Bridge Diffusion Model (BDM)
+
+Frozen Stable Diffusion 1.5 U-Net backbone with a trainable ControlNet-like encoder branch conditioned on Chinese CLIP text features, keeping the latent space compatible with the English SD ecosystem.
+
+[Paper](https://arxiv.org/abs/2309.00952) · [GitHub](https://github.com/360CVGroup/Bridge_Diffusion_Model) · [Model card](https://huggingface.co/qihoo360/BDM1.0)
+
+![Bridge Diffusion Model (BDM) — Figure 2](../assets/architectures/bridge-diffusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2309.00952)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The branch is a learnable copy of the backbone encoder without the image-condition convolutions; it processes the same latent features, takes Chinese CLIP embeddings of the Chinese prompt and injects offsets into the frozen backbone decoder, while the backbone's OpenAI CLIP encoder receives an empty string (paper Figure 2). Training aligns the Chinese-native semantics to the latent space associated with the empty English prompt, end to end. Because the backbone is unchanged, community SD checkpoints, LoRA, ControlNet, DreamBooth and textual inversion can be combined with Chinese prompts. The paper links the code repository and the qihoo360/BDM1.0 weights (360 CV Group).
+
+**License:** code: Apache-2.0.
+
+**Variants:** BDM1.0.
+
+</details>
+
+<a id="cogview3"></a>
+
+### CogView3
+
+Two-stage latent relay diffusion with a 3B three-stage U-Net and a frozen T5-XXL text encoder: a 512×512 base stage followed by a relaying 2× super-resolution stage.
+
+CogView3, from Zhipu AI and Tsinghua University, is the first text-to-image system to apply relay diffusion. A 3-billion-parameter U-Net diffusion model works in the 8× compressed latent space of a KL-regularized autoencoder, conditioned on a frozen T5-XXL encoder with prompts of up to 225 tokens that are first expanded by a language model. The base stage generates 512×512 images; the super-resolution stage encodes the bilinearly upsampled result, adds noise from an intermediate point and denoises and deblurs it with a linear blurring schedule to reach 1024×1024, and it can be applied iteratively for 2048×2048. Training uses LAION-2B with captions rewritten by a fine-tuned CogVLM recaptioner. The paper reports that CogView3 beats SDXL in human evaluation at about half its inference time, and a progressively distilled variant needs about a tenth of SDXL's inference time.
+
+[Paper](https://arxiv.org/abs/2403.05121) · [GitHub](https://github.com/zai-org/CogView4)
+
+![CogView3 — Figure 3](../assets/architectures/cogview3.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2403.05121)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Unlike earlier cascaded diffusion that conditions every super-resolution step on the low-resolution image, relaying super-resolution injects the low-resolution latent only at the starting step, corrupted by Gaussian noise, so it can correct base-stage artifacts (paper Figure 3). The official repository (now zai-org/CogView4) released CogView3 on 2024-09-29 together with CogView-3Plus, which is a separate diffusion-transformer model (see `cogview3-plus`).
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+**Variants:** CogView3 base (512×512); CogView3 relay SR (1024×1024, iterative 2048×2048); CogView3 distilled.
+
+</details>
+
+<a id="emu-meta"></a>
+
+### Emu (Meta)
+
+Quality-tuned 1024×1024 latent diffusion model with a 2.8B-parameter U-Net, a 16-channel autoencoder, and CLIP ViT-L plus T5-XXL text conditioning.
+
+[Paper](https://arxiv.org/abs/2309.15807)
+
+![Emu (Meta) — Input/output diagram](../assets/architectures/emu-meta.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2309.15807)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The autoencoder raises the latent channel count from the usual 4 to 16 and adds a Fourier feature transform on the input to improve reconstruction of fine details (paper Sec. 3.1, Figure 3). The U-Net increases channel sizes and the number of residual blocks per stage. Pre-training uses 1.1 billion internal image-text pairs with progressively increasing resolution and a 0.02 noise offset at the end; quality-tuning then fine-tunes on a few thousand human-selected, highly aesthetic images (batch 64, noise offset 0.1, at most 15K iterations with early stopping). The paper shows the same quality-tuning also helps pixel diffusion and masked generative transformer models. No architecture diagram is published (figures are samples, data examples and evaluations). Distinct from BAAI's multimodal Emu.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
 
 <a id="ernie-vilg-2"></a>
 
@@ -50,6 +159,31 @@ Chinese latent diffusion model with a 1.3B transformer text encoder and a mixtur
 **Input → output:** T → I · **Interaction:** generation
 
 Diffusion runs in the 4-channel latent space of a pretrained image autoencoder following LDM; text features enter the U-Net through a cross-modal attention layer in which projected U-Net features are concatenated with the text representation. Mixture-of-Denoising-Experts (MoDE) divides all timesteps into 10 blocks and uses a separate U-Net expert per block with a shared text encoder, so inference cost does not grow with the number of experts; the total is about 24B parameters. Knowledge enhancement is a training-time mechanism: part-of-speech special tokens and up-weighted keyword attention (textual knowledge), and higher loss weights on object-detector regions (visual knowledge) (paper Figure 2). Trained on 170M image-text pairs (LAION plus internal Chinese data, English captions machine-translated to Chinese); the paper reports direct 1024×1024 output.
+
+</details>
+
+<a id="frido"></a>
+
+### Frido
+
+Feature-pyramid latent diffusion model that denoises multi-scale MS-VQGAN latents coarse to fine with a shared pyramid U-Net (PyU-Net) using coarse-to-fine modulation.
+
+[Paper](https://arxiv.org/abs/2208.13753) · [GitHub](https://github.com/chrisfan-wc/Frido)
+
+![Frido — Figure 3 (PDF p. 4)](../assets/architectures/frido.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2208.13753)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+MS-VQGAN encodes an image into quantized feature maps at several spatial scales; diffusion runs sequentially per scale (T steps each), and denoising proceeds from the high-level (coarse) scale to the low-level one, with lightweight level-specific layers around a shared U-Net and coarse-to-fine modulation that conditions each level on the already generated coarser feature plus scale and timestep (paper Figure 3). For text-to-image, captions are encoded with a BERT tokenizer and transformer; the same framework handles layout-, scene-graph- and label-to-image, which are described here as conditioning variants rather than extra modalities. Text-to-image results are reported for training on COCO 2014 only, optionally with test-time CLIP reranking, so this is a research model rather than a web-scale generator. The paper links github.com/davidhalladay/Frido, which now redirects to chrisfan-wc/Frido.
+
+**License:** code: MIT.
+
+**Variants:** Frido-f16f8 (COCO text-to-image).
 
 </details>
 
@@ -157,6 +291,27 @@ A perceptual-compression autoencoder (KL- or VQ-regularized) is trained once, an
 
 </details>
 
+<a id="pangu-draw"></a>
+
+### PanGu-Draw
+
+Bilingual latent diffusion model (5B in its largest version) whose denoising is split in time between two SDXL-style U-Nets: a structure generator for high-noise timesteps and a texture generator for low-noise timesteps.
+
+[Paper](https://arxiv.org/abs/2312.16486)
+
+![PanGu-Draw — Figure 1](../assets/architectures/pangu-draw.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2312.16486)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Time-decoupled training divides one denoiser into a structure generator (timesteps T to T_struct, trained on all data including upscaled low-resolution images) and a texture generator (T_struct to 0, trained at lower resolution but sampled at high resolution), each half the size of the full model, with T_struct = 500 (paper Figure 1c). Both are built on the SDXL U-Net architecture with the SDXL VAE; text embeddings from a Chinese text encoder pre-trained on the authors' Chinese data are concatenated with those of a pretrained English encoder, and resolution-index embeddings support multi-resolution output around 1024×1024. An LLM-based prompt enhancement stage is described. Coop-Diffusion, a sampling algorithm that fuses pretrained diffusion models with different latent spaces and resolutions (for example image-variation, depth or edge models) in one denoising process, is a separate contribution of the paper. Trained on 256 Ascend 910B cards; the paper states the 5B model is released on the Ascend platform.
+
+</details>
+
 <a id="playground-v2"></a>
 
 ### Playground v2
@@ -183,6 +338,50 @@ The v2.5 report states that, following v2, the underlying model architecture was
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** playground-v2-1024px-aesthetic; Playground v2.5 (playground-v2.5-1024px-aesthetic).
+
+</details>
+
+<a id="raphael"></a>
+
+### RAPHAEL
+
+Latent diffusion U-Net of 16 transformer blocks, each with self-attention, cross-attention to OpenCLIP-g/14 text tokens, a time-MoE layer and a space-MoE layer.
+
+[Paper](https://arxiv.org/abs/2305.18295)
+
+![RAPHAEL — Figure 3](../assets/architectures/raphael.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2305.18295)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Space-MoE routes each text token, with the image region given by a thresholded cross-attention mask, to one of 6 space experts, and time-MoE uses a gate network to assign timesteps to 4 time experts; stacking 16 blocks yields billions of possible diffusion paths (paper Figures 3 and 4). An edge-supervised loss predicts HED edge maps from cross-attention maps during training and is paused at large timesteps. Images are compressed with a pretrained VAE following LDM. The paper describes a single 3B-parameter model trained on 1,000 A100 GPUs for two months with multi-scale aspect buckets, optionally combined with a tailor-made SR-GAN for higher resolution, and demonstrates LoRA and ControlNet extensions. The paper links a project page and a public demo; no weights are described as released.
+
+</details>
+
+<a id="rdm"></a>
+
+### Retrieval-Augmented Diffusion Models (RDM)
+
+Semi-parametric latent diffusion model whose U-Net is conditioned by cross-attention on CLIP embeddings of nearest neighbours retrieved from an external image database, enabling text-to-image by conditioning on CLIP text embeddings.
+
+[Paper](https://arxiv.org/abs/2204.11824) · [GitHub 1](https://github.com/CompVis/retrieval-augmented-diffusion-models) · [GitHub 2](https://github.com/CompVis/latent-diffusion)
+
+![Retrieval-Augmented Diffusion Models (RDM) — Figure 3](../assets/architectures/rdm.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2204.11824)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Following LDM, an RDM trains a U-Net denoiser in the latent space of a pretrained autoencoder; for each training image, k nearest neighbours are retrieved from a fixed database by CLIP ViT-B/32 image similarity (ScaNN search) and their CLIP embeddings are fed through cross-attention (paper Figure 3). Training uses images only; at inference the shared CLIP space allows conditioning on the CLIP text embedding of a prompt, on neighbours retrieved with the text, or both, which gives zero-shot text-to-image and class-conditional synthesis, and swapping the database (for example WikiArt or ArtBench) gives zero-shot stylization. The paper also presents retrieval-augmented autoregressive models (RARM). The official repositories refer to the work as "Retrieval-Augmented Diffusion Models". The CompVis/latent-diffusion README provides an rdm768x768 checkpoint with OpenImages and ArtBench databases; the dedicated repository's LICENSE permits non-commercial academic research and personal use only and names no standard license.
+
+**Variants:** RDM (ImageNet, OpenImages database); rdm768x768 checkpoint.
 
 </details>
 
@@ -260,6 +459,79 @@ The 2.0 announcement introduces text-to-image models trained with a new OpenCLIP
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** 2.0 (512 and 768); 2.1 (512 and 768); x4 upscaler; depth2img; 2.0 inpainting.
+
+</details>
+
+<a id="taiyi-diffusion-xl"></a>
+
+### Taiyi-Diffusion-XL
+
+SDXL-based latent diffusion U-Net whose text encoder is replaced by a bilingual (Chinese-English) CLIP with expanded vocabulary and position encoding, trained jointly in continued pre-training.
+
+Taiyi-Diffusion-XL (Taiyi-XL) is a Chinese-English bilingual text-to-image model from IDEA-CCNL built by continued pre-training of Stable Diffusion XL. The team first extends an English CLIP model with the most frequently used Chinese characters in its tokenizer and embedding layers and with expanded absolute position encoding, trains it contrastively on bilingual data such as LAION and Wukong, and then swaps it in as SDXL's text encoder. The U-Net and text encoder are trained together at mixed 512×512 and 1024×1024 resolutions and aspect ratios on images re-captioned by a large vision-language model. The technical report shows gains over earlier Chinese and bilingual open models on COCO and COCO-CN, and the 3.5B checkpoint and training code are public.
+
+[Paper](https://arxiv.org/abs/2401.14688) · [Model card](https://huggingface.co/IDEA-CCNL/Taiyi-Stable-Diffusion-XL-3.5B) · [GitHub](https://github.com/IDEA-CCNL/Taiyi-Diffusion-XL)
+
+![Taiyi-Diffusion-XL — Figure 2](../assets/architectures/taiyi-diffusion-xl.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2401.14688)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The report describes a time-conditional U-Net denoiser in a VAE latent space, with the transformer text encoder optimized jointly with the denoiser (report Sec. 2.3 and Figure 2). Synthetic detailed captions are generated by a vision-language model from the image, the web-crawled caption and an instruction. The released checkpoint is Taiyi-Stable-Diffusion-XL-3.5B; the model card links the training code repository and a Fooocus-based WebUI.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** Taiyi-Stable-Diffusion-XL-3.5B.
+
+</details>
+
+<a id="upainting"></a>
+
+### UPainting
+
+Text-conditional U-Net diffusion model with a jointly fine-tuned pretrained transformer language model encoder, combined at inference with image-text matching (CLIP) guidance.
+
+[Paper](https://arxiv.org/abs/2210.16031)
+
+![UPainting — Figure 2](../assets/architectures/upainting.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2210.16031)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The denoiser adopts the U-Net of Ho et al. (2020), conditioned on a pooled text embedding added to the timestep embedding and on cross-attention over the full text-embedding sequence; the pretrained transformer text encoder is updated during diffusion training (paper Sec. 2 and Figure 2). At inference, a pretrained image-text matching model such as CLIP guides sampling in addition to classifier-free guidance (s = 8.0, g = 10.0); CLIP receives a blend of the predicted clean image and the noisy sample rather than raw noisy inputs, and the guidance is skipped for the first 10 of 50 DDIM steps. Trained on about 600M internal Chinese image-text pairs plus about 400M LAION pairs translated into Chinese (Baidu). The paper does not state whether diffusion runs in pixel space or in an autoencoder latent space, so the latent-U-Net grouping is not confirmed by the source.
+
+</details>
+
+<a id="versatile-diffusion"></a>
+
+### Versatile Diffusion
+
+Multi-flow latent diffusion U-Net with shared global layers and swappable data layers (image ResBlocks or text FCResBlocks) and context layers (CLIP image or text cross-attention), covering text-to-image, image variation, image-to-text and text variation.
+
+[Paper](https://arxiv.org/abs/2211.08332) · [GitHub](https://github.com/SHI-Labs/Versatile-Diffusion) · [Model card](https://huggingface.co/shi-labs/versatile-diffusion)
+
+![Versatile Diffusion — Figure 3](../assets/architectures/versatile-diffusion.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2211.08332)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I, T · **Interaction:** generation
+
+Each flow activates the shared time-embedding layers plus the data layers for its output modality and the cross-attention layers for its context modality (paper Figures 2 and 3). The image branch follows the Stable Diffusion U-Net and AutoencoderKL; the text branch uses fully connected residual blocks over 768-dimensional latents of the Optimus text VAE (BERT encoder, GPT-2 decoder). Contexts are normalized and projected CLIP text and image embeddings. Derived applications include semantic-style disentanglement and dual- or multi-context blending of images with text. Trained on LAION2B-en and COYO-700M with 30M samples at 256 and 6.4M at 512 resolution. Training is progressive: a single-flow image-variation model, then dual-flow, then four-flow.
+
+**License:** code: MIT; weights: mit.
+
+**Variants:** four-flow VD; dual-flow VD (text-to-image and image variation).
 
 </details>
 
