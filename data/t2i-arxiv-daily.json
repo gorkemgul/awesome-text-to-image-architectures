@@ -212,8 +212,9 @@
    "title": "Lagrangian--Hamiltonian Flows for Video Prediction and Image Generation: A Symplectic Perspective",
    "listed_on": "2026-09-28",
    "paper_url": "https://arxiv.org/abs/2609.35710",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2609.35530",
@@ -508,8 +509,12 @@
    "title": "Panoptic Scene Program Diffusion Transformer",
    "listed_on": "2026-09-24",
    "paper_url": "https://arxiv.org/abs/2609.31780",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-09-24",
+   "model_id": "psp-dit",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2609.30226",
@@ -705,8 +710,12 @@
    "title": "Planning and Rendering in Concert: DeepFusion of Autoregressive Layouts and Diffusion for Visual Text Generation",
    "listed_on": "2026-09-19",
    "paper_url": "https://arxiv.org/abs/2609.22916",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-09-19",
+   "model_id": "duetgen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2609.22789",
@@ -920,8 +929,12 @@
    "title": "FLAT: Resampling Image and Text into 1D Flexible-Length Aligned Transmodal Tokens for Retrieval and Generation",
    "listed_on": "2026-09-15",
    "paper_url": "https://arxiv.org/abs/2609.16591",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-09-15",
+   "model_id": "flat",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2609.16572",
@@ -1018,8 +1031,12 @@
    "title": "Moonworks Lunara: Modeling Artistic Intelligence",
    "listed_on": "2026-09-11",
    "paper_url": "https://arxiv.org/abs/2609.22272",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-09-11",
+   "model_id": "moonworks-lunara",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2609.12830",
@@ -1395,8 +1412,19 @@
    "title": "LLaDA-Image: Building Strong Image Generators with Fully Open Training Recipes",
    "listed_on": "2026-09-03",
    "paper_url": "https://arxiv.org/abs/2609.03796",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-09-03",
+   "model_id": "llada-image",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/inclusionAI/LLaDA-Image",
+     "evidence_url": "https://arxiv.org/pdf/2609.03796v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2609.03585",
@@ -1826,8 +1854,19 @@
    "title": "There and Back Again: Bidirectional Diffusion Bridges for Multimodality Translation",
    "listed_on": "2026-08-28",
    "paper_url": "https://arxiv.org/abs/2608.27885",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-08-28",
+   "model_id": "bit",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/gabeguo/bit_diffusion",
+     "evidence_url": "https://arxiv.org/pdf/2608.27885v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2608.27527",
@@ -2023,8 +2062,9 @@
    "title": "Grounding Free-Form Instructions for Fashion Complementary Image Generation",
    "listed_on": "2026-08-24",
    "paper_url": "https://arxiv.org/abs/2608.23302",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2608.23140",
@@ -2157,8 +2197,12 @@
    "title": "Exploring the Performance Frontier of Compact Unified Image Generation Models",
    "listed_on": "2026-08-20",
    "paper_url": "https://arxiv.org/abs/2608.20334",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-08-20",
+   "model_id": "swift-image",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2608.20117",
@@ -2192,8 +2236,9 @@
    "title": "From Corpora to Co-Evolving Capabilities: Capability-Centric Data Design for Generalist Image Generation",
    "listed_on": "2026-08-18",
    "paper_url": "https://arxiv.org/abs/2608.18076",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2608.18040",
@@ -2308,8 +2353,12 @@
    "title": "Nexus: Structured Synergy for Efficient Text-to-Image Generation using Rectified Flow Model",
    "listed_on": "2026-08-17",
    "paper_url": "https://arxiv.org/abs/2608.16104",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-08-17",
+   "model_id": "nexus",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2608.16100",
@@ -2487,8 +2536,9 @@
    "title": "Towards Physics-Faithful Generation of Scientific Diagrams",
    "listed_on": "2026-08-13",
    "paper_url": "https://arxiv.org/abs/2608.13112",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2608.12987",
@@ -2549,8 +2599,9 @@
    "title": "CoQui: A Coordinate-Conditioned Quantum Implicit Generative Adversarial Network for End-to-End Image Generation",
    "listed_on": "2026-08-12",
    "paper_url": "https://arxiv.org/abs/2608.11884",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2608.11732",
@@ -2737,8 +2788,19 @@
    "title": "UniSpace: Unified Visual Representation and Scalable Multimodal Modeling",
    "listed_on": "2026-08-09",
    "paper_url": "https://arxiv.org/abs/2608.08676",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-08-09",
+   "model_id": "unispace",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/yjb6/UniSpace",
+     "evidence_url": "https://arxiv.org/pdf/2608.08676v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2608.08460",
@@ -2907,8 +2969,9 @@
    "title": "ToolArtist: Tool-Using Unified Multimodal Models for Agentic Image Generation",
    "listed_on": "2026-08-05",
    "paper_url": "https://arxiv.org/abs/2608.04436",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2608.04349",
@@ -2942,8 +3005,12 @@
    "title": "UniWorld-Design: From Pixel Generation to Layer-Native Design",
    "listed_on": "2026-08-04",
    "paper_url": "https://arxiv.org/abs/2608.03971",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-08-04",
+   "model_id": "uniworld-design",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2608.03708",
@@ -3445,8 +3512,12 @@
    "title": "UniGen-AR: Unifying Visual Generation with Auto-Regressive Modeling",
    "listed_on": "2026-07-27",
    "paper_url": "https://arxiv.org/abs/2607.24157",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-07-27",
+   "model_id": "unigen-ar",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2607.24101",
@@ -3660,8 +3731,12 @@
    "title": "Mage-Flow: An Efficient Native-Resolution Foundation Model for Image Generation and Editing",
    "listed_on": "2026-07-21",
    "paper_url": "https://arxiv.org/abs/2607.19064",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-07-21",
+   "model_id": "mage-flow",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2607.18840",
@@ -3956,8 +4031,19 @@
    "title": "Boogu-Image-0.1: Boosting Open Agentic Multimodal Generation via Understanding under a Minimal Budget",
    "listed_on": "2026-07-14",
    "paper_url": "https://arxiv.org/abs/2607.13125",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-07-14",
+   "model_id": "boogu-image",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Boogu-Project/Boogu-Image",
+     "evidence_url": "https://arxiv.org/pdf/2607.13125v2",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2607.12753",
@@ -4027,8 +4113,12 @@
    "title": "Xiaomi-Robotics-U0: Unified Embodied Synthesis with World Foundation Model",
    "listed_on": "2026-07-13",
    "paper_url": "https://arxiv.org/abs/2607.11643",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-07-13",
+   "model_id": "xiaomi-robotics-u0",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2607.11199",
@@ -4503,8 +4593,9 @@
    "title": "DisciplineGen-1M: A Large-Scale Dataset for Multidisciplinary Visual Generation and Editing",
    "listed_on": "2026-07-02",
    "paper_url": "https://arxiv.org/abs/2607.02290",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2607.01803",
@@ -4755,8 +4846,9 @@
    "title": "Orca: The World is in Your Mind",
    "listed_on": "2026-06-29",
    "paper_url": "https://arxiv.org/abs/2606.30534",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2606.30458",
@@ -4799,16 +4891,31 @@
    "title": "Illuminating Unified Multimodal Model for Free-form Interleaved Text-Image Generation",
    "listed_on": "2026-06-29",
    "paper_url": "https://arxiv.org/abs/2606.30054",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-29",
+   "model_id": "illume-x",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/ChonghuinanWang/ILLUME-X",
+     "evidence_url": "https://arxiv.org/pdf/2606.30054v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.29814",
    "title": "Nemotron-Labs-Diffusion-Image: Advancing Masked Discrete Diffusion for High-Resolution Image Synthesis",
    "listed_on": "2026-06-29",
    "paper_url": "https://arxiv.org/abs/2606.29814",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-29",
+   "model_id": "nemotron-labs-diffusion-image",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2606.29801",

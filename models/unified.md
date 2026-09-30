@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**78 models · Reviewed 2026-09-29**
+**83 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -22,6 +22,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [BAGEL](#bagel) | 2025-05-20 | T, I → T, I | editing |
 | [BLIP3-o](#blip3-o) | 2025-05-14 | T, I → T, I | generation |
 | [BLIP3o-NEXT](#blip3o-next) | 2025-10-17 | T, I → I | editing |
+| [Boogu-Image-0.1](#boogu-image) | 2026-07-14 | T, I → I | editing |
 | [Chameleon](#chameleon) | 2024-05-16 | T, I → T, I | generation |
 | [CM3](#cm3) | 2022-01-19 | T, I → T, I | generation |
 | [CoDi](#codi) | 2023-05-19 | T, I, V, A → T, I, V, A | generation |
@@ -34,11 +35,13 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Emu2](#emu2) | 2023-12-20 | T, I, V → T, I | editing |
 | [Emu3](#emu3) | 2024-09-27 | T, I, V → T, I, V | generation |
 | [Emu3.5](#emu3-5) | 2025-10-30 | T, I → T, I | editing |
+| [FLAT](#flat) | 2026-09-15 | T, I → T, I | generation |
 | [FlowInOne](#flowinone) | 2026-04-08 | T, I → I | editing |
 | [GILL](#gill) | 2023-05-26 | T, I → T, I | generation |
 | [HunyuanImage 3.0](#hunyuanimage-3) | 2025-09-28 | T, I → T, I | editing |
 | [ILLUME](#illume) | 2024-12-09 | T, I → T, I | editing |
 | [ILLUME+](#illume-plus) | 2025-04-02 | T, I → T, I | editing |
+| [ILLUME-X](#illume-x) | 2026-06-29 | T, I → T, I | generation |
 | [InternVL-U](#internvl-u) | 2026-03-10 | T, I → T, I | editing |
 | [Janus](#janus) | 2024-10-17 | T, I → T, I | generation |
 | [Janus-Pro](#janus-pro) | 2025-01-29 | T, I → T, I | generation |
@@ -91,10 +94,12 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [UniDiffuser](#unidiffuser) | 2023-03-12 | T, I → T, I | generation |
 | [Unified-IO](#unified-io) | 2022-06-17 | T, I → T, I | generation |
 | [Unified-IO 2](#unified-io-2) | 2023-12-28 | T, I, V, A → T, I, A | editing |
+| [UniSpace](#unispace) | 2026-08-09 | T, I → I | editing |
 | [UniWorld-V1](#uniworld) | 2025-06-03 | T, I → T, I | editing |
 | [VILA-U](#vila-u) | 2024-09-06 | T, I, V → T, I, V | generation |
 | [VL-GPT](#vl-gpt) | 2023-12-14 | T, I → T, I | generation |
 | [X-Omni](#x-omni) | 2025-07-29 | T, I → T, I | generation |
+| [Xiaomi-Robotics-U0](#xiaomi-robotics-u0) | 2026-07-13 | T, I → I | editing |
 
 </details>
 
@@ -224,6 +229,35 @@ Images are encoded with SigLIP2 and quantized into 729 discrete tokens per 384x3
 **License:** weights: Apache-2.0.
 
 **Variants:** BLIP3o-NEXT-Pretrain-3B; BLIP3o-NEXT-SFT-3B; BLIP3o-NEXT-GRPO-Geneval-3B.
+
+</details>
+
+<a id="boogu-image"></a>
+
+### Boogu-Image-0.1
+
+Unified text-to-image generation and instruction-editing model family trained from scratch, conditioned on a Qwen3-VL-8B instruction encoder and served through an agentic inference pipeline (prompt rewriting, Base/Turbo model routing, reflection); the paper documents training data, evaluation and inference-time strategy in detail but does not disclose the generator network's internal design.
+
+Boogu-Image-0.1 is an open-source unified image generation and instruction-editing model family that argues open text-to-image models can close the gap to closed-source systems primarily by strengthening instruction understanding — via a stronger Qwen3-VL-8B encoder, agentic prompt rewriting, model routing between Base/Turbo variants, and inference-time reflection — together with data-quality and training-pipeline improvements, rather than through architectural scale. Trained from scratch on 208.62M unique images at a reported cost of about $400K, it reports performance competitive with or approaching leading closed-source systems on the authors' Boogu Arena and on Qwen-Image-Bench, and releases weights, code and training recipes under Apache-2.0.
+
+[Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image)
+
+![Boogu-Image-0.1 — Input/output diagram](../assets/architectures/boogu-image.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2607.13125)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Boogu-Image-0.1 ships Base, Turbo, Edit and Edit-Turbo variants (plus Turbo-Thinking/Edit-Thinking reasoning modes referenced in the benchmarks), trained on only 208.62M unique images at a reported ~$400K training cost for the base model. The paper's contribution is centered on treating instruction understanding as a first-class design axis (a stronger Qwen3-VL-8B text/instruction encoder, agentic prompt rewriting, and inference-time model routing and reflection) alongside data curation and evaluation methodology, rather than a new denoiser architecture; an ablation mentions a 'SANA-VAE configuration' of the model, suggesting a SANA-style linear-attention tokenizer/backbone lineage, but the generator's architecture is not otherwise described in the reviewed sections. Code, weights and recipes are released under Apache-2.0 at the linked repository.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Boogu-Image-0.1-Base; Boogu-Image-0.1-Turbo; Boogu-Image-0.1-Edit; Boogu-Image-0.1-Edit-Turbo.
 
 </details>
 
@@ -537,6 +571,29 @@ Architecture (paper Section 2.2): 64 layers, hidden size 5,120, GQA with 64 quer
 
 </details>
 
+<a id="flat"></a>
+
+### FLAT
+
+Shared VLM encoder with learnable register tokens and nested dropout that maps images and text into one variable-length continuous 1D sequence, jointly trained with contrastive alignment plus a rectified-flow-matching image decoder and an autoregressive text decoder so the same representation drives retrieval and text-to-image/image-to-text generation.
+
+FLAT (Meta AI) is a representation-pretraining framework that jointly optimizes one shared multimodal encoder with downstream text-to-image and image-to-text decoders, so the same continuous representation serves as both a discriminative retrieval embedding and a generative conditioning signal. Images and text are mapped into a unified, variable-length continuous 1D sequence space using register tokens and nested dropout over a prefix length K, trained with combined contrastive and bidirectional generative objectives; a rectified-flow-matching decoder produces images and an autoregressive decoder produces captions. The paper reports competitive cross-modal retrieval alongside a text-to-image GenEval score of 71.1 zero-shot from pretraining (83.1 after task-specific fine-tuning).
+
+[Paper](https://arxiv.org/abs/2609.16591) · GitHub: no author-linked repository found
+
+![FLAT — Figure 1 (PDF p. 3)](../assets/architectures/flat.png)
+
+*Figure 1 (PDF p. 3) · [Source](https://arxiv.org/abs/2609.16591)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Paper Figure 1 (PDF p. 3, architecture overview): a shared, LoRA-adapted VLM encoder produces continuous register-token representations for image and caption inputs; nested dropout over prefix-K tokens lets the same encoder output variable-length representations, which are aligned contrastively and also decoded by a rectified-flow-matching image decoder (text-to-image) and a next-token cross-entropy text decoder (image-to-text) from the same 1D sequence space. The paper reports a T2I GenEval score of 71.1 zero-shot from the joint pretraining stage and 83.1 after task-specific fine-tuning, alongside strong retrieval and interpolation/arithmetic properties of the shared representation. No repository or license is disclosed.
+
+</details>
+
 <a id="flowinone"></a>
 
 ### FlowInOne
@@ -659,6 +716,29 @@ DualViTok's semantic branch quantizes QwenViT features and is supervised with a 
 **License:** code: Apache-2.0.
 
 **Variants:** ILLUME_plus-3B; ILLUME_plus-7B.
+
+</details>
+
+<a id="illume-x"></a>
+
+### ILLUME-X
+
+Unified multimodal transformer with parallel understanding and generation branches (separate FFN/QKV projections per token type) sharing multi-modal self-attention over one sequence of text, VAE and ViT tokens, trained with a specialized attention mask for free-form N-to-M interleaved text-image generation.
+
+ILLUME-X (Harbin Institute of Technology and Huawei Noah's Ark Lab) is a unified multimodal model aimed specifically at free-form, N-to-M interleaved text-image generation — producing arbitrary sequences of text and image outputs, such as illustrated step-by-step instructions or per-object image decompositions, rather than a single fixed-modality output. It combines separate understanding and generation attention branches sharing one multi-modal self-attention over a joint text/VAE/ViT token sequence, trained with a progressive strategy and a specialized attention mask over a curated 100K-sample interleaved dataset. The authors also propose ILScore, an evaluation protocol for cross-modal continuity and per-modality quality in interleaved generation.
+
+[Paper](https://arxiv.org/abs/2606.30054) · [GitHub](https://github.com/ChonghuinanWang/ILLUME-X)
+
+![ILLUME-X — Figure 2](../assets/architectures/illume-x.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.30054)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Paper Figure 2: each turn's tokens (BOI/VAE/VAE/ViT/ViT/EOI for images, plus text tokens) pass through modality-specific tokenizers (a text tokenizer, a VAE encoder for generation targets, and a ViT encoder for understanding context), then through parallel Understanding and Generation FFN/QKV branches joined by shared multi-modal self-attention; clean image tokens take a cross-entropy loss and noisy image tokens take an MSE (diffusion-style) loss, so the design mixes autoregressive text modeling with diffusion-style image token prediction inside one attention-masked sequence. The paper introduces a 100K-sample interleaved text-image data pipeline (real video-derived sequences plus MLLM-synthesized data) and the ILScore evaluation protocol for interleaved sequences (style transfer, object-level image decomposition, illustrated storytelling). Code is published on GitHub without an explicit open-source license file at review time, so a license is not recorded.
 
 </details>
 
@@ -2018,6 +2098,29 @@ Text is embedded with BPE; input images pass through a ViT encoder and a linear 
 
 </details>
 
+<a id="unispace"></a>
+
+### UniSpace
+
+8B Mixture-of-Transformer-Experts model built on a single Patch-Reparameterized semantic ViT visual space (a frozen semantic ViT augmented with a reconstruction-aware patch embedding), replacing a separate VAE pathway so understanding, text-to-image generation and editing share one visual representation.
+
+UniSpace asks whether multimodal understanding, text-to-image generation and editing can share one visual representation built from a pretrained semantic ViT, instead of pairing a semantic encoder with a separate VAE for pixel-level generation. The authors show a frozen semantic ViT's blocks are not inherently unable to preserve fine detail — the original patch embedding is the bottleneck — and introduce Patch Reparameterization, adding a reconstruction-aware patch embedding alongside the original semantic one. This unified representation is scaled into UniSpace, an 8B Mixture-of-Transformer-Experts model that performs understanding, generation and editing without a separate VAE pathway.
+
+[Paper](https://arxiv.org/abs/2608.08676) · [GitHub](https://github.com/yjb6/UniSpace)
+
+![UniSpace — Figure 3](../assets/architectures/unispace.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2608.08676)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figures 2-3: Patch Reparameterization keeps the original semantic patch embedding and frozen ViT blocks (preserving multimodal understanding) while adding a parallel reconstruction-aware patch embedding that feeds the same frozen blocks with fine-grained pixel information, resolving the semantic-vs-reconstruction trade-off that limits plain semantic encoders for generation; this representation is scaled into UniSpace, an 8B Mixture-of-Transformer-Experts model performing understanding, text-to-image generation and instruction-based editing in one visual space (Figures 6-9 compare editing/generation qualitatively against BAGEL and SenseNova-U1). Code, weights and a project page are published by the authors.
+
+</details>
+
 <a id="uniworld"></a>
 
 ### UniWorld-V1
@@ -2117,5 +2220,28 @@ The SigLIP-VQ tokenizer uses a SigLIP2-g ViT with a vector quantizer (16,384 cod
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
 **Variants:** X-Omni-En; X-Omni-Zh; X-Omni-PT; X-Omni-SFT.
+
+</details>
+
+<a id="xiaomi-robotics-u0"></a>
+
+### Xiaomi-Robotics-U0
+
+38B-parameter multimodal autoregressive model initialized from a Qwen-3-32B decoder-only transformer, with images tokenized by an IBQ VQ tokenizer (16x16 spatial compression) and merged into the LLM's vocabulary so text, image and embodied-scene tokens are all modeled by one next-token-prediction objective.
+
+Xiaomi-Robotics-U0 is a 38-billion-parameter multimodal autoregressive foundation model that treats embodied generation (multi-view robot scene generation, structured embodied transfer, embodied video) as an extension of general text-to-image and image-editing generation, rather than a separately fine-tuned robotics model. Built by extending a Qwen-3-32B decoder-only transformer's vocabulary with an IBQ image tokenizer, it models text and image tokens under one next-token-prediction objective, preserving the generalization of large-scale text/image pretraining while adding embodiment-specific tasks. The paper reports state-of-the-art multi-view embodied scene generation and transfer results, including a jump in out-of-distribution manipulation success rate for a downstream robot policy.
+
+[Paper](https://arxiv.org/abs/2607.11643) · GitHub: no author-linked repository found
+
+![Xiaomi-Robotics-U0 — Figure 3](../assets/architectures/xiaomi-robotics-u0.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2607.11643)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 3 (structure) and Section on initialization: the model extends Qwen-3-32B's vocabulary with an IBQ image codebook so text and image tokens share one discrete modeling space, jointly optimizing text-to-image generation, image editing, embodied scene generation, structured embodied transfer, and embodied video generation from the same weights. FlashAR+ (Figure 6/7) is an inference-time extension that groups target tokens by diagonal steps for faster decoding while keeping conditioning tokens dense, reported to preserve quality relative to standard autoregressive and vLLM-served decoding. Code and checkpoints are referenced at a Xiaomi Robotics product page rather than a GitHub repository, so GitHub-specific availability is not established.
 
 </details>

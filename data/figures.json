@@ -105,6 +105,14 @@
    "locator": "Figure 2",
    "sha256": "08dadaf36544fc5cb47b762e1cab7d4bab77b65a1b137ff4a6d3e61bec157787"
   },
+  "bit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/bit.png",
+   "source_url": "https://arxiv.org/abs/2608.27885",
+   "origin_url": "https://arxiv.org/pdf/2608.27885v1",
+   "locator": "Figure 1 (PDF p. 3)",
+   "sha256": "d76309f1cb20995b2f451ff3278dc1c9333587498ab3357b49162574e2e107b1"
+  },
   "bitdance": {
    "kind": "source-figure",
    "path": "assets/architectures/bitdance.png",
@@ -144,6 +152,14 @@
    "origin_url": "https://arxiv.org/html/2606.08847v1/mod.png",
    "locator": "Figure 2",
    "sha256": "905acda144313f76b17a57382f73e86c51e013ed3b697b7b75f2eff868be0ad1"
+  },
+  "boogu-image": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/boogu-image.svg",
+   "source_url": "https://arxiv.org/abs/2607.13125",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
   },
   "bridge-diffusion": {
    "kind": "source-figure",
@@ -461,6 +477,14 @@
    "locator": "Figure 2",
    "sha256": "783a632611b29c6e2200e7c7c16817fed6d6bf8e1ad2cf7146df6522f5dba580"
   },
+  "duetgen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/duetgen.png",
+   "source_url": "https://arxiv.org/abs/2609.22916",
+   "origin_url": "https://arxiv.org/html/2609.22916v1/framework.png",
+   "locator": "Figure 2",
+   "sha256": "d77f68839909b9dcc888817038f9024c91c02579275a65fddb5c6e538fa05a53"
+  },
   "duogen": {
    "kind": "source-figure",
    "path": "assets/architectures/duogen.png",
@@ -564,6 +588,14 @@
    "origin_url": "https://arxiv.org/html/2511.06876v1/workflow2.png",
    "locator": "Figure 2",
    "sha256": "254fdeb1c769fb0584850250685bf49bc983c2902b79959a808de773f31ee110"
+  },
+  "flat": {
+   "kind": "source-figure",
+   "path": "assets/architectures/flat.png",
+   "source_url": "https://arxiv.org/abs/2609.16591",
+   "origin_url": "https://arxiv.org/pdf/2609.16591v1",
+   "locator": "Figure 1 (PDF p. 3)",
+   "sha256": "ea64f419da5d636bbf6cad346d5d1d9df883e5c298917a622027538dff436dff"
   },
   "flowinone": {
    "kind": "source-figure",
@@ -861,6 +893,14 @@
    "locator": "Figure 3",
    "sha256": "9f2d484dbc9a58393f14478eedd3446b445d7ab1bc08b6d2aac42f8783fafd82"
   },
+  "illume-x": {
+   "kind": "source-figure",
+   "path": "assets/architectures/illume-x.png",
+   "source_url": "https://arxiv.org/abs/2606.30054",
+   "origin_url": "https://arxiv.org/html/2606.30054v1/model.png",
+   "locator": "Figure 2",
+   "sha256": "fe750a7524d4915b4a62078482e82a80556191e506dd3670e2dff195ac6bb430"
+  },
   "imagebart": {
    "kind": "source-figure",
    "path": "assets/architectures/imagebart.png",
@@ -1140,6 +1180,14 @@
    "origin_url": "https://arxiv.org/html/2412.04332v4/Pipeline.png",
    "locator": "Figure 2",
    "sha256": "2b51eb48b249465a11b56597403b124abdbced620542b9bf81531fe7f6c4c379"
+  },
+  "llada-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/llada-image.png",
+   "source_url": "https://arxiv.org/abs/2609.03796",
+   "origin_url": "https://arxiv.org/html/2609.03796v1/llada_image_arch.png",
+   "locator": "Figure 3",
+   "sha256": "49e24c8cc28b846d13cfd68643d86c2da163b22042d11625988dfc87f0f7a42a"
   },
   "llada-o": {
    "kind": "source-figure",
@@ -1453,6 +1501,14 @@
    "locator": "Figure 1 (PDF p. 2)",
    "sha256": "8bb697bbe71753a3b58f05cc49c078e6efa0db8db0bb96eb523ce766892565a9"
   },
+  "moonworks-lunara": {
+   "kind": "source-figure",
+   "path": "assets/architectures/moonworks-lunara.png",
+   "source_url": "https://arxiv.org/abs/2609.22272",
+   "origin_url": "https://arxiv.org/pdf/2609.22272v1",
+   "locator": "Figure 4 (PDF p. 7)",
+   "sha256": "c030d17c2d0570da04e07459316ae202127a013a7e0d639f91c588ad93621c03"
+  },
   "msmt-gan": {
    "kind": "source-figure",
    "path": "assets/architectures/msmt-gan.png",
@@ -1501,6 +1557,14 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "nemotron-labs-diffusion-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/nemotron-labs-diffusion-image.png",
+   "source_url": "https://arxiv.org/abs/2606.29814",
+   "origin_url": "https://arxiv.org/pdf/2606.29814v2",
+   "locator": "Figure 3 (PDF p. 5)",
+   "sha256": "0027fd3b335671c7af80d4857cad586b99784941cce7fa45c22ffd9db76f8b83"
+  },
   "next-gpt": {
    "kind": "source-figure",
    "path": "assets/architectures/next-gpt.png",
@@ -1524,6 +1588,14 @@
    "origin_url": "https://arxiv.org/html/2508.10711v2/model_arch_5.2.png",
    "locator": "Figure 2",
    "sha256": "53f6790484c5c1ab42bc252136beb70f9598895c3e7225514764c385407d74f8"
+  },
+  "nexus": {
+   "kind": "source-figure",
+   "path": "assets/architectures/nexus.png",
+   "source_url": "https://arxiv.org/abs/2608.16104",
+   "origin_url": "https://arxiv.org/html/2608.16104v1/2_WLJG.png",
+   "locator": "Figure 2",
+   "sha256": "5c28e4c0872d7f1da5c683820ec4f39f99910e6b55af22f409fb06593ef8e8a3"
   },
   "nexus-gen": {
    "kind": "source-figure",
@@ -1732,6 +1804,14 @@
    "origin_url": "https://arxiv.org/html/2512.17909v1/figures/pipeline.png",
    "locator": "Figure 5",
    "sha256": "a69e1159ce83eee43ddf404dbadc246656fad197a06dd5a8cc06e8861b9282d5"
+  },
+  "psp-dit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/psp-dit.png",
+   "source_url": "https://arxiv.org/abs/2609.31780",
+   "origin_url": "https://arxiv.org/html/2609.31780v1/figures/method.png",
+   "locator": "Figure 1",
+   "sha256": "a97239cd88b29aa85ddda6cbf21ed50e9fbfffd9499b3680c21826410308718a"
   },
   "puma": {
    "kind": "source-figure",
@@ -2125,6 +2205,14 @@
    "locator": "Figure 2",
    "sha256": "ce091f2bf6279a072ccd2c78b31ca03f64cc8e1d9edf5eb3fbe4fc92c2d65c13"
   },
+  "swift-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/swift-image.png",
+   "source_url": "https://arxiv.org/abs/2608.20334",
+   "origin_url": "https://arxiv.org/pdf/2608.20334v1",
+   "locator": "Figure 5 (PDF p. 6)",
+   "sha256": "fbbfaf6064da3f35526299861f9be84d8a21a2b2a5cbadd4f644d4edd1168eb6"
+  },
   "swiftbrush": {
    "kind": "source-figure",
    "path": "assets/architectures/swiftbrush.png",
@@ -2273,6 +2361,22 @@
    "locator": "Figure 2",
    "sha256": "fc6a5dcb6c70621d61e5928585dc449cc4918a1992cb79b573624150aa8b0d50"
   },
+  "unigen-ar": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unigen-ar.png",
+   "source_url": "https://arxiv.org/abs/2607.24157",
+   "origin_url": "https://arxiv.org/html/2607.24157v1/fig-model.png",
+   "locator": "Figure 2",
+   "sha256": "30390c44acb224f15fad12d4a51a91da7008a7ca650dfd1e1fb90e7254cd978e"
+  },
+  "unispace": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unispace.png",
+   "source_url": "https://arxiv.org/abs/2608.08676",
+   "origin_url": "https://arxiv.org/html/2608.08676v1/unimm_2.png",
+   "locator": "Figure 3",
+   "sha256": "e088805f066d22b607824d17c7599f76b4664be83d7c722a7c686ae36b42bf2d"
+  },
   "uniworld": {
    "kind": "source-figure",
    "path": "assets/architectures/uniworld.png",
@@ -2280,6 +2384,14 @@
    "origin_url": "https://arxiv.org/html/2506.03147v4/method.png",
    "locator": "Figure 3",
    "sha256": "6a60e3a0be5775af39ec4a1c6da56866884a3f49788dcd1bcb45f63b92a765b8"
+  },
+  "uniworld-design": {
+   "kind": "source-figure",
+   "path": "assets/architectures/uniworld-design.png",
+   "source_url": "https://arxiv.org/abs/2608.03971",
+   "origin_url": "https://arxiv.org/html/2608.03971v1/figure3.png",
+   "locator": "Figure 3",
+   "sha256": "14ad9826a3743c86af5cb9f34f2575ccb656ca96a22b9a565664f3f82f26b601"
   },
   "upainting": {
    "kind": "source-figure",
@@ -2344,6 +2456,14 @@
    "origin_url": "https://arxiv.org/html/2507.22058v1/fig3.png",
    "locator": "Figure 3",
    "sha256": "f5db8e37ddebd557dea1899b388da3cbde0c0c83e38889409a6b62e7262abde2"
+  },
+  "xiaomi-robotics-u0": {
+   "kind": "source-figure",
+   "path": "assets/architectures/xiaomi-robotics-u0.png",
+   "source_url": "https://arxiv.org/abs/2607.11643",
+   "origin_url": "https://arxiv.org/html/2607.11643v1/figure2_structure_refine.png",
+   "locator": "Figure 3",
+   "sha256": "8a681aec5a48d44288485edab347f58976a37727e0c4c099f94f7802d8939839"
   },
   "xmc-gan": {
    "kind": "source-figure",

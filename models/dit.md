@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**47 models · Reviewed 2026-09-29**
+**54 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,6 +19,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | --- | --- | --- | --- |
 | [ADP-DiT](#adp-dit) | 2026-04-15 | T → I | generation |
 | [AuraFlow](#auraflow) | 2024-07-12 | T → I | generation |
+| [BIT (Bidirectional Image-Text Diffusion Bridges)](#bit) | 2026-08-28 | T, I → T, I | generation |
 | [CogView-3Plus](#cogview3-plus) | 2024-09-29 | T → I | generation |
 | [CogView4](#cogview4) | 2025-03-04 | T → I | generation |
 | [DiT-Air](#dit-air) | 2025-03-13 | T → I | generation |
@@ -39,12 +40,15 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [LaDe](#lade) | 2026-03-18 | T → I | generation |
 | [Lens](#lens) | 2026-05-20 | T → I | generation |
 | [LI-DiT](#li-dit) | 2024-06-17 | T → I | generation |
+| [LLaDA-Image](#llada-image) | 2026-09-03 | T, I → I | editing |
 | [LongCat-Image](#longcat-image) | 2025-12-08 | T → I | generation |
 | [Lumina-Image 2.0](#lumina-image-2) | 2025-03-27 | T → I | generation |
 | [Lumina-Next](#lumina-next) | 2024-06-05 | T → I | generation |
 | [Lumina-T2X (Lumina-T2I)](#lumina-t2x) | 2024-05-09 | T → I | generation |
 | [Mage-Flow](#mage-flow) | 2026-07-21 | T → I | generation |
 | [MMFace-DiT](#mmface-dit) | 2026-03-30 | T → I | generation |
+| [Moonworks Lunara](#moonworks-lunara) | 2026-09-11 | T → I | generation |
+| [Nexus](#nexus) | 2026-08-17 | T → I | generation |
 | [Nucleus-Image](#nucleus-image) | 2026-04-14 | T → I | generation |
 | [oboro:](#oboro) | 2025-11-11 | T → I | generation |
 | [Ovis-Image](#ovis-image) | 2025-11-28 | T → I | generation |
@@ -52,6 +56,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [PixArt-Σ](#pixart-sigma) | 2024-03-07 | T → I | generation |
 | [Playground v3](#playground-v3) | 2024-09-16 | T → I | generation |
 | [ProxT2I](#proxt2i) | 2025-11-24 | T → I | generation |
+| [PSP-DiT](#psp-dit) | 2026-09-24 | T → I | generation |
 | [Qwen-Image](#qwen-image) | 2025-08-04 | T → I | generation |
 | [Qwen-Image-2.0](#qwen-image-2) | 2026-05-11 | T, I → I | generation |
 | [SANA](#sana) | 2024-10-14 | T → I | generation |
@@ -62,7 +67,9 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SeFi-Image](#sefi-image) | 2026-06-21 | T → I | generation |
 | [Stable Diffusion 3](#stable-diffusion-3) | 2024-03-05 | T → I | generation |
 | [SVG-T2I](#svg-t2i) | 2025-12-12 | T → I | generation |
+| [Swift-Image](#swift-image) | 2026-08-20 | T, I → I | editing |
 | [TerraDiT](#terradit) | 2026-03-02 | T → I | generation |
+| [UniWorld-Design](#uniworld-design) | 2026-08-04 | T, I → I | editing |
 | [Z-Image](#z-image) | 2025-11-27 | T → I | generation |
 
 </details>
@@ -118,6 +125,29 @@ Per fal's launch post: the design started from a from-scratch MMDiT reimplementa
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** AuraFlow v0.1; AuraFlow v0.2; AuraFlow v0.3.
+
+</details>
+
+<a id="bit"></a>
+
+### BIT (Bidirectional Image-Text Diffusion Bridges)
+
+DiT-XL/2 diffusion transformer trained as a bidirectional data-to-data diffusion bridge that interpolates directly between continuous text-token embeddings and image pixels via forward/reverse SDEs, rather than a text-conditioned noise-to-image process, so the same drift network supports text-to-image generation and image-to-text captioning.
+
+BIT (Bidirectional Image-Text Diffusion Bridges), from Stanford University, reframes text-to-image diffusion as a bidirectional bridge between text and image data rather than a one-way noise-to-image process. Instead of starting from Gaussian noise and injecting a text prompt as side conditioning, BIT constructs a stochastic process that interpolates directly between continuous text-token representations and image pixels, so the same DiT-XL/2 network can run forward (text-to-image) or its analytically derived time-reversal (image-to-text captioning). The authors argue this source-aware, reversible path supports richer sampling algorithms — such as retracing a generation to recover an approximate caption, or generating semantically related image variants — and show it is competitive with standard diffusion and flow-matching baselines on text-to-image and image-to-text benchmarks as well as on a scientific cell-fate modeling task.
+
+[Paper](https://arxiv.org/abs/2608.27885) · [GitHub](https://github.com/gabeguo/bit_diffusion) · [Project](https://bit-diffusion.github.io)
+
+![BIT (Bidirectional Image-Text Diffusion Bridges) — Figure 1 (PDF p. 3)](../assets/architectures/bit.png)
+
+*Figure 1 (PDF p. 3) · [Source](https://arxiv.org/abs/2608.27885)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Paper Figure 1 (PDF p. 3): text is represented as invertible token embeddings mapped through a fixed lookup table (zero-padded at the text endpoint), and a DiT-XL/2 backbone (~1.05B parameters) parameterizes the drift of a forward SDE from text to image and an analytically derived reverse SDE from image back to text, both minimizing the same conditional-expectation objective (derived via Girsanov's theorem and Doob's h-transform) so the path is reversible and semantically meaningful throughout, unlike a noise-to-data diffusion path. The authors report BIT is competitive with or better than noise-to-data diffusion/flow baselines on T2I and I2T generation and on data-variation/editing-style tasks, and also demonstrate the same framework on a scientific (cell-fate modeling) domain. Code is published by the authors and linked directly from the paper.
 
 </details>
 
@@ -649,6 +679,31 @@ Paper Figure 5 (LLM-infused diffuser pipeline) and Section on architecture: the 
 
 </details>
 
+<a id="llada-image"></a>
+
+### LLaDA-Image
+
+6B diffusion transformer with single-stream attention/FFN blocks and parameter-free RMSNorm, trained from scratch for generation and editing and paired with a frozen understanding module built on the LLaDA2.0-Mini diffusion language model, whose text/image conditioning connects into the DiT through cross-attention and a lightweight connector.
+
+LLaDA-Image (Ant Group's inclusionAI) is a text-to-image and instruction-editing system that pairs a 6B diffusion transformer trained from scratch with a frozen multimodal understanding module built on the LLaDA2.0-Mini diffusion language model, connected through cross-attention and a lightweight connector rather than sharing weights end-to-end. It reuses a FLUX.2 VAE for image tokenization and trains with parameter-free RMSNorm and the Muon optimizer on a large image-only-then-paired-data curriculum, reporting open-source state-of-the-art scores on Qwen-Image-Bench; a distilled LLaDA-Image-Turbo variant reduces sampling to 2-4 steps. The authors release model weights, training code and training recipes.
+
+[Paper](https://arxiv.org/abs/2609.03796) · [GitHub](https://github.com/inclusionAI/LLaDA-Image)
+
+![LLaDA-Image — Figure 3](../assets/architectures/llada-image.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2609.03796)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 3: text is tokenized and cross-attended together with learnable query tokens into a frozen LLaDA2.0-Mini understanding backbone; its representations pass through a Connector into single-stream DiT attention/FFN blocks (RMS-Norm/Q-Norm/K-Norm, zero-init gating) that also take a target-image path through a FLUX.2 VAE (for text-to-image) or a reference image encoded by SigLIP-VQ and FLUX.2 VAE (for instruction editing). Training uses image-only pretraining before paired data, parameter-free RMSNorm throughout the DiT and the Muon optimizer; a distilled LLaDA-Image-Turbo variant supports 2-4 step inference. The paper reports open-source state-of-the-art results on Qwen-Image-Bench. Weights, training code and recipes are released on GitHub; no explicit license file was reviewed.
+
+**Variants:** LLaDA-Image; LLaDA-Image-Turbo.
+
+</details>
+
 <a id="longcat-image"></a>
 
 ### LongCat-Image
@@ -763,7 +818,7 @@ Flag-DiT keeps the DiT framework but replaces LayerNorm with RMSNorm, adds KQ-No
 
 Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.
 
-[Paper](https://arxiv.org/abs/2607.19064)
+[Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found
 
 ![Mage-Flow — Figure 5](../assets/architectures/mage-flow.png)
 
@@ -800,6 +855,52 @@ MMFace-DiT is an end-to-end diffusion transformer for multimodal face generation
 **Input → output:** T → I · **Interaction:** generation
 
 The paper reports roughly a 40% improvement in visual fidelity and prompt alignment over approaches that extend a pretrained text-to-image pipeline with auxiliary control modules. Code and dataset are released on the authors' project page and a GitHub repository.
+
+</details>
+
+<a id="moonworks-lunara"></a>
+
+### Moonworks Lunara
+
+Novel Diffusion Mixture Transformer (DMT) that routes a shared latent through Art Conception and Compositional Attention blocks into per-style denoising mixture experts, trained with an iterative data-acquisition algorithm that adds VLM-selected informative samples and curated human-created art to the training distribution over time.
+
+Moonworks Lunara, from the startup Moonworks, is a text-to-image model built around a novel Diffusion Mixture Transformer (DMT) architecture and framed around what the authors call Artistic Intelligence — generation that preserves semantic, artistic and compositional structure while leaving room for creative variation. Text (and optional image) input is routed through dedicated art-conception and compositional-attention stages into per-style latent-mixture denoising experts, and the model is trained with an iterative algorithm that actively selects informative generated samples and injects curated human-created art into the training distribution over successive rounds. The paper reports Lunara ranking first in aesthetic quality and competitive on content-integrity metrics against comparable sub-10B models, with sub-10-second inference.
+
+[Paper](https://arxiv.org/abs/2609.22272) · GitHub: no author-linked repository found
+
+![Moonworks Lunara — Figure 4 (PDF p. 7)](../assets/architectures/moonworks-lunara.png)
+
+*Figure 4 (PDF p. 7) · [Source](https://arxiv.org/abs/2609.22272)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 4 (PDF p. 7, overall architecture and training pipeline): text and optional image input pass through a Unified Encoder, Art Conception Blocks and Compositional Attention Blocks (capturing directional/intensity patterns) before being routed to per-style latent-mixture denoising experts (e.g. Nordic Folk Art, East Asian Traditional) whose VAE-decoded outputs and VLM-scored semantic variations feed back into an iterative, human-annotator-in-the-loop data acquisition cycle. The paper reports sub-10B active parameters and sub-10-second inference latency, ranking first in an aesthetic-quality evaluation and second in emotional resonance against comparable models. No repository or license information is disclosed.
+
+</details>
+
+<a id="nexus"></a>
+
+### Nexus
+
+Rectified-flow diffusion transformer combining sparse Mixture-of-Experts feed-forward layers, linear-complexity gated DeltaNet attention and per-expert low-bit quantization in a dual-stream block design, aimed at quality comparable to SDXL/SD3 with near-linear latency and memory scaling.
+
+Nexus is a text-to-image rectified-flow diffusion transformer designed around the joint optimization of three efficiency techniques that prior work has mostly explored separately: sparse Mixture-of-Experts feed-forward layers, linear-complexity Gated DeltaNet attention in place of quadratic self-attention, and per-expert low-bit quantization. The combination targets the compute, sequence-length and memory bottlenecks that limit high-resolution diffusion transformers on edge hardware, and the paper reports generation quality comparable to SDXL and SD3 with markedly better latency and memory scaling.
+
+[Paper](https://arxiv.org/abs/2608.16104) · GitHub: no author-linked repository found
+
+![Nexus — Figure 2](../assets/architectures/nexus.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2608.16104)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figures 2-3 (overall architecture and dual-stream block detail) and Figure 4 (latency/memory vs. sequence length): Nexus jointly co-designs MoE sparsity, Gated DeltaNet linear attention and per-expert low-bit training rather than applying them separately, reporting near-linear latency/memory scaling versus SD3-Medium's superlinear growth, and generation quality on COCO/LAION comparable to SDXL and SD3 despite the efficiency changes. Single-author preprint; no repository or license is disclosed.
 
 </details>
 
@@ -977,6 +1078,29 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 Operates in the pretrained Stable Diffusion 3.5 VAE latent space at 256x256 (base) and 512x512 (fine-tuned) resolution; the U-ViT network serves as the backbone for both the proximal and competing score networks, trained with a proximal-matching loss. The authors state they will publicly release LAION-Face-T2I-15M and a companion LAION-Face-Hand-3M dataset upon publication; no code repository was found at review time.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="psp-dit"></a>
+
+### PSP-DiT
+
+Diffusion transformer that jointly denoises image latents and an explicit panoptic scene-program latent through coupled two-stream transformer blocks with bidirectional cross-attention, tying object instances, attributes, relations and counts to the generated image via grounding and cycle-consistency objectives.
+
+Panoptic Scene Program Diffusion Transformer (PSP-DiT) targets compositional text-to-image prompts — those requiring correct object counts, attribute ownership, spatial ordering and role-sensitive relations — by making a panoptic scene program (a structured graph of instances, attributes, relations and counts) a first-class latent that the diffusion transformer denoises jointly with the image, rather than an external layout signal or a post-hoc parse of the output. Coupled transformer streams for the image and scene-program latents exchange information through bidirectional cross-attention, and grounding plus cycle-consistency objectives tie the scene program to visual support in the generated image. The paper reports gains over a strong flat-text DiT baseline concentrated on counting, attribute binding, relational and long structured prompts, with modest added inference cost.
+
+[Paper](https://arxiv.org/abs/2609.31780) · GitHub: no author-linked repository found
+
+![PSP-DiT — Figure 1](../assets/architectures/psp-dit.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2609.31780)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 1 (method overview): a scene-program latent (a graph of instances, attributes, relations, counts and global context) is denoised alongside the image latent through paired transformer-block streams connected by bidirectional cross-attention (panel C); a grounding head maps the refined scene latent to per-object ownership maps and a recognizer maps the refined image latent back to a recovered scene program, with a cycle-consistency loss tying the two (panel D). The paper reports improvements over a flat-text-conditioned DiT baseline on GenEval 2, SANEval-Simple, PSG-Score and DetailMaster, concentrated in counting, attribute binding, role-sensitive relations and long structured prompts, with modest inference overhead. Accepted to NeurIPS 2026; no repository or license is disclosed.
 
 </details>
 
@@ -1244,6 +1368,31 @@ Paper Figure 2: a frozen DINOv3-ViT-S/16+ encoder maps images to (H/16)x(W/16)x3
 
 </details>
 
+<a id="swift-image"></a>
+
+### Swift-Image
+
+Compact 6B single-stream diffusion transformer conditioned on Qwen3-VL and FLUX.2-AE image latents through parallel single-stream Transformer blocks, unifying text-to-image generation with single- and multi-image editing, plus a separate Prompt Enhancer model and structural pruning/few-step distillation for 3B and accelerated variants.
+
+Swift-Image studies how far a small, compute-constrained unified generator can be pushed through training engineering rather than scale. Its 6B single-stream diffusion transformer is conditioned on a Qwen3-VL encoder and a FLUX.2 autoencoder, trained with a progressive pipeline that grows from broad semantic coverage to high-resolution, unified generation-and-editing supervision, then post-trained with parallel expert reinforcement learning and multi-teacher on-policy distillation. A separate Prompt Enhancer model handles reasoning about user intent so the diffusion transformer can focus on rendering, and structural pruning plus few-step distillation give compressed 3B and low-step variants; the paper reports leading open-source aggregate performance at only 6B parameters and 243K GPU training hours.
+
+[Paper](https://arxiv.org/abs/2608.20334) · GitHub: no author-linked repository found
+
+![Swift-Image — Figure 5 (PDF p. 6)](../assets/architectures/swift-image.png)
+
+*Figure 5 (PDF p. 6) · [Source](https://arxiv.org/abs/2608.20334)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 5 (unified visual backbone) and Figure 6 (method overview, PDF p. 6): a shared Qwen3-VL-8B encoder reads a system prompt, user prompt and input image(s), producing conditioning consumed by parallel single-stream Transformer blocks alongside VAE-encoded (and, for the diffusion target, noised VAE-encoded) FLUX.2-AE image latents. Post-training uses parallel expert reinforcement learning followed by multi-teacher on-policy distillation (Figure 9) to combine heterogeneous objectives, then a separate Prompt Enhancer model translates user requests into generator-aligned specifications so reasoning is decoupled from pixel rendering. Structural pruning and few-step distillation (Figure 10) produce compressed 3B and accelerated variants; the paper reports leading aggregate open-source performance at only 6B parameters and 243K GPU training hours. No repository or license is disclosed in the reviewed sections.
+
+**Variants:** Swift-Image (6B); Swift-Image (3B, pruned).
+
+</details>
+
 <a id="terradit"></a>
 
 ### TerraDiT
@@ -1266,6 +1415,31 @@ TerraDiT is a diffusion transformer trained from scratch for text-to-satellite-i
 Training is three-stage: unconditional generation, then text-conditioned generation, then point-controlled generation. The authors build and release the Git-10M dataset (2M high-resolution, ~1m-GSD satellite images at zoom level 17 with GPT-4o captions). Models, dataset and code are released on GitHub.
 
 **Variants:** TerraDiT-XL/2-alpha; TerraDiT-XL/2-Sigma.
+
+</details>
+
+<a id="uniworld-design"></a>
+
+### UniWorld-Design
+
+Two flow-matching models sharing an RGBA-extended autoencoder: Text-to-RGBA generates standalone transparent RGBA assets from text, and Image-to-Layer uses a Layer-Instruction Binding MMDiT (LIB-MMDiT) with layer-binding attention and layer-indexed rotary positions to decompose a finished image into ordered, complete semantic RGBA layers from instructions.
+
+UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation around semantic RGBA layers rather than flat pixels, so that generation, decomposition and editing operate on independently addressable, complete visual objects instead of a monolithic raster. It comprises two flow-matching models sharing an RGBA-extended autoencoder: Text-to-RGBA generates standalone transparent design assets directly from a prompt, and Image-to-Layer uses a new Layer-Instruction Binding MMDiT to decompose a finished image into an ordered stack of complete semantic RGBA layers, following instructions for top-level decomposition, recursive refinement, or targeted extraction of a specific element. The paper reports improvements over Qwen-Image-Layered on per-layer fidelity and transparency, and the highest CLIP Score among compared text-to-RGBA generators.
+
+[Paper](https://arxiv.org/abs/2608.03971) · [Project](https://rabbitvis.rabbitpre.com/blog) · GitHub: no author-linked repository found
+
+![UniWorld-Design — Figure 3](../assets/architectures/uniworld-design.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2608.03971)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 3 (LIB-MMDiT overview, PDF p. 3 of the figure numbering) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. Only a project page is linked; no GitHub repository was found.
+
+**Variants:** UniWorld-Design T2RGBA; UniWorld-Design I2L.
 
 </details>
 

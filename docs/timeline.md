@@ -4,15 +4,30 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 291 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 306 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
 | Source date | Model | Date type | Primary sources |
 | --- | --- | --- | --- |
-| 2026-07-21 | [Mage-Flow](../models/dit.md#mage-flow) | paper | [Paper](https://arxiv.org/abs/2607.19064) |
+| 2026-09-24 | [PSP-DiT](../models/dit.md#psp-dit) | paper | [Paper](https://arxiv.org/abs/2609.31780) · GitHub: no author-linked repository found |
+| 2026-09-19 | [DuetGen](../models/continuous-ar.md#duetgen) | paper | [Paper](https://arxiv.org/abs/2609.22916) · GitHub: no author-linked repository found |
+| 2026-09-15 | [FLAT](../models/unified.md#flat) | paper | [Paper](https://arxiv.org/abs/2609.16591) · GitHub: no author-linked repository found |
+| 2026-09-11 | [Moonworks Lunara](../models/dit.md#moonworks-lunara) | paper | [Paper](https://arxiv.org/abs/2609.22272) · GitHub: no author-linked repository found |
+| 2026-09-03 | [LLaDA-Image](../models/dit.md#llada-image) | paper | [Paper](https://arxiv.org/abs/2609.03796) · [GitHub](https://github.com/inclusionAI/LLaDA-Image) |
+| 2026-08-28 | [BIT (Bidirectional Image-Text Diffusion Bridges)](../models/dit.md#bit) | paper | [Paper](https://arxiv.org/abs/2608.27885) · [GitHub](https://github.com/gabeguo/bit_diffusion) · [Project](https://bit-diffusion.github.io) |
+| 2026-08-20 | [Swift-Image](../models/dit.md#swift-image) | paper | [Paper](https://arxiv.org/abs/2608.20334) · GitHub: no author-linked repository found |
+| 2026-08-17 | [Nexus](../models/dit.md#nexus) | paper | [Paper](https://arxiv.org/abs/2608.16104) · GitHub: no author-linked repository found |
+| 2026-08-09 | [UniSpace](../models/unified.md#unispace) | paper | [Paper](https://arxiv.org/abs/2608.08676) · [GitHub](https://github.com/yjb6/UniSpace) |
+| 2026-08-04 | [UniWorld-Design](../models/dit.md#uniworld-design) | paper | [Paper](https://arxiv.org/abs/2608.03971) · [Project](https://rabbitvis.rabbitpre.com/blog) · GitHub: no author-linked repository found |
+| 2026-07-27 | [UniGen-AR](../models/ar-token.md#unigen-ar) | paper | [Paper](https://arxiv.org/abs/2607.24157) · [Project](https://zpbao.github.io/projects/unigenar) · GitHub: no author-linked repository found |
+| 2026-07-21 | [Mage-Flow](../models/dit.md#mage-flow) | paper | [Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found |
+| 2026-07-14 | [Boogu-Image-0.1](../models/unified.md#boogu-image) | paper | [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) |
+| 2026-07-13 | [Xiaomi-Robotics-U0](../models/unified.md#xiaomi-robotics-u0) | paper | [Paper](https://arxiv.org/abs/2607.11643) · GitHub: no author-linked repository found |
 | 2026-07-07 | [Muse Image](../models/api.md#muse-image) | announcement | [Announcement 1](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/) · [Announcement 2](https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/) |
+| 2026-06-29 | [Nemotron-Labs-Diffusion-Image](../models/masked.md#nemotron-labs-diffusion-image) | paper | [Paper](https://arxiv.org/abs/2606.29814) · GitHub: no author-linked repository found |
 | 2026-06-29 | [Libra-2](../models/unified.md#libra-2) | paper | [Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra) |
+| 2026-06-29 | [ILLUME-X](../models/unified.md#illume-x) | paper | [Paper](https://arxiv.org/abs/2606.30054) · [GitHub](https://github.com/ChonghuinanWang/ILLUME-X) |
 | 2026-06-27 | [Mural](../models/unified.md#mural) | paper | [Paper](https://arxiv.org/abs/2606.29013) · GitHub: no author-linked repository found |
 | 2026-06-25 | [JuZhou 1.0](../models/efficient.md#juzhou-1) | paper | [Paper](https://arxiv.org/abs/2606.28421) · [GitHub](https://github.com/HswAI2026/JuZhou-V1) |
 | 2026-06-23 | [Krea 2](../models/dit.md#krea-2) | announcement | [Announcement](https://www.krea.ai/blog/krea-2-technical-report) · [GitHub](https://github.com/krea-ai/krea-2) · [Model card 1](https://huggingface.co/krea/Krea-2-Raw) · [Model card 2](https://huggingface.co/krea/Krea-2-Turbo) |

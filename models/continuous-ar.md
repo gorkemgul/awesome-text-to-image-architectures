@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**10 models · Reviewed 2026-09-29**
+**11 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,6 +19,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | --- | --- | --- | --- |
 | [BitDance](#bitdance) | 2026-02-15 | T → I | generation |
 | [DART](#dart) | 2024-10-10 | T → I | generation |
+| [DuetGen](#duetgen) | 2026-09-19 | T → I | generation |
 | [Fluid](#fluid) | 2024-10-17 | T → I | generation |
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
 | [HART](#hart) | 2024-10-14 | T → I | generation |
@@ -81,6 +82,29 @@ DART (Apple, with CUHK and Mila) merges autoregression and diffusion. Instead of
 Images are encoded with the Stable Diffusion v1.4 VAE (sd-vae-ft-ema), patchified with patch size 2 into 256 tokens of 16 channels; T = 16 denoising steps with a cosine-derived schedule. Blocks use RoPE and SwiGLU; class-conditional models use AdaLN, which text-to-image models replace with cross-attention over a pretrained T5-XL encoder, and no timestep embedding is needed. DART-FM adds a 3-layer MLP flow network (about 1% more parameters) with 100 flow-matching steps between autoregressive steps. The paper also reports class-conditional ImageNet results. No author-linked code was found; a third-party reimplementation exists on GitHub but is not an official source.
 
 **Variants:** DART-AR; DART-FM; Matryoshka-DART; Kaleido-DART.
+
+</details>
+
+<a id="duetgen"></a>
+
+### DuetGen
+
+DeepFusion framework jointly training a 2B autoregressive layout-planning model and a 4B single-stream diffusion-transformer renderer, with rendering-loss gradients backpropagated into the planner's shared representations and a Phase-Aware Attention Modulation mechanism binding text-region tokens to their coordinates at inference.
+
+DuetGen is a visual text generation system for producing text-rich images (e.g. posters, signage) that jointly trains an autoregressive layout planner with a diffusion-transformer renderer under a framework the authors call DeepFusion, rather than optimizing planning and rendering as separate stages. A 2B-parameter AR planner predicts where text should appear and what it should say, and a 4B single-stream DiT renders the image conditioned on the planner's representations, with rendering-loss gradients flowing back into the planner so its layout representations are shaped by what the renderer can actually realize. A Phase-Aware Attention Modulation mechanism strengthens the binding between image regions and their intended text content and coordinates at inference.
+
+[Paper](https://arxiv.org/abs/2609.22916) · GitHub: no author-linked repository found
+
+![DuetGen — Figure 2](../assets/architectures/duetgen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2609.22916)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 2 (framework overview): an AR Planner predicts text bounding boxes and content autoregressively, its last-layer hidden states (prompt, bbox, text content) are mean-pooled through a Spatial Head for an auxiliary box-regression loss and passed via a Light-Mapper into a Joint Sequence DiT renderer trained with a region-weighted diffusion loss that upweights text-render regions; because planner and renderer are optimized jointly (rather than the usual separately-trained plan-then-render pipeline), rendering supervision reshapes the planner's representations. At inference, Phase-Aware Attention Modulation (Figure 2b) reweights image-region attention toward the query's paired bounding-box and content tokens. No repository or license is disclosed.
 
 </details>
 

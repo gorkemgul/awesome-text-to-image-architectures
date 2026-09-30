@@ -557,6 +557,50 @@
    ]
   },
   {
+   "id": "bit",
+   "name": "BIT (Bidirectional Image-Text Diffusion Bridges)",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "DiT-XL/2 diffusion transformer trained as a bidirectional data-to-data diffusion bridge that interpolates directly between continuous text-token embeddings and image pixels via forward/reverse SDEs, rather than a text-conditioned noise-to-image process, so the same drift network supports text-to-image generation and image-to-text captioning",
+   "notes": "Paper Figure 1 (PDF p. 3): text is represented as invertible token embeddings mapped through a fixed lookup table (zero-padded at the text endpoint), and a DiT-XL/2 backbone (~1.05B parameters) parameterizes the drift of a forward SDE from text to image and an analytically derived reverse SDE from image back to text, both minimizing the same conditional-expectation objective (derived via Girsanov's theorem and Doob's h-transform) so the path is reversible and semantically meaningful throughout, unlike a noise-to-data diffusion path. The authors report BIT is competitive with or better than noise-to-data diffusion/flow baselines on T2I and I2T generation and on data-variation/editing-style tasks, and also demonstrate the same framework on a scientific (cell-fate modeling) domain. Code is published by the authors and linked directly from the paper.",
+   "variants": [],
+   "source_date": "2026-08-28",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "description": "BIT (Bidirectional Image-Text Diffusion Bridges), from Stanford University, reframes text-to-image diffusion as a bidirectional bridge between text and image data rather than a one-way noise-to-image process. Instead of starting from Gaussian noise and injecting a text prompt as side conditioning, BIT constructs a stochastic process that interpolates directly between continuous text-token representations and image pixels, so the same DiT-XL/2 network can run forward (text-to-image) or its analytically derived time-reversal (image-to-text captioning). The authors argue this source-aware, reversible path supports richer sampling algorithms — such as retracing a generation to recover an approximate caption, or generating semantically related image variants — and show it is competitive with standard diffusion and flow-matching baselines on text-to-image and image-to-text benchmarks as well as on a scientific cell-fate modeling task.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "There and Back Again: Bidirectional Diffusion Bridges for Multimodality Translation",
+     "url": "https://arxiv.org/abs/2608.27885",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "gabeguo/bit_diffusion — official repository",
+     "url": "https://github.com/gabeguo/bit_diffusion",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "BIT (Bidirectional Image-Text Diffusion Bridges) project page",
+     "url": "https://bit-diffusion.github.io",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
    "id": "bitdance",
    "name": "BitDance",
    "category": "continuous-ar",
@@ -789,6 +833,51 @@
      "kind": "repository",
      "title": "haidy-maher/BLM-SGAN-Text-to-Image-Generation — official repository",
      "url": "https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "boogu-image",
+   "name": "Boogu-Image-0.1",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Unified text-to-image generation and instruction-editing model family trained from scratch, conditioned on a Qwen3-VL-8B instruction encoder and served through an agentic inference pipeline (prompt rewriting, Base/Turbo model routing, reflection); the paper documents training data, evaluation and inference-time strategy in detail but does not disclose the generator network's internal design",
+   "notes": "Boogu-Image-0.1 ships Base, Turbo, Edit and Edit-Turbo variants (plus Turbo-Thinking/Edit-Thinking reasoning modes referenced in the benchmarks), trained on only 208.62M unique images at a reported ~$400K training cost for the base model. The paper's contribution is centered on treating instruction understanding as a first-class design axis (a stronger Qwen3-VL-8B text/instruction encoder, agentic prompt rewriting, and inference-time model routing and reflection) alongside data curation and evaluation methodology, rather than a new denoiser architecture; an ablation mentions a 'SANA-VAE configuration' of the model, suggesting a SANA-style linear-attention tokenizer/backbone lineage, but the generator's architecture is not otherwise described in the reviewed sections. Code, weights and recipes are released under Apache-2.0 at the linked repository.",
+   "variants": [
+    "Boogu-Image-0.1-Base",
+    "Boogu-Image-0.1-Turbo",
+    "Boogu-Image-0.1-Edit",
+    "Boogu-Image-0.1-Edit-Turbo"
+   ],
+   "source_date": "2026-07-14",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": "Apache-2.0"
+   },
+   "description": "Boogu-Image-0.1 is an open-source unified image generation and instruction-editing model family that argues open text-to-image models can close the gap to closed-source systems primarily by strengthening instruction understanding — via a stronger Qwen3-VL-8B encoder, agentic prompt rewriting, model routing between Base/Turbo variants, and inference-time reflection — together with data-quality and training-pipeline improvements, rather than through architectural scale. Trained from scratch on 208.62M unique images at a reported cost of about $400K, it reports performance competitive with or approaching leading closed-source systems on the authors' Boogu Arena and on Qwen-Image-Bench, and releases weights, code and training recipes under Apache-2.0.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Boogu-Image-0.1: Boosting Open Agentic Multimodal Generation via Understanding under a Minimal Budget",
+     "url": "https://arxiv.org/abs/2607.13125",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "Boogu-Project/Boogu-Image — official repository",
+     "url": "https://github.com/Boogu-Project/Boogu-Image",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
     }
@@ -2301,6 +2390,34 @@
    ]
   },
   {
+   "id": "duetgen",
+   "name": "DuetGen",
+   "category": "continuous-ar",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "DeepFusion framework jointly training a 2B autoregressive layout-planning model and a 4B single-stream diffusion-transformer renderer, with rendering-loss gradients backpropagated into the planner's shared representations and a Phase-Aware Attention Modulation mechanism binding text-region tokens to their coordinates at inference",
+   "notes": "Paper Figure 2 (framework overview): an AR Planner predicts text bounding boxes and content autoregressively, its last-layer hidden states (prompt, bbox, text content) are mean-pooled through a Spatial Head for an auxiliary box-regression loss and passed via a Light-Mapper into a Joint Sequence DiT renderer trained with a region-weighted diffusion loss that upweights text-render regions; because planner and renderer are optimized jointly (rather than the usual separately-trained plan-then-render pipeline), rendering supervision reshapes the planner's representations. At inference, Phase-Aware Attention Modulation (Figure 2b) reweights image-region attention toward the query's paired bounding-box and content tokens. No repository or license is disclosed.",
+   "variants": [],
+   "source_date": "2026-09-19",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "DuetGen is a visual text generation system for producing text-rich images (e.g. posters, signage) that jointly trains an autoregressive layout planner with a diffusion-transformer renderer under a framework the authors call DeepFusion, rather than optimizing planning and rendering as separate stages. A 2B-parameter AR planner predicts where text should appear and what it should say, and a 4B single-stream DiT renders the image conditioned on the planner's representations, with rendering-loss gradients flowing back into the planner so its layout representations are shaped by what the renderer can actually realize. A Phase-Aware Attention Modulation mechanism strengthens the binding between image regions and their intended text content and coordinates at inference.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Planning and Rendering in Concert: DeepFusion of Autoregressive Layouts and Diffusion for Visual Text Generation",
+     "url": "https://arxiv.org/abs/2609.22916",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "duogen",
    "name": "DuoGen",
    "category": "unified",
@@ -2823,6 +2940,36 @@
      "url": "https://huggingface.co/briaai/FIBO",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "flat",
+   "name": "FLAT",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Shared VLM encoder with learnable register tokens and nested dropout that maps images and text into one variable-length continuous 1D sequence, jointly trained with contrastive alignment plus a rectified-flow-matching image decoder and an autoregressive text decoder so the same representation drives retrieval and text-to-image/image-to-text generation",
+   "notes": "Paper Figure 1 (PDF p. 3, architecture overview): a shared, LoRA-adapted VLM encoder produces continuous register-token representations for image and caption inputs; nested dropout over prefix-K tokens lets the same encoder output variable-length representations, which are aligned contrastively and also decoded by a rectified-flow-matching image decoder (text-to-image) and a next-token cross-entropy text decoder (image-to-text) from the same 1D sequence space. The paper reports a T2I GenEval score of 71.1 zero-shot from the joint pretraining stage and 83.1 after task-specific fine-tuning, alongside strong retrieval and interpolation/arithmetic properties of the shared representation. No repository or license is disclosed.",
+   "variants": [],
+   "source_date": "2026-09-15",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "FLAT (Meta AI) is a representation-pretraining framework that jointly optimizes one shared multimodal encoder with downstream text-to-image and image-to-text decoders, so the same continuous representation serves as both a discriminative retrieval embedding and a generative conditioning signal. Images and text are mapped into a unified, variable-length continuous 1D sequence space using register tokens and nested dropout over a prefix length K, trained with combined contrastive and bidirectional generative objectives; a rectified-flow-matching decoder produces images and an autoregressive decoder produces captions. The paper reports competitive cross-modal retrieval alongside a text-to-image GenEval score of 71.1 zero-shot from pretraining (83.1 after task-specific fine-tuning).",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "FLAT: Resampling Image and Text into 1D Flexible-Length Aligned Transmodal Tokens for Retrieval and Generation",
+     "url": "https://arxiv.org/abs/2609.16591",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -4510,6 +4657,43 @@
    ]
   },
   {
+   "id": "illume-x",
+   "name": "ILLUME-X",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Unified multimodal transformer with parallel understanding and generation branches (separate FFN/QKV projections per token type) sharing multi-modal self-attention over one sequence of text, VAE and ViT tokens, trained with a specialized attention mask for free-form N-to-M interleaved text-image generation",
+   "notes": "Paper Figure 2: each turn's tokens (BOI/VAE/VAE/ViT/ViT/EOI for images, plus text tokens) pass through modality-specific tokenizers (a text tokenizer, a VAE encoder for generation targets, and a ViT encoder for understanding context), then through parallel Understanding and Generation FFN/QKV branches joined by shared multi-modal self-attention; clean image tokens take a cross-entropy loss and noisy image tokens take an MSE (diffusion-style) loss, so the design mixes autoregressive text modeling with diffusion-style image token prediction inside one attention-masked sequence. The paper introduces a 100K-sample interleaved text-image data pipeline (real video-derived sequences plus MLLM-synthesized data) and the ILScore evaluation protocol for interleaved sequences (style transfer, object-level image decomposition, illustrated storytelling). Code is published on GitHub without an explicit open-source license file at review time, so a license is not recorded.",
+   "variants": [],
+   "source_date": "2026-06-29",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "description": "ILLUME-X (Harbin Institute of Technology and Huawei Noah's Ark Lab) is a unified multimodal model aimed specifically at free-form, N-to-M interleaved text-image generation — producing arbitrary sequences of text and image outputs, such as illustrated step-by-step instructions or per-object image decompositions, rather than a single fixed-modality output. It combines separate understanding and generation attention branches sharing one multi-modal self-attention over a joint text/VAE/ViT token sequence, trained with a progressive strategy and a specialized attention mask over a curated 100K-sample interleaved dataset. The authors also propose ILScore, an evaluation protocol for cross-modal continuity and per-modality quality in interleaved generation.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Illuminating Unified Multimodal Model for Free-form Interleaved Text-Image Generation",
+     "url": "https://arxiv.org/abs/2606.30054",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "ChonghuinanWang/ILLUME-X — official repository",
+     "url": "https://github.com/ChonghuinanWang/ILLUME-X",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    }
+   ]
+  },
+  {
    "id": "imagebart",
    "name": "ImageBART",
    "category": "ar-token",
@@ -6048,6 +6232,45 @@
    ]
   },
   {
+   "id": "llada-image",
+   "name": "LLaDA-Image",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "6B diffusion transformer with single-stream attention/FFN blocks and parameter-free RMSNorm, trained from scratch for generation and editing and paired with a frozen understanding module built on the LLaDA2.0-Mini diffusion language model, whose text/image conditioning connects into the DiT through cross-attention and a lightweight connector",
+   "notes": "Paper Figure 3: text is tokenized and cross-attended together with learnable query tokens into a frozen LLaDA2.0-Mini understanding backbone; its representations pass through a Connector into single-stream DiT attention/FFN blocks (RMS-Norm/Q-Norm/K-Norm, zero-init gating) that also take a target-image path through a FLUX.2 VAE (for text-to-image) or a reference image encoded by SigLIP-VQ and FLUX.2 VAE (for instruction editing). Training uses image-only pretraining before paired data, parameter-free RMSNorm throughout the DiT and the Muon optimizer; a distilled LLaDA-Image-Turbo variant supports 2-4 step inference. The paper reports open-source state-of-the-art results on Qwen-Image-Bench. Weights, training code and recipes are released on GitHub; no explicit license file was reviewed.",
+   "variants": [
+    "LLaDA-Image",
+    "LLaDA-Image-Turbo"
+   ],
+   "source_date": "2026-09-03",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "description": "LLaDA-Image (Ant Group's inclusionAI) is a text-to-image and instruction-editing system that pairs a 6B diffusion transformer trained from scratch with a frozen multimodal understanding module built on the LLaDA2.0-Mini diffusion language model, connected through cross-attention and a lightweight connector rather than sharing weights end-to-end. It reuses a FLUX.2 VAE for image tokenization and trains with parameter-free RMSNorm and the Muon optimizer on a large image-only-then-paired-data curriculum, reporting open-source state-of-the-art scores on Qwen-Image-Bench; a distilled LLaDA-Image-Turbo variant reduces sampling to 2-4 steps. The authors release model weights, training code and training recipes.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "LLaDA-Image: Building Strong Image Generators with Fully Open Training Recipes",
+     "url": "https://arxiv.org/abs/2609.03796",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "inclusionAI/LLaDA-Image — official repository",
+     "url": "https://github.com/inclusionAI/LLaDA-Image",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    }
+   ]
+  },
+  {
    "id": "llada-o",
    "name": "LLaDA-o",
    "category": "unified",
@@ -6735,6 +6958,7 @@
    ],
    "source_date": "2026-07-21",
    "source_date_kind": "paper",
+   "github_status": "not-found",
    "description": "Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.",
    "sources": [
     {
@@ -7722,6 +7946,34 @@
    ]
   },
   {
+   "id": "moonworks-lunara",
+   "name": "Moonworks Lunara",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Novel Diffusion Mixture Transformer (DMT) that routes a shared latent through Art Conception and Compositional Attention blocks into per-style denoising mixture experts, trained with an iterative data-acquisition algorithm that adds VLM-selected informative samples and curated human-created art to the training distribution over time",
+   "notes": "Paper Figure 4 (PDF p. 7, overall architecture and training pipeline): text and optional image input pass through a Unified Encoder, Art Conception Blocks and Compositional Attention Blocks (capturing directional/intensity patterns) before being routed to per-style latent-mixture denoising experts (e.g. Nordic Folk Art, East Asian Traditional) whose VAE-decoded outputs and VLM-scored semantic variations feed back into an iterative, human-annotator-in-the-loop data acquisition cycle. The paper reports sub-10B active parameters and sub-10-second inference latency, ranking first in an aesthetic-quality evaluation and second in emotional resonance against comparable models. No repository or license information is disclosed.",
+   "variants": [],
+   "source_date": "2026-09-11",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Moonworks Lunara, from the startup Moonworks, is a text-to-image model built around a novel Diffusion Mixture Transformer (DMT) architecture and framed around what the authors call Artistic Intelligence — generation that preserves semantic, artistic and compositional structure while leaving room for creative variation. Text (and optional image) input is routed through dedicated art-conception and compositional-attention stages into per-style latent-mixture denoising experts, and the model is trained with an iterative algorithm that actively selects informative generated samples and injects curated human-created art into the training distribution over successive rounds. The paper reports Lunara ranking first in aesthetic quality and competitive on content-integrity metrics against comparable sub-10B models, with sub-10-second inference.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Moonworks Lunara: Modeling Artistic Intelligence",
+     "url": "https://arxiv.org/abs/2609.22272",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "msmt-gan",
    "name": "MSMT-GAN",
    "category": "gan",
@@ -7915,6 +8167,34 @@
    ]
   },
   {
+   "id": "nemotron-labs-diffusion-image",
+   "name": "Nemotron-Labs-Diffusion-Image",
+   "category": "masked",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Single decoder-only transformer masked discrete diffusion model (MDM) over VQ image tokens with an inference-time token-editing mechanism that revises already-unmasked tokens, trained with a Grouped Cross-Entropy objective for dense supervision over a large image-token vocabulary",
+   "notes": "Paper Figure 3: unlike prior single-pass masked diffusion models such as Meissonic, Nemotron-Labs-Diffusion-Image's single decoder-only transformer processes prompt tokens together with masked and deliberately corrupted VQ image tokens, predicting both an unmasking and a correction distribution so previously unmasked tokens can be revised later in sampling (Figure 5/9 ablate the correction threshold). The Grouped Cross-Entropy (GCE) loss assigns positive learning signal to tokens neighboring the ground truth in the tokenizer's embedding space, addressing sparse per-token signal at large codebook sizes, and a custom fused GCE kernel reduces training VRAM. The paper reports strong few-step generation (1-5 steps, Figure 7) at 1024px. No repository or license information is disclosed.",
+   "variants": [],
+   "source_date": "2026-06-29",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for high-resolution text-to-image synthesis that targets two limitations of prior masked-token diffusion models: the inability to revise tokens once unmasked, and sparse training signal as tokenizer vocabularies grow. It adds a token-editing mechanism so the model can dynamically correct previously unmasked image tokens during sampling, and a Grouped Cross-Entropy objective that spreads training signal to semantically neighboring tokens in the codebook. The paper reports state-of-the-art masked-diffusion results at 1024px and strong quality in as few as one to five sampling steps.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Nemotron-Labs-Diffusion-Image: Advancing Masked Discrete Diffusion for High-Resolution Image Synthesis",
+     "url": "https://arxiv.org/abs/2606.29814",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "next-gpt",
    "name": "NExT-GPT",
    "category": "unified",
@@ -8054,6 +8334,34 @@
      "url": "https://huggingface.co/stepfun-ai/NextStep-1-Large",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "nexus",
+   "name": "Nexus",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Rectified-flow diffusion transformer combining sparse Mixture-of-Experts feed-forward layers, linear-complexity gated DeltaNet attention and per-expert low-bit quantization in a dual-stream block design, aimed at quality comparable to SDXL/SD3 with near-linear latency and memory scaling",
+   "notes": "Paper Figures 2-3 (overall architecture and dual-stream block detail) and Figure 4 (latency/memory vs. sequence length): Nexus jointly co-designs MoE sparsity, Gated DeltaNet linear attention and per-expert low-bit training rather than applying them separately, reporting near-linear latency/memory scaling versus SD3-Medium's superlinear growth, and generation quality on COCO/LAION comparable to SDXL and SD3 despite the efficiency changes. Single-author preprint; no repository or license is disclosed.",
+   "variants": [],
+   "source_date": "2026-08-17",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Nexus is a text-to-image rectified-flow diffusion transformer designed around the joint optimization of three efficiency techniques that prior work has mostly explored separately: sparse Mixture-of-Experts feed-forward layers, linear-complexity Gated DeltaNet attention in place of quadratic self-attention, and per-expert low-bit quantization. The combination targets the compute, sequence-length and memory bottlenecks that limit high-resolution diffusion transformers on edge hardware, and the paper reports generation quality comparable to SDXL and SD3 with markedly better latency and memory scaling.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Nexus: Structured Synergy for Efficient Text-to-Image Generation using Rectified Flow Model",
+     "url": "https://arxiv.org/abs/2608.16104",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -9138,6 +9446,34 @@
      "url": "https://jshilong.github.io/PS-VAE-PAGE/",
      "reviewed_on": "2026-09-29",
      "review_level": "project"
+    }
+   ]
+  },
+  {
+   "id": "psp-dit",
+   "name": "PSP-DiT",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Diffusion transformer that jointly denoises image latents and an explicit panoptic scene-program latent through coupled two-stream transformer blocks with bidirectional cross-attention, tying object instances, attributes, relations and counts to the generated image via grounding and cycle-consistency objectives",
+   "notes": "Paper Figure 1 (method overview): a scene-program latent (a graph of instances, attributes, relations, counts and global context) is denoised alongside the image latent through paired transformer-block streams connected by bidirectional cross-attention (panel C); a grounding head maps the refined scene latent to per-object ownership maps and a recognizer maps the refined image latent back to a recovered scene program, with a cycle-consistency loss tying the two (panel D). The paper reports improvements over a flat-text-conditioned DiT baseline on GenEval 2, SANEval-Simple, PSG-Score and DetailMaster, concentrated in counting, attribute binding, role-sensitive relations and long structured prompts, with modest inference overhead. Accepted to NeurIPS 2026; no repository or license is disclosed.",
+   "variants": [],
+   "source_date": "2026-09-24",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Panoptic Scene Program Diffusion Transformer (PSP-DiT) targets compositional text-to-image prompts — those requiring correct object counts, attribute ownership, spatial ordering and role-sensitive relations — by making a panoptic scene program (a structured graph of instances, attributes, relations and counts) a first-class latent that the diffusion transformer denoises jointly with the image, rather than an external layout signal or a post-hoc parse of the output. Coupled transformer streams for the image and scene-program latents exchange information through bidirectional cross-attention, and grounding plus cycle-consistency objectives tie the scene program to visual support in the generated image. The paper reports gains over a strong flat-text DiT baseline concentrated on counting, attribute binding, relational and long structured prompts, with modest added inference cost.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Panoptic Scene Program Diffusion Transformer",
+     "url": "https://arxiv.org/abs/2609.31780",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -11337,6 +11673,38 @@
    ]
   },
   {
+   "id": "swift-image",
+   "name": "Swift-Image",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Compact 6B single-stream diffusion transformer conditioned on Qwen3-VL and FLUX.2-AE image latents through parallel single-stream Transformer blocks, unifying text-to-image generation with single- and multi-image editing, plus a separate Prompt Enhancer model and structural pruning/few-step distillation for 3B and accelerated variants",
+   "notes": "Paper Figure 5 (unified visual backbone) and Figure 6 (method overview, PDF p. 6): a shared Qwen3-VL-8B encoder reads a system prompt, user prompt and input image(s), producing conditioning consumed by parallel single-stream Transformer blocks alongside VAE-encoded (and, for the diffusion target, noised VAE-encoded) FLUX.2-AE image latents. Post-training uses parallel expert reinforcement learning followed by multi-teacher on-policy distillation (Figure 9) to combine heterogeneous objectives, then a separate Prompt Enhancer model translates user requests into generator-aligned specifications so reasoning is decoupled from pixel rendering. Structural pruning and few-step distillation (Figure 10) produce compressed 3B and accelerated variants; the paper reports leading aggregate open-source performance at only 6B parameters and 243K GPU training hours. No repository or license is disclosed in the reviewed sections.",
+   "variants": [
+    "Swift-Image (6B)",
+    "Swift-Image (3B, pruned)"
+   ],
+   "source_date": "2026-08-20",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Swift-Image studies how far a small, compute-constrained unified generator can be pushed through training engineering rather than scale. Its 6B single-stream diffusion transformer is conditioned on a Qwen3-VL encoder and a FLUX.2 autoencoder, trained with a progressive pipeline that grows from broad semantic coverage to high-resolution, unified generation-and-editing supervision, then post-trained with parallel expert reinforcement learning and multi-teacher on-policy distillation. A separate Prompt Enhancer model handles reasoning about user intent so the diffusion transformer can focus on rendering, and structural pruning plus few-step distillation give compressed 3B and low-step variants; the paper reports leading open-source aggregate performance at only 6B parameters and 243K GPU training hours.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Exploring the Performance Frontier of Compact Unified Image Generation Models",
+     "url": "https://arxiv.org/abs/2608.20334",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "swiftbrush",
    "name": "SwiftBrush",
    "category": "efficient",
@@ -12029,6 +12397,78 @@
    ]
   },
   {
+   "id": "unigen-ar",
+   "name": "UniGen-AR",
+   "category": "ar-token",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "General-purpose multimodal language model paired with an Infinity-style next-scale visual autoregressive (VAR) decoder that predicts discrete VQ-VAE image tokens, so instruction and control-signal conditioning from the MLLM guides efficient parallel-scale token decoding across more than 15 unified-visual-generation tasks",
+   "notes": "Paper Figure 2: an MLLM encodes free-form instructions and control signals into a unified conditioning sequence that guides an Infinity-style VAR decoder, decoded to pixels by a VQ-VAE; the paper studies VQ-VAE codebook size/hierarchy as the key factor for scaling VAR in this setting (Figure 4). Reported up to 19x lower inference latency than diffusion-based unified baselines (e.g. OmniGen) at comparable or better quality across generation, editing, restoration and perception tasks (Figures 3, B-D). The project page lists code as not yet released ('Code: soon'), so GitHub availability is not established.",
+   "variants": [],
+   "source_date": "2026-07-27",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "UniGen-AR (Carnegie Mellon University, UIUC and Toyota Research Institute) targets Unified Visual Generation — one model producing text-to-image generation, editing, restoration and perception outputs — while avoiding the inference latency of diffusion-based unified models. It pairs a general-purpose multimodal language model, which encodes instructions and control signals, with an efficient next-scale visual autoregressive decoder in the style of Infinity, combining MLLM-based conditioning flexibility with VAR's parallel-scale sampling efficiency. The paper reports up to 19x lower inference latency than diffusion-based unified baselines across more than 15 tasks spanning four task families.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniGen-AR: Unifying Visual Generation with Auto-Regressive Modeling",
+     "url": "https://arxiv.org/abs/2607.24157",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "project",
+     "title": "UniGen-AR project page",
+     "url": "https://zpbao.github.io/projects/unigenar",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
+   "id": "unispace",
+   "name": "UniSpace",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "8B Mixture-of-Transformer-Experts model built on a single Patch-Reparameterized semantic ViT visual space (a frozen semantic ViT augmented with a reconstruction-aware patch embedding), replacing a separate VAE pathway so understanding, text-to-image generation and editing share one visual representation",
+   "notes": "Paper Figures 2-3: Patch Reparameterization keeps the original semantic patch embedding and frozen ViT blocks (preserving multimodal understanding) while adding a parallel reconstruction-aware patch embedding that feeds the same frozen blocks with fine-grained pixel information, resolving the semantic-vs-reconstruction trade-off that limits plain semantic encoders for generation; this representation is scaled into UniSpace, an 8B Mixture-of-Transformer-Experts model performing understanding, text-to-image generation and instruction-based editing in one visual space (Figures 6-9 compare editing/generation qualitatively against BAGEL and SenseNova-U1). Code, weights and a project page are published by the authors.",
+   "variants": [],
+   "source_date": "2026-08-09",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "description": "UniSpace asks whether multimodal understanding, text-to-image generation and editing can share one visual representation built from a pretrained semantic ViT, instead of pairing a semantic encoder with a separate VAE for pixel-level generation. The authors show a frozen semantic ViT's blocks are not inherently unable to preserve fine detail — the original patch embedding is the bottleneck — and introduce Patch Reparameterization, adding a reconstruction-aware patch embedding alongside the original semantic one. This unified representation is scaled into UniSpace, an 8B Mixture-of-Transformer-Experts model that performs understanding, generation and editing without a separate VAE pathway.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniSpace: Unified Visual Representation and Scalable Multimodal Modeling",
+     "url": "https://arxiv.org/abs/2608.08676",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "yjb6/UniSpace — official repository",
+     "url": "https://github.com/yjb6/UniSpace",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    }
+   ]
+  },
+  {
    "id": "uniworld",
    "name": "UniWorld-V1",
    "category": "unified",
@@ -12073,6 +12513,45 @@
      "url": "https://huggingface.co/LanguageBind/UniWorld-V1",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "uniworld-design",
+   "name": "UniWorld-Design",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Two flow-matching models sharing an RGBA-extended autoencoder: Text-to-RGBA generates standalone transparent RGBA assets from text, and Image-to-Layer uses a Layer-Instruction Binding MMDiT (LIB-MMDiT) with layer-binding attention and layer-indexed rotary positions to decompose a finished image into ordered, complete semantic RGBA layers from instructions",
+   "notes": "Paper Figure 3 (LIB-MMDiT overview, PDF p. 3 of the figure numbering) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. Only a project page is linked; no GitHub repository was found.",
+   "variants": [
+    "UniWorld-Design T2RGBA",
+    "UniWorld-Design I2L"
+   ],
+   "source_date": "2026-08-04",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation around semantic RGBA layers rather than flat pixels, so that generation, decomposition and editing operate on independently addressable, complete visual objects instead of a monolithic raster. It comprises two flow-matching models sharing an RGBA-extended autoencoder: Text-to-RGBA generates standalone transparent design assets directly from a prompt, and Image-to-Layer uses a new Layer-Instruction Binding MMDiT to decompose a finished image into an ordered stack of complete semantic RGBA layers, following instructions for top-level decomposition, recursive refinement, or targeted extraction of a specific element. The paper reports improvements over Qwen-Image-Layered on per-layer fidelity and transparency, and the highest CLIP Score among compared text-to-RGBA generators.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniWorld-Design: From Pixel Generation to Layer-Native Design",
+     "url": "https://arxiv.org/abs/2608.03971",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "project",
+     "title": "UniWorld-Design project page",
+     "url": "https://rabbitvis.rabbitpre.com/blog",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -12439,6 +12918,35 @@
      "url": "https://huggingface.co/X-Omni/X-Omni-En",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "xiaomi-robotics-u0",
+   "name": "Xiaomi-Robotics-U0",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "38B-parameter multimodal autoregressive model initialized from a Qwen-3-32B decoder-only transformer, with images tokenized by an IBQ VQ tokenizer (16x16 spatial compression) and merged into the LLM's vocabulary so text, image and embodied-scene tokens are all modeled by one next-token-prediction objective",
+   "notes": "Paper Figure 3 (structure) and Section on initialization: the model extends Qwen-3-32B's vocabulary with an IBQ image codebook so text and image tokens share one discrete modeling space, jointly optimizing text-to-image generation, image editing, embodied scene generation, structured embodied transfer, and embodied video generation from the same weights. FlashAR+ (Figure 6/7) is an inference-time extension that groups target tokens by diagonal steps for faster decoding while keeping conditioning tokens dense, reported to preserve quality relative to standard autoregressive and vLLM-served decoding. Code and checkpoints are referenced at a Xiaomi Robotics product page rather than a GitHub repository, so GitHub-specific availability is not established.",
+   "variants": [],
+   "source_date": "2026-07-13",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "description": "Xiaomi-Robotics-U0 is a 38-billion-parameter multimodal autoregressive foundation model that treats embodied generation (multi-view robot scene generation, structured embodied transfer, embodied video) as an extension of general text-to-image and image-editing generation, rather than a separately fine-tuned robotics model. Built by extending a Qwen-3-32B decoder-only transformer's vocabulary with an IBQ image tokenizer, it models text and image tokens under one next-token-prediction objective, preserving the generalization of large-scale text/image pretraining while adding embodiment-specific tasks. The paper reports state-of-the-art multi-view embodied scene generation and transfer results, including a jump in out-of-distribution manipulation success rate for a downstream robot policy.",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Xiaomi-Robotics-U0: Unified Embodied Synthesis with World Foundation Model",
+     "url": "https://arxiv.org/abs/2607.11643",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },

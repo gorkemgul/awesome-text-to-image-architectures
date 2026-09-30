@@ -4,7 +4,7 @@
 
 A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.
 
-**295 models and families · Reviewed 2026-09-29**
+**310 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -14,13 +14,13 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | --- | ---: |
 | [Early neural text-to-image models](models/early.md) | 3 |
 | [Generative adversarial networks](models/gan.md) | 46 |
-| [Autoregressive image-token models](models/ar-token.md) | 21 |
-| [Masked and parallel image-token models](models/masked.md) | 11 |
+| [Autoregressive image-token models](models/ar-token.md) | 22 |
+| [Masked and parallel image-token models](models/masked.md) | 12 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 11 |
 | [Latent diffusion with U-Net backbones](models/latent-unet.md) | 21 |
-| [Diffusion transformers and flow matching](models/dit.md) | 47 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 10 |
-| [Unified multimodal understanding and generation](models/unified.md) | 78 |
+| [Diffusion transformers and flow matching](models/dit.md) | 54 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 11 |
+| [Unified multimodal understanding and generation](models/unified.md) | 83 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
 
@@ -29,7 +29,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 295 entries</summary>
+<summary>Alphabetical model list · 310 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -46,11 +46,13 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
 | [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | GAN | T → I |
 | [BAGEL](#bagel) | Unified | T, I → T, I |
+| [BIT (Bidirectional Image-Text Diffusion Bridges)](#bit) | DiT / flow | T, I → T, I |
 | [BitDance](#bitdance) | Continuous AR | T → I |
 | [BK-SDM](#bk-sdm) | Efficient | T → I |
 | [BLIP3-o](#blip3-o) | Unified | T, I → T, I |
 | [BLIP3o-NEXT](#blip3o-next) | Unified | T, I → I |
 | [BLM-SGAN](#blm-sgan) | GAN | T → I |
+| [Boogu-Image-0.1](#boogu-image) | Unified | T, I → I |
 | [Bridge Diffusion Model (BDM)](#bridge-diffusion) | Latent U-Net | T → I |
 | [C4Synth](#c4synth) | GAN | T → I |
 | [CAGAN](#cagan) | GAN | T → I |
@@ -90,6 +92,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [DreamLLM](#dreamllm) | Unified | T, I → T, I |
 | [DSE-GAN](#dse-gan) | GAN | T → I |
 | [DTGAN](#dtgan) | GAN | T → I |
+| [DuetGen](#duetgen) | Continuous AR | T → I |
 | [DuoGen](#duogen) | Unified | T, I → T, I |
 | [E-MMDiT (AMD Nitro-E)](#e-mmdit) | Efficient | T → I |
 | [eDiff-I](#ediff-i) | Pixel diffusion | T, I → I |
@@ -103,6 +106,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | Latent U-Net | T → I |
 | [FA-GAN](#fa-gan) | GAN | T → I |
 | [FIBO](#fibo) | DiT / flow | T → I |
+| [FLAT](#flat) | Unified | T, I → T, I |
 | [FlowInOne](#flowinone) | Unified | T, I → I |
 | [FlowTok](#flowtok) | DiT / flow | T, I → T, I |
 | [Fluid](#fluid) | Continuous AR | T → I |
@@ -139,6 +143,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Ideogram 4.0](#ideogram-4) | DiT / flow | T → I |
 | [ILLUME](#illume) | Unified | T, I → T, I |
 | [ILLUME+](#illume-plus) | Unified | T, I → T, I |
+| [ILLUME-X](#illume-x) | Unified | T, I → T, I |
 | [ImageBART](#imagebart) | AR token | T, I → I |
 | [Imagen](#imagen) | Pixel diffusion | T → I |
 | [Imagen 2](#imagen-2) | API | T, I → I |
@@ -174,6 +179,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Libra-2](#libra-2) | Unified | T, I → T, I |
 | [LINA](#lina) | Continuous AR | T → I |
 | [Liquid](#liquid) | Unified | T, I → T, I |
+| [LLaDA-Image](#llada-image) | DiT / flow | T, I → I |
 | [LLaDA-o](#llada-o) | Unified | T, I → I |
 | [LLaDA2.0-Uni](#llada2-uni) | Unified | T, I → T, I |
 | [LlamaGen](#llamagen) | AR token | T → I |
@@ -213,14 +219,17 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MobileDiffusion](#mobilediffusion) | Efficient | T → I |
 | [Mogao](#mogao) | Unified | T, I → T, I |
 | [MonoFormer](#monoformer) | Unified | T → T, I |
+| [Moonworks Lunara](#moonworks-lunara) | DiT / flow | T → I |
 | [MSMT-GAN](#msmt-gan) | GAN | T → I |
 | [Muddit](#muddit) | Unified | T, I → T, I |
 | [Mural](#mural) | Unified | T → I |
 | [Muse](#muse) | Masked token | T → I |
 | [Muse Image](#muse-image) | API | T, I → I |
+| [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | Masked token | T → I |
 | [NExT-GPT](#next-gpt) | Unified | T, I, V, A → T, I, V, A |
 | [NextFlow](#nextflow) | Unified | T, I → T, I |
 | [NextStep-1](#nextstep-1) | Continuous AR | T, I → I |
+| [Nexus](#nexus) | DiT / flow | T → I |
 | [Nexus-Gen](#nexus-gen) | Unified | T, I → T, I |
 | [Normalizing Trajectory Models](#ntm) | Continuous AR | T → I |
 | [Nucleus-Image](#nucleus-image) | DiT / flow | T → I |
@@ -248,6 +257,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Playground v3](#playground-v3) | DiT / flow | T → I |
 | [ProxT2I](#proxt2i) | DiT / flow | T → I |
 | [PS-VAE](#ps-vae) | Unified | T, I → I |
+| [PSP-DiT](#psp-dit) | DiT / flow | T → I |
 | [PUMA](#puma) | Unified | T, I → T, I |
 | [Qwen-Image](#qwen-image) | DiT / flow | T → I |
 | [Qwen-Image-2.0](#qwen-image-2) | DiT / flow | T, I → I |
@@ -297,6 +307,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [STARFlow2](#starflow2) | Unified | T, I → T, I |
 | [StyleGAN-T](#stylegan-t) | GAN | T → I |
 | [SVG-T2I](#svg-t2i) | DiT / flow | T → I |
+| [Swift-Image](#swift-image) | DiT / flow | T, I → I |
 | [SwiftBrush](#swiftbrush) | Efficient | T → I |
 | [Switti](#switti) | AR token | T → I |
 | [SynerGen-VL](#synergen-vl) | Unified | T, I → T, I |
@@ -316,6 +327,9 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [UniDiffuser](#unidiffuser) | Unified | T, I → T, I |
 | [Unified-IO](#unified-io) | Unified | T, I → T, I |
 | [Unified-IO 2](#unified-io-2) | Unified | T, I, V, A → T, I, A |
+| [UniGen-AR](#unigen-ar) | AR token | T, I → I |
+| [UniSpace](#unispace) | Unified | T, I → I |
+| [UniWorld-Design](#uniworld-design) | DiT / flow | T, I → I |
 | [UniWorld-V1](#uniworld) | Unified | T, I → T, I |
 | [UPainting](#upainting) | Latent U-Net | T → I |
 | [Versatile Diffusion](#versatile-diffusion) | Latent U-Net | T, I → I, T |
@@ -325,6 +339,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Würstchen](#wuerstchen) | Latent U-Net | T → I |
 | [X-LXMERT](#x-lxmert) | Masked token | T → I |
 | [X-Omni](#x-omni) | Unified | T, I → T, I |
+| [Xiaomi-Robotics-U0](#xiaomi-robotics-u0) | Unified | T, I → I |
 | [XMC-GAN](#xmc-gan) | GAN | T → I |
 | [Z-Image](#z-image) | DiT / flow | T → I |
 | [Z-Image Turbo++](#z-image-turbo-pp) | Efficient | T → I |
@@ -493,6 +508,18 @@ BAGEL (Scalable Generative Cognitive Model) is ByteDance Seed's open unified mod
 
 *Figure 2 · [Source](https://arxiv.org/abs/2505.14683)*
 
+<a id="bit"></a>
+
+### BIT (Bidirectional Image-Text Diffusion Bridges)
+
+BIT (Bidirectional Image-Text Diffusion Bridges), from Stanford University, reframes text-to-image diffusion as a bidirectional bridge between text and image data rather than a one-way noise-to-image process. Instead of starting from Gaussian noise and injecting a text prompt as side conditioning, BIT constructs a stochastic process that interpolates directly between continuous text-token representations and image pixels, so the same DiT-XL/2 network can run forward (text-to-image) or its analytically derived time-reversal (image-to-text captioning). The authors argue this source-aware, reversible path supports richer sampling algorithms — such as retracing a generation to recover an approximate caption, or generating semantically related image variants — and show it is competitive with standard diffusion and flow-matching baselines on text-to-image and image-to-text benchmarks as well as on a scientific cell-fate modeling task.
+
+[Paper](https://arxiv.org/abs/2608.27885) · [GitHub](https://github.com/gabeguo/bit_diffusion) · [Project](https://bit-diffusion.github.io) · [Details](models/dit.md#bit)
+
+![BIT (Bidirectional Image-Text Diffusion Bridges) — Figure 1 (PDF p. 3)](assets/architectures/bit.png)
+
+*Figure 1 (PDF p. 3) · [Source](https://arxiv.org/abs/2608.27885)*
+
 <a id="bitdance"></a>
 
 ### BitDance
@@ -552,6 +579,18 @@ BLM-SGAN (Bidirectional Language-Modeling Semantic-Spatial GAN) revisits the sta
 ![BLM-SGAN — Figure 2](assets/architectures/blm-sgan.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2606.08847)*
+
+<a id="boogu-image"></a>
+
+### Boogu-Image-0.1
+
+Boogu-Image-0.1 is an open-source unified image generation and instruction-editing model family that argues open text-to-image models can close the gap to closed-source systems primarily by strengthening instruction understanding — via a stronger Qwen3-VL-8B encoder, agentic prompt rewriting, model routing between Base/Turbo variants, and inference-time reflection — together with data-quality and training-pipeline improvements, rather than through architectural scale. Trained from scratch on 208.62M unique images at a reported cost of about $400K, it reports performance competitive with or approaching leading closed-source systems on the authors' Boogu Arena and on Qwen-Image-Bench, and releases weights, code and training recipes under Apache-2.0.
+
+[Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Details](models/unified.md#boogu-image)
+
+![Boogu-Image-0.1 — Editorial input/output diagram](assets/architectures/boogu-image.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2607.13125)*
 
 <a id="bridge-diffusion"></a>
 
@@ -1021,6 +1060,18 @@ Single-stage generator with seven upsampling layers, each carrying a channel-awa
 
 *Figure 2 · [Source](https://arxiv.org/abs/2011.02709)*
 
+<a id="duetgen"></a>
+
+### DuetGen
+
+DuetGen is a visual text generation system for producing text-rich images (e.g. posters, signage) that jointly trains an autoregressive layout planner with a diffusion-transformer renderer under a framework the authors call DeepFusion, rather than optimizing planning and rendering as separate stages. A 2B-parameter AR planner predicts where text should appear and what it should say, and a 4B single-stream DiT renders the image conditioned on the planner's representations, with rendering-loss gradients flowing back into the planner so its layout representations are shaped by what the renderer can actually realize. A Phase-Aware Attention Modulation mechanism strengthens the binding between image regions and their intended text content and coordinates at inference.
+
+[Paper](https://arxiv.org/abs/2609.22916) · GitHub: no author-linked repository found · [Details](models/continuous-ar.md#duetgen)
+
+![DuetGen — Figure 2](assets/architectures/duetgen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2609.22916)*
+
 <a id="duogen"></a>
 
 ### DuoGen
@@ -1176,6 +1227,18 @@ FIBO (Bria AI) is an open-source text-to-image model trained exclusively on long
 ![FIBO — Figure 2](assets/architectures/fibo.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2511.06876)*
+
+<a id="flat"></a>
+
+### FLAT
+
+FLAT (Meta AI) is a representation-pretraining framework that jointly optimizes one shared multimodal encoder with downstream text-to-image and image-to-text decoders, so the same continuous representation serves as both a discriminative retrieval embedding and a generative conditioning signal. Images and text are mapped into a unified, variable-length continuous 1D sequence space using register tokens and nested dropout over a prefix length K, trained with combined contrastive and bidirectional generative objectives; a rectified-flow-matching decoder produces images and an autoregressive decoder produces captions. The paper reports competitive cross-modal retrieval alongside a text-to-image GenEval score of 71.1 zero-shot from pretraining (83.1 after task-specific fine-tuning).
+
+[Paper](https://arxiv.org/abs/2609.16591) · GitHub: no author-linked repository found · [Details](models/unified.md#flat)
+
+![FLAT — Figure 1 (PDF p. 3)](assets/architectures/flat.png)
+
+*Figure 1 (PDF p. 3) · [Source](https://arxiv.org/abs/2609.16591)*
 
 <a id="flowinone"></a>
 
@@ -1609,6 +1672,18 @@ ILLUME+ is an enhanced version of ILLUME that adds a dual vision tokenizer and a
 
 *Figure 3 · [Source](https://arxiv.org/abs/2504.01934)*
 
+<a id="illume-x"></a>
+
+### ILLUME-X
+
+ILLUME-X (Harbin Institute of Technology and Huawei Noah's Ark Lab) is a unified multimodal model aimed specifically at free-form, N-to-M interleaved text-image generation — producing arbitrary sequences of text and image outputs, such as illustrated step-by-step instructions or per-object image decompositions, rather than a single fixed-modality output. It combines separate understanding and generation attention branches sharing one multi-modal self-attention over a joint text/VAE/ViT token sequence, trained with a progressive strategy and a specialized attention mask over a curated 100K-sample interleaved dataset. The authors also propose ILScore, an evaluation protocol for cross-modal continuity and per-modality quality in interleaved generation.
+
+[Paper](https://arxiv.org/abs/2606.30054) · [GitHub](https://github.com/ChonghuinanWang/ILLUME-X) · [Details](models/unified.md#illume-x)
+
+![ILLUME-X — Figure 2](assets/architectures/illume-x.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.30054)*
+
 <a id="imagebart"></a>
 
 ### ImageBART
@@ -2029,6 +2104,18 @@ Liquid, from ByteDance, HUST and HKU, argues that visual understanding and gener
 
 *Figure 2 · [Source](https://arxiv.org/abs/2412.04332)*
 
+<a id="llada-image"></a>
+
+### LLaDA-Image
+
+LLaDA-Image (Ant Group's inclusionAI) is a text-to-image and instruction-editing system that pairs a 6B diffusion transformer trained from scratch with a frozen multimodal understanding module built on the LLaDA2.0-Mini diffusion language model, connected through cross-attention and a lightweight connector rather than sharing weights end-to-end. It reuses a FLUX.2 VAE for image tokenization and trains with parameter-free RMSNorm and the Muon optimizer on a large image-only-then-paired-data curriculum, reporting open-source state-of-the-art scores on Qwen-Image-Bench; a distilled LLaDA-Image-Turbo variant reduces sampling to 2-4 steps. The authors release model weights, training code and training recipes.
+
+[Paper](https://arxiv.org/abs/2609.03796) · [GitHub](https://github.com/inclusionAI/LLaDA-Image) · [Details](models/dit.md#llada-image)
+
+![LLaDA-Image — Figure 3](assets/architectures/llada-image.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2609.03796)*
+
 <a id="llada-o"></a>
 
 ### LLaDA-o
@@ -2215,7 +2302,7 @@ M6-UFC (Alibaba and Tsinghua, 2021) unifies text-to-image generation with image-
 
 Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.
 
-[Paper](https://arxiv.org/abs/2607.19064) · [Details](models/dit.md#mage-flow)
+[Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found · [Details](models/dit.md#mage-flow)
 
 ![Mage-Flow — Figure 5](assets/architectures/mage-flow.png)
 
@@ -2497,6 +2584,18 @@ MonoFormer, from a group at Zhejiang University and Alibaba, uses a single trans
 
 *Figure 1 (PDF p. 2) · [Source](https://arxiv.org/abs/2409.16280)*
 
+<a id="moonworks-lunara"></a>
+
+### Moonworks Lunara
+
+Moonworks Lunara, from the startup Moonworks, is a text-to-image model built around a novel Diffusion Mixture Transformer (DMT) architecture and framed around what the authors call Artistic Intelligence — generation that preserves semantic, artistic and compositional structure while leaving room for creative variation. Text (and optional image) input is routed through dedicated art-conception and compositional-attention stages into per-style latent-mixture denoising experts, and the model is trained with an iterative algorithm that actively selects informative generated samples and injects curated human-created art into the training distribution over successive rounds. The paper reports Lunara ranking first in aesthetic quality and competitive on content-integrity metrics against comparable sub-10B models, with sub-10-second inference.
+
+[Paper](https://arxiv.org/abs/2609.22272) · GitHub: no author-linked repository found · [Details](models/dit.md#moonworks-lunara)
+
+![Moonworks Lunara — Figure 4 (PDF p. 7)](assets/architectures/moonworks-lunara.png)
+
+*Figure 4 (PDF p. 7) · [Source](https://arxiv.org/abs/2609.22272)*
+
 <a id="msmt-gan"></a>
 
 ### MSMT-GAN
@@ -2557,6 +2656,18 @@ Muse Image is the image generation model from Meta Superintelligence Labs, annou
 
 *Editorial input/output diagram · [Source](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/)*
 
+<a id="nemotron-labs-diffusion-image"></a>
+
+### Nemotron-Labs-Diffusion-Image
+
+Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for high-resolution text-to-image synthesis that targets two limitations of prior masked-token diffusion models: the inability to revise tokens once unmasked, and sparse training signal as tokenizer vocabularies grow. It adds a token-editing mechanism so the model can dynamically correct previously unmasked image tokens during sampling, and a Grouped Cross-Entropy objective that spreads training signal to semantically neighboring tokens in the codebook. The paper reports state-of-the-art masked-diffusion results at 1024px and strong quality in as few as one to five sampling steps.
+
+[Paper](https://arxiv.org/abs/2606.29814) · GitHub: no author-linked repository found · [Details](models/masked.md#nemotron-labs-diffusion-image)
+
+![Nemotron-Labs-Diffusion-Image — Figure 3 (PDF p. 5)](assets/architectures/nemotron-labs-diffusion-image.png)
+
+*Figure 3 (PDF p. 5) · [Source](https://arxiv.org/abs/2606.29814)*
+
 <a id="next-gpt"></a>
 
 ### NExT-GPT
@@ -2592,6 +2703,18 @@ NextStep-1 (StepFun) applies plain next-token prediction to a sequence of discre
 ![NextStep-1 — Figure 2](assets/architectures/nextstep-1.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2508.10711)*
+
+<a id="nexus"></a>
+
+### Nexus
+
+Nexus is a text-to-image rectified-flow diffusion transformer designed around the joint optimization of three efficiency techniques that prior work has mostly explored separately: sparse Mixture-of-Experts feed-forward layers, linear-complexity Gated DeltaNet attention in place of quadratic self-attention, and per-expert low-bit quantization. The combination targets the compute, sequence-length and memory bottlenecks that limit high-resolution diffusion transformers on edge hardware, and the paper reports generation quality comparable to SDXL and SD3 with markedly better latency and memory scaling.
+
+[Paper](https://arxiv.org/abs/2608.16104) · GitHub: no author-linked repository found · [Details](models/dit.md#nexus)
+
+![Nexus — Figure 2](assets/architectures/nexus.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2608.16104)*
 
 <a id="nexus-gen"></a>
 
@@ -2916,6 +3039,18 @@ PS-VAE addresses two obstacles in adapting representation-encoder features (rath
 ![PS-VAE — Figure 5](assets/architectures/ps-vae.png)
 
 *Figure 5 · [Source](https://arxiv.org/abs/2512.17909)*
+
+<a id="psp-dit"></a>
+
+### PSP-DiT
+
+Panoptic Scene Program Diffusion Transformer (PSP-DiT) targets compositional text-to-image prompts — those requiring correct object counts, attribute ownership, spatial ordering and role-sensitive relations — by making a panoptic scene program (a structured graph of instances, attributes, relations and counts) a first-class latent that the diffusion transformer denoises jointly with the image, rather than an external layout signal or a post-hoc parse of the output. Coupled transformer streams for the image and scene-program latents exchange information through bidirectional cross-attention, and grounding plus cycle-consistency objectives tie the scene program to visual support in the generated image. The paper reports gains over a strong flat-text DiT baseline concentrated on counting, attribute binding, relational and long structured prompts, with modest added inference cost.
+
+[Paper](https://arxiv.org/abs/2609.31780) · GitHub: no author-linked repository found · [Details](models/dit.md#psp-dit)
+
+![PSP-DiT — Figure 1](assets/architectures/psp-dit.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2609.31780)*
 
 <a id="puma"></a>
 
@@ -3505,6 +3640,18 @@ SVG-T2I scales the SVG (Self-supervised representations for Visual Generation) f
 
 *Figure 2 · [Source](https://arxiv.org/abs/2512.11749)*
 
+<a id="swift-image"></a>
+
+### Swift-Image
+
+Swift-Image studies how far a small, compute-constrained unified generator can be pushed through training engineering rather than scale. Its 6B single-stream diffusion transformer is conditioned on a Qwen3-VL encoder and a FLUX.2 autoencoder, trained with a progressive pipeline that grows from broad semantic coverage to high-resolution, unified generation-and-editing supervision, then post-trained with parallel expert reinforcement learning and multi-teacher on-policy distillation. A separate Prompt Enhancer model handles reasoning about user intent so the diffusion transformer can focus on rendering, and structural pruning plus few-step distillation give compressed 3B and low-step variants; the paper reports leading open-source aggregate performance at only 6B parameters and 243K GPU training hours.
+
+[Paper](https://arxiv.org/abs/2608.20334) · GitHub: no author-linked repository found · [Details](models/dit.md#swift-image)
+
+![Swift-Image — Figure 5 (PDF p. 6)](assets/architectures/swift-image.png)
+
+*Figure 5 (PDF p. 6) · [Source](https://arxiv.org/abs/2608.20334)*
+
 <a id="swiftbrush"></a>
 
 ### SwiftBrush
@@ -3733,6 +3880,42 @@ Unified-IO 2, from the Allen Institute for AI, is an autoregressive encoder-deco
 
 *Figure 2 · [Source](https://arxiv.org/abs/2312.17172)*
 
+<a id="unigen-ar"></a>
+
+### UniGen-AR
+
+UniGen-AR (Carnegie Mellon University, UIUC and Toyota Research Institute) targets Unified Visual Generation — one model producing text-to-image generation, editing, restoration and perception outputs — while avoiding the inference latency of diffusion-based unified models. It pairs a general-purpose multimodal language model, which encodes instructions and control signals, with an efficient next-scale visual autoregressive decoder in the style of Infinity, combining MLLM-based conditioning flexibility with VAR's parallel-scale sampling efficiency. The paper reports up to 19x lower inference latency than diffusion-based unified baselines across more than 15 tasks spanning four task families.
+
+[Paper](https://arxiv.org/abs/2607.24157) · [Project](https://zpbao.github.io/projects/unigenar) · GitHub: no author-linked repository found · [Details](models/ar-token.md#unigen-ar)
+
+![UniGen-AR — Figure 2](assets/architectures/unigen-ar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2607.24157)*
+
+<a id="unispace"></a>
+
+### UniSpace
+
+UniSpace asks whether multimodal understanding, text-to-image generation and editing can share one visual representation built from a pretrained semantic ViT, instead of pairing a semantic encoder with a separate VAE for pixel-level generation. The authors show a frozen semantic ViT's blocks are not inherently unable to preserve fine detail — the original patch embedding is the bottleneck — and introduce Patch Reparameterization, adding a reconstruction-aware patch embedding alongside the original semantic one. This unified representation is scaled into UniSpace, an 8B Mixture-of-Transformer-Experts model that performs understanding, generation and editing without a separate VAE pathway.
+
+[Paper](https://arxiv.org/abs/2608.08676) · [GitHub](https://github.com/yjb6/UniSpace) · [Details](models/unified.md#unispace)
+
+![UniSpace — Figure 3](assets/architectures/unispace.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2608.08676)*
+
+<a id="uniworld-design"></a>
+
+### UniWorld-Design
+
+UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation around semantic RGBA layers rather than flat pixels, so that generation, decomposition and editing operate on independently addressable, complete visual objects instead of a monolithic raster. It comprises two flow-matching models sharing an RGBA-extended autoencoder: Text-to-RGBA generates standalone transparent design assets directly from a prompt, and Image-to-Layer uses a new Layer-Instruction Binding MMDiT to decompose a finished image into an ordered stack of complete semantic RGBA layers, following instructions for top-level decomposition, recursive refinement, or targeted extraction of a specific element. The paper reports improvements over Qwen-Image-Layered on per-layer fidelity and transparency, and the highest CLIP Score among compared text-to-RGBA generators.
+
+[Paper](https://arxiv.org/abs/2608.03971) · [Project](https://rabbitvis.rabbitpre.com/blog) · GitHub: no author-linked repository found · [Details](models/dit.md#uniworld-design)
+
+![UniWorld-Design — Figure 3](assets/architectures/uniworld-design.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2608.03971)*
+
 <a id="uniworld"></a>
 
 ### UniWorld-V1
@@ -3840,6 +4023,18 @@ X-Omni, from Tencent Hunyuan, argues that discrete autoregressive image generati
 ![X-Omni — Figure 3](assets/architectures/x-omni.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2507.22058)*
+
+<a id="xiaomi-robotics-u0"></a>
+
+### Xiaomi-Robotics-U0
+
+Xiaomi-Robotics-U0 is a 38-billion-parameter multimodal autoregressive foundation model that treats embodied generation (multi-view robot scene generation, structured embodied transfer, embodied video) as an extension of general text-to-image and image-editing generation, rather than a separately fine-tuned robotics model. Built by extending a Qwen-3-32B decoder-only transformer's vocabulary with an IBQ image tokenizer, it models text and image tokens under one next-token-prediction objective, preserving the generalization of large-scale text/image pretraining while adding embodiment-specific tasks. The paper reports state-of-the-art multi-view embodied scene generation and transfer results, including a jump in out-of-distribution manipulation success rate for a downstream robot policy.
+
+[Paper](https://arxiv.org/abs/2607.11643) · GitHub: no author-linked repository found · [Details](models/unified.md#xiaomi-robotics-u0)
+
+![Xiaomi-Robotics-U0 — Figure 3](assets/architectures/xiaomi-robotics-u0.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2607.11643)*
 
 <a id="xmc-gan"></a>
 

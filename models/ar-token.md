@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**21 models · Reviewed 2026-09-29**
+**22 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -38,6 +38,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SimpleAR](#simplear) | 2025-04-15 | T → I | generation |
 | [STAR](#star-t2i) | 2024-06-16 | T → I | generation |
 | [Switti](#switti) | 2024-12-02 | T → I | generation |
+| [UniGen-AR](#unigen-ar) | 2026-07-27 | T, I → I | editing |
 
 </details>
 
@@ -575,5 +576,28 @@ Switti (Yandex Research, 2024) is a scale-wise (VAR-style) autoregressive text-t
 Building on VAR-style next-scale prediction, Switti replaces cross-scale causal self-attention with self-attention restricted to the tokens of the current scale only, since each scale's inputs already carry upsampled information from earlier scales (paper Figure 6); this removes the need for a KV cache and speeds up sampling by about 21%. Each transformer block interleaves self-attention, text cross-attention and a SwiGLU feed-forward layer with RMSNorm and Normalized RoPE (paper Figure 2, cropped from the PDF). Classifier-free guidance is disabled at the last two (highest-resolution) scales, since attention analysis shows those scales attend weakly to text, giving a further ~32% sampling speedup with no quality loss. The approximately 2.5B-parameter, 30-layer model is trained in stages at 256px (400K steps) and 512px (200K steps) on 100M curated pairs filtered from 6B web images, then fine-tuned on ~40K aesthetic pairs at 1024px with a fine-tuned RQ-VAE decoder.
 
 **License:** code: Apache-2.0.
+
+</details>
+
+<a id="unigen-ar"></a>
+
+### UniGen-AR
+
+General-purpose multimodal language model paired with an Infinity-style next-scale visual autoregressive (VAR) decoder that predicts discrete VQ-VAE image tokens, so instruction and control-signal conditioning from the MLLM guides efficient parallel-scale token decoding across more than 15 unified-visual-generation tasks.
+
+UniGen-AR (Carnegie Mellon University, UIUC and Toyota Research Institute) targets Unified Visual Generation — one model producing text-to-image generation, editing, restoration and perception outputs — while avoiding the inference latency of diffusion-based unified models. It pairs a general-purpose multimodal language model, which encodes instructions and control signals, with an efficient next-scale visual autoregressive decoder in the style of Infinity, combining MLLM-based conditioning flexibility with VAR's parallel-scale sampling efficiency. The paper reports up to 19x lower inference latency than diffusion-based unified baselines across more than 15 tasks spanning four task families.
+
+[Paper](https://arxiv.org/abs/2607.24157) · [Project](https://zpbao.github.io/projects/unigenar) · GitHub: no author-linked repository found
+
+![UniGen-AR — Figure 2](../assets/architectures/unigen-ar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2607.24157)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 2: an MLLM encodes free-form instructions and control signals into a unified conditioning sequence that guides an Infinity-style VAR decoder, decoded to pixels by a VQ-VAE; the paper studies VQ-VAE codebook size/hierarchy as the key factor for scaling VAR in this setting (Figure 4). Reported up to 19x lower inference latency than diffusion-based unified baselines (e.g. OmniGen) at comparable or better quality across generation, editing, restoration and perception tasks (Figures 3, B-D). The project page lists code as not yet released ('Code: soon'), so GitHub availability is not established.
 
 </details>

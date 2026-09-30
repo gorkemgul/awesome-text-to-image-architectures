@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**11 models · Reviewed 2026-09-29**
+**12 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -23,6 +23,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [MaskGen](#maskgen) | 2025-01-13 | T → I | generation |
 | [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
 | [Muse](#muse) | 2023-01-02 | T → I | generation |
+| [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | 2026-06-29 | T → I | generation |
 | [Paella](#paella) | 2022-11-14 | T, I → I | editing |
 | [TMDM-3B](#tmdm-3b) | 2026-02-25 | T → I, A | generation |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
@@ -178,6 +179,29 @@ Muse (Google Research, 2023) generates images by masked-token modeling rather th
 **Input → output:** T → I · **Interaction:** generation
 
 A frozen 4.6B-parameter T5-XXL language model provides text embeddings that carry rich lexical and compositional information (nouns, verbs, spatial relations); a base transformer is trained with a masked-token cross-entropy objective on VQGAN codes (16×16 tokens at 256px) and generates images at inference by iteratively unmasking tokens in parallel (paper Figure 3, "Muse Framework"). A second super-resolution transformer, conditioned on the low-resolution tokens and the text embedding, upsamples to a 64×64 token grid (512px) with the same masked-prediction mechanism (paper Figure 4). The largest base model has 3B parameters (48 layers); combined with the super-resolution model and frozen T5-XXL, total parameters reach about 7.6B. Muse is trained on the Imagen dataset (460M image-text pairs). The authors explicitly did not release code, a demo or weights, citing the risk of misuse.
+
+</details>
+
+<a id="nemotron-labs-diffusion-image"></a>
+
+### Nemotron-Labs-Diffusion-Image
+
+Single decoder-only transformer masked discrete diffusion model (MDM) over VQ image tokens with an inference-time token-editing mechanism that revises already-unmasked tokens, trained with a Grouped Cross-Entropy objective for dense supervision over a large image-token vocabulary.
+
+Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for high-resolution text-to-image synthesis that targets two limitations of prior masked-token diffusion models: the inability to revise tokens once unmasked, and sparse training signal as tokenizer vocabularies grow. It adds a token-editing mechanism so the model can dynamically correct previously unmasked image tokens during sampling, and a Grouped Cross-Entropy objective that spreads training signal to semantically neighboring tokens in the codebook. The paper reports state-of-the-art masked-diffusion results at 1024px and strong quality in as few as one to five sampling steps.
+
+[Paper](https://arxiv.org/abs/2606.29814) · GitHub: no author-linked repository found
+
+![Nemotron-Labs-Diffusion-Image — Figure 3 (PDF p. 5)](../assets/architectures/nemotron-labs-diffusion-image.png)
+
+*Figure 3 (PDF p. 5) · [Source](https://arxiv.org/abs/2606.29814)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 3: unlike prior single-pass masked diffusion models such as Meissonic, Nemotron-Labs-Diffusion-Image's single decoder-only transformer processes prompt tokens together with masked and deliberately corrupted VQ image tokens, predicting both an unmasking and a correction distribution so previously unmasked tokens can be revised later in sampling (Figure 5/9 ablate the correction threshold). The Grouped Cross-Entropy (GCE) loss assigns positive learning signal to tokens neighboring the ground truth in the tokenizer's embedding space, addressing sparse per-token signal at large codebook sizes, and a custom fused GCE kernel reduces training VRAM. The paper reports strong few-step generation (1-5 steps, Figure 7) at 1024px. No repository or license information is disclosed.
 
 </details>
 
