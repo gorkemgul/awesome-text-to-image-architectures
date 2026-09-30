@@ -38,7 +38,6 @@ MANIFEST = ROOT / "data" / "figures.json"
 def list_figures(arxiv_id):
     final_url, raw = get(f"https://arxiv.org/html/{arxiv_id}")
     html = raw.decode("utf-8", "replace")
-    base = final_url if final_url.endswith("/") else final_url + "/"
     # Top-level figures have ids like S4.F2 (panels are S4.F2.sf1); slice between them.
     starts = [m.start() for m in re.finditer(r'<figure id="[^"]*\bF\d+"', html)]
     for start, end in zip(starts, starts[1:] + [len(html)]):
@@ -50,7 +49,7 @@ def list_figures(arxiv_id):
                 break
         if not text:
             continue
-        images = [urljoin(base, unescape(src)) for src in re.findall(r'<img[^>]*src="([^"]+)"', body)]
+        images = [urljoin(final_url, unescape(src)) for src in re.findall(r'<img[^>]*src="([^"]+)"', body)]
         inline = "<svg" in body
         print(text[:160])
         for image in images:
