@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**1 model · Reviewed 2026-09-29**
+**8 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,11 +17,141 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [aMUSEd](#amused) | 2024-01-03 | T → I | generation |
+| [M6-UFC](#m6-ufc) | 2021-05-29 | T → I | generation |
+| [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
+| [Muse](#muse) | 2023-01-02 | T → I | generation |
+| [Paella](#paella) | 2022-11-14 | T, I → I | editing |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
+| [VQ-Diffusion](#vq-diffusion) | 2021-11-29 | T, I → I | editing |
+| [X-LXMERT](#x-lxmert) | 2020-09-23 | T → I | generation |
 
 </details>
 
 ## Architectures
+
+<a id="amused"></a>
+
+### aMUSEd
+
+Lightweight open reproduction of Muse: a U-ViT masked image transformer that predicts VQGAN tokens conditioned on a frozen CLIP-L/14 text encoder, without a separate super-resolution stage.
+
+aMUSEd (Hugging Face, STUDIO EY and Amazon, 2024) is an open, 10x-smaller reproduction of Google's unreleased Muse model, replacing Muse's frozen T5-XXL text encoder with a smaller CLIP-L/14 encoder and using a single U-ViT masked-token transformer instead of a two-stage base-plus-super-resolution pipeline. The 256px and 512px checkpoints prioritize fast, low-resource inference and are released with training and inference code.
+
+[Paper](https://arxiv.org/abs/2401.01808) · [GitHub](https://github.com/huggingface/open-muse) · [Model card](https://huggingface.co/amused/amused-256)
+
+![aMUSEd — Figure 1](../assets/architectures/amused.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2401.01808)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A 146M-parameter VQGAN (8192-entry codebook, 16x downsampling) tokenizes images; a U-ViT backbone (with downsampling/upsampling blocks around a transformer stack) is trained with a masked-image-modeling cross-entropy loss to predict masked VQGAN tokens conditioned on frozen CLIP-L/14 text encoder hidden states, and the U-ViT design lets the 512px model generate directly in a single stage without Muse's separate super-resolution transformer (paper Figure 1). Two checkpoints are released: 603M parameters at 256px and 608M at 512px (continued training from the 256px model). Training used a deduplicated, aesthetically filtered (score > 4.5) subset of LAION-2B with watermarked/NSFW content removed; the 256px model trained 1M steps and the 512px model a further 554K steps. Code (from the archived open-muse repository) is Apache-2.0; the released weights are under an OpenRAIL++ license.
+
+**License:** code: Apache-2.0; weights: openrail++.
+
+**Variants:** aMUSEd-256; aMUSEd-512.
+
+</details>
+
+<a id="m6-ufc"></a>
+
+### M6-UFC
+
+Bidirectional transformer that represents textual, visual and preservation controls plus the target image as one discrete token sequence, generated non-autoregressively by Progressive Non-Autoregressive Generation (PNAG).
+
+M6-UFC (Alibaba and Tsinghua, 2021) unifies text-to-image generation with image-conditioned controllable synthesis by putting textual, visual and preservation control signals into one token sequence for a single bidirectional transformer, then decoding the target image tokens with an iterative non-autoregressive procedure (PNAG) that refines only the least confident tokens at each step, rather than a fixed left-to-right order.
+
+[Paper](https://arxiv.org/abs/2105.14211) · GitHub: no author-linked repository found
+
+![M6-UFC — Figure 2](../assets/architectures/m6-ufc.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2105.14211)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A convolutional autoencoder with vector quantization (1,024-entry codebook) first discretizes 256×256 images into 16×16 token grids; M6-UFC then places textual controls (class labels or free text), optional visual controls (cropped reference-image token patches) and optional preservation-control masks alongside the image tokens to generate, all as one sequence for a single bidirectional transformer trained with masked-sequence-modeling and a relevance/fidelity estimation objective (paper Figure 2). At inference, PNAG generates all image tokens in parallel and then iteratively re-masks and regenerates the tokens with lowest estimated relevance or fidelity, guided by the two estimator heads (paper Figure 6), rather than decoding left to right. Text-to-image generation without additional visual or preservation controls is documented directly. Experiments use the authors' M2C-Fashion dataset (10.8 million Taobao image-caption pairs) and Multi-Modal CelebA-HQ. No official code repository was found.
+
+</details>
+
+<a id="meissonic"></a>
+
+### Meissonic
+
+1-billion-parameter masked generative transformer mixing multi-modal and single-modal transformer blocks with rotary position embeddings, predicting VQ-VAE tokens for 1024px text-to-image synthesis.
+
+Meissonic (2024) revisits masked generative transformers (in the style of MUSE) as an efficient path to high-resolution text-to-image generation, combining MM-DiT-style multi-modal/single-modal transformer blocks, rotary position embeddings and feature compression to generate 1024px images from a 1B-parameter model trained with under 50 H100 GPU-days, positioning masked-token prediction as a lower-cost alternative to diffusion transformers at comparable resolution.
+
+[Paper](https://arxiv.org/abs/2410.08261) · [GitHub](https://github.com/viiika/Meissonic) · [Model card](https://huggingface.co/MeissonFlow/Meissonic)
+
+![Meissonic — Figure 2](../assets/architectures/meissonic.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2410.08261)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Images are tokenized by a VQ-VAE (16x downsampling, 8192-entry codebook) into a 64×64 grid; during generation, tokens are masked according to a schedule and the transformer predicts them over several steps until the full 1024px grid is filled and decoded (paper Figure 2). The transformer interleaves multi-modal blocks (joint text/image self-attention, roughly one multi-modal block per two single-modal blocks, MM-DiT-style) with single-modal image-only blocks, uses Rotary Position Embeddings instead of absolute position encoding to preserve detail at high resolution, and compresses the 64×64 token grid to 32×32 for most of the network before decompressing, keeping inference tractable on consumer GPUs. Text conditioning uses a single fine-tuned CLIP text encoder (1024-d) rather than a large T5-style encoder. Additional micro-conditions include the masking ratio (discretized into 1000 levels), original resolution, crop coordinates and a human-preference score. Meissonic is trained on about 210 million curated images across a 256→512→1024px curriculum, reported at about 48 H100 GPU-days.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+</details>
+
+<a id="muse"></a>
+
+### Muse
+
+Masked generative transformer that predicts VQGAN image tokens in parallel over several refinement steps, conditioned on frozen T5-XXL text embeddings, followed by a token-space super-resolution transformer.
+
+Muse (Google Research, 2023) generates images by masked-token modeling rather than diffusion or autoregression: a transformer conditioned on a frozen T5-XXL text encoder predicts discrete VQGAN tokens for all masked positions in parallel, refining the image over a handful of steps, and a second masked transformer upsamples the result in token space. The authors report faster inference than comparable diffusion or autoregressive models at similar quality, but did not release code, weights or a public demo.
+
+[Paper](https://arxiv.org/abs/2301.00704) · GitHub: no author-linked repository found
+
+![Muse — Figure 3](../assets/architectures/muse.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2301.00704)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A frozen 4.6B-parameter T5-XXL language model provides text embeddings that carry rich lexical and compositional information (nouns, verbs, spatial relations); a base transformer is trained with a masked-token cross-entropy objective on VQGAN codes (16×16 tokens at 256px) and generates images at inference by iteratively unmasking tokens in parallel (paper Figure 3, "Muse Framework"). A second super-resolution transformer, conditioned on the low-resolution tokens and the text embedding, upsamples to a 64×64 token grid (512px) with the same masked-prediction mechanism (paper Figure 4). The largest base model has 3B parameters (48 layers); combined with the super-resolution model and frozen T5-XXL, total parameters reach about 7.6B. Muse is trained on the Imagen dataset (460M image-text pairs). The authors explicitly did not release code, a demo or weights, citing the risk of misuse.
+
+</details>
+
+<a id="paella"></a>
+
+### Paella
+
+Convolutional encoder-decoder that iteratively denoises quantized VQGAN latent tokens by multinomial sampling and partial renoising, conditioned on ByT5 and CLIP text embeddings.
+
+Paella (LAION and Technical University of Darmstadt, 2022) is a fast text-to-image model that operates on VQGAN latent tokens with a convolutional network instead of a transformer, and samples by repeatedly predicting all tokens and randomly renoising a portion of them back to noise rather than permanently unmasking tokens, converging in about 12 steps. Besides text-to-image generation, the same trained model supports image-conditioned generation and zero-shot image variation through CLIP image embeddings.
+
+[Paper](https://arxiv.org/abs/2211.07292) · [GitHub](https://github.com/dome272/Paella) · [Model card](https://huggingface.co/dome272/Paella)
+
+![Paella — Figure 2](../assets/architectures/paella.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2211.07292)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+A pretrained VQGAN (downsampling factor 4) tokenizes a 256×256 image into a 64×64 discrete latent grid; training randomly replaces a fraction of tokens with random codebook entries ("noise") and trains a convolutional U-Net-like network (residual blocks with convolution and attention at lower resolutions) to predict the original tokens from the corrupted grid, conditioned mostly on ByT5-XL text embeddings (95% of training) and occasionally CLIP text/image embeddings (5%), enabling zero-shot image variation and image+text conditioning (paper Figure 2). Sampling multinomially predicts all tokens, keeps a subset and stochastically renoises the rest back to random tokens for the next step, rather than permanently freezing decided tokens as in MaskGIT/Muse; typical generation uses about 12 steps. The 1B-parameter model is trained on about 900 million LAION-5B aesthetic images; code and weights are MIT-licensed and public.
+
+**License:** code: MIT; weights: mit.
+
+</details>
 
 <a id="generate-it"></a>
 
@@ -45,5 +175,55 @@ This ACM Multimedia 2021 paper from Sun Yat-sen University and Microsoft Researc
 Images are represented at two granularities: dense Faster R-CNN grid features for image-to-text, and K-means cluster indices of those features as discrete targets for text-to-image, following X-LXMERT (paper Figure 2). Text-to-image training masks visual tokens and predicts them with a cross-entropy loss, enabling non-autoregressive mask-predict-k sampling in a few steps (e.g. k = 4); a second stage adds a CLIP-based image-level loss through a Gumbel-softmax approximation. A GAN-based generator converts the 8 × 8 token predictions into a 256 × 256 image. Experiments are on MS-COCO. The paper is unnamed; the name follows the authors' repository (UMT-BITG), which also hosts the related diverse-generation system UMT-DBITG (arXiv 2110.09756).
 
 **License:** code: MIT.
+
+</details>
+
+<a id="vq-diffusion"></a>
+
+### VQ-Diffusion
+
+Discrete denoising diffusion model over VQ-VAE image tokens, using a mask-and-replace forward corruption process and a transformer denoiser that cross-attends to text embeddings.
+
+VQ-Diffusion (Microsoft Research, 2021) applies denoising diffusion to the discrete token space of a VQ-VAE instead of continuous pixels or latents, using a mask-and-replace corruption process that makes corrupted positions explicit to a transformer denoiser conditioned on text through cross-attention. Because the model is trained to reconstruct tokens from partially masked or corrupted versions of an image, it supports text-guided local image editing as well as text-to-image generation, and the paper reports it avoids the unidirectional bias and error accumulation of autoregressive token models.
+
+[Paper](https://arxiv.org/abs/2111.14822) · [GitHub](https://github.com/microsoft/VQ-Diffusion)
+
+![VQ-Diffusion — Figure 1](../assets/architectures/vq-diffusion.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2111.14822)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+A pretrained VQ-VAE first tokenizes a 256×256 image into a 32×32 grid from a fixed codebook; VQ-Diffusion then learns to reverse a forward Markov process that corrupts tokens over T steps by a mix of replacing them with a special [MASK] token and uniformly random substitution, rather than the continuous Gaussian noise used in pixel/latent diffusion (paper Figure 1). At each reverse step a transformer (fixed text encoder, trainable cross-attention image decoder) predicts the clean token distribution conditioned on the current noisy tokens and the text embedding; the mask-and-replace design lets the network know exactly which tokens are corrupted, unlike a pure absorbing-state process. Because it is a masked/iterative refinement over a fixed image, the same model performs text-guided image editing by initializing from partially masked existing tokens. Released sizes are VQ-Diffusion-S (34M) and -B (370M), trained on CUB-200, Oxford-102 and MS-COCO for benchmarking and on Conceptual Captions and LAION-400M subsets for open-domain generation.
+
+**License:** code: MIT.
+
+**Variants:** VQ-Diffusion-S; VQ-Diffusion-B.
+
+</details>
+
+<a id="x-lxmert"></a>
+
+### X-LXMERT
+
+LXMERT cross-modality transformer extended with a discrete visual-cluster prediction head, generating images by non-autoregressive mask-predict sampling over an 8×8 grid of clustered region features.
+
+X-LXMERT (AI2 and UNC Chapel Hill, EMNLP 2020) asks whether a bidirectional vision-language transformer built for understanding tasks (LXMERT) can also generate images. The authors discretize image regions into visual clusters and add masked visual-token training, so the resulting model can synthesize a coarse token grid from a caption via iterative mask-predict decoding, which a separate GAN-based generator converts into a full image, alongside LXMERT's original captioning and QA abilities.
+
+[Paper](https://arxiv.org/abs/2009.11278) · [GitHub](https://github.com/allenai/x-lxmert)
+
+![X-LXMERT — Figure 1](../assets/architectures/x-lxmert.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2009.11278)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+X-LXMERT keeps LXMERT's dual-stream text and vision transformers with a cross-modality encoder, but replaces continuous Faster R-CNN region-feature regression with classification over 10,000 discrete visual clusters obtained by k-means on uniform 8×8 grid features, and trains with a masked visual-token objective so the same model can later fill in all-masked visual input (paper Figure 1, blue blocks mark the LXMERT modifications). Generation samples the 64 grid tokens iteratively with mask-predict (best results from Mask-Predict-4, i.e. 4 refinement rounds), and the predicted cluster ids are passed to a separate conditional GAN-style generator to render pixels. Training combines MS-COCO Captions, Visual Genome and VQA-style datasets (about 9.18M examples in total), though the visual-clustering objective itself uses only COCO captions. Code and the clustering/generation pipeline are released by the Allen Institute for AI; no license file was found in the repository.
 
 </details>

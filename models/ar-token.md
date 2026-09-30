@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**9 models · Reviewed 2026-09-29**
+**20 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -18,14 +18,25 @@ Dates refer to papers or announcements, not necessarily model releases.
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
 | [CogView](#cogview) | 2021-05-26 | T → I | generation |
+| [CogView2](#cogview2) | 2022-04-28 | T → I | generation |
 | [DALL·E](#dall-e) | 2021-02-24 | T → I | generation |
 | [DALL·E Mini](#dall-e-mini) | 2021-07-18 | T → I | generation |
 | [ERNIE-ViLG](#ernie-vilg) | 2021-12-31 | T → I | generation |
 | [ImageBART](#imagebart) | 2021-08-19 | T, I → I | editing |
+| [Infinity](#infinity) | 2024-12-05 | T → I | generation |
 | [L-Verse](#l-verse) | 2021-11-22 | T → I | generation |
+| [LlamaGen](#llamagen) | 2024-06-10 | T → I | generation |
+| [Lumina-mGPT](#lumina-mgpt) | 2024-08-05 | T → I | generation |
+| [Lumina-mGPT 2.0](#lumina-mgpt-2) | 2025-07-23 | T, I → I | editing |
 | [M6](#m6) | 2021-03-01 | T → I | generation |
+| [Make-A-Scene](#make-a-scene) | 2022-03-24 | T → I | generation |
+| [MARS](#mars-t2i) | 2024-07-10 | T → I | generation |
 | [NÜWA](#nuwa) | 2021-11-24 | T, I → I | editing |
+| [Parti](#parti) | 2022-06-22 | T → I | generation |
 | [ruDALL-E](#rudall-e) | 2021-11-02 | T → I | generation |
+| [SimpleAR](#simplear) | 2025-04-15 | T → I | generation |
+| [STAR](#star-t2i) | 2024-06-16 | T → I | generation |
+| [Switti](#switti) | 2024-12-02 | T → I | generation |
 
 </details>
 
@@ -51,6 +62,31 @@ CogView (Tsinghua, Alibaba DAMO and BAAI; NeurIPS 2021) is a Chinese text-to-ima
 **Input → output:** T → I · **Interaction:** generation
 
 A discrete autoencoder maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook; text uses a 50,000-token Chinese SentencePiece vocabulary, and the sequence is laid out with separator tokens ([ROI1], [BASE], [BOI1], [EOI1]) as in paper Figure 3. The transformer has 48 layers, hidden size 2560 and 40 heads, trained on about 30 million Chinese text-image pairs; the paper introduces Precision Bottleneck Relaxation and Sandwich LayerNorm to stabilize training. Fine-tuned copies of the model provide token-space super-resolution to 512 × 512 (sliding-window, 32 × 32 to 64 × 64 tokens), image captioning used for self-reranking via a Caption Loss (instead of CLIP), and style-specific generation. Prompts are Chinese; the README states the demo supports only simplified Chinese input.
+
+**License:** code: Apache-2.0.
+
+</details>
+
+<a id="cogview2"></a>
+
+### CogView2
+
+Hierarchical transformer (CogLM) that autoregressively generates a low-resolution grid of VQVAE image tokens with bidirectional infilling, then upsamples it through local-attention super-resolution transformers.
+
+CogView2 (Tsinghua and Zhipu AI, 2022) speeds up CogView-style autoregressive image generation by replacing single-pass left-to-right decoding with a hierarchical pipeline: a bidirectional-infilling transformer (CogLM) first produces a small 20×20 token image, and local-attention super-resolution transformers then upsample it to 480×480 in a few parallel passes, cutting inference time relative to the original CogView while supporting bilingual Chinese/English prompts and text-guided image completion.
+
+[Paper](https://arxiv.org/abs/2204.14217) · [GitHub](https://github.com/zai-org/CogView2)
+
+![CogView2 — Figure 2](../assets/architectures/cogview2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2204.14217)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+CogLM is a 6-billion-parameter, 48-layer transformer trained with both autoregressive (GPT-style) and bidirectional cross-modal masked infilling objectives over a joint text/image token sequence, separated by a [BOI] token (paper Figure 2); this lets the same pretrained model later perform text- or image-conditioned infilling. Images are tokenized at 20×20 (160×160 px) by a discrete VQVAE with perceptual and MS-SSIM losses. A direct super-resolution module maps the 20×20 sequence to 60×60 tokens (480×480 px), and a further local-parallel autoregressive (LoPAR) module iteratively regenerates masked diagonal groups of tokens at that resolution using a custom CUDA 2D local-attention kernel reported as about 40× faster than global attention (paper Figure 4). Training used roughly 30 million Chinese (and some English) text-image pairs; prompts can be Chinese or English via the shared icetk tokenizer.
 
 **License:** code: Apache-2.0.
 
@@ -158,6 +194,31 @@ A VQGAN compression stage produces the discrete representation; a fixed multinom
 
 </details>
 
+<a id="infinity"></a>
+
+### Infinity
+
+Bitwise next-scale visual autoregressive transformer that predicts binary-quantized residual token maps scale by scale, cross-attending to Flan-T5 text features.
+
+Infinity (ByteDance, 2024) scales up VAR-style next-scale autoregressive image generation to open-vocabulary text-to-image synthesis by replacing VAR's small per-scale codebook with bitwise, binary-spherical-quantized tokens and an Infinite-Vocabulary Classifier, letting the tokenizer vocabulary grow to 2^64 without an intractable softmax. A Bitwise Self-Correction training trick further closes the train-inference gap from teacher forcing, and the resulting 2B model generates 1024px images with strong text rendering and prompt following.
+
+[Paper](https://arxiv.org/abs/2412.04431) · [GitHub](https://github.com/FoundationVision/Infinity) · [Model card](https://huggingface.co/FoundationVision/Infinity)
+
+![Infinity — Figure 3](../assets/architectures/infinity.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2412.04431)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Following Visual AutoRegressive (VAR) modeling, Infinity represents an image as a pyramid of residual token maps of increasing resolution and predicts each scale conditioned on all previous scales and the text prompt through cross-attention (paper Figure 3). Its visual tokenizer applies Binary Spherical Quantization instead of index-based VQ, so each token is a d-bit sign vector rather than a single codebook index, giving an effectively unbounded ("infinite") vocabulary; an Infinite-Vocabulary Classifier predicts the d bits independently instead of a softmax over 2^d classes, cutting classifier parameters by about 99.95%. Bitwise Self-Correction randomly flips predicted bits and re-derives the following scale's target during training so the model learns to recover from its own quantization errors at inference. Models range from 125M to 4.7B parameters (the main model is 2B), trained progressively at 256→512→1024px on a filtered LAION/COYO/OpenImages mixture with a Flan-T5 text encoder.
+
+**License:** code: MIT; weights: mit.
+
+</details>
+
 <a id="l-verse"></a>
 
 ### L-Verse
@@ -178,6 +239,87 @@ L-Verse (LG AI Research) pairs an improved image tokenizer, AugVAE, with a singl
 **Input → output:** T → I · **Interaction:** generation
 
 AugVAE is trained as a hierarchical VQ-VAE with weight-shared quantizers and then fine-tuned to a single-level model (AugVAE-SL, about 100M parameters, trained on ImageNet-1K) that maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook. BiART is a 500M-parameter full-attention GPT transformer over 64 BPE text tokens and 1024 image tokens; [REF]/[GEN] segment embeddings let the same model generate images from text or captions from images without fine-tuning (paper Figure 2). Trained on MS-COCO Captions, with a scalability experiment on Conceptual Captions for zero-shot text-to-image generation. The paper gives no code link.
+
+</details>
+
+<a id="llamagen"></a>
+
+### LlamaGen
+
+Llama-style decoder-only transformer that autoregressively predicts VQGAN image tokens after text tokens, with no vision-specific inductive biases added to the architecture.
+
+LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture transformer, without any image-specific architectural changes, can do competitive text-to-image generation as next-token prediction over discrete VQGAN tokens. The authors study image tokenizer design, model scaling from 100M to 3.1B parameters, and training-data quality, and release two 775M-parameter text-conditional checkpoints trained in two stages on web and high-aesthetic data.
+
+[Paper](https://arxiv.org/abs/2406.06525) · [GitHub](https://github.com/FoundationVision/LlamaGen) · [Model card](https://huggingface.co/FoundationVision/LlamaGen)
+
+![LlamaGen — Input/output diagram](../assets/architectures/llamagen.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2406.06525)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+LlamaGen reuses the Llama large-language-model architecture unmodified (RMSNorm, SwiGLU, rotary position embeddings) for next-token image generation, arguing that scaling a vanilla autoregressive transformer with an improved VQGAN tokenizer (downsample ratios 16 or 8, up to 16,384-entry codebook) is enough to match or beat diffusion models on class-conditional and text-conditional benchmarks (paper Figure 1). The text-conditional models are 775M parameters, trained in two stages: stage I on a 50M-image LAION-COCO subset with short BLIP captions, stage II fine-tuning on 10M internal high-aesthetic images with long LLaVA captions (paper Figures 4-6). Class-conditional siblings range from 111M to 3.1B parameters. Serving through vLLM with KV caching gives a reported 300-400% inference speedup.
+
+**License:** code: MIT; weights: mit.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="lumina-mgpt"></a>
+
+### Lumina-mGPT
+
+Decoder-only autoregressive transformer, initialized from Chameleon's pretrained weights and fine-tuned to generate discrete image tokens for photorealistic text-to-image synthesis.
+
+Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chameleon multimodal transformer into a dedicated photorealistic text-to-image generator by continuing its autoregressive pretraining and adding resolution-control prompt designs, rather than training a new architecture from scratch. A single 7B decoder-only model handles flexible-resolution text-to-image generation alongside other tasks such as controllable and subject-driven generation.
+
+[Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768)
+
+![Lumina-mGPT — Input/output diagram](../assets/architectures/lumina-mgpt.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2408.02657)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Lumina-mGPT continues pretraining from the Chameleon multimodal transformer, then applies supervised fine-tuning with a Resolution-Aware Prompt (an explicit target-resolution token) and an Unambiguous Image Representation (row-delimiter tokens so the autoregressive decoder respects image width) to control aspect ratio and resolution (paper Figure 2). The Chameleon VQ-VAE (from the pretrained checkpoint) provides image tokens; the paper reports progressive resolution fine-tuning stages and shows attention analysis of dedicated indicator tokens (paper Figure 5). Beyond text-to-image, the same model is fine-tuned for controllable generation, subject-driven generation and dense prediction, but the paper's own comparisons center on text-to-image quality. Public checkpoints are released at 7B parameters (768px-tuned); the HuggingFace model card lists no license, so weight terms are not established.
+
+**License:** code: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="lumina-mgpt-2"></a>
+
+### Lumina-mGPT 2.0
+
+Stand-alone decoder-only autoregressive transformer trained entirely from scratch (not initialized from Chameleon) that predicts SBER-MoVQGAN image tokens after Qwen-tokenized text, unifying text-to-image generation with editing and conditional tasks.
+
+Lumina-mGPT 2.0 (Shanghai AI Laboratory and collaborators, 2025) rebuilds Lumina-mGPT as a stand-alone autoregressive image model trained from scratch, rather than fine-tuned from Chameleon, unifying text-to-image generation, subject-driven generation, multi-turn image editing, controllable generation and dense prediction in a single decoder-only transformer conditioned through system prompts and an SBER-MoVQGAN tokenizer.
+
+[Paper](https://arxiv.org/abs/2507.17801) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-2.0)
+
+![Lumina-mGPT 2.0 — Figure 2](../assets/architectures/lumina-mgpt-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.17801)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Unlike the original Lumina-mGPT, which fine-tuned Chameleon, Lumina-mGPT 2.0 randomly initializes its decoder-only transformer and trains it from scratch (paper Figure 2, "Decoder-only Transformer Architecture"), reporting this avoids inherited artifacts and gives more architectural control. The SBER-MoVQGAN image tokenizer was chosen after comparing reconstruction metrics (PSNR/SSIM/LPIPS) against alternatives; text uses the Qwen tokenizer directly, without a separate pretrained text encoder. Two sizes are released, 2B and 7B parameters (32 layers, hidden size 2048 or 4096). Training follows a three-stage, progressively higher-resolution curriculum (256→512→768px) over 50M, 19M and 8M samples. Beyond text-to-image generation, the same model handles subject-driven generation, multi-turn image editing, controllable synthesis and dense prediction via an autoregressive raster-scan scheme that can condition on a reference image (paper Figure 4), and an optional 'thinking' prompt-expansion step improves prompt adherence at high-quality sampling.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** Lumina-mGPT 2.0 (2B); Lumina-mGPT 2.0 (7B); Lumina-mGPT 2.0-Omni.
 
 </details>
 
@@ -204,6 +346,52 @@ M6 pretrains a unified encoder/decoder transformer on Chinese text and image-tex
 
 </details>
 
+<a id="make-a-scene"></a>
+
+### Make-A-Scene
+
+Autoregressive transformer that generates VQGAN image tokens conditioned on BPE text tokens and an optional VQ-SEG scene-layout token sequence.
+
+Make-A-Scene (Meta AI, ECCV 2022) extends DALL·E-style autoregressive text-to-image transformers with an optional scene layout: a token sequence for a segmentation map can be interleaved between the text and image tokens, giving users explicit control over object placement and shape while still allowing pure text-to-image generation when no layout is supplied. The paper also introduces a face-aware token-space loss and a classifier-free-style domain adaptation step to improve generated faces and photorealism.
+
+[Paper](https://arxiv.org/abs/2203.13131) · GitHub: no author-linked repository found
+
+![Make-A-Scene — Figure 6](../assets/architectures/make-a-scene.png)
+
+*Figure 6 · [Source](https://arxiv.org/abs/2203.13131)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The model concatenates BPE text tokens, optional scene tokens from a VQ-SEG segmentation-map encoder, and VQ-IMG image tokens into one sequence for a decoder-only transformer to model autoregressively (paper Figure 6); the network can disregard the scene tokens and generate from text alone, or use a scene layout (from a sketch or an existing image's segmentation) for explicit spatial control, and the same scene tokens support text-guided editing of a fixed layout. A face-aware loss on the image tokenizer and a domain-classifier are added to improve human faces and photorealism. The scene-based transformer is trained on about 35 million image-caption pairs from CC12M, Conceptual Captions, YFCC100M and Redcaps; VQ-SEG and VQ-IMG are trained on CC12M, CC and MS-COCO. No official code or model weights were found linked from the paper.
+
+</details>
+
+<a id="mars-t2i"></a>
+
+### MARS
+
+Autoregressive transformer built on a frozen pretrained Qwen-7B language model, with a Semantic Vision-Language Integration Expert (SemVIE) mixture-of-experts adding trainable visual attention and feed-forward experts alongside the frozen text experts.
+
+MARS (2024) adds text-to-image generation to a frozen large language model (Qwen-7B) by inserting a Semantic Vision-Language Integration Expert, a mixture-of-experts layer that gives visual tokens their own attention and feed-forward pathways while leaving the original text experts untouched, so the model keeps the LLM's language ability while learning to autoregressively generate VQGAN image tokens. Trained bilingually on Chinese and English captions, the authors report competitive MS-COCO FID at a fraction of Stable Diffusion 1.5's training cost.
+
+[Paper](https://arxiv.org/abs/2407.07614) · GitHub: no author-linked repository found
+
+![MARS — Figure 3](../assets/architectures/mars-t2i.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2407.07614)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Text and VQGAN-tokenized image ('vision words', 8192-entry codebook) are processed by one Transformer whose SemVIE module splits both the multi-head attention and the feed-forward network into a frozen language expert and a trainable visual expert routed per-token, so the model gains image generation without disturbing the original LLM's text capability (paper Figure 3). The joint text-image vocabulary is 160,136 tokens over the Qwen tokenizer plus VQGAN codes. Training has two stages: about 200 million Chinese/English image-text pairs, then fine-tuning on 50 million curated high-quality pairs with CogVLM-recaptioned text; the authors report the full pipeline uses only 587 A100 GPU-days, about 9% of Stable Diffusion 1.5's reported cost. Because it is Qwen-based, prompts can be Chinese or English. No repository or released weights were found linked from the paper.
+
+</details>
+
 <a id="nuwa"></a>
 
 ### NÜWA
@@ -224,6 +412,33 @@ NÜWA (Microsoft Research Asia and Peking University; ECCV 2022) is a visual syn
 **Input → output:** T, I → I · **Interaction:** editing
 
 Text, images and videos are all represented as 3D token grids (height × width × time); an adaptive encoder handles the condition (1D text, 2D image sketch, 3D video sketch) and a shared decoder generates target tokens autoregressively, with 3D Nearby Attention restricting self- and cross-attention to local neighbourhoods (paper Figure 2). Images use a VQ-GAN with a 12,288-entry codebook, 21 × 21 tokens at the default 336 × 336 resolution; text is a 77-token sequence. The 870M-parameter model is pretrained jointly on text-to-image (Conceptual Captions), text-to-video and video prediction, then fine-tuned; the paper reports text-to-image on MS-COCO, sketch-to-image, image completion and zero-shot text-guided image manipulation, plus video tasks that are outside this catalog. The author-linked repository contains only README pages and example outputs, not model code or weights; it also hosts the later NUWA-Infinity and NUWA-XL papers.
+
+</details>
+
+<a id="parti"></a>
+
+### Parti
+
+Sequence-to-sequence autoregressive Transformer that encodes text and decodes ViT-VQGAN image tokens, scaled up to 20 billion parameters.
+
+Parti (Google Research, 2022) treats text-to-image generation as sequence-to-sequence translation from text tokens to image tokens, the same recipe that scaled large language models. A ViT-VQGAN tokenizer represents images as discrete tokens, and encoder-decoder Transformers from 350M to 20B parameters are trained to predict those tokens from a text prompt, with the paper showing that image fidelity and prompt adherence keep improving as the decoder is scaled to 20B. Only the PartiPrompts benchmark and project data cards were released; model weights and code are not public.
+
+[Paper](https://arxiv.org/abs/2206.10789) · [GitHub](https://github.com/google-research/parti)
+
+![Parti — Figure 3](../assets/architectures/parti.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2206.10789)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+ViT-VQGAN, a Vision Transformer-based image tokenizer, compresses a 256×256 image into 1024 tokens from an 8192-entry codebook; a Transformer encoder reads the text prompt and a Transformer decoder autoregressively predicts the image token sequence, which the tokenizer's detokenizer renders back to pixels (paper Figure 3). Parti is trained at four sizes from 350M to 20B parameters (the encoder/decoder depth and width scale together) on a mixture including LAION-400M, a filtered ALIGN subset, FIT400M and JFT-4B, and a separate super-resolution module upsamples 256×256 outputs to 1024×1024. The paper introduces PartiPrompts (P2), a 1600+ prompt benchmark, and reports zero-shot and fine-tuned FID on MS-COCO. No model weights are released; the official repository holds only the project README, data cards and the PartiPrompts benchmark, not the transformer implementation.
+
+**License:** code: Apache-2.0.
+
+**Variants:** Parti-350M; Parti-750M; Parti-3B; Parti-20B.
 
 </details>
 
@@ -253,5 +468,84 @@ Per the developers' Habr report, 256 × 256 images are compressed by their own S
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** ruDALL-E Malevich (XL, 1.3B); ruDALL-E Kandinsky (XXL, 12B); ruDALL-E Emojich (XL); ruDALL-E Surrealist (XL).
+
+</details>
+
+<a id="simplear"></a>
+
+### SimpleAR
+
+Vanilla decoder-only autoregressive transformer (Qwen-architecture) that jointly models text and Cosmos-Tokenizer discrete image tokens in one raster-scan sequence, refined with supervised fine-tuning and GRPO reinforcement learning.
+
+SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a Qwen-architecture decoder-only transformer predicts discrete Cosmos-Tokenizer image tokens after text tokens with no bespoke visual modules, and the authors show that adding supervised fine-tuning on curated data and a GRPO reinforcement-learning stage with CLIP-based rewards lets a 0.5-1.5B model reach competitive GenEval and DPG scores, while vLLM serving makes 1024px sampling practical in seconds.
+
+[Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
+
+![SimpleAR — Input/output diagram](../assets/architectures/simplear.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2504.11455)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Text and image tokens share a single decoder-only transformer initialized from a Qwen-style language model, removing the need for a separate text encoder; images are discretized by Cosmos-Tokenizer (64k-entry codebook, 16x downsampling) and generated in raster-scan order up to 1024×1024 (paper Figure 1). Training has three stages: pretraining on about 43 million images from CC3M, CC12M, OpenImages, SAM1B and Megalith; supervised fine-tuning on roughly 11 million higher-quality and synthetic images (JourneyDB and others); and a reinforcement-learning stage using Group Relative Policy Optimization (GRPO) with CLIP-based reward models to improve aesthetics and prompt alignment. Released sizes are 0.5B and 1.5B parameters; with vLLM serving (KV caching, paged attention) the paper reports 1024px generation in about 14 seconds.
+
+**License:** code: MIT.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** SimpleAR-0.5B; SimpleAR-1.5B.
+
+</details>
+
+<a id="star-t2i"></a>
+
+### STAR
+
+Scale-wise (next-scale) autoregressive transformer with normalized 2D rotary position encoding and text cross-attention, predicting successively higher-resolution VQVAE token maps.
+
+STAR (2024) adapts VAR-style next-scale autoregressive image generation to open-domain text-to-image synthesis, adding text cross-attention at every scale and a normalized rotary position encoding so the same positional scheme works across the growing token-map resolutions of scale-wise generation, reaching 1024px outputs in about 2.2 seconds.
+
+[Paper](https://arxiv.org/abs/2406.10797) · [GitHub](https://github.com/Davinci-XLab/STAR-T2I) · [Model card](https://huggingface.co/taocrayon/STAR)
+
+![STAR — Figure 4](../assets/architectures/star-t2i.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2406.10797)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A pretrained text encoder supplies a pooled global embedding (fed through cross-attention at the start of generation) and per-token embeddings used throughout the transformer, which predicts a sequence of token maps of growing resolution up to 1024px, attending to previous scales with self-attention and to text with interleaved cross-attention layers (paper Figure 4a, "Framework of STAR"). Normalized 2D RoPE rescales rotary positions to a fixed range at every scale so the same relative-position encoding transfers across resolutions (Figure 4c). A causal-driven sampling strategy with a lightweight self-supervised token sampler stabilizes inference (Figure 4b). STAR is trained at 270M and 1.7B parameters on about 20 million LAION pairs plus 10 million internally recaptioned images, reaching 1024px generation in roughly 2.2 seconds on an A100.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="switti"></a>
+
+### Switti
+
+Scale-wise transformer that predicts all tokens of each higher-resolution scale in parallel with non-causal, scale-local self-attention, cross-attending to concatenated CLIP ViT-L and OpenCLIP ViT-bigG text embeddings.
+
+Switti (Yandex Research, 2024) is a scale-wise (VAR-style) autoregressive text-to-image transformer that drops causal attention across scales in favor of non-causal, scale-local attention, since it finds later scales already encode information from earlier ones through upsampling. Combined with disabling classifier-free guidance at the final high-resolution scales, this yields roughly 30% faster 1024px sampling than a causal scale-wise baseline with comparable or better quality.
+
+[Paper](https://arxiv.org/abs/2412.01819) · [GitHub](https://github.com/yandex-research/switti) · [Model card](https://huggingface.co/yresearch/Switti)
+
+![Switti — Figure 2 (PDF p. 4)](../assets/architectures/switti.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2412.01819)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Building on VAR-style next-scale prediction, Switti replaces cross-scale causal self-attention with self-attention restricted to the tokens of the current scale only, since each scale's inputs already carry upsampled information from earlier scales (paper Figure 6); this removes the need for a KV cache and speeds up sampling by about 21%. Each transformer block interleaves self-attention, text cross-attention and a SwiGLU feed-forward layer with RMSNorm and Normalized RoPE (paper Figure 2, cropped from the PDF). Classifier-free guidance is disabled at the last two (highest-resolution) scales, since attention analysis shows those scales attend weakly to text, giving a further ~32% sampling speedup with no quality loss. The approximately 2.5B-parameter, 30-layer model is trained in stages at 256px (400K steps) and 512px (200K steps) on 100M curated pairs filtered from 6B web images, then fine-tuned on ~40K aesthetic pairs at 1024px with a fine-tuned RQ-VAE decoder.
+
+**License:** code: Apache-2.0.
 
 </details>

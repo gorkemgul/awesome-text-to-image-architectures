@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**110 model families and releases · Reviewed 2026-09-29**
+**147 model families and releases · Reviewed 2026-09-29**
 
 Short explanations of the catalog's described models, including later releases of older paper families. Each entry includes an image and links to primary sources. Editorial input/output diagrams are labeled. Verified source dates are listed in the [timeline](timeline.md); undated records remain undated.
 
@@ -14,6 +14,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Adobe Firefly Image](#adobe-firefly)
 - [alignDRAW](#aligndraw)
 - [Amazon Titan Image Generator](#amazon-titan-image-generator)
+- [aMUSEd](#amused)
 - [AuraFlow](#auraflow)
 - [BAGEL](#bagel)
 - [BitDance](#bitdance)
@@ -23,6 +24,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Chameleon](#chameleon)
 - [CogView](#cogview)
 - [CogView-3Plus](#cogview3-plus)
+- [CogView2](#cogview2)
 - [CogView3](#cogview3)
 - [CogView4](#cogview4)
 - [Cosmos 3](#cosmos3)
@@ -37,43 +39,63 @@ Short explanations of the catalog's described models, including later releases o
 - [Emu2](#emu2)
 - [Emu3](#emu3)
 - [Emu3.5](#emu3-5)
+- [ERNIE-Image](#ernie-image)
 - [ERNIE-ViLG](#ernie-vilg)
 - [Fluid](#fluid)
 - [FLUX.1](#flux-1)
 - [FLUX.1 Kontext](#flux-1-kontext)
+- [FLUX.2](#flux-2)
 - [Gemini native image generation](#gemini-image)
+- [GenTron](#gentron)
 - [GLM-Image](#glm-image)
 - [GPT Image 1](#gpt-image-1)
 - [GPT Image 2](#gpt-image-2)
 - [Grok Aurora](#grok-aurora)
 - [Grok Imagine Image](#grok-imagine-image)
 - [HART](#hart)
+- [HiDream-I1](#hidream-i1)
 - [HiDream-O1-Image](#hidream-o1-image)
 - [Hunyuan-DiT](#hunyuan-dit)
 - [HunyuanImage 3.0](#hunyuanimage-3)
+- [HunyuanImage-2.1](#hunyuanimage-2-1)
 - [Hyper-SD](#hyper-sd)
 - [Ideogram](#ideogram)
+- [Ideogram 4.0](#ideogram-4)
 - [ImageBART](#imagebart)
 - [Imagen 2](#imagen-2)
 - [Imagen 3](#imagen-3)
 - [Imagen 4](#imagen-4)
 - [Imagine Flash](#imagine-flash)
+- [Infinity](#infinity)
 - [InstaFlow](#instaflow)
 - [Janus](#janus)
 - [Janus-Pro](#janus-pro)
 - [JanusFlow](#janusflow)
 - [JetFormer](#jetformer)
+- [Kandinsky 5.0 Image Lite](#kandinsky-5)
 - [KOALA](#koala)
 - [Kolors](#kolors)
 - [Kolors 2.0](#kolors-2)
+- [Krea 2](#krea-2)
 - [L-Verse](#l-verse)
 - [Latent Consistency Models (LCM)](#lcm)
 - [LaVIT](#lavit)
+- [LI-DiT](#li-dit)
+- [LlamaGen](#llamagen)
+- [LongCat-Image](#longcat-image)
 - [Luma Uni-1](#luma-uni-1)
+- [Lumina-Image 2.0](#lumina-image-2)
+- [Lumina-mGPT](#lumina-mgpt)
+- [Lumina-mGPT 2.0](#lumina-mgpt-2)
 - [Lumina-Next](#lumina-next)
 - [Lumina-T2X (Lumina-T2I)](#lumina-t2x)
 - [M6](#m6)
+- [M6-UFC](#m6-ufc)
+- [Mage-Flow](#mage-flow)
 - [MAI-Image](#mai-image)
+- [Make-A-Scene](#make-a-scene)
+- [MARS](#mars-t2i)
+- [Meissonic](#meissonic)
 - [MetaQuery](#metaquery)
 - [Midjourney](#midjourney)
 - [MiniMax Image-01](#minimax-image-01)
@@ -81,16 +103,22 @@ Short explanations of the catalog's described models, including later releases o
 - [Mobile-O](#mobile-o)
 - [MobileDiffusion](#mobilediffusion)
 - [Mogao](#mogao)
+- [Muse](#muse)
 - [Muse Image](#muse-image)
 - [NextStep-1](#nextstep-1)
 - [NÜWA](#nuwa)
 - [OmniGen2](#omnigen2)
+- [Ovis-Image](#ovis-image)
+- [Paella](#paella)
 - [Parallel Multiscale PixelCNN](#multiscale-pixelcnn)
+- [Parti](#parti)
 - [PixArt-δ](#pixart-delta)
 - [PixArt-Σ](#pixart-sigma)
 - [PixelFlow](#pixelflow)
 - [Playground v2](#playground-v2)
 - [Playground v3](#playground-v3)
+- [Qwen-Image](#qwen-image)
+- [Qwen-Image-2.0](#qwen-image-2)
 - [Recraft](#recraft)
 - [Reve Image](#reve-image)
 - [ruDALL-E](#rudall-e)
@@ -103,15 +131,21 @@ Short explanations of the catalog's described models, including later releases o
 - [SDXS](#sdxs)
 - [SEED-LLaMA](#seed-llama)
 - [SEED-X](#seed-x)
+- [Seedream 2.0](#seedream-2)
+- [Seedream 3.0](#seedream-3)
+- [Seedream 4.0](#seedream-4)
 - [Seedream 5.0](#seedream-5)
 - [Show-o](#show-o)
 - [Show-o2](#show-o2)
+- [SimpleAR](#simplear)
 - [SnapFusion](#snapfusion)
 - [SnapGen](#snapgen)
 - [SSD-1B](#ssd-1b)
 - [Stable Diffusion 3](#stable-diffusion-3)
+- [STAR](#star-t2i)
 - [STARFlow](#starflow)
 - [SwiftBrush](#swiftbrush)
+- [Switti](#switti)
 - [Taiyi-Diffusion-XL](#taiyi-diffusion-xl)
 - [Text2Scene](#text2scene)
 - [Transfusion](#transfusion)
@@ -120,7 +154,10 @@ Short explanations of the catalog's described models, including later releases o
 - [UniWorld-V1](#uniworld)
 - [VILA-U](#vila-u)
 - [VL-GPT](#vl-gpt)
+- [VQ-Diffusion](#vq-diffusion)
+- [X-LXMERT](#x-lxmert)
 - [X-Omni](#x-omni)
+- [Z-Image](#z-image)
 
 </details>
 
@@ -161,6 +198,18 @@ Amazon Titan Image Generator is Amazon's image generation model on Amazon Bedroc
 ![Amazon Titan Image Generator — Editorial input/output diagram](../assets/architectures/amazon-titan-image-generator.svg)
 
 *Editorial input/output diagram · [Source](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html)*
+
+<a id="amused"></a>
+
+### aMUSEd
+
+aMUSEd (Hugging Face, STUDIO EY and Amazon, 2024) is an open, 10x-smaller reproduction of Google's unreleased Muse model, replacing Muse's frozen T5-XXL text encoder with a smaller CLIP-L/14 encoder and using a single U-ViT masked-token transformer instead of a two-stage base-plus-super-resolution pipeline. The 256px and 512px checkpoints prioritize fast, low-resource inference and are released with training and inference code.
+
+[Architecture and figure](../models/masked.md#amused) · [Paper](https://arxiv.org/abs/2401.01808) · [GitHub](https://github.com/huggingface/open-muse) · [Model card](https://huggingface.co/amused/amused-256)
+
+![aMUSEd — Figure 1](../assets/architectures/amused.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2401.01808)*
 
 <a id="auraflow"></a>
 
@@ -269,6 +318,18 @@ CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-im
 ![CogView-3Plus — Editorial input/output diagram](../assets/architectures/cogview3-plus.svg)
 
 *Editorial input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+
+<a id="cogview2"></a>
+
+### CogView2
+
+CogView2 (Tsinghua and Zhipu AI, 2022) speeds up CogView-style autoregressive image generation by replacing single-pass left-to-right decoding with a hierarchical pipeline: a bidirectional-infilling transformer (CogLM) first produces a small 20×20 token image, and local-attention super-resolution transformers then upsample it to 480×480 in a few parallel passes, cutting inference time relative to the original CogView while supporting bilingual Chinese/English prompts and text-guided image completion.
+
+[Architecture and figure](../models/ar-token.md#cogview2) · [Paper](https://arxiv.org/abs/2204.14217) · [GitHub](https://github.com/zai-org/CogView2)
+
+![CogView2 — Figure 2](../assets/architectures/cogview2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2204.14217)*
 
 <a id="cogview3"></a>
 
@@ -438,6 +499,18 @@ Emu3.5 is BAAI's successor to Emu3, described as a native multimodal world model
 
 *Figure 3 · [Source](https://arxiv.org/abs/2510.26583)*
 
+<a id="ernie-image"></a>
+
+### ERNIE-Image
+
+ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-stream diffusion transformer that deliberately pairs a compact 3B Ministral-3 language model as text encoder with the FLUX.2 project's open-source VAE, rather than pursuing a larger or novel backbone. Its technical report focuses on data and training choices instead of architectural novelty: captions are generated by a vision-language model instructed to describe in-image text carefully, so the model targets text-rich, layout-sensitive content such as slides, posters and documents, and training resolution is staged upward from 256px to 1024px. The team reports state-of-the-art results among open-weight text-to-image models at its release. Code and weights are released under Apache-2.0.
+
+[Architecture and figure](../models/dit.md#ernie-image) · [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
+
+![ERNIE-Image — Editorial input/output diagram](../assets/architectures/ernie-image.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2605.25347)*
+
 <a id="ernie-vilg"></a>
 
 ### ERNIE-ViLG
@@ -486,6 +559,18 @@ FLUX.1 Kontext is Black Forest Labs' in-context image generation and editing mod
 
 *Figure 4 · [Source](https://arxiv.org/abs/2506.15742)*
 
+<a id="flux-2"></a>
+
+### FLUX.2
+
+FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pairing a large vision-language model (Mistral-3 24B) with a rectified-flow diffusion transformer so that world knowledge and language understanding from the VLM inform the transformer's spatial and compositional generation. It is designed from the start to generate and edit in one model, including combining up to ten reference images into a single new image. The family spans closed API tiers ([pro], [flex], [max]) and open-weight tiers: a 32B [dev] model and smaller, faster, step-distilled [klein] models at 4B and 9B parameters, with licensing that varies by checkpoint from Apache-2.0 to a non-commercial research license. No technical paper accompanies the release, so this entry is based on Black Forest Labs' own announcement and documentation.
+
+[Architecture and figure](../models/dit.md#flux-2) · [Announcement 1](https://bfl.ai/blog/flux-2) · [Announcement 2](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence) · [GitHub](https://github.com/black-forest-labs/flux2) · [Model card](https://huggingface.co/black-forest-labs/FLUX.2-dev)
+
+![FLUX.2 — Editorial input/output diagram](../assets/architectures/flux-2.svg)
+
+*Editorial input/output diagram · [Source](https://bfl.ai/blog/flux-2)*
+
 <a id="gemini-image"></a>
 
 ### Gemini native image generation
@@ -497,6 +582,18 @@ Gemini native image generation lets Gemini models output images directly, first 
 ![Gemini native image generation — Editorial input/output diagram](../assets/architectures/gemini-image.svg)
 
 *Editorial input/output diagram · [Source](https://ai.google.dev/gemini-api/docs/image-generation)*
+
+<a id="gentron"></a>
+
+### GenTron
+
+GenTron is a 2023 study from Adobe and Johns Hopkins that adapts the class-conditional DiT transformer diffusion model to open-ended text-to-image generation. Its main contribution is a conditioning ablation: rather than the adaLN mechanism DiT uses for class labels, GenTron injects text through cross-attention layers while keeping adaLN for the diffusion timestep, and shows this produces better text alignment. Scaling the resulting transformer from about 900M to 3.1B parameters improves image quality, and in a human study GenTron's images were preferred over SDXL's on both visual quality and text alignment. The paper also extends the same design to text-to-video generation, which is outside this catalog's scope.
+
+[Architecture and figure](../models/dit.md#gentron) · [Paper](https://arxiv.org/abs/2312.04557)
+
+![GenTron — Figure 2 (PDF p. 3)](../assets/architectures/gentron.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2312.04557)*
 
 <a id="glm-image"></a>
 
@@ -570,6 +667,18 @@ HART (Hybrid Autoregressive Transformer, from MIT, NVIDIA and Tsinghua) generate
 
 *Figure 6 · [Source](https://arxiv.org/abs/2410.10812)*
 
+<a id="hidream-i1"></a>
+
+### HiDream-I1
+
+HiDream-I1 is a 17B-parameter open text-to-image diffusion transformer from HiDream-ai that combines a dual-stream-then-single-stream DiT backbone (in the style of FLUX/SD3) with sparse Mixture-of-Experts feed-forward layers, so only a subset of experts activates per token despite the large parameter count. It conditions on three complementary text representations at once: pooled long-context CLIP embeddings for global style through adaptive layer norm, T5-XXL token embeddings, and features drawn from multiple layers of a frozen Llama-3.1-8B-Instruct language model. The Full/Dev/Fast variants trade off inference steps and distillation for speed, and the model was released under the MIT license for both code and weights.
+
+[Architecture and figure](../models/dit.md#hidream-i1) · [Paper](https://arxiv.org/abs/2505.22705) · [GitHub](https://github.com/HiDream-ai/HiDream-I1) · [Model card](https://huggingface.co/HiDream-ai/HiDream-I1-Full)
+
+![HiDream-I1 — Figure 3](../assets/architectures/hidream-i1.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2505.22705)*
+
 <a id="hidream-o1-image"></a>
 
 ### HiDream-O1-Image
@@ -606,6 +715,18 @@ HunyuanImage 3.0 is Tencent Hunyuan's native multimodal model that unifies under
 
 *Figure 3 · [Source](https://arxiv.org/abs/2509.23951)*
 
+<a id="hunyuanimage-2-1"></a>
+
+### HunyuanImage-2.1
+
+HunyuanImage-2.1 is Tencent's open 17B-parameter text-to-image model built to generate natively at 2K resolution. Its diffusion transformer mixes dual-stream blocks (separate processing paths for image and text tokens) for the first third of its depth with single-stream blocks for the rest, and conditions on two text encoders at once: a multimodal large language model for semantic alignment and a character-aware ByT5 encoder to improve legible text rendering in multiple languages. A second-stage refiner model cleans up detail and artifacts after the base generation step. The project reported a top rank among open text-to-image models on a public arena leaderboard at release. No architecture paper accompanies the open-source release, so its internals are documented only at README/model-card level.
+
+[Architecture and figure](../models/dit.md#hunyuanimage-2-1) · [GitHub](https://github.com/Tencent-Hunyuan/HunyuanImage-2.1) · [Model card](https://huggingface.co/tencent/HunyuanImage-2.1)
+
+![HunyuanImage-2.1 — README — framework_overall.png](../assets/architectures/hunyuanimage-2-1.png)
+
+*README — framework_overall.png · [Source](https://github.com/Tencent-Hunyuan/HunyuanImage-2.1)*
+
 <a id="hyper-sd"></a>
 
 ### Hyper-SD
@@ -629,6 +750,18 @@ Ideogram is a text-to-image service and API known for rendering legible text, lo
 ![Ideogram — Editorial input/output diagram](../assets/architectures/ideogram.svg)
 
 *Editorial input/output diagram · [Source](https://developer.ideogram.ai/api-reference/generate-images/generate-v3)*
+
+<a id="ideogram-4"></a>
+
+### Ideogram 4.0
+
+Ideogram 4.0 is Ideogram's first open-weight text-to-image foundation model, trained from scratch as a 34-layer single-stream diffusion transformer. It conditions on a frozen Qwen3-VL-8B-Instruct vision-language model, drawing on hidden states from many of its intermediate layers rather than just its final output, and decodes flow-matching latents through a frozen KL autoencoder. The release follows the single-stream DiT pattern used by several other recent open text-to-image models, and ships with fp8 and nf4 quantized checkpoints plus open inference code, though the weights themselves are limited to non-commercial use.
+
+[Architecture and figure](../models/dit.md#ideogram-4) · [Announcement](https://ideogram.ai/blog/ideogram-4.0/) · [GitHub](https://github.com/ideogram-oss/ideogram4) · [Model card](https://huggingface.co/ideogram-ai/ideogram-4-fp8)
+
+![Ideogram 4.0 — Editorial input/output diagram](../assets/architectures/ideogram-4.svg)
+
+*Editorial input/output diagram · [Source](https://ideogram.ai/blog/ideogram-4.0/)*
 
 <a id="imagebart"></a>
 
@@ -690,6 +823,18 @@ Imagine Flash (Meta GenAI, 2024) accelerates Meta's Emu text-to-image diffusion 
 
 *Figure 3 · [Source](https://arxiv.org/abs/2405.05224)*
 
+<a id="infinity"></a>
+
+### Infinity
+
+Infinity (ByteDance, 2024) scales up VAR-style next-scale autoregressive image generation to open-vocabulary text-to-image synthesis by replacing VAR's small per-scale codebook with bitwise, binary-spherical-quantized tokens and an Infinite-Vocabulary Classifier, letting the tokenizer vocabulary grow to 2^64 without an intractable softmax. A Bitwise Self-Correction training trick further closes the train-inference gap from teacher forcing, and the resulting 2B model generates 1024px images with strong text rendering and prompt following.
+
+[Architecture and figure](../models/ar-token.md#infinity) · [Paper](https://arxiv.org/abs/2412.04431) · [GitHub](https://github.com/FoundationVision/Infinity) · [Model card](https://huggingface.co/FoundationVision/Infinity)
+
+![Infinity — Figure 3](../assets/architectures/infinity.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2412.04431)*
+
 <a id="instaflow"></a>
 
 ### InstaFlow
@@ -750,6 +895,18 @@ JetFormer (Google DeepMind) is trained end to end to maximize the likelihood of 
 
 *Figure 1 (PDF p. 2) · [Source](https://arxiv.org/abs/2411.19722)*
 
+<a id="kandinsky-5"></a>
+
+### Kandinsky 5.0 Image Lite
+
+Kandinsky 5.0 Image Lite is the text-to-image member of Kandinsky Lab's Kandinsky 5.0 family of foundation models for image and video generation. It is a 6B-parameter CrossDiT -- a diffusion transformer whose blocks alternate self-attention over image tokens with cross-attention to text -- conditioned on Qwen2.5-VL token embeddings (passed through a dedicated linguistic token refiner) together with a pooled CLIP embedding, and it reuses the FLUX.1-dev VAE for image tokenization. The model is trained with flow matching rather than classic denoising diffusion. The same paper also introduces separate video generation models sharing family branding and some architectural ideas, but distinct video-specific components (3D VAE, temporal attention); this catalog entry covers only the image generation model, released with MIT-licensed code and weights.
+
+[Architecture and figure](../models/dit.md#kandinsky-5) · [Paper](https://arxiv.org/abs/2511.14993) · [GitHub](https://github.com/kandinskylab/kandinsky-5) · [Model card](https://huggingface.co/kandinskylab/Kandinsky-5.0-T2I-Lite)
+
+![Kandinsky 5.0 Image Lite — Figure 10](../assets/architectures/kandinsky-5.png)
+
+*Figure 10 · [Source](https://arxiv.org/abs/2511.14993)*
+
 <a id="koala"></a>
 
 ### KOALA
@@ -785,6 +942,18 @@ Kolors 2.0 is Kuaishou's closed image generation model, unveiled together with t
 ![Kolors 2.0 — Editorial input/output diagram](../assets/architectures/kolors-2.svg)
 
 *Editorial input/output diagram · [Source](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15)*
+
+<a id="krea-2"></a>
+
+### Krea 2
+
+Krea 2 is Krea AI's first from-scratch text-to-image foundation model, using a single-stream MMDiT design where text and image tokens share the same attention and feed-forward weights rather than being processed on separate paths. It conditions on Qwen3-VL as a joint vision-language text encoder for richer multilingual understanding, and evaluated both the Qwen-Image and FLUX.2 autoencoders before settling on one for faster convergence. Krea trained the model through a full pipeline of pretraining, mid-training, supervised fine-tuning, preference optimization and reinforcement learning, releasing an undistilled Raw checkpoint and a distilled, few-step Turbo checkpoint under a gated community license, with inference code on GitHub under Apache-2.0.
+
+[Architecture and figure](../models/dit.md#krea-2) · [Announcement](https://www.krea.ai/blog/krea-2-technical-report) · [GitHub](https://github.com/krea-ai/krea-2) · [Model card 1](https://huggingface.co/krea/Krea-2-Raw) · [Model card 2](https://huggingface.co/krea/Krea-2-Turbo)
+
+![Krea 2 — Blog — 'Single-stream MMDiT' figure](../assets/architectures/krea-2.png)
+
+*Blog — 'Single-stream MMDiT' figure · [Source](https://www.krea.ai/blog/krea-2-technical-report)*
 
 <a id="l-verse"></a>
 
@@ -822,6 +991,42 @@ LaVIT (Language-VIsion Transformer), from Peking University and Kuaishou Technol
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.04669)*
 
+<a id="li-dit"></a>
+
+### LI-DiT
+
+LI-DiT is a 2024 research study on why large language models make poor prompt encoders for diffusion transformers despite their stronger language understanding, and what fixes that. The authors identify two causes: a mismatch between an LLM's training objective and what a diffusion model needs from text features, and a positional bias introduced by the LLM's causal attention mask. They address both with instruction-based prompting and a token-refiner module that restores full (non-causal) attention over the LLM's output before it conditions a DiT-style diffusion transformer through cross-attention. Using frozen LLaMA3-8B and Qwen1.5-7B encoders this way, the 10B-parameter LI-DiT model reportedly outperforms Stable Diffusion 3, DALL-E 3 and Midjourney V6 in the paper's human evaluation, though no code or weights were released.
+
+[Architecture and figure](../models/dit.md#li-dit) · [Paper](https://arxiv.org/abs/2406.11831)
+
+![LI-DiT — Figure 5](../assets/architectures/li-dit.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2406.11831)*
+
+<a id="llamagen"></a>
+
+### LlamaGen
+
+LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture transformer, without any image-specific architectural changes, can do competitive text-to-image generation as next-token prediction over discrete VQGAN tokens. The authors study image tokenizer design, model scaling from 100M to 3.1B parameters, and training-data quality, and release two 775M-parameter text-conditional checkpoints trained in two stages on web and high-aesthetic data.
+
+[Architecture and figure](../models/ar-token.md#llamagen) · [Paper](https://arxiv.org/abs/2406.06525) · [GitHub](https://github.com/FoundationVision/LlamaGen) · [Model card](https://huggingface.co/FoundationVision/LlamaGen)
+
+![LlamaGen — Editorial input/output diagram](../assets/architectures/llamagen.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2406.06525)*
+
+<a id="longcat-image"></a>
+
+### LongCat-Image
+
+LongCat-Image is Meituan's open 6B-parameter text-to-image diffusion transformer, following the FLUX-style pattern of a smaller number of double-stream blocks (where text and image tokens are processed on separate paths joined by attention) feeding into a larger number of single-stream blocks that process both modalities together. It replaces the usual CLIP/T5 combination with a single Qwen2.5-VL-7B vision-language model as text encoder and handles in-image text rendering through simple character-level tokenization of quoted text rather than a dedicated glyph module. Its VAE is derived from FLUX.1-dev's with an added token-merging step for efficiency. A companion LongCat-Image-Edit model reuses the same backbone with reference-image conditioning for instruction-based editing. Both the technical report and open weights were released under Apache-2.0.
+
+[Architecture and figure](../models/dit.md#longcat-image) · [Paper](https://arxiv.org/abs/2512.07584) · [GitHub](https://github.com/meituan-longcat/LongCat-Image) · [Model card](https://huggingface.co/meituan-longcat/LongCat-Image)
+
+![LongCat-Image — Figure 12](../assets/architectures/longcat-image.png)
+
+*Figure 12 · [Source](https://arxiv.org/abs/2512.07584)*
+
 <a id="luma-uni-1"></a>
 
 ### Luma Uni-1
@@ -833,6 +1038,42 @@ Uni-1 is Luma AI's first unified understanding and generation model, offered for
 ![Luma Uni-1 — Editorial input/output diagram](../assets/architectures/luma-uni-1.svg)
 
 *Editorial input/output diagram · [Source](https://lumalabs.ai/uni-1)*
+
+<a id="lumina-image-2"></a>
+
+### Lumina-Image 2.0
+
+Lumina-Image 2.0 is Alpha-VLLM's follow-up to the Lumina-Next diffusion transformer, redesigning how text and image tokens interact. Instead of cross-attention or the two-stream joint-attention blocks used by Stable Diffusion 3 and FLUX, it concatenates Gemma2-encoded text tokens and noised image tokens into a single sequence and lets one set of self-attention layers ('Unified Next-DiT') attend across both, which the authors argue improves text-image interaction and simplifies extending the model to new tasks. Training data quality comes from a purpose-built captioning pipeline (UniCap) that fine-tunes vision-language models to produce detailed, multi-granularity, bilingual captions rather than relying on off-the-shelf alt text. The 2.6B-parameter model and code were released under Apache-2.0.
+
+[Architecture and figure](../models/dit.md#lumina-image-2) · [Paper](https://arxiv.org/abs/2503.21758) · [GitHub](https://github.com/Alpha-VLLM/Lumina-Image-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-Image-2.0)
+
+![Lumina-Image 2.0 — Figure 2](../assets/architectures/lumina-image-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.21758)*
+
+<a id="lumina-mgpt"></a>
+
+### Lumina-mGPT
+
+Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chameleon multimodal transformer into a dedicated photorealistic text-to-image generator by continuing its autoregressive pretraining and adding resolution-control prompt designs, rather than training a new architecture from scratch. A single 7B decoder-only model handles flexible-resolution text-to-image generation alongside other tasks such as controllable and subject-driven generation.
+
+[Architecture and figure](../models/ar-token.md#lumina-mgpt) · [Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768)
+
+![Lumina-mGPT — Editorial input/output diagram](../assets/architectures/lumina-mgpt.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2408.02657)*
+
+<a id="lumina-mgpt-2"></a>
+
+### Lumina-mGPT 2.0
+
+Lumina-mGPT 2.0 (Shanghai AI Laboratory and collaborators, 2025) rebuilds Lumina-mGPT as a stand-alone autoregressive image model trained from scratch, rather than fine-tuned from Chameleon, unifying text-to-image generation, subject-driven generation, multi-turn image editing, controllable generation and dense prediction in a single decoder-only transformer conditioned through system prompts and an SBER-MoVQGAN tokenizer.
+
+[Architecture and figure](../models/ar-token.md#lumina-mgpt-2) · [Paper](https://arxiv.org/abs/2507.17801) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-2.0)
+
+![Lumina-mGPT 2.0 — Figure 2](../assets/architectures/lumina-mgpt-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.17801)*
 
 <a id="lumina-next"></a>
 
@@ -870,6 +1111,30 @@ M6 (Alibaba and Tsinghua, 2021) is a large Chinese multimodal pretrained model s
 
 *Figure 3 · [Source](https://arxiv.org/abs/2103.00823)*
 
+<a id="m6-ufc"></a>
+
+### M6-UFC
+
+M6-UFC (Alibaba and Tsinghua, 2021) unifies text-to-image generation with image-conditioned controllable synthesis by putting textual, visual and preservation control signals into one token sequence for a single bidirectional transformer, then decoding the target image tokens with an iterative non-autoregressive procedure (PNAG) that refines only the least confident tokens at each step, rather than a fixed left-to-right order.
+
+[Architecture and figure](../models/masked.md#m6-ufc) · [Paper](https://arxiv.org/abs/2105.14211) · GitHub: no author-linked repository found
+
+![M6-UFC — Figure 2](../assets/architectures/m6-ufc.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2105.14211)*
+
+<a id="mage-flow"></a>
+
+### Mage-Flow
+
+Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.
+
+[Architecture and figure](../models/dit.md#mage-flow) · [Paper](https://arxiv.org/abs/2607.19064)
+
+![Mage-Flow — Figure 5](../assets/architectures/mage-flow.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2607.19064)*
+
 <a id="mai-image"></a>
 
 ### MAI-Image
@@ -881,6 +1146,42 @@ MAI-Image is Microsoft AI's in-house image model line. MAI-Image-1, announced on
 ![MAI-Image — Editorial input/output diagram](../assets/architectures/mai-image.svg)
 
 *Editorial input/output diagram · [Source](https://microsoft.ai/news/introducing-mai-image-2/)*
+
+<a id="make-a-scene"></a>
+
+### Make-A-Scene
+
+Make-A-Scene (Meta AI, ECCV 2022) extends DALL·E-style autoregressive text-to-image transformers with an optional scene layout: a token sequence for a segmentation map can be interleaved between the text and image tokens, giving users explicit control over object placement and shape while still allowing pure text-to-image generation when no layout is supplied. The paper also introduces a face-aware token-space loss and a classifier-free-style domain adaptation step to improve generated faces and photorealism.
+
+[Architecture and figure](../models/ar-token.md#make-a-scene) · [Paper](https://arxiv.org/abs/2203.13131) · GitHub: no author-linked repository found
+
+![Make-A-Scene — Figure 6](../assets/architectures/make-a-scene.png)
+
+*Figure 6 · [Source](https://arxiv.org/abs/2203.13131)*
+
+<a id="mars-t2i"></a>
+
+### MARS
+
+MARS (2024) adds text-to-image generation to a frozen large language model (Qwen-7B) by inserting a Semantic Vision-Language Integration Expert, a mixture-of-experts layer that gives visual tokens their own attention and feed-forward pathways while leaving the original text experts untouched, so the model keeps the LLM's language ability while learning to autoregressively generate VQGAN image tokens. Trained bilingually on Chinese and English captions, the authors report competitive MS-COCO FID at a fraction of Stable Diffusion 1.5's training cost.
+
+[Architecture and figure](../models/ar-token.md#mars-t2i) · [Paper](https://arxiv.org/abs/2407.07614) · GitHub: no author-linked repository found
+
+![MARS — Figure 3](../assets/architectures/mars-t2i.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2407.07614)*
+
+<a id="meissonic"></a>
+
+### Meissonic
+
+Meissonic (2024) revisits masked generative transformers (in the style of MUSE) as an efficient path to high-resolution text-to-image generation, combining MM-DiT-style multi-modal/single-modal transformer blocks, rotary position embeddings and feature compression to generate 1024px images from a 1B-parameter model trained with under 50 H100 GPU-days, positioning masked-token prediction as a lower-cost alternative to diffusion transformers at comparable resolution.
+
+[Architecture and figure](../models/masked.md#meissonic) · [Paper](https://arxiv.org/abs/2410.08261) · [GitHub](https://github.com/viiika/Meissonic) · [Model card](https://huggingface.co/MeissonFlow/Meissonic)
+
+![Meissonic — Figure 2](../assets/architectures/meissonic.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2410.08261)*
 
 <a id="metaquery"></a>
 
@@ -966,6 +1267,18 @@ Mogao is a ByteDance Seed unified model aimed at interleaved multimodal generati
 
 *Figure 3 · [Source](https://arxiv.org/abs/2505.05472)*
 
+<a id="muse"></a>
+
+### Muse
+
+Muse (Google Research, 2023) generates images by masked-token modeling rather than diffusion or autoregression: a transformer conditioned on a frozen T5-XXL text encoder predicts discrete VQGAN tokens for all masked positions in parallel, refining the image over a handful of steps, and a second masked transformer upsamples the result in token space. The authors report faster inference than comparable diffusion or autoregressive models at similar quality, but did not release code, weights or a public demo.
+
+[Architecture and figure](../models/masked.md#muse) · [Paper](https://arxiv.org/abs/2301.00704) · GitHub: no author-linked repository found
+
+![Muse — Figure 3](../assets/architectures/muse.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2301.00704)*
+
 <a id="muse-image"></a>
 
 ### Muse Image
@@ -1014,6 +1327,30 @@ OmniGen2 is an open generative model from the OmniGen team (VectorSpaceLab) for 
 
 *Figure 2 · [Source](https://arxiv.org/abs/2506.18871)*
 
+<a id="ovis-image"></a>
+
+### Ovis-Image
+
+Ovis-Image is a 7B-class (10B total, including its frozen encoders) open text-to-image model from the Ovis team, built by adapting the Ovis-U1 unified understanding/generation framework into a dedicated generation model with a larger MMDiT backbone. It conditions on the team's own Ovis2.5-2B vision-language model as text encoder, chosen because its multimodal pretraining already aligns text and image representations, and reuses FLUX.1-schnell's VAE unchanged. The paper's main claim is that a carefully designed, text-rendering-focused training recipe -- rather than a new architectural component -- lets a comparatively small model match the legible-text quality of much larger systems such as Qwen-Image, while remaining efficient enough to run on a single high-end GPU.
+
+[Architecture and figure](../models/dit.md#ovis-image) · [Paper](https://arxiv.org/abs/2511.22982) · [GitHub](https://github.com/ATH-MaaS/Ovis-Image) · [Model card](https://huggingface.co/ATH-MaaS/Ovis-Image-7B)
+
+![Ovis-Image — Figure 2](../assets/architectures/ovis-image.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2511.22982)*
+
+<a id="paella"></a>
+
+### Paella
+
+Paella (LAION and Technical University of Darmstadt, 2022) is a fast text-to-image model that operates on VQGAN latent tokens with a convolutional network instead of a transformer, and samples by repeatedly predicting all tokens and randomly renoising a portion of them back to noise rather than permanently unmasking tokens, converging in about 12 steps. Besides text-to-image generation, the same trained model supports image-conditioned generation and zero-shot image variation through CLIP image embeddings.
+
+[Architecture and figure](../models/masked.md#paella) · [Paper](https://arxiv.org/abs/2211.07292) · [GitHub](https://github.com/dome272/Paella) · [Model card](https://huggingface.co/dome272/Paella)
+
+![Paella — Figure 2](../assets/architectures/paella.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2211.07292)*
+
 <a id="multiscale-pixelcnn"></a>
 
 ### Parallel Multiscale PixelCNN
@@ -1025,6 +1362,18 @@ This DeepMind paper by Reed et al. makes PixelCNN practical at high resolution b
 ![Parallel Multiscale PixelCNN — Figure 3 (PDF p. 3)](../assets/architectures/multiscale-pixelcnn.png)
 
 *Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/1703.03664)*
+
+<a id="parti"></a>
+
+### Parti
+
+Parti (Google Research, 2022) treats text-to-image generation as sequence-to-sequence translation from text tokens to image tokens, the same recipe that scaled large language models. A ViT-VQGAN tokenizer represents images as discrete tokens, and encoder-decoder Transformers from 350M to 20B parameters are trained to predict those tokens from a text prompt, with the paper showing that image fidelity and prompt adherence keep improving as the decoder is scaled to 20B. Only the PartiPrompts benchmark and project data cards were released; model weights and code are not public.
+
+[Architecture and figure](../models/ar-token.md#parti) · [Paper](https://arxiv.org/abs/2206.10789) · [GitHub](https://github.com/google-research/parti)
+
+![Parti — Figure 3](../assets/architectures/parti.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2206.10789)*
 
 <a id="pixart-delta"></a>
 
@@ -1085,6 +1434,30 @@ Playground v3 is Playground's third-generation text-to-image model and a departu
 ![Playground v3 — Figure 2](../assets/architectures/playground-v3.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2409.10695)*
+
+<a id="qwen-image"></a>
+
+### Qwen-Image
+
+Qwen-Image is Alibaba's 20B-parameter open text-to-image foundation model, built as a double-stream MMDiT transformer conditioned on a frozen Qwen2.5-VL vision-language model rather than a text-only encoder. The team argues that because Qwen2.5-VL's language and visual representation spaces are already aligned through its own multimodal pretraining, it transfers better as a diffusion conditioner than a pure LLM, and pairs it with a new MSRoPE positional scheme designed to keep image and text token positions consistent under resolution changes. Its VAE reuses a video autoencoder's architecture but retrains the decoder for image fidelity, particularly for rendered text. A heavy curriculum of synthetic text-rendering data lets Qwen-Image generate paragraph-length legible text inside images, a documented weak point of most other text-to-image models. It was released with Apache-2.0 code and weights.
+
+[Architecture and figure](../models/dit.md#qwen-image) · [Paper](https://arxiv.org/abs/2508.02324) · [GitHub](https://github.com/QwenLM/Qwen-Image) · [Model card 1](https://huggingface.co/Qwen/Qwen-Image) · [Model card 2](https://huggingface.co/Qwen/Qwen-Image-2512)
+
+![Qwen-Image — Figure 6](../assets/architectures/qwen-image.png)
+
+*Figure 6 · [Source](https://arxiv.org/abs/2508.02324)*
+
+<a id="qwen-image-2"></a>
+
+### Qwen-Image-2.0
+
+Qwen-Image-2.0 is Alibaba's second-generation text-to-image and editing foundation model, redesigning Qwen-Image's double-stream MMDiT into a single shared transformer stream that processes text and image tokens together, paired with a new frozen Qwen3-VL condition encoder and a more aggressively compressed VAE. The technical report frames it as an 'omni-capable' model that unifies high-fidelity generation with precise, instruction-driven multi-image editing in one architecture, and reports large human-evaluation gains over the original Qwen-Image on both tasks, particularly long, multilingual in-image text. The open-weight Qwen-Image-2.1 release brings a smaller, 7B-parameter single-stream version of this architecture with efficiency optimizations and native transparent (RGBA) image support, under a research-only license.
+
+[Architecture and figure](../models/dit.md#qwen-image-2) · [Paper](https://arxiv.org/abs/2605.10730) · [GitHub](https://github.com/QwenLM/Qwen-Image-2.1) · [Model card](https://huggingface.co/Qwen/Qwen-Image-2.1) · [Announcement](https://qwen.ai/blog?id=qwen-image-2.0)
+
+![Qwen-Image-2.0 — Figure 8](../assets/architectures/qwen-image-2.png)
+
+*Figure 8 · [Source](https://arxiv.org/abs/2605.10730)*
 
 <a id="recraft"></a>
 
@@ -1230,6 +1603,42 @@ SEED-X, from Tencent AI Lab and ARC Lab (Tencent PCG), is a unified multimodal f
 
 *Figure 4 · [Source](https://arxiv.org/abs/2404.14396)*
 
+<a id="seedream-2"></a>
+
+### Seedream 2.0
+
+Seedream 2.0 is ByteDance's bilingual (Chinese and English) text-to-image foundation model, built as an MMDiT diffusion transformer that conditions jointly on a self-developed decoder-only LLM text encoder and a Glyph-ByT5 encoder dedicated to rendering legible text inside images. Its own VAE and a new Scaled RoPE positional scheme are meant to keep quality consistent at resolutions beyond what the model was trained on. The technical report emphasizes native, balanced Chinese-English understanding and aesthetic alignment through large-scale knowledge injection and active-learning-based data curation, and Seedream 3.0 (also in this catalog) reports that it inherits this same core MMDiT design. No public weights or code are available; the model is served only through ByteDance's own products.
+
+[Architecture and figure](../models/dit.md#seedream-2) · [Paper](https://arxiv.org/abs/2503.07703)
+
+![Seedream 2.0 — Figure 10](../assets/architectures/seedream-2.png)
+
+*Figure 10 · [Source](https://arxiv.org/abs/2503.07703)*
+
+<a id="seedream-3"></a>
+
+### Seedream 3.0
+
+Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the same MMDiT architecture as Seedream 2.0 but scaled up in parameters and trained with a more elaborate curriculum: resolution progressively raised from 256px pre-training to 2048px fine-tuning with explicit size conditioning, a defect-aware data pipeline that expands training data using an automatic defect detector, a cross-modality RoPE for better text-image alignment, and a representation-alignment loss borrowed from DINOv2 features. Rather than introducing a new transformer design, the report focuses on training-time and data-quality improvements over Seedream 2.0, reporting gains in alignment, structural accuracy, aesthetics and text rendering. No public weights or code are available; the model is served only through ByteDance's own products.
+
+[Architecture and figure](../models/dit.md#seedream-3) · [Paper](https://arxiv.org/abs/2504.11346)
+
+![Seedream 3.0 — Editorial input/output diagram](../assets/architectures/seedream-3.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2504.11346)*
+
+<a id="seedream-4"></a>
+
+### Seedream 4.0
+
+Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image editing system, built around a redesigned, more efficient diffusion transformer backbone that the technical report says substantially raises model capacity while cutting training and inference cost. Generation and editing share one model through a 'causal diffusion' post-training stage, so the same network can take a text prompt alone or a prompt plus one or several reference images and return one or multiple output images, evaluated as co-equal capabilities in the paper's benchmarks. A high-compression VAE and a Seed1.5-VL-based prompt/routing module keep image tokens few and route different input types, while adversarial distillation, quantization and speculative decoding push inference to roughly 1.4 seconds for a 2K image, over 10x faster than Seedream 3.0. Seedream 4.5 is a later product update of the same system rather than a new architecture. No public weights or code exist; the model is available only through ByteDance's API and products.
+
+[Architecture and figure](../models/dit.md#seedream-4) · [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5)
+
+![Seedream 4.0 — Editorial input/output diagram](../assets/architectures/seedream-4.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2509.20427)*
+
 <a id="seedream-5"></a>
 
 ### Seedream 5.0
@@ -1265,6 +1674,18 @@ Show-o2 is Show Lab's second-generation native unified multimodal model. Where S
 ![Show-o2 — Figure 1](../assets/architectures/show-o2.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2506.15564)*
+
+<a id="simplear"></a>
+
+### SimpleAR
+
+SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a Qwen-architecture decoder-only transformer predicts discrete Cosmos-Tokenizer image tokens after text tokens with no bespoke visual modules, and the authors show that adding supervised fine-tuning on curated data and a GRPO reinforcement-learning stage with CLIP-based rewards lets a 0.5-1.5B model reach competitive GenEval and DPG scores, while vLLM serving makes 1024px sampling practical in seconds.
+
+[Architecture and figure](../models/ar-token.md#simplear) · [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
+
+![SimpleAR — Editorial input/output diagram](../assets/architectures/simplear.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2504.11455)*
 
 <a id="snapfusion"></a>
 
@@ -1314,6 +1735,18 @@ Stable Diffusion 3 is Stability AI's third-generation text-to-image family and t
 
 *Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2403.03206)*
 
+<a id="star-t2i"></a>
+
+### STAR
+
+STAR (2024) adapts VAR-style next-scale autoregressive image generation to open-domain text-to-image synthesis, adding text cross-attention at every scale and a normalized rotary position encoding so the same positional scheme works across the growing token-map resolutions of scale-wise generation, reaching 1024px outputs in about 2.2 seconds.
+
+[Architecture and figure](../models/ar-token.md#star-t2i) · [Paper](https://arxiv.org/abs/2406.10797) · [GitHub](https://github.com/Davinci-XLab/STAR-T2I) · [Model card](https://huggingface.co/taocrayon/STAR)
+
+![STAR — Figure 4](../assets/architectures/star-t2i.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2406.10797)*
+
 <a id="starflow"></a>
 
 ### STARFlow
@@ -1337,6 +1770,18 @@ SwiftBrush (VinAI Research, 2023) distills Stable Diffusion 2.1 into a one-step 
 ![SwiftBrush — Figure 2 (PDF p. 6)](../assets/architectures/swiftbrush.png)
 
 *Figure 2 (PDF p. 6) · [Source](https://arxiv.org/abs/2312.05239)*
+
+<a id="switti"></a>
+
+### Switti
+
+Switti (Yandex Research, 2024) is a scale-wise (VAR-style) autoregressive text-to-image transformer that drops causal attention across scales in favor of non-causal, scale-local attention, since it finds later scales already encode information from earlier ones through upsampling. Combined with disabling classifier-free guidance at the final high-resolution scales, this yields roughly 30% faster 1024px sampling than a causal scale-wise baseline with comparable or better quality.
+
+[Architecture and figure](../models/ar-token.md#switti) · [Paper](https://arxiv.org/abs/2412.01819) · [GitHub](https://github.com/yandex-research/switti) · [Model card](https://huggingface.co/yresearch/Switti)
+
+![Switti — Figure 2 (PDF p. 4)](../assets/architectures/switti.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2412.01819)*
 
 <a id="taiyi-diffusion-xl"></a>
 
@@ -1434,6 +1879,30 @@ VL-GPT, from Xi'an Jiaotong University, Tencent AI Lab, ARC Lab (Tencent PCG) an
 
 *Figure 1 · [Source](https://arxiv.org/abs/2312.09251)*
 
+<a id="vq-diffusion"></a>
+
+### VQ-Diffusion
+
+VQ-Diffusion (Microsoft Research, 2021) applies denoising diffusion to the discrete token space of a VQ-VAE instead of continuous pixels or latents, using a mask-and-replace corruption process that makes corrupted positions explicit to a transformer denoiser conditioned on text through cross-attention. Because the model is trained to reconstruct tokens from partially masked or corrupted versions of an image, it supports text-guided local image editing as well as text-to-image generation, and the paper reports it avoids the unidirectional bias and error accumulation of autoregressive token models.
+
+[Architecture and figure](../models/masked.md#vq-diffusion) · [Paper](https://arxiv.org/abs/2111.14822) · [GitHub](https://github.com/microsoft/VQ-Diffusion)
+
+![VQ-Diffusion — Figure 1](../assets/architectures/vq-diffusion.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2111.14822)*
+
+<a id="x-lxmert"></a>
+
+### X-LXMERT
+
+X-LXMERT (AI2 and UNC Chapel Hill, EMNLP 2020) asks whether a bidirectional vision-language transformer built for understanding tasks (LXMERT) can also generate images. The authors discretize image regions into visual clusters and add masked visual-token training, so the resulting model can synthesize a coarse token grid from a caption via iterative mask-predict decoding, which a separate GAN-based generator converts into a full image, alongside LXMERT's original captioning and QA abilities.
+
+[Architecture and figure](../models/masked.md#x-lxmert) · [Paper](https://arxiv.org/abs/2009.11278) · [GitHub](https://github.com/allenai/x-lxmert)
+
+![X-LXMERT — Figure 1](../assets/architectures/x-lxmert.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2009.11278)*
+
 <a id="x-omni"></a>
 
 ### X-Omni
@@ -1445,3 +1914,15 @@ X-Omni, from Tencent Hunyuan, argues that discrete autoregressive image generati
 ![X-Omni — Figure 3](../assets/architectures/x-omni.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2507.22058)*
+
+<a id="z-image"></a>
+
+### Z-Image
+
+Z-Image is Alibaba Tongyi's compact, 6.15B-parameter text-to-image foundation model built around a single-stream diffusion transformer (S3-DiT) rather than the dual-stream-then-single-stream designs common in comparable open DiTs. It conditions on a small Qwen3-4B language model for bilingual text understanding and reuses the FLUX VAE for image tokenization, aiming for strong quality and efficiency at a fraction of the parameter count of contemporaries. A distilled Z-Image-Turbo variant combines a decoupled distribution-matching distillation method with reinforcement learning to reach sub-second, 8-step generation on enterprise GPUs, while Z-Image-Edit extends the same backbone with a SigLIP-2 semantic encoder for reference-image editing. Code and both released checkpoints use the Apache-2.0 license.
+
+[Architecture and figure](../models/dit.md#z-image) · [Paper](https://arxiv.org/abs/2511.22699) · [GitHub](https://github.com/Tongyi-MAI/Z-Image) · [Model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+
+![Z-Image — Figure 10](../assets/architectures/z-image.png)
+
+*Figure 10 · [Source](https://arxiv.org/abs/2511.22699)*

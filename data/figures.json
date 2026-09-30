@@ -33,6 +33,14 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "amused": {
+   "kind": "source-figure",
+   "path": "assets/architectures/amused.png",
+   "source_url": "https://arxiv.org/abs/2401.01808",
+   "origin_url": "https://arxiv.org/html/2401.01808v1/openmuse.png",
+   "locator": "Figure 1",
+   "sha256": "99840361120f76cd06451ed2a32c9403b272072f0d99c3583a5c7ac350de1c23"
+  },
   "attngan": {
    "kind": "source-figure",
    "path": "assets/architectures/attngan.png",
@@ -136,6 +144,14 @@
    "origin_url": "https://arxiv.org/html/2105.13290v3/cogviewframe.png",
    "locator": "Figure 3",
    "sha256": "92f5a32c44c862192b6081df68f10f711931378c3acad6563019984ac4dcfb3b"
+  },
+  "cogview2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/cogview2.png",
+   "source_url": "https://arxiv.org/abs/2204.14217",
+   "origin_url": "https://arxiv.org/html/2204.14217v2/coglm.png",
+   "locator": "Figure 2",
+   "sha256": "c880dab3e34da9289b86aba3e672dc2ed03219d862d8df9ab171d22a670a2a43"
   },
   "cogview3": {
    "kind": "source-figure",
@@ -317,6 +333,14 @@
    "locator": "Figure 3",
    "sha256": "6d8dc5ecadf750aeac3c1d266921df309ae9b6df99f4880aefba84d289103071"
   },
+  "ernie-image": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/ernie-image.svg",
+   "source_url": "https://arxiv.org/abs/2605.25347",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
   "ernie-vilg": {
    "kind": "source-figure",
    "path": "assets/architectures/ernie-vilg.png",
@@ -357,6 +381,14 @@
    "locator": "Figure 4",
    "sha256": "1aa3338fb3ff0a0f88bac495e9d563c0da2a15e6e4e902d48e36c93f7c85aa38"
   },
+  "flux-2": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/flux-2.svg",
+   "source_url": "https://bfl.ai/blog/flux-2",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
   "frido": {
    "kind": "source-figure",
    "path": "assets/architectures/frido.png",
@@ -396,6 +428,14 @@
    "origin_url": "https://arxiv.org/html/2110.09753v1/framework.png",
    "locator": "Figure 2",
    "sha256": "f0c2267ef85cc0e8e7f85728bb54596798595f336e248f18ed69c9dc532f4e7e"
+  },
+  "gentron": {
+   "kind": "source-figure",
+   "path": "assets/architectures/gentron.png",
+   "source_url": "https://arxiv.org/abs/2312.04557",
+   "origin_url": "https://arxiv.org/pdf/2312.04557v2",
+   "locator": "Figure 2 (PDF p. 3)",
+   "sha256": "279ed7be4b95d47b2981459f4627755338153ba6821420aa3ccde3959c203bdf"
   },
   "glide": {
    "kind": "io-diagram",
@@ -461,6 +501,14 @@
    "locator": "Figure 1 (top panel)",
    "sha256": "0d70451e6c1b7560ecf684e5f2bab456fb9187b800c6bfaec30ffdfa39513c1b"
   },
+  "hidream-i1": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hidream-i1.png",
+   "source_url": "https://arxiv.org/abs/2505.22705",
+   "origin_url": "https://arxiv.org/html/2505.22705v1/framework.png",
+   "locator": "Figure 3",
+   "sha256": "17976c176d842946d7be23199adb453a89410f33c7bc45d7e1c7b73db77f3e1e"
+  },
   "hidream-o1-image": {
    "kind": "source-figure",
    "path": "assets/architectures/hidream-o1-image.png",
@@ -485,6 +533,14 @@
    "locator": "Figure 7",
    "sha256": "99d15165d73431a6527722407aef23b52bc1ebf58d7dc33e1d3eccd93ce1a475"
   },
+  "hunyuanimage-2-1": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hunyuanimage-2-1.png",
+   "source_url": "https://github.com/Tencent-Hunyuan/HunyuanImage-2.1",
+   "origin_url": "https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanImage-2.1/main/assets/framework_overall.png",
+   "locator": "README — framework_overall.png",
+   "sha256": "cec12047bab92fa3f73b15d69f59b43c5a62bde3e7995a6a684ac832df89d0d4"
+  },
   "hunyuanimage-3": {
    "kind": "source-figure",
    "path": "assets/architectures/hunyuanimage-3.png",
@@ -505,6 +561,14 @@
    "kind": "io-diagram",
    "path": "assets/architectures/ideogram.svg",
    "source_url": "https://developer.ideogram.ai/api-reference/generate-images/generate-v3",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "ideogram-4": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/ideogram-4.svg",
+   "source_url": "https://ideogram.ai/blog/ideogram-4.0/",
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
@@ -556,6 +620,14 @@
    "origin_url": "https://arxiv.org/html/2405.05224v1/figures/backward_distillation.png",
    "locator": "Figure 3",
    "sha256": "ee32b4f6b64521c09c497f30381dec3cb375eb8992fb1e07fb347c995fe5081d"
+  },
+  "infinity": {
+   "kind": "source-figure",
+   "path": "assets/architectures/infinity.png",
+   "source_url": "https://arxiv.org/abs/2412.04431",
+   "origin_url": "https://arxiv.org/html/2412.04431v2/framework_new.png",
+   "locator": "Figure 3",
+   "sha256": "15ec8a2d3dfb38834ca9b093a851e62677587e45c684fa42742bac64d1358ef9"
   },
   "instaflow": {
    "kind": "source-figure",
@@ -613,6 +685,14 @@
    "locator": "Figure 2",
    "sha256": "a107d9088292a0ceafce351be9676b7a8b61458a24831ecb05e037dbfc590e22"
   },
+  "kandinsky-5": {
+   "kind": "source-figure",
+   "path": "assets/architectures/kandinsky-5.png",
+   "source_url": "https://arxiv.org/abs/2511.14993",
+   "origin_url": "https://arxiv.org/html/2511.14993v3/images/DiT.jpg",
+   "locator": "Figure 10",
+   "sha256": "6b0cf7c2b28f30a0841787e381170f524e30c181b39c993650dc5fcb1af7caf3"
+  },
   "karlo": {
    "kind": "source-figure",
    "path": "assets/architectures/karlo.png",
@@ -644,6 +724,14 @@
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
+  },
+  "krea-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/krea-2.png",
+   "source_url": "https://www.krea.ai/blog/krea-2-technical-report",
+   "origin_url": "https://s.krea.ai/blog-posts/krea-2-technical-report/agent/1782227083196-single-stream-mmdit.png",
+   "locator": "Blog — 'Single-stream MMDiT' figure",
+   "sha256": "e07aab859bf62b451c8f7326bf11ead8dce6bcde274cf453e665addd8321350a"
   },
   "l-verse": {
    "kind": "source-figure",
@@ -677,6 +765,30 @@
    "locator": "Figure 3 (PDF p. 4)",
    "sha256": "c692a7d5be005f1ea21008d865d4648c7e788054ac0eae0450f9fde504464673"
   },
+  "li-dit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/li-dit.png",
+   "source_url": "https://arxiv.org/abs/2406.11831",
+   "origin_url": "https://arxiv.org/html/2406.11831v3/framework.png",
+   "locator": "Figure 5",
+   "sha256": "4d57eb051b85dcb294ffc045efa5af5d465302240028ade30585ced225a15e98"
+  },
+  "llamagen": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/llamagen.svg",
+   "source_url": "https://arxiv.org/abs/2406.06525",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "longcat-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/longcat-image.png",
+   "source_url": "https://arxiv.org/abs/2512.07584",
+   "origin_url": "https://arxiv.org/html/2512.07584v1/model_struct.png",
+   "locator": "Figure 12",
+   "sha256": "58c30d7df68c38a39b50b38597c7988ca7a9c8feb818b62461fdd71d0706518b"
+  },
   "luma-uni-1": {
    "kind": "io-diagram",
    "path": "assets/architectures/luma-uni-1.svg",
@@ -684,6 +796,30 @@
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
+  },
+  "lumina-image-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lumina-image-2.png",
+   "source_url": "https://arxiv.org/abs/2503.21758",
+   "origin_url": "https://arxiv.org/html/2503.21758v1/lumina2-arc.png",
+   "locator": "Figure 2",
+   "sha256": "e2a0fa7cc1d598a221ee9a7b0e73552f7e5df3060231ab5b76c25afd595d7372"
+  },
+  "lumina-mgpt": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/lumina-mgpt.svg",
+   "source_url": "https://arxiv.org/abs/2408.02657",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "lumina-mgpt-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lumina-mgpt-2.png",
+   "source_url": "https://arxiv.org/abs/2507.17801",
+   "origin_url": "https://arxiv.org/html/2507.17801v1/architecture.png",
+   "locator": "Figure 2",
+   "sha256": "60b37ff9d7578fd81a131515a6f7d3cd51893af1b7b180df778f311059a41549"
   },
   "lumina-next": {
    "kind": "source-figure",
@@ -709,6 +845,22 @@
    "locator": "Figure 3",
    "sha256": "27a669d740c7311bd486f36936445041e0bba3172dcf836dc0c3d5a0c6b761a0"
   },
+  "m6-ufc": {
+   "kind": "source-figure",
+   "path": "assets/architectures/m6-ufc.png",
+   "source_url": "https://arxiv.org/abs/2105.14211",
+   "origin_url": "https://arxiv.org/html/2105.14211v4/framework.png",
+   "locator": "Figure 2",
+   "sha256": "615fb9d2c0be4933247e1890862ab7c26964741d9e411d6c32684581fc451f1c"
+  },
+  "mage-flow": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mage-flow.png",
+   "source_url": "https://arxiv.org/abs/2607.19064",
+   "origin_url": "https://arxiv.org/html/2607.19064v2/native_mmdit.png",
+   "locator": "Figure 5",
+   "sha256": "e5a76683a9c51d0cbcff86035dace81a3d9860fbac558c278a38b18d065dd2e0"
+  },
   "mai-image": {
    "kind": "io-diagram",
    "path": "assets/architectures/mai-image.svg",
@@ -717,6 +869,22 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "make-a-scene": {
+   "kind": "source-figure",
+   "path": "assets/architectures/make-a-scene.png",
+   "source_url": "https://arxiv.org/abs/2203.13131",
+   "origin_url": "https://arxiv.org/html/2203.13131v1/figures/scene_arch_v4.png",
+   "locator": "Figure 6",
+   "sha256": "9d5ce4cdd6f1c06a6e90aedbd511d56535bcda9769a7953521a40f1f4411150c"
+  },
+  "mars-t2i": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mars-t2i.png",
+   "source_url": "https://arxiv.org/abs/2407.07614",
+   "origin_url": "https://arxiv.org/html/2407.07614v2/framwork-matri-X.png",
+   "locator": "Figure 3",
+   "sha256": "e6bbbc39c2b2c542ca354694456b085758cc9a6f23906be3cc45d52a9daf711e"
+  },
   "matryoshka-diffusion": {
    "kind": "source-figure",
    "path": "assets/architectures/matryoshka-diffusion.png",
@@ -724,6 +892,14 @@
    "origin_url": "https://arxiv.org/html/2310.15111v2/figures/mdm_architecture.jpg",
    "locator": "Figure 3",
    "sha256": "d733d08bfe8c33c8212e86cb8869d0feb2c1e84d23023da1e1216dc1e1a8d585"
+  },
+  "meissonic": {
+   "kind": "source-figure",
+   "path": "assets/architectures/meissonic.png",
+   "source_url": "https://arxiv.org/abs/2410.08261",
+   "origin_url": "https://arxiv.org/html/2410.08261v4/architecture_v5.png",
+   "locator": "Figure 2",
+   "sha256": "69e11d55a9fdafab24a2dfa755fc3442b69c25a870faba59623368b1f500ade1"
   },
   "metaquery": {
    "kind": "source-figure",
@@ -797,6 +973,14 @@
    "locator": "Figure 3 (PDF p. 3)",
    "sha256": "551bc958ec5cfb30f7b5500cb40a58da9bea67a1a8cfe98f0148e115b7c86d09"
   },
+  "muse": {
+   "kind": "source-figure",
+   "path": "assets/architectures/muse.png",
+   "source_url": "https://arxiv.org/abs/2301.00704",
+   "origin_url": "https://arxiv.org/html/2301.00704v1/pipeline_v4.png",
+   "locator": "Figure 3",
+   "sha256": "0fccdb111c613d75f05b344a455d0960417ee28389df30f98920bc6f90d98d15"
+  },
   "muse-image": {
    "kind": "io-diagram",
    "path": "assets/architectures/muse-image.svg",
@@ -837,6 +1021,22 @@
    "locator": "Figure 2",
    "sha256": "1872948e26d0e470014be00337cde788d73263aea97bd3cb325b90b16af8b503"
   },
+  "ovis-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ovis-image.png",
+   "source_url": "https://arxiv.org/abs/2511.22982",
+   "origin_url": "https://arxiv.org/html/2511.22982v1/ovis_image.png",
+   "locator": "Figure 2",
+   "sha256": "4b066d1e4345433d751a55778dca74567fc95ed50f1b399775aa7ff75d8f96c6"
+  },
+  "paella": {
+   "kind": "source-figure",
+   "path": "assets/architectures/paella.png",
+   "source_url": "https://arxiv.org/abs/2211.07292",
+   "origin_url": "https://arxiv.org/html/2211.07292v2/PAELLA_training_neurips_v2.png",
+   "locator": "Figure 2",
+   "sha256": "c5d7d79c237e0db00181ad5b1619ceb7ef854229b12e352d5ffcd70e696c85e2"
+  },
   "pangu-draw": {
    "kind": "source-figure",
    "path": "assets/architectures/pangu-draw.png",
@@ -844,6 +1044,14 @@
    "origin_url": "https://arxiv.org/html/2312.16486v2/intro-v7.png",
    "locator": "Figure 1",
    "sha256": "e96be637cfded3202e75554a2346238a7e33c4e93b3dbe16e6a186d432970b2d"
+  },
+  "parti": {
+   "kind": "source-figure",
+   "path": "assets/architectures/parti.png",
+   "source_url": "https://arxiv.org/abs/2206.10789",
+   "origin_url": "https://arxiv.org/html/2206.10789v1/figures/parti.jpg",
+   "locator": "Figure 3",
+   "sha256": "1676476dc31b9a4ef84804aa6fdc08e054e3c9883ec739c3fda9230d9069dce8"
   },
   "pixart-alpha": {
    "kind": "source-figure",
@@ -892,6 +1100,22 @@
    "origin_url": "https://arxiv.org/html/2409.10695v2/images/model_structure.png",
    "locator": "Figure 2",
    "sha256": "c031867613ac6ddb3c90b91101279a28af57b22ca4a75368194bf43ed6725635"
+  },
+  "qwen-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/qwen-image.png",
+   "source_url": "https://arxiv.org/abs/2508.02324",
+   "origin_url": "https://arxiv.org/html/2508.02324v1/figure_qwen-image-arch2.png",
+   "locator": "Figure 6",
+   "sha256": "3f4d92acfeebb7329c62f2352ab83e75f6c4dec80f7910077d9b5652a27b15fe"
+  },
+  "qwen-image-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/qwen-image-2.png",
+   "source_url": "https://arxiv.org/abs/2605.10730",
+   "origin_url": "https://arxiv.org/html/2605.10730v1/framework.png",
+   "locator": "Figure 8",
+   "sha256": "6c63eba7dca6ac60ff891871f31ba8e9a2f572887af2277822b8cc310edbffa9"
   },
   "raphael": {
    "kind": "source-figure",
@@ -1029,6 +1253,30 @@
    "locator": "Figure 4",
    "sha256": "2861e649f7bf23ce3691fa572f193843964a52fe23dc8ec9b610489b5c477297"
   },
+  "seedream-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/seedream-2.png",
+   "source_url": "https://arxiv.org/abs/2503.07703",
+   "origin_url": "https://arxiv.org/html/2503.07703v1/figures/arch.png",
+   "locator": "Figure 10",
+   "sha256": "fcb9222b237c3fb8ab038509c0ee8ee73ece17998fd10d2d24b0e1be74016cda"
+  },
+  "seedream-3": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/seedream-3.svg",
+   "source_url": "https://arxiv.org/abs/2504.11346",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "seedream-4": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/seedream-4.svg",
+   "source_url": "https://arxiv.org/abs/2509.20427",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
   "seedream-5": {
    "kind": "io-diagram",
    "path": "assets/architectures/seedream-5.svg",
@@ -1052,6 +1300,14 @@
    "origin_url": "https://arxiv.org/html/2506.15564v3/overview.png",
    "locator": "Figure 1",
    "sha256": "c5736c2ce33068353598f4cfd50fcf7e6e21b353e8b3520351e8428b075ff48c"
+  },
+  "simplear": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/simplear.svg",
+   "source_url": "https://arxiv.org/abs/2504.11455",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
   },
   "snapfusion": {
    "kind": "source-figure",
@@ -1117,6 +1373,14 @@
    "locator": "Fig. 2 (PDF p. 6)",
    "sha256": "4b17f65cbc4b47ecef75869d56fbf49751db336fba1e007038820dd833869534"
   },
+  "star-t2i": {
+   "kind": "source-figure",
+   "path": "assets/architectures/star-t2i.png",
+   "source_url": "https://arxiv.org/abs/2406.10797",
+   "origin_url": "https://arxiv.org/html/2406.10797v4/framework.png",
+   "locator": "Figure 4",
+   "sha256": "d2957e5dadea14d91ae454221d7710979f2173dc205340d00b223c17fb5bad4f"
+  },
   "starflow": {
    "kind": "source-figure",
    "path": "assets/architectures/starflow.png",
@@ -1132,6 +1396,14 @@
    "origin_url": "https://arxiv.org/pdf/2312.05239v7",
    "locator": "Figure 2 (PDF p. 6)",
    "sha256": "dee150214bb857f0b1ebe640ba3d66ae2494406564846a68e6a6eecc39811bfc"
+  },
+  "switti": {
+   "kind": "source-figure",
+   "path": "assets/architectures/switti.png",
+   "source_url": "https://arxiv.org/abs/2412.01819",
+   "origin_url": "https://arxiv.org/pdf/2412.01819v4",
+   "locator": "Figure 2 (PDF p. 4)",
+   "sha256": "b1fb41ee591e2a1e028945c4bdebe610a0b6dc1ea203bb8becedf0178826f114"
   },
   "tac-gan": {
    "kind": "source-figure",
@@ -1221,6 +1493,14 @@
    "locator": "Figure 1",
    "sha256": "ef96ee3cb5ab649d072660abfd41815411790cbfd0d383aebb33290cb8908496"
   },
+  "vq-diffusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/vq-diffusion.png",
+   "source_url": "https://arxiv.org/abs/2111.14822",
+   "origin_url": "https://arxiv.org/html/2111.14822v3/method4.png",
+   "locator": "Figure 1",
+   "sha256": "adb9ca1d09a37e163ccb915e09516937831ca6226d78ffd3fd4f75506ca85d14"
+  },
   "wuerstchen": {
    "kind": "source-figure",
    "path": "assets/architectures/wuerstchen.png",
@@ -1229,6 +1509,14 @@
    "locator": "Figure 2",
    "sha256": "c96140f2dd889bc036292a3106e0b560cf61ece9452635835dd84db8e4004cf8"
   },
+  "x-lxmert": {
+   "kind": "source-figure",
+   "path": "assets/architectures/x-lxmert.png",
+   "source_url": "https://arxiv.org/abs/2009.11278",
+   "origin_url": "https://arxiv.org/html/2009.11278v1/xlxmert.png",
+   "locator": "Figure 1",
+   "sha256": "f8c1670e1f17544ebb04b496a04a70a2b123753ef433bcb06fbe2320c2760acc"
+  },
   "x-omni": {
    "kind": "source-figure",
    "path": "assets/architectures/x-omni.png",
@@ -1236,6 +1524,14 @@
    "origin_url": "https://arxiv.org/html/2507.22058v1/fig3.png",
    "locator": "Figure 3",
    "sha256": "f5db8e37ddebd557dea1899b388da3cbde0c0c83e38889409a6b62e7262abde2"
+  },
+  "z-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/z-image.png",
+   "source_url": "https://arxiv.org/abs/2511.22699",
+   "origin_url": "https://arxiv.org/html/2511.22699v5/architecture.png",
+   "locator": "Figure 10",
+   "sha256": "c597bc56c476596d1ab7acbef5cd36846700baadff04b7ec881ddd092c0e1ac1"
   }
  }
 }
