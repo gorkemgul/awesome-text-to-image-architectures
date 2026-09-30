@@ -38,13 +38,13 @@ MANIFEST = ROOT / "data" / "figures.json"
 def list_figures(arxiv_id):
     final_url, raw = get(f"https://arxiv.org/html/{arxiv_id}")
     html = raw.decode("utf-8", "replace")
-    # Top-level figures have ids like S4.F2 (panels are S4.F2.sf1); slice between them.
-    starts = [m.start() for m in re.finditer(r'<figure id="[^"]*\bF\d+"', html)]
+    # Top-level figures have ids like S4.F2 or S1.F1.fig1 (panels are S4.F2.sf1); slice between them.
+    starts = [m.start() for m in re.finditer(r'<figure id="[^"]*\bF\d+(?:\.fig\d+)?"', html)]
     for start, end in zip(starts, starts[1:] + [len(html)]):
         body, text = html[start:end], None
         for caption in re.finditer(r"<figcaption.*?</figcaption>", body, re.S):
             label = " ".join(unescape(re.sub(r"<[^>]+>", " ", caption.group(0))).split())
-            if label.startswith("Figure"):
+            if label.startswith(("Figure", "Fig.")):
                 body, text = body[:caption.end()], label
                 break
         if not text:
