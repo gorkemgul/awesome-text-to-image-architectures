@@ -55,6 +55,8 @@ The [2025 onward collection](t2i-arxiv-daily.md) screens every paper returned by
 
 Most papers with "text-to-image" in their titles are methods applied to existing models (guidance, control, personalization, editing, safety, acceleration, evaluation) and are excluded with a recorded reason. Named generation systems and distinct unnamed architectures are included with explanatory names. Major releases whose titles do not contain the phrase, such as technical reports, are covered by the curated catalog instead.
 
+Screening runs in two passes. A first pass classifies every paper from its title and abstract; exclusions from this pass are recorded at `abstract` review level after spot checks (a keyword scan of excluded abstracts for new-model signals and a random sample). Papers proposed for inclusion are then reviewed against the full paper, and only reviewed papers enter the catalog.
+
 The query is a discovery index. Repository links are checked against the paper, author-linked project pages or a matching author repository. `author-linked` means a GitHub source was identified, which may contain an implementation, a placeholder or supporting data; the notes say which where it matters. `not-found` is a review result, not a claim that no code exists. Retitled papers and extended versions share a family when they describe the same system. Withdrawn papers retain a visible status note.
 
 The catalog format, validation approach and figure policy are adapted from [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) (Apache-2.0). Model-level claims cite their own primary sources.
