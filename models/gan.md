@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**45 models · Reviewed 2026-09-29**
+**46 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -20,6 +20,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [ALR-GAN](#alr-gan) | 2023-04-13 | T → I | generation |
 | [AttnGAN](#attngan) | 2017-11-28 | T → I | generation |
 | [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | 2023-09-07 | T → I | generation |
+| [BLM-SGAN](#blm-sgan) | 2026-06-07 | T → I | generation |
 | [C4Synth](#c4synth) | 2018-09-20 | T → I | generation |
 | [CAGAN](#cagan) | 2021-04-26 | T → I | generation |
 | [CanvasGAN](#canvasgan) | 2018-10-05 | T → I | generation |
@@ -129,6 +130,29 @@ Text-to-image GAN whose generator blocks route feature points through a sparsely
 **Input → output:** T → I · **Interaction:** generation
 
 Each unit generative block combines convolution and self-/cross-attention with a Sparse MoE feed-forward layer whose router assigns each spatial feature point to the most suitable expert, conditioned on the noise-and-text global latent code rather than the text alone (paper Figure 2, "Illustration of a unit generative block in our proposed Aurora"; Figure 6 visualizes the learned per-pixel expert routing). Trained on LAION-2B-en and COYO-700M at 64x64 resolution; the released checkpoint only covers this base resolution and training code was not released at review time.
+
+</details>
+
+<a id="blm-sgan"></a>
+
+### BLM-SGAN
+
+One-stage GAN in which a pre-trained BERT text encoder (replacing the LSTM/RNN encoders of earlier text-to-image GANs) supplies sentence and word features to 7 stacked Semantic-Spatial Aware Convolutional (SSACN) generator blocks, paired with a discriminator that concatenates image and text features under a Matching-Aware Gradient Penalty.
+
+BLM-SGAN (Bidirectional Language-Modeling Semantic-Spatial GAN) revisits the standard SSA-GAN-style one-stage text-to-image GAN pipeline and replaces its sequential LSTM-based text encoder with BERT, arguing that bidirectional attention over the full caption yields richer contextual word and sentence features than left-to-right recurrent encoding. Sentence features modulate a stack of 7 SSACN blocks that progressively upsample a noise vector to a 256x256 image, while word features are fed spatially to the same blocks and to the discriminator; the discriminator is trained with a Matching-Aware Gradient Penalty. Evaluated on the CUB bird dataset, the model reaches an Inception Score of 5.45, ahead of prior GAN baselines such as SSA-GAN, DF-GAN and AttnGAN under the same protocol.
+
+[Paper](https://arxiv.org/abs/2606.08847) · [GitHub](https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation)
+
+![BLM-SGAN — Figure 2](../assets/architectures/blm-sgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.08847)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 2 shows the generator (BERT encoder -> FC -> reshape 4x4x512 -> 7x SSACN blocks -> conv/tanh -> 256x256 image) and discriminator (conv stack with a downblock and matching-aware gradient penalty loss). Trained and evaluated only on CUB-200-2011 (11,788 bird images, 10 captions each) for 156 epochs. No parameter counts are given. The paper links its GitHub repository directly.
 
 </details>
 

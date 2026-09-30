@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 277 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 291 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -12,16 +12,30 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | --- | --- | --- | --- |
 | 2026-07-21 | [Mage-Flow](../models/dit.md#mage-flow) | paper | [Paper](https://arxiv.org/abs/2607.19064) |
 | 2026-07-07 | [Muse Image](../models/api.md#muse-image) | announcement | [Announcement 1](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/) · [Announcement 2](https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/) |
+| 2026-06-29 | [Libra-2](../models/unified.md#libra-2) | paper | [Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra) |
+| 2026-06-27 | [Mural](../models/unified.md#mural) | paper | [Paper](https://arxiv.org/abs/2606.29013) · GitHub: no author-linked repository found |
+| 2026-06-25 | [JuZhou 1.0](../models/efficient.md#juzhou-1) | paper | [Paper](https://arxiv.org/abs/2606.28421) · [GitHub](https://github.com/HswAI2026/JuZhou-V1) |
 | 2026-06-23 | [Krea 2](../models/dit.md#krea-2) | announcement | [Announcement](https://www.krea.ai/blog/krea-2-technical-report) · [GitHub](https://github.com/krea-ai/krea-2) · [Model card 1](https://huggingface.co/krea/Krea-2-Raw) · [Model card 2](https://huggingface.co/krea/Krea-2-Turbo) |
+| 2026-06-21 | [SeFi-Image](../models/dit.md#sefi-image) | paper | [Paper](https://arxiv.org/abs/2606.22568) · [GitHub](https://github.com/jmliu206/SeFi-Image) |
+| 2026-06-10 | [Z-Image Turbo++](../models/efficient.md#z-image-turbo-pp) | paper | [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found |
+| 2026-06-09 | [i1](../models/dit.md#i1) | paper | [Paper](https://arxiv.org/abs/2606.11289) · [GitHub](https://github.com/zlab-princeton/i1) · [Model card](https://huggingface.co/zlab-princeton/i1-3B) |
+| 2026-06-09 | [ARM](../models/unified.md#arm) | paper | [Paper](https://arxiv.org/abs/2606.11188) · [GitHub](https://github.com/wdrink/ARM) |
+| 2026-06-08 | [OmniGen-AR](../models/unified.md#omnigen-ar) | paper | [Paper](https://arxiv.org/abs/2606.09156) · GitHub: no author-linked repository found |
+| 2026-06-07 | [BLM-SGAN](../models/gan.md#blm-sgan) | paper | [Paper](https://arxiv.org/abs/2606.08847) · [GitHub](https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation) |
 | 2026-06-03 | [Ideogram 4.0](../models/dit.md#ideogram-4) | announcement | [Announcement](https://ideogram.ai/blog/ideogram-4.0/) · [GitHub](https://github.com/ideogram-oss/ideogram4) · [Model card](https://huggingface.co/ideogram-ai/ideogram-4-fp8) |
-| 2026-05-31 | [Cosmos 3](../models/unified.md#cosmos3) | announcement | [Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos) |
+| 2026-06-02 | [Qwen-Image-Flash](../models/efficient.md#qwen-image-flash) | paper | [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found |
+| 2026-05-31 | [Cosmos 3](../models/unified.md#cosmos3) | announcement | [Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper 1](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos) · [Paper 2](https://arxiv.org/abs/2606.02800) |
 | 2026-05-25 | [ERNIE-Image](../models/dit.md#ernie-image) | paper | [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image) |
+| 2026-05-25 | [CAR (Channel-wise Autoregressive)](../models/ar-token.md#car) | paper | [Paper](https://arxiv.org/abs/2605.26089) · [GitHub](https://github.com/songweii/CVQ) |
+| 2026-05-20 | [Lens](../models/dit.md#lens) | paper | [Paper](https://arxiv.org/abs/2605.21573) · GitHub: no author-linked repository found |
 | 2026-05-12 | [SenseNova-U1](../models/unified.md#sensenova-u1) | paper | [Paper](https://arxiv.org/abs/2605.12500) · [GitHub](https://github.com/OpenSenseNova/SenseNova-U1) · [Model card](https://huggingface.co/sensenova/SenseNova-U1-8B-MoT) |
 | 2026-05-11 | [Qwen-Image-2.0](../models/dit.md#qwen-image-2) | paper | [Paper](https://arxiv.org/abs/2605.10730) · [GitHub](https://github.com/QwenLM/Qwen-Image-2.1) · [Model card](https://huggingface.co/Qwen/Qwen-Image-2.1) · [Announcement](https://qwen.ai/blog?id=qwen-image-2.0) |
 | 2026-05-11 | [HiDream-O1-Image](../models/pixel-diffusion.md#hidream-o1-image) | paper | [Paper](https://arxiv.org/abs/2605.11061) · [GitHub](https://github.com/HiDream-ai/HiDream-O1-Image) · [Model card](https://huggingface.co/HiDream-ai/HiDream-O1-Image) |
 | 2026-05-08 | [STARFlow2](../models/unified.md#starflow2) | paper | [Paper](https://arxiv.org/abs/2605.08029) · [GitHub](https://github.com/apple/ml-starflow) |
+| 2026-05-08 | [Normalizing Trajectory Models](../models/continuous-ar.md#ntm) | paper | [Paper](https://arxiv.org/abs/2605.08078) · [GitHub](https://github.com/apple-aiml-research/ml-starflow) |
 | 2026-05-05 | [JoyAI-Image](../models/unified.md#joyai-image) | paper | [Paper](https://arxiv.org/abs/2605.04128) · [GitHub](https://github.com/jd-opensource/JoyAI-Image) · [Model card](https://huggingface.co/jdopensource/JoyAI-Image-Edit) |
 | 2026-04-22 | [LLaDA2.0-Uni](../models/unified.md#llada2-uni) | paper | [Paper](https://arxiv.org/abs/2604.20796) · [GitHub](https://github.com/inclusionAI/LLaDA2.0-Uni) · [Model card](https://huggingface.co/inclusionAI/LLaDA2.0-Uni) |
+| 2026-04-21 | [MMCORE](../models/unified.md#mmcore) | paper | [Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found |
 | 2026-04-21 | [GPT Image 2](../models/api.md#gpt-image-2) | announcement | [Docs 1](https://developers.openai.com/api/docs/models/gpt-image-2) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-2.5-flare) · [Announcement](https://developers.openai.com/api/docs/changelog) |
 | 2026-04-15 | [ADP-DiT](../models/dit.md#adp-dit) | paper | [Paper](https://arxiv.org/abs/2604.13495) · GitHub: no author-linked repository found |
 | 2026-04-14 | [Nucleus-Image](../models/dit.md#nucleus-image) | paper | [Paper](https://arxiv.org/abs/2604.12163) · GitHub: no author-linked repository found |

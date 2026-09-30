@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**20 models · Reviewed 2026-09-29**
+**21 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,6 +17,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [CAR (Channel-wise Autoregressive)](#car) | 2026-05-25 | T → I | generation |
 | [CogView](#cogview) | 2021-05-26 | T → I | generation |
 | [CogView2](#cogview2) | 2022-04-28 | T → I | generation |
 | [DALL·E](#dall-e) | 2021-02-24 | T → I | generation |
@@ -41,6 +42,33 @@ Dates refer to papers or announcements, not necessarily model releases.
 </details>
 
 ## Architectures
+
+<a id="car"></a>
+
+### CAR (Channel-wise Autoregressive)
+
+Decoder-only autoregressive transformer (Qwen3-4B/8B backbone) that performs next-channel-token prediction over a Channel-wise Vector Quantization (CVQ) tokenizer, which assigns a codebook index to each single h x w feature-map channel instead of each 1x1xc spatial patch, generating images from coarse global attributes to fine per-channel detail.
+
+CAR reframes autoregressive image generation around channels instead of spatial patches. Its Channel-wise Vector Quantization (CVQ) tokenizer quantizes each h x w channel slice of the encoder's feature map against a codebook of h x w matrices, achieving full codebook utilization and better reconstruction than conventional patch-wise VQ. The Channel-wise Autoregressive (CAR) model then predicts these channel tokens one at a time, conditioned on text through a pretrained Qwen3-4B or Qwen3-8B backbone, so generation proceeds from broad global structure (few channels) to progressively enriched visual detail (many channels), evaluated purely on text-to-image benchmarks.
+
+[Paper](https://arxiv.org/abs/2605.26089) · [GitHub](https://github.com/songweii/CVQ)
+
+![CAR (Channel-wise Autoregressive) — Figure 3](../assets/architectures/car.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2605.26089)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 3 (cvq.png) contrasts conventional patch-wise VQ/AR with CVQ/CAR: a two-layer MLP projector maps 256-dim channel-token embeddings into the LLM hidden size (2560 for the 4B model, 4096 for 8B). Reports GenEval 0.79 and DPG 86.7. Code and weights are released under the MIT License; the README links this arXiv paper directly.
+
+**License:** code: MIT.
+
+**Variants:** CAR-4B; CAR-8B.
+
+</details>
 
 <a id="cogview"></a>
 

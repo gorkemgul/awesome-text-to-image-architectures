@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**73 models · Reviewed 2026-09-29**
+**78 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -18,6 +18,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
 | [AR-Omni](#ar-omni) | 2026-01-25 | T, I → T, I, A | generation |
+| [ARM](#arm) | 2026-06-09 | T, I → I | editing |
 | [BAGEL](#bagel) | 2025-05-20 | T, I → T, I | editing |
 | [BLIP3-o](#blip3-o) | 2025-05-14 | T, I → T, I | generation |
 | [BLIP3o-NEXT](#blip3o-next) | 2025-10-17 | T, I → I | editing |
@@ -45,6 +46,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [JoyAI-Image](#joyai-image) | 2026-05-05 | T, I → T, I | editing |
 | [Lavida-O](#lavida-o) | 2025-09-23 | T, I → T, I | editing |
 | [LaVIT](#lavit) | 2023-09-09 | T, I → T, I | generation |
+| [Libra-2](#libra-2) | 2026-06-29 | T, I → T, I | generation |
 | [Liquid](#liquid) | 2024-12-05 | T, I → T, I | generation |
 | [LLaDA-o](#llada-o) | 2026-03-01 | T, I → I | generation |
 | [LLaDA2.0-Uni](#llada2-uni) | 2026-04-22 | T, I → T, I | editing |
@@ -59,14 +61,17 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Ming-UniVision](#ming-univision) | 2025-10-08 | T, I → T, I | editing |
 | [MM-Interleaved](#mm-interleaved) | 2024-01-18 | T, I → T, I | generation |
 | [MMaDA](#mmada) | 2025-05-21 | T, I → T, I | generation |
+| [MMCORE](#mmcore) | 2026-04-21 | T, I → I | editing |
 | [Mogao](#mogao) | 2025-05-08 | T, I → T, I | editing |
 | [MonoFormer](#monoformer) | 2024-09-24 | T → T, I | generation |
 | [Muddit](#muddit) | 2025-05-29 | T, I → T, I | generation |
+| [Mural](#mural) | 2026-06-27 | T → I | generation |
 | [NExT-GPT](#next-gpt) | 2023-09-11 | T, I, V, A → T, I, V, A | generation |
 | [NextFlow](#nextflow) | 2026-01-05 | T, I → T, I | editing |
 | [Nexus-Gen](#nexus-gen) | 2025-04-30 | T, I → T, I | editing |
 | [OFA](#ofa) | 2022-02-07 | T, I → T, I | generation |
 | [OmniGen](#omnigen) | 2024-09-17 | T, I → I | editing |
+| [OmniGen-AR](#omnigen-ar) | 2026-06-08 | T, I → I | editing |
 | [OmniGen2](#omnigen2) | 2025-06-23 | T, I → T, I | editing |
 | [OneCAT](#onecat) | 2025-09-03 | T, I → T, I | editing |
 | [Orthus](#orthus) | 2024-11-28 | T, I → T, I | editing |
@@ -115,6 +120,29 @@ AR-Omni is a unified autoregressive model for 'omni' multimodal understanding an
 **Input → output:** T, I → T, I, A · **Interaction:** generation
 
 Paper Figure 1: text, speech and image inputs are tokenized by a discrete multimodal tokenizer (images via a scene-aware VQ tokenizer producing a causal 1D sequence) into one joint vocabulary consumed by a single autoregressive Unified Decoder using residual-post-norm (swin-norm); a matching multimodal detokenizer reconstructs each modality's output. Training initializes from Anole (7B) and proceeds through multimodal pretraining (weighted next-token-prediction plus perceptual loss) followed by instruction fine-tuning. The implementation builds on the Chameleon codebase; no dedicated public repository or weights release for AR-Omni itself was found at review time.
+
+</details>
+
+<a id="arm"></a>
+
+### ARM
+
+7B autoregressive multimodal transformer initialized from Qwen2.5-7B, predicting a discrete Finite Scalar Quantization visual vocabulary built on a frozen SigLIP2-SO400M encoder, with images reconstructed by a latent diffusion decoder initialized from FLUX.1-dev and reinforcement learning used to align unified understanding, text-to-image generation and editing.
+
+ARM unifies image understanding, text-to-image generation and instruction-based editing within one next-token-prediction framework built around a discrete semantic visual tokenizer. The tokenizer projects frozen SigLIP2 features through Finite Scalar Quantization into a 65K-token discrete codebook, trained jointly with caption, pixel-reconstruction, contrastive and feature-distillation losses so the tokens carry both semantic and low-level information; a FLUX.1-dev-initialized latent diffusion decoder reconstructs pixels from the tokens. A 7B autoregressive transformer initialized from Qwen2.5-7B, with an added linear head for visual-token prediction, is pretrained on 2.5T multimodal tokens and then optimized with reinforcement learning, which the authors report substantially improves text-to-image and editing metrics (WISE score 0.50 to 0.56) and induces cross-task synergy between the two.
+
+[Paper](https://arxiv.org/abs/2606.11188) · [GitHub](https://github.com/wdrink/ARM)
+
+![ARM — Figure 2](../assets/architectures/arm.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.11188)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 2 shows the unified discrete visual tokenizer. Trained on 2.2B internal image-text pairs for the tokenizer and 2.5T multimodal tokens for the language model. The GitHub repository's citation entry references this arXiv id but does not hyperlink it; no license is stated in the repository.
 
 </details>
 
@@ -284,7 +312,7 @@ Mixture-of-Transformers initialized from a VLM (Qwen3-VL for Nano and Super): an
 
 Cosmos 3 is NVIDIA's family of omnimodal world models for Physical AI, which jointly process and generate language, images, video, audio and robot or vehicle actions in one Mixture-of-Transformers model. Text is produced by next-token prediction in a reasoner tower, while images, video, audio and actions are produced by iterative denoising in a generator tower that attends to the reasoner's context. Text-to-image is one of its generation modes, and NVIDIA released Cosmos3-Super-Text2Image, a 64B checkpoint specialized for text-to-image by two-stage fine-tuning, which the technical report describes as ranked first among open-weight models on the Artificial Analysis text-to-image leaderboard at the time of writing.
 
-[Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos)
+[Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper 1](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos) · [Paper 2](https://arxiv.org/abs/2606.02800)
 
 ![Cosmos 3 — Figure 5 (PDF p. 11)](../assets/architectures/cosmos3.png)
 
@@ -823,6 +851,29 @@ The tokenizer uses EVA-CLIP ViT-G/14 as encoder, a 16,384-entry codebook, and 12
 
 </details>
 
+<a id="libra-2"></a>
+
+### Libra-2
+
+Decoupled vision-language architecture (one vision system, one language system) joined by low-rank cross-modal bridges and a switch-attention/switch-FFN mechanism that routes self-modal versus cross-modal computation, with a continuous-space visual tokenizer (a VAE encoder enriched with CLIP features via cross-attention) and UniRoPE positional encoding letting a frozen LLaMA3.2-1B-Instruct language branch and a from-scratch vision branch share one sequence for causal text generation and bidirectional masked-image generation.
+
+Libra-2 extends the Libra family's decoupled vision-language design from image understanding only (Libra-1) to unified image-to-text understanding and text-to-image generation. Libra keeps one dedicated vision system and one dedicated language system rather than a single shared backbone, connecting them through cross-modal bridges (low-rank projections) and switch attention/switch FFN modules that route computation between self-modal and cross-modal pathways so each modality's own processing is not disturbed by the other. A continuous-space visual tokenizer combines a VAE encoder with CLIP semantic features through cross-attention, and a unified rotary positional encoding (UniRoPE) handles both 2D image and 1D text positions in one sequence; the language branch (a frozen LLaMA3.2-1B-Instruct) is trained with causal attention while the vision branch, trained from scratch, uses masked generation supervision, with the authors reporting that coupling understanding and generation in this decoupled design yields mutual improvements on both.
+
+[Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra)
+
+![Libra-2 — Fig. 2](../assets/architectures/libra-2.png)
+
+*Fig. 2 · [Source](https://arxiv.org/abs/2608.20382)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Paper Figure 2 shows the overall architecture (switch attention/FFN, cross-modal bridges) and the two tokenization paths (hybrid discrete image tokenization and continuous-space tokenization). Libra-2 is 3B parameters total; trained on 200M LAION-COCO/LAION-Aesthetic pairs plus 14M JourneyDB/aesthetic samples. The paper links the shared Libra GitHub repository, which at review time hosts the original Libra-1 (ICML 2024, understanding-only) implementation under Apache-2.0 and predates the Libra-2 release described here.
+
+</details>
+
 <a id="liquid"></a>
 
 ### Liquid
@@ -1193,6 +1244,29 @@ Text tokenization reuses the LLaDA tokenizer; image tokenization reuses Show-o's
 
 </details>
 
+<a id="mmcore"></a>
+
+### MMCORE
+
+An autoregressive MLLM fine-tuned to emit 64 learnable query tokens that compress multimodal context, which together with full-sequence text embeddings condition a pre-trained Multimodal Diffusion Transformer (MMDiT) through a block-causal attention mask over VAE image latents.
+
+MMCORE (ByteDance) transfers the reasoning ability of a multimodal large language model into text-to-image generation and editing without deep-fusing an autoregressive model and a diffusion model end to end. A pre-trained MLLM is fine-tuned autoregressively to produce a fixed set of learnable query tokens that summarize the prompt and, for editing, any reference images; these compact visual-language embeddings condition a separately pre-trained MMDiT generator alongside the raw text embeddings, with a block-causal attention mask letting each generated frame attend to the VAE latents and embeddings of all preceding images. The system is trained in stages (MLLM fine-tuning, then diffusion-head SFT and RLHF) and supports text-to-image synthesis, multi-image editing and spatial reasoning/grounding without requiring deep architectural fusion between the two backbones.
+
+[Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found
+
+![MMCORE — Figure 5](../assets/architectures/mmcore.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2604.19902)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 5 (architecture) and Figure 6 (block-causal attention mask for diffusion-head training). The query-token count N=64 was found to offer the best expressivity/efficiency trade-off. Training is multi-stage: MLLM autoregressive fine-tuning, ~2K-step diffusion-head SFT, then RLHF. Neither the base MLLM nor the base MMDiT is named in the reviewed source; both are described only as pre-trained. No code or weights are released; the paper reports an internal ByteDance training pipeline.
+
+</details>
+
 <a id="mogao"></a>
 
 ### Mogao
@@ -1259,6 +1333,31 @@ Muddit ("Meissonic II") is a second-generation unified discrete diffusion model 
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 Paper Figure 2: training randomly masks tokens from one of the two modalities and the shared MM-DiT predicts them with re-weighted cross-entropy; a frozen VQ tokenizer encodes/decodes images and a frozen CLIP model tokenizes text, with a small trainable text decoder converting predicted tokens back to text. At inference, text-to-image and image-to-text both iteratively unmask tokens over T steps rather than decoding sequentially. Generates images up to 1024x1024. Code and weights are released on GitHub and Hugging Face.
+
+</details>
+
+<a id="mural"></a>
+
+### Mural
+
+Mixture-of-Transformers pairing a fully frozen pre-trained LLM (Qwen2.5 or Qwen2.5-VL) with a trainable diffusion image-generation expert over FLUX.1 VAE latents, the two sharing global self-attention every layer (causal for text tokens, bidirectional for image tokens) so the frozen LLM's knowledge conditions denoising without any multimodal training data.
+
+Mural shows that knowledge from a frozen, text-only large language model remains transferable to text-to-image generation without multimodal pretraining or explicit reasoning supervision. Using a Mixture-of-Transformers design, a frozen Qwen2.5 or Qwen2.5-VL LLM and a trainable diffusion image-generation expert process a concatenated token sequence with layer-wise shared self-attention — causal for text, bidirectional for image tokens — while every other component (layer norms, QKV/FFN weights) stays modality-specific; only the image-generation expert is trained, with a flow-matching loss on FLUX.1 VAE latents and no loss on text tokens. Trained solely on standard English text-image pairs, Mural exhibits emergent capabilities absent from its training data, including cross-lingual generation, hex-color-guided composition and emoji-based scene construction, which the authors attribute to knowledge transfer through the shared attention mechanism rather than explicit multimodal training.
+
+[Paper](https://arxiv.org/abs/2606.29013) · GitHub: no author-linked repository found
+
+![Mural — Figure 1](../assets/architectures/mural.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2606.29013)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 1 shows the architecture (frozen LLM stream, trainable image-generation expert, shared attention). Three sizes are reported by combining a frozen LLM with an equally sized expert: 1.5B+1.5B, 3B+3B and 7B+7B. No GitHub repository was found at review time.
+
+**Variants:** Mural-1.5B; Mural-3B; Mural-7B.
 
 </details>
 
@@ -1394,6 +1493,31 @@ Training uses the authors' X2I dataset, which standardizes many tasks as interle
 **License:** code: MIT; weights: MIT.
 
 **Variants:** OmniGen-v1.
+
+</details>
+
+<a id="omnigen-ar"></a>
+
+### OmniGen-AR
+
+Decoder-only autoregressive transformer initialized from Qwen2.5 that discretizes text (Qwen2.5 tokenizer), spatial conditions (segmentation, depth) and visual context through a shared Cosmos-DV visual tokenizer, trained with Disentangled Causal Attention — separate condition-causal and content-causal masks applied as a training-time regularizer — to prevent condition tokens leaking information into generated content tokens during any-to-image generation.
+
+OmniGen-AR unifies text-to-image generation, image editing and other conditional image synthesis tasks (depth-to-image, segmentation-to-image) inside one autoregressive, next-token-prediction framework. Text and visual conditions share a single vocabulary built from a Qwen2.5 text tokenizer and a Cosmos-DV image/video tokenizer, and are fed through one decoder-only transformer initialized from Qwen2.5. The paper's main technical contribution, Disentangled Causal Attention, splits the causal attention mask into a condition-specific and a content-specific component during training so that generation targets cannot shortcut information from condition tokens, applied stochastically (10% of steps) as a regularizer while inference keeps standard causal decoding; a three-stage curriculum (single-image, image-video joint, multi-task) trains the 0.5B and 1.5B variants on a broad mixture of captioned image, video and instruction-editing datasets.
+
+[Paper](https://arxiv.org/abs/2606.09156) · GitHub: no author-linked repository found
+
+![OmniGen-AR — Figure 2](../assets/architectures/omnigen-ar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.09156)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 2 shows the tokenizer/transformer pipeline; Figure 3 contrasts plain causal attention, Disentangled Causal Attention and classifier-free guidance. Reports GenEval 0.63. No GitHub repository was found at review time.
+
+**Variants:** OmniGen-AR (0.5B); OmniGen-AR (1.5B).
 
 </details>
 

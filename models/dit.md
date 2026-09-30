@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**44 models · Reviewed 2026-09-29**
+**47 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -32,10 +32,12 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [HiDream-I1](#hidream-i1) | 2025-05-28 | T → I | generation |
 | [Hunyuan-DiT](#hunyuan-dit) | 2024-05-14 | T → I | generation |
 | [HunyuanImage-2.1](#hunyuanimage-2-1) | 2025-09-08 | T → I | generation |
+| [i1](#i1) | 2026-06-09 | T → I | generation |
 | [Ideogram 4.0](#ideogram-4) | 2026-06-03 | T → I | generation |
 | [Kandinsky 5.0 Image Lite](#kandinsky-5) | 2025-11-19 | T → I | generation |
 | [Krea 2](#krea-2) | 2026-06-23 | T → I | generation |
 | [LaDe](#lade) | 2026-03-18 | T → I | generation |
+| [Lens](#lens) | 2026-05-20 | T → I | generation |
 | [LI-DiT](#li-dit) | 2024-06-17 | T → I | generation |
 | [LongCat-Image](#longcat-image) | 2025-12-08 | T → I | generation |
 | [Lumina-Image 2.0](#lumina-image-2) | 2025-03-27 | T → I | generation |
@@ -57,6 +59,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Seedream 2.0](#seedream-2) | 2025-03-10 | T → I | generation |
 | [Seedream 3.0](#seedream-3) | 2025-04-15 | T → I | generation |
 | [Seedream 4.0](#seedream-4) | 2025-09-24 | T, I → I | editing |
+| [SeFi-Image](#sefi-image) | 2026-06-21 | T → I | generation |
 | [Stable Diffusion 3](#stable-diffusion-3) | 2024-03-05 | T → I | generation |
 | [SVG-T2I](#svg-t2i) | 2025-12-12 | T → I | generation |
 | [TerraDiT](#terradit) | 2026-03-02 | T → I | generation |
@@ -469,6 +472,31 @@ README-level entry (no paper found): the repository's framework diagram shows a 
 
 </details>
 
+<a id="i1"></a>
+
+### i1
+
+3B-parameter dual-stream MMDiT with long skip connections and no AdaLN timestep conditioning, denoising in a FLUX.2 VAE latent space and conditioned by a large two-transformer-block adapter on a frozen T5Gemma-2B encoder-decoder text encoder.
+
+i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors release weights, training code, data pipelines and the Lens-800M-scale caption datasets, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
+
+[Paper](https://arxiv.org/abs/2606.11289) · [GitHub](https://github.com/zlab-princeton/i1) · [Model card](https://huggingface.co/zlab-princeton/i1-3B)
+
+![i1 — Figure 4](../assets/architectures/i1.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2606.11289)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 4 (i1_flowchart.png) is the released high-level architecture diagram; Figure 21 (inline, not separately captured) details the full MMDiT design. Trained from scratch with flow matching across three resolution stages (256px: 2M steps, 512px: 0.5M steps, 1024px: 0.3M steps). Code (MIT), weights and captions are released on GitHub and Hugging Face, with the README linking this arXiv paper directly.
+
+**License:** code: MIT.
+
+</details>
+
 <a id="ideogram-4"></a>
 
 ### Ideogram 4.0
@@ -570,6 +598,29 @@ LaDe generates editable, layered graphic designs (e.g. an advertisement as separ
 **Input → output:** T → I · **Interaction:** generation
 
 The diffusion transformer is trained on top of an already-converged internal text-to-image model rather than fully from scratch, but the 4D RoPE positional scheme and layered/decomposable generation are the paper's own architectural contribution and primary subject. Training uses v-prediction and a training set of media designs paired with their composing layers, captioned with InternVL3. No repository or project link was found at review time.
+
+</details>
+
+<a id="lens"></a>
+
+### Lens
+
+48-block dual-stream MMDiT latent diffusion transformer over a FLUX.2 semantic VAE, conditioned through a linear adapter on intermediate hidden states (4th/12th/18th/24th transformer blocks) of a frozen GPT-OSS (20B-parameter, 3B-activated Mixture-of-Experts) language encoder.
+
+Lens (Microsoft) targets training efficiency for foundational text-to-image models by prioritizing caption quality and batch information density over parameter count. Its 3.8B-parameter MMDiT backbone reuses a frozen large mixture-of-experts language model, GPT-OSS, as text encoder, concatenating features from several intermediate layers through a linear adapter rather than training a dedicated encoder, and is trained on Lens-800M, 800M image-text pairs with long, dense GPT-4.1-generated captions across varied resolutions and aspect ratios in every batch. The authors report Lens matches or exceeds text-to-image models with more than 6B parameters while needing only about 19.3% of the training compute of Z-Image, generates 1024-resolution images in 3.15 seconds on one H100, and reaches 0.84-second 4-step generation with a distilled turbo variant; an optional independent Reasoner module rewrites prompts before generation.
+
+[Paper](https://arxiv.org/abs/2605.21573) · GitHub: no author-linked repository found
+
+![Lens — Figure 6 (PDF p. 7)](../assets/architectures/lens.png)
+
+*Figure 6 (PDF p. 7) · [Source](https://arxiv.org/abs/2605.21573)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 6 (PDF p. 7, cropped): input images are VAE-encoded, patchified (2x2) and concatenated with text-prompt tokens processed by GPT-OSS through a linear adapter, then denoised by 48 MMDiT blocks (D=1536, 24 heads) before unpatchify and VAE decoding. Supports resolutions up to 1440^2 and aspect ratios 1:2-2:1. The paper states the model and code are released on GitHub (microsoft/Lens) and Hugging Face under MIT license, but the referenced repository could not be reached at review time.
 
 </details>
 
@@ -1109,6 +1160,33 @@ Paper text (no architecture diagram found; Figures 1-16 are evaluation/compariso
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Seedream 4.5.
+
+</details>
+
+<a id="sefi-image"></a>
+
+### SeFi-Image
+
+FLUX.2-style double-/single-stream diffusion transformer (1B/2B/5B variants) implementing Semantic-First Diffusion: a transformer-based Semantic VAE compresses DINOv2-Large features into a semantic latent denoised on its own timestep ahead of a texture latent from a fine-tuned FLUX.2 texture VAE, giving the texture stream a cleaner structural anchor, with text conditioning from Qwen3-VL (2B or 4B).
+
+SeFi-Image is a family of text-to-image foundation models (1B/2B/5B parameters) built around Semantic-First Diffusion (SFD), a latent diffusion paradigm that asynchronously denoises separate semantic and texture latent streams instead of a single latent. Semantic structure, encoded by a dedicated transformer-based Semantic VAE over DINOv2-Large features, is resolved ahead of pixel-level texture (encoded by a fine-tuned FLUX.2 texture VAE) via distinct per-stream timesteps, so texture generation always has a cleaner structural anchor; a FLUX.2-style double-/single-stream DiT conditioned on Qwen3-VL text embeddings predicts velocities for both latents jointly. The authors report the 5B model reaches quality comparable to or exceeding Qwen-Image and Z-Image using only 125K A800 GPU hours, roughly 10-20% of Z-Image's training compute, and release DMD2-distilled few-step turbo variants for lighter-weight deployment.
+
+[Paper](https://arxiv.org/abs/2606.22568) · [GitHub](https://github.com/jmliu206/SeFi-Image)
+
+![SeFi-Image — Figure 7](../assets/architectures/sefi-image.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2606.22568)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 7 (SFD_Framework.png, used here) shows the overall DiT framework; Figure 5 illustrates the semantic/texture denoising split and Figure 8 the Semantic VAE. Parameter breakdown: 1B (~1.18B DiT, Qwen3-VL-2B, 16 blocks), 2B (~2.18B DiT, Qwen3-VL-2B, 20 blocks), 5B (~4.97B DiT, Qwen3-VL-4B, 27 blocks). Code and weights are released under the MIT License on GitHub, with the README linking this arXiv paper.
+
+**License:** code: MIT.
+
+**Variants:** SeFi-Image-1B; SeFi-Image-2B; SeFi-Image-5B.
 
 </details>
 

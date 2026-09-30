@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**9 models · Reviewed 2026-09-29**
+**10 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -25,6 +25,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [JetFormer](#jetformer) | 2024-11-29 | T, I → I, T | generation |
 | [LINA](#lina) | 2026-01-30 | T → I | generation |
 | [NextStep-1](#nextstep-1) | 2025-08-14 | T, I → I | editing |
+| [Normalizing Trajectory Models](#ntm) | 2026-05-08 | T → I | generation |
 | [STARFlow](#starflow) | 2025-06-06 | T, I → I | editing |
 
 </details>
@@ -236,6 +237,29 @@ The multimodal sequence is formatted as text, an <image_area>h*w metadata token,
 **License:** code: Apache-2.0; weights: apache-2.0.
 
 **Variants:** NextStep-1-Large; NextStep-1-Large-Pretrain; NextStep-1-Large-Edit; NextStep-1.1.
+
+</details>
+
+<a id="ntm"></a>
+
+### Normalizing Trajectory Models
+
+Exact-likelihood normalizing flow over the denoising trajectory: a shared TarFlow-style causal-autoregressive Transporter maps each trajectory state to a representation with a tractable Jacobian, and a deep non-causal full-attention Predictor operating across the trajectory dimension produces the next state, giving 4-step text-to-image sampling with exact likelihood training.
+
+Normalizing Trajectory Models (NTM, Apple) recast few-step diffusion sampling as a single invertible flow trained by exact maximum likelihood rather than distillation, consistency training or adversarial objectives. Building on STARFlow's TarFlow-style autoregressive flow blocks, NTM combines a few shallow, shared invertible Transporter blocks within each denoising step with a deep, non-causal Predictor transformer that attends across the whole trajectory, so the model can be trained end to end from scratch or by fine-tuning a pretrained flow-matching backbone. Because the trajectory likelihood stays tractable, the frozen model can also act as a supervisory score for self-distillation, training a lightweight denoiser that reaches comparable text-to-image quality in four steps while preserving the exact-likelihood framework throughout.
+
+[Paper](https://arxiv.org/abs/2605.08078) · [GitHub](https://github.com/apple-aiml-research/ml-starflow)
+
+![Normalizing Trajectory Models — Figure 3 (PDF p. 4)](../assets/architectures/ntm.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2605.08078)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 3 (inline TikZ, cropped from the PDF): the shared Transporter fT maps trajectory states x_t, x_s to representations u_t, u_s with a tractable Jacobian; a Predictor fP combines u_t with a Gaussian latent z to predict the next state, scored against a discriminator D(u_s, uhat_s). The Transporter uses 2 TarFlow-style blocks (4 layers each, alternating causal-mask directions); the Predictor is a 24-layer non-causal full-attention transformer. Experiments train from scratch on ~70M internal image-text pairs and by fine-tuning FLUX.2-klein (4B). The GitHub repository lists NTM with code marked to-be-released at review time.
 
 </details>
 

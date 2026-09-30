@@ -4718,8 +4718,19 @@
    "title": "Decoupled Vision-Language System for Multimodal Understanding and Generation",
    "listed_on": "2026-06-29",
    "paper_url": "https://arxiv.org/abs/2608.20382",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-29",
+   "model_id": "libra-2",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/YifanXu74/Libra",
+     "evidence_url": "https://github.com/YifanXu74/Libra",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.30934",
@@ -4840,8 +4851,12 @@
    "title": "Mural: Transferring LLM knowledge to image generation via Mixture-of-Transformers",
    "listed_on": "2026-06-27",
    "paper_url": "https://arxiv.org/abs/2606.29013",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-27",
+   "model_id": "mural",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2606.28643",
@@ -4911,8 +4926,19 @@
    "title": "JuZhou 1.0 Technical Report: The First Edge-Native Text-to-Image Foundation Model Trained Entirely on China-Developed AI Accelerators",
    "listed_on": "2026-06-25",
    "paper_url": "https://arxiv.org/abs/2606.28421",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-25",
+   "model_id": "juzhou-1",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/HswAI2026/JuZhou-V1",
+     "evidence_url": "https://github.com/HswAI2026/JuZhou-V1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.27608",
@@ -5297,8 +5323,19 @@
    "title": "SeFi-Image: A Text-to-Image Foundation Model with Semantic-First Diffusion",
    "listed_on": "2026-06-21",
    "paper_url": "https://arxiv.org/abs/2606.22568",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-21",
+   "model_id": "sefi-image",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/jmliu206/SeFi-Image",
+     "evidence_url": "https://github.com/jmliu206/SeFi-Image",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.22477",
@@ -5629,8 +5666,9 @@
    "title": "RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space",
    "listed_on": "2026-06-12",
    "paper_url": "https://arxiv.org/abs/2606.14700",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2606.14657",
@@ -5835,8 +5873,12 @@
    "title": "High-Fidelity Two-Step Image Generation via Teacher-Aligned End-to-End Distillation",
    "listed_on": "2026-06-10",
    "paper_url": "https://arxiv.org/abs/2606.12575",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-10",
+   "model_id": "z-image-turbo-pp",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2606.12294",
@@ -5861,16 +5903,38 @@
    "title": "i1: A Simple and Fully Open Recipe for Strong Text-to-Image Models",
    "listed_on": "2026-06-09",
    "paper_url": "https://arxiv.org/abs/2606.11289",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-09",
+   "model_id": "i1",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/zlab-princeton/i1",
+     "evidence_url": "https://github.com/zlab-princeton/i1",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.11188",
    "title": "ARM: An AutoRegressive Large Multimodal Model with Unified Discrete Representations",
    "listed_on": "2026-06-09",
    "paper_url": "https://arxiv.org/abs/2606.11188",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-09",
+   "model_id": "arm",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/wdrink/ARM",
+     "evidence_url": "https://github.com/wdrink/ARM",
+     "verification": "readme-paper-match"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.11155",
@@ -5949,8 +6013,12 @@
    "title": "OmniGen-AR: AutoRegressive Any-to-Image Generation",
    "listed_on": "2026-06-08",
    "paper_url": "https://arxiv.org/abs/2606.09156",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-08",
+   "model_id": "omnigen-ar",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2606.09151",
@@ -6011,8 +6079,19 @@
    "title": "BLM-SGAN: Bidirectional Language Modeling for Semantic-Spatial Text-to-Image Generation",
    "listed_on": "2026-06-07",
    "paper_url": "https://arxiv.org/abs/2606.08847",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-07",
+   "model_id": "blm-sgan",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation",
+     "evidence_url": "https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2606.08841",
@@ -6082,8 +6161,9 @@
    "title": "STREAM: Stochastic Riemannian Flow Matching with Anisotropic Decoder for Digital Histopathology Image Generation",
    "listed_on": "2026-06-05",
    "paper_url": "https://arxiv.org/abs/2606.07036",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2606.06875",
@@ -6270,8 +6350,9 @@
    "title": "UniCanvas: A Diffusion-base Unified Model for Text-in-Image Joint Generation",
    "listed_on": "2026-06-02",
    "paper_url": "https://arxiv.org/abs/2606.04264",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2606.03792",
@@ -6287,8 +6368,12 @@
    "title": "Qwen-Image-Flash: Rethinking the Training Recipe for Few-Step Distillation",
    "listed_on": "2026-06-02",
    "paper_url": "https://arxiv.org/abs/2606.03746",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-02",
+   "model_id": "qwen-image-flash",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2606.03715",
@@ -6358,8 +6443,12 @@
    "title": "Cosmos 3: Omnimodal World Models for Physical AI",
    "listed_on": "2026-06-01",
    "paper_url": "https://arxiv.org/abs/2606.02800",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-06-01",
+   "model_id": "cosmos3",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2606.02521",
@@ -6834,8 +6923,9 @@
    "title": "MRT: Masked Region Transformer for Layered Image Generation and Editing at Scale",
    "listed_on": "2026-05-26",
    "paper_url": "https://arxiv.org/abs/2605.27235",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2605.27020",
@@ -6932,8 +7022,19 @@
    "title": "Channel-wise Vector Quantization",
    "listed_on": "2026-05-25",
    "paper_url": "https://arxiv.org/abs/2605.26089",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-25",
+   "model_id": "car",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/songweii/CVQ",
+     "evidence_url": "https://github.com/songweii/CVQ",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2605.26062",
@@ -7012,8 +7113,12 @@
    "title": "ERNIE-Image Technical Report",
    "listed_on": "2026-05-25",
    "paper_url": "https://arxiv.org/abs/2605.25347",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-25",
+   "model_id": "ernie-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2605.25210",
@@ -7236,8 +7341,12 @@
    "title": "Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models",
    "listed_on": "2026-05-20",
    "paper_url": "https://arxiv.org/abs/2605.21573",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-20",
+   "model_id": "lens",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2605.21484",
@@ -7964,8 +8073,9 @@
    "title": "Asymmetric Flow Models",
    "listed_on": "2026-05-13",
    "paper_url": "https://arxiv.org/abs/2605.12964",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2605.16399",
@@ -8098,8 +8208,12 @@
    "title": "HiDream-O1-Image: A Natively Unified Image Generative Foundation Model with Pixel-level Unified Transformer",
    "listed_on": "2026-05-11",
    "paper_url": "https://arxiv.org/abs/2605.11061",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-11",
+   "model_id": "hidream-o1-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2605.10937",
@@ -8340,8 +8454,19 @@
    "title": "Normalizing Trajectory Models",
    "listed_on": "2026-05-08",
    "paper_url": "https://arxiv.org/abs/2605.08078",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-08",
+   "model_id": "ntm",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/apple-aiml-research/ml-starflow",
+     "evidence_url": "https://github.com/apple-aiml-research/ml-starflow",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2605.08063",
@@ -8600,8 +8725,12 @@
    "title": "JoyAI-Image: Awaking Spatial Intelligence in Unified Multimodal Understanding and Generation",
    "listed_on": "2026-05-05",
    "paper_url": "https://arxiv.org/abs/2605.04128",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-05-05",
+   "model_id": "joyai-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2605.04040",
@@ -9040,8 +9169,9 @@
    "title": "Linear Image Generation by Synthesizing Exposure Brackets",
    "listed_on": "2026-04-22",
    "paper_url": "https://arxiv.org/abs/2604.21008",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2604.20434",
@@ -9093,8 +9223,12 @@
    "title": "MMCORE: MultiModal COnnection with Representation Aligned Latent Embeddings",
    "listed_on": "2026-04-21",
    "paper_url": "https://arxiv.org/abs/2604.19902",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-04-21",
+   "model_id": "mmcore",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2604.19736",
@@ -9227,8 +9361,9 @@
    "title": "Extending One-Step Image Generation from Class Labels to Text via Discriminative Text Representation",
    "listed_on": "2026-04-20",
    "paper_url": "https://arxiv.org/abs/2604.18168",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2604.18167",

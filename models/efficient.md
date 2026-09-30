@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**23 models · Reviewed 2026-09-29**
+**26 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -24,11 +24,13 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Hyper-SD](#hyper-sd) | 2024-04-21 | T → I | generation |
 | [Imagine Flash](#imagine-flash) | 2024-05-08 | T → I | generation |
 | [InstaFlow](#instaflow) | 2023-09-12 | T → I | generation |
+| [JuZhou 1.0](#juzhou-1) | 2026-06-25 | T → I | generation |
 | [KOALA](#koala) | 2023-12-07 | T → I | generation |
 | [Latent Consistency Models (LCM)](#lcm) | 2023-10-06 | T → I | generation |
 | [Mobile-O](#mobile-o) | 2026-02-23 | T, I → T, I | editing |
 | [MobileDiffusion](#mobilediffusion) | 2023-11-28 | T → I | generation |
 | [PixArt-δ](#pixart-delta) | 2024-01-10 | T → I | generation |
+| [Qwen-Image-Flash](#qwen-image-flash) | 2026-06-02 | T, I → I | editing |
 | [SANA-Sprint](#sana-sprint) | 2025-03-12 | T → I | generation |
 | [SD3-Turbo (Latent Adversarial Diffusion Distillation)](#sd3-turbo) | 2024-03-18 | T → I | generation |
 | [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | 2023-11-28 | T → I | generation |
@@ -40,6 +42,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SSD-1B](#ssd-1b) | 2024-01-05 | T → I | generation |
 | [SwiftBrush](#swiftbrush) | 2023-12-08 | T → I | generation |
 | [UFOGen](#ufogen) | 2023-11-14 | T → I | generation |
+| [Z-Image Turbo++](#z-image-turbo-pp) | 2026-06-10 | T → I | generation |
 
 </details>
 
@@ -226,6 +229,29 @@ Training data are 1.6M teacher-generated pairs each for reflow and distillation,
 
 </details>
 
+<a id="juzhou-1"></a>
+
+### JuZhou 1.0
+
+0.385B-parameter encoder-bottleneck-decoder U-Net denoiser with depth-selective self-/cross-attention, paired with a 1.90M-parameter attention-free depthwise-pointwise VAE decoder, conditioned by Chinese-CLIP ViT-H/14 on Qwen3-1.7B-refined prompts and trained with rectified flow plus DMD2 distillation for 4-step on-device inference.
+
+JuZhou 1.0 is an edge-native Chinese text-to-image foundation model designed for fully offline, on-device generation rather than server-side deployment. Its compact ~0.387B-parameter stack pairs a small U-Net denoiser — whose early blocks drop self-attention to save compute while later blocks keep both self- and cross-attention — with a redesigned, highly compact VAE decoder (1.90M parameters) built from attention-free depthwise-pointwise convolutions. Chinese-CLIP ViT-H/14 replaces the usual English CLIP text towers for native Chinese semantic alignment, with a Qwen3-1.7B prompt refiner improving raw prompts before encoding; training uses rectified flow with DMD2 distillation for 4-step sampling and runs entirely on domestically developed Sugon K100 accelerators rather than NVIDIA hardware. Despite its small size, the base model reports a GenEval score of 0.69, ahead of the much larger SDXL and SD3-Medium, and the pipeline runs on Android and iOS with an accompanying app.
+
+[Paper](https://arxiv.org/abs/2606.28421) · [GitHub](https://github.com/HswAI2026/JuZhou-V1)
+
+![JuZhou 1.0 — Figure 4](../assets/architectures/juzhou-1.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2606.28421)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 4 (fig04.png, used here) shows the end-to-end framework: prompt refinement (Qwen3-1.7B) -> CN-CLIP encoding -> the denoising U-Net -> the compact VAE decoder. Training data is 9M curated Chinese image-text pairs (filtered DiffusionDB prompts plus SD3.5-Large synthetic images and Qwen3-based translation), with ImageNet-1K pretraining followed by progressive resolution scaling to 1024px. The GitHub repository exists and matches the paper but states code and weights are still under internal company review at the time of writing.
+
+</details>
+
 <a id="koala"></a>
 
 ### KOALA
@@ -354,6 +380,31 @@ Distillation follows LCM with teacher, student and EMA models (paper Figure 1), 
 **License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
 
 **Variants:** PixArt-LCM-XL-2-1024-MS.
+
+</details>
+
+<a id="qwen-image-flash"></a>
+
+### Qwen-Image-Flash
+
+Distribution Matching Distillation (DMD) student distilled from the Qwen-Image-2.0-Base teacher for unified few-step text-to-image generation and editing, using a step-wise multi-teacher guidance schedule that anchors early denoising steps to the base teacher and blends in a specialized teacher only at the final step.
+
+Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-NFE) model covering both text-to-image generation and instruction-based editing under the Distribution Matching Distillation (DMD) framework. Rather than proposing new network modules, the paper systematically revisits three practical levers of the distillation recipe: training-data composition (finding single-category data generalizes better than indiscriminately broad category mixes), teacher guidance (anchoring the first distillation steps to the base teacher and introducing a specialized teacher's guidance only at the final step, rather than supervising every step with a post-trained teacher), and task mixture (a balanced 5:5 text-to-image-to-editing ratio outperforming generation-dominant mixtures for unified few-step editing). The result is a single few-step student that handles both generation and editing from one set of weights.
+
+[Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
+
+![Qwen-Image-Flash — Input/output diagram](../assets/architectures/qwen-image-flash.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2606.03746)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+No dedicated architecture diagram is given; the reviewed figures are qualitative comparisons only, so an editorial input/output diagram is used. The paper does not state that Qwen-Image-Flash weights are released by its authors; unrelated third-party Hugging Face uploads of a same-named NVIDIA-distilled model were found but are not linked by this paper and are not treated as evidence of an author release.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -633,5 +684,30 @@ UFOGen (Google, 2023) is a one-step text-to-image model that combines diffusion 
 **Input → output:** T → I · **Interaction:** generation
 
 The generator predicts a clean sample x′0 from x_t; both real and generated samples are diffused to step t−1, where the discriminator compares them, and a reconstruction term λKL·γt·‖x0 − x′0‖² matches clean samples directly (λKL = 1.0). Training uses a denoising step size of 250 on SD's 1000-step schedule, while inference is a single step from x_T. The model keeps SD 1.5's VAE and frozen CLIP ViT-L/14 text encoder (about 0.9B parameters in the network, the same structure as SD). Training data are LAION-Aesthetics-6+, batch size 1024, converging in under 50k steps. The paper also shows image-to-image and controllable generation built on the same model. No code or weights were found.
+
+</details>
+
+<a id="z-image-turbo-pp"></a>
+
+### Z-Image Turbo++
+
+2-step distillation of the 8-step Z-Image Turbo teacher using step-decoupled parameterization — independent weights per denoising step, both initialized from the teacher — combined with distribution-aligned adversarial training against teacher-generated (rather than external real) images and end-to-end training with an explicit step-1 loss.
+
+Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps. The authors identify that naive 2-step distillation suffers from increased task difficulty and limited capacity, and address this with three tailored choices: step-decoupled parameterization, which gives each of the two denoising steps its own set of weights (both initialized from the 8-step teacher) rather than sharing one network; distribution-aligned adversarial learning, which trains the GAN discriminator against teacher-generated images as the 'real' distribution instead of external photographs, giving the generator an achievable target; and end-to-end training with an explicit step-1 loss so gradients from final image quality reach the first step while keeping its intermediate output meaningful on its own. The combined recipe is reported to substantially narrow the quality gap between 2-step and 8-step generation.
+
+[Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
+
+![Z-Image Turbo++ — Input/output diagram](../assets/architectures/z-image-turbo-pp.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2606.12575)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+No architecture diagram is given in the paper; the reviewed source contains only qualitative sample and ablation figures, so an editorial input/output diagram is used. No GitHub or Hugging Face link for a released checkpoint was found at review time.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>

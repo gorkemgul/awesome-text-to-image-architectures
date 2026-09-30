@@ -4,7 +4,7 @@
 
 A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.
 
-**281 models and families · Reviewed 2026-09-29**
+**295 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -13,15 +13,15 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | Collection | Models |
 | --- | ---: |
 | [Early neural text-to-image models](models/early.md) | 3 |
-| [Generative adversarial networks](models/gan.md) | 45 |
-| [Autoregressive image-token models](models/ar-token.md) | 20 |
+| [Generative adversarial networks](models/gan.md) | 46 |
+| [Autoregressive image-token models](models/ar-token.md) | 21 |
 | [Masked and parallel image-token models](models/masked.md) | 11 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 11 |
 | [Latent diffusion with U-Net backbones](models/latent-unet.md) | 21 |
-| [Diffusion transformers and flow matching](models/dit.md) | 44 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 9 |
-| [Unified multimodal understanding and generation](models/unified.md) | 73 |
-| [Few-step, distilled and on-device models](models/efficient.md) | 23 |
+| [Diffusion transformers and flow matching](models/dit.md) | 47 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 10 |
+| [Unified multimodal understanding and generation](models/unified.md) | 78 |
+| [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
 
 ## Models
@@ -29,7 +29,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 281 entries</summary>
+<summary>Alphabetical model list · 295 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -41,6 +41,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Amazon Titan Image Generator](#amazon-titan-image-generator) | API | T, I → I |
 | [aMUSEd](#amused) | Masked token | T → I |
 | [AR-Omni](#ar-omni) | Unified | T, I → T, I, A |
+| [ARM](#arm) | Unified | T, I → I |
 | [AttnGAN](#attngan) | GAN | T → I |
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
 | [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | GAN | T → I |
@@ -49,10 +50,12 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [BK-SDM](#bk-sdm) | Efficient | T → I |
 | [BLIP3-o](#blip3-o) | Unified | T, I → T, I |
 | [BLIP3o-NEXT](#blip3o-next) | Unified | T, I → I |
+| [BLM-SGAN](#blm-sgan) | GAN | T → I |
 | [Bridge Diffusion Model (BDM)](#bridge-diffusion) | Latent U-Net | T → I |
 | [C4Synth](#c4synth) | GAN | T → I |
 | [CAGAN](#cagan) | GAN | T → I |
 | [CanvasGAN](#canvasgan) | GAN | T → I |
+| [CAR (Channel-wise Autoregressive)](#car) | AR token | T → I |
 | [Chameleon](#chameleon) | Unified | T, I → T, I |
 | [ChatPainter](#chatpainter) | GAN | T → I |
 | [CI-GAN](#ci-gan) | GAN | T → I |
@@ -131,6 +134,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [HunyuanImage 3.0](#hunyuanimage-3) | Unified | T, I → T, I |
 | [HunyuanImage-2.1](#hunyuanimage-2-1) | DiT / flow | T → I |
 | [Hyper-SD](#hyper-sd) | Efficient | T → I |
+| [i1](#i1) | DiT / flow | T → I |
 | [Ideogram](#ideogram) | API | T, I → I |
 | [Ideogram 4.0](#ideogram-4) | DiT / flow | T → I |
 | [ILLUME](#illume) | Unified | T, I → T, I |
@@ -149,6 +153,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [JanusFlow](#janusflow) | Unified | T, I → T, I |
 | [JetFormer](#jetformer) | Continuous AR | T, I → I, T |
 | [JoyAI-Image](#joyai-image) | Unified | T, I → T, I |
+| [JuZhou 1.0](#juzhou-1) | Efficient | T → I |
 | [Kandinsky 2](#kandinsky-2) | Latent U-Net | T, I → I |
 | [Kandinsky 3](#kandinsky-3) | Latent U-Net | T, I → I |
 | [Kandinsky 5.0 Image Lite](#kandinsky-5) | DiT / flow | T → I |
@@ -164,7 +169,9 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Latent Diffusion Models (LDM)](#ldm) | Latent U-Net | T → I |
 | [Lavida-O](#lavida-o) | Unified | T, I → T, I |
 | [LaVIT](#lavit) | Unified | T, I → T, I |
+| [Lens](#lens) | DiT / flow | T → I |
 | [LI-DiT](#li-dit) | DiT / flow | T → I |
+| [Libra-2](#libra-2) | Unified | T, I → T, I |
 | [LINA](#lina) | Continuous AR | T → I |
 | [Liquid](#liquid) | Unified | T, I → T, I |
 | [LLaDA-o](#llada-o) | Unified | T, I → I |
@@ -200,6 +207,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MirrorGAN](#mirrorgan) | GAN | T → I |
 | [MM-Interleaved](#mm-interleaved) | Unified | T, I → T, I |
 | [MMaDA](#mmada) | Unified | T, I → T, I |
+| [MMCORE](#mmcore) | Unified | T, I → I |
 | [MMFace-DiT](#mmface-dit) | DiT / flow | T → I |
 | [Mobile-O](#mobile-o) | Efficient | T, I → T, I |
 | [MobileDiffusion](#mobilediffusion) | Efficient | T → I |
@@ -207,18 +215,21 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MonoFormer](#monoformer) | Unified | T → T, I |
 | [MSMT-GAN](#msmt-gan) | GAN | T → I |
 | [Muddit](#muddit) | Unified | T, I → T, I |
+| [Mural](#mural) | Unified | T → I |
 | [Muse](#muse) | Masked token | T → I |
 | [Muse Image](#muse-image) | API | T, I → I |
 | [NExT-GPT](#next-gpt) | Unified | T, I, V, A → T, I, V, A |
 | [NextFlow](#nextflow) | Unified | T, I → T, I |
 | [NextStep-1](#nextstep-1) | Continuous AR | T, I → I |
 | [Nexus-Gen](#nexus-gen) | Unified | T, I → T, I |
+| [Normalizing Trajectory Models](#ntm) | Continuous AR | T → I |
 | [Nucleus-Image](#nucleus-image) | DiT / flow | T → I |
 | [NÜWA](#nuwa) | AR token | T, I → I |
 | [Obj-GAN](#obj-gan) | GAN | T → I |
 | [oboro:](#oboro) | DiT / flow | T → I |
 | [OFA](#ofa) | Unified | T, I → T, I |
 | [OmniGen](#omnigen) | Unified | T, I → I |
+| [OmniGen-AR](#omnigen-ar) | Unified | T, I → I |
 | [OmniGen2](#omnigen2) | Unified | T, I → T, I |
 | [OneCAT](#onecat) | Unified | T, I → T, I |
 | [OP-GAN](#op-gan) | GAN | T → I |
@@ -240,6 +251,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [PUMA](#puma) | Unified | T, I → T, I |
 | [Qwen-Image](#qwen-image) | DiT / flow | T → I |
 | [Qwen-Image-2.0](#qwen-image-2) | DiT / flow | T, I → I |
+| [Qwen-Image-Flash](#qwen-image-flash) | Efficient | T, I → I |
 | [RAPHAEL](#raphael) | Latent U-Net | T → I |
 | [RAT-GAN](#rat-gan) | GAN | T → I |
 | [Re-Imagen](#re-imagen) | Pixel diffusion | T, I → I |
@@ -263,6 +275,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Seedream 3.0](#seedream-3) | DiT / flow | T → I |
 | [Seedream 4.0](#seedream-4) | DiT / flow | T, I → I |
 | [Seedream 5.0](#seedream-5) | API | T, I → I |
+| [SeFi-Image](#sefi-image) | DiT / flow | T → I |
 | [SegAttnGAN](#segattngan) | GAN | T → I |
 | [Self-E](#self-e) | Efficient | T → I |
 | [SenseNova-U1](#sensenova-u1) | Unified | T, I → T, I |
@@ -314,6 +327,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [X-Omni](#x-omni) | Unified | T, I → T, I |
 | [XMC-GAN](#xmc-gan) | GAN | T → I |
 | [Z-Image](#z-image) | DiT / flow | T → I |
+| [Z-Image Turbo++](#z-image-turbo-pp) | Efficient | T → I |
 
 </details>
 
@@ -419,6 +433,18 @@ AR-Omni is a unified autoregressive model for 'omni' multimodal understanding an
 
 *Figure 1 · [Source](https://arxiv.org/abs/2601.17761)*
 
+<a id="arm"></a>
+
+### ARM
+
+ARM unifies image understanding, text-to-image generation and instruction-based editing within one next-token-prediction framework built around a discrete semantic visual tokenizer. The tokenizer projects frozen SigLIP2 features through Finite Scalar Quantization into a 65K-token discrete codebook, trained jointly with caption, pixel-reconstruction, contrastive and feature-distillation losses so the tokens carry both semantic and low-level information; a FLUX.1-dev-initialized latent diffusion decoder reconstructs pixels from the tokens. A 7B autoregressive transformer initialized from Qwen2.5-7B, with an added linear head for visual-token prediction, is pretrained on 2.5T multimodal tokens and then optimized with reinforcement learning, which the authors report substantially improves text-to-image and editing metrics (WISE score 0.50 to 0.56) and induces cross-task synergy between the two.
+
+[Paper](https://arxiv.org/abs/2606.11188) · [GitHub](https://github.com/wdrink/ARM) · [Details](models/unified.md#arm)
+
+![ARM — Figure 2](assets/architectures/arm.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.11188)*
+
 <a id="attngan"></a>
 
 ### AttnGAN
@@ -515,6 +541,18 @@ BLIP3o-NEXT is the successor to BLIP3-o in the BLIP3 series, positioned as a nat
 
 *Figure 1 · [Source](https://arxiv.org/abs/2510.15857)*
 
+<a id="blm-sgan"></a>
+
+### BLM-SGAN
+
+BLM-SGAN (Bidirectional Language-Modeling Semantic-Spatial GAN) revisits the standard SSA-GAN-style one-stage text-to-image GAN pipeline and replaces its sequential LSTM-based text encoder with BERT, arguing that bidirectional attention over the full caption yields richer contextual word and sentence features than left-to-right recurrent encoding. Sentence features modulate a stack of 7 SSACN blocks that progressively upsample a noise vector to a 256x256 image, while word features are fed spatially to the same blocks and to the discriminator; the discriminator is trained with a Matching-Aware Gradient Penalty. Evaluated on the CUB bird dataset, the model reaches an Inception Score of 5.45, ahead of prior GAN baselines such as SSA-GAN, DF-GAN and AttnGAN under the same protocol.
+
+[Paper](https://arxiv.org/abs/2606.08847) · [GitHub](https://github.com/haidy-maher/BLM-SGAN-Text-to-Image-Generation) · [Details](models/gan.md#blm-sgan)
+
+![BLM-SGAN — Figure 2](assets/architectures/blm-sgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.08847)*
+
 <a id="bridge-diffusion"></a>
 
 ### Bridge Diffusion Model (BDM)
@@ -562,6 +600,18 @@ Recurrent GAN generator that attends over word features at each step and adds up
 ![CanvasGAN — Fig. 1](assets/architectures/canvasgan.png)
 
 *Fig. 1 · [Source](https://arxiv.org/abs/1810.02833)*
+
+<a id="car"></a>
+
+### CAR (Channel-wise Autoregressive)
+
+CAR reframes autoregressive image generation around channels instead of spatial patches. Its Channel-wise Vector Quantization (CVQ) tokenizer quantizes each h x w channel slice of the encoder's feature map against a codebook of h x w matrices, achieving full codebook utilization and better reconstruction than conventional patch-wise VQ. The Channel-wise Autoregressive (CAR) model then predicts these channel tokens one at a time, conditioned on text through a pretrained Qwen3-4B or Qwen3-8B backbone, so generation proceeds from broad global structure (few channels) to progressively enriched visual detail (many channels), evaluated purely on text-to-image benchmarks.
+
+[Paper](https://arxiv.org/abs/2605.26089) · [GitHub](https://github.com/songweii/CVQ) · [Details](models/ar-token.md#car)
+
+![CAR (Channel-wise Autoregressive) — Figure 3](assets/architectures/car.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2605.26089)*
 
 <a id="chameleon"></a>
 
@@ -713,7 +763,7 @@ Multi-stage AttnGAN-based generator with word-level spatial and channel-wise att
 
 Cosmos 3 is NVIDIA's family of omnimodal world models for Physical AI, which jointly process and generate language, images, video, audio and robot or vehicle actions in one Mixture-of-Transformers model. Text is produced by next-token prediction in a reasoner tower, while images, video, audio and actions are produced by iterative denoising in a generator tower that attends to the reasoner's context. Text-to-image is one of its generation modes, and NVIDIA released Cosmos3-Super-Text2Image, a 64B checkpoint specialized for text-to-image by two-stage fine-tuning, which the technical report describes as ranked first among open-weight models on the Artificial Analysis text-to-image leaderboard at the time of writing.
 
-[Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos) · [Details](models/unified.md#cosmos3)
+[Model card](https://huggingface.co/nvidia/Cosmos3-Super-Text2Image) · [Paper 1](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) · [GitHub](https://github.com/NVIDIA/cosmos) · [Paper 2](https://arxiv.org/abs/2606.02800) · [Details](models/unified.md#cosmos3)
 
 ![Cosmos 3 — Figure 5 (PDF p. 11)](assets/architectures/cosmos3.png)
 
@@ -1499,6 +1549,18 @@ Hyper-SD (ByteDance, 2024) accelerates SD 1.5 and SDXL to one to eight sampling 
 
 *Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2404.13686)*
 
+<a id="i1"></a>
+
+### i1
+
+i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors release weights, training code, data pipelines and the Lens-800M-scale caption datasets, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
+
+[Paper](https://arxiv.org/abs/2606.11289) · [GitHub](https://github.com/zlab-princeton/i1) · [Model card](https://huggingface.co/zlab-princeton/i1-3B) · [Details](models/dit.md#i1)
+
+![i1 — Figure 4](assets/architectures/i1.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2606.11289)*
+
 <a id="ideogram"></a>
 
 ### Ideogram
@@ -1715,6 +1777,18 @@ JoyAI-Image, from JD.com's JD Open Source team, is a unified model for visual un
 
 *Figure 4 · [Source](https://arxiv.org/abs/2605.04128)*
 
+<a id="juzhou-1"></a>
+
+### JuZhou 1.0
+
+JuZhou 1.0 is an edge-native Chinese text-to-image foundation model designed for fully offline, on-device generation rather than server-side deployment. Its compact ~0.387B-parameter stack pairs a small U-Net denoiser — whose early blocks drop self-attention to save compute while later blocks keep both self- and cross-attention — with a redesigned, highly compact VAE decoder (1.90M parameters) built from attention-free depthwise-pointwise convolutions. Chinese-CLIP ViT-H/14 replaces the usual English CLIP text towers for native Chinese semantic alignment, with a Qwen3-1.7B prompt refiner improving raw prompts before encoding; training uses rectified flow with DMD2 distillation for 4-step sampling and runs entirely on domestically developed Sugon K100 accelerators rather than NVIDIA hardware. Despite its small size, the base model reports a GenEval score of 0.69, ahead of the much larger SDXL and SD3-Medium, and the pipeline runs on Android and iOS with an accompanying app.
+
+[Paper](https://arxiv.org/abs/2606.28421) · [GitHub](https://github.com/HswAI2026/JuZhou-V1) · [Details](models/efficient.md#juzhou-1)
+
+![JuZhou 1.0 — Figure 4](assets/architectures/juzhou-1.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2606.28421)*
+
 <a id="kandinsky-2"></a>
 
 ### Kandinsky 2
@@ -1895,6 +1969,18 @@ LaVIT (Language-VIsion Transformer), from Peking University and Kuaishou Technol
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.04669)*
 
+<a id="lens"></a>
+
+### Lens
+
+Lens (Microsoft) targets training efficiency for foundational text-to-image models by prioritizing caption quality and batch information density over parameter count. Its 3.8B-parameter MMDiT backbone reuses a frozen large mixture-of-experts language model, GPT-OSS, as text encoder, concatenating features from several intermediate layers through a linear adapter rather than training a dedicated encoder, and is trained on Lens-800M, 800M image-text pairs with long, dense GPT-4.1-generated captions across varied resolutions and aspect ratios in every batch. The authors report Lens matches or exceeds text-to-image models with more than 6B parameters while needing only about 19.3% of the training compute of Z-Image, generates 1024-resolution images in 3.15 seconds on one H100, and reaches 0.84-second 4-step generation with a distilled turbo variant; an optional independent Reasoner module rewrites prompts before generation.
+
+[Paper](https://arxiv.org/abs/2605.21573) · GitHub: no author-linked repository found · [Details](models/dit.md#lens)
+
+![Lens — Figure 6 (PDF p. 7)](assets/architectures/lens.png)
+
+*Figure 6 (PDF p. 7) · [Source](https://arxiv.org/abs/2605.21573)*
+
 <a id="li-dit"></a>
 
 ### LI-DiT
@@ -1906,6 +1992,18 @@ LI-DiT is a 2024 research study on why large language models make poor prompt en
 ![LI-DiT — Figure 5](assets/architectures/li-dit.png)
 
 *Figure 5 · [Source](https://arxiv.org/abs/2406.11831)*
+
+<a id="libra-2"></a>
+
+### Libra-2
+
+Libra-2 extends the Libra family's decoupled vision-language design from image understanding only (Libra-1) to unified image-to-text understanding and text-to-image generation. Libra keeps one dedicated vision system and one dedicated language system rather than a single shared backbone, connecting them through cross-modal bridges (low-rank projections) and switch attention/switch FFN modules that route computation between self-modal and cross-modal pathways so each modality's own processing is not disturbed by the other. A continuous-space visual tokenizer combines a VAE encoder with CLIP semantic features through cross-attention, and a unified rotary positional encoding (UniRoPE) handles both 2D image and 1D text positions in one sequence; the language branch (a frozen LLaMA3.2-1B-Instruct) is trained with causal attention while the vision branch, trained from scratch, uses masked generation supervision, with the authors reporting that coupling understanding and generation in this decoupled design yields mutual improvements on both.
+
+[Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra) · [Details](models/unified.md#libra-2)
+
+![Libra-2 — Fig. 2](assets/architectures/libra-2.png)
+
+*Fig. 2 · [Source](https://arxiv.org/abs/2608.20382)*
 
 <a id="lina"></a>
 
@@ -2327,6 +2425,18 @@ MMaDA (Multimodal Large Diffusion Language Model), from the Gen-Verse team, unif
 
 *Figure 2 · [Source](https://arxiv.org/abs/2505.15809)*
 
+<a id="mmcore"></a>
+
+### MMCORE
+
+MMCORE (ByteDance) transfers the reasoning ability of a multimodal large language model into text-to-image generation and editing without deep-fusing an autoregressive model and a diffusion model end to end. A pre-trained MLLM is fine-tuned autoregressively to produce a fixed set of learnable query tokens that summarize the prompt and, for editing, any reference images; these compact visual-language embeddings condition a separately pre-trained MMDiT generator alongside the raw text embeddings, with a block-causal attention mask letting each generated frame attend to the VAE latents and embeddings of all preceding images. The system is trained in stages (MLLM fine-tuning, then diffusion-head SFT and RLHF) and supports text-to-image synthesis, multi-image editing and spatial reasoning/grounding without requiring deep architectural fusion between the two backbones.
+
+[Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found · [Details](models/unified.md#mmcore)
+
+![MMCORE — Figure 5](assets/architectures/mmcore.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2604.19902)*
+
 <a id="mmface-dit"></a>
 
 ### MMFace-DiT
@@ -2411,6 +2521,18 @@ Muddit ("Meissonic II") is a second-generation unified discrete diffusion model 
 
 *Figure 2 · [Source](https://arxiv.org/abs/2505.23606)*
 
+<a id="mural"></a>
+
+### Mural
+
+Mural shows that knowledge from a frozen, text-only large language model remains transferable to text-to-image generation without multimodal pretraining or explicit reasoning supervision. Using a Mixture-of-Transformers design, a frozen Qwen2.5 or Qwen2.5-VL LLM and a trainable diffusion image-generation expert process a concatenated token sequence with layer-wise shared self-attention — causal for text, bidirectional for image tokens — while every other component (layer norms, QKV/FFN weights) stays modality-specific; only the image-generation expert is trained, with a flow-matching loss on FLUX.1 VAE latents and no loss on text tokens. Trained solely on standard English text-image pairs, Mural exhibits emergent capabilities absent from its training data, including cross-lingual generation, hex-color-guided composition and emoji-based scene construction, which the authors attribute to knowledge transfer through the shared attention mechanism rather than explicit multimodal training.
+
+[Paper](https://arxiv.org/abs/2606.29013) · GitHub: no author-linked repository found · [Details](models/unified.md#mural)
+
+![Mural — Figure 1](assets/architectures/mural.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2606.29013)*
+
 <a id="muse"></a>
 
 ### Muse
@@ -2483,6 +2605,18 @@ Nexus-Gen, from Zhejiang University and Alibaba's ModelScope/AIOS teams, unifies
 
 *Figure 1 · [Source](https://arxiv.org/abs/2504.21356)*
 
+<a id="ntm"></a>
+
+### Normalizing Trajectory Models
+
+Normalizing Trajectory Models (NTM, Apple) recast few-step diffusion sampling as a single invertible flow trained by exact maximum likelihood rather than distillation, consistency training or adversarial objectives. Building on STARFlow's TarFlow-style autoregressive flow blocks, NTM combines a few shallow, shared invertible Transporter blocks within each denoising step with a deep, non-causal Predictor transformer that attends across the whole trajectory, so the model can be trained end to end from scratch or by fine-tuning a pretrained flow-matching backbone. Because the trajectory likelihood stays tractable, the frozen model can also act as a supervisory score for self-distillation, training a lightweight denoiser that reaches comparable text-to-image quality in four steps while preserving the exact-likelihood framework throughout.
+
+[Paper](https://arxiv.org/abs/2605.08078) · [GitHub](https://github.com/apple-aiml-research/ml-starflow) · [Details](models/continuous-ar.md#ntm)
+
+![Normalizing Trajectory Models — Figure 3 (PDF p. 4)](assets/architectures/ntm.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2605.08078)*
+
 <a id="nucleus-image"></a>
 
 ### Nucleus-Image
@@ -2554,6 +2688,18 @@ OmniGen, from BAAI, is a unified image-generation model that accepts free-form i
 ![OmniGen — Figure 2](assets/architectures/omnigen.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2409.11340)*
+
+<a id="omnigen-ar"></a>
+
+### OmniGen-AR
+
+OmniGen-AR unifies text-to-image generation, image editing and other conditional image synthesis tasks (depth-to-image, segmentation-to-image) inside one autoregressive, next-token-prediction framework. Text and visual conditions share a single vocabulary built from a Qwen2.5 text tokenizer and a Cosmos-DV image/video tokenizer, and are fed through one decoder-only transformer initialized from Qwen2.5. The paper's main technical contribution, Disentangled Causal Attention, splits the causal attention mask into a condition-specific and a content-specific component during training so that generation targets cannot shortcut information from condition tokens, applied stochastically (10% of steps) as a regularizer while inference keeps standard causal decoding; a three-stage curriculum (single-image, image-video joint, multi-task) trains the 0.5B and 1.5B variants on a broad mixture of captioned image, video and instruction-editing datasets.
+
+[Paper](https://arxiv.org/abs/2606.09156) · GitHub: no author-linked repository found · [Details](models/unified.md#omnigen-ar)
+
+![OmniGen-AR — Figure 2](assets/architectures/omnigen-ar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.09156)*
 
 <a id="omnigen2"></a>
 
@@ -2806,6 +2952,18 @@ Qwen-Image-2.0 is Alibaba's second-generation text-to-image and editing foundati
 ![Qwen-Image-2.0 — Figure 8](assets/architectures/qwen-image-2.png)
 
 *Figure 8 · [Source](https://arxiv.org/abs/2605.10730)*
+
+<a id="qwen-image-flash"></a>
+
+### Qwen-Image-Flash
+
+Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-NFE) model covering both text-to-image generation and instruction-based editing under the Distribution Matching Distillation (DMD) framework. Rather than proposing new network modules, the paper systematically revisits three practical levers of the distillation recipe: training-data composition (finding single-category data generalizes better than indiscriminately broad category mixes), teacher guidance (anchoring the first distillation steps to the base teacher and introducing a specialized teacher's guidance only at the final step, rather than supervising every step with a post-trained teacher), and task mixture (a balanced 5:5 text-to-image-to-editing ratio outperforming generation-dominant mixtures for unified few-step editing). The result is a single few-step student that handles both generation and editing from one set of weights.
+
+[Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found · [Details](models/efficient.md#qwen-image-flash)
+
+![Qwen-Image-Flash — Editorial input/output diagram](assets/architectures/qwen-image-flash.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2606.03746)*
 
 <a id="raphael"></a>
 
@@ -3082,6 +3240,18 @@ Seedream 5.0 is ByteDance Seed's closed image creation line released after Seedr
 ![Seedream 5.0 — Editorial input/output diagram](assets/architectures/seedream-5.svg)
 
 *Editorial input/output diagram · [Source](https://seed.bytedance.com/en/seedream5_0_lite)*
+
+<a id="sefi-image"></a>
+
+### SeFi-Image
+
+SeFi-Image is a family of text-to-image foundation models (1B/2B/5B parameters) built around Semantic-First Diffusion (SFD), a latent diffusion paradigm that asynchronously denoises separate semantic and texture latent streams instead of a single latent. Semantic structure, encoded by a dedicated transformer-based Semantic VAE over DINOv2-Large features, is resolved ahead of pixel-level texture (encoded by a fine-tuned FLUX.2 texture VAE) via distinct per-stream timesteps, so texture generation always has a cleaner structural anchor; a FLUX.2-style double-/single-stream DiT conditioned on Qwen3-VL text embeddings predicts velocities for both latents jointly. The authors report the 5B model reaches quality comparable to or exceeding Qwen-Image and Z-Image using only 125K A800 GPU hours, roughly 10-20% of Z-Image's training compute, and release DMD2-distilled few-step turbo variants for lighter-weight deployment.
+
+[Paper](https://arxiv.org/abs/2606.22568) · [GitHub](https://github.com/jmliu206/SeFi-Image) · [Details](models/dit.md#sefi-image)
+
+![SeFi-Image — Figure 7](assets/architectures/sefi-image.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2606.22568)*
 
 <a id="segattngan"></a>
 
@@ -3694,6 +3864,18 @@ Z-Image is Alibaba Tongyi's compact, 6.15B-parameter text-to-image foundation mo
 ![Z-Image — Figure 10](assets/architectures/z-image.png)
 
 *Figure 10 · [Source](https://arxiv.org/abs/2511.22699)*
+
+<a id="z-image-turbo-pp"></a>
+
+### Z-Image Turbo++
+
+Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps. The authors identify that naive 2-step distillation suffers from increased task difficulty and limited capacity, and address this with three tailored choices: step-decoupled parameterization, which gives each of the two denoising steps its own set of weights (both initialized from the 8-step teacher) rather than sharing one network; distribution-aligned adversarial learning, which trains the GAN discriminator against teacher-generated images as the 'real' distribution instead of external photographs, giving the generator an achievable target; and end-to-end training with an explicit step-1 loss so gradients from final image quality reach the first step while keeping its intermediate output meaningful on its own. The combined recipe is reported to substantially narrow the quality gap between 2-step and 8-step generation.
+
+[Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found · [Details](models/efficient.md#z-image-turbo-pp)
+
+![Z-Image Turbo++ — Editorial input/output diagram](assets/architectures/z-image-turbo-pp.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2606.12575)*
 
 
 ---
