@@ -20,10 +20,10 @@ Dates are first paper submission dates, not verified software release dates. Wit
 | Decision | Papers |
 | --- | ---: |
 | Included | 0 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 461 |
-| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 239 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 120 |
-| Not yet screened | 3400 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1056 |
+| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 491 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 591 |
+| Not yet screened | 2082 |
 
 </details>
 
