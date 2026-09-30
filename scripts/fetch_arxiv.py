@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch the pinned arXiv text-to-image snapshot into data/t2i-arxiv-daily.json.
+"""Fetch the pinned arXiv text-to-image snapshot (abstract mentions "text-to-image", or title mentions image generation/synthesis) into data/t2i-arxiv-daily.json.
 
 New papers are added as `pending` rows; existing screening decisions are kept. Rows that no
 longer appear in the query are kept too, so a refresh never silently drops reviewed papers.
@@ -26,7 +26,8 @@ PAGE = 200
 
 
 def query_for(until):
-    return f'ti:"text-to-image" AND submittedDate:[202501010000 TO {until:%Y%m%d}2359]'
+    terms = 'abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis"'
+    return f'({terms}) AND submittedDate:[202501010000 TO {until:%Y%m%d}2359]'
 
 
 def fetch(search_query):

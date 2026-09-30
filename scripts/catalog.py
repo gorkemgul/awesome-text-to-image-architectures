@@ -202,7 +202,7 @@ def render_readme(catalog, figures, daily):
         "A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.", "",
         f'**{len(models)} models and families · Reviewed {catalog["as_of"]}**', "",
         "[Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)", "",
-        f'The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every paper with "text-to-image" in its title first submitted from **January 1, 2025** onward ({daily["eligible_row_count"]} papers in the pinned snapshot). Every included family has an image, a description, paper links and an explicit GitHub availability status. The complete screening record is available as [JSON](data/t2i-arxiv-daily.json).', "",
+        f'The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper that mentions "text-to-image" in its abstract, or image generation or synthesis in its title, first submitted from **January 1, 2025** onward ({daily["eligible_row_count"]} papers in the pinned snapshot). Every included family has an image, a description, paper links and an explicit GitHub availability status. The complete screening record is available as [JSON](data/t2i-arxiv-daily.json).', "",
         "| Collection | Models |", "| --- | ---: |",
     ]
     for key, (title, filename, _) in CATEGORIES.items():

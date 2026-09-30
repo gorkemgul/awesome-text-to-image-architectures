@@ -8,7 +8,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
-The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every paper with "text-to-image" in its title first submitted from **January 1, 2025** onward (848 papers in the pinned snapshot). Every included family has an image, a description, paper links and an explicit GitHub availability status. The complete screening record is available as [JSON](data/t2i-arxiv-daily.json).
+The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper that mentions "text-to-image" in its abstract, or image generation or synthesis in its title, first submitted from **January 1, 2025** onward (4220 papers in the pinned snapshot). Every included family has an image, a description, paper links and an explicit GitHub availability status. The complete screening record is available as [JSON](data/t2i-arxiv-daily.json).
 
 | Collection | Models |
 | --- | ---: |

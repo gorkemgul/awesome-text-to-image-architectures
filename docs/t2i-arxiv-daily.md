@@ -6,7 +6,7 @@
 
 **0 model families · 0 papers · 0 new catalog entries · Reviewed 2026-09-29**
 
-Screens all **848 papers** returned by the pinned arXiv API query `ti:"text-to-image" AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `7566ecc11d46…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and major releases whose titles do not contain "text-to-image" are covered by the complete catalog.
+Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
@@ -23,7 +23,7 @@ Dates are first paper submission dates, not verified software release dates. Wit
 | Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 461 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 239 |
 | Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 120 |
-| Not yet screened | 28 |
+| Not yet screened | 3400 |
 
 </details>
 
