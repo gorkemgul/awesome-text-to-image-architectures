@@ -9469,8 +9469,12 @@
    "title": "ADP-DiT: Text-Guided Diffusion Transformer for Brain Image Generation in Alzheimer's Disease Progression",
    "listed_on": "2026-04-15",
    "paper_url": "https://arxiv.org/abs/2604.13495",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-04-15",
+   "model_id": "adp-dit",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2604.13491",
@@ -9504,8 +9508,19 @@
    "title": "Generative Refinement Networks for Visual Synthesis",
    "listed_on": "2026-04-14",
    "paper_url": "https://arxiv.org/abs/2604.13030",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-04-14",
+   "model_id": "grn",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/bytedance/GRN",
+     "evidence_url": "https://arxiv.org/abs/2604.13030",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2604.13021",
@@ -9584,8 +9599,12 @@
    "title": "Nucleus-Image: Sparse MoE for Image Generation",
    "listed_on": "2026-04-14",
    "paper_url": "https://arxiv.org/abs/2604.12163",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-04-14",
+   "model_id": "nucleus-image",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2604.16483",
@@ -9916,8 +9935,19 @@
    "title": "FlowInOne:Unifying Multimodal Generation as Image-in, Image-out Flow Matching",
    "listed_on": "2026-04-08",
    "paper_url": "https://arxiv.org/abs/2604.06757",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-04-08",
+   "model_id": "flowinone",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/CSU-JPG/FlowInOne",
+     "evidence_url": "https://csu-jpg.github.io/FlowInOne.github.io/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2604.06728",
@@ -10248,8 +10278,9 @@
    "title": "MAR-MAER: Metric-Aware and Ambiguity-Adaptive Autoregressive Image Generation",
    "listed_on": "2026-04-02",
    "paper_url": "https://arxiv.org/abs/2604.01864",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2604.01826",
@@ -10373,8 +10404,9 @@
    "title": "Unify-Agent: A Unified Multimodal Agent for World-Grounded Image Synthesis",
    "listed_on": "2026-03-31",
    "paper_url": "https://arxiv.org/abs/2603.29620",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2603.29418",
@@ -10390,8 +10422,19 @@
    "title": "MMFace-DiT: A Dual-Stream Diffusion Transformer for High-Fidelity Multimodal Face Generation",
    "listed_on": "2026-03-30",
    "paper_url": "https://arxiv.org/abs/2603.29029",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-30",
+   "model_id": "mmface-dit",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Bharath-K3/MMFace-DiT",
+     "evidence_url": "https://arxiv.org/abs/2603.29029",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2603.28767",
@@ -10416,16 +10459,28 @@
    "title": "DreamLite: A Lightweight On-Device Unified Model for Image Generation and Editing",
    "listed_on": "2026-03-30",
    "paper_url": "https://arxiv.org/abs/2603.28713",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-30",
+   "model_id": "dreamlite",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/ByteVisionLab/DreamLite",
+     "evidence_url": "https://carlofkl.github.io/dreamlite/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2603.28405",
    "title": "EdgeDiT: Hardware-Aware Diffusion Transformers for Efficient On-Device Image Generation",
    "listed_on": "2026-03-30",
    "paper_url": "https://arxiv.org/abs/2603.28405",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2603.28367",
@@ -11269,8 +11324,12 @@
    "title": "LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition",
    "listed_on": "2026-03-18",
    "paper_url": "https://arxiv.org/abs/2603.17965",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-18",
+   "model_id": "lade",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2603.17895",
@@ -11322,8 +11381,9 @@
    "title": "CompDiff enables fair and zero shot medical image generation across demographic intersections through compositional diffusion",
    "listed_on": "2026-03-17",
    "paper_url": "https://arxiv.org/abs/2603.16551",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2603.16392",
@@ -11438,8 +11498,9 @@
    "title": "CyCLeGen: Cycle-Consistent Layout Prediction and Image Generation in Vision Foundation Models",
    "listed_on": "2026-03-16",
    "paper_url": "https://arxiv.org/abs/2603.14957",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2603.14936",
@@ -12364,8 +12425,12 @@
    "title": "Unifying Contrastive and Generative Objectives for Visual Understanding and Text-to-Image Generation",
    "listed_on": "2026-03-03",
    "paper_url": "https://arxiv.org/abs/2603.02667",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-03",
+   "model_id": "dream",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2603.02519",
@@ -12399,8 +12464,19 @@
    "title": "TerraDiT: Point-Conditioned Diffusion Transformer for Satellite Image Synthesis",
    "listed_on": "2026-03-02",
    "paper_url": "https://arxiv.org/abs/2603.02172",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-02",
+   "model_id": "terradit",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/mvrl/TerraDiT",
+     "evidence_url": "https://arxiv.org/abs/2603.02172",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2603.02026",
@@ -12434,8 +12510,19 @@
    "title": "LLaDA-o: An Effective and Length-Adaptive Omni Diffusion Model",
    "listed_on": "2026-03-01",
    "paper_url": "https://arxiv.org/abs/2603.01068",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-03-01",
+   "model_id": "llada-o",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/ML-GSAI/LLaDA-o",
+     "evidence_url": "https://arxiv.org/abs/2603.01068",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2603.00992",
@@ -12766,8 +12853,12 @@
    "title": "The Design Space of Tri-Modal Masked Diffusion Models",
    "listed_on": "2026-02-25",
    "paper_url": "https://arxiv.org/abs/2602.21472",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-02-25",
+   "model_id": "tmdm-3b",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2603.00141",
@@ -12828,8 +12919,9 @@
    "title": "BBQ-to-Image: Numeric Bounding Box and Qolor Control in Large-Scale Text-to-Image Models",
    "listed_on": "2026-02-24",
    "paper_url": "https://arxiv.org/abs/2602.20672",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.20497",
@@ -13115,8 +13207,9 @@
    "title": "Amber-Image: Efficient Compression of Large-Scale Diffusion Transformers",
    "listed_on": "2026-02-19",
    "paper_url": "https://arxiv.org/abs/2602.17047",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.16796",
@@ -13186,8 +13279,12 @@
    "title": "BitDance: Scaling Autoregressive Generative Models with Binary Tokens",
    "listed_on": "2026-02-15",
    "paper_url": "https://arxiv.org/abs/2602.14041",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-02-15",
+   "model_id": "bitdance",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2602.13994",
@@ -13311,8 +13408,12 @@
    "title": "DeepGen 1.0: A Lightweight Unified Multimodal Model for Advancing Image Generation and Editing",
    "listed_on": "2026-02-12",
    "paper_url": "https://arxiv.org/abs/2602.12205",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-02-12",
+   "model_id": "deepgen-1",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2602.12155",
@@ -13598,8 +13699,9 @@
    "title": "ChatUMM: Robust Context Tracking for Conversational Interleaved Generation",
    "listed_on": "2026-02-06",
    "paper_url": "https://arxiv.org/abs/2602.06442",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.06422",
@@ -13903,16 +14005,18 @@
    "title": "PixelGen: Improving Pixel Diffusion with Perceptual Supervision",
    "listed_on": "2026-02-02",
    "paper_url": "https://arxiv.org/abs/2602.02493",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.02437",
    "title": "UniReason 1.0: A Unified Reasoning Framework for World Knowledge Aligned Image Generation and Editing",
    "listed_on": "2026-02-02",
    "paper_url": "https://arxiv.org/abs/2602.02437",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.02388",
@@ -13964,8 +14068,9 @@
    "title": "One Size, Many Fits: Aligning Diverse Group-Wise Click Preferences in Large-Scale Advertising Image Generation",
    "listed_on": "2026-02-02",
    "paper_url": "https://arxiv.org/abs/2602.02033",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.01991",
@@ -14098,8 +14203,9 @@
    "title": "RMFlow: Refined Mean Flow by a Noise-Injection Step for Multimodal Generation",
    "listed_on": "2026-01-31",
    "paper_url": "https://arxiv.org/abs/2602.00849",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2602.00639",
@@ -14133,8 +14239,12 @@
    "title": "DuoGen: Towards General Purpose Interleaved Multimodal Generation",
    "listed_on": "2026-01-31",
    "paper_url": "https://arxiv.org/abs/2602.00508",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-01-31",
+   "model_id": "duogen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2602.00413",
@@ -14222,8 +14332,19 @@
    "title": "LINA: Linear Autoregressive Image Generative Models with Continuous Tokens",
    "listed_on": "2026-01-30",
    "paper_url": "https://arxiv.org/abs/2601.22630",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-01-30",
+   "model_id": "lina",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/techmonsterwang/LINA",
+     "evidence_url": "https://arxiv.org/abs/2601.22630",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2601.22519",
@@ -14446,8 +14567,12 @@
    "title": "AR-Omni: A Unified Autoregressive Model for Any-to-Any Generation",
    "listed_on": "2026-01-25",
    "paper_url": "https://arxiv.org/abs/2601.17761",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2026-01-25",
+   "model_id": "ar-omni",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2601.17706",
@@ -14463,8 +14588,9 @@
    "title": "Uni-RS: A Spatially Faithful Unified Understanding and Generation Model for Remote Sensing",
    "listed_on": "2026-01-25",
    "paper_url": "https://arxiv.org/abs/2601.17673",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2601.17666",
@@ -14615,8 +14741,9 @@
    "title": "A Unified and Controllable Framework for Layered Image Generation with Visual Effects",
    "listed_on": "2026-01-21",
    "paper_url": "https://arxiv.org/abs/2601.15507",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2601.15500",
@@ -14713,8 +14840,9 @@
    "title": "Dynamic Differential Linear Attention: Enhancing Linear Diffusion Transformer for High-Quality Image Generation",
    "listed_on": "2026-01-20",
    "paper_url": "https://arxiv.org/abs/2601.13683",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2601.13462",
@@ -14847,8 +14975,9 @@
    "title": "CoF-T2I: Video Models as Pure Visual Reasoners for Text-to-Image Generation",
    "listed_on": "2026-01-15",
    "paper_url": "https://arxiv.org/abs/2601.10061",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2601.10053",
@@ -15586,8 +15715,12 @@
    "title": "Self-Evaluation Unlocks Any-Step Text-to-Image Generation",
    "listed_on": "2025-12-26",
    "paper_url": "https://arxiv.org/abs/2512.22374",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-26",
+   "model_id": "self-e",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2601.00829",
@@ -15870,8 +16003,12 @@
    "title": "Both Semantics and Reconstruction Matter: Making Representation Encoders Ready for Text-to-Image Generation and Editing",
    "listed_on": "2025-12-19",
    "paper_url": "https://arxiv.org/abs/2512.17909",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-19",
+   "model_id": "ps-vae",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2512.17851",
@@ -16211,8 +16348,19 @@
    "title": "SVG-T2I: Scaling Up Text-to-Image Latent Diffusion Model Without Variational Autoencoder",
    "listed_on": "2025-12-12",
    "paper_url": "https://arxiv.org/abs/2512.11749",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-12",
+   "model_id": "svg-t2i",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/KlingTeam/SVG-T2I",
+     "evidence_url": "https://arxiv.org/abs/2512.11749",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2512.11720",
@@ -17495,8 +17643,12 @@
    "title": "ProxT2I: Efficient Reward-Guided Text-to-Image Generation via Proximal Diffusion",
    "listed_on": "2025-11-24",
    "paper_url": "https://arxiv.org/abs/2511.18742",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-24",
+   "model_id": "proxt2i",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2511.18714",
@@ -17610,8 +17762,9 @@
    "title": "UltraFlux: Data-Model Co-Design for High-quality Native 4K Text-to-Image Generation across Diverse Aspect Ratios",
    "listed_on": "2025-11-22",
    "paper_url": "https://arxiv.org/abs/2511.18050",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2511.17888",
@@ -18022,8 +18175,9 @@
    "title": "CLUE: Controllable Latent space of Unprompted Embeddings for Diversity Management in Text-to-Image Synthesis",
    "listed_on": "2025-11-14",
    "paper_url": "https://arxiv.org/abs/2511.10993",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2511.15720",
@@ -18194,8 +18348,12 @@
    "title": "oboro: Text-to-Image Synthesis on Limited Data using Flow-based Diffusion Transformer with MMH Attention",
    "listed_on": "2025-11-11",
    "paper_url": "https://arxiv.org/abs/2511.08168",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-11",
+   "model_id": "oboro",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2511.08075",
@@ -18292,8 +18450,19 @@
    "title": "Generating an Image From 1,000 Words: Enhancing Text-to-Image With Structured Captions",
    "listed_on": "2025-11-10",
    "paper_url": "https://arxiv.org/abs/2511.06876",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-10",
+   "model_id": "fibo",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Bria-AI/FIBO",
+     "evidence_url": "https://huggingface.co/briaai/FIBO",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2511.06740",
@@ -22018,8 +22187,9 @@
    "title": "Interleaving Reasoning for Better Text-to-Image Generation",
    "listed_on": "2025-09-08",
    "paper_url": "https://arxiv.org/abs/2509.06945",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2509.06499",
@@ -26996,8 +27166,9 @@
    "title": "Efficiency without Compromise: CLIP-aided Text-to-Image GANs with Increased Diversity",
    "listed_on": "2025-06-02",
    "paper_url": "https://arxiv.org/abs/2506.01493",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2506.01480",
@@ -27281,8 +27452,19 @@
    "title": "Muddit: Liberating Generation Beyond Text-to-Image with a Unified Discrete Diffusion Model",
    "listed_on": "2025-05-29",
    "paper_url": "https://arxiv.org/abs/2505.23606",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-29",
+   "model_id": "muddit",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/M-E-AGI-Lab/Muddit",
+     "evidence_url": "https://arxiv.org/abs/2505.23606",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.23493",
@@ -27710,8 +27892,9 @@
    "title": "StyleAR: Customizing Multimodal Autoregressive Model for Style-Aligned Text-to-Image Generation",
    "listed_on": "2025-05-26",
    "paper_url": "https://arxiv.org/abs/2505.19874",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2505.19707",
@@ -28890,8 +29073,9 @@
    "title": "Prompt to Polyp: Medical Text-Conditioned Image Synthesis with Diffusion Models",
    "listed_on": "2025-05-08",
    "paper_url": "https://arxiv.org/abs/2505.05573",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2505.05472",
@@ -32146,8 +32330,19 @@
    "title": "FlowTok: Flowing Seamlessly Across Text and Image Tokens",
    "listed_on": "2025-03-13",
    "paper_url": "https://arxiv.org/abs/2503.10772",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-13",
+   "model_id": "flowtok",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/TACJu/FlowTok",
+     "evidence_url": "https://arxiv.org/abs/2503.10772",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.10738",
@@ -32170,8 +32365,12 @@
    "title": "DiT-Air: Revisiting the Efficiency of Diffusion Model Architecture Design in Text to Image Generation",
    "listed_on": "2025-03-13",
    "paper_url": "https://arxiv.org/abs/2503.10618",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-13",
+   "model_id": "dit-air",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.10613",
@@ -33231,8 +33430,9 @@
    "title": "How far can we go with ImageNet for Text-to-Image generation?",
    "listed_on": "2025-02-28",
    "paper_url": "https://arxiv.org/abs/2502.21318",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.21291",
@@ -35439,8 +35639,12 @@
    "title": "Democratizing Text-to-Image Masked Generative Models with Compact Text-Aware One-Dimensional Tokens",
    "listed_on": "2025-01-13",
    "paper_url": "https://arxiv.org/abs/2501.07730",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-01-13",
+   "model_id": "maskgen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2501.07554",
@@ -35880,8 +36084,9 @@
    "title": "Hierarchical Vision-Language Alignment for Text-to-Image Generation via Diffusion Models",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00917",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "no-distinct-t2i-system"
   },
   {
    "arxiv_id": "2501.00895",

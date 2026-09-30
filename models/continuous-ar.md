@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**8 models · Reviewed 2026-09-29**
+**9 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -23,6 +23,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
 | [HART](#hart) | 2024-10-14 | T → I | generation |
 | [JetFormer](#jetformer) | 2024-11-29 | T, I → I, T | generation |
+| [LINA](#lina) | 2026-01-30 | T → I | generation |
 | [NextStep-1](#nextstep-1) | 2025-08-14 | T, I → I | editing |
 | [STARFlow](#starflow) | 2025-06-06 | T, I → I | editing |
 
@@ -181,6 +182,33 @@ The flow uses 32 affine coupling blocks with channel-wise splitting, each built 
 **License:** code: Apache-2.0.
 
 **Variants:** JetFormer-B; JetFormer-M; JetFormer-L.
+
+</details>
+
+<a id="lina"></a>
+
+### LINA
+
+Autoregressive continuous-token image transformer built entirely on linear attention (division-based normalization, depthwise convolution for locality, and a novel bidirectional KV gate for token-wise memory weighting), initialized from NOVA pretrained weights and generating high-fidelity 1024x1024 images with a flow-matching MLP head.
+
+LINA studies how to design compute-efficient linear attention for continuous-token autoregressive text-to-image models, an approach otherwise bottlenecked by high computational cost. Through a systematic scaling analysis the authors find that division-based (not subtraction-based) normalization scales better for linear generative transformers, that depthwise convolution for locality is important for autoregressive image generation, and they extend gating mechanisms from causal to bidirectional linear attention with a new KV gate that assigns token-wise memory weights similar to forget gates in language models. Built on these findings, LINA is a full text-to-image system generating high-fidelity 1024x1024 images, achieving 2.18 FID on class-conditional ImageNet and 0.74 GenEval, with a single linear-attention module cutting FLOPs by about 61% versus softmax attention.
+
+[Paper](https://arxiv.org/abs/2601.22630) · [GitHub](https://github.com/techmonsterwang/LINA)
+
+![LINA — Figure 2](../assets/architectures/lina.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2601.22630)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 2: a Connector integrates text (or class) information from a text encoder into masked visual queries alongside VAE-encoded image tokens; an Encoder and Decoder built from LINA's linear-attention blocks (linear attention plus a KV gate and depthwise convolution) predict per-token conditioning, and a small MLP flow-matching head models the continuous token distribution. LINA-H has about 1.5B parameters, with 0.4B and 0.6B variants also evaluated; training initializes from 1024px NOVA pretrained weights (excluding the new linear-attention layers) across a three-stage 256/512/1024px curriculum. Code and models are released on GitHub under CC BY-NC-ND 4.0 (weights); code in the repository is Apache-2.0.
+
+**License:** code: Apache-2.0.
+
+**Variants:** LINA-0.4B; LINA-0.6B; LINA-H.
 
 </details>
 

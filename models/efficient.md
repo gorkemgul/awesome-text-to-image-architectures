@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**21 models · Reviewed 2026-09-29**
+**23 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,6 +19,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | --- | --- | --- | --- |
 | [BK-SDM](#bk-sdm) | 2023-05-25 | T → I | generation |
 | [DMD2 (Distribution Matching Distillation)](#dmd2) | 2023-11-30 | T → I | generation |
+| [DreamLite](#dreamlite) | 2026-03-30 | T, I → I | editing |
 | [E-MMDiT (AMD Nitro-E)](#e-mmdit) | 2025-10-31 | T → I | generation |
 | [Hyper-SD](#hyper-sd) | 2024-04-21 | T → I | generation |
 | [Imagine Flash](#imagine-flash) | 2024-05-08 | T → I | generation |
@@ -33,6 +34,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | 2023-11-28 | T → I | generation |
 | [SDXL-Lightning](#sdxl-lightning) | 2024-02-21 | T → I | generation |
 | [SDXS](#sdxs) | 2024-03-25 | T → I | generation |
+| [Self-E](#self-e) | 2025-12-26 | T → I | generation |
 | [SnapFusion](#snapfusion) | 2023-06-01 | T → I | generation |
 | [SnapGen](#snapgen) | 2024-12-12 | T → I | generation |
 | [SSD-1B](#ssd-1b) | 2024-01-05 | T → I | generation |
@@ -94,6 +96,29 @@ DMD2 details: five fake-score updates per generator update (two time-scale updat
 **License:** code: CC BY-NC-SA 4.0; weights: CC-BY-NC-4.0.
 
 **Variants:** DMD (one-step, SD v1.5); DMD2 SDXL 4-step (U-Net and LoRA); DMD2 SDXL 1-step; DMD2 SD v1.5 1-step.
+
+</details>
+
+<a id="dreamlite"></a>
+
+### DreamLite
+
+0.39B-parameter pruned mobile U-Net, compressed from SnapGen's 2.5B backbone, that performs both text-to-image generation and text-guided editing in one network via in-context conditioning: target and condition images are concatenated horizontally, with a blank panel for generation and a source image for editing.
+
+DreamLite is billed as the first unified on-device diffusion model to support both text-to-image generation and text-guided image editing from a single 0.39B-parameter network, small enough to run in under a second on a Xiaomi 14 phone. Its backbone is a mobile U-Net systematically pruned and re-architected from SnapGen's 2.5B design (fewer transformer blocks, smaller channel widths, separable convolutions, multi-query attention with one KV head), paired with a Qwen3-VL-2B text/instruction encoder and a 2.5M-parameter TinyVAE. Generation and editing share the same network through an in-context conditioning trick: the model always denoises a horizontally concatenated (target | condition) pair, using a blank panel as the condition for generation and the source image for editing, with an explicit [Generate] or [Edit] task token disambiguating the two modes.
+
+[Paper](https://arxiv.org/abs/2603.28713) · [GitHub](https://github.com/ByteVisionLab/DreamLite) · [Project](https://carlofkl.github.io/dreamlite/)
+
+![DreamLite — Figure 2](../assets/architectures/dreamlite.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2603.28713)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Training is progressive: text-to-image pretraining with flow matching, then edit pretraining with foreground-emphasis masking, then unified joint training on mixed data, followed by supervised fine-tuning and reinforcement learning with task-specific reward models. Inference is distilled to 4 steps. Code and models are released on a GitHub repository linked from the project page.
 
 </details>
 
@@ -462,6 +487,29 @@ Distillation of the U-Net uses output-level and feature-level KD without the ori
 **License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
 
 **Variants:** SDXS-512; SDXS-1024; SDXS-512-0.9; SDXS-512-DreamShaper; SDXS-512-DreamShaper-Anime.
+
+</details>
+
+<a id="self-e"></a>
+
+### Self-E
+
+FLUX-style latent diffusion transformer trained from scratch with a dual-time denoiser and a self-evaluation objective (comparing its own conditional and unconditional predictions across timesteps) alongside standard local denoising loss, giving one model usable at any inference step count from 1 to 50.
+
+Self-E (Self-Evaluating Model) is presented as the first from-scratch, any-step text-to-image model: a single trained network that works across the full range of inference step counts, from ultra-fast few-step sampling to high-quality 50-step sampling, without pretrained-teacher distillation. It combines instantaneous local supervision (standard denoising loss) with a self-driven global matching objective in which the model evaluates and refines its own generated samples, unlike diffusion/flow-matching models that rely solely on local supervision or distillation methods that require a separate teacher. The authors report performance that improves monotonically with more inference steps while remaining competitive with state-of-the-art flow-matching models at 50 steps.
+
+[Paper](https://arxiv.org/abs/2512.22374) · GitHub: no author-linked repository found
+
+![Self-E — Figure 2](../assets/architectures/self-e.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2512.22374)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 2: the dual-time denoiser G_theta(t->s) is trained with a standard MSE denoising loss from data, and a self-evaluation loss compares a frozen copy of the same network's conditional and unconditional scores on the model's own re-noised prediction to guide few-step generation without a separate teacher. Built on a FLUX-style latent transformer with frozen text encoders; a 2B-parameter model is used for the main text-to-image experiments (256x256 and 512x512) and a 0.5B model for ablations. No code or weights release was found at review time.
 
 </details>
 

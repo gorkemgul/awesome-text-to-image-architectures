@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**8 models · Reviewed 2026-09-29**
+**11 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -18,10 +18,13 @@ Dates refer to papers or announcements, not necessarily model releases.
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
 | [aMUSEd](#amused) | 2024-01-03 | T → I | generation |
+| [GRN (Generative Refinement Networks)](#grn) | 2026-04-14 | T → I, V | generation |
 | [M6-UFC](#m6-ufc) | 2021-05-29 | T → I | generation |
+| [MaskGen](#maskgen) | 2025-01-13 | T → I | generation |
 | [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
 | [Muse](#muse) | 2023-01-02 | T → I | generation |
 | [Paella](#paella) | 2022-11-14 | T, I → I | editing |
+| [TMDM-3B](#tmdm-3b) | 2026-02-25 | T → I, A | generation |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
 | [VQ-Diffusion](#vq-diffusion) | 2021-11-29 | T, I → I | editing |
 | [X-LXMERT](#x-lxmert) | 2020-09-23 | T → I | generation |
@@ -57,6 +60,31 @@ A 146M-parameter VQGAN (8192-entry codebook, 16x downsampling) tokenizes images;
 
 </details>
 
+<a id="grn"></a>
+
+### GRN (Generative Refinement Networks)
+
+End-to-end token-refinement generator built on a Hierarchical Binary Quantization (HBQ) tokenizer, which quantizes VAE features into near-lossless binary tokens over multiple rounds, paired with a transformer that iteratively fills, refines and erases a shared token map under an entropy-guided, complexity-aware step schedule.
+
+Generative Refinement Networks (GRN) propose a visual-synthesis paradigm distinct from standard masked or autoregressive token prediction. A Hierarchical Binary Quantization (HBQ) tokenizer refines each VAE feature element through several rounds of binary quantization with exponentially decaying error, reaching near-lossless reconstruction at higher compression than typical discrete tokenizers, in either an integer-index (GRNind) or direct-bit-prediction (GRNbit) variant. Generation starts from a random token map and, at each step, a transformer predicts a complete token map conditioned on the current partial map; the sampler then fills newly confident predictions, keeps some prior predictions, and erases and re-randomizes others, so every step simultaneously fills, refines and erases the image (unlike strictly monotonic masked-generation samplers). An entropy-guided, complexity-aware schedule allocates more refinement steps to harder samples.
+
+[Paper](https://arxiv.org/abs/2604.13030) · [GitHub](https://github.com/bytedance/GRN)
+
+![GRN (Generative Refinement Networks) — Figure 4 (PDF p. 5)](../assets/architectures/grn.png)
+
+*Figure 4 (PDF p. 5) · [Source](https://arxiv.org/abs/2604.13030)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I, V · **Interaction:** generation
+
+GRN is trained end-to-end with cross-entropy loss over the full ground-truth token sequence and a straight-through estimator for the discrete tokens, using the same architecture for class-conditional ImageNet generation, text-to-image generation and text-to-video generation. Only the text-to-image capability is in scope for this catalog. Code is released on GitHub (ByteDance).
+
+**Variants:** GRNind; GRNbit.
+
+</details>
+
 <a id="m6-ufc"></a>
 
 ### M6-UFC
@@ -77,6 +105,31 @@ M6-UFC (Alibaba and Tsinghua, 2021) unifies text-to-image generation with image-
 **Input → output:** T → I · **Interaction:** generation
 
 A convolutional autoencoder with vector quantization (1,024-entry codebook) first discretizes 256×256 images into 16×16 token grids; M6-UFC then places textual controls (class labels or free text), optional visual controls (cropped reference-image token patches) and optional preservation-control masks alongside the image tokens to generate, all as one sequence for a single bidirectional transformer trained with masked-sequence-modeling and a relevance/fidelity estimation objective (paper Figure 2). At inference, PNAG generates all image tokens in parallel and then iteratively re-masks and regenerates the tokens with lowest estimated relevance or fidelity, guided by the two estimator heads (paper Figure 6), rather than decoding left to right. Text-to-image generation without additional visual or preservation controls is documented directly. Experiments use the authors' M2C-Fashion dataset (10.8 million Taobao image-caption pairs) and Multi-Modal CelebA-HQ. No official code repository was found.
+
+</details>
+
+<a id="maskgen"></a>
+
+### MaskGen
+
+MM-DiT masked generative transformer conditioned on a CLIP text encoder that predicts TA-TiTok 1D image tokens in parallel, supporting either a discrete VQ head (cross-entropy loss) or a continuous KL head (diffusion loss).
+
+MaskGen is a family of text-to-image masked generative models trained exclusively on publicly available data, introduced alongside TA-TiTok, a text-aware 1-dimensional image tokenizer. TA-TiTok injects textual information during tokenizer decoding and supports either discrete or continuous 1D tokens without the two-stage distillation used by prior 1D tokenizers. MaskGen combines this compact tokenizer with an MM-DiT-style masked prediction backbone, aesthetic-score conditioning and caption recaptioning, and the authors report performance competitive with models trained on proprietary data despite using only open datasets.
+
+[Paper](https://arxiv.org/abs/2501.07730) · [Project](https://tacju.github.io/projects/maskgen) · GitHub: no author-linked repository found
+
+![MaskGen — Figure 3](../assets/architectures/maskgen.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2501.07730)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Paper Figure 3: a CLIP text encoder produces text tokens and a pooled text embedding (C) that, together with an aesthetic-condition embedding (A), modulate AdaLN in dual text/image branches of the MM-DiT block; image tokens come from the TA-TiTok tokenizer with random masking during training. A VQ head (linear, cross-entropy) or KL head (AdaMLP, diffusion loss) predicts masked tokens. Released sizes are MaskGen-L (568M, +44M DiffLoss MLP for the continuous variant) and MaskGen-XL (1.1B, +69M). TA-TiTok uses 32-128 1D tokens. The authors state they will release training code and model weights, but no repository was found at review time.
+
+**Variants:** MaskGen-L; MaskGen-XL.
 
 </details>
 
@@ -150,6 +203,29 @@ Paella (LAION and Technical University of Darmstadt, 2022) is a fast text-to-ima
 A pretrained VQGAN (downsampling factor 4) tokenizes a 256×256 image into a 64×64 discrete latent grid; training randomly replaces a fraction of tokens with random codebook entries ("noise") and trains a convolutional U-Net-like network (residual blocks with convolution and attention at lower resolutions) to predict the original tokens from the corrupted grid, conditioned mostly on ByT5-XL text embeddings (95% of training) and occasionally CLIP text/image embeddings (5%), enabling zero-shot image variation and image+text conditioning (paper Figure 2). Sampling multinomially predicts all tokens, keeps a subset and stochastically renoises the rest back to random tokens for the next step, rather than permanently freezing decided tokens as in MaskGIT/Muse; typical generation uses about 12 steps. The 1B-parameter model is trained on about 900 million LAION-5B aesthetic images; code and weights are MIT-licensed and public.
 
 **License:** code: MIT; weights: mit.
+
+</details>
+
+<a id="tmdm-3b"></a>
+
+### TMDM-3B
+
+3B-parameter tri-modal masked diffusion model pretrained from scratch on interleaved text, image-caption and audio-transcription sequences with a shared bidirectional transformer, using an SDE-based reparameterization that decouples physical from logical batch size for stable large-scale training.
+
+This paper conducts a systematic, large-scale study of the design space of tri-modal (text, image, audio) masked diffusion models -- scaling laws, noise schedules and batch-size effects -- and trains a 3B-parameter model (the paper's Section 7.1 calls it the 'Unified 3B Tri-modal MDM') from scratch for 1M steps on 6.4T tokens as its main empirical vehicle. The model packs text, image-caption and audio-transcription sequences and denoises them with one bidirectional transformer under a shared masking schedule, supporting conditional generation across modalities including text-to-image generation, image captioning, text-to-speech and automatic speech recognition from a single set of weights.
+
+[Paper](https://arxiv.org/abs/2602.21472) · GitHub: no author-linked repository found
+
+![TMDM-3B — Figure 2](../assets/architectures/tmdm-3b.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2602.21472)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I, A · **Interaction:** generation
+
+The core methodological contribution is an SDE-based reparameterization that decouples the physical batch size used for training from the logical batch size implied by the diffusion noise schedule, letting the authors study critical batch size and compute-optimal token/parameter tradeoffs for masked diffusion at scale; the 3B model is presented with full hyperparameters (Table 5) as the concrete outcome of that analysis rather than a standalone product release. No project page, repository or model name beyond '3B tri-modal MDM' was found in the paper; 'TMDM-3B' is used here only as a catalog identifier.
 
 </details>
 
