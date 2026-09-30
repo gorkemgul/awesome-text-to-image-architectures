@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**1 model · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,33 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="generate-it"></a>
+
+### UMT-BITG (Unifying Multimodal Transformer)
+
+Single multimodal transformer shared by captioning and text-to-image generation, predicting an 8 × 8 grid of clustered visual tokens by mask-predict sampling and rendering them with a GAN-based image generator.
+
+This ACM Multimedia 2021 paper from Sun Yat-sen University and Microsoft Research Asia trains one transformer for both image captioning and text-to-image generation. For generation it fills in a small grid of discrete visual cluster tokens by iterative masked prediction, then renders the grid with a GAN generator; a CLIP-based training loss improves text-image consistency over its predecessor X-LXMERT on MS-COCO.
+
+[Paper](https://arxiv.org/abs/2110.09753) · [GitHub](https://github.com/researchmm/generate-it)
+
+![UMT-BITG (Unifying Multimodal Transformer) — Figure 2](../assets/architectures/generate-it.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2110.09753)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Images are represented at two granularities: dense Faster R-CNN grid features for image-to-text, and K-means cluster indices of those features as discrete targets for text-to-image, following X-LXMERT (paper Figure 2). Text-to-image training masks visual tokens and predicts them with a cross-entropy loss, enabling non-autoregressive mask-predict-k sampling in a few steps (e.g. k = 4); a second stage adds a CLIP-based image-level loss through a Gumbel-softmax approximation. A GAN-based generator converts the 8 × 8 token predictions into a 256 × 256 image. Experiments are on MS-COCO. The paper is unnamed; the name follows the authors' repository (UMT-BITG), which also hosts the related diverse-generation system UMT-DBITG (arXiv 2110.09756).
+
+**License:** code: MIT.
+
+</details>

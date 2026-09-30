@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**1 model · Reviewed 2026-09-29**
+**15 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,11 +17,345 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
-| [Midjourney](#midjourney) | — | T → I | generation |
+| [Adobe Firefly Image](#adobe-firefly) | 2023-03-21 | T, I → I | editing |
+| [Amazon Titan Image Generator](#amazon-titan-image-generator) | 2023-11-29 | T, I → I | editing |
+| [DALL·E 3](#dall-e-3) | 2023-10-03 | T → I | generation |
+| [Gemini native image generation](#gemini-image) | 2025-03-12 | T, I → T, I | editing |
+| [GPT Image 1](#gpt-image-1) | 2025-04-23 | T, I → I | editing |
+| [GPT Image 2](#gpt-image-2) | 2026-04-21 | T, I → I | editing |
+| [Grok Aurora](#grok-aurora) | 2024-12-09 | T → I | generation |
+| [Grok Imagine Image](#grok-imagine-image) | — | T, I → I | editing |
+| [Ideogram](#ideogram) | 2023-08-22 | T, I → I | editing |
+| [Imagen 2](#imagen-2) | 2023-12-13 | T, I → I | editing |
+| [Imagen 3](#imagen-3) | 2024-08-13 | T, I → I | editing |
+| [Imagen 4](#imagen-4) | 2025-05-20 | T, I → I | generation |
+| [Midjourney](#midjourney) | — | T, I → I | editing |
+| [Recraft](#recraft) | 2024-10-30 | T, I → I | editing |
+| [Reve Image](#reve-image) | — | T, I → I | editing |
 
 </details>
 
 ## Architectures
+
+<a id="adobe-firefly"></a>
+
+### Adobe Firefly Image
+
+Closed family of text-to-image models (Firefly Image 1–5) with undisclosed architecture.
+
+Adobe Firefly is Adobe's family of generative models, announced on 2023-03-21 with a first model for text-to-image generation and text effects that Adobe says was trained on Adobe Stock, openly licensed and public-domain content. Successive Firefly Image models followed: Image 2 (October 2023) with Generative Match for style guidance from an uploaded reference image, Image 3 (April 2024) with Structure Reference and Style Reference, Image 4 and 4 Ultra (April 2025) with output up to 2K, and Image 5 (October 2025, public beta) with native 4MP output and Prompt to Edit, which edits an image from a plain-language instruction. The models are offered in the Firefly app, Adobe's Creative Cloud products and the Firefly API; Adobe does not publish their architecture.
+
+[Announcement 1](https://news.adobe.com/news/news-details/2023/Adobe-Unveils-Firefly-a-Family-of-new-Creative-Generative-AI/default.aspx) · [Announcement 2](https://news.adobe.com/news/news-details/2023/adobe-releases-next-generation-of-firefly-models) · [Announcement 3](https://news.adobe.com/news/news-details/2024/adobe-introduces-firefly-image-3-foundation-model-to-take-creative-exploration-and-ideation-to-new-heights) · [Announcement 4](https://news.adobe.com/news/2025/04/adobe-revolutionizes-ai-assisted-creativity-firefly) · [Announcement 5](https://news.adobe.com/news/2025/10/adobe-max-2025-firefly) · [Docs 1](https://developer.adobe.com/firefly-services/docs/firefly-api/) · [Docs 2](https://developer.adobe.com/firefly-services/docs/firefly-api/guides/how-tos/firefly-generate-image-api-tutorial)
+
+![Adobe Firefly Image — Input/output diagram](../assets/architectures/adobe-firefly.svg)
+
+*Input/output diagram · [Source](https://news.adobe.com/news/2025/10/adobe-max-2025-firefly)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Dates and features from Adobe newsroom releases: 2023-03-21 (Firefly unveiled; first model generates images and text effects from text), 2023-10-10 (Firefly Image 2 Model; Generative Match lets users upload a reference image to guide style), 2024-04-23 (Firefly Image 3 Foundation Model; Structure Reference, Style Reference, Generative Expand), 2025-04-24 (Firefly Image Model 4 and Image Model 4 Ultra, up to 2K), 2025-10-28 (Firefly Image Model 5 in public beta, native 4MP, prompt-based editing via Prompt to Edit). Firefly API: `POST https://firefly-api.adobe.io/v3/images/generate`; Adobe's API overview names Image Model 5 as the latest. Partner models offered inside the Firefly app (for example OpenAI, Google and Black Forest Labs models) are not part of this family.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Firefly Image 1 (2023-03-21); Firefly Image 2 (2023-10-10); Firefly Image 3 (2024-04-23); Firefly Image 4 and 4 Ultra (2025-04-24); Firefly Image 5 (public beta 2025-10-28).
+
+</details>
+
+<a id="amazon-titan-image-generator"></a>
+
+### Amazon Titan Image Generator
+
+Closed text-to-image and image-editing model on Amazon Bedrock; architecture not disclosed.
+
+Amazon Titan Image Generator is Amazon's image generation model on Amazon Bedrock, announced in public preview on 2023-11-29 (`amazon.titan-image-generator-v1`, later documented as G1). It generates images from English prompts and edits uploaded images through inpainting and outpainting with a user mask or a text-derived mask from a built-in segmentation model, image variations from one to five input images, and mask-free text-prompted editing. Titan Image Generator v2, generally available from August 2024, adds image conditioning on a reference image's layout, color-palette guidance, background removal and subject-consistency fine-tuning. All outputs carry an invisible watermark and C2PA metadata. AWS does not publish the model architecture.
+
+[Announcement 1](https://aws.amazon.com/blogs/aws/amazon-titan-image-generator-multimodal-embeddings-and-text-models-are-now-available-in-amazon-bedrock/) · [Announcement 2](https://aws.amazon.com/blogs/aws/amazon-titan-image-generator-v2-is-now-available-in-amazon-bedrock/) · [Docs](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html)
+
+![Amazon Titan Image Generator — Input/output diagram](../assets/architectures/amazon-titan-image-generator.svg)
+
+*Input/output diagram · [Source](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Dates: AWS News Blog 2023-11-29 (public preview of v1 in US East and US West) and 2024-08-06 (v2 available). Features per the Amazon Bedrock user guide: text-to-image; inpainting and outpainting from an image plus a user or model-estimated segmentation mask (mask prompts are classified by a segmentation algorithm); image variation from 1–5 images with an optional prompt; editing without a mask; style transfer from reference images; fine-tuning. V2-only: image conditioning, subject consistency, color-guided content (1–10 hex codes), background removal. Output sizes up to 1,408 × 1,408 px for editing features; English prompts up to 512 characters. Amazon Nova Canvas (2024-12) is a different model and is not covered here.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Titan Image Generator G1 v1 (amazon.titan-image-generator-v1, preview 2023-11-29); Titan Image Generator G1 v2 (amazon.titan-image-generator-v2:0, 2024-08-06).
+
+</details>
+
+<a id="dall-e-3"></a>
+
+### DALL·E 3
+
+Closed text-to-image diffusion system trained on highly descriptive synthetic captions; full generator architecture not disclosed.
+
+DALL·E 3 is OpenAI's third-generation text-to-image system, released in ChatGPT and, from November 2023, in the OpenAI Images API. Its accompanying paper argues that prompt following improves when a text-to-image model is trained on highly descriptive captions produced by a bespoke image captioner, and shows that a language model can "upsample" short prompts into detailed ones at inference. The system card describes a deployment in which GPT-4 in ChatGPT rewrites user requests into the prompts sent to DALL·E 3, plus prompt and output classifiers. The API accepted text only and supported image generation, not edits or variations; OpenAI removed the `dall-e-3` snapshot from the API on 2026-05-12.
+
+[Paper](https://cdn.openai.com/papers/dall-e-3.pdf) · [Model card](https://cdn.openai.com/papers/DALL_E_3_System_Card.pdf) · [Docs 1](https://developers.openai.com/api/docs/models/dall-e-3) · [Docs 2](https://developers.openai.com/api/docs/changelog)
+
+![DALL·E 3 — Input/output diagram](../assets/architectures/dall-e-3.svg)
+
+*Input/output diagram · [Source](https://cdn.openai.com/papers/DALL_E_3_System_Card.pdf)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Date: the DALL·E 3 System Card is dated October 3, 2023; the openai.com announcement page returned HTTP 403 and was not used. The paper (undated PDF) gives limited architecture detail: its Appendix A describes the T5-XXL-conditioned latent U-Net models used for the caption experiments, and Appendix B says DALL·E 3 uses its own diffusion decoder, a convolutional U-Net on the Stable Diffusion VAE latent space, consistency-distilled to two denoising steps. The main DALL·E 3 denoiser is not specified, so no category claim is made. API: text in, image out, `v1/images/generations` only (edits and variations not supported); added to the API 2023-11-06 and removed 2026-05-12, per the OpenAI API changelog.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="gemini-image"></a>
+
+### Gemini native image generation
+
+Image output from natively multimodal Gemini models, each based on a Gemini language model; image-generation mechanism not disclosed.
+
+Gemini native image generation lets Gemini models output images directly, first as an experiment in Gemini 2.0 Flash (March 2025) and then as dedicated image models branded Nano Banana: Gemini 2.5 Flash Image (August 2025), Gemini 3 Pro Image ("Nano Banana Pro", November 2025), Gemini 3.1 Flash Image ("Nano Banana 2", February 2026) and Gemini 3.1 Flash-Lite Image ("Nano Banana 2 Lite", GA July 2026). The Gemini API documents text-to-image generation, editing of a supplied image from text instructions, multi-turn conversational editing, multiple reference images and, for some models, interleaved text and image output. Google's model cards say each image model is based on a Gemini language model (for example, Gemini 3 Pro Image on Gemini 3 Pro) and refer to those models' cards for architecture; how images are generated is not described.
+
+[Announcement 1](https://developers.googleblog.com/en/experiment-with-gemini-20-flash-native-image-generation/) · [Announcement 2](https://developers.googleblog.com/en/introducing-gemini-2-5-flash-image/) · [Announcement 3](https://blog.google/innovation-and-ai/products/nano-banana-pro/) · [Announcement 4](https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/) · [Announcement 5](https://cloud.google.com/blog/products/ai-machine-learning/nano-banana-2-lite-and-gemini-omni-flash-available) · [Model card 1](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Image-Model-Card.pdf) · [Model card 2](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Image-Model-Card.pdf) · [Model card 3](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Lite-Image-Model-Card.pdf) · [Docs](https://ai.google.dev/gemini-api/docs/image-generation)
+
+![Gemini native image generation — Input/output diagram](../assets/architectures/gemini-image.svg)
+
+*Input/output diagram · [Source](https://ai.google.dev/gemini-api/docs/image-generation)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Kept in API: the vendor calls these natively multimodal models, but the image decoder or generation mechanism is not published. Dates: Google Developers Blog 2025-03-12 (`gemini-2.0-flash-exp` native image output, conversational editing, interleaved text and images); 2025-08-26 (Gemini 2.5 Flash Image: multi-image fusion, local edits in natural language, character consistency); Google blog 2025-11-20 (Nano Banana Pro: up to 14 blended images, 2K/4K output) and 2026-02-26 (Nano Banana 2: 512px to 4K); Google Cloud blog 2026-07-01 (GA of Nano Banana 2 Lite). Model cards: Gemini 3 Pro Image (November 2025) lists text and image inputs and image output; Gemini 3.1 Flash Image (February 2026) and 3.1 Flash-Lite Image (June 2026) say image and text output is generated. Current Gemini API IDs: `gemini-2.5-flash-image`, `gemini-3-pro-image`, `gemini-3.1-flash-image`, `gemini-3.1-flash-lite-image`; reference-image limits differ by model. Vertex AI listed `gemini-2.0-flash-preview-image-generation` in public preview on 2025-05-07.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Gemini 2.0 Flash experimental image generation (2025-03-12); Gemini 2.5 Flash Image / Nano Banana (2025-08-26); Gemini 3 Pro Image / Nano Banana Pro (2025-11-20); Gemini 3.1 Flash Image / Nano Banana 2 (2026-02-26); Gemini 3.1 Flash-Lite Image / Nano Banana 2 Lite (GA 2026-07-01).
+
+</details>
+
+<a id="gpt-image-1"></a>
+
+### GPT Image 1
+
+Closed image model that OpenAI's docs describe as natively multimodal; architecture not disclosed.
+
+GPT Image 1 (`gpt-image-1`) is OpenAI's image generation model added to the API on 2025-04-23. OpenAI's model documentation describes it as a natively multimodal language model that accepts text and image inputs and produces images, served through the Images API generation and edit endpoints and through batch processing, with inpainting support. A cost-efficient `gpt-image-1-mini` followed in October 2025, and `gpt-image-1.5` in December 2025 with better instruction following. OpenAI publishes no architecture details for these models, so the card records only the documented interface.
+
+[Docs 1](https://developers.openai.com/api/docs/models/gpt-image-1) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-1-mini) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-1.5) · [Announcement](https://developers.openai.com/api/docs/changelog)
+
+![GPT Image 1 — Input/output diagram](../assets/architectures/gpt-image-1.svg)
+
+*Input/output diagram · [Source](https://developers.openai.com/api/docs/models/gpt-image-1)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Interface per OpenAI's model pages: text and image input, image output; `v1/images/generations`, `v1/images/edits` (including masked inpainting) and `v1/batch`. The docs page for gpt-image-1.5 lists image and text output; the other variants list image output. Dates are from the OpenAI API changelog: gpt-image-1 2025-04-23, gpt-image-1-mini 2025-10-06, gpt-image-1.5 and `chatgpt-image-latest` 2025-12-16. The openai.com announcement pages (including the GPT-4o image generation post) returned HTTP 403, so the relationship between ChatGPT's GPT-4o image generation and this API model is not asserted here. GPT Image 2 is a separate card.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** gpt-image-1-mini (2025-10-06); gpt-image-1.5 (snapshot gpt-image-1.5-2025-12-16); chatgpt-image-latest (2025-12-16).
+
+</details>
+
+<a id="gpt-image-2"></a>
+
+### GPT Image 2
+
+Closed image generation and editing model; architecture not disclosed.
+
+GPT Image 2 (`gpt-image-2`) is the OpenAI image model released in the API on 2026-04-21 as a new model for image generation and editing, succeeding the GPT Image 1 line. OpenAI's changelog lists flexible image sizes, high-fidelity image inputs, token-based pricing and batch support; transparent backgrounds were added in preview in August 2026. On 2026-09-08 OpenAI released two point versions, GPT Image 2.5 Sunburst (aimed at editing precision) and GPT Image 2.5 Flare (fast everyday generation). All accept text and image input and return images; no architecture is published.
+
+[Docs 1](https://developers.openai.com/api/docs/models/gpt-image-2) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-2.5-flare) · [Announcement](https://developers.openai.com/api/docs/changelog)
+
+![GPT Image 2 — Input/output diagram](../assets/architectures/gpt-image-2.svg)
+
+*Input/output diagram · [Source](https://developers.openai.com/api/docs/models/gpt-image-2)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Interface per OpenAI's model pages: text and image input, image output; `v1/images/generations` and `v1/images/edits` with inpainting, plus `v1/batch` for gpt-image-2. Snapshot `gpt-image-2-2026-04-21`; GPT Image 2.5 snapshots `gpt-image-2.5-sunburst-2026-09-08` and `gpt-image-2.5-flare-2026-09-08`. Dates from the OpenAI API changelog. The openai.com ChatGPT Images announcement pages returned HTTP 403 and were not used. Treated as a separate card from GPT Image 1 because OpenAI documents it as a distinct model generation; no architectural difference is claimed.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** GPT Image 2.5 Sunburst (2026-09-08); GPT Image 2.5 Flare (2026-09-08).
+
+</details>
+
+<a id="grok-aurora"></a>
+
+### Grok Aurora
+
+xAI image model that the developer describes as an autoregressive mixture-of-experts next-token predictor over interleaved text and image data.
+
+Aurora is the image generation model xAI introduced in Grok on the X platform on 2024-12-09. xAI's announcement describes it as an autoregressive mixture-of-experts network trained on billions of internet examples to predict the next token from interleaved text and image data, and highlights photorealistic rendering and close adherence to text instructions. The same post says the model natively supports multimodal input for taking inspiration from or directly editing user-provided images, but that editing would be released to X users later. Beyond this description xAI has published no technical report, so the card records the announced interface.
+
+[Announcement](https://x.ai/news/grok-image-generation-release)
+
+![Grok Aurora — Input/output diagram](../assets/architectures/grok-aurora.svg)
+
+*Input/output diagram · [Source](https://x.ai/news/grok-image-generation-release)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Date and all claims from xAI's announcement "Grok Image Generation Release" (datePublished 2024-12-09). The autoregressive mixture-of-experts description is the developer's own one-sentence statement; no paper, parameter count or tokenizer details are published, so the card stays in API. Image input and editing are described as a model capability whose release was still pending at announcement time, so the card lists text input and generation only. xAI's current API documentation lists Grok Imagine image models and does not name Aurora; any API availability of Aurora was not verified. Later xAI image models are on the `grok-imagine-image` card.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="grok-imagine-image"></a>
+
+### Grok Imagine Image
+
+Closed xAI image generation and editing models; architecture not disclosed.
+
+Grok Imagine Image is xAI's line of image models served in the Grok Imagine app and the xAI Imagine API. The API documents text-to-image generation of up to 10 images per request at 1K or 2K resolution, and natural-language editing with up to five source images for combining subjects, transferring styles and composing scenes. Imagine Image 2.0 (`grok-imagine-image-2.0`), announced on 2026-08-07, emphasizes instruction following, typography and layout, region edits via a magic wand and segmentation, smart resizing and background removal. xAI does not publish the architecture of these models.
+
+[Announcement](https://x.ai/news/grok-imagine-image-2) · [Docs 1](https://docs.x.ai/docs/guides/image-generations) · [Docs 2](https://docs.x.ai/developers/model-capabilities/images/generation) · [Docs 3](https://docs.x.ai/docs/models)
+
+![Grok Imagine Image — Input/output diagram](../assets/architectures/grok-imagine-image.svg)
+
+*Input/output diagram · [Source](https://docs.x.ai/docs/guides/image-generations)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Interface per xAI API docs (reviewed 2026-09-29): image generation with `n` 1–10, aspect ratios from 1:1 to 21:9, `1k` or `2k` resolution; image editing from natural-language instructions with up to 5 source images. The models and pricing page lists `grok-imagine-image`, `grok-imagine-image-2.0` and `grok-imagine-image-quality`. Imagine Image 2.0 announcement: xAI news, 2026-08-07. The release date of the first Grok Imagine image model was not found in a dated developer source, so the family date is left blank. Aurora (2024) is a separate card.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** grok-imagine-image; grok-imagine-image-2.0 (Imagine Image 2.0, 2026-08-07); grok-imagine-image-quality.
+
+</details>
+
+<a id="ideogram"></a>
+
+### Ideogram
+
+Closed text-to-image models (versions 0.1–3.0) with undisclosed architecture.
+
+Ideogram is a text-to-image service and API known for rendering legible text, logos and graphic-design layouts. The company announced Ideogram in August 2023 and released closed model versions 0.1, 1.0 (February 2024), 2.0 (August 2024) and 3.0 (March 2025). Ideogram 3.0 added Style References (up to three uploaded images) and reusable style codes. The API documents generation, mask-and-prompt inpainting, remix, reframe and background replacement with these models, but the architectures of the closed versions are not published. The open-weight Ideogram 4.0 is a separate card.
+
+[Announcement 1](https://docs.ideogram.ai/about-ideogram/blog-posts) · [Announcement 2](https://ideogram.ai/models/3.0/) · [Docs 1](https://developer.ideogram.ai/api-reference/legacy-endpoints/generate) · [Docs 2](https://developer.ideogram.ai/api-reference/generate-images/generate-v3) · [Docs 3](https://developer.ideogram.ai/api-reference/edit-images/inpaint-v3)
+
+![Ideogram — Input/output diagram](../assets/architectures/ideogram.svg)
+
+*Input/output diagram · [Source](https://developer.ideogram.ai/api-reference/generate-images/generate-v3)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Dates from the developer's documentation index of blog posts: "Announcing Ideogram AI" 2023-08-22, v0.1 open to everyone 2023-08-29, Ideogram 1.0 2024-02-28 (major upgrade 2024-04-11), Ideogram 2.0 2024-08-21, Canvas with Magic Fill and Extend 2024-10-22, Ideogram 3.0 2025-03-26. The launch and 3.0 feature pages on ideogram.ai returned HTTP 403, so the date relies on that dated index. API: legacy `model` values `V_1`, `V_1_TURBO`, `V_2`, `V_2_TURBO`, `V_2A`, `V_2A_TURBO`; Ideogram 3.0 generation accepts style reference images and one character reference image; Ideogram 3.0 inpainting takes an image, a mask and a prompt describing the edited result. Ideogram 4.0 (2026, open weights) is catalogued separately as `ideogram-4`; the API also lists a low-latency "P-Image Ideogram" model that is not described further here.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Ideogram 0.1 (2023-08-29); Ideogram 1.0 (2024-02-28); Ideogram 2.0 (2024-08-21); Ideogram 2a; Ideogram 3.0 (2025-03-26); Turbo variants of 1.0, 2.0 and 2a.
+
+</details>
+
+<a id="imagen-2"></a>
+
+### Imagen 2
+
+Closed diffusion-based text-to-image model from Google DeepMind; architecture details not disclosed.
+
+Imagen 2 is Google's second-generation Imagen model, made generally available on Vertex AI in December 2023 and later used in Bard, ImageFX and Search. Google's announcements highlight photorealistic generation, text and logo rendering, and multilingual prompts; Google's consumer blog describes it only as a diffusion-based model, with no technical report. On Vertex AI it was offered as `imagegeneration@005` and `imagegeneration@006`, and the 006 editing model added mask-based inpainting, outpainting and product-image editing. Google deprecated Imagen 2 on Vertex AI in June 2025 and removed it in September 2025.
+
+[Announcement 1](https://cloud.google.com/blog/products/ai-machine-learning/imagen-2-on-vertex-ai-is-now-generally-available) · [Announcement 2](https://blog.google/technology/ai/google-imagen-2/) · [Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes)
+
+![Imagen 2 — Input/output diagram](../assets/architectures/imagen-2.svg)
+
+*Input/output diagram · [Source](https://cloud.google.com/blog/products/ai-machine-learning/imagen-2-on-vertex-ai-is-now-generally-available)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Date: Google Cloud blog "Imagen 2 on Vertex AI is now generally available" (datePublished 2023-12-13). The Google blog post of 2024-02-01 says Imagen 2 is powered by "a diffusion-based model"; no further architecture is published. Vertex AI release notes: `imagegeneration@006` generation and editing models on 2024-04-09 (inpainting and outpainting of masked areas, product image editing, SynthID watermark by default); Imagen versions 1 and 2 deprecated 2025-06-24 and removed 2025-09-24. The GA post also lists image captioning and visual question answering as Vertex AI features alongside generation; these are separate services and not treated as image-understanding claims.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** imagegeneration@005; imagegeneration@006 (2024-04-09; generation and editing).
+
+</details>
+
+<a id="imagen-3"></a>
+
+### Imagen 3
+
+Latent diffusion model generating 1024×1024 images with optional 2×/4×/8× upsampling; denoiser architecture not disclosed.
+
+Imagen 3 is Google's third-generation Imagen model, described in a technical report submitted to arXiv in August 2024. The report calls it a latent diffusion model that generates 1024×1024 images from text, optionally followed by 2×, 4× or 8× upsampling, and trained on filtered image–text data paired with both original and Gemini-generated synthetic captions. Most of the report covers human and automatic evaluations and safety and responsibility work rather than the network design. On Vertex AI, Imagen 3 generation models reached general availability in 2024, and a separate `imagen-3.0-capability` model added mask-based editing and reference-image customization.
+
+[Paper](https://arxiv.org/abs/2408.07009) · [Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes)
+
+![Imagen 3 — Input/output diagram](../assets/architectures/imagen-3.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2408.07009)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Date: arXiv 2408.07009 v1 (2024-08-13). The report states only that Imagen 3 is "a latent diffusion model"; the denoiser (U-Net or transformer), text encoder and parameter count are not given, so the card stays in API rather than a backbone category. Vertex AI release notes: `imagen-3.0-generate-001` and `imagen-3.0-fast-generate-001` GA for approved users 2024-07-31 and for all users 2024-12-10; `imagen-3.0-capability` editing (inpainting, outpainting, product image editing) and customization (subject, style, canny/scribble control, style transfer from reference images) GA for approved users 2024-12-10; `imagen-3.0-generate-002` with an LLM-based prompt rewriter 2025-01-29. The report's figures are samples and evaluation plots, so an input/output diagram is used.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** imagen-3.0-generate-001; imagen-3.0-fast-generate-001; imagen-3.0-generate-002 (2025-01-29); imagen-3.0-capability (editing and customization, 2024-12-10).
+
+</details>
+
+<a id="imagen-4"></a>
+
+### Imagen 4
+
+Latent diffusion text-to-image model, per its model card; denoiser architecture not disclosed.
+
+Imagen 4 is Google's fourth-generation Imagen model, announced at Google I/O on 2025-05-20 for the Gemini app, Whisk, Vertex AI and Workspace. Google highlights finer detail, better spelling and typography, and output up to 2K resolution. Its model card describes it as a latent diffusion model trained on filtered images with Gemini-generated synthetic captions, and lists text or image files as inputs. The family reached general availability in the Gemini API and Vertex AI in August 2025 as Imagen 4, Imagen 4 Fast and Imagen 4 Ultra. Google deprecated the Vertex AI Imagen endpoints in March 2026 and recommends Gemini 2.5 Flash Image instead.
+
+[Model card](https://storage.googleapis.com/deepmind-media/Model-Cards/Imagen-4-Model-Card.pdf) · [Announcement 1](https://blog.google/technology/ai/generative-media-models-io-2025/) · [Announcement 2](https://developers.googleblog.com/announcing-imagen-4-fast-and-imagen-4-family-generally-available-in-the-gemini-api/) · [Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes)
+
+![Imagen 4 — Input/output diagram](../assets/architectures/imagen-4.svg)
+
+*Input/output diagram · [Source](https://storage.googleapis.com/deepmind-media/Model-Cards/Imagen-4-Model-Card.pdf)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** generation
+
+Date: Google blog post and model card, both published 2025-05-20. The model card says only that Imagen 4 "utilises latent diffusion"; no denoiser, text encoder or parameter count is disclosed. It lists inputs as "natural-language text strings ... or image files"; no editing endpoint for Imagen 4 is documented in the sources reviewed, so the interaction is generation. Vertex AI release notes: Imagen 4 Generate Preview and Ultra Generate Experimental (05-20), GA of Imagen 4 Generate, Fast Generate and Ultra Generate on 2025-08-14, and deprecation of the GA endpoints (`imagen-4.0-generate-001`, `imagen-4.0-fast-generate-001`, `imagen-4.0-ultra-generate-001`) on 2026-03-24. The Google Developers Blog announced Gemini API GA of the family, including Imagen 4 Fast, on 2025-08-15.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Imagen 4 Fast; Imagen 4 Ultra.
+
+</details>
 
 <a id="midjourney"></a>
 
@@ -29,19 +363,77 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 Commercial text-to-image service with undisclosed architecture.
 
-[Docs](https://docs.midjourney.com/hc/en-us)
+Midjourney is a closed text-to-image service offered through its web app and Discord. The developer publishes version announcements and usage documentation but no model architecture, so this card records only the documented interface. Prompts can be combined with image prompts, style references, moodboards, personalization and, for V7, Omni-Reference images. V7 (alpha April 2025) added a fast, cheaper Draft Mode and became the default in June 2025. V8 (alpha March 2026) added a native 2K `--hd` mode and better text rendering, V8.1 became the default in June 2026, and a V8.2 edit model (August 2026) edits uploaded images from text instructions, including inpainting and outpainting.
+
+[Announcement 1](https://updates.midjourney.com/v7-alpha/) · [Announcement 2](https://updates.midjourney.com/omni-reference-oref/) · [Announcement 3](https://updates.midjourney.com/v7-is-now-the-default-model/) · [Announcement 4](https://updates.midjourney.com/v8-alpha/) · [Announcement 5](https://updates.midjourney.com/v8-1-is-now-the-default-model/) · [Announcement 6](https://updates.midjourney.com/edit-model-for-v8/)
 
 ![Midjourney — Input/output diagram](../assets/architectures/midjourney.svg)
 
-*Input/output diagram · [Source](https://docs.midjourney.com/hc/en-us)*
+*Input/output diagram · [Source](https://updates.midjourney.com/v8-alpha/)*
 
 <details>
 <summary>Details</summary>
 
-**Input → output:** T → I · **Interaction:** generation
+**Input → output:** T, I → I · **Interaction:** editing
 
-The developer does not publish a model architecture. Optional reference-image features and version-specific controls are documented by the service and are not treated as architectural claims.
+The developer does not publish a model architecture; nothing here is an architectural claim. Image input covers image prompts, style references (sref), moodboards and V7 Omni-Reference (`--oref`, weight `--ow`), per the developer's update posts. At the V7 alpha, upscaling, editing and retexture fell back to V6 models; the V8.2 edit model post (2026-08-27) documents instruction-based editing of uploaded images, inpainting, outpainting and up to 4 image references. No single dated first-release announcement from the developer was verified, so the family date is left blank. The help-center documentation (docs.midjourney.com) could not be fetched on the review date (HTTP 403), so it is not cited; earlier versions (V1–V6, Niji) are not itemized here for that reason.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** V7 (alpha 2025-04-04; default from 2025-06-17); V8 (alpha 2026-03-17); V8.1 (default from 2026-06-11); V8.2 edit model (2026-08-27).
+
+</details>
+
+<a id="recraft"></a>
+
+### Recraft
+
+Closed text-to-image models producing raster images and editable vector (SVG) graphics; architecture not disclosed.
+
+Recraft is a design-oriented image generation service and API whose models produce both raster images and editable vector graphics. Recraft V3 (October 2024) was introduced with long-text rendering, control over text position and size, brand-style consistency from a set of example images, and editing tools such as inpainting, outpainting and area modification. Recraft V4 (February 2026) came in standard and Pro (2048×2048) raster versions and matching vector versions that output layered SVG files, and V4.1 (May 2026) added V4.1, V4.1 Vector and V4.1 Utility versions. The API documents text-to-image and image-to-image with prompts for V3 and later, and mask-based inpainting, outpainting and background replacement for V3. Recraft does not publish model architectures.
+
+[Announcement 1](https://www.recraft.ai/blog/recraft-introduces-a-revolutionary-ai-model-that-thinks-in-design-language) · [Announcement 2](https://www.recraft.ai/blog/introducing-recraft-v4-design-taste-meets-image-generation) · [Announcement 3](https://www.recraft.ai/blog/recraft-v4-1-more-beautiful-by-nature) · [Docs 1](https://www.recraft.ai/docs/recraft-models/recraft-V4) · [Docs 2](https://www.recraft.ai/docs/api-reference/endpoints)
+
+![Recraft — Input/output diagram](../assets/architectures/recraft.svg)
+
+*Input/output diagram · [Source](https://www.recraft.ai/docs/api-reference/endpoints)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Dates from Recraft's blog: V3 2024-10-30, V4 2026-02-17, V4.1 2026-05-14. The family date uses the V3 post, the earliest dated developer announcement found; the API also lists older v2 models that are not dated here. API endpoints (Recraft docs): generate image (recraftv3, recraftv4, recraftv4_1 and vector variants); image-to-image with an input image and prompt (V3, V4, V4.1); inpaint, outpaint, replace background and generate background with a prompt (recraftv3 and recraftv3_vector only); vectorize, remove background, upscaling, erase region, remix and style creation. The V4 docs say prompt-based editing, style creation and image sets are not yet supported for V4. Vector outputs are counted as image output.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Recraft V3 (2024-10-30); Recraft V3 Vector; Recraft V4 and V4 Pro (2026-02-17); Recraft V4 Vector and V4 Pro Vector; Recraft V4.1, V4.1 Vector and V4.1 Utility (2026-05-14).
+
+</details>
+
+<a id="reve-image"></a>
+
+### Reve Image
+
+Closed image models that, per the developer, derive a structured layout from the prompt with a layout model built on open-source LLMs and then render pixels; renderer not disclosed.
+
+Reve Image is the image model line from Reve AI, served through reve.com and an API. The relaunched product of September 2025 bundled text-to-image generation, natural-language editing of generated and uploaded images, remixing of several images into one composition and an API beta, and Reve's first editing model followed in October 2025. Reve v1.5 (February 2026) generates 4K images and, according to Reve, works in native pixel space rather than an autoencoder latent. Reve 2.0 (June 2026) and 2.1 (July 2026) build every image from a "layout", a structured, hierarchical map of regions, text and objects that users and agents can edit. Reve describes a "Large Layout Model" trained from open-source LLMs that turns layouts, instructions and images into a layout and then renders the final pixels. The Reve 2.1 API (July 2026) exposes both simple create and edit endpoints and endpoints that separate layout creation, editing and rendering.
+
+[Announcement 1](https://blog.reve.com/posts/the-new-reve/) · [Announcement 2](https://blog.reve.com/posts/reve-editing-model/) · [Announcement 3](https://blog.reve.com/posts/reve-1.5-is-here/) · [Announcement 4](https://blog.reve.com/posts/announcing-reve-2.0/) · [Announcement 5](https://blog.reve.com/posts/the-layout-bet/) · [Announcement 6](https://blog.reve.com/posts/launching-reve-2.1/) · [Announcement 7](https://blog.reve.com/posts/the-reve-api/) · [Announcement 8](https://blog.reve.com/posts/a-new-chapter-for-reve/)
+
+![Reve Image — Input/output diagram](../assets/architectures/reve-image.svg)
+
+*Input/output diagram · [Source](https://blog.reve.com/posts/the-new-reve/)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Architecture statements are the developer's blog descriptions, not a technical report: v1.5 "operating in native pixel space" (2026-02-23); "The Layout Bet" (2026-06-03) describes a unified Large Layout Model built by continued pretraining and post-training of open-source LLMs (Qwen is thanked) that takes any mix of layouts, instructions and images, derives a layout from its thinking trace and then renders pixels; the pixel renderer is not described. Dated posts on Reve's blog: Introducing the New Reve 2025-09-15 (image creation, editing, remix, API beta; mentions a "layout representation"); first editing model 2025-10-01 (single- and multi-image edits); v1.5 2026-02-23 (4K; editing and references announced as coming); Reve 2.0 2026-06-03 (native 4K, layout-based editing, multiple references; replaces earlier models); Reve 2.1 2026-07-09; Reve 2.1 API 2026-07-14 (native 4K × 4K). The original Reve Image 1.0 release (March 2025) is known only from third-party coverage, so the family date is left blank. A 2026-07-27 post announces an OpenAI investment, with members of Reve's research team joining OpenAI while Reve operates independently.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Reve Image 1.0; Reve editing model (2025-10-01); Reve v1.5 (2026-02-23); Reve 2.0 (2026-06-03); Reve 2.1 (2026-07-09; API 2026-07-14).
 
 </details>

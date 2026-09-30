@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**1 model · Reviewed 2026-09-29**
+**14 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,11 +17,246 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [AuraFlow](#auraflow) | 2024-07-12 | T → I | generation |
+| [CogView-3Plus](#cogview3-plus) | 2024-09-29 | T → I | generation |
+| [CogView4](#cogview4) | 2025-03-04 | T → I | generation |
+| [FLUX.1](#flux-1) | 2024-08-01 | T → I | generation |
+| [FLUX.1 Kontext](#flux-1-kontext) | 2025-06-17 | T, I → I | editing |
+| [Hunyuan-DiT](#hunyuan-dit) | 2024-05-14 | T → I | generation |
+| [Lumina-Next](#lumina-next) | 2024-06-05 | T → I | generation |
+| [Lumina-T2X (Lumina-T2I)](#lumina-t2x) | 2024-05-09 | T → I | generation |
 | [PixArt-α](#pixart-alpha) | 2023-09-30 | T → I | generation |
+| [PixArt-Σ](#pixart-sigma) | 2024-03-07 | T → I | generation |
+| [Playground v3](#playground-v3) | 2024-09-16 | T → I | generation |
+| [SANA](#sana) | 2024-10-14 | T → I | generation |
+| [SANA 1.5](#sana-1-5) | 2025-01-30 | T → I | generation |
+| [Stable Diffusion 3](#stable-diffusion-3) | 2024-03-05 | T → I | generation |
 
 </details>
 
 ## Architectures
+
+<a id="auraflow"></a>
+
+### AuraFlow
+
+6.8B rectified-flow transformer derived from MMDiT, with most MMDiT (double) blocks replaced by single DiT encoder blocks.
+
+AuraFlow is an open text-to-image model from fal, developed with researcher Simo Ryu and released as v0.1 in July 2024 as the largest fully open flow-based text-to-image model at the time. It is a rectified-flow transformer that starts from the MMDiT design of Stable Diffusion 3 but keeps only a few joint text-image blocks, replacing the rest with plain DiT blocks for better hardware efficiency, and is scaled to 6.8B parameters with a wide, shallow shape. The launch post attributes its prompt following to fully synthetic captions and reports competitive GenEval scores; later v0.2 and v0.3 checkpoints continued training and aesthetic fine-tuning.
+
+[Announcement](https://blog.fal.ai/auraflow/) · [Model card 1](https://huggingface.co/fal/AuraFlow) · [Model card 2](https://huggingface.co/fal/AuraFlow-v0.3) · GitHub: no author-linked repository found
+
+![AuraFlow — Input/output diagram](../assets/architectures/auraflow.svg)
+
+*Input/output diagram · [Source](https://blog.fal.ai/auraflow/)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Per fal's launch post: the design started from a from-scratch MMDiT reimplementation (Simo Ryu's minRF / Lavenderflow experiments); most MMDiT blocks were replaced with large DiT encoder blocks to improve model FLOPs utilization, and a wide, shallow configuration (width 3072, 36 layers) gave 6.8B parameters. Training used maximal-update parameterization for learning-rate transfer, fully recaptioned data (no alt-text), and 256 → 512 → 1024 pre-training plus aspect-ratio fine-tuning. The post reports GenEval 0.64 after 1024px pre-training and 0.703 with DALL·E 3-style prompt enhancement. The text encoder and autoencoder are not described in the reviewed sources. v0.3 (model card) is fine-tuned on more aesthetic data and supports aspect ratios up to 1536 px. No paper or official training repository was found.
+
+**License:** weights: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** AuraFlow v0.1; AuraFlow v0.2; AuraFlow v0.3.
+
+</details>
+
+<a id="cogview3-plus"></a>
+
+### CogView-3Plus
+
+Diffusion-transformer successor to CogView3 with a T5-XXL text encoder (internal architecture not documented beyond this).
+
+CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-image models, open-sourced alongside CogView3 in September 2024. Where CogView3 used a cascade of diffusion stages, CogView-3Plus moves to a single diffusion transformer conditioned on T5-XXL text features. The released 3B-parameter checkpoint generates images between 512 and 2048 pixels per side. Architectural details beyond this have not been published in a paper, so this entry documents only the interface and encoder stated by the developers.
+
+[GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView3-Plus-3B)
+
+![CogView-3Plus — Input/output diagram](../assets/architectures/cogview3-plus.svg)
+
+*Input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+README-level entry: the official repository describes CogView-3Plus as a series of newly developed text-to-image models based on Diffusion Transformer, in contrast to CogView3's cascaded relay-diffusion design. The released CogView3-Plus-3B uses T5-XXL as text encoder with a 224-token prompt limit, English prompts, and resolutions from 512 to 2048 px (multiples of 32); BF16/FP32 only. No paper describing CogView-3Plus was found; the CogView3 paper covers the earlier cascaded model. The date is the repository's dated news line announcing the open-source release.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** CogView3-Plus-3B.
+
+</details>
+
+<a id="cogview4"></a>
+
+### CogView4
+
+6B diffusion transformer conditioned on the bilingual GLM-4-9B language model as text encoder (internal architecture not documented beyond this).
+
+CogView4 is Zhipu AI's 6B-parameter open text-to-image model, the successor to CogView-3Plus. Its main change is the text side: it replaces the English-only T5 encoder with the bilingual GLM-4-9B language model, so it accepts long Chinese or English prompts and can render Chinese characters in images. Trained on captions and images of arbitrary length and resolution, it generates at flexible sizes up to about two megapixels. It was released under Apache-2.0 with diffusers support; no technical report describes its internals.
+
+[GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4)
+
+![CogView4 — Input/output diagram](../assets/architectures/cogview4.svg)
+
+*Input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+README- and documentation-level entry. The official repository lists CogView4-6B with GLM-4-9B as encoder, Chinese and English prompts up to 1024 tokens, native Chinese text rendering, and resolutions from 512 to 2048 px with at most 2^21 pixels; BF16/FP32 only. Zhipu's model documentation says the text encoder was changed from the English-only T5 of earlier models to the bilingual GLM-4 encoder and that training mixes captions of arbitrary length with images of arbitrary resolution. The repository recommends rewriting prompts with an LLM because the model was trained on long synthetic captions. No paper was found. The date is the repository's dated news line for the open-source release.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** CogView4-6B.
+
+</details>
+
+<a id="flux-1"></a>
+
+### FLUX.1
+
+12B rectified-flow transformer in a 16-channel autoencoder latent space, with double-stream (MM-DiT-style) blocks followed by single-stream fused parallel blocks and 3D RoPE.
+
+FLUX.1 is the first model family from Black Forest Labs, founded by researchers behind latent diffusion and Stable Diffusion 3. It is a 12B-parameter rectified-flow transformer that starts with MM-DiT-style double-stream blocks, where text and image tokens keep separate weights but share attention, and continues with a deeper stack of single-stream blocks that process both token types together with fused attention and MLP layers. It works in the latent space of a 16-channel autoencoder and uses rotary position embeddings. The family was released as an API-only [pro] model, a guidance-distilled open-weight [dev] model for non-commercial use, and a few-step Apache-licensed [schnell] model.
+
+[Announcement](https://bfl.ai/announcements/24-08-01-bfl) · [Paper](https://arxiv.org/abs/2506.15742) · [GitHub](https://github.com/black-forest-labs/flux) · [Model card 1](https://huggingface.co/black-forest-labs/FLUX.1-dev) · [Model card 2](https://huggingface.co/black-forest-labs/FLUX.1-schnell)
+
+![FLUX.1 — Figure 3 (FLUX.1 Kontext paper)](../assets/architectures/flux-1.png)
+
+*Figure 3 (FLUX.1 Kontext paper) · [Source](https://arxiv.org/abs/2506.15742)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The launch announcement describes a hybrid of multimodal and parallel diffusion transformer blocks scaled to 12B parameters, trained with flow matching and using rotary positional embeddings and parallel attention layers. Black Forest Labs' later FLUX.1 Kontext paper (Section 2) details the base model: an adversarially trained convolutional autoencoder with 16 latent channels; double-stream blocks with separate text and image weights and joint attention, then 38 single-stream blocks over the concatenated tokens using fused feed-forward blocks (Figure 3); text tokens are discarded before decoding. The reference code (block counts 19 double / 38 single) encodes prompts with T5-v1.1-XXL and CLIP ViT-L/14. [pro] is API-only; [dev] is guidance-distilled from [pro]; [schnell] is distilled with latent adversarial diffusion distillation for 1–4 steps. Weights licenses differ by variant: [schnell] Apache-2.0; [dev] and derived open checkpoints (Fill, Canny, Depth, Redux, Krea [dev]) FLUX.1-dev Non-Commercial License; the autoencoder weights Apache-2.0. The Fill, Canny/Depth and Redux [dev] checkpoints are inpainting, structural-control and image-variation tools; FLUX.1 Kontext has its own card.
+
+**License:** code: Apache-2.0.
+
+**Variants:** FLUX.1 [pro] (API); FLUX.1 [dev]; FLUX.1 [schnell]; FLUX.1 Krea [dev].
+
+</details>
+
+<a id="flux-1-kontext"></a>
+
+### FLUX.1 Kontext
+
+FLUX.1 rectified-flow transformer fine-tuned for in-context generation, with context-image latent tokens appended to the target tokens in the visual stream and separated by a 3D RoPE time offset.
+
+FLUX.1 Kontext is Black Forest Labs' in-context image generation and editing model built on FLUX.1. Instead of adding adapters, it feeds the latent tokens of one or more reference images into the same transformer sequence as the image being generated, marking them apart with a positional offset, so one network can edit an image from a text instruction, carry a character or style into new scenes, or generate from text alone when no image is given. Adversarial distillation keeps generation and editing at interactive speeds, and the model is designed for repeated, multi-turn edits with little drift. The [pro] and [max] versions are available through the API, while [dev] is an open-weight editing model.
+
+[Paper](https://arxiv.org/abs/2506.15742) · [Announcement](https://bfl.ai/announcements/flux-1-kontext) · [GitHub](https://github.com/black-forest-labs/flux) · [Model card](https://huggingface.co/black-forest-labs/FLUX.1-Kontext-dev)
+
+![FLUX.1 Kontext — Figure 4](../assets/architectures/flux-1-kontext.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2506.15742)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Starts from a FLUX.1 text-to-image checkpoint and is jointly fine-tuned on image-to-image and text-to-image pairs. Context images are encoded by the frozen FLUX autoencoder and concatenated along the sequence (channel-wise concatenation performed worse); target tokens get RoPE positions (0, h, w) and the i-th context image (i, h, w). Without a context image the context tokens are omitted, keeping text-to-image generation (paper Section 3 and Figure 4). [pro] is trained with the flow objective followed by latent adversarial diffusion distillation (LADD); [dev] is a 12B guidance-distilled model trained only on image-to-image tasks, so it is an editing checkpoint. The paper evaluates local and global editing, text editing, style and character reference (KontextBench) and text-to-image generation. [pro] and [max] are API models; [dev] weights use the FLUX.1-dev Non-Commercial License.
+
+**License:** code: Apache-2.0; weights: FLUX.1-dev Non-Commercial License.
+
+**Variants:** FLUX.1 Kontext [pro] (API); FLUX.1 Kontext [max] (API); FLUX.1 Kontext [dev] (open weights, editing).
+
+</details>
+
+<a id="hunyuan-dit"></a>
+
+### Hunyuan-DiT
+
+Latent diffusion transformer with U-Net-like long skip connections between encoder and decoder blocks and cross-attention to a bilingual CLIP plus multilingual T5 text embedding.
+
+Hunyuan-DiT is Tencent's bilingual text-to-image diffusion transformer, built for fine-grained understanding of Chinese as well as English prompts. It keeps a transformer backbone but borrows the long skip connections of a U-Net, injects text through cross-attention from two encoders (a bilingual CLIP and a multilingual T5), and uses rotary position embeddings adapted to multiple resolutions. The report also describes a recaptioning data pipeline and an optional multimodal LLM that rewrites user prompts and enables multi-turn, dialogue-driven generation.
+
+[Paper](https://arxiv.org/abs/2405.08748) · [GitHub](https://github.com/Tencent-Hunyuan/HunyuanDiT) · [Model card](https://huggingface.co/Tencent-Hunyuan/HunyuanDiT)
+
+![Hunyuan-DiT — Figure 7](../assets/architectures/hunyuan-dit.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2405.08748)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Latents from the SDXL VAE are patchified (p = 2) and processed by encoder and decoder transformer blocks with self-attention, cross-attention and FFN; decoder blocks add a skip module from the matching encoder block (no up- or downsampling). Text features from a bilingual Chinese-English CLIP and a multilingual T5 are fused for cross-attention. Uses 2D RoPE with centralized interpolative positional encoding for multi-resolution generation, QK-Norm, and v-prediction training (paper Section 2.1 and Figure 7). The paper reports 1.5B parameters. A separately trained multimodal LLM rewrites prompts and supports multi-turn dialogue; it is a prompt-enhancement front end, not part of the denoiser. Distillation checkpoints for faster sampling are listed in the repository.
+
+**License:** code: Tencent Hunyuan Community License Agreement; weights: Tencent Hunyuan Community License Agreement.
+
+**Variants:** Hunyuan-DiT v1.0; Hunyuan-DiT v1.1; Hunyuan-DiT v1.2; Distillation checkpoints (v1.0–v1.2).
+
+</details>
+
+<a id="lumina-next"></a>
+
+### Lumina-Next
+
+Flow-based latent diffusion transformer (Next-DiT) with 3D RoPE, sandwich normalization and grouped-query attention, conditioned on a Gemma-2B text encoder.
+
+Lumina-Next is the successor to Lumina-T2X from Shanghai AI Laboratory's Alpha-VLLM team. It replaces the Flag-DiT backbone with Next-DiT, which uses 3D rotary position embeddings instead of explicit line-break tokens, sandwich normalization to keep activations stable, and grouped-query attention for efficiency. Paired with the small Gemma-2B language model as text encoder, the 2B Next-DiT is reported to beat the earlier 5B Lumina-T2I at lower cost, and new RoPE scaling rules, sampling schedules and token pooling let it extrapolate to 2K resolution and sample in few steps without retraining.
+
+[Paper](https://arxiv.org/abs/2406.18583) · [GitHub](https://github.com/Alpha-VLLM/Lumina-T2X) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-Next-SFT)
+
+![Lumina-Next — Figure 2](../assets/architectures/lumina-next.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2406.18583)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Next-DiT revises Lumina-T2X's Flag-DiT: 3D RoPE replaces 1D RoPE and removes the learnable [nextline]/[nextframe] identifiers, sandwich normalization (RMSNorm before and after attention and MLP with tanh-gated scales) controls activation growth, and grouped-query attention cuts cost (paper Section 2.1 and Figure 2; the 2B model groups 32 query heads into 8). Inference additions include Frequency- and Time-Aware Scaled RoPE for tuning-free resolution extrapolation to 2K, flow-specific time schedules with higher-order ODE solvers for 5–10-step sampling, and Time-Aware Context Drop (average-pooled keys and values). The text-to-image model has a 2B Next-DiT with Gemma-2B; the paper also applies the framework to multi-view, audio and music generation, which are outside this catalog.
+
+**License:** code: MIT; weights: Apache-2.0.
+
+**Variants:** Lumina-Next-T2I; Lumina-Next-SFT (2B Next-DiT, Gemma-2B).
+
+</details>
+
+<a id="lumina-t2x"></a>
+
+### Lumina-T2X (Lumina-T2I)
+
+Flow-matching latent diffusion transformer (Flag-DiT) with RMSNorm, KQ-Norm, RoPE and zero-initialized gated attention to a frozen LLaMA-7B text encoder.
+
+Lumina-T2X is a framework from Shanghai AI Laboratory's Alpha-VLLM team for generating images, video, multi-view images and audio with one flow-based diffusion transformer design, Flag-DiT. Its text-to-image instance, Lumina-T2I, scales a DiT to 5B parameters with LLM-style stabilizers (RMSNorm, key-query normalization, rotary embeddings), trains it with flow matching, and conditions it on a large language model through gated, zero-initialized attention. Encoding images as token sequences with explicit line-break tokens lets the model generate at aspect ratios and resolutions beyond those seen in training.
+
+[Paper](https://arxiv.org/abs/2405.05945) · [GitHub](https://github.com/Alpha-VLLM/Lumina-T2X) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-T2I)
+
+![Lumina-T2X (Lumina-T2I) — Figure 3](../assets/architectures/lumina-t2x.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2405.05945)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Flag-DiT keeps the DiT framework but replaces LayerNorm with RMSNorm, adds KQ-Norm, swaps absolute position embeddings for RoPE, and trains with a linear-interpolation flow-matching (velocity) objective (paper Section 2.2). Text is injected through zero-initialized attention: image queries attend to text keys and values through a tanh-gated branch (Figure 2b). Latent frames are flattened into one sequence with learnable [nextline] and [nextframe] tokens, which enables arbitrary aspect ratios and resolution extrapolation at inference. The text-to-image model Lumina-T2I pairs a 5B Flag-DiT with a 7B LLaMA encoder and the SDXL latent space. The same framework also covers video, multi-view and audio models (Lumina-T2V etc.), which are outside this catalog. The paper additionally demonstrates training-free style and subject editing of high-resolution images.
+
+**License:** code: MIT; weights: Apache-2.0.
+
+**Variants:** Lumina-T2I (5B Flag-DiT).
+
+</details>
 
 <a id="pixart-alpha"></a>
 
@@ -45,5 +280,136 @@ Each DiT block adds a cross-attention module for T5 text features, and all block
 **License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
 
 **Variants:** PixArt-XL-2-512x512; PixArt-XL-2-1024-MS.
+
+</details>
+
+<a id="pixart-sigma"></a>
+
+### PixArt-Σ
+
+PixArt-α-style latent diffusion transformer with T5 cross-attention, an SDXL VAE and key-value token compression in self-attention for up to 4K generation.
+
+PixArt-Σ is the successor to PixArt-α from Huawei Noah's Ark Lab and academic partners. Rather than training from scratch, it upgrades the PixArt-α diffusion transformer in stages (a stronger VAE, higher-quality and longer captions, higher resolutions) and adds key-value token compression to self-attention so that attention cost stays manageable at 2K and 4K. With about 0.6B parameters, it keeps PixArt-α's cross-attention to T5 text features and generates images directly at up to roughly 4K resolution in one sampling process.
+
+[Paper](https://arxiv.org/abs/2403.04692) · [GitHub](https://github.com/PixArt-alpha/PixArt-sigma) · [Model card](https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS)
+
+![PixArt-Σ — Figure 7](../assets/architectures/pixart-sigma.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2403.04692)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Weak-to-strong continuation of PixArt-α: the model is fine-tuned from PixArt-α after swapping in SDXL's VAE, raising the resolution with positional-embedding interpolation, and adding KV token compression. Keys and values are merged over R×R spatial windows by a Conv2×2 compression operator in deep layers (average-initialized, about 0.018% extra parameters) while all query tokens are kept (paper Figure 7). Training data is recaptioned (Internal-Σ, plus a 4K subset) and the T5 token length grows from 120 to 300. The paper reports 0.6B parameters and direct generation of images up to about 4K.
+
+**License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
+
+**Variants:** PixArt-Sigma-XL-2-256x256; PixArt-Sigma-XL-2-512-MS; PixArt-Sigma-XL-2-1024-MS; PixArt-Sigma-XL-2-2K-MS.
+
+</details>
+
+<a id="playground-v3"></a>
+
+### Playground v3
+
+24B latent diffusion transformer whose blocks mirror a frozen Llama3-8B layer by layer (Deep-Fusion), with each image block jointly attending to its own tokens and the matching LLM layer's hidden states.
+
+Playground v3 is Playground's third-generation text-to-image model and a departure from its earlier SDXL-based versions. Its central idea, Deep-Fusion, is to build the image transformer as a mirror of a large language model: each image block has the same shape as a Llama3-8B layer and reads that layer's hidden states through joint attention, so the diffusion model draws on the LLM's internal representations at every depth rather than only its final output. Combined with a 16-channel VAE, detailed synthetic captions and a 24B-parameter backbone, the paper reports strong prompt following, text rendering and graphic-design ability.
+
+[Paper](https://arxiv.org/abs/2409.10695) · GitHub: no author-linked repository found
+
+![Playground v3 — Figure 2](../assets/architectures/playground-v3.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2409.10695)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Uses no T5 or CLIP encoder: every one of the 32 image transformer blocks copies the configuration of the corresponding Llama3-8B block and takes that layer's hidden embeddings as conditioning; image queries attend to concatenated image and text keys and values in one joint attention, followed by one FFN (paper Section 2.1 and Figure 2). The LLM stays frozen and runs once per sampling. Additional design choices: U-Net-style skip connections across image blocks, 4× key/value token downsampling in middle layers, 2D RoPE with expanding (not interpolated) positions, and a new 16-channel VAE. Training uses the EDM formulation and schedule (not flow matching) with multi-level captions from an in-house captioner. The paper reports 24B parameters and introduces the CapsBench captioning benchmark. No weights or code were found.
+
+</details>
+
+<a id="sana"></a>
+
+### SANA
+
+Flow-based linear diffusion transformer with ReLU linear attention, Mix-FFN and no positional embedding, operating in a 32× deep-compression autoencoder latent space with cross-attention to a Gemma-2 decoder-only text encoder.
+
+SANA is NVIDIA's efficiency-focused text-to-image model, designed to produce high-resolution images quickly enough to run on a laptop GPU. It combines three ideas: an autoencoder that compresses images 32× so far fewer tokens reach the transformer, a diffusion transformer whose attention is linear rather than quadratic in the number of tokens (with convolutional feed-forward layers that make positional embeddings unnecessary), and a small decoder-only LLM, Gemma-2, as text encoder, prompted with in-context instructions. With 0.6B to 1.6B parameters, the paper reports quality competitive with much larger models at far higher throughput and generation up to 4K resolution.
+
+[Paper](https://arxiv.org/abs/2410.10629) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_1600M_1024px)
+
+![SANA — Figure 5](../assets/architectures/sana.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2410.10629)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The DC-AE autoencoder (AE-F32C32) compresses images 32× spatially, cutting latent tokens 16× relative to 8× autoencoders. Every self-attention is replaced with ReLU linear attention (O(N)), and Mix-FFN inserts a 3×3 depth-wise convolution into the MLP to recover local detail, which lets the model drop positional embeddings (NoPE) (paper Figure 5). Last-layer Gemma-2-2B features pass through RMSNorm and a small learnable scale before cross-attention; complex human instructions (in-context prompts) are prepended to user prompts to strengthen text-image alignment. Training uses flow matching with multi-caption labeling by several VLMs and CLIP-score-based caption selection; the proposed Flow-DPM-Solver samples in 14–20 steps. The paper reports 0.6B and 1.6B models and generation up to 4096×4096. Weights: the Sana_600M_1024px and Sana_1600M_1024px model cards state Apache-2.0; other checkpoints (2K/4K, BF16) are gated and were not checked.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+**Variants:** Sana_600M_512px; Sana_600M_1024px; Sana_1600M_512px_MultiLing; Sana_1600M_1024px; Sana_1600M_1024px_MultiLing; Sana_1600M_2Kpx_BF; Sana_1600M_4Kpx_BF.
+
+</details>
+
+<a id="sana-1-5"></a>
+
+### SANA 1.5
+
+SANA linear diffusion transformer grown in depth from 20 to 60 blocks (1.6B to 4.8B parameters), with QK RMSNorm in its linear self-attention and cross-attention blocks.
+
+SANA 1.5 is NVIDIA's follow-up to SANA that studies how to scale a linear diffusion transformer cheaply. Instead of training a larger model from scratch, it grows the 1.6B SANA model to 4.8B parameters by stacking new, identity-initialized blocks on top of the pre-trained ones and training with a memory-saving 8-bit optimizer. The resulting deep model can then be pruned back to smaller sizes for deployment, and at inference time quality can be traded for compute by generating several candidates and letting a vision-language model pick the best, which the paper shows lifts benchmark alignment scores substantially.
+
+[Paper](https://arxiv.org/abs/2501.18427) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/SANA1.5_4.8B_1024px)
+
+![SANA 1.5 — Figure 1](../assets/architectures/sana-1-5.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2501.18427)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Keeps SANA 1.0's design (32× DC-AE latents, ReLU linear attention, Mix-FFN, Gemma-2 text encoder) and adds RMSNorm on queries and keys in both attention blocks (paper Figure 10). Model growth initializes the 4.8B model from the pre-trained 1.6B model: the first N layers are preserved and the M new layers start as identity mappings (partial preservation init), cutting training time by about 60% versus training from scratch. A block-wise 8-bit CAME optimizer reduces optimizer memory. Block-importance analysis prunes the 60-block model to 40/30/20 blocks with brief fine-tuning. Inference-time scaling samples many images and ranks them with a fine-tuned VLM judge (VILA-Judge), raising GenEval from 0.81 to 0.96 in the paper (Figure 1).
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+**Variants:** SANA1.5_1.6B_1024px; SANA1.5_4.8B_1024px.
+
+</details>
+
+<a id="stable-diffusion-3"></a>
+
+### Stable Diffusion 3
+
+Rectified-flow MM-DiT in a 16-channel autoencoder latent space, with separate text and image weights joined in attention and conditioned on CLIP-L/14, OpenCLIP bigG/14 and T5-XXL.
+
+Stable Diffusion 3 is Stability AI's third-generation text-to-image family and the paper that introduced the MM-DiT backbone. Instead of injecting text through cross-attention, it treats text and image latents as two token streams with their own weights that meet in a shared attention operation, trained with a rectified-flow objective and a noise-schedule sampling that favours intermediate timesteps. Three frozen text encoders (two CLIP models and T5-XXL) provide both a pooled vector for modulation and a token sequence for the joint attention. The architecture was scaled to 8B parameters in the paper and released as SD3 Medium and later as the SD3.5 Large, Large Turbo and Medium checkpoints.
+
+[Paper](https://arxiv.org/abs/2403.03206) · [Announcement 1](https://stability.ai/news/stable-diffusion-3) · [Announcement 2](https://stability.ai/news/introducing-stable-diffusion-3-5) · [GitHub](https://github.com/Stability-AI/sd3.5) · [Model card](https://huggingface.co/stabilityai/stable-diffusion-3.5-medium)
+
+![Stable Diffusion 3 — Figure 2 (PDF p. 5)](../assets/architectures/stable-diffusion-3.png)
+
+*Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2403.03206)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Text tokens (CLIP penultimate states padded and concatenated with T5-XXL tokens) and 2×2-patched latent tokens are concatenated into one sequence; each MM-DiT block keeps separate modulation, projection and MLP weights per modality but runs one joint attention (paper Figure 2). Timestep and pooled CLIP embeddings drive adaLN-style modulation; optional RMSNorm on Q and K stabilizes high-resolution training. Training uses rectified flow with logit-normal timestep sampling. The paper scales the model by depth d (hidden size 64·d) up to d = 38, about 8B parameters, and shows T5 can be dropped at inference at some cost to typography. SD3 Medium (June 2024) was the first open release. Per the SD3.5 Medium model card, Medium uses MMDiT-X, which adds self-attention modules to the first transformer layers; SD3.5 Large Turbo is a 4-step distilled Large model.
+
+**License:** code: MIT; weights: Stability AI Community License.
+
+**Variants:** Stable Diffusion 3 Medium; Stable Diffusion 3.5 Large; Stable Diffusion 3.5 Large Turbo; Stable Diffusion 3.5 Medium (MMDiT-X).
 
 </details>

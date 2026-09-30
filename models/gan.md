@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**17 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,403 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [AttnGAN](#attngan) | 2017-11-28 | T → I | generation |
+| [C4Synth](#c4synth) | 2018-09-20 | T → I | generation |
+| [CanvasGAN](#canvasgan) | 2018-10-05 | T → I | generation |
+| [ChatPainter](#chatpainter) | 2018-02-22 | T → I | generation |
+| [ControlGAN](#controlgan) | 2019-09-16 | T → I | generation |
+| [DM-GAN](#dm-gan) | 2019-04-02 | T → I | generation |
+| [GAN-INT-CLS](#gan-int-cls) | 2016-05-17 | T → I | generation |
+| [GAWWN](#gawwn) | 2016-10-08 | T → I | generation |
+| [HDGAN](#hdgan) | 2018-02-26 | T → I | generation |
+| [Hierarchical text-to-image via inferred semantic layout (Hong et al.)](#hong-semantic-layout) | 2018-01-16 | T → I | generation |
+| [MirrorGAN](#mirrorgan) | 2019-03-14 | T → I | generation |
+| [Obj-GAN](#obj-gan) | 2019-02-27 | T → I | generation |
+| [SD-GAN](#sd-gan) | 2019-04-02 | T → I | generation |
+| [StackGAN](#stackgan) | 2016-12-10 | T → I | generation |
+| [StackGAN++ (StackGAN-v2)](#stackgan-v2) | 2017-10-19 | T → I | generation |
+| [TAC-GAN](#tac-gan) | 2017-03-19 | T → I | generation |
+| [Text-SeGAN](#text-segan) | 2018-12-12 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="attngan"></a>
+
+### AttnGAN
+
+Multi-stage attentional GAN that generates 64×64 to 256×256 images, with word-level attention at each refinement stage and a DAMSM image–text matching loss.
+
+[Paper](https://arxiv.org/abs/1711.10485) · [GitHub](https://github.com/taoxugit/AttnGAN)
+
+![AttnGAN — Figure 2](../assets/architectures/attngan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1711.10485)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A bidirectional LSTM text encoder yields word features and a sentence vector; the sentence vector (via Conditioning Augmentation) and noise start the first stage, and each later stage attends over word features to compute word-context vectors for image sub-regions (paper Figure 2). The Deep Attentional Multimodal Similarity Model pairs the text encoder with an Inception-v3 image encoder to provide a fine-grained word–region matching loss during training. Evaluated on CUB and MS COCO.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="c4synth"></a>
+
+### C4Synth
+
+Multi-caption text-to-image GAN that consumes several captions in sequence, with an LSTM captioning network enforcing cross-caption cycle consistency.
+
+[Paper](https://arxiv.org/abs/1809.10238) · GitHub: no author-linked repository found
+
+![C4Synth — Figure 3](../assets/architectures/c4synth.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/1809.10238)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Cascaded-C4Synth grows a convolutional backbone block per caption (three in the experiments), each branching into a generator, a discriminator and a Cross-Caption Cycle Consistency Network that must caption the image as the next caption in the cycle, producing 64×64 to 256×256 images (paper Figure 3). Recurrent-C4Synth instead unrolls a single generator over any number of captions with a hidden state initialized from noise (paper Figure 4). Captions are encoded with Structured Joint Embeddings and Conditioning Augmentation. Evaluated on CUB and Oxford-102. No author-linked code repository was found.
+
+**Variants:** Cascaded-C4Synth; Recurrent-C4Synth.
+
+</details>
+
+<a id="canvasgan"></a>
+
+### CanvasGAN
+
+Recurrent GAN generator that attends over word features at each step and adds upscaled color patches to a canvas.
+
+[Paper](https://arxiv.org/abs/1810.02833) · GitHub: no author-linked repository found
+
+![CanvasGAN — Fig. 1](../assets/architectures/canvasgan.png)
+
+*Fig. 1 · [Source](https://arxiv.org/abs/1810.02833)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+GloVe word vectors pass through a self-attended bidirectional-GRU visual-semantic embedding trained separately with a pairwise ranking loss against image features. The augmented sentence vector and noise initialize a GRU; at each timestep attention over word encodings drives the next hidden state, from which r, g and b channels are produced, upscaled by a deconvolutional network with residual blocks, and added to the canvas with a learned weight (paper Fig. 1). The discriminator concatenates downsampled image features with the replicated text representation and scores semantic relevance. Trained on Oxford-102 flowers. No author-linked code repository was found.
+
+</details>
+
+<a id="chatpainter"></a>
+
+### ChatPainter
+
+StackGAN-style two-stage GAN (64×64 then 256×256) conditioned on a caption embedding concatenated with an embedding of a question–answer dialogue about the image.
+
+[Paper](https://arxiv.org/abs/1802.08216) · GitHub: no author-linked repository found
+
+![ChatPainter — Figure 3 (PDF p. 3)](../assets/architectures/chatpainter.png)
+
+*Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/1802.08216)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Caption embeddings come from the pretrained char-CNN-RNN encoder of Reed et al.; dialogue embeddings come either from a Skip-Thought encoding of the collapsed dialogue (non-recurrent) or from a bidirectional LSTM over per-turn Skip-Thought vectors (recurrent). The concatenated embedding passes through Conditioning Augmentation into Stage I and Stage II as in StackGAN (paper Figure 3). Trained on MS COCO captions paired with VisDial dialogues. No author-linked code repository was found.
+
+**Variants:** Non-recurrent dialogue encoder; Recurrent dialogue encoder.
+
+</details>
+
+<a id="controlgan"></a>
+
+### ControlGAN
+
+Multi-stage AttnGAN-based generator with word-level spatial and channel-wise attention, trained with a word-level discriminator and a perceptual loss.
+
+[Paper](https://arxiv.org/abs/1909.07083) · [GitHub](https://github.com/mrlibw/ControlGAN)
+
+![ControlGAN — Figure 2](../assets/architectures/controlgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1909.07083)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A pretrained bidirectional RNN provides sentence and word features; the augmented sentence feature and noise start the first stage, and each later stage concatenates spatial-attention and channel-wise-attention word-context features with the hidden visual features (paper Figure 2). The word-level discriminator correlates words with image regions to give fine-grained feedback, and a VGG-16 perceptual loss reduces randomness. The paper also shows manipulating its own synthetic images by regenerating with a modified description while preserving text-irrelevant content; this is not editing of arbitrary input images. Evaluated on CUB and MS COCO.
+
+</details>
+
+<a id="dm-gan"></a>
+
+### DM-GAN
+
+Initial-image GAN followed by refinement stages that read word features from a gated key–value dynamic memory to refine image features.
+
+[Paper](https://arxiv.org/abs/1904.01310) · [GitHub](https://github.com/MinfengZhu/DM-GAN)
+
+![DM-GAN — Figure 2](../assets/architectures/dm-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1904.01310)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A text encoder yields a sentence feature (used with Conditioning Augmentation and noise for the initial image) and word features. Each refinement stage writes word features into memory with a memory-writing gate conditioned on the image, addresses memory slots by similarity to image features, reads value memories, and fuses them into the image features through a response gate before upsampling and residual blocks (paper Figure 2). The paper uses two refinement stages, reaching 256×256, and trains with Conditioning Augmentation and DAMSM losses. Evaluated on CUB and MS COCO.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="gan-int-cls"></a>
+
+### GAN-INT-CLS
+
+Text-conditional DCGAN whose generator and discriminator both receive a projected char-CNN-RNN sentence embedding.
+
+[Paper](https://arxiv.org/abs/1605.05396) · [GitHub](https://github.com/reedscot/icml2016)
+
+![GAN-INT-CLS — Figure 2 (PDF p. 4)](../assets/architectures/gan-int-cls.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/1605.05396)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The 1,024-dimensional text embedding from a pretrained character-level CNN-RNN encoder is projected to 128 dimensions and concatenated with the noise vector in the generator and depth-concatenated with 4×4 feature maps in the discriminator (paper Figure 2). GAN-CLS adds a matching-aware discriminator that also scores real images with mismatched text as fake; GAN-INT trains the generator on interpolated text embeddings; GAN-INT-CLS combines both. Images are 64×64; experiments use CUB birds, Oxford-102 flowers and MS COCO. The paper also trains a style encoder that inverts the generator for pose and background transfer.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="gawwn"></a>
+
+### GAWWN
+
+Text- and location-conditional GAN whose generator and discriminator split into global and local (bounding-box or keypoint-masked) pathways.
+
+[Paper](https://arxiv.org/abs/1610.02454) · [GitHub](https://github.com/reedscot/nips2016)
+
+![GAWWN — Figure 2 (PDF p. 4)](../assets/architectures/gawwn.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/1610.02454)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The Generative Adversarial What-Where Network conditions on a pretrained char-CNN-GRU caption embedding plus object location. In the bounding-box version the text embedding is spatially replicated and warped into the box; in the keypoint version a part-location tensor gates the local pathway (paper Figures 2 and 3). A separate conditional keypoint GAN can sample unspecified part locations from the text and a subset of user-given keypoints. Generates 128×128 images; experiments use CUB birds and MPII Human Pose with collected captions. Locations are spatial controls rather than a separate modality.
+
+**License:** code: MIT.
+
+**Variants:** Bounding-box-conditional GAWWN; Keypoint-conditional GAWWN.
+
+</details>
+
+<a id="hdgan"></a>
+
+### HDGAN
+
+Single-stream residual generator that emits side-output images of growing resolution, each judged by its own hierarchically-nested discriminator.
+
+[Paper](https://arxiv.org/abs/1802.09178) · [GitHub](https://github.com/ypxie/HDGan)
+
+![HDGAN — Figure 1 (top panel)](../assets/architectures/hdgan.png)
+
+*Figure 1 (top panel) · [Source](https://arxiv.org/abs/1802.09178)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The generator stacks residual blocks and nearest-upsampling stretching layers from a 1024×4×4 input computed from the char-RNN sentence embedding (via Conditioning Augmentation) and noise, with linear compression layers producing side outputs at intermediate scales. Each discriminator combines a matching-aware image–text pair loss with a local image loss over an R×R real/fake probability map (paper Figures 1 and 3). Trained end to end rather than stage by stage; results up to 512×512 are reported, with the 512×512 generator initialized from a 256×256 model. Evaluated on CUB, Oxford-102 and MS COCO.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="hong-semantic-layout"></a>
+
+### Hierarchical text-to-image via inferred semantic layout (Hong et al.)
+
+Text → layout → image pipeline: an LSTM box generator, a convolutional-recurrent shape generator and a layout- and text-conditioned GAN image generator.
+
+[Paper](https://arxiv.org/abs/1801.05091) · GitHub: no author-linked repository found
+
+![Hierarchical text-to-image via inferred semantic layout (Hong et al.) — Figure 2](../assets/architectures/hong-semantic-layout.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1801.05091)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The box generator autoregressively samples labeled object boxes from the text embedding (class via softmax, coordinates via a Gaussian mixture); the shape generator, a convolutional recurrent network trained with instance-wise and global adversarial losses, predicts a binary mask inside each box; the masks are aggregated into a semantic label map (paper Figure 2). The image generator is a convolutional encoder–decoder that gates layout features with the text embedding and uses a cascaded decoder that re-reads the layout at each upsampling layer; its discriminator sees the image, layout and tiled text embedding. Evaluated on MS COCO. The paper does not name the model; the card name is descriptive.
+
+</details>
+
+<a id="mirrorgan"></a>
+
+### MirrorGAN
+
+Three-stage cascaded attentional GAN with global (sentence) and local (word) attention, plus a pretrained image-captioning module that redescribes the generated image for a text-reconstruction loss.
+
+[Paper](https://arxiv.org/abs/1903.05854) · [GitHub](https://github.com/qiaott/MirrorGAN)
+
+![MirrorGAN — Figure 2](../assets/architectures/mirrorgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1903.05854)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+MirrorGAN has three modules (paper Figure 2): STEM, an RNN producing word and sentence embeddings; GLAM, cascaded generators built on the AttnGAN structure that concatenate word-level and sentence-level attention at each refinement stage; and STREAM, a CNN–LSTM encoder–decoder captioner that is pretrained and kept fixed while its captions of the generated image are aligned with the input text. Evaluated on CUB and MS COCO.
+
+</details>
+
+<a id="obj-gan"></a>
+
+### Obj-GAN
+
+Two-step object-driven GAN: an attentive seq2seq box generator and a bidirectional convolutional-LSTM shape generator build a semantic layout, then a multistage attentive generator renders a 256×256 image.
+
+[Paper](https://arxiv.org/abs/1902.10740) · [GitHub](https://github.com/jamesli1618/Obj-GAN)
+
+![Obj-GAN — Figure 2](../assets/architectures/obj-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1902.10740)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Words and the sentence are encoded with a pretrained bi-LSTM. The image generator conditions on the layout and adds object-driven attention, in which each object's class label (GloVe) queries the caption words and the resulting context vector is copied onto that object's mask, alongside AttnGAN-style grid attention (paper Figures 2–4). Training uses patch-wise discriminators and a Fast R-CNN-based object-wise discriminator. Evaluated on MS COCO.
+
+</details>
+
+<a id="sd-gan"></a>
+
+### SD-GAN
+
+Siamese pair of three-stage stacked GANs trained with contrastive losses, whose generators are modulated by semantic-conditioned batch normalization.
+
+[Paper](https://arxiv.org/abs/1904.01480) · GitHub: no author-linked repository found
+
+![SD-GAN — Figure 2](../assets/architectures/sd-gan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1904.01480)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The Semantics Disentangling GAN uses a bidirectional LSTM text encoder and stacked generator–discriminator stages (G0–G2, D0–D2). During training, two branches receive two descriptions and contrastive losses on discriminator features pull together images from descriptions of the same image and push apart others, to distill common semantics (paper Figure 2). Semantic-Conditioned Batch Normalization derives batch-norm modulation parameters from sentence-level cues (an MLP) or word-level cues (fused with visual features). Evaluated on CUB and MS COCO. No author-linked code repository was found.
+
+</details>
+
+<a id="stackgan"></a>
+
+### StackGAN
+
+Two-stage conditional GAN: a Stage-I generator sketches a 64×64 image from text and noise, and a Stage-II encoder–residual–decoder generator refines it to 256×256 conditioned on the text again.
+
+[Paper](https://arxiv.org/abs/1612.03242) · [GitHub](https://github.com/hanzhanggit/StackGAN)
+
+![StackGAN — Figure 2](../assets/architectures/stackgan.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1612.03242)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Introduces Conditioning Augmentation: the conditioning vector is sampled from a Gaussian whose mean and diagonal covariance are predicted from the pretrained text embedding, with a KL regularizer toward the standard normal. Stage II takes no noise vector; it downsamples the Stage-I image, concatenates the spatially replicated text conditioning and applies residual blocks before upsampling (paper Figure 2). Both stages use matching-aware discriminators. Evaluated on CUB, Oxford-102 and MS COCO. The official repository is a TensorFlow implementation and links a separate PyTorch implementation.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="stackgan-v2"></a>
+
+### StackGAN++ (StackGAN-v2)
+
+End-to-end tree-structured GAN whose shared trunk branches into generators at 64×64, 128×128 and 256×256, each paired with its own discriminator.
+
+[Paper](https://arxiv.org/abs/1710.10916) · [GitHub](https://github.com/hanzhanggit/StackGAN-v2)
+
+![StackGAN++ (StackGAN-v2) — Fig. 2 (PDF p. 6)](../assets/architectures/stackgan-v2.png)
+
+*Fig. 2 (PDF p. 6) · [Source](https://arxiv.org/abs/1710.10916)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+For text-to-image, the conditioning vector (from Conditioning Augmentation on the text embedding) and noise feed the first stage, and the conditioning vector is re-injected at each later branch. Discriminators are trained jointly on unconditional (real/fake) and conditional (image–text match) losses, and a color-consistency regularizer ties the scales together (paper Fig. 2). The same framework is also used for unconditional generation on LSUN and ImageNet. The TPAMI paper also presents the two-stage StackGAN (StackGAN-v1), catalogued separately as StackGAN.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="tac-gan"></a>
+
+### TAC-GAN
+
+AC-GAN variant conditioned on Skip-Thought text embeddings, whose discriminator predicts both real/fake and the image class.
+
+[Paper](https://arxiv.org/abs/1703.06412) · [GitHub](https://github.com/dashayushman/TAC-GAN)
+
+![TAC-GAN — Figure 2 (PDF p. 2)](../assets/architectures/tac-gan.png)
+
+*Figure 2 (PDF p. 2) · [Source](https://arxiv.org/abs/1703.06412)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A fully connected network maps the Skip-Thought caption embedding to a latent vector that is concatenated with noise and decoded by transposed convolutions to 128×128 images. The discriminator receives the spatially expanded text latent alongside image features and outputs a source distribution and a class distribution; wrong images of other classes are used as negatives (paper Figure 2). Class labels are used only as a training signal; trained and evaluated on Oxford-102 flowers.
+
+**License:** code: GPL-3.0.
+
+</details>
+
+<a id="text-segan"></a>
+
+### Text-SeGAN
+
+TAC-GAN variant whose discriminator predicts image source (real/fake) and semantic relevance to the text instead of a class label.
+
+[Paper](https://arxiv.org/abs/1812.05083) · GitHub: no author-linked repository found
+
+![Text-SeGAN — Figure 3](../assets/architectures/text-segan.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/1812.05083)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The generator maps an encoded caption and noise to 64×64 images. Training uses triplets of a positive image, its text encoding and a negative image selected by class and by distance in the text-embedding space (random, easy, hard, semi-easy and semi-hard negatives, plus an easy-to-hard curriculum); the generator maximizes the relevance likelihood while minimizing the source likelihood of fakes (paper Figure 3). The contribution is largely a training strategy on top of the TAC-GAN design. Evaluated on Oxford-102 flowers. No author-linked code repository was found.
+
+</details>

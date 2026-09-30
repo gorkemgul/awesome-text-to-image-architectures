@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**10 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,273 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [Hyper-SD](#hyper-sd) | 2024-04-21 | T → I | generation |
+| [InstaFlow](#instaflow) | 2023-09-12 | T → I | generation |
+| [Latent Consistency Models (LCM)](#lcm) | 2023-10-06 | T → I | generation |
+| [MobileDiffusion](#mobilediffusion) | 2023-11-28 | T → I | generation |
+| [PixArt-δ](#pixart-delta) | 2024-01-10 | T → I | generation |
+| [SD3-Turbo (Latent Adversarial Diffusion Distillation)](#sd3-turbo) | 2024-03-18 | T → I | generation |
+| [SDXL Turbo (Adversarial Diffusion Distillation)](#sdxl-turbo) | 2023-11-28 | T → I | generation |
+| [SDXL-Lightning](#sdxl-lightning) | 2024-02-21 | T → I | generation |
+| [SnapFusion](#snapfusion) | 2023-06-01 | T → I | generation |
+| [UFOGen](#ufogen) | 2023-11-14 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="hyper-sd"></a>
+
+### Hyper-SD
+
+Few-step distillation of Stable Diffusion U-Nets by trajectory-segmented consistency distillation, followed by reward-based feedback learning and DMD score distillation for one-step generation, released mainly as step-specific LoRA modules.
+
+Hyper-SD (ByteDance, 2024) accelerates SD 1.5 and SDXL to one to eight sampling steps. Its core method, Trajectory Segmented Consistency Distillation (TSCD), splits the diffusion timeline into segments, enforces consistency inside each segment, and progressively merges segments (8 → 4 → 2 → 1) so that the student keeps close to the teacher's ODE trajectory. Feedback learning from aesthetic reward models and an instance-segmentation model then improves quality, and Distribution Matching Distillation strengthens one-step generation. Most checkpoints are LoRA modules, including a unified one-step LoRA usable at 1–8 steps with the TCD scheduler; a dedicated one-step SDXL U-Net is also released.
+
+[Paper](https://arxiv.org/abs/2404.13686) · [Model card](https://huggingface.co/ByteDance/Hyper-SD) · [Project](https://hyper-sd.github.io/) · GitHub: no author-linked repository found
+
+![Hyper-SD — Figure 2 (PDF p. 5)](../assets/architectures/hyper-sd.png)
+
+*Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2404.13686)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+TSCD uses a hybrid distance of MSE and the SDXL-Lightning adversarial loss, shifting weight toward the adversarial term as the number of segments falls, plus noise perturbation for stability. Feedback learning combines LAION aesthetic predictor and ImageReward rewards (hinge loss) with a SOLO instance-segmentation loss on COCO2017, trained as a separate LoRA that can be merged with the TSCD LoRAs. One-step enhancement uses DMD with an added MSE loss; the unified all-timesteps LoRA uses timestep input 999 and the dedicated one-step model 800. Distillation data are LAION and COYO subsets; each stage costs about 200 A100 GPU hours, and all distillation stages were trained as LoRA. The Hugging Face repository also hosts later LoRAs for SD3 and FLUX.1-dev that the paper does not describe. The model card has no license metadata; the repository's LICENSE.md contains the FLUX.1 [dev] Non-Commercial License for the FLUX-related files only, so no overall license is recorded. Because the release is mainly LoRA adapters, the card covers the few-step sampling regime rather than a standalone base model.
+
+**Variants:** Hyper-SD15 1/2/4/8-step LoRAs; Hyper-SDXL 1/2/4/8-step LoRAs; Hyper-SDXL-1step-Unet; Hyper-SD15 and Hyper-SDXL 1-step unified LoRAs; Hyper-SD3 4/8/16-step CFG LoRAs; Hyper-FLUX.1-dev 8/16-step LoRAs.
+
+</details>
+
+<a id="instaflow"></a>
+
+### InstaFlow
+
+One-step text-to-image generator obtained from Stable Diffusion by text-conditioned rectified-flow reflow (2-Rectified Flow) followed by distillation into a single-step U-Net.
+
+InstaFlow (UT Austin and collaborators, 2023) turns Stable Diffusion into a one-step generator using Rectified Flow. A reflow stage retrains the SD U-Net on noise–image pairs produced by the teacher so that the text-conditioned probability-flow trajectories become straighter and the noise-to-image coupling becomes simpler; a distillation stage then trains a student to map noise to the image in a single step. The paper shows that direct one-step distillation of SD produces blurry images, whereas distilling after reflow works. InstaFlow-0.9B keeps the SD 1.5 U-Net, and InstaFlow-1.7B uses a Stacked U-Net of two U-Nets in series.
+
+[Paper](https://arxiv.org/abs/2309.06380) · [GitHub](https://github.com/gnobitab/InstaFlow) · [Model card](https://huggingface.co/XCLiu/instaflow_0_9B_from_sd_1_5)
+
+![InstaFlow — Figure 3](../assets/architectures/instaflow.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2309.06380)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Training data are 1.6M teacher-generated pairs each for reflow and distillation, with SD 1.5 sampled by 25-step DPM-Solver at guidance scale 5.0 for InstaFlow-0.9B; the distillation loss is LPIPS, and a classifier-free-guidance velocity field is defined for the text-conditioned rectified flow (guidance 1.5 during distillation). Costs: 75.2 A100 GPU days for reflow and 108 for distillation (0.9B), plus 39.6 for the 1.7B Stacked U-Net distillation, 199 A100 GPU days in total. Preliminary experiments use SD 1.4. The Stacked U-Net removes redundant modules after ablation. Outputs are 512×512; the paper shows optional refinement with the SDXL Refiner to 1024×1024. Released checkpoints are InstaFlow-0.9B and the intermediate 2-Rectified Flow model, both from SD 1.5; no InstaFlow-1.7B checkpoint was found.
+
+**License:** code: MIT; weights: CC-BY-NC-4.0.
+
+**Variants:** InstaFlow-0.9B; InstaFlow-1.7B (Stacked U-Net); 2-Rectified Flow (from SD 1.5).
+
+</details>
+
+<a id="lcm"></a>
+
+### Latent Consistency Models (LCM)
+
+Consistency model distilled in the latent space of a pretrained Stable Diffusion U-Net, predicting the solution of the classifier-free-guided probability-flow ODE in one to four steps.
+
+Latent Consistency Models (Tsinghua University, 2023) carry consistency models from pixel space to the latent space of Stable Diffusion. Instead of iterating a sampler for tens of steps, the distilled network directly predicts the endpoint of the guided reverse-diffusion ODE, so a 768×768 image can be generated in two to four steps (or one, at lower quality). Distillation is one-stage: the guidance scale is fed to the student as an extra input, and a skipping-step schedule speeds up training to about 32 A100 GPU hours. A follow-up report, LCM-LoRA, trains the same distillation as LoRA parameters for SD 1.5, SSD-1B and SDXL and uses them as a plug-in accelerator.
+
+[Paper 1](https://arxiv.org/abs/2310.04378) · [Paper 2](https://arxiv.org/abs/2311.05556) · [GitHub](https://github.com/luosiallen/latent-consistency-model) · [Model card 1](https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7) · [Model card 2](https://huggingface.co/latent-consistency/lcm-sdxl)
+
+![Latent Consistency Models (LCM) — Input/output diagram](../assets/architectures/lcm.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2310.04378)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Latent consistency distillation initializes the student from the teacher U-Net and adds parameters that condition on the classifier-free guidance scale ω, so guidance is distilled into a single forward pass (one-stage guided distillation over an augmented PF-ODE, ω sampled in [2, 14]). A DDIM solver with skipping step k = 20 provides the teacher target. Paper experiments distill Stable Diffusion v2.1-base (512 px, LAION-Aesthetics-6+) and Stable Diffusion v2.1 (768 px, LAION-Aesthetics-6.5+); the released LCM_Dreamshaper_v7 checkpoint is distilled from Dreamshaper v7, a fine-tune of SD v1.5, in 4,000 iterations. The paper also proposes Latent Consistency Fine-tuning (LCF) for customized datasets. LCM-LoRA (arXiv 2311.05556) applies LoRA distillation to SD-V1.5, SSD-1B and SDXL and is released as add-on LoRA weights; full-parameter LCM SDXL and SSD-1B checkpoints were released alongside. License: the LCM_Dreamshaper_v7 card states MIT; the LCM SDXL and LCM-LoRA SDXL cards state openrail++.
+
+**License:** code: MIT; weights: MIT.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** LCM_Dreamshaper_v7; LCM SDXL (full-parameter); LCM SSD-1B (full-parameter); LCM-LoRA (SD-V1.5, SSD-1B, SDXL).
+
+</details>
+
+<a id="mobilediffusion"></a>
+
+### MobileDiffusion
+
+386M-parameter latent diffusion UNet in the UViT style, redesigned for mobile inference (transformers concentrated at 16×16, separable convolutions, ReLU attention, shared key-value projections) with a lightweight VAE decoder and CLIP ViT-L/14 text encoder, fine-tuned for one-step sampling with the UFOGen diffusion-GAN objective.
+
+MobileDiffusion (Google, 2023) is a text-to-image diffusion model designed from scratch for phones, reaching about 0.2 seconds for a 512×512 image on an iPhone 15 Pro. Its UNet was found through a systematic study that moves transformer blocks to the low-resolution bottleneck, removes self-attention at higher resolutions, replaces most convolutions with separable ones and prunes the VAE decoder, arriving at about 400M parameters. The model is first trained as an ordinary latent diffusion model and then adversarially fine-tuned with UFOGen's diffusion-GAN objective so that it generates in one step while staying compatible with plugins, LoRA fine-tuning and inpainting built on the base model.
+
+[Paper](https://arxiv.org/abs/2311.16567) · GitHub: no author-linked repository found
+
+![MobileDiffusion — Figure 2 (PDF p. 5)](../assets/architectures/mobilediffusion.png)
+
+*Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2311.16567)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Transformer layout: no transformer blocks at 64×64, cross-attention only (no self-attention) at 32×32 and the outer 16×16 stack, full transformer blocks in the inner 16×16 stack and bottleneck with channel dimension 1024; self-attention uses W_K = W_V, and softmax attention is fine-tuned into ReLU attention. All convolutions except the outermost level are separable. The VAE uses f = 8 and c = 8 latent channels, and a pruned, distilled decoder is about 3× faster than SD's. Training data are a proprietary set of 150M web image-text pairs; pretraining runs 0.75M steps at 256×256 then 0.25M steps at 512×512, and the architecture search used about 512 TPUs for 15 days. For one-step fine-tuning the paper ablates distillation, EMA-distillation and LoRA variants of the UFOGen objective and adopts full-parameter fine-tuning with the original diffusion reconstruction loss. Reported on-device latency on iPhone 15 Pro: 238 ms overall (UNet 142 ms, decoder 92 ms). Canny-edge and depth plugins, style LoRA and inpainting are shown as downstream uses. No code or weights were found.
+
+</details>
+
+<a id="pixart-delta"></a>
+
+### PixArt-δ
+
+PixArt-α diffusion transformer distilled with latent consistency distillation for 2–4-step 1024px generation, using a fixed classifier-free guidance scale and PixArt-α's noise schedule.
+
+PixArt-δ (Huawei Noah's Ark Lab with Tsinghua, HKU and Hugging Face, 2024) applies Latent Consistency Model distillation to the PixArt-α diffusion transformer. The resulting PixArt-LCM generates 1024×1024 images in two to four steps, about 0.5 seconds on an A100 and seven times faster than PixArt-α, and the distillation fits on 32GB V100 GPUs within a day. The same report introduces a ControlNet-Transformer design for adding spatial control to transformer denoisers.
+
+[Paper](https://arxiv.org/abs/2401.05252) · [GitHub](https://github.com/PixArt-alpha/PixArt-alpha) · [Model card](https://huggingface.co/PixArt-alpha/PixArt-LCM-XL-2-1024-MS)
+
+![PixArt-δ — Figure 1](../assets/architectures/pixart-delta.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2401.05252)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Distillation follows LCM with teacher, student and EMA models (paper Figure 1), but uses a constant guidance scale ω_fix in place of LCM's guidance-scale embedding, which ablations found as effective. The LCM noise schedule is adapted to PixArt-α's schedule with higher logSNR. Training uses 120K internal image-text pairs. The report states that 8-bit inference fits 1024px generation in 8GB of GPU memory, and that LCM-LoRA is also supported. The ControlNet-Transformer (copies of the first transformer blocks connected to the base blocks through zero-initialized linear layers, released as PixArt-ControlNet) is a spatial-control add-on and outside this catalog's scope; it is noted here only as part of the report.
+
+**License:** code: Apache-2.0; weights: CreativeML Open RAIL++-M.
+
+**Variants:** PixArt-LCM-XL-2-1024-MS.
+
+</details>
+
+<a id="sd3-turbo"></a>
+
+### SD3-Turbo (Latent Adversarial Diffusion Distillation)
+
+Stable Diffusion 3 MMDiT student distilled to 1–4 unguided steps with Latent Adversarial Diffusion Distillation, where discriminator heads run on the frozen teacher's token features in latent space and training uses teacher-generated synthetic latents.
+
+Latent Adversarial Diffusion Distillation (LADD, Stability AI, 2024) is the successor to ADD and was used to distill the 8B Stable Diffusion 3 transformer into SD3-Turbo, a multi-aspect-ratio megapixel generator that samples in four steps without classifier-free guidance. Instead of decoding to pixels and judging images with a fixed DINOv2 network, LADD re-noises the student's latents, passes them through the frozen teacher, and trains independent discriminator heads on the teacher's token sequence after each attention block. Training data are latents generated by the teacher at a fixed guidance scale, so no real images or decoder passes are needed.
+
+[Paper](https://arxiv.org/abs/2403.12015) · GitHub: no author-linked repository found
+
+![SD3-Turbo (Latent Adversarial Diffusion Distillation) — Figure 3](../assets/architectures/sd3-turbo.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2403.12015)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Discriminator heads are conditioned on the noise level and pooled CLIP embeddings; the teacher noise level is drawn from a logit-normal distribution whose parameters shift feedback between global structure (high noise) and texture (low noise). Token sequences are reshaped to their spatial layout for 2D-convolutional heads, which supports multi-aspect-ratio training. The student is trained on four discrete timesteps t ∈ {1, 0.75, 0.5, 0.25} and sampled with a consistency sampler for two or four steps. Ablations found that with synthetic data an additional distillation loss brings no benefit, and that student size matters more than teacher or data-generator size. The released 8B model is first fine-tuned with Diffusion DPO; DPO-LoRA matrices are reapplied to the LADD student. The paper also applies LADD to image editing and inpainting models. The paper states that code and weights will be released; no release of an SD3-Turbo checkpoint was verified. The Stable Diffusion 3.5 Large Turbo model card describes that model as ADD-distilled and links the ADD report, not LADD, so it is not recorded here as a LADD checkpoint.
+
+</details>
+
+<a id="sdxl-turbo"></a>
+
+### SDXL Turbo (Adversarial Diffusion Distillation)
+
+SDXL U-Net student distilled for 1–4-step sampling with Adversarial Diffusion Distillation, combining a hinge-loss adversarial objective on frozen ViT features with score distillation from a frozen diffusion teacher.
+
+Adversarial Diffusion Distillation (ADD, Stability AI, 2023) turns a pretrained latent diffusion model into a one- to four-step text-to-image generator. The student starts from the pretrained U-Net weights and is trained on two signals at once: a discriminator built from a frozen pretrained vision transformer with small trainable heads pushes single-step outputs toward real-image fidelity, and a frozen diffusion teacher, applied to re-noised student outputs, provides a score-distillation target for text alignment and quality. The released SDXL Turbo applies ADD to SDXL 1.0; SD Turbo applies it to Stable Diffusion 2.1.
+
+[Paper](https://arxiv.org/abs/2311.17042) · [Announcement](https://stability.ai/news/stability-ai-sdxl-turbo) · [Model card 1](https://huggingface.co/stabilityai/sdxl-turbo) · [Model card 2](https://huggingface.co/stabilityai/sd-turbo) · [GitHub](https://github.com/Stability-AI/generative-models)
+
+![SDXL Turbo (Adversarial Diffusion Distillation) — Figure 2](../assets/architectures/sdxl-turbo.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2311.17042)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The student samples from N = 4 student timesteps with the last at τ = 1000 and zero-terminal SNR enforced, so it can start from pure noise. The discriminator follows StyleGAN-T: trainable heads on several layers of a frozen feature network (DINOv2 ViT-S performed best in ablations), conditioned by projection on a text embedding and an image embedding of the real input. The distillation loss is computed in pixel space with weighting c(t) and distillation weight λ = 2.5; with a specific c(t) it reduces to the SDS objective. Paper models are ADD-M (860M parameters; SD 2.1 and SD 1.5 backbones for ablations and comparisons) and ADD-XL (3.1B parameters; SDXL backbone), evaluated at 512×512. The SDXL Turbo and SD Turbo model cards identify them as ADD-distilled versions of SDXL 1.0 and SD 2.1; the paper itself names ADD-M and ADD-XL. The SD Turbo card has no license metadata.
+
+**License:** code: MIT; weights: Stability AI Community License (sai-nc-community).
+
+**Variants:** SDXL Turbo; SD Turbo.
+
+</details>
+
+<a id="sdxl-lightning"></a>
+
+### SDXL-Lightning
+
+SDXL U-Net distilled to 8, 4, 2 and 1 steps by progressive distillation with an adversarial objective whose discriminator reuses the pretrained SDXL U-Net encoder and mid-block in latent space.
+
+SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need one to eight sampling steps. It follows progressive distillation, where each student learns to reproduce several teacher steps in one, but replaces the usual mean-squared-error target, which the paper shows produces blurry images at low step counts, with an adversarial loss. The discriminator is built from a copy of SDXL's own U-Net encoder and mid-block, so it works directly on noisy latents at any timestep and accepts the text condition. The models are released both as full U-Net checkpoints and as LoRA modules that can be applied to other SDXL-based models.
+
+[Paper](https://arxiv.org/abs/2402.13929) · [Model card](https://huggingface.co/ByteDance/SDXL-Lightning) · GitHub: no author-linked repository found
+
+![SDXL-Lightning — Input/output diagram](../assets/architectures/sdxl-lightning.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2402.13929)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Distillation schedule: 128 → 32 steps with MSE loss and classifier-free guidance (scale 6), then adversarial stages 32 → 8 → 4 → 2 → 1. At each stage the discriminator is first conditioned on both the teacher's input x_t and the target x_{t−ns} to preserve the probability flow, then fine-tuned without the x_t condition to relax mode coverage and remove "Janus" (conjoined-subject) artifacts; one- and two-step models use a skip-level teacher for this phase. Each stage trains LoRA first (rank 64, LCM-LoRA settings), then merges it and trains the whole U-Net. Pure noise is swapped in at t = T during training to fix SDXL's non-zero terminal SNR; the one-step model predicts x0, and its outputs are re-noised to timesteps {10, 250, 500, 750} before the discriminator. Distillation data are LAION and COYO subsets filtered to images above 1024px; training used 64 A100 80G GPUs at batch size 512 on square images. The model card calls the one-step model more experimental.
+
+**License:** weights: CreativeML Open RAIL++-M.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** SDXL-Lightning 1-step (full U-Net, x0); SDXL-Lightning 2-step (full U-Net and LoRA); SDXL-Lightning 4-step (full U-Net and LoRA); SDXL-Lightning 8-step (full U-Net and LoRA).
+
+</details>
+
+<a id="snapfusion"></a>
+
+### SnapFusion
+
+On-device latent diffusion model with an architecture-evolved efficient U-Net and a channel-pruned image decoder derived from Stable Diffusion v1.5, step-distilled to 8 denoising steps with a CFG-aware distillation loss.
+
+SnapFusion (Snap Inc. and Northeastern University, 2023) runs text-to-image diffusion on a phone in under two seconds for a 512×512 image. Starting from Stable Diffusion v1.5, it searches for a faster U-Net by robust training with stochastic block skipping followed by architecture evolving that removes or adds cross-attention and ResNet blocks according to their measured on-device latency and effect on quality. The VAE decoder is shrunk by 50% channel pruning and distilled from the original decoder. Step distillation in v-prediction, with a loss that applies classifier-free guidance to teacher and student, brings sampling down to eight steps, and the paper reports better FID and CLIP scores than SD v1.5 with 50 steps on MS-COCO.
+
+[Paper](https://arxiv.org/abs/2306.00980) · [GitHub](https://github.com/snap-research/SnapFusion) · [Project](https://snap-research.github.io/SnapFusion)
+
+![SnapFusion — Figure 3 (PDF p. 4)](../assets/architectures/snapfusion.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2306.00980)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Measured on an iPhone 14 Pro: the efficient U-Net (848M parameters) takes 230 ms per step, 1,840 ms for 8 steps, and the image decoder (13M parameters, versus 50M in SD v1.5) 116 ms; the CLIP text encoder is unchanged. Distillation pipeline: SD v1.5 is fine-tuned to v-prediction; a 32-step SD v1.5 teacher is distilled directly (not progressively) to 16 steps, the efficient U-Net is trained at 16 steps, then distilled to 8 steps using the 16-step SD v1.5 as teacher. The CFG-aware distillation loss improves CLIP score and is mixed with the vanilla loss by a CFG probability. The author GitHub repository contains the project page only; no code or weights were found.
+
+</details>
+
+<a id="ufogen"></a>
+
+### UFOGen
+
+One-step diffusion-GAN hybrid fine-tuned from Stable Diffusion 1.5, with both the generator and a latent-space discriminator initialized from the pretrained SD U-Net and trained with an adversarial loss on noisy samples plus a reconstruction loss at x0.
+
+UFOGen (Google, 2023) is a one-step text-to-image model that combines diffusion models with a GAN objective. It builds on earlier diffusion-GAN hybrids (DDGAN, SIDDM), which learn large denoising steps adversarially, and modifies the generator parameterization and reconstruction term so that one forward pass from pure noise produces an image. For text-to-image generation, both the generator and the discriminator start from Stable Diffusion 1.5 weights and operate in its latent space, which the paper identifies as key to training a diffusion-GAN at web scale.
+
+[Paper](https://arxiv.org/abs/2311.09257) · GitHub: no author-linked repository found
+
+![UFOGen — Figure 3](../assets/architectures/ufogen.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2311.09257)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The generator predicts a clean sample x′0 from x_t; both real and generated samples are diffused to step t−1, where the discriminator compares them, and a reconstruction term λKL·γt·‖x0 − x′0‖² matches clean samples directly (λKL = 1.0). Training uses a denoising step size of 250 on SD's 1000-step schedule, while inference is a single step from x_T. The model keeps SD 1.5's VAE and frozen CLIP ViT-L/14 text encoder (about 0.9B parameters in the network, the same structure as SD). Training data are LAION-Aesthetics-6+, batch size 1024, converging in under 50k steps. The paper also shows image-to-image and controllable generation built on the same model. No code or weights were found.
+
+</details>

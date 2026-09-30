@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**10 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,273 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [ERNIE-ViLG 2.0](#ernie-vilg-2) | 2022-10-27 | T → I | generation |
+| [Kandinsky 2](#kandinsky-2) | 2023-10-05 | T, I → I | editing |
+| [Kandinsky 3](#kandinsky-3) | 2023-12-06 | T, I → I | editing |
+| [Kolors](#kolors) | 2024-07-06 | T → I | generation |
+| [Latent Diffusion Models (LDM)](#ldm) | 2021-12-20 | T → I | generation |
+| [Playground v2](#playground-v2) | 2024-02-27 | T → I | generation |
+| [SDXL](#sdxl) | 2023-07-04 | T → I | generation |
+| [Stable Diffusion 1.x](#stable-diffusion-1) | 2022-08-22 | T, I → I | editing |
+| [Stable Diffusion 2.x](#stable-diffusion-2) | 2022-11-24 | T, I → I | editing |
+| [Würstchen](#wuerstchen) | 2023-06-01 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="ernie-vilg-2"></a>
+
+### ERNIE-ViLG 2.0
+
+Chinese latent diffusion model with a 1.3B transformer text encoder and a mixture of ten 2.2B U-Net denoising experts, each assigned to one block of timesteps.
+
+[Paper](https://arxiv.org/abs/2210.15257)
+
+![ERNIE-ViLG 2.0 — Figure 2](../assets/architectures/ernie-vilg-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2210.15257)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Diffusion runs in the 4-channel latent space of a pretrained image autoencoder following LDM; text features enter the U-Net through a cross-modal attention layer in which projected U-Net features are concatenated with the text representation. Mixture-of-Denoising-Experts (MoDE) divides all timesteps into 10 blocks and uses a separate U-Net expert per block with a shared text encoder, so inference cost does not grow with the number of experts; the total is about 24B parameters. Knowledge enhancement is a training-time mechanism: part-of-speech special tokens and up-weighted keyword attention (textual knowledge), and higher loss weights on object-detector regions (visual knowledge) (paper Figure 2). Trained on 170M image-text pairs (LAION plus internal Chinese data, English captions machine-translated to Chinese); the paper reports direct 1024×1024 output.
+
+</details>
+
+<a id="kandinsky-2"></a>
+
+### Kandinsky 2
+
+Diffusion image prior mapping CLIP text embeddings to CLIP image embeddings, followed by a 1.22B latent diffusion U-Net conditioned on image and multilingual text embeddings and a MoVQ decoder.
+
+[Paper](https://arxiv.org/abs/2310.03502) · [GitHub](https://github.com/ai-forever/Kandinsky-2) · [Model card](https://huggingface.co/kandinsky-community/kandinsky-2-2-decoder)
+
+![Kandinsky 2 — Figure 1](../assets/architectures/kandinsky-2.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2310.03502)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The paper does not name a version; its component list (CLIP ViT-L/14 image encoder, 1B prior, 1.22B U-Net, 67M MoVQ) matches the README's Kandinsky 2.1. It trains a transformer-encoder diffusion prior (20 layers, 32 heads, hidden size 2048; about 1B parameters) from scratch on CLIP ViT-L/14 text and image embeddings. The U-Net receives merged CLIP-image and XLMR-CLIP text embeddings as input and adds them to the time embedding; decoding uses Sber-MoVQGAN (67M), a modified MoVQGAN trained on LAION HighRes, without skipping the quantization step. The total model is 3.3B parameters (paper Table 2). Documented inference regimes are text-to-image, image variations, image fusion, image-and-text fusion and text-guided inpainting/outpainting (paper Figure 1). Per the official README, Kandinsky 2.2 replaces the image encoder with CLIP ViT-bigG-14 and adds ControlNet support, while Kandinsky 2.0 was an earlier latent diffusion model with a 1.2B U-Net and two multilingual text encoders (mCLIP-XLMR and mT5-encoder-small) and no image prior.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** Kandinsky 2.0; Kandinsky 2.1; Kandinsky 2.2.
+
+</details>
+
+<a id="kandinsky-3"></a>
+
+### Kandinsky 3
+
+3.0B latent diffusion U-Net built from modified BigGAN-deep residual blocks, conditioned by cross-attention on a frozen 8.6B Flan-UL2 encoder, with a Sber-MoVQGAN decoder.
+
+[Paper](https://arxiv.org/abs/2312.03511) · [GitHub](https://github.com/ai-forever/Kandinsky-3) · [Model card](https://huggingface.co/kandinsky-community/kandinsky-3)
+
+![Kandinsky 3 — Figure 2](../assets/architectures/kandinsky-3.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2312.03511)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Unlike Kandinsky 2.x there is no image prior: a text encoder, a latent U-Net and an image decoder form the pipeline (report Figure 1), 11.9B parameters in total (report Table 1). The U-Net uses ResNet-50-style bottleneck BigGAN-deep blocks, with self-attention and cross-attention only at lower resolutions (report Figure 2). The text encoder is the encoder of Flan-UL2 20B; the image decoder is the 270M Sber-MoVQGAN; both are frozen during U-Net training. Text-guided inpainting/outpainting uses a GLIDE-style 9-channel input fine-tune, and image-prompted editing uses an IP-Adapter-style extension; these are the basis for the image input and editing label. Kandinsky 3.1 adds Kandinsky Flash, an adversarial-diffusion-distillation model that generates in 4 steps, plus an updated inpainting model and LLM prompt expansion (official README; later report versions). Image-to-video and text-to-video extensions in the report are out of scope.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** Kandinsky 3.0; Kandinsky 3.1; Kandinsky Flash (distilled); Kandinsky 3 inpainting.
+
+</details>
+
+<a id="kolors"></a>
+
+### Kolors
+
+Latent diffusion model with the SDXL U-Net backbone conditioned on penultimate-layer features of a ChatGLM3-6B-Base text encoder (up to 256 tokens).
+
+Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model from Kuaishou's Kolors team. Its technical report keeps the U-Net architecture of SDXL and replaces the CLIP text encoders with ChatGLM3-6B-Base, whose penultimate output conditions the model with prompts of up to 256 tokens. Training data are re-captioned with a multimodal LLM (CogVLM) and mixed half-and-half with original captions, training is split into a concept-learning phase on billions of image-text pairs and a quality-improvement phase on manually graded high-aesthetic data, and high-resolution training extends the noise schedule from 1,000 to 1,100 steps to reach a lower terminal SNR. The report highlights Chinese text rendering and introduces the KolorsPrompts benchmark.
+
+[Paper](https://github.com/Kwai-Kolors/Kolors/blob/master/imgs/Kolors_paper.pdf) · [GitHub](https://github.com/Kwai-Kolors/Kolors) · [Model card](https://huggingface.co/Kwai-Kolors/Kolors)
+
+![Kolors — Input/output diagram](../assets/architectures/kolors.svg)
+
+*Input/output diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The report states that the backbone strictly follows the SDXL U-Net and that the contributions are the text encoder, re-captioning, data curation and the high-resolution noise schedule; it has no architecture diagram. The technical report is hosted as a PDF in the official repository rather than on arXiv, so the date is the repository's dated release line ("2024.07.06 ... We release Kolors"). ControlNet, IP-Adapter, inpainting and LoRA releases in the same repository are add-ons and are not covered. The Hugging Face card metadata lists apache-2.0, while the repository README says the weights are fully open for academic research and commercial use requires registration with the licensor under its model license (MODEL_LICENSE).
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Kolors (Kwai-Kolors/Kolors); Kolors-diffusers.
+
+</details>
+
+<a id="ldm"></a>
+
+### Latent Diffusion Models (LDM)
+
+Time-conditional U-Net denoiser in the latent space of a pretrained autoencoder, with text injected through cross-attention from a jointly trained transformer encoder.
+
+[Paper](https://arxiv.org/abs/2112.10752) · [GitHub](https://github.com/CompVis/latent-diffusion)
+
+![Latent Diffusion Models (LDM) — Figure 3 (PDF p. 4)](../assets/architectures/ldm.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2112.10752)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A perceptual-compression autoencoder (KL- or VQ-regularized) is trained once, and the diffusion model operates on its latent at a downsampling factor f; a domain-specific encoder τθ maps the condition to features that enter intermediate U-Net layers through cross-attention (paper Figure 3). The text-to-image model is a 1.45B-parameter KL-regularized LDM with f = 8 (LDM-KL-8), conditioned on LAION-400M prompts via a BERT-tokenizer transformer encoder trained jointly with the U-Net and sampled with classifier-free guidance (LDM-KL-8-G). The same framework is used for class-conditional, layout-to-image, super-resolution, inpainting and semantic-map models, which are separate checkpoints. The official repository also hosts the retrieval-augmented RDM checkpoints (see `rdm`).
+
+**License:** code: MIT.
+
+**Variants:** LDM-KL-8 text-to-image (1.45B, LAION-400M); LDM-KL-8-G (classifier-free guidance).
+
+</details>
+
+<a id="playground-v2"></a>
+
+### Playground v2
+
+Latent diffusion model with the SDXL U-Net architecture and two frozen text encoders (OpenCLIP ViT-G and CLIP ViT-L), trained by Playground.
+
+Playground v2 is a latent diffusion text-to-image model from Playground that its model card says follows the same architecture as Stable Diffusion XL, with OpenCLIP ViT-G and CLIP ViT-L as fixed text encoders. Playground v2.5 keeps that architecture and changes the training recipe to improve aesthetic quality: it trains from scratch with the EDM framework and a noise schedule skewed toward higher noise for vivid color and contrast, uses balanced aspect-ratio buckets for multi-aspect generation, and applies supervised fine-tuning on curated data for human preference alignment. Both weight releases are on Hugging Face under Playground community licenses.
+
+[Paper](https://arxiv.org/abs/2402.17245) · [Model card 1](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) · [Model card 2](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) · GitHub: no author-linked repository found
+
+![Playground v2 — Input/output diagram](../assets/architectures/playground-v2.svg)
+
+*Input/output diagram · [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The v2.5 report states that, following v2, the underlying model architecture was not changed; its contributions are the training recipe (EDM noise schedule and preconditioning instead of v2's offset noise with a DDPM schedule, balanced bucketed multi-aspect training, and SFT-style human preference alignment). The v2.5 report has no architecture figure. The v2 release is not separately dated here because no dated primary announcement was verified.
+
+**License:** weights: playground-v2-community (v2); playground-v2dot5-community (v2.5).
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** playground-v2-1024px-aesthetic; Playground v2.5 (playground-v2.5-1024px-aesthetic).
+
+</details>
+
+<a id="sdxl"></a>
+
+### SDXL
+
+2.6B-parameter latent diffusion U-Net conditioned on concatenated CLIP ViT-L and OpenCLIP ViT-bigG text features, with size/crop micro-conditioning and an optional latent refinement model.
+
+[Paper](https://arxiv.org/abs/2307.01952) · [Announcement](https://stability.ai/news/stable-diffusion-sdxl-1-announcement) · [GitHub](https://github.com/Stability-AI/generative-models) · [Model card](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
+
+![SDXL — Figure 1 (right panel)](../assets/architectures/sdxl.png)
+
+*Figure 1 (right panel) · [Source](https://arxiv.org/abs/2307.01952)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Compared with SD 1.x/2.x, the U-Net drops the transformer block at the highest feature level, uses 2 and 10 transformer blocks at the lower levels and removes the 8× downsampling level (paper Table 1). Penultimate outputs of the two text encoders (817M parameters in total) are concatenated for cross-attention (context dimension 2048), and the pooled OpenCLIP embedding is an extra condition. Original image size and crop coordinates are Fourier-embedded and added to the timestep embedding; the final model is fine-tuned with multi-aspect training around 1024×1024 pixel area. A retrained autoencoder with the SD 1.x architecture is used. A separate refiner specialized on the first 200 noise scales applies SDEdit-style noising and denoising to the base latents with the same prompt (paper Figure 1). SDXL 0.9 was a limited research release before SDXL 1.0 (announced 2023-07-26).
+
+**License:** code: MIT; weights: CreativeML Open RAIL++-M.
+
+**Variants:** SDXL 0.9 (research release); SDXL 1.0 base; SDXL 1.0 refiner.
+
+</details>
+
+<a id="stable-diffusion-1"></a>
+
+### Stable Diffusion 1.x
+
+Latent diffusion model with an 860M U-Net conditioned through cross-attention on the non-pooled embeddings of a frozen CLIP ViT-L/14 text encoder.
+
+[Announcement](https://stability.ai/news/stable-diffusion-public-release) · [GitHub](https://github.com/CompVis/stable-diffusion) · [Model card](https://huggingface.co/CompVis/stable-diffusion-v1-4) · [Paper](https://arxiv.org/abs/2112.10752)
+
+![Stable Diffusion 1.x — Input/output diagram](../assets/architectures/stable-diffusion-1.svg)
+
+*Input/output diagram · [Source](https://github.com/CompVis/stable-diffusion)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Stable Diffusion v1 is a specific LDM configuration: a downsampling-factor-8 autoencoder (H×W×3 images to H/8×W/8×4 latents), an 860M U-Net and a 123M frozen CLIP ViT-L/14 text encoder, pretrained at 256×256 and fine-tuned at 512×512 on LAION-5B subsets (official README and v1-4 model card). Checkpoints v1-1 to v1-4 differ in training data and steps, and v1-3/v1-4 drop the text condition 10% of the time for classifier-free guidance. The README documents SDEdit-style text-guided image-to-image translation with the same weights (img2img script), which is the basis for the image input and editing label. The reference sampling script adds a safety checker and invisible watermarking. The original runwayml/stable-diffusion-v1-5 Hugging Face repository was not reachable at review, so v1.5 is not described here. Built on the LDM paper (see `ldm`).
+
+**License:** code: CreativeML Open RAIL-M; weights: creativeml-openrail-m.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** sd-v1-1; sd-v1-2; sd-v1-3; sd-v1-4.
+
+</details>
+
+<a id="stable-diffusion-2"></a>
+
+### Stable Diffusion 2.x
+
+Latent diffusion U-Net (865M parameters) conditioned through cross-attention on an OpenCLIP ViT-H text encoder.
+
+[Announcement 1](https://stability.ai/news/stable-diffusion-v2-release) · [Announcement 2](https://stability.ai/news/stablediffusion2-1-release7-dec-2022) · [Paper](https://arxiv.org/abs/2307.01952) · GitHub: no author-linked repository found
+
+![Stable Diffusion 2.x — Input/output diagram](../assets/architectures/stable-diffusion-2.svg)
+
+*Input/output diagram · [Source](https://stability.ai/news/stable-diffusion-v2-release)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The 2.0 announcement introduces text-to-image models trained with a new OpenCLIP text encoder at default resolutions of 512×512 and 768×768, on an aesthetic, NSFW-filtered LAION-5B subset. The SDXL paper (Table 1) gives the SD 2.0/2.1 U-Net as 865M parameters with OpenCLIP ViT-H text features (context dimension 1024) and no pooled text embedding. The 2.0 release also includes a 4× upscaler diffusion model, a depth-guided depth2img model for structure-preserving image-to-image, and a text-guided inpainting model fine-tuned from the 2.0 base; these are the basis for the image input and editing label. Version 2.1 (announced 2022-12-07) fine-tunes 2.0 with less aggressive dataset filtering. The GitHub repository linked from the announcement (Stability-AI/StableDiffusion) and the stabilityai/stable-diffusion-2 Hugging Face cards were unavailable at review, so no license is recorded.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** 2.0 (512 and 768); 2.1 (512 and 768); x4 upscaler; depth2img; 2.0 inpainting.
+
+</details>
+
+<a id="wuerstchen"></a>
+
+### Würstchen
+
+Three-stage cascade: a text-conditional ConvNeXt diffusion model generates 16×24×24 semantic latents (Stage C), a latent diffusion U-Net decodes them into VQGAN latents (Stage B), and an f4 VQGAN decoder produces the image (Stage A).
+
+[Paper](https://arxiv.org/abs/2306.00637) · [GitHub 1](https://github.com/dome272/Wuerstchen) · [Model card 1](https://huggingface.co/warp-ai/wuerstchen) · [Announcement](https://stability.ai/news/introducing-stable-cascade) · [GitHub 2](https://github.com/Stability-AI/StableCascade) · [Model card 2](https://huggingface.co/stabilityai/stable-cascade)
+
+![Würstchen — Figure 2](../assets/architectures/wuerstchen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2306.00637)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Stage C works at a 42:1 spatial compression and is a sequence of 16 ConvNeXt blocks without downsampling, with text and timestep conditioning via cross-attention after each block; it deviates from the U-Net design, whereas Stage B is a 4-stage ConvNeXt U-Net in the unquantized 4×256×256 latent of the Stage A VQGAN, conditioned on text and on the Semantic Compressor latents (paper Sec. 3 and appendix). During training an EfficientNetV2-S Semantic Compressor provides the Stage C targets; it is replaced by Stage C at inference. The paper's model uses an 18M Stage A, 1B Stage B and 1B Stage C, conditioned on un-pooled CLIP-H text embeddings. Stable Cascade (Stability AI, announced 2024-02-12) is built on the Würstchen architecture, with Stage C in 1B and 3.6B and Stage B in 700M and 1.5B sizes; its weights use the non-commercial `stable-cascade-nc-community` license and its code (Stability-AI/StableCascade) is MIT.
+
+**License:** code: MIT; weights: mit.
+
+**Variants:** Würstchen v2; Stable Cascade (Stage C 1B / 3.6B, Stage B 700M / 1.5B).
+
+</details>

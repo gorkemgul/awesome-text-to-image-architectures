@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**3 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,81 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [alignDRAW](#aligndraw) | 2015-11-09 | T → I | generation |
+| [Parallel Multiscale PixelCNN](#multiscale-pixelcnn) | 2017-03-10 | T → I | generation |
+| [Text2Scene](#text2scene) | 2018-09-04 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="aligndraw"></a>
+
+### alignDRAW
+
+Conditional DRAW recurrent variational autoencoder that paints patches on a canvas while attending over bidirectional-LSTM caption features.
+
+alignDRAW (ICLR 2016) is one of the first neural models to generate images from free-form captions. It extends the DRAW recurrent VAE so that each drawing step attends to the relevant words of the caption, accumulating patches on a canvas; trained on Microsoft COCO at 32 × 32 pixels, it produces blurry but compositionally novel scenes such as a stop sign flying in blue skies.
+
+[Paper](https://arxiv.org/abs/1511.02793) · [GitHub](https://github.com/mansimov/text2image)
+
+![alignDRAW — Figure 2](../assets/architectures/aligndraw.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1511.02793)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A bidirectional LSTM encodes the caption; at every step the generative LSTM receives a latent sample and an alignment-weighted sentence representation, and a write operator adds a Gaussian-filtered patch to the canvas (paper Figure 2). Training maximizes a variational lower bound with an inference RNN. Microsoft COCO images were resized to 32 × 32; outputs are optionally sharpened by a Laplacian-pyramid adversarial network conditioned on skip-thought caption vectors. The paper also reports an MNIST-with-captions experiment.
+
+**License:** code: MIT.
+
+</details>
+
+<a id="multiscale-pixelcnn"></a>
+
+### Parallel Multiscale PixelCNN
+
+Coarse-to-fine autoregressive pixel model that starts from a 4 × 4 PixelCNN and doubles resolution with conditional upscaling networks that sample groups of pixels in parallel.
+
+This DeepMind paper by Reed et al. makes PixelCNN practical at high resolution by modelling groups of pixels as conditionally independent given a lower-resolution image. Generation starts from a tiny 4 × 4 image and repeatedly doubles resolution, sampling pixel groups in parallel, which reduces sampling cost from linear to logarithmic in the number of pixels. Among its benchmarks are text-conditioned bird, human and COCO scene synthesis up to 256 × 256, where the caption is combined with keypoints or segmentation masks.
+
+[Paper](https://arxiv.org/abs/1703.03664) · GitHub: no author-linked repository found
+
+![Parallel Multiscale PixelCNN — Figure 3 (PDF p. 3)](../assets/architectures/multiscale-pixelcnn.png)
+
+*Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/1703.03664)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Each upscaling step tiles the image into 2 × 2 blocks and samples the four corner groups in turn with a ResNet context encoder plus a shallow PixelCNN over patches (paper Figures 2–3), giving O(log N) sampling instead of one network evaluation per pixel. Captions are encoded with a character-level CNN-GRU; in the reported text-to-image experiments (CUB birds, MPII humans, MS-COCO, up to 256 × 256) the text features are concatenated with spatial features of part keypoints (CUB, MPII) or an 80-class segmentation mask (MS-COCO), so these results are text-plus-structure conditioned. The same paper also reports class-conditional ImageNet, super-resolution and action-conditional video models.
+
+</details>
+
+<a id="text2scene"></a>
+
+### Text2Scene
+
+Non-adversarial sequence-to-sequence model that places objects one at a time on a canvas, using attention over a bidirectional-GRU text encoding to predict each object and its location and attributes.
+
+Text2Scene (CVPR 2019) generates scenes from text by predicting a sequence of objects and their attributes instead of synthesizing pixels with a GAN. At each step it attends to different words to decide what to add and where, producing clip-art scenes, object layouts, or photographic composites assembled from retrieved image segments; this makes the output interpretable object by object.
+
+[Paper](https://arxiv.org/abs/1809.01110) · [GitHub](https://github.com/uvavision/Text2Scene)
+
+![Text2Scene — Figure 2](../assets/architectures/text2scene.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/1809.01110)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Each step encodes the current canvas with a CNN, updates a convolutional recurrent state, attends over the text to pick the next object, then attends again to predict its location map and attribute maps (paper Figure 2). The same framework outputs cartoon-like Abstract Scenes, COCO object layouts, or synthetic image composites; for composites it also predicts an appearance vector used to retrieve segmented foreground patches from a precomputed collection of training-image segments, and an optional stitching (inpainting) network from prior work fills gaps. The model is not a GAN and does not synthesize pixels from scratch.
+
+</details>

@@ -9,10 +9,12 @@
 <text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
 <text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Commercial text-to-image service</text>
 <text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">with undisclosed architecture</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">generation</text>
+<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
 <text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="243.0" font-size="17" fill="#0369a1">Text</text>
+<rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="56" y="220.0" font-size="17" fill="#0369a1">Text</text>
+<rect x="42" y="242.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+<text x="56" y="266.0" font-size="17" fill="#0369a1">Images</text>
 <text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
 <rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
 <text x="856" y="243.0" font-size="17" fill="#047857">Images</text>

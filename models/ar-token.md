@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**0 models · Reviewed 2026-09-29**
+**9 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,9 +17,241 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [CogView](#cogview) | 2021-05-26 | T → I | generation |
+| [DALL·E](#dall-e) | 2021-02-24 | T → I | generation |
+| [DALL·E Mini](#dall-e-mini) | 2021-07-18 | T → I | generation |
+| [ERNIE-ViLG](#ernie-vilg) | 2021-12-31 | T → I | generation |
+| [ImageBART](#imagebart) | 2021-08-19 | T, I → I | editing |
+| [L-Verse](#l-verse) | 2021-11-22 | T → I | generation |
+| [M6](#m6) | 2021-03-01 | T → I | generation |
+| [NÜWA](#nuwa) | 2021-11-24 | T, I → I | editing |
+| [ruDALL-E](#rudall-e) | 2021-11-02 | T → I | generation |
 
 </details>
 
 ## Architectures
 
-No entries yet.
+<a id="cogview"></a>
+
+### CogView
+
+4-billion-parameter GPT-style transformer that autoregressively generates VQ-VAE image tokens after SentencePiece text tokens.
+
+CogView (Tsinghua, Alibaba DAMO and BAAI; NeurIPS 2021) is a Chinese text-to-image model built on a 4-billion-parameter transformer that predicts VQ-VAE image tokens after the prompt. Besides generation, the same pretrained model is fine-tuned for super-resolution, captioning-based self-reranking and style learning, and the paper contributes two techniques, PB-relax and Sandwich-LN, for stable large-transformer training.
+
+[Paper](https://arxiv.org/abs/2105.13290) · [GitHub](https://github.com/zai-org/CogView)
+
+![CogView — Figure 3](../assets/architectures/cogview.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2105.13290)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+A discrete autoencoder maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook; text uses a 50,000-token Chinese SentencePiece vocabulary, and the sequence is laid out with separator tokens ([ROI1], [BASE], [BOI1], [EOI1]) as in paper Figure 3. The transformer has 48 layers, hidden size 2560 and 40 heads, trained on about 30 million Chinese text-image pairs; the paper introduces Precision Bottleneck Relaxation and Sandwich LayerNorm to stabilize training. Fine-tuned copies of the model provide token-space super-resolution to 512 × 512 (sliding-window, 32 × 32 to 64 × 64 tokens), image captioning used for self-reranking via a Caption Loss (instead of CLIP), and style-specific generation. Prompts are Chinese; the README states the demo supports only simplified Chinese input.
+
+**License:** code: Apache-2.0.
+
+</details>
+
+<a id="dall-e"></a>
+
+### DALL·E
+
+Decoder-only sparse transformer that autoregressively models BPE text tokens and discrete-VAE image tokens as a single stream.
+
+DALL·E (OpenAI, 2021) showed that a single large autoregressive transformer, trained on hundreds of millions of web image-text pairs, can generate images from free text zero-shot. Images are first compressed into discrete tokens by a discrete VAE, then a 12-billion-parameter transformer predicts those tokens after the caption; candidate images are reranked with CLIP. Only the image tokenizer was publicly released.
+
+[Paper](https://arxiv.org/abs/2102.12092) · [GitHub](https://github.com/openai/DALL-E)
+
+![DALL·E — Input/output diagram](../assets/architectures/dall-e.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2102.12092)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Stage 1 trains a discrete VAE (Gumbel-softmax relaxation) that compresses a 256 × 256 image into a 32 × 32 grid of tokens from an 8192-entry codebook. Stage 2 trains a 12-billion-parameter sparse transformer on up to 256 text tokens (vocabulary 16,384) concatenated with the 1024 image tokens, using causal text attention and row, column or convolutional masks for image-to-image attention; it was trained on 250 million image-text pairs. Samples are reranked with a contrastive image-text model (CLIP), best of 512 in the reported MS-COCO results. The paper also shows rudimentary zero-shot image-to-image translation by prompting with a partial image. The official repository releases only the discrete VAE; the transformer is not released.
+
+**License:** code: Modified MIT License.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="dall-e-mini"></a>
+
+### DALL·E Mini
+
+BART-style encoder-decoder transformer whose autoregressive decoder predicts VQGAN image tokens from the encoded English prompt.
+
+DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed by a community team whose README acknowledges the Hugging Face Flax/JAX community week and Google TPU Research Cloud. A BART encoder reads the prompt and a BART decoder generates VQGAN image tokens that are decoded into an image. The larger DALL·E Mega shares the design, the Craiyon web service hosts the model, and code and weights are released under Apache 2.0.
+
+[GitHub](https://github.com/borisdayma/dalle-mini) · [Model card 1](https://huggingface.co/dalle-mini/dalle-mini) · [Model card 2](https://huggingface.co/dalle-mini/dalle-mega) · [Announcement](https://wandb.ai/dalle-mini/dalle-mini/reports/DALL-E-Mini-Explained-with-Demo--Vmlldzo4NjIxODA)
+
+![DALL·E Mini — Input/output diagram](../assets/architectures/dall-e-mini.svg)
+
+*Input/output diagram · [Source](https://github.com/borisdayma/dalle-mini)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Per the model card, images are encoded into token sequences by a VQGAN encoder, prompts are encoded by a BART encoder, and the BART decoder autoregressively predicts the next image token with a softmax cross-entropy loss against the VQGAN codes. The README points to a VQGAN-f16-16384 checkpoint for encoding and decoding, and the model configuration in the repository uses a 16,384-entry image vocabulary and 256 image tokens. The model card lists Conceptual Captions, Conceptual 12M and a 2-million-image subsample of the OpenAI YFCC100M subset as training data, and English-only prompts. No paper exists; the date is the publication date of the developers' W&B report "DALL·E Mini Explained". The public demo is the Craiyon service linked from the README.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** DALL·E Mini; DALL·E Mega.
+
+</details>
+
+<a id="ernie-vilg"></a>
+
+### ERNIE-ViLG
+
+10-billion-parameter shared-parameter transformer that autoregressively generates VQGAN image tokens from Chinese text (and captions from image tokens) using UniLM-style attention masks.
+
+ERNIE-ViLG (Baidu, 2021) is a 10-billion-parameter Chinese model that treats both text-to-image generation and image captioning as autoregressive sequence generation in one transformer. Images are represented as VQGAN tokens; for generation the model predicts these tokens after the prompt and the VQGAN decoder renders the image. It was trained on 145 million Chinese image-text pairs.
+
+[Paper](https://arxiv.org/abs/2112.15283) · GitHub: no author-linked repository found
+
+![ERNIE-ViLG — Figure 1](../assets/architectures/ernie-vilg.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2112.15283)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Encoder and decoder share parameters and use self-attention masks so source tokens attend bidirectionally and target tokens attend left to right; the same model is trained on text-to-image and image-to-text sequences (paper Figure 1). Image tokens come from a VQGAN with downsampling factor 8 and an 8192-entry codebook (256 × 256 images, 1024 tokens); row, column and convolutional sparse attention reduce cost. The 10B model has 48 layers, hidden size 4096 and 64 heads and was trained on 145 million Chinese image-text pairs (web alt-text plus translated English datasets). The paper also proposes end-to-end joint training of generator and reconstructor through hidden embeddings, but reports it only for a smaller dVAE-based model; the 10B model uses the two-stage pipeline with the VQGAN decoder as reconstructor. No author code repository was found; the paper links none.
+
+</details>
+
+<a id="imagebart"></a>
+
+### ImageBART
+
+Coarse-to-fine chain of encoder-decoder transformers that inverts a fixed multinomial diffusion over VQGAN tokens, each reverse step decoding the finer token map autoregressively while cross-attending to the coarser one.
+
+ImageBART (Heidelberg University, NeurIPS 2021) addresses the one-directional, single-scale context of autoregressive image transformers by combining them with a discrete diffusion process. Image tokens are gradually corrupted, and a few transformers learn to restore them stage by stage, each seeing the whole coarser image. With text conditioning trained on Conceptual Captions it generates images from prompts and can edit masked regions of an existing image according to text.
+
+[Paper](https://arxiv.org/abs/2108.08827) · [GitHub](https://github.com/CompVis/imagebart)
+
+![ImageBART — Figure 1](../assets/architectures/imagebart.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2108.08827)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+A VQGAN compression stage produces the discrete representation; a fixed multinomial diffusion process progressively replaces tokens, and a short learned Markov chain reverses it, with each transition modelled by a separate (not weight-shared) transformer whose bidirectional encoder reads the coarser state and whose autoregressive decoder generates the next state (paper Figure 1); the final noise-to-first-stage step is decoder-only. The text-conditional model is trained on Conceptual Captions with CLIP-tokenized prompts (77 tokens) prepended as conditioning, uses T = 5 (four transformers) and the ImageNet-trained VQGAN, and reported samples are reranked (best 2 of 32). Because every step sees global context, the same models perform free-form masked inpainting and text-guided local modification of an input image without mask-specific training, and can render images larger than the training resolution. The official repository releases unconditional, LSUN and class-conditional ImageNet weights; text-conditional weights are not listed in its README.
+
+</details>
+
+<a id="l-verse"></a>
+
+### L-Verse
+
+Bidirectional GPT-style autoregressive transformer (BiART) over text tokens and feature-augmented VQ-VAE (AugVAE) image tokens, with segment embeddings marking the conditioning reference and the generation target.
+
+L-Verse (LG AI Research) pairs an improved image tokenizer, AugVAE, with a single transformer that can translate in both directions between image and text. Segment embeddings tell the model which modality is the given reference and which is the target, so one set of weights performs both text-to-image generation and captioning, evaluated on MS-COCO and Conceptual Captions.
+
+[Paper](https://arxiv.org/abs/2111.11133) · GitHub: no author-linked repository found
+
+![L-Verse — Figure 2](../assets/architectures/l-verse.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2111.11133)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+AugVAE is trained as a hierarchical VQ-VAE with weight-shared quantizers and then fine-tuned to a single-level model (AugVAE-SL, about 100M parameters, trained on ImageNet-1K) that maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook. BiART is a 500M-parameter full-attention GPT transformer over 64 BPE text tokens and 1024 image tokens; [REF]/[GEN] segment embeddings let the same model generate images from text or captions from images without fine-tuning (paper Figure 2). Trained on MS-COCO Captions, with a scalability experiment on Conceptual Captions for zero-shot text-to-image generation. The paper gives no code link.
+
+</details>
+
+<a id="m6"></a>
+
+### M6
+
+Chinese multimodal pretrained transformer fine-tuned to generate discrete image codes autoregressively after the text, decoded to pixels by a separately trained image tokenizer.
+
+M6 (Alibaba and Tsinghua, 2021) is a large Chinese multimodal pretrained model scaled to 10 and 100 billion parameters. Beyond understanding and captioning tasks, the authors fine-tune it for text-guided image generation by teaching it to emit discrete image codes after a text prompt, demonstrating e-commerce product images and clip art generated from Chinese product titles.
+
+[Paper](https://arxiv.org/abs/2103.00823) · GitHub: no author-linked repository found
+
+![M6 — Figure 3](../assets/architectures/m6.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2103.00823)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+M6 pretrains a unified encoder/decoder transformer on Chinese text and image-text data with masking strategies for text denoising, language modelling and image-to-text tasks (paper Figure 3 shows this pretraining setup, not the image-generation head). For text-to-image generation the paper follows a DALL·E-style two-stage framework: images are converted to discrete code sequences (VQ-VAE and VQGAN are named as the options), code embedding and output layers are added to the pretrained model, and it is fine-tuned to generate codes autoregressively with top-k sampling. Fine-tuning used about 1.8 million filtered Taobao product image-text pairs, plus a separate 3-million-image general-domain set. Pretrained sizes reported are 327M, 10B and a 100B Mixture-of-Experts model; the paper does not state which size was used for image generation.
+
+</details>
+
+<a id="nuwa"></a>
+
+### NÜWA
+
+3D transformer encoder-decoder with 3D Nearby Attention that autoregressively decodes VQ-GAN tokens of images or videos conditioned on encoded text, sketches or partial visuals.
+
+NÜWA (Microsoft Research Asia and Peking University; ECCV 2022) is a visual synthesis model that treats text, images and videos as 3D token grids and generates visual tokens autoregressively with a local 3D attention mechanism. One pretrained model covers eight tasks, including text-to-image generation, sketch-to-image, image completion and zero-shot text-guided image manipulation, alongside text-to-video and video prediction.
+
+[Paper](https://arxiv.org/abs/2111.12417) · [GitHub](https://github.com/microsoft/NUWA)
+
+![NÜWA — Figure 2](../assets/architectures/nuwa.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2111.12417)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Text, images and videos are all represented as 3D token grids (height × width × time); an adaptive encoder handles the condition (1D text, 2D image sketch, 3D video sketch) and a shared decoder generates target tokens autoregressively, with 3D Nearby Attention restricting self- and cross-attention to local neighbourhoods (paper Figure 2). Images use a VQ-GAN with a 12,288-entry codebook, 21 × 21 tokens at the default 336 × 336 resolution; text is a 77-token sequence. The 870M-parameter model is pretrained jointly on text-to-image (Conceptual Captions), text-to-video and video prediction, then fine-tuned; the paper reports text-to-image on MS-COCO, sketch-to-image, image completion and zero-shot text-guided image manipulation, plus video tasks that are outside this catalog. The author-linked repository contains only README pages and example outputs, not model code or weights; it also hosts the later NUWA-Infinity and NUWA-XL papers.
+
+</details>
+
+<a id="rudall-e"></a>
+
+### ruDALL-E
+
+DALL·E-style transformer that autoregressively models YTTM text tokens followed by 1024 Sber VQ-GAN image tokens as one stream.
+
+ruDALL-E is Sber AI and SberDevices' open reproduction of OpenAI's DALL·E for Russian prompts, released in November 2021. A transformer predicts discrete VQ-GAN image tokens after the text tokens, and the generation pipeline adds ruCLIP reranking and Real-ESRGAN upscaling. The 1.3-billion-parameter Malevich (XL) model was released openly, while the 12-billion-parameter Kandinsky (XXL) model was described alongside it.
+
+[Announcement 1](https://habr.com/ru/company/sberdevices/blog/586926/) · [Announcement 2](https://habr.com/ru/company/sberbank/blog/589673/) · [GitHub](https://github.com/ai-forever/ru-dalle) · [Model card](https://huggingface.co/ai-forever/rudalle-Malevich)
+
+![ruDALL-E — Input/output diagram](../assets/architectures/rudall-e.svg)
+
+*Input/output diagram · [Source](https://github.com/ai-forever/ru-dalle)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Per the developers' Habr report, 256 × 256 images are compressed by their own Sber VQ-GAN into a 32 × 32 grid (1024 tokens), text is tokenized into 128 YTTM tokens, and a transformer written from the team's ruGPT training code learns the joint sequence, with positional coding of image blocks, convolutional and masked attention layers and weighted text and image losses. The published pipeline samples with top-k/top-p, reranks candidates with ruCLIP and optionally upsamples with Real-ESRGAN super-resolution. Prompts are Russian (the model card suggests machine translation for other languages); the model card lists 120 million text-image pairs for Malevich. The README also documents image prompts (partial-image continuation). No paper exists; the date is the first Habr announcement.
+
+**License:** code: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** ruDALL-E Malevich (XL, 1.3B); ruDALL-E Kandinsky (XXL, 12B); ruDALL-E Emojich (XL); ruDALL-E Surrealist (XL).
+
+</details>

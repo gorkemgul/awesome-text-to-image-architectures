@@ -1,13 +1,657 @@
 {
  "schema_version": 1,
  "models": {
-  "midjourney": {
+  "adobe-firefly": {
    "kind": "io-diagram",
-   "path": "assets/architectures/midjourney.svg",
-   "source_url": "https://docs.midjourney.com/hc/en-us",
+   "path": "assets/architectures/adobe-firefly.svg",
+   "source_url": "https://news.adobe.com/news/2025/10/adobe-max-2025-firefly",
    "origin_url": null,
    "locator": "Input/output diagram",
    "sha256": null
+  },
+  "aligndraw": {
+   "kind": "source-figure",
+   "path": "assets/architectures/aligndraw.png",
+   "source_url": "https://arxiv.org/abs/1511.02793",
+   "origin_url": "https://arxiv.org/html/1511.02793v2/alignDrawAnnotated.png",
+   "locator": "Figure 2",
+   "sha256": "3bf33deb6453eda6144db848be4042dfd4517cf232f36d987bcbc6f7e1518a61"
+  },
+  "amazon-titan-image-generator": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/amazon-titan-image-generator.svg",
+   "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/titan-image-models.html",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "attngan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/attngan.png",
+   "source_url": "https://arxiv.org/abs/1711.10485",
+   "origin_url": "https://arxiv.org/html/1711.10485v1/framework_new.png",
+   "locator": "Figure 2",
+   "sha256": "88a4e1c9d3f8976feb41e12067ccd630ce9484f8a3cae15a580ed9de21f42df8"
+  },
+  "auraflow": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/auraflow.svg",
+   "source_url": "https://blog.fal.ai/auraflow/",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "bagel": {
+   "kind": "source-figure",
+   "path": "assets/architectures/bagel.png",
+   "source_url": "https://arxiv.org/abs/2505.14683",
+   "origin_url": "https://arxiv.org/html/2505.14683v3/x2.png",
+   "locator": "Figure 2",
+   "sha256": "08dadaf36544fc5cb47b762e1cab7d4bab77b65a1b137ff4a6d3e61bec157787"
+  },
+  "blip3-o": {
+   "kind": "source-figure",
+   "path": "assets/architectures/blip3-o.png",
+   "source_url": "https://arxiv.org/abs/2505.09568",
+   "origin_url": "https://arxiv.org/html/2505.09568v1/fig1.png",
+   "locator": "Figure 1",
+   "sha256": "fc284fbf31a304c09eb22cb8eb01a703cf0b3c99abda0ade2210221cfe97ce96"
+  },
+  "blip3o-next": {
+   "kind": "source-figure",
+   "path": "assets/architectures/blip3o-next.png",
+   "source_url": "https://arxiv.org/abs/2510.15857",
+   "origin_url": "https://arxiv.org/html/2510.15857v1/figure1.png",
+   "locator": "Figure 1",
+   "sha256": "7a45eac3c6cc86de38472daef28650e414c1c1a024a5aae3c3f552de5acdbef8"
+  },
+  "c4synth": {
+   "kind": "source-figure",
+   "path": "assets/architectures/c4synth.png",
+   "source_url": "https://arxiv.org/abs/1809.10238",
+   "origin_url": "https://arxiv.org/html/1809.10238v1/images/Architecture.png",
+   "locator": "Figure 3",
+   "sha256": "29d6615df5a2d7e74fb240e8ace7cc5376ee7a863587a1ba508d95dada23b5d8"
+  },
+  "canvasgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/canvasgan.png",
+   "source_url": "https://arxiv.org/abs/1810.02833",
+   "origin_url": "https://arxiv.org/html/1810.02833v1/images/Generator.png",
+   "locator": "Fig. 1",
+   "sha256": "d4bf5818acf99c36c9c5fcd0999c36c439c59fbc8b15c46784e6102e01bf1ce1"
+  },
+  "chameleon": {
+   "kind": "source-figure",
+   "path": "assets/architectures/chameleon.png",
+   "source_url": "https://arxiv.org/abs/2405.09818",
+   "origin_url": "https://arxiv.org/pdf/2405.09818v2",
+   "locator": "Figure 1 (PDF p. 2)",
+   "sha256": "4897f2ea66426a3fd084154f7cbffe5ad54108c1a8c1e7235b25e01ad543bab3"
+  },
+  "chatpainter": {
+   "kind": "source-figure",
+   "path": "assets/architectures/chatpainter.png",
+   "source_url": "https://arxiv.org/abs/1802.08216",
+   "origin_url": "https://arxiv.org/pdf/1802.08216v1",
+   "locator": "Figure 3 (PDF p. 3)",
+   "sha256": "c2e14f5ba7e85026453a7d3ed1cf8f9f2d138e7e3eb17433972cbe772b3d6ba3"
+  },
+  "cogview": {
+   "kind": "source-figure",
+   "path": "assets/architectures/cogview.png",
+   "source_url": "https://arxiv.org/abs/2105.13290",
+   "origin_url": "https://arxiv.org/html/2105.13290v3/cogviewframe.png",
+   "locator": "Figure 3",
+   "sha256": "92f5a32c44c862192b6081df68f10f711931378c3acad6563019984ac4dcfb3b"
+  },
+  "cogview3-plus": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/cogview3-plus.svg",
+   "source_url": "https://github.com/zai-org/CogView4",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "cogview4": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/cogview4.svg",
+   "source_url": "https://github.com/zai-org/CogView4",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "composer": {
+   "kind": "source-figure",
+   "path": "assets/architectures/composer.png",
+   "source_url": "https://arxiv.org/abs/2302.09778",
+   "origin_url": "https://arxiv.org/html/2302.09778v2/figs_compressed/global.png",
+   "locator": "Figures 7 and 8 (global and local conditioning modules)",
+   "sha256": "3636ebe733dc1e9079016d037ddd7d7a59eea7abd4495d53a40b186761435d4a",
+   "origin_urls": [
+    "https://arxiv.org/html/2302.09778v2/figs_compressed/global.png",
+    "https://arxiv.org/html/2302.09778v2/figs_compressed/local.png"
+   ]
+  },
+  "controlgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/controlgan.png",
+   "source_url": "https://arxiv.org/abs/1909.07083",
+   "origin_url": "https://arxiv.org/html/1909.07083v2/archi.png",
+   "locator": "Figure 2",
+   "sha256": "8e0497e86e65424c515bc3c7bf6df7994b2fb734eb4009145de1c06f2de8cb19"
+  },
+  "cosmos3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/cosmos3.png",
+   "source_url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "origin_url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+   "locator": "Figure 5 (PDF p. 11)",
+   "sha256": "9e6ddfbc16954c3bf6be34c8c609357c2b416befe66cb279e6448b1f06aadcbb"
+  },
+  "dall-e": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/dall-e.svg",
+   "source_url": "https://arxiv.org/abs/2102.12092",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "dall-e-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dall-e-2.png",
+   "source_url": "https://arxiv.org/abs/2204.06125",
+   "origin_url": "https://arxiv.org/html/2204.06125v1/figures/figurehead/unclip-figurehead.png",
+   "locator": "Figure 2",
+   "sha256": "e8b577ccb102ce4a7a3187f318135cd6ae84e22918c4711117d31f060e9cb521"
+  },
+  "dall-e-3": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/dall-e-3.svg",
+   "source_url": "https://cdn.openai.com/papers/DALL_E_3_System_Card.pdf",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "dall-e-mini": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/dall-e-mini.svg",
+   "source_url": "https://github.com/borisdayma/dalle-mini",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "deepfloyd-if": {
+   "kind": "source-figure",
+   "path": "assets/architectures/deepfloyd-if.png",
+   "source_url": "https://github.com/deep-floyd/IF",
+   "origin_url": "https://raw.githubusercontent.com/deep-floyd/IF/develop/pics/deepfloyd_if_scheme.jpg",
+   "locator": "README architecture scheme",
+   "sha256": "3f9115893ad2ace4f0c2bd8cfde0b1d2dbdaaba7685e6555a967b97a9bf5e9b5"
+  },
+  "dm-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dm-gan.png",
+   "source_url": "https://arxiv.org/abs/1904.01310",
+   "origin_url": "https://arxiv.org/html/1904.01310v1/framework2.png",
+   "locator": "Figure 2",
+   "sha256": "b0ab952432096c81c89c6a3f0e8f31713ef4176dc02eb00386cc16fdba48d7e9"
+  },
+  "dreamllm": {
+   "kind": "source-figure",
+   "path": "assets/architectures/dreamllm.png",
+   "source_url": "https://arxiv.org/abs/2309.11499",
+   "origin_url": "https://arxiv.org/html/2309.11499v2/framework.png",
+   "locator": "Figure 2",
+   "sha256": "69a322f9b96682e5b8052d4846538f7b3e2622f0ef9c0ef57c833dc1ab01810d"
+  },
+  "ediff-i": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ediff-i.png",
+   "source_url": "https://arxiv.org/abs/2211.01324",
+   "origin_url": "https://arxiv.org/html/2211.01324v5/model_arch2.png",
+   "locator": "Figure 5",
+   "sha256": "ad8c1a349a26d9fcf7434bed14949f032166c7d817746ff6ba7aba9c6581caf3"
+  },
+  "emu-baai": {
+   "kind": "source-figure",
+   "path": "assets/architectures/emu-baai.png",
+   "source_url": "https://arxiv.org/abs/2307.05222",
+   "origin_url": "https://arxiv.org/html/2307.05222v2/method.png",
+   "locator": "Figure 2",
+   "sha256": "e9899b0d8d697660a6f2d02c975f7d24e3a6480a2eed3c9b62529878b078898f"
+  },
+  "emu2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/emu2.png",
+   "source_url": "https://arxiv.org/abs/2312.13286",
+   "origin_url": "https://arxiv.org/html/2312.13286v2/method.png",
+   "locator": "Figure 2",
+   "sha256": "5d468925b00f192f6e39bbf2b0cbad90bad0928230fe91579d89339506c4c2d4"
+  },
+  "emu3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/emu3.png",
+   "source_url": "https://arxiv.org/abs/2409.18869",
+   "origin_url": "https://arxiv.org/pdf/2409.18869v1",
+   "locator": "Figure 1 (PDF p. 1)",
+   "sha256": "2fc7e1116ea6d77a36ca925289d981f377c0522abfca5f8af2320c6447bd5a4d"
+  },
+  "emu3-5": {
+   "kind": "source-figure",
+   "path": "assets/architectures/emu3-5.png",
+   "source_url": "https://arxiv.org/abs/2510.26583",
+   "origin_url": "https://arxiv.org/html/2510.26583v1/arch.png",
+   "locator": "Figure 3",
+   "sha256": "6d8dc5ecadf750aeac3c1d266921df309ae9b6df99f4880aefba84d289103071"
+  },
+  "ernie-vilg": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ernie-vilg.png",
+   "source_url": "https://arxiv.org/abs/2112.15283",
+   "origin_url": "https://arxiv.org/html/2112.15283v1/uni_model.png",
+   "locator": "Figure 1",
+   "sha256": "99051a11591eef6c7dc79fc5ee7aea8dab01cbf5d4212e64a6e96eb81fcaf5a5"
+  },
+  "ernie-vilg-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ernie-vilg-2.png",
+   "source_url": "https://arxiv.org/abs/2210.15257",
+   "origin_url": "https://arxiv.org/html/2210.15257v2/model_overview6.png",
+   "locator": "Figure 2",
+   "sha256": "da492490dec788d2b3679cfee19513687cd8966d7d36b90eb4a7ed251dcc610f"
+  },
+  "flux-1": {
+   "kind": "source-figure",
+   "path": "assets/architectures/flux-1.png",
+   "source_url": "https://arxiv.org/abs/2506.15742",
+   "origin_url": "https://arxiv.org/html/2506.15742v2/img/fusedditblock.jpg",
+   "locator": "Figure 3 (FLUX.1 Kontext paper)",
+   "sha256": "d61d5b816de389b2925c1c6e74ed0456f5b5ed7a456d66536bc72d876cd091eb"
+  },
+  "flux-1-kontext": {
+   "kind": "source-figure",
+   "path": "assets/architectures/flux-1-kontext.png",
+   "source_url": "https://arxiv.org/abs/2506.15742",
+   "origin_url": "https://arxiv.org/html/2506.15742v2/img/kontext_v2.jpg",
+   "locator": "Figure 4",
+   "sha256": "1aa3338fb3ff0a0f88bac495e9d563c0da2a15e6e4e902d48e36c93f7c85aa38"
+  },
+  "gan-int-cls": {
+   "kind": "source-figure",
+   "path": "assets/architectures/gan-int-cls.png",
+   "source_url": "https://arxiv.org/abs/1605.05396",
+   "origin_url": "https://arxiv.org/pdf/1605.05396v2",
+   "locator": "Figure 2 (PDF p. 4)",
+   "sha256": "9cea4a7fb8e7826c4e8708b1a735c8c18e42bd9eaa91e82a0b8bf700d6cd9c36"
+  },
+  "gawwn": {
+   "kind": "source-figure",
+   "path": "assets/architectures/gawwn.png",
+   "source_url": "https://arxiv.org/abs/1610.02454",
+   "origin_url": "https://arxiv.org/pdf/1610.02454v1",
+   "locator": "Figure 2 (PDF p. 4)",
+   "sha256": "7cbdf76c33659882e4264f74c15c2f2d00d5c98570e107326c7bc5ef89338d0f"
+  },
+  "gemini-image": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/gemini-image.svg",
+   "source_url": "https://ai.google.dev/gemini-api/docs/image-generation",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "generate-it": {
+   "kind": "source-figure",
+   "path": "assets/architectures/generate-it.png",
+   "source_url": "https://arxiv.org/abs/2110.09753",
+   "origin_url": "https://arxiv.org/html/2110.09753v1/framework.png",
+   "locator": "Figure 2",
+   "sha256": "f0c2267ef85cc0e8e7f85728bb54596798595f336e248f18ed69c9dc532f4e7e"
+  },
+  "glide": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/glide.svg",
+   "source_url": "https://arxiv.org/abs/2112.10741",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "gpt-image-1": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/gpt-image-1.svg",
+   "source_url": "https://developers.openai.com/api/docs/models/gpt-image-1",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "gpt-image-2": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/gpt-image-2.svg",
+   "source_url": "https://developers.openai.com/api/docs/models/gpt-image-2",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "grok-aurora": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/grok-aurora.svg",
+   "source_url": "https://x.ai/news/grok-image-generation-release",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "grok-imagine-image": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/grok-imagine-image.svg",
+   "source_url": "https://docs.x.ai/docs/guides/image-generations",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "hdgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hdgan.png",
+   "source_url": "https://arxiv.org/abs/1802.09178",
+   "origin_url": "https://arxiv.org/html/1802.09178v2/intro2.png",
+   "locator": "Figure 1 (top panel)",
+   "sha256": "0d70451e6c1b7560ecf684e5f2bab456fb9187b800c6bfaec30ffdfa39513c1b"
+  },
+  "hidream-o1-image": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hidream-o1-image.png",
+   "source_url": "https://arxiv.org/abs/2605.11061",
+   "origin_url": "https://arxiv.org/html/2605.11061v1/framework.png",
+   "locator": "Figure 7",
+   "sha256": "7164ee7c13157b723538de3138f888c45d4aefefefbd376d39f0c45ca7078224"
+  },
+  "hong-semantic-layout": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hong-semantic-layout.png",
+   "source_url": "https://arxiv.org/abs/1801.05091",
+   "origin_url": "https://arxiv.org/html/1801.05091v2/fig-architecture.png",
+   "locator": "Figure 2",
+   "sha256": "76a4d2a921e71cedbc4e9000531f162465c42c9ecc8931640f56cd03c24513dd"
+  },
+  "hunyuan-dit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hunyuan-dit.png",
+   "source_url": "https://arxiv.org/abs/2405.08748",
+   "origin_url": "https://arxiv.org/html/2405.08748v1/figures/network.png",
+   "locator": "Figure 7",
+   "sha256": "99d15165d73431a6527722407aef23b52bc1ebf58d7dc33e1d3eccd93ce1a475"
+  },
+  "hunyuanimage-3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hunyuanimage-3.png",
+   "source_url": "https://arxiv.org/abs/2509.23951",
+   "origin_url": "https://arxiv.org/html/2509.23951v3/assets/model/model.png",
+   "locator": "Figure 3",
+   "sha256": "4077dcf5f5a3569d47c28a8f5d6243d964d48a10990255fbb8d631d4b107a8be"
+  },
+  "hyper-sd": {
+   "kind": "source-figure",
+   "path": "assets/architectures/hyper-sd.png",
+   "source_url": "https://arxiv.org/abs/2404.13686",
+   "origin_url": "https://arxiv.org/pdf/2404.13686v3",
+   "locator": "Figure 2 (PDF p. 5)",
+   "sha256": "732ffc234fe7b21cec731254a72bd3b3036bdca3bbd0dea478f307cfb28c7872"
+  },
+  "ideogram": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/ideogram.svg",
+   "source_url": "https://developer.ideogram.ai/api-reference/generate-images/generate-v3",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "imagebart": {
+   "kind": "source-figure",
+   "path": "assets/architectures/imagebart.png",
+   "source_url": "https://arxiv.org/abs/2108.08827",
+   "origin_url": "https://arxiv.org/html/2108.08827v1/NeurIPS2021_model.png",
+   "locator": "Figure 1",
+   "sha256": "d6b1f50298a5911e67b9b70562398e65027e083b5c269902548827cf32c17fae"
+  },
+  "imagen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/imagen.png",
+   "source_url": "https://arxiv.org/abs/2205.11487",
+   "origin_url": "https://arxiv.org/pdf/2205.11487v1",
+   "locator": "Figure A.4 (PDF p. 19)",
+   "sha256": "54cd9f971ad96bd8690b4b99c353f34a5edbc95ad7b9c493e09421f6f7bab597"
+  },
+  "imagen-2": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/imagen-2.svg",
+   "source_url": "https://cloud.google.com/blog/products/ai-machine-learning/imagen-2-on-vertex-ai-is-now-generally-available",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "imagen-3": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/imagen-3.svg",
+   "source_url": "https://arxiv.org/abs/2408.07009",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "imagen-4": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/imagen-4.svg",
+   "source_url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Imagen-4-Model-Card.pdf",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "instaflow": {
+   "kind": "source-figure",
+   "path": "assets/architectures/instaflow.png",
+   "source_url": "https://arxiv.org/abs/2309.06380",
+   "origin_url": "https://arxiv.org/html/2309.06380v2/figs/method_new.jpg",
+   "locator": "Figure 3",
+   "sha256": "000aff3952cc45c653bb86e3ac3b70f0527b023ddf44ceb68ed4e69a7505e9b6"
+  },
+  "janus": {
+   "kind": "source-figure",
+   "path": "assets/architectures/janus.png",
+   "source_url": "https://arxiv.org/abs/2410.13848",
+   "origin_url": "https://arxiv.org/html/2410.13848v1/Janus.png",
+   "locator": "Figure 2",
+   "sha256": "34edc864e8b348bc8ce17c4080f5762dbed0699ed08a9843acd5121bbaa30701"
+  },
+  "janus-pro": {
+   "kind": "source-figure",
+   "path": "assets/architectures/janus-pro.png",
+   "source_url": "https://arxiv.org/abs/2501.17811",
+   "origin_url": "https://arxiv.org/html/2501.17811v1/Janus.png",
+   "locator": "Figure 3",
+   "sha256": "34edc864e8b348bc8ce17c4080f5762dbed0699ed08a9843acd5121bbaa30701"
+  },
+  "janusflow": {
+   "kind": "source-figure",
+   "path": "assets/architectures/janusflow.png",
+   "source_url": "https://arxiv.org/abs/2411.07975",
+   "origin_url": "https://arxiv.org/html/2411.07975v2/architecture_v2.png",
+   "locator": "Figure 2",
+   "sha256": "4a6694e1f18af3005e5d98c837cae972e4049ecde36730e4e11cc9f96aca1dba"
+  },
+  "kandinsky-2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/kandinsky-2.png",
+   "source_url": "https://arxiv.org/abs/2310.03502",
+   "origin_url": "https://arxiv.org/html/2310.03502v1/special_generation.png",
+   "locator": "Figure 1",
+   "sha256": "3b3dff9525937b0d1d3cefca81a278cb84210529b04d15fc6219d3f9f16f38b6"
+  },
+  "kandinsky-3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/kandinsky-3.png",
+   "source_url": "https://arxiv.org/abs/2312.03511",
+   "origin_url": "https://arxiv.org/html/2312.03511v3/images/UNet.jpg",
+   "locator": "Figure 2",
+   "sha256": "a107d9088292a0ceafce351be9676b7a8b61458a24831ecb05e037dbfc590e22"
+  },
+  "karlo": {
+   "kind": "source-figure",
+   "path": "assets/architectures/karlo.png",
+   "source_url": "https://github.com/kakaobrain/karlo",
+   "origin_url": "https://raw.githubusercontent.com/kakaobrain/karlo/main/assets/improved_sr_arch.jpg",
+   "locator": "README figure: improved 64→256 super-resolution module",
+   "sha256": "c8b869f174bbf7c75eb39f60f0e05c2058f45a0d1edf5f3b6b1dbc094d0dfc3d"
+  },
+  "kolors": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/kolors.svg",
+   "source_url": "https://github.com/Kwai-Kolors/Kolors",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "l-verse": {
+   "kind": "source-figure",
+   "path": "assets/architectures/l-verse.png",
+   "source_url": "https://arxiv.org/abs/2111.11133",
+   "origin_url": "https://arxiv.org/html/2111.11133v11/f_l_verse.png",
+   "locator": "Figure 2",
+   "sha256": "b8d0c86ffc1eae17eef8b7b8ea618ee1282ab15e828b8e1feae18d1b08e03958"
+  },
+  "lavit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lavit.png",
+   "source_url": "https://arxiv.org/abs/2309.04669",
+   "origin_url": "https://arxiv.org/html/2309.04669v3/fig1v3.png",
+   "locator": "Figure 2",
+   "sha256": "e8bf6fc3bc492d0877e26d3781c2f736e3a8e070a9b744fcb283442c35506eeb"
+  },
+  "lcm": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/lcm.svg",
+   "source_url": "https://arxiv.org/abs/2310.04378",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "ldm": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ldm.png",
+   "source_url": "https://arxiv.org/abs/2112.10752",
+   "origin_url": "https://arxiv.org/pdf/2112.10752v2",
+   "locator": "Figure 3 (PDF p. 4)",
+   "sha256": "c692a7d5be005f1ea21008d865d4648c7e788054ac0eae0450f9fde504464673"
+  },
+  "lumina-next": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lumina-next.png",
+   "source_url": "https://arxiv.org/abs/2406.18583",
+   "origin_url": "https://arxiv.org/html/2406.18583v1/architecture.png",
+   "locator": "Figure 2",
+   "sha256": "7868172e91b3372f42de712487af2c1716cf58d3b8cd9e5928071a76ae252bc8"
+  },
+  "lumina-t2x": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lumina-t2x.png",
+   "source_url": "https://arxiv.org/abs/2405.05945",
+   "origin_url": "https://arxiv.org/html/2405.05945v3/lumina-pipeline.png",
+   "locator": "Figure 3",
+   "sha256": "2688a5ca60a41ff2014102fae45a54b600b9d1e3ab49eb82d5f0b55b013ae2a5"
+  },
+  "m6": {
+   "kind": "source-figure",
+   "path": "assets/architectures/m6.png",
+   "source_url": "https://arxiv.org/abs/2103.00823",
+   "origin_url": "https://arxiv.org/html/2103.00823v4/m6_tasks_v0.6.png",
+   "locator": "Figure 3",
+   "sha256": "27a669d740c7311bd486f36936445041e0bba3172dcf836dc0c3d5a0c6b761a0"
+  },
+  "matryoshka-diffusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/matryoshka-diffusion.png",
+   "source_url": "https://arxiv.org/abs/2310.15111",
+   "origin_url": "https://arxiv.org/html/2310.15111v2/figures/mdm_architecture.jpg",
+   "locator": "Figure 3",
+   "sha256": "d733d08bfe8c33c8212e86cb8869d0feb2c1e84d23023da1e1216dc1e1a8d585"
+  },
+  "metaquery": {
+   "kind": "source-figure",
+   "path": "assets/architectures/metaquery.png",
+   "source_url": "https://arxiv.org/abs/2504.06256",
+   "origin_url": "https://arxiv.org/html/2504.06256v1/metaquery.png",
+   "locator": "Figure 1",
+   "sha256": "7f65665ada6edce1cf8293cbe344ed6d05ff05192b85c8ce5d77663a1ece1749"
+  },
+  "midjourney": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/midjourney.svg",
+   "source_url": "https://updates.midjourney.com/v8-alpha/",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "mirrorgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mirrorgan.png",
+   "source_url": "https://arxiv.org/abs/1903.05854",
+   "origin_url": "https://arxiv.org/html/1903.05854v1/Model.png",
+   "locator": "Figure 2",
+   "sha256": "df8079393493cccc4a4a496b89d68936b1850f491fd325abbe27390cc1d06266"
+  },
+  "mm-interleaved": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mm-interleaved.png",
+   "source_url": "https://arxiv.org/abs/2401.10208",
+   "origin_url": "https://arxiv.org/html/2401.10208v2/arch_v5.png",
+   "locator": "Figure 4",
+   "sha256": "a183b2f13786095f7a785e27989e715620d1545f1997c12599b2aa8041a73a29"
+  },
+  "mobilediffusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mobilediffusion.png",
+   "source_url": "https://arxiv.org/abs/2311.16567",
+   "origin_url": "https://arxiv.org/pdf/2311.16567v2",
+   "locator": "Figure 2 (PDF p. 5)",
+   "sha256": "472c6c20f95b8be2e10908d6de1d281a281e6dee55a0de36d3abfaa4dcf971b1"
+  },
+  "mogao": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mogao.png",
+   "source_url": "https://arxiv.org/abs/2505.05472",
+   "origin_url": "https://arxiv.org/html/2505.05472v2/x3.png",
+   "locator": "Figure 3",
+   "sha256": "5a98e0ea59330300bf981b78d73466c27db6beb58bddb272d04995991f371cb6"
+  },
+  "multiscale-pixelcnn": {
+   "kind": "source-figure",
+   "path": "assets/architectures/multiscale-pixelcnn.png",
+   "source_url": "https://arxiv.org/abs/1703.03664",
+   "origin_url": "https://arxiv.org/pdf/1703.03664v1",
+   "locator": "Figure 3 (PDF p. 3)",
+   "sha256": "551bc958ec5cfb30f7b5500cb40a58da9bea67a1a8cfe98f0148e115b7c86d09"
+  },
+  "nuwa": {
+   "kind": "source-figure",
+   "path": "assets/architectures/nuwa.png",
+   "source_url": "https://arxiv.org/abs/2111.12417",
+   "origin_url": "https://arxiv.org/html/2111.12417v1/Pipeline_2.png",
+   "locator": "Figure 2",
+   "sha256": "d54ac4d43b186cf43ded8db98861a3fd0745e9a6e46e6e7b0d733f8c644baaf6"
+  },
+  "obj-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/obj-gan.png",
+   "source_url": "https://arxiv.org/abs/1902.10740",
+   "origin_url": "https://arxiv.org/html/1902.10740v1/overall_framework.png",
+   "locator": "Figure 2",
+   "sha256": "a874b401464e0a3a06374cceb3ccfb8e41981b4a64177ef8893f8604045a0e04"
+  },
+  "omnigen2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/omnigen2.png",
+   "source_url": "https://arxiv.org/abs/2506.18871",
+   "origin_url": "https://arxiv.org/html/2506.18871v4/Fig2_new.png",
+   "locator": "Figure 2",
+   "sha256": "1872948e26d0e470014be00337cde788d73263aea97bd3cb325b90b16af8b503"
   },
   "pixart-alpha": {
    "kind": "source-figure",
@@ -16,6 +660,294 @@
    "origin_url": "https://arxiv.org/html/2310.00426v3/model_arch.png",
    "locator": "Figure 4",
    "sha256": "8716d37984e7a08e7f507951fc9a6c3a9d8cb39c6d0d6166305e6a05ce522667"
+  },
+  "pixart-delta": {
+   "kind": "source-figure",
+   "path": "assets/architectures/pixart-delta.png",
+   "source_url": "https://arxiv.org/abs/2401.05252",
+   "origin_url": "https://arxiv.org/html/2401.05252v1/pixart_lcm_pipeline.png",
+   "locator": "Figure 1",
+   "sha256": "d5e9fd19793021fcb3f8665842676dc29e25089b0d83dce674510665706ca145"
+  },
+  "pixart-sigma": {
+   "kind": "source-figure",
+   "path": "assets/architectures/pixart-sigma.png",
+   "source_url": "https://arxiv.org/abs/2403.04692",
+   "origin_url": "https://arxiv.org/html/2403.04692v2/kvcompress.png",
+   "locator": "Figure 7",
+   "sha256": "e9076918264dd6f98bddbb8e9db43f6b1d181c82cb644eb7926a69de97b484f1"
+  },
+  "pixelflow": {
+   "kind": "source-figure",
+   "path": "assets/architectures/pixelflow.png",
+   "source_url": "https://arxiv.org/abs/2504.07963",
+   "origin_url": "https://arxiv.org/html/2504.07963v1/main_pipeline.png",
+   "locator": "Figure 2",
+   "sha256": "6fd566ad221bfeab8cb72f0e60d99ea569f6ff612017bf9d5b027fa7e7a6eaca"
+  },
+  "playground-v2": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/playground-v2.svg",
+   "source_url": "https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "playground-v3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/playground-v3.png",
+   "source_url": "https://arxiv.org/abs/2409.10695",
+   "origin_url": "https://arxiv.org/html/2409.10695v2/images/model_structure.png",
+   "locator": "Figure 2",
+   "sha256": "c031867613ac6ddb3c90b91101279a28af57b22ca4a75368194bf43ed6725635"
+  },
+  "re-imagen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/re-imagen.png",
+   "source_url": "https://arxiv.org/abs/2209.14491",
+   "origin_url": "https://arxiv.org/html/2209.14491v3/figures/reimagen.001.jpeg",
+   "locator": "Figure 3",
+   "sha256": "7bbc7091519487d7efba98575fe2626a7097f96b930243428464b2a1ed1817ec"
+  },
+  "recraft": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/recraft.svg",
+   "source_url": "https://www.recraft.ai/docs/api-reference/endpoints",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "reve-image": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/reve-image.svg",
+   "source_url": "https://blog.reve.com/posts/the-new-reve/",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "rudall-e": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/rudall-e.svg",
+   "source_url": "https://github.com/ai-forever/ru-dalle",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "sana": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sana.png",
+   "source_url": "https://arxiv.org/abs/2410.10629",
+   "origin_url": "https://arxiv.org/html/2410.10629v3/model.png",
+   "locator": "Figure 5",
+   "sha256": "e49aa3e8353714f8827bf8587947bcff17393690c992a66e303b753c78c28aae"
+  },
+  "sana-1-5": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sana-1-5.png",
+   "source_url": "https://arxiv.org/abs/2501.18427",
+   "origin_url": "https://arxiv.org/html/2501.18427v4/pipeline.png",
+   "locator": "Figure 1",
+   "sha256": "a28f6e2105766dfd91cdb1fc57f5ce615e311d8d22a21503cfddab0f85a88ffe"
+  },
+  "sd-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sd-gan.png",
+   "source_url": "https://arxiv.org/abs/1904.01480",
+   "origin_url": "https://arxiv.org/html/1904.01480v1/fig_pipeline.png",
+   "locator": "Figure 2",
+   "sha256": "0c6e8754f5e01f3b419b212aa7c1a4a940bd4f14c1f95b71f859e7daffecc7e2"
+  },
+  "sd3-turbo": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sd3-turbo.png",
+   "source_url": "https://arxiv.org/abs/2403.12015",
+   "origin_url": "https://arxiv.org/html/2403.12015v1/ladd-v3.drawio.png",
+   "locator": "Figure 3",
+   "sha256": "b3e2edcf98b494d4fca901224cb4e69b974e7704603c8956aecad277da4f671d"
+  },
+  "sdxl": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sdxl.png",
+   "source_url": "https://arxiv.org/abs/2307.01952",
+   "origin_url": "https://arxiv.org/html/2307.01952v1/img/sdxl_pipeline.jpg",
+   "locator": "Figure 1 (right panel)",
+   "sha256": "8e37305e8642fd67b29e261dc1110c295101a855c823c0c3f4f1b1f609a9d2ca"
+  },
+  "sdxl-lightning": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/sdxl-lightning.svg",
+   "source_url": "https://arxiv.org/abs/2402.13929",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "sdxl-turbo": {
+   "kind": "source-figure",
+   "path": "assets/architectures/sdxl-turbo.png",
+   "source_url": "https://arxiv.org/abs/2311.17042",
+   "origin_url": "https://arxiv.org/html/2311.17042v1/fig_new.png",
+   "locator": "Figure 2",
+   "sha256": "fd1bdb433299d918f4fc420b68b03d06a7a5bf36e9ed17c15b28dd486486a75f"
+  },
+  "seed-llama": {
+   "kind": "source-figure",
+   "path": "assets/architectures/seed-llama.png",
+   "source_url": "https://arxiv.org/abs/2310.01218",
+   "origin_url": "https://arxiv.org/pdf/2310.01218v1",
+   "locator": "Figure 4 (PDF p. 5)",
+   "sha256": "e8859c266fae67fba4168162e313076594bd23201916b24769ce95733d8549f1"
+  },
+  "seed-x": {
+   "kind": "source-figure",
+   "path": "assets/architectures/seed-x.png",
+   "source_url": "https://arxiv.org/abs/2404.14396",
+   "origin_url": "https://arxiv.org/html/2404.14396v2/llm_method.png",
+   "locator": "Figure 4",
+   "sha256": "2861e649f7bf23ce3691fa572f193843964a52fe23dc8ec9b610489b5c477297"
+  },
+  "show-o": {
+   "kind": "source-figure",
+   "path": "assets/architectures/show-o.png",
+   "source_url": "https://arxiv.org/abs/2408.12528",
+   "origin_url": "https://arxiv.org/html/2408.12528v7/show-o.png",
+   "locator": "Figure 2",
+   "sha256": "4f1296ca0322782f1e89ed58b2804b9e522c289b80e196aed0aea11485ddc9d5"
+  },
+  "show-o2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/show-o2.png",
+   "source_url": "https://arxiv.org/abs/2506.15564",
+   "origin_url": "https://arxiv.org/html/2506.15564v3/overview.png",
+   "locator": "Figure 1",
+   "sha256": "c5736c2ce33068353598f4cfd50fcf7e6e21b353e8b3520351e8428b075ff48c"
+  },
+  "snapfusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/snapfusion.png",
+   "source_url": "https://arxiv.org/abs/2306.00980",
+   "origin_url": "https://arxiv.org/pdf/2306.00980v3",
+   "locator": "Figure 3 (PDF p. 4)",
+   "sha256": "887ba1c3e8c36ec5c0a48eb5ee28576cdbf3c8179559f414012be60449963e50"
+  },
+  "stable-diffusion-1": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/stable-diffusion-1.svg",
+   "source_url": "https://github.com/CompVis/stable-diffusion",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "stable-diffusion-2": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/stable-diffusion-2.svg",
+   "source_url": "https://stability.ai/news/stable-diffusion-v2-release",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
+  },
+  "stable-diffusion-3": {
+   "kind": "source-figure",
+   "path": "assets/architectures/stable-diffusion-3.png",
+   "source_url": "https://arxiv.org/abs/2403.03206",
+   "origin_url": "https://arxiv.org/pdf/2403.03206v1",
+   "locator": "Figure 2 (PDF p. 5)",
+   "sha256": "2042094f115c8fe141353ced15f92c47af066503be8f5bb3a48a64ee34146e3e"
+  },
+  "stackgan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/stackgan.png",
+   "source_url": "https://arxiv.org/abs/1612.03242",
+   "origin_url": "https://arxiv.org/html/1612.03242v2/framework.png",
+   "locator": "Figure 2",
+   "sha256": "64aa08f3584c8716722559cc19331e4bb022a1fa4684d9529953e3449986f8b2"
+  },
+  "stackgan-v2": {
+   "kind": "source-figure",
+   "path": "assets/architectures/stackgan-v2.png",
+   "source_url": "https://arxiv.org/abs/1710.10916",
+   "origin_url": "https://arxiv.org/pdf/1710.10916v3",
+   "locator": "Fig. 2 (PDF p. 6)",
+   "sha256": "4b17f65cbc4b47ecef75869d56fbf49751db336fba1e007038820dd833869534"
+  },
+  "tac-gan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/tac-gan.png",
+   "source_url": "https://arxiv.org/abs/1703.06412",
+   "origin_url": "https://arxiv.org/pdf/1703.06412v2",
+   "locator": "Figure 2 (PDF p. 2)",
+   "sha256": "5fe65bd5b104b9dd51dee0d72562f992d78d16cd88d8c0c56595a9dce114a2b4"
+  },
+  "text-segan": {
+   "kind": "source-figure",
+   "path": "assets/architectures/text-segan.png",
+   "source_url": "https://arxiv.org/abs/1812.05083",
+   "origin_url": "https://arxiv.org/html/1812.05083v2/overview_architecture.png",
+   "locator": "Figure 3",
+   "sha256": "4683f47192bdeb79b5d6f8be5b1a4b7836f29a29fe4d37b1dc8e814ef3871e86"
+  },
+  "text2scene": {
+   "kind": "source-figure",
+   "path": "assets/architectures/text2scene.png",
+   "source_url": "https://arxiv.org/abs/1809.01110",
+   "origin_url": "https://arxiv.org/html/1809.01110v3/model.png",
+   "locator": "Figure 2",
+   "sha256": "ec266ecd918b43ae943231479531b1700549378996900868901e4f492bf71967"
+  },
+  "transfusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/transfusion.png",
+   "source_url": "https://arxiv.org/abs/2408.11039",
+   "origin_url": "https://arxiv.org/html/2408.11039v1/model_diagram-crop.png",
+   "locator": "Figure 1",
+   "sha256": "5a3938fbbd8e684d065db538193b2d4d708f6d18068ddf0314375058d59ac8ed"
+  },
+  "ufogen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ufogen.png",
+   "source_url": "https://arxiv.org/abs/2311.09257",
+   "origin_url": "https://arxiv.org/html/2311.09257v5/UFO_scheme_v2.png",
+   "locator": "Figure 3",
+   "sha256": "26245118225cf5d4be91b9e38ed959bf49aa809e1fd99741df1e0d627ef8a605"
+  },
+  "uniworld": {
+   "kind": "source-figure",
+   "path": "assets/architectures/uniworld.png",
+   "source_url": "https://arxiv.org/abs/2506.03147",
+   "origin_url": "https://arxiv.org/html/2506.03147v4/method.png",
+   "locator": "Figure 3",
+   "sha256": "6a60e3a0be5775af39ec4a1c6da56866884a3f49788dcd1bcb45f63b92a765b8"
+  },
+  "vila-u": {
+   "kind": "source-figure",
+   "path": "assets/architectures/vila-u.png",
+   "source_url": "https://arxiv.org/abs/2409.04429",
+   "origin_url": "https://arxiv.org/html/2409.04429v3/overview.png",
+   "locator": "Figure 1",
+   "sha256": "b5d77c955c62702fc2e5d7b8f0ca5cf631b9dab826a7a8f8614517faeb0fbd3a"
+  },
+  "vl-gpt": {
+   "kind": "source-figure",
+   "path": "assets/architectures/vl-gpt.png",
+   "source_url": "https://arxiv.org/abs/2312.09251",
+   "origin_url": "https://arxiv.org/html/2312.09251v1/overview.png",
+   "locator": "Figure 1",
+   "sha256": "ef96ee3cb5ab649d072660abfd41815411790cbfd0d383aebb33290cb8908496"
+  },
+  "wuerstchen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/wuerstchen.png",
+   "source_url": "https://arxiv.org/abs/2306.00637",
+   "origin_url": "https://arxiv.org/html/2306.00637v2/Wuerstchen_inference_cropped.png",
+   "locator": "Figure 2",
+   "sha256": "c96140f2dd889bc036292a3106e0b560cf61ece9452635835dd84db8e4004cf8"
+  },
+  "x-omni": {
+   "kind": "source-figure",
+   "path": "assets/architectures/x-omni.png",
+   "source_url": "https://arxiv.org/abs/2507.22058",
+   "origin_url": "https://arxiv.org/html/2507.22058v1/fig3.png",
+   "locator": "Figure 3",
+   "sha256": "f5db8e37ddebd557dea1899b388da3cbde0c0c83e38889409a6b62e7262abde2"
   }
  }
 }
