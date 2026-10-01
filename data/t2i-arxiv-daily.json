@@ -34451,8 +34451,9 @@
    "title": "Preserving Product Fidelity in Large Scale Image Recontextualization with Diffusion Models",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08729",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08686",
@@ -34467,16 +34468,18 @@
    "title": "Generating Robot Constitutions & Benchmarks for Semantic Safety",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08663",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.08650",
    "title": "MF-VITON: High-Fidelity Mask-Free Virtual Try-On with Minimal Input",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08650",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08619",
@@ -34491,16 +34494,18 @@
    "title": "MMRL: Multi-Modal Representation Learning for Vision-Language Models",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08497",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.08478",
    "title": "NullFace: Training-Free Localized Face Anonymization",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08478",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08434",
@@ -34524,24 +34529,27 @@
    "title": "Robust Latent Matters: Boosting Image Generation with Sampling Error Synthesis",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08354",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08346",
    "title": "Pathology-Aware Adaptive Watermarking for Text-Driven Medical Image Synthesis",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08346",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08280",
    "title": "OminiControl2: Efficient Conditioning for Diffusion Transformers",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08280",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08250",
@@ -34557,24 +34565,27 @@
    "title": "Multimodal Generation of Animatable 3D Human Models with AvatarForge",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08165",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.08116",
    "title": "ACE: Concept Editing in Diffusion Models without Performance Degradation",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08116",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.08096",
    "title": "MegaSR: Mining Customized Semantics and Expressive Guidance for Real-World Image Super-Resolution",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08096",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.08012",
@@ -34590,16 +34601,18 @@
    "title": "TRACE: Your Diffusion Model is Secretly an Instance Edge Detector",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.07982",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07943",
    "title": "Enhancing Sentiment Analysis through Multimodal Fusion: A BERT-DINOv2 Approach",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.07943",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07703",
@@ -34614,40 +34627,45 @@
    "title": "PLADIS: Pushing the Limits of Attention in Diffusion Models at Inference Time by Leveraging Sparsity",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07677",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.07503",
    "title": "Think Before You Segment: High-Quality Reasoning Segmentation with GPT Chain of Thoughts",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07503",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07493",
    "title": "V2Flow: Unifying Visual Tokenization and Large Language Model Vocabularies for Autoregressive Image Generation",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07493",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.07463",
    "title": "GenAIReading: Augmenting Human Cognition with Interactive Digital Textbooks Using Large Language Models and Image Generation Models",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07463",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07392",
    "title": "SPEED: Scalable, Precise, and Efficient Concept Erasure for Diffusion Models",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07392",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.07389",
