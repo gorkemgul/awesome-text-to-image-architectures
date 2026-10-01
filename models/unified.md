@@ -700,7 +700,7 @@ Unified MLLM over a continuous-input, discrete-output dual vision tokenizer (Dua
 
 ILLUME+ is an enhanced version of ILLUME that adds a dual vision tokenizer and a diffusion decoder to close the gap between unified models' understanding, generation and editing abilities. Its DualViTok tokenizer has a semantic branch (a pretrained text-aligned QwenViT encoder, quantized and reconstructed for image-text alignment) and a pixel branch (a MoVQGAN-based encoder that additionally consumes the quantized semantic features to preserve texture), so the same tokenizer captures both deep semantics and fine-grained detail needed for editing. Rather than decoupling input and output representations like the Janus series, ILLUME+ uses continuous pre-quantized features as MLLM input and predicts discrete coarse-to-fine (semantic-then-pixel) tokens as output through one unified LM head, and an optional diffusion U-Net decoder refines those tokens into higher-fidelity, higher-resolution images. The 3B-LLM model is reported competitive with larger unified and specialist models on understanding, generation (up to 1024x1024) and editing benchmarks.
 
-[Paper](https://arxiv.org/abs/2504.01934) · [GitHub](https://github.com/illume-unified-mllm/ILLUME_plus) · [Model card](https://huggingface.co/ILLUME-MLLM/ILLUME_plus-3b)
+[Paper](https://arxiv.org/abs/2504.01934) · [GitHub](https://github.com/illume-unified-mllm/ILLUME_plus) · [Model card](https://huggingface.co/ILLUME-MLLM/illume_plus-qwen2_5-3b-hf)
 
 ![ILLUME+ — Figure 3](../assets/architectures/illume-plus.png)
 
@@ -713,7 +713,7 @@ ILLUME+ is an enhanced version of ILLUME that adds a dual vision tokenizer and a
 
 DualViTok's semantic branch quantizes QwenViT features and is supervised with a cosine-similarity feature-reconstruction loss; the pixel branch follows MoVQGAN and concatenates quantized semantic and pixel features before decoding, with noise injection during training to make token decoding more robust to autoregressive prediction errors (paper Section 3.1, Figure 3a). The diffusion decoder is a denoising U-Net conditioned on the tokenizer's quantized features plus Gaussian noise, used both to raise generation quality above direct token decoding and to perform efficient super-resolution (Figure 3b). The MLLM (Figure 3c) takes continuous adapter-projected semantic and pixel features as visual input for understanding and editing, and autoregressively emits discrete tokens for generation, first semantic then pixel tokens in a chain-of-thought-like ordering with explicit start/end-of-semantic and start/end-of-pixel markers and height/width indicator tokens (Figure 3d). Training is a progressive, resolution-increasing procedure across the tokenizer, MLLM and diffusion decoder. Editing conditions on an input image plus an edit instruction, generating new discrete tokens while relying on the pixel branch for texture consistency in unchanged regions.
 
-**License:** code: Apache-2.0.
+**License:** code: Apache-2.0; weights: Apache-2.0.
 
 **Variants:** ILLUME_plus-3B; ILLUME_plus-7B.
 
@@ -1975,7 +1975,7 @@ Qwen2.5-Instruct autoregressive LLM over a shared vocabulary of text tokens and 
 
 Tar ("Vision as a Dialect") unifies visual understanding and generation by making images literally speak the LLM's language: its Text-Aligned Tokenizer (TA-Tok) converts images into discrete tokens from a codebook initialized from an LLM's text-embedding vocabulary and adapted to vision through learnable projections, so image and text tokens share one embedding space without modality-specific encoders. A single autoregressive multimodal LLM (built on Qwen2.5-Instruct) then predicts both text and text-aligned image tokens with one next-token objective, and a separate generative de-tokenizer (either an autoregressive LlamaGen-style model or a diffusion model built on SANA) decodes the predicted image tokens back into pixels. The paper reports competitive results on visual understanding and text-to-image generation benchmarks, plus emergent compositional abilities such as subject-driven generation and style transfer.
 
-[Paper](https://arxiv.org/abs/2506.18898) · [GitHub](https://github.com/csuhan/Tar) · [Model card](https://huggingface.co/csuhan/Tar-7B)
+[Paper](https://arxiv.org/abs/2506.18898) · [GitHub](https://github.com/csuhan/Tar) · [Model card](https://huggingface.co/csuhan/Tar-7B-v0.1)
 
 ![Tar — Figure 2](../assets/architectures/tar.png)
 

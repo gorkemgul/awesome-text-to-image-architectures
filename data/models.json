@@ -4629,7 +4629,7 @@
    "source_date_kind": "paper",
    "license": {
     "code": "Apache-2.0",
-    "weights": null
+    "weights": "Apache-2.0"
    },
    "github_status": "author-linked",
    "sources": [
@@ -4649,8 +4649,8 @@
     },
     {
      "kind": "model-card",
-     "title": "ILLUME-MLLM/ILLUME_plus-3b — model card",
-     "url": "https://huggingface.co/ILLUME-MLLM/ILLUME_plus-3b",
+     "title": "ILLUME-MLLM/illume_plus-qwen2_5-3b-hf — model card",
+     "url": "https://huggingface.co/ILLUME-MLLM/illume_plus-qwen2_5-3b-hf",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
     }
@@ -11966,8 +11966,8 @@
     },
     {
      "kind": "model-card",
-     "title": "csuhan/Tar-7B — model card",
-     "url": "https://huggingface.co/csuhan/Tar-7B",
+     "title": "csuhan/Tar-7B-v0.1 — model card",
+     "url": "https://huggingface.co/csuhan/Tar-7B-v0.1",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
     }
