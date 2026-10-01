@@ -200,6 +200,7 @@ def render_readme(catalog, figures, daily):
     lines = [
         "# Awesome Text-to-Image Architectures [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)", "", GENERATED, "",
         "A visual catalog of text-to-image models, from GANs to diffusion transformers and unified multimodal models. Diagrams, primary sources and short notes for every entry.", "",
+        "> Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).", "",
         f'**{len(models)} models and families · Reviewed {catalog["as_of"]}**', "",
         "[Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)", "",
         f'The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper that mentions "text-to-image" in its abstract, or image generation or synthesis in its title, first submitted from **January 1, 2025** onward ({daily["eligible_row_count"]} papers in the pinned snapshot). Every included family has an image, a description, paper links and an explicit GitHub availability status. The complete screening record is available as [JSON](data/t2i-arxiv-daily.json).', "",
@@ -231,8 +232,18 @@ def render_readme(catalog, figures, daily):
             f'*{visual_type} · [Source]({figure["source_url"]})*', "",
         ]
     lines += [
-        "", "---", "",
-        "Catalog format adapted from [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures). [JSON catalog](data/models.json) · [Apache 2.0](LICENSE) · [Third-party figure notice](assets/architectures/FIGURE_NOTICE.md)", "",
+        "", "## Acknowledgements", "",
+        "This catalog is inspired by and adapted from [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar) (Apache-2.0). Its structure — JSON sources of truth, generated Markdown views, primary-source figures with credits, and a screened arXiv collection — follows that project, and the generator and validation scripts are adapted from its code. Model-level claims cite their own primary sources.", "",
+        "If you use this catalog, please also credit the original project:", "",
+        "```bibtex",
+        "@misc{nar_awesome_tts_architectures,",
+        "  author       = {Nar, Kadir},",
+        "  title        = {Awesome TTS Architectures},",
+        "  howpublished = {\\url{https://github.com/kadirnar/awesome-tts-architectures}}",
+        "}",
+        "```", "",
+        "---", "",
+        "[JSON catalog](data/models.json) · [Apache 2.0](LICENSE) · [Third-party figure notice](assets/architectures/FIGURE_NOTICE.md)", "",
     ]
     return "\n".join(lines)
 
