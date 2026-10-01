@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**12 models · Reviewed 2026-09-29**
+**11 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -25,7 +25,6 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Muse](#muse) | 2023-01-02 | T → I | generation |
 | [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | 2026-06-29 | T → I | generation |
 | [Paella](#paella) | 2022-11-14 | T, I → I | editing |
-| [TMDM-3B](#tmdm-3b) | 2026-02-25 | T → I, A | generation |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
 | [VQ-Diffusion](#vq-diffusion) | 2021-11-29 | T, I → I | editing |
 | [X-LXMERT](#x-lxmert) | 2020-09-23 | T → I | generation |
@@ -153,7 +152,7 @@ Meissonic (2024) revisits masked generative transformers (in the style of MUSE) 
 
 **Input → output:** T → I · **Interaction:** generation
 
-Images are tokenized by a VQ-VAE (16x downsampling, 8192-entry codebook) into a 64×64 grid; during generation, tokens are masked according to a schedule and the transformer predicts them over several steps until the full 1024px grid is filled and decoded (paper Figure 2). The transformer interleaves multi-modal blocks (joint text/image self-attention, roughly one multi-modal block per two single-modal blocks, MM-DiT-style) with single-modal image-only blocks, uses Rotary Position Embeddings instead of absolute position encoding to preserve detail at high resolution, and compresses the 64×64 token grid to 32×32 for most of the network before decompressing, keeping inference tractable on consumer GPUs. Text conditioning uses a single fine-tuned CLIP text encoder (1024-d) rather than a large T5-style encoder. Additional micro-conditions include the masking ratio (discretized into 1000 levels), original resolution, crop coordinates and a human-preference score. Meissonic is trained on about 210 million curated images across a 256→512→1024px curriculum, reported at about 48 H100 GPU-days.
+Images are tokenized by a VQ-VAE (16x downsampling, 8192-entry codebook) into a 64×64 grid; during generation, tokens are masked according to a schedule and the transformer predicts them over several steps until the full 1024px grid is filled and decoded (paper Figure 2). The transformer uses multi-modal blocks (joint text/image self-attention, MM-DiT-style) in its initial stages followed by single-modal image-only blocks, at a reported block ratio of about 1:2, uses Rotary Position Embeddings instead of absolute position encoding to preserve detail at high resolution, and compresses the 64×64 token grid to 32×32 for most of the network before decompressing, keeping inference tractable on consumer GPUs. Text conditioning uses a single fine-tuned CLIP text encoder (1024-d) rather than a large T5-style encoder. Additional micro-conditions include the masking ratio (discretized into 1000 levels), original resolution, crop coordinates and a human-preference score. Meissonic is trained on about 210 million curated images across a 256→512→1024px curriculum, reported at about 48 H100 GPU-days.
 
 **License:** code: Apache-2.0; weights: apache-2.0.
 
@@ -178,7 +177,7 @@ Muse (Google Research, 2023) generates images by masked-token modeling rather th
 
 **Input → output:** T → I · **Interaction:** generation
 
-A frozen 4.6B-parameter T5-XXL language model provides text embeddings that carry rich lexical and compositional information (nouns, verbs, spatial relations); a base transformer is trained with a masked-token cross-entropy objective on VQGAN codes (16×16 tokens at 256px) and generates images at inference by iteratively unmasking tokens in parallel (paper Figure 3, "Muse Framework"). A second super-resolution transformer, conditioned on the low-resolution tokens and the text embedding, upsamples to a 64×64 token grid (512px) with the same masked-prediction mechanism (paper Figure 4). The largest base model has 3B parameters (48 layers); combined with the super-resolution model and frozen T5-XXL, total parameters reach about 7.6B. Muse is trained on the Imagen dataset (460M image-text pairs). The authors explicitly did not release code, a demo or weights, citing the risk of misuse.
+A frozen 4.6B-parameter T5-XXL language model provides text embeddings that carry rich lexical and compositional information (nouns, verbs, spatial relations); a base transformer is trained with a masked-token cross-entropy objective on VQGAN codes (16×16 tokens at 256px) and generates images at inference by iteratively unmasking tokens in parallel (paper Figure 3, "Muse Framework"). A second super-resolution transformer, conditioned on the low-resolution tokens and the text embedding, upsamples to a 64×64 token grid (512px) with the same masked-prediction mechanism (paper Figure 4). The largest base model has 3B parameters (48 layers); the frozen T5-XXL encoder adds another 4.6B parameters. Muse is trained on the Imagen dataset (460M image-text pairs). The authors explicitly did not release code, a demo or weights, citing the risk of misuse.
 
 </details>
 
@@ -227,29 +226,6 @@ Paella (LAION and Technical University of Darmstadt, 2022) is a fast text-to-ima
 A pretrained VQGAN (downsampling factor 4) tokenizes a 256×256 image into a 64×64 discrete latent grid; training randomly replaces a fraction of tokens with random codebook entries ("noise") and trains a convolutional U-Net-like network (residual blocks with convolution and attention at lower resolutions) to predict the original tokens from the corrupted grid, conditioned mostly on ByT5-XL text embeddings (95% of training) and occasionally CLIP text/image embeddings (5%), enabling zero-shot image variation and image+text conditioning (paper Figure 2). Sampling multinomially predicts all tokens, keeps a subset and stochastically renoises the rest back to random tokens for the next step, rather than permanently freezing decided tokens as in MaskGIT/Muse; typical generation uses about 12 steps. The 1B-parameter model is trained on about 900 million LAION-5B aesthetic images; code and weights are MIT-licensed and public.
 
 **License:** code: MIT; weights: mit.
-
-</details>
-
-<a id="tmdm-3b"></a>
-
-### TMDM-3B
-
-3B-parameter tri-modal masked diffusion model pretrained from scratch on interleaved text, image-caption and audio-transcription sequences with a shared bidirectional transformer, using an SDE-based reparameterization that decouples physical from logical batch size for stable large-scale training.
-
-This paper conducts a systematic, large-scale study of the design space of tri-modal (text, image, audio) masked diffusion models -- scaling laws, noise schedules and batch-size effects -- and trains a 3B-parameter model (the paper's Section 7.1 calls it the 'Unified 3B Tri-modal MDM') from scratch for 1M steps on 6.4T tokens as its main empirical vehicle. The model packs text, image-caption and audio-transcription sequences and denoises them with one bidirectional transformer under a shared masking schedule, supporting conditional generation across modalities including text-to-image generation, image captioning, text-to-speech and automatic speech recognition from a single set of weights.
-
-[Paper](https://arxiv.org/abs/2602.21472) · GitHub: no author-linked repository found
-
-![TMDM-3B — Figure 2](../assets/architectures/tmdm-3b.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2602.21472)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T → I, A · **Interaction:** generation
-
-The core methodological contribution is an SDE-based reparameterization that decouples the physical batch size used for training from the logical batch size implied by the diffusion noise schedule, letting the authors study critical batch size and compute-optimal token/parameter tradeoffs for masked diffusion at scale; the 3B model is presented with full hyperparameters (Table 5) as the concrete outcome of that analysis rather than a standalone product release. No project page, repository or model name beyond '3B tri-modal MDM' was found in the paper; 'TMDM-3B' is used here only as a catalog identifier.
 
 </details>
 

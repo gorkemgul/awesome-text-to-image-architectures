@@ -25,7 +25,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [ERNIE-ViLG](#ernie-vilg) | 2021-12-31 | T → I | generation |
 | [ImageBART](#imagebart) | 2021-08-19 | T, I → I | editing |
 | [Infinity](#infinity) | 2024-12-05 | T → I | generation |
-| [L-Verse](#l-verse) | 2021-11-22 | T → I | generation |
+| [L-Verse](#l-verse) | 2021-11-22 | T, I → T, I | generation |
 | [LlamaGen](#llamagen) | 2024-06-10 | T → I | generation |
 | [Lumina-mGPT](#lumina-mgpt) | 2024-08-05 | T → I | generation |
 | [Lumina-mGPT 2.0](#lumina-mgpt-2) | 2025-07-23 | T, I → I | editing |
@@ -265,9 +265,9 @@ L-Verse (LG AI Research) pairs an improved image tokenizer, AugVAE, with a singl
 <details>
 <summary>Details</summary>
 
-**Input → output:** T → I · **Interaction:** generation
+**Input → output:** T, I → T, I · **Interaction:** generation
 
-AugVAE is trained as a hierarchical VQ-VAE with weight-shared quantizers and then fine-tuned to a single-level model (AugVAE-SL, about 100M parameters, trained on ImageNet-1K) that maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook. BiART is a 500M-parameter full-attention GPT transformer over 64 BPE text tokens and 1024 image tokens; [REF]/[GEN] segment embeddings let the same model generate images from text or captions from images without fine-tuning (paper Figure 2). Trained on MS-COCO Captions, with a scalability experiment on Conceptual Captions for zero-shot text-to-image generation. The paper gives no code link.
+AugVAE is trained as a hierarchical VQ-VAE with weight-shared quantizers and then fine-tuned to a single-level model (AugVAE-SL, about 100M parameters, trained on ImageNet-1K) that maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook. BiART is a 500M-parameter full-attention GPT transformer over 64 BPE text tokens and 1024 image tokens; [REF]/[GEN] segment embeddings let the same model generate images from text or captions from images without fine-tuning (paper Figure 2). Trained on MS-COCO Captions, with a scalability experiment on Conceptual Captions for zero-shot text-to-image generation. The paper states its source code is available at github.com/tgisaturday/L-Verse, which returned 404 at review, so no repository is recorded.
 
 </details>
 
@@ -406,7 +406,7 @@ Autoregressive transformer built on a frozen pretrained Qwen-7B language model, 
 
 MARS (2024) adds text-to-image generation to a frozen large language model (Qwen-7B) by inserting a Semantic Vision-Language Integration Expert, a mixture-of-experts layer that gives visual tokens their own attention and feed-forward pathways while leaving the original text experts untouched, so the model keeps the LLM's language ability while learning to autoregressively generate VQGAN image tokens. Trained bilingually on Chinese and English captions, the authors report competitive MS-COCO FID at a fraction of Stable Diffusion 1.5's training cost.
 
-[Paper](https://arxiv.org/abs/2407.07614) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2407.07614) · [GitHub](https://github.com/fusiming3/MARS)
 
 ![MARS — Figure 3](../assets/architectures/mars-t2i.png)
 
@@ -417,7 +417,7 @@ MARS (2024) adds text-to-image generation to a frozen large language model (Qwen
 
 **Input → output:** T → I · **Interaction:** generation
 
-Text and VQGAN-tokenized image ('vision words', 8192-entry codebook) are processed by one Transformer whose SemVIE module splits both the multi-head attention and the feed-forward network into a frozen language expert and a trainable visual expert routed per-token, so the model gains image generation without disturbing the original LLM's text capability (paper Figure 3). The joint text-image vocabulary is 160,136 tokens over the Qwen tokenizer plus VQGAN codes. Training has two stages: about 200 million Chinese/English image-text pairs, then fine-tuning on 50 million curated high-quality pairs with CogVLM-recaptioned text; the authors report the full pipeline uses only 587 A100 GPU-days, about 9% of Stable Diffusion 1.5's reported cost. Because it is Qwen-based, prompts can be Chinese or English. No repository or released weights were found linked from the paper.
+Text and VQGAN-tokenized image ('vision words', 8192-entry codebook) are processed by one Transformer whose SemVIE module splits both the multi-head attention and the feed-forward network into a frozen language expert and a trainable visual expert routed per-token, so the model gains image generation without disturbing the original LLM's text capability (paper Figure 3). The joint text-image vocabulary is 160,136 tokens over the Qwen tokenizer plus VQGAN codes. Training has two stages: about 200 million Chinese/English image-text pairs, then fine-tuning on 50 million curated high-quality pairs with CogVLM-recaptioned text; the authors report the full pipeline uses only 587 A100 GPU-days, about 9% of Stable Diffusion 1.5's reported cost. Because it is Qwen-based, prompts can be Chinese or English. The abstract links the fusiming3/MARS repository ("Official implementation"); its README links this paper and states no license file.
 
 </details>
 

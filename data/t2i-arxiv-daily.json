@@ -3736,7 +3736,14 @@
    "reason": "distinct-t2i-system",
    "first_submitted": "2026-07-21",
    "model_id": "mage-flow",
-   "catalog_action": "existing"
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/microsoft/Mage",
+     "evidence_url": "https://arxiv.org/abs/2607.19064",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2607.18840",
@@ -4114,11 +4121,8 @@
    "listed_on": "2026-07-13",
    "paper_url": "https://arxiv.org/abs/2607.11643",
    "review_level": "paper",
-   "decision": "included",
-   "reason": "distinct-t2i-system",
-   "first_submitted": "2026-07-13",
-   "model_id": "xiaomi-robotics-u0",
-   "catalog_action": "added"
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2607.11199",
@@ -6038,8 +6042,8 @@
    "repository_evidence": [
     {
      "url": "https://github.com/wdrink/ARM",
-     "evidence_url": "https://github.com/wdrink/ARM",
-     "verification": "readme-paper-match"
+     "evidence_url": "https://arxiv.org/abs/2606.11188",
+     "verification": "paper-link"
     }
    ]
   },
@@ -9712,11 +9716,8 @@
    "listed_on": "2026-04-15",
    "paper_url": "https://arxiv.org/abs/2604.13495",
    "review_level": "paper",
-   "decision": "included",
-   "reason": "distinct-t2i-system",
-   "first_submitted": "2026-04-15",
-   "model_id": "adp-dit",
-   "catalog_action": "added"
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2604.13491",
@@ -9846,7 +9847,14 @@
    "reason": "distinct-t2i-system",
    "first_submitted": "2026-04-14",
    "model_id": "nucleus-image",
-   "catalog_action": "added"
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/WithNucleusAI/Nucleus-Image",
+     "evidence_url": "https://arxiv.org/abs/2604.12163",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2604.16483",
@@ -12672,7 +12680,14 @@
    "reason": "distinct-t2i-system",
    "first_submitted": "2026-03-03",
    "model_id": "dream",
-   "catalog_action": "added"
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/chaoli-charlie/dream",
+     "evidence_url": "https://arxiv.org/abs/2603.02667",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2603.02519",
@@ -13655,7 +13670,14 @@
    "reason": "distinct-t2i-system",
    "first_submitted": "2026-02-12",
    "model_id": "deepgen-1",
-   "catalog_action": "added"
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/DeepGenTeam/DeepGen",
+     "evidence_url": "https://arxiv.org/abs/2602.12205",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2602.12155",
@@ -14814,7 +14836,14 @@
    "reason": "distinct-t2i-system",
    "first_submitted": "2026-01-25",
    "model_id": "ar-omni",
-   "catalog_action": "added"
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/ModalityDance/AR-Omni",
+     "evidence_url": "https://modalitydance.github.io/AR-Omni/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2601.17706",

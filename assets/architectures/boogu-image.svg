@@ -7,18 +7,15 @@
 <text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">Boogu-Image-0.1</text>
 <rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
 <text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="94.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Unified text-to-image generation and</text>
-<text x="560" y="120.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">instruction-editing model family</text>
-<text x="560" y="146.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">trained from scratch, conditioned on</text>
-<text x="560" y="172.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">a Qwen3-VL-8B instruction encoder</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">and served through an agentic</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">inference pipeline (prompt</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">rewriting, Base/Turbo model routing,</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">reflection); the paper documents</text>
-<text x="560" y="302.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">training data, evaluation and</text>
-<text x="560" y="328.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">inference-time strategy in detail</text>
-<text x="560" y="354.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">but does not disclose the generator</text>
-<text x="560" y="380.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">network&#x27;s internal design</text>
+<text x="560" y="133.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Latent flow-matching transformer (40</text>
+<text x="560" y="159.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">layers including 8 double-stream</text>
+<text x="560" y="185.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">layers, hidden size 3,360, patch</text>
+<text x="560" y="211.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">size 2, 16-channel AutoencoderKL</text>
+<text x="560" y="237.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">latents) conditioned on Qwen3-VL-8B</text>
+<text x="560" y="263.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">instruction features, served through</text>
+<text x="560" y="289.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">an agentic inference pipeline with</text>
+<text x="560" y="315.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">prompt rewriting, Base/Turbo routing</text>
+<text x="560" y="341.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">and reflection</text>
 <text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
 <text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
 <rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>

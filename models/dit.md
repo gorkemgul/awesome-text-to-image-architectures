@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**54 models · Reviewed 2026-09-29**
+**55 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,14 +17,15 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
-| [ADP-DiT](#adp-dit) | 2026-04-15 | T → I | generation |
 | [AuraFlow](#auraflow) | 2024-07-12 | T → I | generation |
 | [BIT (Bidirectional Image-Text Diffusion Bridges)](#bit) | 2026-08-28 | T, I → T, I | generation |
+| [Boogu-Image-0.1](#boogu-image) | 2026-07-14 | T, I → I | editing |
 | [CogView-3Plus](#cogview3-plus) | 2024-09-29 | T → I | generation |
 | [CogView4](#cogview4) | 2025-03-04 | T → I | generation |
 | [DiT-Air](#dit-air) | 2025-03-13 | T → I | generation |
 | [ERNIE-Image](#ernie-image) | 2026-05-25 | T → I | generation |
 | [FIBO](#fibo) | 2025-11-10 | T → I | generation |
+| [FlowInOne](#flowinone) | 2026-04-08 | T, I → I | editing |
 | [FlowTok](#flowtok) | 2025-03-13 | T, I → T, I | generation |
 | [FLUX.1](#flux-1) | 2024-08-01 | T → I | generation |
 | [FLUX.1 Kontext](#flux-1-kontext) | 2025-06-17 | T, I → I | editing |
@@ -45,7 +46,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Lumina-Image 2.0](#lumina-image-2) | 2025-03-27 | T → I | generation |
 | [Lumina-Next](#lumina-next) | 2024-06-05 | T → I | generation |
 | [Lumina-T2X (Lumina-T2I)](#lumina-t2x) | 2024-05-09 | T → I | generation |
-| [Mage-Flow](#mage-flow) | 2026-07-21 | T → I | generation |
+| [Mage-Flow](#mage-flow) | 2026-07-21 | T, I → I | editing |
 | [MMFace-DiT](#mmface-dit) | 2026-03-30 | T → I | generation |
 | [Moonworks Lunara](#moonworks-lunara) | 2026-09-11 | T → I | generation |
 | [Nexus](#nexus) | 2026-08-17 | T → I | generation |
@@ -75,29 +76,6 @@ Dates refer to papers or announcements, not necessarily model releases.
 </details>
 
 ## Architectures
-
-<a id="adp-dit"></a>
-
-### ADP-DiT
-
-1.9B-parameter diffusion transformer (depth 40, hidden size 1408) trained from scratch for longitudinal brain-MRI synthesis, conditioned on dual OpenCLIP/T5-XXL clinical-text embeddings and a metadata-embedding MLP encoding follow-up interval and demographic/diagnostic/neuropsychological variables, operating in a frozen SDXL-VAE latent space with rotary position embeddings on image tokens.
-
-ADP-DiT is a diffusion transformer purpose-built to synthesize longitudinal brain-MRI scans showing predicted Alzheimer's-disease progression, conditioned on natural-language clinical prompts rather than only class labels. A 1.9B-parameter DiT backbone, trained from scratch, denoises SDXL-VAE latents with rotary position embeddings, while a follow-up interval together with demographic, diagnostic and neuropsychological information is packaged as a natural-language prompt and encoded by two frozen text encoders (OpenCLIP ViT-G/14 and T5-XXL); their embeddings and a separate metadata-embedding MLP enter the DiT through cross-attention and adaptive layer normalization.
-
-[Paper](https://arxiv.org/abs/2604.13495) · GitHub: no author-linked repository found
-
-![ADP-DiT — Figure 1](../assets/architectures/adp-dit.png)
-
-*Figure 1 · [Source](https://arxiv.org/abs/2604.13495)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T → I · **Interaction:** generation
-
-Only the SDXL VAE and the two text encoders are reused pretrained components; the DiT backbone, its conditioning pathways and the metadata-embedding module are trained from scratch for this task rather than fine-tuned from a general-purpose text-to-image model. Evaluated on the ADNI longitudinal dataset, reporting a 0.1087 SSIM improvement over the authors' own DiT baseline. No repository link was found at review time.
-
-</details>
 
 <a id="auraflow"></a>
 
@@ -148,6 +126,35 @@ BIT (Bidirectional Image-Text Diffusion Bridges), from Stanford University, refr
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 Paper Figure 1 (PDF p. 3): text is represented as invertible token embeddings mapped through a fixed lookup table (zero-padded at the text endpoint), and a DiT-XL/2 backbone (~1.05B parameters) parameterizes the drift of a forward SDE from text to image and an analytically derived reverse SDE from image back to text, both minimizing the same conditional-expectation objective (derived via Girsanov's theorem and Doob's h-transform) so the path is reversible and semantically meaningful throughout, unlike a noise-to-data diffusion path. The authors report BIT is competitive with or better than noise-to-data diffusion/flow baselines on T2I and I2T generation and on data-variation/editing-style tasks, and also demonstrate the same framework on a scientific (cell-fate modeling) domain. Code is published by the authors and linked directly from the paper.
+
+</details>
+
+<a id="boogu-image"></a>
+
+### Boogu-Image-0.1
+
+Latent flow-matching transformer (40 layers including 8 double-stream layers, hidden size 3,360, patch size 2, 16-channel AutoencoderKL latents) conditioned on Qwen3-VL-8B instruction features, served through an agentic inference pipeline with prompt rewriting, Base/Turbo routing and reflection.
+
+Boogu-Image-0.1 is an open-source unified image generation and instruction-editing model family that argues open text-to-image models can close the gap to closed-source systems primarily by strengthening instruction understanding — via a stronger Qwen3-VL-8B encoder, agentic prompt rewriting, model routing between Base/Turbo variants, and inference-time reflection — together with data-quality and training-pipeline improvements, rather than through architectural scale. Trained from scratch on 208.62M unique images at a reported cost of about $400K, it reports performance competitive with or approaching leading closed-source systems on the authors' Boogu Arena and on Qwen-Image-Bench, and releases weights, code and training recipes under Apache-2.0.
+
+[Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
+
+![Boogu-Image-0.1 — Input/output diagram](../assets/architectures/boogu-image.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2607.13125)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Boogu-Image-0.1 ships Base, Turbo, Edit and Edit-Turbo variants (plus Turbo-Thinking/Edit-Thinking reasoning modes referenced in the benchmarks), trained on only 208.62M unique images at a reported ~$400K training cost for the base model. The paper's contribution is centered on treating instruction understanding as a first-class design axis (a stronger Qwen3-VL-8B text/instruction encoder, agentic prompt rewriting, and inference-time model routing and reflection) alongside data curation and evaluation methodology, rather than a new denoiser architecture; the paper does not describe the generator network; the transformer configuration above is taken from the released Boogu/Boogu-Image-0.1-Base pipeline files (model_index.json: BooguImageTransformer2DModel, Qwen3VLForConditionalGeneration, AutoencoderKL, FlowMatchEulerDiscreteScheduler; transformer/config.json). An ablation reports a 'SANA-VAE configuration' reaching 0.92 on GenEval. Code, weights and recipes are released under Apache-2.0 at the linked repository.
+
+**License:** code: Apache-2.0; weights: Apache-2.0.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Boogu-Image-0.1-Base; Boogu-Image-0.1-Turbo; Boogu-Image-0.1-Edit; Boogu-Image-0.1-Edit-Turbo.
 
 </details>
 
@@ -280,9 +287,34 @@ FIBO (Bria AI) is an open-source text-to-image model trained exclusively on long
 
 **Input → output:** T → I · **Interaction:** generation
 
-Operates in the Wan 2.2 VAE latent space with patch size 1, 12,288 FFN dimension, 24 attention heads and 128-dimensional heads; a VLM expands short captions into structured JSON at inference (paper Figure 2), which a refiner VLM can iteratively edit before FIBO regenerates the image. Trained on 120M licensed image-caption pairs with progressive 256->512->1024px resolution training. Weights are released under Bria's non-commercial FIBO model license (CC BY-NC-4.0-based); training/inference code on GitHub is Apache-2.0 per the repository.
+Operates in the Wan 2.2 VAE latent space with patch size 1, 12,288 FFN dimension, 24 attention heads and 128-dimensional heads; a VLM expands short captions into structured JSON at inference (paper Figure 2), which a refiner VLM can iteratively edit before FIBO regenerates the image. Trained on 120M licensed image-caption pairs with progressive 256->512->1024px resolution training. Weights are released under Bria's non-commercial FIBO model license (CC BY-NC-4.0-based); the Bria-AI/FIBO repository's LICENSE file and pyproject.toml give Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) for the code.
 
-**License:** code: Apache-2.0; weights: bria-fibo (non-commercial, CC BY-NC 4.0-based).
+**License:** code: Attribution-NonCommercial 4.0 International (CC BY-NC 4.0); weights: bria-fibo.
+
+</details>
+
+<a id="flowinone"></a>
+
+### FlowInOne
+
+1.2B-parameter flow-matching model, initialized from CrossFlow, that renders every input modality (text, spatial layouts, editing instructions) as a visual prompt image encoded by a SigLIP ViT, then generates the target image end-to-end through a Dual-Path Spatially-Adaptive Modulation transformer that gates between structural preservation and instruction adherence.
+
+FlowInOne reframes multimodal image generation as a purely visual, image-in/image-out process: instead of separate text encoders and task-specific branches for generation, layout-guided synthesis, editing and visual instruction following, every input -- text, arrows, masks, markers, source images -- is rendered onto a single canvas image, encoded by a SigLIP vision transformer, and consumed by one flow-matching model. A Dual-Path Spatially-Adaptive Modulation mechanism inside the transformer gates, per token, how much the model relies on the preserved input structure versus the instruction signal; pure generation bypasses cross-attention entirely to avoid injecting irrelevant conditioning noise, while editing selectively admits source-image priors. The 1.2B-parameter model is initialized from CrossFlow and trained with a combined flow-matching, CLIP-contrastive and KL-divergence loss.
+
+[Paper](https://arxiv.org/abs/2604.06757) · [GitHub](https://github.com/CSU-JPG/FlowInOne) · [Project](https://csu-jpg.github.io/FlowInOne.github.io/)
+
+![FlowInOne — Figure 3](../assets/architectures/flowinone.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2604.06757)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The authors release the VisPrompt-5M training set (5M visual-prompt pairs across eight task types) and VP-Bench, a benchmark used to analyze failure modes (fidelity, spatial, realism, consistency) and robustness to input-image resolution and instruction perturbations. Code, models and datasets are released on GitHub.
+
+**License:** code: MIT.
 
 </details>
 
@@ -508,7 +540,7 @@ README-level entry (no paper found): the repository's framework diagram shows a 
 
 3B-parameter dual-stream MMDiT with long skip connections and no AdaLN timestep conditioning, denoising in a FLUX.2 VAE latent space and conditioned by a large two-transformer-block adapter on a frozen T5Gemma-2B encoder-decoder text encoder.
 
-i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors release weights, training code, data pipelines and the Lens-800M-scale caption datasets, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
+i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors open-source the model, code and data, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
 
 [Paper](https://arxiv.org/abs/2606.11289) · [GitHub](https://github.com/zlab-princeton/i1) · [Model card](https://huggingface.co/zlab-princeton/i1-3B)
 
@@ -816,9 +848,9 @@ Flag-DiT keeps the DiT framework but replaces LayerNorm with RMSNorm, adds KQ-No
 
 4B native-resolution MMDiT with double-stream (text/image) blocks joined by packed multi-head self-attention, conditioned on Qwen3-VL-4B-Instruct text embeddings and a lightweight, FLUX.2-VAE-distilled Mage-VAE tokenizer, trained with rectified flow matching.
 
-Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.
+Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. An editing model, Mage-Flow-Edit, shares the architecture. Code is released in the microsoft/Mage repository under MIT; the model card is gated behind Hugging Face authentication, so the weight license is not recorded.
 
-[Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2607.19064) · [GitHub](https://github.com/microsoft/Mage) · [Project](https://microsoft.github.io/Mage)
 
 ![Mage-Flow — Figure 5](../assets/architectures/mage-flow.png)
 
@@ -827,9 +859,11 @@ Mage-Flow is a Microsoft text-to-image and editing foundation model built around
 <details>
 <summary>Details</summary>
 
-**Input → output:** T → I · **Interaction:** generation
+**Input → output:** T, I → I · **Interaction:** editing
 
-Paper Figure 5 (Mage-Flow architecture) and Figure 6 (Mage-VAE): prompts and any input images are encoded by frozen Qwen3-VL-4B-Instruct; images of varying resolutions and aspect ratios are separately encoded into compact transformer-ready latents by Mage-VAE, a lightweight, fully-convolutional pixel-diffusion VAE distilled to match FLUX.2-VAE's latent distribution via 'anchor-latent KL regularization,' giving 16x16 spatial reduction and 128 channels while cutting compute roughly 12.3x (encoding) and 22.3x (decoding) versus FLUX.2-VAE. Variable-length text+image token sequences from different samples are flattened and packed together (FlashAttention variable-length kernels with per-sample cumulative offsets) and processed by a 4B-parameter native-resolution MMDiT: separate text-stream and image-stream blocks (each with LayerNorm/Scale&Shift/RMSNorm/2D-RoPE) feed into a shared packed multi-head self-attention. Standard generation uses per-sample 2D RoPE; the editing variant extends this to a 3D position index (h, w, f) to distinguish source and target images. Training uses rectified flow matching. Base is a 30-step supervised fine-tuned model; an RL-aligned variant uses Diffusion-NFT post-training for better prompt following and aesthetics; Turbo is a 4-step distillation via Decoupled DMD with adversarial perceptual guidance. The Hugging Face model card (microsoft/Mage-Flow) requires authentication and could not be reviewed, and no public GitHub repository was found, so license and GitHub-availability status are not established from primary sources.
+Paper Figure 5 (Mage-Flow architecture) and Figure 6 (Mage-VAE): prompts and any input images are encoded by frozen Qwen3-VL-4B-Instruct; images of varying resolutions and aspect ratios are separately encoded into compact transformer-ready latents by Mage-VAE, a lightweight, fully-convolutional pixel-diffusion VAE distilled to match FLUX.2-VAE's latent distribution via 'anchor-latent KL regularization,' giving 16x16 spatial reduction and 128 channels while cutting compute roughly 12.3x (encoding) and 22.3x (decoding) versus FLUX.2-VAE. Variable-length text+image token sequences from different samples are flattened and packed together (FlashAttention variable-length kernels with per-sample cumulative offsets) and processed by a 4B-parameter native-resolution MMDiT: separate text-stream and image-stream blocks (each with LayerNorm/Scale&Shift/RMSNorm/2D-RoPE) feed into a shared packed multi-head self-attention. Standard generation uses per-sample 2D RoPE; the editing variant extends this to a 3D position index (h, w, f) to distinguish source and target images. Training uses rectified flow matching. Base is a 30-step supervised fine-tuned model; an RL-aligned variant uses Diffusion-NFT post-training for better prompt following and aesthetics; Turbo is a 4-step distillation via Decoupled DMD with adversarial perceptual guidance. The paper's front matter links the project page, the microsoft/Mage GitHub repository (MIT LICENSE; its README cites this paper) and a Hugging Face collection; the microsoft/Mage-Flow model card requires authentication, so no weight license is recorded. Mage-Flow-Edit performs instruction-based editing of an input image.
+
+**License:** code: MIT.
 
 **Variants:** Mage-Flow Base; Mage-Flow RL; Mage-Flow Turbo; Mage-Flow-Edit.
 
@@ -912,7 +946,7 @@ Sparse mixture-of-experts diffusion transformer scaling to 17B total parameters 
 
 Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-quality text-to-image diffusion, reaching 17B total parameters across 64 routed experts per layer while activating only about 2B parameters per forward pass through Expert-Choice Routing. Text conditioning is handled by joint attention with text-key/value sharing across denoising timesteps rather than by folding text tokens into the main transformer backbone, and a decoupled routing design is used to keep timestep-conditioned modulation stable under sparsification. The authors describe it as the first fully open-source MoE diffusion model at competitive quality, releasing the training recipe.
 
-[Paper](https://arxiv.org/abs/2604.12163) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
 ![Nucleus-Image — Input/output diagram](../assets/architectures/nucleus-image.svg)
 
@@ -923,7 +957,9 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 **Input → output:** T → I · **Interaction:** generation
 
-Training uses 1.5B image-text pairs after multi-stage filtering and deduplication, a progressive 256->512->1024 resolution curriculum, multi-aspect-ratio bucketing, progressive sparsification and the Muon optimizer, with no post-training stage (no RL, DPO or human-preference tuning). No architecture-overview figure was available in the paper; the catalog entry uses a generated input/output diagram. No repository link was found at review time.
+Training uses 1.5B image-text pairs after multi-stage filtering and deduplication, a progressive 256->512->1024 resolution curriculum, multi-aspect-ratio bucketing, progressive sparsification and the Muon optimizer, with no post-training stage (no RL, DPO or human-preference tuning). No architecture-overview figure was available in the paper; the catalog entry uses a generated input/output diagram. The paper's front matter links the WithNucleusAI/Nucleus-Image GitHub repository, which at review held only a README ("training recipe (coming soon ...)") and an Apache-2.0 LICENSE, and the NucleusAI Hugging Face weights (model-card metadata apache-2.0).
+
+**License:** weights: apache-2.0.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
@@ -1412,7 +1448,7 @@ TerraDiT is a diffusion transformer trained from scratch for text-to-satellite-i
 
 **Input → output:** T → I · **Interaction:** generation
 
-Training is three-stage: unconditional generation, then text-conditioned generation, then point-controlled generation. The authors build and release the Git-10M dataset (2M high-resolution, ~1m-GSD satellite images at zoom level 17 with GPT-4o captions). Models, dataset and code are released on GitHub.
+Training is three-stage: unconditional generation, then text-conditioned generation, then point-controlled generation. Training data build on the existing Git-10M dataset (GPT-4o captions): the authors keep 2M high-resolution, ~1m-GSD images at zoom level 17 and augment them with OpenStreetMap point annotations. Models, dataset and code are released on GitHub.
 
 **Variants:** TerraDiT-XL/2-alpha; TerraDiT-XL/2-Sigma.
 

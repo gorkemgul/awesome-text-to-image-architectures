@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 306 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 304 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -21,9 +21,8 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2026-08-09 | [UniSpace](../models/unified.md#unispace) | paper | [Paper](https://arxiv.org/abs/2608.08676) · [GitHub](https://github.com/yjb6/UniSpace) |
 | 2026-08-04 | [UniWorld-Design](../models/dit.md#uniworld-design) | paper | [Paper](https://arxiv.org/abs/2608.03971) · [Project](https://rabbitvis.rabbitpre.com/blog) · GitHub: no author-linked repository found |
 | 2026-07-27 | [UniGen-AR](../models/ar-token.md#unigen-ar) | paper | [Paper](https://arxiv.org/abs/2607.24157) · [Project](https://zpbao.github.io/projects/unigenar) · GitHub: no author-linked repository found |
-| 2026-07-21 | [Mage-Flow](../models/dit.md#mage-flow) | paper | [Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found |
-| 2026-07-14 | [Boogu-Image-0.1](../models/unified.md#boogu-image) | paper | [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) |
-| 2026-07-13 | [Xiaomi-Robotics-U0](../models/unified.md#xiaomi-robotics-u0) | paper | [Paper](https://arxiv.org/abs/2607.11643) · GitHub: no author-linked repository found |
+| 2026-07-21 | [Mage-Flow](../models/dit.md#mage-flow) | paper | [Paper](https://arxiv.org/abs/2607.19064) · [GitHub](https://github.com/microsoft/Mage) · [Project](https://microsoft.github.io/Mage) |
+| 2026-07-14 | [Boogu-Image-0.1](../models/dit.md#boogu-image) | paper | [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base) |
 | 2026-07-07 | [Muse Image](../models/api.md#muse-image) | announcement | [Announcement 1](https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/) · [Announcement 2](https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/) |
 | 2026-06-29 | [Nemotron-Labs-Diffusion-Image](../models/masked.md#nemotron-labs-diffusion-image) | paper | [Paper](https://arxiv.org/abs/2606.29814) · GitHub: no author-linked repository found |
 | 2026-06-29 | [Libra-2](../models/unified.md#libra-2) | paper | [Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra) |
@@ -52,26 +51,25 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2026-04-22 | [LLaDA2.0-Uni](../models/unified.md#llada2-uni) | paper | [Paper](https://arxiv.org/abs/2604.20796) · [GitHub](https://github.com/inclusionAI/LLaDA2.0-Uni) · [Model card](https://huggingface.co/inclusionAI/LLaDA2.0-Uni) |
 | 2026-04-21 | [MMCORE](../models/unified.md#mmcore) | paper | [Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found |
 | 2026-04-21 | [GPT Image 2](../models/api.md#gpt-image-2) | announcement | [Docs 1](https://developers.openai.com/api/docs/models/gpt-image-2) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-2.5-flare) · [Announcement](https://developers.openai.com/api/docs/changelog) |
-| 2026-04-15 | [ADP-DiT](../models/dit.md#adp-dit) | paper | [Paper](https://arxiv.org/abs/2604.13495) · GitHub: no author-linked repository found |
-| 2026-04-14 | [Nucleus-Image](../models/dit.md#nucleus-image) | paper | [Paper](https://arxiv.org/abs/2604.12163) · GitHub: no author-linked repository found |
+| 2026-04-14 | [Nucleus-Image](../models/dit.md#nucleus-image) | paper | [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image) |
 | 2026-04-14 | [GRN (Generative Refinement Networks)](../models/masked.md#grn) | paper | [Paper](https://arxiv.org/abs/2604.13030) · [GitHub](https://github.com/bytedance/GRN) |
-| 2026-04-08 | [FlowInOne](../models/unified.md#flowinone) | paper | [Paper](https://arxiv.org/abs/2604.06757) · [GitHub](https://github.com/CSU-JPG/FlowInOne) · [Project](https://csu-jpg.github.io/FlowInOne.github.io/) |
+| 2026-04-08 | [FlowInOne](../models/dit.md#flowinone) | paper | [Paper](https://arxiv.org/abs/2604.06757) · [GitHub](https://github.com/CSU-JPG/FlowInOne) · [Project](https://csu-jpg.github.io/FlowInOne.github.io/) |
 | 2026-03-30 | [MMFace-DiT](../models/dit.md#mmface-dit) | paper | [Paper](https://arxiv.org/abs/2603.29029) · [GitHub](https://github.com/Bharath-K3/MMFace-DiT) · [Project](https://vcbsl.github.io/MMFace-DiT/) |
 | 2026-03-30 | [DreamLite](../models/efficient.md#dreamlite) | paper | [Paper](https://arxiv.org/abs/2603.28713) · [GitHub](https://github.com/ByteVisionLab/DreamLite) · [Project](https://carlofkl.github.io/dreamlite/) |
 | 2026-03-29 | [LongCat-Next](../models/unified.md#longcat-next) | paper | [Paper](https://arxiv.org/abs/2603.27538) · [GitHub](https://github.com/meituan-longcat/LongCat-Next) · [Model card](https://huggingface.co/meituan-longcat/LongCat-Next) |
 | 2026-03-18 | [LaDe](../models/dit.md#lade) | paper | [Paper](https://arxiv.org/abs/2603.17965) · GitHub: no author-linked repository found |
 | 2026-03-10 | [InternVL-U](../models/unified.md#internvl-u) | paper | [Paper](https://arxiv.org/abs/2603.09877) · [GitHub](https://github.com/OpenGVLab/InternVL-U) · [Model card](https://huggingface.co/InternVL-U/InternVL-U) |
-| 2026-03-03 | [DREAM](../models/unified.md#dream) | paper | [Paper](https://arxiv.org/abs/2603.02667) · GitHub: no author-linked repository found |
+| 2026-03-03 | [DREAM](../models/unified.md#dream) | paper | [Paper](https://arxiv.org/abs/2603.02667) · [GitHub](https://github.com/chaoli-charlie/dream) |
 | 2026-03-02 | [TerraDiT](../models/dit.md#terradit) | paper | [Paper](https://arxiv.org/abs/2603.02172) · [GitHub](https://github.com/mvrl/TerraDiT) |
 | 2026-03-01 | [LLaDA-o](../models/unified.md#llada-o) | paper | [Paper](https://arxiv.org/abs/2603.01068) · [GitHub](https://github.com/ML-GSAI/LLaDA-o) |
-| 2026-02-25 | [TMDM-3B](../models/masked.md#tmdm-3b) | paper | [Paper](https://arxiv.org/abs/2602.21472) · GitHub: no author-linked repository found |
+| 2026-02-25 | [TMDM-3B](../models/unified.md#tmdm-3b) | paper | [Paper](https://arxiv.org/abs/2602.21472) · GitHub: no author-linked repository found |
 | 2026-02-23 | [Mobile-O](../models/efficient.md#mobile-o) | paper | [Paper](https://arxiv.org/abs/2602.20161) · [GitHub](https://github.com/Amshaker/Mobile-O) · [Model card](https://huggingface.co/Amshaker/Mobile-O-0.5B) |
 | 2026-02-15 | [BitDance](../models/continuous-ar.md#bitdance) | paper | [Paper](https://arxiv.org/abs/2602.14041) · [GitHub](https://github.com/shallowdream204/BitDance) · [Model card](https://huggingface.co/shallowdream204/BitDance-14B-64x) |
 | 2026-02-13 | [Seedream 5.0](../models/api.md#seedream-5) | announcement | [Announcement 1](https://seed.bytedance.com/en/blog/deeper-thinking-more-accurate-generation-introducing-seedream-5-0-lite) · [Announcement 2](https://seed.bytedance.com/en/blog/beyond-generation-it-understands-design-introducing-seedream-5-0-pro) · [Project](https://seed.bytedance.com/en/seedream5_0_lite) |
-| 2026-02-12 | [DeepGen 1.0](../models/unified.md#deepgen-1) | paper | [Paper](https://arxiv.org/abs/2602.12205) · GitHub: no author-linked repository found |
+| 2026-02-12 | [DeepGen 1.0](../models/unified.md#deepgen-1) | paper | [Paper](https://arxiv.org/abs/2602.12205) · [GitHub](https://github.com/DeepGenTeam/DeepGen) · [Model card](https://huggingface.co/deepgenteam/DeepGen-1.0) |
 | 2026-01-31 | [DuoGen](../models/unified.md#duogen) | paper | [Paper](https://arxiv.org/abs/2602.00508) · [Project](https://research.nvidia.com/labs/dir/duogen/) · GitHub: no author-linked repository found |
 | 2026-01-30 | [LINA](../models/continuous-ar.md#lina) | paper | [Paper](https://arxiv.org/abs/2601.22630) · [GitHub](https://github.com/techmonsterwang/LINA) |
-| 2026-01-25 | [AR-Omni](../models/unified.md#ar-omni) | paper | [Paper](https://arxiv.org/abs/2601.17761) · GitHub: no author-linked repository found |
+| 2026-01-25 | [AR-Omni](../models/unified.md#ar-omni) | paper | [Paper](https://arxiv.org/abs/2601.17761) · [GitHub](https://github.com/ModalityDance/AR-Omni) · [Project](https://modalitydance.github.io/AR-Omni/) |
 | 2026-01-14 | [GLM-Image](../models/continuous-ar.md#glm-image) | announcement | [Announcement](https://z.ai/blog/glm-image) · [GitHub](https://github.com/zai-org/GLM-Image) · [Model card](https://huggingface.co/zai-org/GLM-Image) |
 | 2026-01-05 | [NextFlow](../models/unified.md#nextflow) | paper | [Paper](https://arxiv.org/abs/2601.02204) · [GitHub](https://github.com/ByteVisionLab/NextFlow) |
 | 2025-12-26 | [Self-E](../models/efficient.md#self-e) | paper | [Paper](https://arxiv.org/abs/2512.22374) · GitHub: no author-linked repository found |
@@ -168,7 +166,7 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2024-08-05 | [Lumina-mGPT](../models/ar-token.md#lumina-mgpt) | paper | [Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768) |
 | 2024-08-01 | [FLUX.1](../models/dit.md#flux-1) | announcement | [Announcement](https://bfl.ai/announcements/24-08-01-bfl) · [Paper](https://arxiv.org/abs/2506.15742) · [GitHub](https://github.com/black-forest-labs/flux) · [Model card 1](https://huggingface.co/black-forest-labs/FLUX.1-dev) · [Model card 2](https://huggingface.co/black-forest-labs/FLUX.1-schnell) |
 | 2024-07-12 | [AuraFlow](../models/dit.md#auraflow) | announcement | [Announcement](https://blog.fal.ai/auraflow/) · [Model card 1](https://huggingface.co/fal/AuraFlow) · [Model card 2](https://huggingface.co/fal/AuraFlow-v0.3) · GitHub: no author-linked repository found |
-| 2024-07-10 | [MARS](../models/ar-token.md#mars-t2i) | paper | [Paper](https://arxiv.org/abs/2407.07614) · GitHub: no author-linked repository found |
+| 2024-07-10 | [MARS](../models/ar-token.md#mars-t2i) | paper | [Paper](https://arxiv.org/abs/2407.07614) · [GitHub](https://github.com/fusiming3/MARS) |
 | 2024-07-06 | [Kolors](../models/latent-unet.md#kolors) | announcement | [Paper](https://github.com/Kwai-Kolors/Kolors/blob/master/imgs/Kolors_paper.pdf) · [GitHub](https://github.com/Kwai-Kolors/Kolors) · [Model card](https://huggingface.co/Kwai-Kolors/Kolors) |
 | 2024-06-17 | [LI-DiT](../models/dit.md#li-dit) | paper | [Paper](https://arxiv.org/abs/2406.11831) |
 | 2024-06-16 | [STAR](../models/ar-token.md#star-t2i) | paper | [Paper](https://arxiv.org/abs/2406.10797) · [GitHub](https://github.com/Davinci-XLab/STAR-T2I) · [Model card](https://huggingface.co/taocrayon/STAR) |

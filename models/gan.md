@@ -521,9 +521,9 @@ CLIP-empowered GAN that bridges a frozen CLIP-ViT into both the generator (via a
 
 **Input → output:** T → I · **Interaction:** generation
 
-The generator's CLIP-empowered module (paper Figure 5) predicts a bridge feature and learnable prompts fed into a frozen CLIP-ViT so its visual concepts can be decoded back into an image (Figure 3, "The architecture of the proposed GALIP"); the discriminator (Mate-D, Figure 4) likewise extracts CLIP visual features of real/generated images for adversarial and CLIP-similarity losses. This lets GALIP train efficiently with a small generator (~320M parameters) while approaching latent diffusion model quality. Trained/evaluated on CC12M and compared on MS-COCO zero-shot FID.
+The generator's CLIP-empowered module (paper Figure 5) predicts a bridge feature and learnable prompts fed into a frozen CLIP-ViT so its visual concepts can be decoded back into an image (Figure 3, "The architecture of the proposed GALIP"); the discriminator (Mate-D, Figure 4) likewise extracts CLIP visual features of real/generated images for adversarial and CLIP-similarity losses. This lets GALIP train efficiently with a small generator (~320M parameters) while approaching latent diffusion model quality. Trained/evaluated on CC12M and compared on MS-COCO zero-shot FID. The repository's LICENSE file is the MIT License, although the README badge reads CC BY-NC-SA 4.0 and links a LICENSE.md that does not exist.
 
-**License:** code: CC BY-NC-SA 4.0.
+**License:** code: MIT.
 
 </details>
 

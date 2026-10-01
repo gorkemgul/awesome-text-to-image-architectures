@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**60 model families · 60 papers · 54 new catalog entries · Reviewed 2026-09-29**
+**58 model families · 58 papers · 52 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **29** have author-linked GitHub sources; **31** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **54** images come from primary sources; **6** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **34** have author-linked GitHub sources; **24** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **52** images come from primary sources; **6** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,11 +19,11 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 60 |
+| Included | 58 |
 | Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1808 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 770 |
 | No distinct text-to-image system identified in the reviewed source | 1 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1140 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1142 |
 | Not yet screened | 441 |
 
 </details>
@@ -44,7 +44,6 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [UniGen-AR](#unigen-ar)
 - [Mage-Flow](#mage-flow)
 - [Boogu-Image-0.1](#boogu-image)
-- [Xiaomi-Robotics-U0](#xiaomi-robotics-u0)
 - [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image)
 - [Libra-2](#libra-2)
 - [ILLUME-X](#illume-x)
@@ -65,7 +64,6 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [Normalizing Trajectory Models](#ntm)
 - [JoyAI-Image](#joyai-image)
 - [MMCORE](#mmcore)
-- [ADP-DiT](#adp-dit)
 - [Nucleus-Image](#nucleus-image)
 - [GRN (Generative Refinement Networks)](#grn)
 - [FlowInOne](#flowinone)
@@ -256,9 +254,9 @@ UniGen-AR (Carnegie Mellon University, UIUC and Toyota Research Institute) targe
 
 **First paper submission:** 2026-07-21 · [Architecture card](../models/dit.md#mage-flow)
 
-Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. The model card is gated behind Hugging Face authentication and no public code repository was found, so this catalog could not verify its license.
+Mage-Flow is a Microsoft text-to-image and editing foundation model built around two efficiency-focused components: Mage-VAE, a lightweight pixel-diffusion autoencoder distilled to reproduce the FLUX.2-VAE latent space at a fraction of its compute cost, and a native-resolution MMDiT that packs variable-length text and image token sequences from different-sized images into one batch rather than forcing a fixed resolution bucket. Text (and, for editing, reference images) are encoded by Qwen3-VL-4B-Instruct, and the 4B-parameter transformer is trained with rectified flow matching. The family ships a standard Base checkpoint, an RL-aligned variant post-trained for prompt following and aesthetics, and a 4-step distilled Turbo variant for fast inference. An editing model, Mage-Flow-Edit, shares the architecture. Code is released in the microsoft/Mage repository under MIT; the model card is gated behind Hugging Face authentication, so the weight license is not recorded.
 
-[Paper](https://arxiv.org/abs/2607.19064) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2607.19064) · [GitHub](https://github.com/microsoft/Mage) · [Project](https://microsoft.github.io/Mage)
 
 ![Mage-Flow — Figure 5](../assets/architectures/mage-flow.png)
 
@@ -268,29 +266,15 @@ Mage-Flow is a Microsoft text-to-image and editing foundation model built around
 
 ### Boogu-Image-0.1
 
-**First paper submission:** 2026-07-14 · [Architecture card](../models/unified.md#boogu-image)
+**First paper submission:** 2026-07-14 · [Architecture card](../models/dit.md#boogu-image)
 
 Boogu-Image-0.1 is an open-source unified image generation and instruction-editing model family that argues open text-to-image models can close the gap to closed-source systems primarily by strengthening instruction understanding — via a stronger Qwen3-VL-8B encoder, agentic prompt rewriting, model routing between Base/Turbo variants, and inference-time reflection — together with data-quality and training-pipeline improvements, rather than through architectural scale. Trained from scratch on 208.62M unique images at a reported cost of about $400K, it reports performance competitive with or approaching leading closed-source systems on the authors' Boogu Arena and on Qwen-Image-Bench, and releases weights, code and training recipes under Apache-2.0.
 
-[Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image)
+[Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
 ![Boogu-Image-0.1 — Editorial input/output diagram](../assets/architectures/boogu-image.svg)
 
 *Editorial input/output diagram · [Image source](https://arxiv.org/abs/2607.13125)*
-
-<a id="xiaomi-robotics-u0"></a>
-
-### Xiaomi-Robotics-U0
-
-**First paper submission:** 2026-07-13 · [Architecture card](../models/unified.md#xiaomi-robotics-u0)
-
-Xiaomi-Robotics-U0 is a 38-billion-parameter multimodal autoregressive foundation model that treats embodied generation (multi-view robot scene generation, structured embodied transfer, embodied video) as an extension of general text-to-image and image-editing generation, rather than a separately fine-tuned robotics model. Built by extending a Qwen-3-32B decoder-only transformer's vocabulary with an IBQ image tokenizer, it models text and image tokens under one next-token-prediction objective, preserving the generalization of large-scale text/image pretraining while adding embodiment-specific tasks. The paper reports state-of-the-art multi-view embodied scene generation and transfer results, including a jump in out-of-distribution manipulation success rate for a downstream robot policy.
-
-[Paper](https://arxiv.org/abs/2607.11643) · GitHub: no author-linked repository found
-
-![Xiaomi-Robotics-U0 — Figure 3](../assets/architectures/xiaomi-robotics-u0.png)
-
-*Figure 3 · [Image source](https://arxiv.org/abs/2607.11643)*
 
 <a id="nemotron-labs-diffusion-image"></a>
 
@@ -312,7 +296,7 @@ Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for 
 
 **First paper submission:** 2026-06-29 · [Architecture card](../models/unified.md#libra-2)
 
-Libra-2 extends the Libra family's decoupled vision-language design from image understanding only (Libra-1) to unified image-to-text understanding and text-to-image generation. Libra keeps one dedicated vision system and one dedicated language system rather than a single shared backbone, connecting them through cross-modal bridges (low-rank projections) and switch attention/switch FFN modules that route computation between self-modal and cross-modal pathways so each modality's own processing is not disturbed by the other. A continuous-space visual tokenizer combines a VAE encoder with CLIP semantic features through cross-attention, and a unified rotary positional encoding (UniRoPE) handles both 2D image and 1D text positions in one sequence; the language branch (a frozen LLaMA3.2-1B-Instruct) is trained with causal attention while the vision branch, trained from scratch, uses masked generation supervision, with the authors reporting that coupling understanding and generation in this decoupled design yields mutual improvements on both.
+Libra-2 extends the Libra family's decoupled vision-language design from image understanding only (Libra-1) to unified image-to-text understanding and text-to-image generation. Libra keeps one dedicated vision system and one dedicated language system rather than a single shared backbone, connecting them through cross-modal bridges (low-rank projections) and switch attention/switch FFN modules that route computation between self-modal and cross-modal pathways so each modality's own processing is not disturbed by the other. A continuous-space visual tokenizer combines a VAE encoder with CLIP semantic features through cross-attention, and a unified rotary positional encoding (UniRoPE) handles both 2D image and 1D text positions in one sequence; the language branch (initialized from LLaMA3.2-1B-Instruct) is trained with causal attention while the vision branch, trained from scratch, uses masked generation supervision, with the authors reporting that coupling understanding and generation in this decoupled design yields mutual improvements on both.
 
 [Paper](https://arxiv.org/abs/2608.20382) · [GitHub](https://github.com/YifanXu74/Libra)
 
@@ -354,7 +338,7 @@ Mural shows that knowledge from a frozen, text-only large language model remains
 
 **First paper submission:** 2026-06-25 · [Architecture card](../models/efficient.md#juzhou-1)
 
-JuZhou 1.0 is an edge-native Chinese text-to-image foundation model designed for fully offline, on-device generation rather than server-side deployment. Its compact ~0.387B-parameter stack pairs a small U-Net denoiser — whose early blocks drop self-attention to save compute while later blocks keep both self- and cross-attention — with a redesigned, highly compact VAE decoder (1.90M parameters) built from attention-free depthwise-pointwise convolutions. Chinese-CLIP ViT-H/14 replaces the usual English CLIP text towers for native Chinese semantic alignment, with a Qwen3-1.7B prompt refiner improving raw prompts before encoding; training uses rectified flow with DMD2 distillation for 4-step sampling and runs entirely on domestically developed Sugon K100 accelerators rather than NVIDIA hardware. Despite its small size, the base model reports a GenEval score of 0.69, ahead of the much larger SDXL and SD3-Medium, and the pipeline runs on Android and iOS with an accompanying app.
+JuZhou 1.0 is an edge-native Chinese text-to-image foundation model designed for fully offline, on-device generation rather than server-side deployment. Its compact ~0.387B-parameter stack pairs a small U-Net denoiser — whose early blocks drop self-attention to save compute while later blocks keep both self- and cross-attention — with a redesigned, highly compact VAE decoder (1.90M parameters) built from attention-free depthwise-pointwise convolutions. Chinese-CLIP ViT-H/14 replaces the usual English CLIP text towers for native Chinese semantic alignment, with a Qwen3-1.7B prompt refiner improving raw prompts before encoding; training uses rectified flow with DMD2 distillation for 4-step sampling and runs entirely on domestically developed Sugon K100 accelerators rather than NVIDIA hardware. Despite its small size, the base model reports a GenEval score of 0.69 (0.70 in the revised arXiv version), ahead of the much larger SDXL and SD3-Medium, and the pipeline runs on Android and iOS with an accompanying app.
 
 [Paper](https://arxiv.org/abs/2606.28421) · [GitHub](https://github.com/HswAI2026/JuZhou-V1)
 
@@ -396,7 +380,7 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 **First paper submission:** 2026-06-09 · [Architecture card](../models/dit.md#i1)
 
-i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors release weights, training code, data pipelines and the Lens-800M-scale caption datasets, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
+i1 is a fully open, from-scratch text-to-image diffusion model built from a systematic, 300+ experiment study of modeling and data design choices for text-to-image diffusion training. Rather than introducing new network modules, the authors combine the best-performing choices they identify — an encoder-decoder T5Gemma text encoder with a large adapter, long skip connections on a dual-stream MMDiT, and equal-weighted mixing of curated real, synthetic and text-rendering datasets — into a 3B-parameter model trained on 12 public datasets (162.9M images) with synthetic captions from Qwen3-VL. The authors open-source the model, code and data, reporting the model outperforms the best other fully open text-to-image model by 29.5 points on average across benchmarks.
 
 [Paper](https://arxiv.org/abs/2606.11289) · [GitHub](https://github.com/zlab-princeton/i1) · [Model card](https://huggingface.co/zlab-princeton/i1-3B)
 
@@ -572,20 +556,6 @@ MMCORE (ByteDance) transfers the reasoning ability of a multimodal large languag
 
 *Figure 5 · [Image source](https://arxiv.org/abs/2604.19902)*
 
-<a id="adp-dit"></a>
-
-### ADP-DiT
-
-**First paper submission:** 2026-04-15 · [Architecture card](../models/dit.md#adp-dit)
-
-ADP-DiT is a diffusion transformer purpose-built to synthesize longitudinal brain-MRI scans showing predicted Alzheimer's-disease progression, conditioned on natural-language clinical prompts rather than only class labels. A 1.9B-parameter DiT backbone, trained from scratch, denoises SDXL-VAE latents with rotary position embeddings, while a follow-up interval together with demographic, diagnostic and neuropsychological information is packaged as a natural-language prompt and encoded by two frozen text encoders (OpenCLIP ViT-G/14 and T5-XXL); their embeddings and a separate metadata-embedding MLP enter the DiT through cross-attention and adaptive layer normalization.
-
-[Paper](https://arxiv.org/abs/2604.13495) · GitHub: no author-linked repository found
-
-![ADP-DiT — Figure 1](../assets/architectures/adp-dit.png)
-
-*Figure 1 · [Image source](https://arxiv.org/abs/2604.13495)*
-
 <a id="nucleus-image"></a>
 
 ### Nucleus-Image
@@ -594,7 +564,7 @@ ADP-DiT is a diffusion transformer purpose-built to synthesize longitudinal brai
 
 Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-quality text-to-image diffusion, reaching 17B total parameters across 64 routed experts per layer while activating only about 2B parameters per forward pass through Expert-Choice Routing. Text conditioning is handled by joint attention with text-key/value sharing across denoising timesteps rather than by folding text tokens into the main transformer backbone, and a decoupled routing design is used to keep timestep-conditioned modulation stable under sparsification. The authors describe it as the first fully open-source MoE diffusion model at competitive quality, releasing the training recipe.
 
-[Paper](https://arxiv.org/abs/2604.12163) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
 ![Nucleus-Image — Editorial input/output diagram](../assets/architectures/nucleus-image.svg)
 
@@ -618,7 +588,7 @@ Generative Refinement Networks (GRN) propose a visual-synthesis paradigm distinc
 
 ### FlowInOne
 
-**First paper submission:** 2026-04-08 · [Architecture card](../models/unified.md#flowinone)
+**First paper submission:** 2026-04-08 · [Architecture card](../models/dit.md#flowinone)
 
 FlowInOne reframes multimodal image generation as a purely visual, image-in/image-out process: instead of separate text encoders and task-specific branches for generation, layout-guided synthesis, editing and visual instruction following, every input -- text, arrows, masks, markers, source images -- is rendered onto a single canvas image, encoded by a SigLIP vision transformer, and consumed by one flow-matching model. A Dual-Path Spatially-Adaptive Modulation mechanism inside the transformer gates, per token, how much the model relies on the preserved input structure versus the instruction signal; pure generation bypasses cross-attention entirely to avoid injecting irrelevant conditioning noise, while editing selectively admits source-image priors. The 1.2B-parameter model is initialized from CrossFlow and trained with a combined flow-matching, CLIP-contrastive and KL-divergence loss.
 
@@ -678,7 +648,7 @@ LaDe generates editable, layered graphic designs (e.g. an advertisement as separ
 
 DREAM unifies text-image contrastive representation learning and text-to-image generation in one encoder, which is normally difficult because contrastive alignment wants mostly-visible tokens while generative modeling wants heavily-masked ones. Its 'Masking Warmup' schedule shifts the center of the per-step masking-ratio distribution from low to high over roughly 36 epochs of training so that both low- and high-masking regimes coexist throughout training, letting a single MAR-style ViT encoder and FLUID-style decoder serve both a CLIP contrastive loss (via a CLIP-style text encoder) and a diffusion generation loss (via a frozen T5-XXL text encoder and a six-layer diffusion MLP head predicting Stable Diffusion VAE latents). At inference, 'Semantically Aligned Decoding' spawns several partially-decoded candidates and uses the model's own encoder to score and select the best trajectory from as little as 12.5% of the image decoded.
 
-[Paper](https://arxiv.org/abs/2603.02667) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2603.02667) · [GitHub](https://github.com/chaoli-charlie/dream)
 
 ![DREAM — Figure 2](../assets/architectures/dream.png)
 
@@ -716,7 +686,7 @@ LLaDA-o extends the LLaDA masked-diffusion language model into a unified multimo
 
 ### TMDM-3B
 
-**First paper submission:** 2026-02-25 · [Architecture card](../models/masked.md#tmdm-3b)
+**First paper submission:** 2026-02-25 · [Architecture card](../models/unified.md#tmdm-3b)
 
 This paper conducts a systematic, large-scale study of the design space of tri-modal (text, image, audio) masked diffusion models -- scaling laws, noise schedules and batch-size effects -- and trains a 3B-parameter model (the paper's Section 7.1 calls it the 'Unified 3B Tri-modal MDM') from scratch for 1M steps on 6.4T tokens as its main empirical vehicle. The model packs text, image-caption and audio-transcription sequences and denoises them with one bidirectional transformer under a shared masking schedule, supporting conditional generation across modalities including text-to-image generation, image captioning, text-to-speech and automatic speech recognition from a single set of weights.
 
@@ -748,7 +718,7 @@ BitDance (ByteDance with CUHK and other institutions) is an autoregressive image
 
 DeepGen 1.0 is a compact, 5B-parameter unified model for text-to-image generation and editing that the authors position against much larger unified models (reporting gains over the 80B HunyuanImage on the WISE benchmark). Rather than relying on the VLM's final-layer output alone, its Stacked Channel Bridging (SCB) framework samples hidden states from six layers spanning the low, middle and high depth of a Qwen2.5-VL-3B backbone, lets them interact with a set of learnable 'think tokens' through self-attention as an implicit chain-of-thought, and fuses the selected states through a channel-wise concatenation, MLP and Transformer connector before handing them to an SD3.5-Medium (2B) diffusion transformer decoder. Editing is supported by concatenating a reference image's VAE latents with the target image's noise tokens in the DiT input sequence.
 
-[Paper](https://arxiv.org/abs/2602.12205) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2602.12205) · [GitHub](https://github.com/DeepGenTeam/DeepGen) · [Model card](https://huggingface.co/deepgenteam/DeepGen-1.0)
 
 ![DeepGen 1.0 — Figure 3](../assets/architectures/deepgen-1.png)
 
@@ -790,7 +760,7 @@ LINA studies how to design compute-efficient linear attention for continuous-tok
 
 AR-Omni is a unified autoregressive model for 'omni' multimodal understanding and generation, handling text, image and speech within one Transformer decoder and shared token vocabulary rather than routing modalities to separate expert modules. Initialized from the Anole interleaved image-text model and extended to speech, it addresses modality imbalance with task-aware loss reweighting, improves visual quality with a perceptual alignment loss, and manages the stability-creativity trade-off in generation with finite-state decoding. The paper reports strong performance across text, image and speech tasks while keeping real-time capability, including a 0.88 real-time factor for speech generation.
 
-[Paper](https://arxiv.org/abs/2601.17761) · GitHub: no author-linked repository found
+[Paper](https://arxiv.org/abs/2601.17761) · [GitHub](https://github.com/ModalityDance/AR-Omni) · [Project](https://modalitydance.github.io/AR-Omni/)
 
 ![AR-Omni — Figure 1](../assets/architectures/ar-omni.png)
 

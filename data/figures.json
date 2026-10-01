@@ -9,14 +9,6 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
-  "adp-dit": {
-   "kind": "source-figure",
-   "path": "assets/architectures/adp-dit.png",
-   "source_url": "https://arxiv.org/abs/2604.13495",
-   "origin_url": "https://arxiv.org/html/2604.13495v1/adpdit.png",
-   "locator": "Figure 1",
-   "sha256": "9a8ecdba820ccf9c67970d44b1a4b67da087de860ac0d8344b36c24e078f0738"
-  },
   "aligndraw": {
    "kind": "source-figure",
    "path": "assets/architectures/aligndraw.png",
@@ -2456,14 +2448,6 @@
    "origin_url": "https://arxiv.org/html/2507.22058v1/fig3.png",
    "locator": "Figure 3",
    "sha256": "f5db8e37ddebd557dea1899b388da3cbde0c0c83e38889409a6b62e7262abde2"
-  },
-  "xiaomi-robotics-u0": {
-   "kind": "source-figure",
-   "path": "assets/architectures/xiaomi-robotics-u0.png",
-   "source_url": "https://arxiv.org/abs/2607.11643",
-   "origin_url": "https://arxiv.org/html/2607.11643v1/figure2_structure_refine.png",
-   "locator": "Figure 3",
-   "sha256": "8a681aec5a48d44288485edab347f58976a37727e0c4c099f94f7802d8939839"
   },
   "xmc-gan": {
    "kind": "source-figure",
