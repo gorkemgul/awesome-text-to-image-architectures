@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**11 models · Reviewed 2026-09-29**
+**12 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,6 +19,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | --- | --- | --- | --- |
 | [aMUSEd](#amused) | 2024-01-03 | T → I | generation |
 | [GRN (Generative Refinement Networks)](#grn) | 2026-04-14 | T → I, V | generation |
+| [KNN-Diffusion](#knn-diffusion) | 2022-04-06 | T, I → I | editing |
 | [M6-UFC](#m6-ufc) | 2021-05-29 | T → I | generation |
 | [MaskGen](#maskgen) | 2025-01-13 | T → I | generation |
 | [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
@@ -81,7 +82,34 @@ Generative Refinement Networks (GRN) propose a visual-synthesis paradigm distinc
 
 GRN is trained end-to-end with cross-entropy loss over the full ground-truth token sequence and a straight-through estimator for the discrete tokens, using the same architecture for class-conditional ImageNet generation, text-to-image generation and text-to-video generation. Only the text-to-image capability is in scope for this catalog. Code is released on GitHub (ByteDance).
 
+**License:** code: MIT.
+
 **Variants:** GRNind; GRNbit.
+
+</details>
+
+<a id="knn-diffusion"></a>
+
+### KNN-Diffusion
+
+Text-free retrieval-conditioned diffusion: the main backbone is a 24-block transformer performing discrete diffusion over VQGAN image tokens, conditioned on a CLIP embedding and its k nearest-neighbor image embeddings retrieved from a non-trainable index (the CLIP image embedding at training time, the CLIP text embedding at inference).
+
+KNN-Diffusion (Meta AI) trains a text-to-image model without any paired or unpaired text. A non-trainable retrieval model holds CLIP image embeddings in a kNN index; during training the generator is conditioned on an image's CLIP embedding and its k nearest neighbors, and at inference the CLIP text embedding and the neighbors retrieved with it replace them, so the neighbors bridge the gap between image and text embedding distributions. The authors apply the idea to two diffusion backbones: a discrete model that follows VQ-Diffusion over VQGAN tokens (the main 400M-parameter model, described as a tenth the size of baselines such as CogView, DALL-E and GLIDE) and a continuous pixel-space decoder re-implemented from DALL-E 2 without a prior, upsampled by separate super-resolution models. Swapping the retrieval index at inference generates out-of-distribution images, and a mask-free extension replaces a random local area with its nearest neighbor during training to enable text-driven local semantic manipulation.
+
+[Paper](https://arxiv.org/abs/2204.02849) · GitHub: no author-linked repository found
+
+![KNN-Diffusion — Figure 5](../assets/architectures/knn-diffusion.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2204.02849)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Trained on images only from a modified Public Multimodal Dataset (text omitted) and on an image-only stickers dataset; CLIP serves as both text and image encoder for retrieval and the retrieval index uses compressed product-quantized codes. The discrete backbone follows VQ-Diffusion: VQGAN tokenizes images into a 32x32 grid with a 2,887-entry codebook, the transformer decoder uses cross-attention for the concatenated conditioners, adaptive layer normalization injects the timestep, and classifier-free guidance is applied to logits with a null condition (paper Figure 5 and supplement 6.5). The continuous variant is a diffusion U-Net generating 64x64 images upsampled to 256x256 with open-source super-resolution (and further to 512 and 1024 with another open-source model); it is reported as a second backbone for the sticker experiments (supplement 6.6). The card is catalogued under masked token models because the main backbone is a discrete diffusion over VQGAN tokens. The editing label reflects the text-only local manipulation of an input image described in the paper, which requires a source image as input. No official code release is cited in the paper, and no official repository was found by a GitHub search at review time.
+
+**Variants:** Discrete (VQGAN tokens, 400M); Continuous (pixel-space decoder).
 
 </details>
 

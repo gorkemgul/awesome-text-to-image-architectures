@@ -755,7 +755,7 @@
    "source_url": "https://arxiv.org/abs/2604.13030",
    "origin_url": "https://arxiv.org/pdf/2604.13030v2",
    "locator": "Figure 4 (PDF p. 5)",
-   "sha256": "6439b520402325b712410924b7a858d6facc2d69b49f4d24f759cc386994eabd"
+   "sha256": "d060f7a8d7ce5f296932eb1df443de98fdf394e6c84889b51be5c29dfb5840fa"
   },
   "grok-aurora": {
    "kind": "io-diagram",
@@ -1045,6 +1045,14 @@
    "locator": "README figure: improved 64→256 super-resolution module",
    "sha256": "c8b869f174bbf7c75eb39f60f0e05c2058f45a0d1edf5f3b6b1dbc094d0dfc3d"
   },
+  "knn-diffusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/knn-diffusion.png",
+   "source_url": "https://arxiv.org/abs/2204.02849",
+   "origin_url": "https://arxiv.org/html/2204.02849v2/resources/images/arch.png",
+   "locator": "Figure 5",
+   "sha256": "921d41c37d4ebb650172f4761602f9a635f6c84f9353c5864abca957977b10bb"
+  },
   "koala": {
    "kind": "source-figure",
    "path": "assets/architectures/koala.png",
@@ -1187,7 +1195,7 @@
    "source_url": "https://arxiv.org/abs/2603.01068",
    "origin_url": "https://arxiv.org/pdf/2603.01068v1",
    "locator": "Figure 2 (PDF p. 4)",
-   "sha256": "381147b1cfde561e4ccb2ee9e84958500d8549659ff0823503456dd00ad6c5b4"
+   "sha256": "15c3a4bf0c6ac356b3f95cfba948f783c03eff78e77785c80b275830caafae46"
   },
   "llada2-uni": {
    "kind": "source-figure",
@@ -2219,7 +2227,7 @@
    "source_url": "https://arxiv.org/abs/2412.01819",
    "origin_url": "https://arxiv.org/pdf/2412.01819v4",
    "locator": "Figure 2 (PDF p. 4)",
-   "sha256": "b1fb41ee591e2a1e028945c4bdebe610a0b6dc1ea203bb8becedf0178826f114"
+   "sha256": "fe2220e7acd1e74d212109b22fbad238e6a7bff919d319b71983a336383b2917"
   },
   "synergen-vl": {
    "kind": "source-figure",

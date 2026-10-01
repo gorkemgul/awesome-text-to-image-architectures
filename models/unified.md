@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**81 models · Reviewed 2026-09-29**
+**74 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -21,13 +21,10 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [ARM](#arm) | 2026-06-09 | T, I → T, I | editing |
 | [BAGEL](#bagel) | 2025-05-20 | T, I → T, I | editing |
 | [BLIP3-o](#blip3-o) | 2025-05-14 | T, I → T, I | generation |
-| [BLIP3o-NEXT](#blip3o-next) | 2025-10-17 | T, I → I | editing |
 | [Chameleon](#chameleon) | 2024-05-16 | T, I → T, I | generation |
 | [CM3](#cm3) | 2022-01-19 | T, I → T, I | generation |
 | [CoDi](#codi) | 2023-05-19 | T, I, V, A → T, I, V, A | generation |
 | [Cosmos 3](#cosmos3) | 2026-05-31 | T, I, V → T, I, V, A | generation |
-| [DeepGen 1.0](#deepgen-1) | 2026-02-12 | T, I → I | editing |
-| [DREAM](#dream) | 2026-03-03 | T → I | generation |
 | [DreamLLM](#dreamllm) | 2023-09-20 | T, I → T, I | generation |
 | [DuoGen](#duogen) | 2026-01-31 | T, I → T, I | editing |
 | [Emu (BAAI)](#emu-baai) | 2023-07-11 | T, I, V → T, I | generation |
@@ -62,22 +59,18 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Ming-UniVision](#ming-univision) | 2025-10-08 | T, I → T, I | editing |
 | [MM-Interleaved](#mm-interleaved) | 2024-01-18 | T, I → T, I | generation |
 | [MMaDA](#mmada) | 2025-05-21 | T, I → T, I | generation |
-| [MMCORE](#mmcore) | 2026-04-21 | T, I → I | editing |
 | [Mogao](#mogao) | 2025-05-08 | T, I → T, I | editing |
 | [MonoFormer](#monoformer) | 2024-09-24 | T → T, I | generation |
 | [Muddit](#muddit) | 2025-05-29 | T, I → T, I | generation |
-| [Mural](#mural) | 2026-06-27 | T → I | generation |
+| [Mural](#mural) | 2026-06-27 | T → I, T | generation |
 | [NExT-GPT](#next-gpt) | 2023-09-11 | T, I, V, A → T, I, V, A | generation |
 | [NextFlow](#nextflow) | 2026-01-05 | T, I → T, I | editing |
 | [Nexus-Gen](#nexus-gen) | 2025-04-30 | T, I → T, I | editing |
 | [OFA](#ofa) | 2022-02-07 | T, I → T, I | generation |
-| [OmniGen](#omnigen) | 2024-09-17 | T, I → I | editing |
-| [OmniGen-AR](#omnigen-ar) | 2026-06-08 | T, I → I | editing |
 | [OmniGen2](#omnigen2) | 2025-06-23 | T, I → T, I | editing |
 | [OneCAT](#onecat) | 2025-09-03 | T, I → T, I | editing |
 | [Orthus](#orthus) | 2024-11-28 | T, I → T, I | editing |
 | [Ovis-U1](#ovis-u1) | 2025-06-29 | T, I → T, I | editing |
-| [PS-VAE](#ps-vae) | 2025-12-19 | T, I → I | editing |
 | [PUMA](#puma) | 2024-10-17 | T, I → T, I | editing |
 | [SEED-LLaMA](#seed-llama) | 2023-10-02 | T, I → T, I | generation |
 | [SEED-X](#seed-x) | 2024-04-22 | T, I → T, I | editing |
@@ -205,33 +198,6 @@ Learnable query vectors appended to the prompt are processed by the autoregressi
 
 </details>
 
-<a id="blip3o-next"></a>
-
-### BLIP3o-NEXT
-
-Qwen3-initialized autoregressive model that predicts quantized SigLIP2 image tokens, whose hidden states condition a SANA1.5-initialized diffusion transformer over VAE latents.
-
-BLIP3o-NEXT is the successor to BLIP3-o in the BLIP3 series, positioned as a native image generation model that handles text-to-image generation and image editing in one Autoregressive + Diffusion architecture of about 3B parameters. Unlike BLIP3-o, the autoregressive model now predicts discrete image tokens, which makes GRPO reinforcement learning with verifiable rewards (GenEval-style composition and text rendering) directly applicable, and a diffusion transformer conditioned on the tokens' hidden states renders the final image. The paper also describes consistency techniques for editing, including a reconstruction task and VAE-latent conditioning of the diffusion model.
-
-[Paper](https://arxiv.org/abs/2510.15857) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-NEXT-SFT-3B)
-
-![BLIP3o-NEXT — Figure 1](../assets/architectures/blip3o-next.png)
-
-*Figure 1 · [Source](https://arxiv.org/abs/2510.15857)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Images are encoded with SigLIP2 and quantized into 729 discrete tokens per 384x384 image; the autoregressive model is trained with cross-entropy on text and image tokens and the diffusion model with a diffusion loss on VAE features, conditioned by cross-attention on the predicted tokens' hidden states (paper Section 2.3 and Figure 1). For editing, reference images enter the autoregressive model as quantized tokens, and their VAE latents are added to the diffusion model through cross-attention and noise-space injection. During GRPO the diffusion model is frozen and only the autoregressive policy is updated. The paper does not evaluate multimodal understanding, so text is not listed as an output.
-
-**License:** weights: Apache-2.0.
-
-**Variants:** BLIP3o-NEXT-Pretrain-3B; BLIP3o-NEXT-SFT-3B; BLIP3o-NEXT-GRPO-Geneval-3B.
-
-</details>
-
 <a id="chameleon"></a>
 
 ### Chameleon
@@ -333,58 +299,6 @@ Each decoder layer has two parameter sets (reasoner and generator), both initial
 **License:** code: OpenMDW-1.1; weights: OpenMDW-1.1.
 
 **Variants:** Cosmos3-Super-Text2Image; Cosmos3-Super-Text2Image-4Step; Cosmos3-Super; Cosmos3-Nano.
-
-</details>
-
-<a id="deepgen-1"></a>
-
-### DeepGen 1.0
-
-5B unified VLM-DiT model pairing a Qwen2.5-VL-3B vision-language backbone with an SD3.5-Medium (2B) diffusion transformer decoder, bridged by a Stacked Channel Bridging (SCB) module that fuses multi-layer VLM hidden states through learnable 'think tokens'.
-
-DeepGen 1.0 is a compact, 5B-parameter unified model for text-to-image generation and editing that the authors position against much larger unified models (reporting gains over the 80B HunyuanImage on the WISE benchmark). Rather than relying on the VLM's final-layer output alone, its Stacked Channel Bridging (SCB) framework samples hidden states from six layers spanning the low, middle and high depth of a Qwen2.5-VL-3B backbone, lets them interact with a set of learnable 'think tokens' through self-attention as an implicit chain-of-thought, and fuses the selected states through a channel-wise concatenation, MLP and Transformer connector before handing them to an SD3.5-Medium (2B) diffusion transformer decoder. Editing is supported by concatenating a reference image's VAE latents with the target image's noise tokens in the DiT input sequence.
-
-[Paper](https://arxiv.org/abs/2602.12205) · [GitHub](https://github.com/DeepGenTeam/DeepGen) · [Model card](https://huggingface.co/deepgenteam/DeepGen-1.0)
-
-![DeepGen 1.0 — Figure 3](../assets/architectures/deepgen-1.png)
-
-*Figure 3 · [Source](https://arxiv.org/abs/2602.12205)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Training is three-stage: alignment pretraining to synchronize VLM and DiT representations, joint supervised fine-tuning on mixed generation/editing/reasoning data (~50M samples), and reinforcement learning with a multi-reward GRPO variant (MR-GRPO). Visual encoding is dual-branch: a ViT captures semantics for the VLM side and a VAE encoder supplies compressed latents to the DiT. The paper's front matter links the DeepGenTeam/DeepGen GitHub repository and the DeepGenTeam/DeepGen-1.0 weights and datasets on Hugging Face (Apache-2.0 per the repository LICENSE and the model-card metadata).
-
-**License:** code: Apache-2.0; weights: apache-2.0.
-
-</details>
-
-<a id="dream"></a>
-
-### DREAM
-
-Single ViT-based encoder-decoder trained jointly for CLIP-style contrastive alignment and continuous-token image generation, using a 'masking warmup' schedule that shifts the masking-ratio distribution from low to high over training so one shared encoder serves both objectives, with a FLUID-style decoder and a lightweight six-layer diffusion MLP head predicting Stable-Diffusion-VAE latents.
-
-DREAM unifies text-image contrastive representation learning and text-to-image generation in one encoder, which is normally difficult because contrastive alignment wants mostly-visible tokens while generative modeling wants heavily-masked ones. Its 'Masking Warmup' schedule shifts the center of the per-step masking-ratio distribution from low to high over roughly 36 epochs of training so that both low- and high-masking regimes coexist throughout training, letting a single MAR-style ViT encoder and FLUID-style decoder serve both a CLIP contrastive loss (via a CLIP-style text encoder) and a diffusion generation loss (via a frozen T5-XXL text encoder and a six-layer diffusion MLP head predicting Stable Diffusion VAE latents). At inference, 'Semantically Aligned Decoding' spawns several partially-decoded candidates and uses the model's own encoder to score and select the best trajectory from as little as 12.5% of the image decoded.
-
-[Paper](https://arxiv.org/abs/2603.02667) · [GitHub](https://github.com/chaoli-charlie/dream)
-
-![DREAM — Figure 2](../assets/architectures/dream.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2603.02667)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T → I · **Interaction:** generation
-
-Released sizes are B/L/H/G, with the Large configuration at 570M parameters over 32 transformer layers, generating 256x256 images. The paper reports FID on CC12M and linear-probing accuracy on ImageNet-1K, showing the joint objective improves both discriminative and generative quality over single-objective baselines. The paper header links the code repository chaoli-charlie/dream (MIT), whose README cites this arXiv paper.
-
-**License:** code: MIT.
-
-**Variants:** DREAM-B; DREAM-L; DREAM-H; DREAM-G.
 
 </details>
 
@@ -954,6 +868,8 @@ LLaDA-o extends the LLaDA masked-diffusion language model into a unified multimo
 
 A data-centric length-adaptation strategy lets the model decode variable-length outputs without architectural changes. The FLUX VAE is kept frozen throughout training. The paper reports 87.04 on the DPG-Bench text-to-image benchmark and releases code.
 
+**License:** code: Apache-2.0.
+
 </details>
 
 <a id="llada2-uni"></a>
@@ -1276,29 +1192,6 @@ Text tokenization reuses the LLaDA tokenizer; image tokenization reuses Show-o's
 
 </details>
 
-<a id="mmcore"></a>
-
-### MMCORE
-
-An autoregressive MLLM fine-tuned to emit 64 learnable query tokens that compress multimodal context, which together with full-sequence text embeddings condition a pre-trained Multimodal Diffusion Transformer (MMDiT) through a block-causal attention mask over VAE image latents.
-
-MMCORE (ByteDance) transfers the reasoning ability of a multimodal large language model into text-to-image generation and editing without deep-fusing an autoregressive model and a diffusion model end to end. A pre-trained MLLM is fine-tuned autoregressively to produce a fixed set of learnable query tokens that summarize the prompt and, for editing, any reference images; these compact visual-language embeddings condition a separately pre-trained MMDiT generator alongside the raw text embeddings, with a block-causal attention mask letting each generated frame attend to the VAE latents and embeddings of all preceding images. The system is trained in stages (MLLM fine-tuning, then diffusion-head SFT and RLHF) and supports text-to-image synthesis, multi-image editing and spatial reasoning/grounding without requiring deep architectural fusion between the two backbones.
-
-[Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found
-
-![MMCORE — Figure 5](../assets/architectures/mmcore.png)
-
-*Figure 5 · [Source](https://arxiv.org/abs/2604.19902)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Paper Figure 5 (architecture) and Figure 6 (block-causal attention mask for diffusion-head training). The query-token count N=64 was found to offer the best expressivity/efficiency trade-off. Training is multi-stage: MLLM autoregressive fine-tuning, ~2K-step diffusion-head SFT, then RLHF. Neither the base MLLM nor the base MMDiT is named in the reviewed source; both are described only as pre-trained. No code or weights are released; the paper reports an internal ByteDance training pipeline.
-
-</details>
-
 <a id="mogao"></a>
 
 ### Mogao
@@ -1364,7 +1257,9 @@ Muddit ("Meissonic II") is a second-generation unified discrete diffusion model 
 
 **Input → output:** T, I → T, I · **Interaction:** generation
 
-Paper Figure 2: training randomly masks tokens from one of the two modalities and the shared MM-DiT predicts them with re-weighted cross-entropy; a frozen VQ tokenizer encodes/decodes images and a frozen CLIP model tokenizes text, with a small trainable text decoder converting predicted tokens back to text. At inference, text-to-image and image-to-text both iteratively unmask tokens over T steps rather than decoding sequentially. Generates images up to 1024x1024. Code and weights are released on GitHub and Hugging Face.
+Paper Figure 2: training randomly masks tokens from one of the two modalities and the shared MM-DiT predicts them with re-weighted cross-entropy; a frozen VQ tokenizer encodes/decodes images and a frozen CLIP model tokenizes text, with a small trainable text decoder converting predicted tokens back to text. At inference, text-to-image and image-to-text both iteratively unmask tokens over T steps rather than decoding sequentially. Generates images up to 1024x1024. Code and weights are released on GitHub and Hugging Face. The GitHub repository has no LICENSE file; the Hugging Face model card metadata lists apache-2.0.
+
+**License:** weights: apache-2.0.
 
 </details>
 
@@ -1385,9 +1280,9 @@ Mural shows that knowledge from a frozen, text-only large language model remains
 <details>
 <summary>Details</summary>
 
-**Input → output:** T → I · **Interaction:** generation
+**Input → output:** T → I, T · **Interaction:** generation
 
-Paper Figure 1 shows the architecture (frozen LLM stream, trainable image-generation expert, shared attention). Three sizes are reported by combining a frozen LLM with an equally sized expert: 1.5B+1.5B, 3B+3B and 7B+7B. No GitHub repository was found at review time.
+Paper Figure 1 shows the architecture (frozen LLM stream, trainable image-generation expert, shared attention). Three sizes are reported by combining a frozen LLM with an equally sized expert: 1.5B+1.5B, 3B+3B and 7B+7B. No GitHub repository was found at review time. Because the LLM is frozen, text and visual understanding are preserved by construction: the paper reports the base LLM's benchmark scores as preserved (the dense baseline degrades to chance on MMLU-Pro), and chain-of-thought text is produced before generation (Figure 6). Text output is therefore listed, although no new understanding results are reported.
 
 **Variants:** Mural-1.5B; Mural-3B; Mural-7B.
 
@@ -1501,58 +1396,6 @@ Input images are convolved with ResNet modules into patch features; target image
 
 </details>
 
-<a id="omnigen"></a>
-
-### OmniGen
-
-Single transformer (LLM-initialized) that attends jointly over text tokens and VAE-encoded reference-image patches and denoises noisy image latents by rectified flow, decoded to pixels by the frozen VAE.
-
-OmniGen, from BAAI, is a unified image-generation model that accepts free-form interleaved text-and-image instructions and produces an image without task-specific plugins such as ControlNet or IP-Adapter. Text is tokenized normally and any input images are encoded into patch embeddings by a frozen VAE; a single transformer attends over text tokens, image-condition embeddings and noisy latent tokens together and iteratively denoises the latter with a rectified-flow objective, so the same weights cover text-to-image generation, instruction-based editing, subject-driven generation and several traditional vision tasks.
-
-[Paper](https://arxiv.org/abs/2409.11340) · [GitHub](https://github.com/VectorSpaceLab/OmniGen)
-
-![OmniGen — Figure 2](../assets/architectures/omnigen.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2409.11340)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Training uses the authors' X2I dataset, which standardizes many tasks as interleaved image-text sequences (Figure 3). The transformer's causal-plus-bidirectional attention mask lets text and reference-image tokens attend causally while the noisy image tokens being denoised attend to each other bidirectionally (Figure 2, attention-mechanism inset). Editing and subject-driven generation from one or more reference images are demonstrated (Figures 4-5, 7), which is why the card is labeled editing. Code and the OmniGen-v1 checkpoint are released under MIT; OmniGen2 (2025) is a separate, later architecture.
-
-**License:** code: MIT; weights: MIT.
-
-**Variants:** OmniGen-v1.
-
-</details>
-
-<a id="omnigen-ar"></a>
-
-### OmniGen-AR
-
-Decoder-only autoregressive transformer initialized from Qwen2.5 that discretizes text (Qwen2.5 tokenizer), spatial conditions (segmentation, depth) and visual context through a shared Cosmos-DV visual tokenizer, trained with Disentangled Causal Attention — separate condition-causal and content-causal masks applied as a training-time regularizer — to prevent condition tokens leaking information into generated content tokens during any-to-image generation.
-
-OmniGen-AR unifies text-to-image generation, image editing and other conditional image synthesis tasks (depth-to-image, segmentation-to-image) inside one autoregressive, next-token-prediction framework. Text and visual conditions share a single vocabulary built from a Qwen2.5 text tokenizer and a Cosmos-DV image/video tokenizer, and are fed through one decoder-only transformer initialized from Qwen2.5. The paper's main technical contribution, Disentangled Causal Attention, splits the causal attention mask into a condition-specific and a content-specific component during training so that generation targets cannot shortcut information from condition tokens, applied stochastically (10% of steps) as a regularizer while inference keeps standard causal decoding; a three-stage curriculum (single-image, image-video joint, multi-task) trains the 0.5B and 1.5B variants on a broad mixture of captioned image, video and instruction-editing datasets.
-
-[Paper](https://arxiv.org/abs/2606.09156) · GitHub: no author-linked repository found
-
-![OmniGen-AR — Figure 2](../assets/architectures/omnigen-ar.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2606.09156)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Paper Figure 2 shows the tokenizer/transformer pipeline; Figure 3 contrasts plain causal attention, Disentangled Causal Attention and classifier-free guidance. Reports GenEval 0.63. No GitHub repository was found at review time.
-
-**Variants:** OmniGen-AR (0.5B); OmniGen-AR (1.5B).
-
-</details>
-
 <a id="omnigen2"></a>
 
 ### OmniGen2
@@ -1659,31 +1502,6 @@ The MLLM shares a Qwen3-1.7B backbone with an AIMv2-large visual encoder and Ovi
 
 </details>
 
-<a id="ps-vae"></a>
-
-### PS-VAE
-
-Unified text-to-image and editing model built on a compact 96-channel semantic-pixel latent space (PS-VAE), which regularizes an understanding-oriented representation encoder with a semantic-pixel reconstruction objective, denoised by Transfusion-style joint text/image transformer blocks on a Qwen language-model backbone.
-
-PS-VAE addresses two obstacles in adapting representation-encoder features (rather than plain VAE latents) as generative latents: the discriminative feature space is poorly regularized, causing off-manifold samples with inaccurate structure, and the encoder's weak pixel reconstruction limits fine-grained geometry and texture. The paper introduces a semantic-pixel reconstruction objective that compresses both semantic content and fine-grained detail into a compact 96-channel, 16x16-downsampled latent, then builds a unified text-to-image and image-editing model on top of it. The authors report state-of-the-art reconstruction, faster convergence and substantial gains on both text-to-image and editing benchmarks compared to other feature spaces.
-
-[Paper](https://arxiv.org/abs/2512.17909) · [Project](https://jshilong.github.io/PS-VAE-PAGE/) · GitHub: no author-linked repository found
-
-![PS-VAE — Figure 5](../assets/architectures/ps-vae.png)
-
-*Figure 5 · [Source](https://arxiv.org/abs/2512.17909)*
-
-<details>
-<summary>Details</summary>
-
-**Input → output:** T, I → I · **Interaction:** editing
-
-Paper Figure 5: a trainable representation ('Rep') encoder feeds a semantic encoder/decoder pair regularized by pixel, semantic and KL reconstruction losses, producing a compact latent decoded by a pixel decoder. The generation model uses Transfusion-style joint text/image transformer blocks (paper Figure 6, compared against LlamaFusion- and Bagel-style designs) on Qwen backbones at 0.5B/1.5B/3B scale; released model sizes for the generator are 653M and 1708M parameters at 256x256 training resolution. A project page is available; the authors mark code as under legal review and no public repository was found at review time.
-
-**Variants:** PS-VAE (32-channel); PS-VAE (96-channel).
-
-</details>
-
 <a id="puma"></a>
 
 ### PUMA
@@ -1755,9 +1573,9 @@ SEED-X, from Tencent AI Lab and ARC Lab (Tencent PCG), is a unified multimodal f
 
 **Input → output:** T, I → T, I · **Interaction:** editing
 
-The visual tokenizer is the Qwen-VL visual encoder; 64 average-pooled ViT embeddings condition the pretrained SDXL U-Net through a learnable module of four cross-attention layers that replaces the text features (paper Figure 3). The condition-image de-tokenizer follows InstructPix2Pix and is trained on MagicBrush and in-house editing data. The LLM is initialized from Llama2-chat-13B and pretrained with LoRA. The README states that SEED-X-I does not support image manipulation; editing is handled by SEED-X-Edit. Code: License_Seed-X.txt applies the Apache License 2.0 except for listed third-party components. Weights: the Hugging Face card lists license other (license-seed-x-17b).
+The visual tokenizer is the Qwen-VL visual encoder; 64 average-pooled ViT embeddings condition the pretrained SDXL U-Net through a learnable module of four cross-attention layers that replaces the text features (paper Figure 3). The condition-image de-tokenizer follows InstructPix2Pix and is trained on MagicBrush and in-house editing data. The LLM is initialized from Llama2-chat-13B and pretrained with LoRA. The README states that SEED-X-I does not support image manipulation; editing is handled by SEED-X-Edit. Code: License_Seed-X.txt applies the Apache License 2.0 except for listed third-party components. Weights: the Hugging Face card metadata lists license other with license name license-seed-x-17b, and the LICENSE file in the model repository states Apache License 2.0 except for listed third-party components.
 
-**License:** code: Apache-2.0.
+**License:** code: Apache-2.0; weights: other (license-seed-x-17b).
 
 **Variants:** SEED-X (pretrained); SEED-X-I (instruction-tuned); SEED-X-Edit; SEED-X de-tokenizer.
 
@@ -1809,7 +1627,7 @@ Show-o, from Show Lab (National University of Singapore) and ByteDance, unifies 
 
 **Input → output:** T, I → T, I · **Interaction:** editing
 
-The image tokenizer is a lookup-free quantizer following MAGVIT-v2 with an 8,192-entry codebook, encoding 256×256 images into 16×16 tokens; released checkpoints also include 512×512 versions. The omni-attention mechanism applies causal attention to text and full attention to image tokens, and training combines next-token prediction and mask-token prediction losses. Variants with continuous CLIP-ViT inputs for understanding (show-o-w-clip-vit) are also released. Inpainting and extrapolation use the masked-token formulation without fine-tuning, which is why the card is labeled editing. Hugging Face cards list different weight licenses per checkpoint (apache-2.0 for show-o-512x512, mit for show-o). Show-o2 (2025) is a separate card.
+The image tokenizer is a lookup-free quantizer following MAGVIT-v2 with an 8,192-entry codebook, encoding 256×256 images into 16×16 tokens; released checkpoints also include 512×512 versions. The omni-attention mechanism applies causal attention to text and full attention to image tokens, and training combines next-token prediction and mask-token prediction losses. Variants with continuous CLIP-ViT inputs for understanding (show-o-w-clip-vit) are also released. Inpainting and extrapolation use the masked-token formulation without fine-tuning, which is why the card is labeled editing. Hugging Face cards list different weight licenses per checkpoint (apache-2.0 for show-o-512x512, show-o-w-clip-vit-512x512 and show-o-512x512-wo-llava-tuning; mit for show-o and show-o-w-clip-vit), so no single weight license is recorded. Show-o2 (2025) is a separate card.
 
 **License:** code: Apache-2.0.
 
@@ -2168,6 +1986,8 @@ VL-GPT, from Xi'an Jiaotong University, Tencent AI Lab, ARC Lab (Tencent PCG) an
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 The tokenizer's visual encoder is CLIP-L and the detokenizer's diffusion decoder uses the U-Net and VAE from IP-Adapter Plus; both stay frozen, and only the causal transformer and transformer decoder are trained. Each image is represented by N = 32 visual embeddings. The full model has about 7.5B parameters, with LoRA used during multimodal pretraining; instruction tuning data include InstructPix2Pix and MagicBrush editing data. The official repository states that the project was terminated and that code and weights will not be released, so the GitHub source contains no implementation.
+
+**License:** code: Apache-2.0.
 
 </details>
 

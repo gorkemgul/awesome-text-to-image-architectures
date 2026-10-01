@@ -406,7 +406,7 @@ ARM unifies image understanding, text-to-image generation and instruction-based 
 
 ### OmniGen-AR
 
-**First paper submission:** 2026-06-08 · [Architecture card](../models/unified.md#omnigen-ar)
+**First paper submission:** 2026-06-08 · [Architecture card](../models/ar-token.md#omnigen-ar)
 
 OmniGen-AR unifies text-to-image generation, image editing and other conditional image synthesis tasks (depth-to-image, segmentation-to-image) inside one autoregressive, next-token-prediction framework. Text and visual conditions share a single vocabulary built from a Qwen2.5 text tokenizer and a Cosmos-DV image/video tokenizer, and are fed through one decoder-only transformer initialized from Qwen2.5. The paper's main technical contribution, Disentangled Causal Attention, splits the causal attention mask into a condition-specific and a content-specific component during training so that generation targets cannot shortcut information from condition tokens, applied stochastically (10% of steps) as a regularizer while inference keeps standard causal decoding; a three-stage curriculum (single-image, image-video joint, multi-task) trains the 0.5B and 1.5B variants on a broad mixture of captioned image, video and instruction-editing datasets.
 
@@ -546,7 +546,7 @@ JoyAI-Image, from JD.com's JD Open Source team, is a unified model for visual un
 
 ### MMCORE
 
-**First paper submission:** 2026-04-21 · [Architecture card](../models/unified.md#mmcore)
+**First paper submission:** 2026-04-21 · [Architecture card](../models/dit.md#mmcore)
 
 MMCORE (ByteDance) transfers the reasoning ability of a multimodal large language model into text-to-image generation and editing without deep-fusing an autoregressive model and a diffusion model end to end. A pre-trained MLLM is fine-tuned autoregressively to produce a fixed set of learnable query tokens that summarize the prompt and, for editing, any reference images; these compact visual-language embeddings condition a separately pre-trained MMDiT generator alongside the raw text embeddings, with a block-causal attention mask letting each generated frame attend to the VAE latents and embeddings of all preceding images. The system is trained in stages (MLLM fine-tuning, then diffusion-head SFT and RLHF) and supports text-to-image synthesis, multi-image editing and spatial reasoning/grounding without requiring deep architectural fusion between the two backbones.
 
@@ -644,7 +644,7 @@ LaDe generates editable, layered graphic designs (e.g. an advertisement as separ
 
 ### DREAM
 
-**First paper submission:** 2026-03-03 · [Architecture card](../models/unified.md#dream)
+**First paper submission:** 2026-03-03 · [Architecture card](../models/continuous-ar.md#dream)
 
 DREAM unifies text-image contrastive representation learning and text-to-image generation in one encoder, which is normally difficult because contrastive alignment wants mostly-visible tokens while generative modeling wants heavily-masked ones. Its 'Masking Warmup' schedule shifts the center of the per-step masking-ratio distribution from low to high over roughly 36 epochs of training so that both low- and high-masking regimes coexist throughout training, letting a single MAR-style ViT encoder and FLUID-style decoder serve both a CLIP contrastive loss (via a CLIP-style text encoder) and a diffusion generation loss (via a frozen T5-XXL text encoder and a six-layer diffusion MLP head predicting Stable Diffusion VAE latents). At inference, 'Semantically Aligned Decoding' spawns several partially-decoded candidates and uses the model's own encoder to score and select the best trajectory from as little as 12.5% of the image decoded.
 
@@ -714,7 +714,7 @@ BitDance (ByteDance with CUHK and other institutions) is an autoregressive image
 
 ### DeepGen 1.0
 
-**First paper submission:** 2026-02-12 · [Architecture card](../models/unified.md#deepgen-1)
+**First paper submission:** 2026-02-12 · [Architecture card](../models/dit.md#deepgen-1)
 
 DeepGen 1.0 is a compact, 5B-parameter unified model for text-to-image generation and editing that the authors position against much larger unified models (reporting gains over the 80B HunyuanImage on the WISE benchmark). Rather than relying on the VLM's final-layer output alone, its Stacked Channel Bridging (SCB) framework samples hidden states from six layers spanning the low, middle and high depth of a Qwen2.5-VL-3B backbone, lets them interact with a set of learnable 'think tokens' through self-attention as an implicit chain-of-thought, and fuses the selected states through a channel-wise concatenation, MLP and Transformer connector before handing them to an SD3.5-Medium (2B) diffusion transformer decoder. Editing is supported by concatenating a reference image's VAE latents with the target image's noise tokens in the DiT input sequence.
 
@@ -784,7 +784,7 @@ Self-E (Self-Evaluating Model) is presented as the first from-scratch, any-step 
 
 ### PS-VAE
 
-**First paper submission:** 2025-12-19 · [Architecture card](../models/unified.md#ps-vae)
+**First paper submission:** 2025-12-19 · [Architecture card](../models/dit.md#ps-vae)
 
 PS-VAE addresses two obstacles in adapting representation-encoder features (rather than plain VAE latents) as generative latents: the discriminative feature space is poorly regularized, causing off-manifold samples with inaccurate structure, and the encoder's weak pixel reconstruction limits fine-grained geometry and texture. The paper introduces a semantic-pixel reconstruction objective that compresses both semantic content and fine-grained detail into a compact 96-channel, 16x16-downsampled latent, then builds a unified text-to-image and image-editing model on top of it. The authors report state-of-the-art reconstruction, faster convergence and substantial gains on both text-to-image and editing benchmarks compared to other feature spaces.
 

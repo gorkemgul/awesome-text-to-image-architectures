@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**11 models · Reviewed 2026-09-29**
+**13 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -18,7 +18,9 @@ Dates refer to papers or announcements, not necessarily model releases.
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
 | [BitDance](#bitdance) | 2026-02-15 | T → I | generation |
+| [BLIP3o-NEXT](#blip3o-next) | 2025-10-17 | T, I → I | editing |
 | [DART](#dart) | 2024-10-10 | T → I | generation |
+| [DREAM](#dream) | 2026-03-03 | T → I | generation |
 | [DuetGen](#duetgen) | 2026-09-19 | T → I | generation |
 | [Fluid](#fluid) | 2024-10-17 | T → I | generation |
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
@@ -60,6 +62,33 @@ The token sequence is [bos] text [boi] [res_i] [res_j] visual tokens [eoi] [eos]
 
 </details>
 
+<a id="blip3o-next"></a>
+
+### BLIP3o-NEXT
+
+Qwen3-initialized autoregressive model that predicts quantized SigLIP2 image tokens, whose hidden states condition a SANA1.5-initialized diffusion transformer over VAE latents.
+
+BLIP3o-NEXT is the successor to BLIP3-o in the BLIP3 series, positioned as a native image generation model that handles text-to-image generation and image editing in one Autoregressive + Diffusion architecture of about 3B parameters. Unlike BLIP3-o, the autoregressive model now predicts discrete image tokens, which makes GRPO reinforcement learning with verifiable rewards (GenEval-style composition and text rendering) directly applicable, and a diffusion transformer conditioned on the tokens' hidden states renders the final image. The paper also describes consistency techniques for editing, including a reconstruction task and VAE-latent conditioning of the diffusion model.
+
+[Paper](https://arxiv.org/abs/2510.15857) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-NEXT-SFT-3B)
+
+![BLIP3o-NEXT — Figure 1](../assets/architectures/blip3o-next.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2510.15857)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Images are encoded with SigLIP2 and quantized into 729 discrete tokens per 384x384 image; the autoregressive model is trained with cross-entropy on text and image tokens and the diffusion model with a diffusion loss on VAE features, conditioned by cross-attention on the predicted tokens' hidden states (paper Section 2.3 and Figure 1). For editing, reference images enter the autoregressive model as quantized tokens, and their VAE latents are added to the diffusion model through cross-attention and noise-space injection. During GRPO the diffusion model is frozen and only the autoregressive policy is updated. The paper does not evaluate multimodal understanding, so text is not listed as an output.
+
+**License:** weights: Apache-2.0.
+
+**Variants:** BLIP3o-NEXT-Pretrain-3B; BLIP3o-NEXT-SFT-3B; BLIP3o-NEXT-GRPO-Geneval-3B.
+
+</details>
+
 <a id="dart"></a>
 
 ### DART
@@ -82,6 +111,33 @@ DART (Apple, with CUHK and Mila) merges autoregression and diffusion. Instead of
 Images are encoded with the Stable Diffusion v1.4 VAE (sd-vae-ft-ema), patchified with patch size 2 into 256 tokens of 16 channels; T = 16 denoising steps with a cosine-derived schedule. Blocks use RoPE and SwiGLU; class-conditional models use AdaLN, which text-to-image models replace with cross-attention over a pretrained T5-XL encoder, and no timestep embedding is needed. DART-FM adds a 3-layer MLP flow network (about 1% more parameters) with 100 flow-matching steps between autoregressive steps. The paper also reports class-conditional ImageNet results. No author-linked code was found; a third-party reimplementation exists on GitHub but is not an official source.
 
 **Variants:** DART-AR; DART-FM; Matryoshka-DART; Kaleido-DART.
+
+</details>
+
+<a id="dream"></a>
+
+### DREAM
+
+Single ViT-based encoder-decoder trained jointly for CLIP-style contrastive alignment and continuous-token image generation, using a 'masking warmup' schedule that shifts the masking-ratio distribution from low to high over training so one shared encoder serves both objectives, with a FLUID-style decoder and a lightweight six-layer diffusion MLP head predicting Stable-Diffusion-VAE latents.
+
+DREAM unifies text-image contrastive representation learning and text-to-image generation in one encoder, which is normally difficult because contrastive alignment wants mostly-visible tokens while generative modeling wants heavily-masked ones. Its 'Masking Warmup' schedule shifts the center of the per-step masking-ratio distribution from low to high over roughly 36 epochs of training so that both low- and high-masking regimes coexist throughout training, letting a single MAR-style ViT encoder and FLUID-style decoder serve both a CLIP contrastive loss (via a CLIP-style text encoder) and a diffusion generation loss (via a frozen T5-XXL text encoder and a six-layer diffusion MLP head predicting Stable Diffusion VAE latents). At inference, 'Semantically Aligned Decoding' spawns several partially-decoded candidates and uses the model's own encoder to score and select the best trajectory from as little as 12.5% of the image decoded.
+
+[Paper](https://arxiv.org/abs/2603.02667) · [GitHub](https://github.com/chaoli-charlie/dream)
+
+![DREAM — Figure 2](../assets/architectures/dream.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2603.02667)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Released sizes are B/L/H/G, with the Large configuration at 570M parameters over 32 transformer layers, generating 256x256 images. The paper reports FID on CC12M and linear-probing accuracy on ImageNet-1K, showing the joint objective improves both discriminative and generative quality over single-objective baselines. The paper header links the code repository chaoli-charlie/dream (MIT), whose README cites this arXiv paper. The paper evaluates ImageNet linear-probe, fine-tuning and robustness accuracy and text-to-image FID/CLIP score (Table 2); it reports no text output or text generation, so the card sits under continuous AR rather than unified.
+
+**License:** code: MIT.
+
+**Variants:** DREAM-B; DREAM-L; DREAM-H; DREAM-G.
 
 </details>
 

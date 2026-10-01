@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**55 models · Reviewed 2026-09-29**
+**59 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -22,6 +22,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Boogu-Image-0.1](#boogu-image) | 2026-07-14 | T, I → I | editing |
 | [CogView-3Plus](#cogview3-plus) | 2024-09-29 | T → I | generation |
 | [CogView4](#cogview4) | 2025-03-04 | T → I | generation |
+| [DeepGen 1.0](#deepgen-1) | 2026-02-12 | T, I → I | editing |
 | [DiT-Air](#dit-air) | 2025-03-13 | T → I | generation |
 | [ERNIE-Image](#ernie-image) | 2026-05-25 | T → I | generation |
 | [FIBO](#fibo) | 2025-11-10 | T → I | generation |
@@ -47,16 +48,19 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Lumina-Next](#lumina-next) | 2024-06-05 | T → I | generation |
 | [Lumina-T2X (Lumina-T2I)](#lumina-t2x) | 2024-05-09 | T → I | generation |
 | [Mage-Flow](#mage-flow) | 2026-07-21 | T, I → I | editing |
+| [MMCORE](#mmcore) | 2026-04-21 | T, I → I | editing |
 | [MMFace-DiT](#mmface-dit) | 2026-03-30 | T → I | generation |
 | [Moonworks Lunara](#moonworks-lunara) | 2026-09-11 | T → I | generation |
 | [Nexus](#nexus) | 2026-08-17 | T → I | generation |
 | [Nucleus-Image](#nucleus-image) | 2026-04-14 | T → I | generation |
 | [oboro:](#oboro) | 2025-11-11 | T → I | generation |
+| [OmniGen](#omnigen) | 2024-09-17 | T, I → I | editing |
 | [Ovis-Image](#ovis-image) | 2025-11-28 | T → I | generation |
 | [PixArt-α](#pixart-alpha) | 2023-09-30 | T → I | generation |
 | [PixArt-Σ](#pixart-sigma) | 2024-03-07 | T → I | generation |
 | [Playground v3](#playground-v3) | 2024-09-16 | T → I | generation |
 | [ProxT2I](#proxt2i) | 2025-11-24 | T → I | generation |
+| [PS-VAE](#ps-vae) | 2025-12-19 | T, I → I | editing |
 | [PSP-DiT](#psp-dit) | 2026-09-24 | T → I | generation |
 | [Qwen-Image](#qwen-image) | 2025-08-04 | T → I | generation |
 | [Qwen-Image-2.0](#qwen-image-2) | 2026-05-11 | T, I → I | generation |
@@ -216,6 +220,31 @@ Editorial summary of documented inputs and outputs; internal architecture is not
 
 </details>
 
+<a id="deepgen-1"></a>
+
+### DeepGen 1.0
+
+5B VLM-DiT model pairing a Qwen2.5-VL-3B vision-language backbone with an SD3.5-Medium (2B) diffusion transformer decoder, bridged by a Stacked Channel Bridging (SCB) module that fuses multi-layer VLM hidden states through learnable 'think tokens'.
+
+DeepGen 1.0 is a compact, 5B-parameter unified model for text-to-image generation and editing that the authors position against much larger unified models (reporting gains over the 80B HunyuanImage on the WISE benchmark). Rather than relying on the VLM's final-layer output alone, its Stacked Channel Bridging (SCB) framework samples hidden states from six layers spanning the low, middle and high depth of a Qwen2.5-VL-3B backbone, lets them interact with a set of learnable 'think tokens' through self-attention as an implicit chain-of-thought, and fuses the selected states through a channel-wise concatenation, MLP and Transformer connector before handing them to an SD3.5-Medium (2B) diffusion transformer decoder. Editing is supported by concatenating a reference image's VAE latents with the target image's noise tokens in the DiT input sequence.
+
+[Paper](https://arxiv.org/abs/2602.12205) · [GitHub](https://github.com/DeepGenTeam/DeepGen) · [Model card](https://huggingface.co/deepgenteam/DeepGen-1.0)
+
+![DeepGen 1.0 — Figure 3](../assets/architectures/deepgen-1.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2602.12205)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Training is three-stage: alignment pretraining to synchronize VLM and DiT representations, joint supervised fine-tuning on mixed generation/editing/reasoning data (~50M samples), and reinforcement learning with a multi-reward GRPO variant (MR-GRPO). Visual encoding is dual-branch: a ViT captures semantics for the VLM side and a VAE encoder supplies compressed latents to the DiT. The paper's front matter links the DeepGenTeam/DeepGen GitHub repository and the DeepGenTeam/DeepGen-1.0 weights and datasets on Hugging Face (Apache-2.0 per the repository LICENSE and the model-card metadata). The paper evaluates image generation, editing and text rendering (UniGenBench text sub-score) but no multimodal-understanding benchmark or text output, so the card is catalogued under DiT / flow.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+</details>
+
 <a id="dit-air"></a>
 
 ### DiT-Air
@@ -364,7 +393,7 @@ FLUX.1 is the first model family from Black Forest Labs, founded by researchers 
 
 **Input → output:** T → I · **Interaction:** generation
 
-The launch announcement describes a hybrid of multimodal and parallel diffusion transformer blocks scaled to 12B parameters, trained with flow matching and using rotary positional embeddings and parallel attention layers. Black Forest Labs' later FLUX.1 Kontext paper (Section 2) details the base model: an adversarially trained convolutional autoencoder with 16 latent channels; double-stream blocks with separate text and image weights and joint attention, then 38 single-stream blocks over the concatenated tokens using fused feed-forward blocks (Figure 3); text tokens are discarded before decoding. The reference code (block counts 19 double / 38 single) encodes prompts with T5-v1.1-XXL and CLIP ViT-L/14. [pro] is API-only; [dev] is guidance-distilled from [pro]; [schnell] is distilled with latent adversarial diffusion distillation for 1–4 steps. Weights licenses differ by variant: [schnell] Apache-2.0; [dev] and derived open checkpoints (Fill, Canny, Depth, Redux, Krea [dev]) FLUX.1-dev Non-Commercial License; the autoencoder weights Apache-2.0. The Fill, Canny/Depth and Redux [dev] checkpoints are inpainting, structural-control and image-variation tools; FLUX.1 Kontext has its own card.
+The launch announcement describes a hybrid of multimodal and parallel diffusion transformer blocks scaled to 12B parameters, trained with flow matching and using rotary positional embeddings and parallel attention layers. Black Forest Labs' later FLUX.1 Kontext paper (Section 2) details the base model: an adversarially trained convolutional autoencoder with 16 latent channels; double-stream blocks with separate text and image weights and joint attention, then 38 single-stream blocks over the concatenated tokens using fused feed-forward blocks (Figure 3); text tokens are discarded before decoding. The reference code (block counts 19 double / 38 single) encodes prompts with T5-v1.1-XXL and CLIP ViT-L/14. [pro] is API-only; [dev] is guidance-distilled from [pro]; [schnell] is distilled with latent adversarial diffusion distillation for 1–4 steps. Weights licenses differ by variant: [schnell] Apache-2.0; [dev] and derived open checkpoints (Fill, Canny, Depth, Redux, Krea [dev]) FLUX.1-dev Non-Commercial License; the autoencoder weights Apache-2.0. The Fill, Canny/Depth and Redux [dev] checkpoints are inpainting, structural-control and image-variation tools; FLUX.1 Kontext has its own card. Model-card metadata (FLUX.1-schnell: apache-2.0; FLUX.1-dev and FLUX.1-Krea-dev: other, flux-1-dev-non-commercial-license) differs by variant, so no single weight license is recorded.
 
 **License:** code: Apache-2.0.
 
@@ -555,7 +584,7 @@ i1 is a fully open, from-scratch text-to-image diffusion model built from a syst
 
 Paper Figure 4 (i1_flowchart.png) is the released high-level architecture diagram; Figure 21 (inline, not separately captured) details the full MMDiT design. Trained from scratch with flow matching across three resolution stages (256px: 2M steps, 512px: 0.5M steps, 1024px: 0.3M steps). Code (MIT), weights and captions are released on GitHub and Hugging Face, with the README linking this arXiv paper directly.
 
-**License:** code: MIT.
+**License:** code: MIT; weights: mit.
 
 </details>
 
@@ -869,6 +898,29 @@ Paper Figure 5 (Mage-Flow architecture) and Figure 6 (Mage-VAE): prompts and any
 
 </details>
 
+<a id="mmcore"></a>
+
+### MMCORE
+
+An autoregressive MLLM fine-tuned to emit 64 learnable query tokens that compress multimodal context, which together with full-sequence text embeddings condition a pre-trained Multimodal Diffusion Transformer (MMDiT) through a block-causal attention mask over VAE image latents.
+
+MMCORE (ByteDance) transfers the reasoning ability of a multimodal large language model into text-to-image generation and editing without deep-fusing an autoregressive model and a diffusion model end to end. A pre-trained MLLM is fine-tuned autoregressively to produce a fixed set of learnable query tokens that summarize the prompt and, for editing, any reference images; these compact visual-language embeddings condition a separately pre-trained MMDiT generator alongside the raw text embeddings, with a block-causal attention mask letting each generated frame attend to the VAE latents and embeddings of all preceding images. The system is trained in stages (MLLM fine-tuning, then diffusion-head SFT and RLHF) and supports text-to-image synthesis, multi-image editing and spatial reasoning/grounding without requiring deep architectural fusion between the two backbones.
+
+[Paper](https://arxiv.org/abs/2604.19902) · GitHub: no author-linked repository found
+
+![MMCORE — Figure 5](../assets/architectures/mmcore.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2604.19902)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 5 (architecture) and Figure 6 (block-causal attention mask for diffusion-head training). The query-token count N=64 was found to offer the best expressivity/efficiency trade-off. Training is multi-stage: MLLM autoregressive fine-tuning, ~2K-step diffusion-head SFT, then RLHF. Neither the base MLLM nor the base MMDiT is named in the reviewed source; both are described only as pre-trained. No code or weights are released; the paper reports an internal ByteDance training pipeline. The paper mentions a minor regression in general MLLM understanding after joint fine-tuning but reports no understanding benchmark or text output, and states that the current architecture decouples understanding and generation; it is catalogued under DiT / flow by its MMDiT generator.
+
+</details>
+
 <a id="mmface-dit"></a>
 
 ### MMFace-DiT
@@ -989,6 +1041,33 @@ Paper Figure 1: text and image inputs pass through encoders (T5-XXL text encoder
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
 **Variants:** oboro:base.
+
+</details>
+
+<a id="omnigen"></a>
+
+### OmniGen
+
+Single transformer (LLM-initialized) that attends jointly over text tokens and VAE-encoded reference-image patches and denoises noisy image latents by rectified flow, decoded to pixels by the frozen VAE.
+
+OmniGen, from BAAI, is a unified image-generation model that accepts free-form interleaved text-and-image instructions and produces an image without task-specific plugins such as ControlNet or IP-Adapter. Text is tokenized normally and any input images are encoded into patch embeddings by a frozen VAE; a single transformer attends over text tokens, image-condition embeddings and noisy latent tokens together and iteratively denoises the latter with a rectified-flow objective, so the same weights cover text-to-image generation, instruction-based editing, subject-driven generation and several traditional vision tasks.
+
+[Paper](https://arxiv.org/abs/2409.11340) · [GitHub](https://github.com/VectorSpaceLab/OmniGen)
+
+![OmniGen — Figure 2](../assets/architectures/omnigen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2409.11340)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Training uses the authors' X2I dataset, which standardizes many tasks as interleaved image-text sequences (Figure 3). The transformer's causal-plus-bidirectional attention mask lets text and reference-image tokens attend causally while the noisy image tokens being denoised attend to each other bidirectionally (Figure 2, attention-mechanism inset). Editing and subject-driven generation from one or more reference images are demonstrated (Figures 4-5, 7), which is why the card is labeled editing. Code and the OmniGen-v1 checkpoint are released under MIT; OmniGen2 (2025) is a separate, later architecture. The paper evaluates image generation and editing only and reports no text output or multimodal-understanding results, so the card is catalogued under DiT / flow by its generator.
+
+**License:** code: MIT; weights: MIT.
+
+**Variants:** OmniGen-v1.
 
 </details>
 
@@ -1114,6 +1193,31 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 Operates in the pretrained Stable Diffusion 3.5 VAE latent space at 256x256 (base) and 512x512 (fine-tuned) resolution; the U-ViT network serves as the backbone for both the proximal and competing score networks, trained with a proximal-matching loss. The authors state they will publicly release LAION-Face-T2I-15M and a companion LAION-Face-Hand-3M dataset upon publication; no code repository was found at review time.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="ps-vae"></a>
+
+### PS-VAE
+
+Text-to-image and editing model built on a compact 96-channel semantic-pixel latent space (PS-VAE), which regularizes an understanding-oriented representation encoder with a semantic-pixel reconstruction objective, denoised by Transfusion-style joint text/image transformer blocks on a Qwen language-model backbone.
+
+PS-VAE addresses two obstacles in adapting representation-encoder features (rather than plain VAE latents) as generative latents: the discriminative feature space is poorly regularized, causing off-manifold samples with inaccurate structure, and the encoder's weak pixel reconstruction limits fine-grained geometry and texture. The paper introduces a semantic-pixel reconstruction objective that compresses both semantic content and fine-grained detail into a compact 96-channel, 16x16-downsampled latent, then builds a unified text-to-image and image-editing model on top of it. The authors report state-of-the-art reconstruction, faster convergence and substantial gains on both text-to-image and editing benchmarks compared to other feature spaces.
+
+[Paper](https://arxiv.org/abs/2512.17909) · [Project](https://jshilong.github.io/PS-VAE-PAGE/) · GitHub: no author-linked repository found
+
+![PS-VAE — Figure 5](../assets/architectures/ps-vae.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2512.17909)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 5: a trainable representation ('Rep') encoder feeds a semantic encoder/decoder pair regularized by pixel, semantic and KL reconstruction losses, producing a compact latent decoded by a pixel decoder. The generation model uses Transfusion-style joint text/image transformer blocks (paper Figure 6, compared against LlamaFusion- and Bagel-style designs) on Qwen backbones at 0.5B/1.5B/3B scale; released model sizes for the generator are 653M and 1708M parameters at 256x256 training resolution. A project page is available; the authors mark code as under legal review and no public repository was found at review time. The paper evaluates understanding only by swapping the fine-tuned SigLIP2 encoder into the existing Bagel pipeline (MME-P, VBench) and leaves joint training with an LLM as future work; the generation model itself has no text output, so the card is catalogued under DiT / flow.
+
+**Variants:** PS-VAE (32-channel); PS-VAE (96-channel).
 
 </details>
 
@@ -1450,6 +1554,8 @@ TerraDiT is a diffusion transformer trained from scratch for text-to-satellite-i
 
 Training is three-stage: unconditional generation, then text-conditioned generation, then point-controlled generation. Training data build on the existing Git-10M dataset (GPT-4o captions): the authors keep 2M high-resolution, ~1m-GSD images at zoom level 17 and augment them with OpenStreetMap point annotations. Models, dataset and code are released on GitHub.
 
+**License:** code: Apache-2.0.
+
 **Variants:** TerraDiT-XL/2-alpha; TerraDiT-XL/2-Sigma.
 
 </details>
@@ -1473,7 +1579,7 @@ UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation a
 
 **Input → output:** T, I → I · **Interaction:** editing
 
-Paper Figure 3 (LIB-MMDiT overview, PDF p. 3 of the figure numbering) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. Only a project page is linked; no GitHub repository was found.
+Paper Figure 3 (LIB-MMDiT overview) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. The paper does not name the pretrained base model: it refers only to "the base model" and its transformer backbone. Only a project page is linked; no GitHub repository was found.
 
 **Variants:** UniWorld-Design T2RGBA; UniWorld-Design I2L.
 

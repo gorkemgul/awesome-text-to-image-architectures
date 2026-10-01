@@ -52,6 +52,8 @@ GLIDE-based cascaded pixel diffusion (64×64 base plus unconditional 256×256 an
 
 Training images are decomposed on the fly into eight representations: caption (CLIP ViT-L/14@336px sentence and word embeddings), CLIP image embedding (semantics and style), smoothed CIELab color histogram, sketch, instance masks, depth map, grayscale intensity and masked image. Global conditions are projected and added to the timestep embedding, and image embeddings and palettes also become eight extra cross-attention tokens next to the CLIP word embeddings; local conditions pass through unshared convolution stacks, are summed and concatenated to the noisy input. Each condition is dropped independently during training so any subset can be used at inference, which covers plain text-to-image generation as well as variations, reconfiguration, region-specific (masked) editing, colorization and style transfer. Reported sizes: 2B base, 1.1B and 300M upsamplers and a 1B prior. The author-linked ali-vilab/composer repository (MIT) contains only a README and example assets; its TODO list shows code and pretrained models as not yet released.
 
+**License:** code: MIT.
+
 </details>
 
 <a id="dall-e-2"></a>

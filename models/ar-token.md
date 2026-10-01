@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**22 models · Reviewed 2026-09-29**
+**23 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -33,6 +33,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Make-A-Scene](#make-a-scene) | 2022-03-24 | T → I | generation |
 | [MARS](#mars-t2i) | 2024-07-10 | T → I | generation |
 | [NÜWA](#nuwa) | 2021-11-24 | T, I → I | editing |
+| [OmniGen-AR](#omnigen-ar) | 2026-06-08 | T, I → I | editing |
 | [Parti](#parti) | 2022-06-22 | T → I | generation |
 | [ruDALL-E](#rudall-e) | 2021-11-02 | T → I | generation |
 | [SimpleAR](#simplear) | 2025-04-15 | T → I | generation |
@@ -441,6 +442,31 @@ NÜWA (Microsoft Research Asia and Peking University; ECCV 2022) is a visual syn
 **Input → output:** T, I → I · **Interaction:** editing
 
 Text, images and videos are all represented as 3D token grids (height × width × time); an adaptive encoder handles the condition (1D text, 2D image sketch, 3D video sketch) and a shared decoder generates target tokens autoregressively, with 3D Nearby Attention restricting self- and cross-attention to local neighbourhoods (paper Figure 2). Images use a VQ-GAN with a 12,288-entry codebook, 21 × 21 tokens at the default 336 × 336 resolution; text is a 77-token sequence. The 870M-parameter model is pretrained jointly on text-to-image (Conceptual Captions), text-to-video and video prediction, then fine-tuned; the paper reports text-to-image on MS-COCO, sketch-to-image, image completion and zero-shot text-guided image manipulation, plus video tasks that are outside this catalog. The author-linked repository contains only README pages and example outputs, not model code or weights; it also hosts the later NUWA-Infinity and NUWA-XL papers.
+
+</details>
+
+<a id="omnigen-ar"></a>
+
+### OmniGen-AR
+
+Decoder-only autoregressive transformer initialized from Qwen2.5 that discretizes text (Qwen2.5 tokenizer), spatial conditions (segmentation, depth) and visual context through a shared Cosmos-DV visual tokenizer, trained with Disentangled Causal Attention — separate condition-causal and content-causal masks applied as a training-time regularizer — to prevent condition tokens leaking information into generated content tokens during any-to-image generation.
+
+OmniGen-AR unifies text-to-image generation, image editing and other conditional image synthesis tasks (depth-to-image, segmentation-to-image) inside one autoregressive, next-token-prediction framework. Text and visual conditions share a single vocabulary built from a Qwen2.5 text tokenizer and a Cosmos-DV image/video tokenizer, and are fed through one decoder-only transformer initialized from Qwen2.5. The paper's main technical contribution, Disentangled Causal Attention, splits the causal attention mask into a condition-specific and a content-specific component during training so that generation targets cannot shortcut information from condition tokens, applied stochastically (10% of steps) as a regularizer while inference keeps standard causal decoding; a three-stage curriculum (single-image, image-video joint, multi-task) trains the 0.5B and 1.5B variants on a broad mixture of captioned image, video and instruction-editing datasets.
+
+[Paper](https://arxiv.org/abs/2606.09156) · GitHub: no author-linked repository found
+
+![OmniGen-AR — Figure 2](../assets/architectures/omnigen-ar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2606.09156)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Paper Figure 2 shows the tokenizer/transformer pipeline; Figure 3 contrasts plain causal attention, Disentangled Causal Attention and classifier-free guidance. Reports GenEval 0.63. No GitHub repository was found at review time. The paper reports image-generation results only and no text output or understanding evaluation, so the card is catalogued under AR token by its generator.
+
+**Variants:** OmniGen-AR (0.5B); OmniGen-AR (1.5B).
 
 </details>
 

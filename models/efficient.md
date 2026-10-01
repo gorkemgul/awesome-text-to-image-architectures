@@ -123,6 +123,8 @@ DreamLite is billed as the first unified on-device diffusion model to support bo
 
 Training is progressive: text-to-image pretraining with flow matching, then edit pretraining with foreground-emphasis masking, then unified joint training on mixed data, followed by supervised fine-tuning and reinforcement learning with task-specific reward models. Inference is distilled to 4 steps. Code and models are released on a GitHub repository linked from the project page.
 
+**License:** code: Apache-2.0.
+
 </details>
 
 <a id="e-mmdit"></a>
