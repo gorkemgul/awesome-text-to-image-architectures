@@ -16131,8 +16131,19 @@
    "title": "Beyond Pixel Simulation: Pathology Image Generation via Diagnostic Semantic Tokens and Prototype Control",
    "listed_on": "2025-12-24",
    "paper_url": "https://arxiv.org/abs/2512.21058",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-24",
+   "model_id": "unipath",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Hanminghao/UniPath",
+     "evidence_url": "https://arxiv.org/abs/2512.21058",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2512.21015",
@@ -16637,8 +16648,9 @@
    "title": "A Semantically Enhanced Generative Foundation Model Improves Pathological Image Synthesis",
    "listed_on": "2025-12-15",
    "paper_url": "https://arxiv.org/abs/2512.13164",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2512.13039",
@@ -16681,8 +16693,9 @@
    "title": "Vision-Enhanced Large Language Models for High-Resolution Image Synthesis and Multimodal Data Interpretation",
    "listed_on": "2025-12-14",
    "paper_url": "https://arxiv.org/abs/2512.12595",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "no-distinct-t2i-system"
   },
   {
    "arxiv_id": "2512.12501",
@@ -17140,8 +17153,12 @@
    "title": "LongCat-Image Technical Report",
    "listed_on": "2025-12-08",
    "paper_url": "https://arxiv.org/abs/2512.07584",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-08",
+   "model_id": "longcat-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2512.07504",
@@ -17508,8 +17525,12 @@
    "title": "Diffusion Fuzzy System: Fuzzy Rule Guided Latent Multi-Path Diffusion Modeling",
    "listed_on": "2025-12-01",
    "paper_url": "https://arxiv.org/abs/2512.01533",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-12-01",
+   "model_id": "diffusion-fuzzy-system",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2512.01334",
@@ -17678,8 +17699,12 @@
    "title": "Ovis-Image Technical Report",
    "listed_on": "2025-11-28",
    "paper_url": "https://arxiv.org/abs/2511.22982",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-28",
+   "model_id": "ovis-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2511.22943",
@@ -17713,8 +17738,12 @@
    "title": "Z-Image: An Efficient Image Generation Foundation Model with Single-Stream Diffusion Transformer",
    "listed_on": "2025-11-27",
    "paper_url": "https://arxiv.org/abs/2511.22699",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-27",
+   "model_id": "z-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2511.22677",
@@ -17928,8 +17957,19 @@
    "title": "PixelDiT: Pixel Diffusion Transformers for Image Generation",
    "listed_on": "2025-11-25",
    "paper_url": "https://arxiv.org/abs/2511.20645",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-25",
+   "model_id": "pixeldit",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/NVlabs/PixelDiT",
+     "evidence_url": "https://arxiv.org/abs/2511.20645",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2511.20635",
@@ -18089,8 +18129,19 @@
    "title": "DeCo: Frequency-Decoupled Pixel Diffusion for End-to-End Image Generation",
    "listed_on": "2025-11-24",
    "paper_url": "https://arxiv.org/abs/2511.19365",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-24",
+   "model_id": "deco",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Zehong-Ma/DeCo",
+     "evidence_url": "https://arxiv.org/abs/2511.19365",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2511.19268",
@@ -18226,8 +18277,12 @@
    "title": "MammothModa2: A Unified AR-Diffusion Framework for Multimodal Understanding and Generation",
    "listed_on": "2025-11-23",
    "paper_url": "https://arxiv.org/abs/2511.18262",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-23",
+   "model_id": "mammothmoda2",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2511.18123",
@@ -18351,8 +18406,12 @@
    "title": "UniModel: A Visual-Only Framework for Unified Multimodal Understanding and Generation",
    "listed_on": "2025-11-21",
    "paper_url": "https://arxiv.org/abs/2511.16917",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-21",
+   "model_id": "unimodel",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2511.16908",
@@ -18458,8 +18517,12 @@
    "title": "UniGen-1.5: Enhancing Image Generation and Editing through Reward Unification in Reinforcement Learning",
    "listed_on": "2025-11-18",
    "paper_url": "https://arxiv.org/abs/2511.14760",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-18",
+   "model_id": "unigen-1-5",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2511.14693",
@@ -18610,16 +18673,21 @@
    "title": "Mixture of States: Routing Token-Level Dynamics for Multimodal Generation",
    "listed_on": "2025-11-15",
    "paper_url": "https://arxiv.org/abs/2511.12207",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-15",
+   "model_id": "mos",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2511.12181",
    "title": "MixAR: Mixture Autoregressive Image Generation",
    "listed_on": "2025-11-15",
    "paper_url": "https://arxiv.org/abs/2511.12181",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2511.12151",
@@ -18833,8 +18901,9 @@
    "title": "MMaDA-Parallel: Multimodal Large Diffusion Language Models for Thinking-Aware Editing and Generation",
    "listed_on": "2025-11-12",
    "paper_url": "https://arxiv.org/abs/2511.09611",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2511.09298",
@@ -18943,8 +19012,9 @@
    "title": "VectorSynth: Fine-Grained Satellite Image Synthesis with Structured Semantics",
    "listed_on": "2025-11-11",
    "paper_url": "https://arxiv.org/abs/2511.07744",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2511.08637",
@@ -19123,8 +19193,19 @@
    "title": "InfinityStar: Unified Spacetime AutoRegressive Modeling for Visual Generation",
    "listed_on": "2025-11-06",
    "paper_url": "https://arxiv.org/abs/2511.04675",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-11-06",
+   "model_id": "infinitystar",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/FoundationVision/InfinityStar",
+     "evidence_url": "https://arxiv.org/abs/2511.04675",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2511.04112",
@@ -19383,8 +19464,12 @@
    "title": "E-MMDiT: Revisiting Multimodal Diffusion Transformer Design for Fast Image Synthesis under Limited Resources",
    "listed_on": "2025-10-31",
    "paper_url": "https://arxiv.org/abs/2510.27135",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-31",
+   "model_id": "e-mmdit",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2511.00110",
@@ -19418,8 +19503,12 @@
    "title": "Emu3.5: Native Multimodal Models are World Learners",
    "listed_on": "2025-10-30",
    "paper_url": "https://arxiv.org/abs/2510.26583",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-30",
+   "model_id": "emu3-5",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2510.26105",
@@ -19633,8 +19722,9 @@
    "title": "Autoregressive Styled Text Image Generation, but Make it Reliable",
    "listed_on": "2025-10-27",
    "paper_url": "https://arxiv.org/abs/2510.23240",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2510.23023",
@@ -19677,8 +19767,12 @@
    "title": "LightFusion: A Light-weighted, Double Fusion Framework for Unified Multimodal Understanding and Generation",
    "listed_on": "2025-10-27",
    "paper_url": "https://arxiv.org/abs/2510.22946",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-27",
+   "model_id": "lightfusion",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2512.04087",
@@ -20243,8 +20337,12 @@
    "title": "BLIP3o-NEXT: Next Frontier of Native Image Generation",
    "listed_on": "2025-10-17",
    "paper_url": "https://arxiv.org/abs/2510.15857",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-17",
+   "model_id": "blip3o-next",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2510.15778",
@@ -20422,8 +20520,12 @@
    "title": "UniFusion: Vision-Language Model as Unified Encoder in Image Generation",
    "listed_on": "2025-10-14",
    "paper_url": "https://arxiv.org/abs/2510.12789",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-14",
+   "model_id": "unifusion",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2510.12482",

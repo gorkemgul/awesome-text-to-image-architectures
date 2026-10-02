@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**24 models · Reviewed 2026-09-29**
+**25 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -25,6 +25,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [ERNIE-ViLG](#ernie-vilg) | 2021-12-31 | T → I | generation |
 | [ImageBART](#imagebart) | 2021-08-19 | T, I → I | editing |
 | [Infinity](#infinity) | 2024-12-05 | T → I | generation |
+| [InfinityStar](#infinitystar) | 2025-11-06 | T, I, V → I, V | generation |
 | [L-Verse](#l-verse) | 2021-11-22 | T, I → T, I | generation |
 | [LlamaGen](#llamagen) | 2024-06-10 | T → I | generation |
 | [LongTextAR](#longtextar) | 2025-03-26 | T → I | generation |
@@ -247,6 +248,31 @@ Infinity (ByteDance, 2024) scales up VAR-style next-scale autoregressive image g
 Following Visual AutoRegressive (VAR) modeling, Infinity represents an image as a pyramid of residual token maps of increasing resolution and predicts each scale conditioned on all previous scales and the text prompt through cross-attention (paper Figure 3). Its visual tokenizer applies Binary Spherical Quantization instead of index-based VQ, so each token is a d-bit sign vector rather than a single codebook index, giving an effectively unbounded ("infinite") vocabulary; an Infinite-Vocabulary Classifier predicts the d bits independently instead of a softmax over 2^d classes, cutting classifier parameters by about 99.95%. Bitwise Self-Correction randomly flips predicted bits and re-derives the following scale's target during training so the model learns to recover from its own quantization errors at inference. Models range from 125M to 4.7B parameters (the main model is 2B), trained progressively at 256→512→1024px on a filtered LAION/COYO/OpenImages mixture with a Flan-T5 text encoder.
 
 **License:** code: MIT; weights: mit.
+
+</details>
+
+<a id="infinitystar"></a>
+
+### InfinityStar
+
+8B spacetime autoregressive transformer that predicts discrete bitwise multi-scale residual tokens (next-scale prediction) over an image pyramid followed by clip pyramids, with spacetime sparse attention and a BSQ video tokenizer fine-tuned from the Wan 2.1 VAE.
+
+InfinityStar (ByteDance, NeurIPS 2025) builds on the Infinity bitwise next-scale design and extends it to video with a spacetime pyramid: an image pyramid for the first frame is followed by clip pyramids of 5-second clips, all predicted by one autoregressive transformer over discrete tokens. A single model performs text-to-image, text-to-video, image-to-video and video extrapolation, the last two without task-specific training. The paper adds a discrete video tokenizer initialized from a continuous one, stochastic quantizer depth in tokenizer training, semantic-scale repetition for early scales, and spacetime sparse attention that attends only to the last scale of the preceding clip. InfinityStar-T2I scores 0.79 on GenEval and 86.55 on DPG-Bench, and the video model reaches 83.74 on VBench.
+
+[Paper](https://arxiv.org/abs/2511.04675) · [GitHub](https://github.com/FoundationVision/InfinityStar) · [Model card](https://huggingface.co/FoundationVision/InfinityStar)
+
+![InfinityStar — Figure 1](../assets/architectures/infinitystar.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2511.04675)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I, V → I, V · **Interaction:** generation
+
+Training is progressive: text-to-image pre-training on 130M images, then 70M high-quality images and 5M synthetic images, followed by text-to-video fine-tuning at 192p, 480p and 720p on about 16M videos. The tokenizer applies patchify layers to the Wan 2.1 VAE (4x16x16 compression, 64 latent dimensions) with multi-scale BSQ quantization. The classifier is bitwise and training uses bitwise self-correction as in Infinity. Image-to-video and video extrapolation are zero-shot capabilities of the same model. Video outputs and inputs are listed because the paper evaluates them; the image-generation results use the separately reported InfinityStar-T2I model.
+
+**License:** code: MIT; weights: MIT.
 
 </details>
 

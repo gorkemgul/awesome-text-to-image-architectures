@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**107 model families · 107 papers · 82 new catalog entries · Reviewed 2026-09-29**
+**124 model families · 124 papers · 92 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **69** have author-linked GitHub sources; **38** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **99** images come from primary sources; **8** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **80** have author-linked GitHub sources; **44** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **116** images come from primary sources; **8** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,12 +19,12 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 107 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1836 |
+| Included | 124 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1839 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 773 |
-| No distinct text-to-image system identified in the reviewed source | 4 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1155 |
-| Not yet screened | 345 |
+| No distinct text-to-image system identified in the reviewed source | 5 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1157 |
+| Not yet screened | 322 |
 
 </details>
 
@@ -80,11 +80,28 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [LINA](#lina)
 - [AR-Omni](#ar-omni)
 - [Self-E](#self-e)
+- [UniPath](#unipath)
 - [PS-VAE](#ps-vae)
 - [SVG-T2I](#svg-t2i)
+- [LongCat-Image](#longcat-image)
+- [Diffusion Fuzzy System (DFS)](#diffusion-fuzzy-system)
+- [Ovis-Image](#ovis-image)
+- [Z-Image](#z-image)
+- [PixelDiT](#pixeldit)
 - [ProxT2I](#proxt2i)
+- [DeCo](#deco)
+- [MammothModa2](#mammothmoda2)
+- [UniModel](#unimodel)
+- [UniGen-1.5](#unigen-1-5)
+- [MoS (Mixture of States)](#mos)
 - [oboro:](#oboro)
 - [FIBO](#fibo)
+- [InfinityStar](#infinitystar)
+- [E-MMDiT (AMD Nitro-E)](#e-mmdit)
+- [Emu3.5](#emu3-5)
+- [LightFusion](#lightfusion)
+- [BLIP3o-NEXT](#blip3o-next)
+- [UniFusion](#unifusion)
 - [VUGEN](#vugen)
 - [Lumina-DiMOO](#lumina-dimoo)
 - [Paris](#paris)
@@ -829,6 +846,20 @@ Self-E (Self-Evaluating Model) is presented as the first from-scratch, any-step 
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2512.22374)*
 
+<a id="unipath"></a>
+
+### UniPath
+
+**First paper submission:** 2025-12-24 · [Architecture card](../models/dit.md#unipath)
+
+UniPath (Fudan University, Fysics AI and collaborators, CVPR 2026) generates pathology images from text with Multi-Stream Control. A Raw-Text stream passes the prompt embedding; a High-Level Semantics stream appends learnable queries to the prompt in a frozen pathology MLLM and projects the final hidden states into paraphrase-robust Diagnostic Semantic Tokens, and the MLLM also expands prompts into diagnosis-aware attribute bundles; a Prototype stream retrieves component-level morphology prototypes from a bank (K_m = 16 per prompt) for finer control. The three condition sets are fused into one sequence for the DiT. The authors build a 2.65M image-text corpus with a 68K high-quality subset and a four-tier evaluation hierarchy, reporting a Patho-FID of 80.9.
+
+[Paper](https://arxiv.org/abs/2512.21058) · [GitHub](https://github.com/Hanminghao/UniPath) · [Model card](https://huggingface.co/minghaofdu/UniPath-7B)
+
+![UniPath — Figure 2](../assets/architectures/unipath.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2512.21058)*
+
 <a id="ps-vae"></a>
 
 ### PS-VAE
@@ -857,6 +888,76 @@ SVG-T2I scales the SVG (Self-supervised representations for Visual Generation) f
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2512.11749)*
 
+<a id="longcat-image"></a>
+
+### LongCat-Image
+
+**First paper submission:** 2025-12-08 · [Architecture card](../models/dit.md#longcat-image)
+
+LongCat-Image is Meituan's open 6B-parameter text-to-image diffusion transformer, following the FLUX-style pattern of a smaller number of double-stream blocks (where text and image tokens are processed on separate paths joined by attention) feeding into a larger number of single-stream blocks that process both modalities together. It replaces the usual CLIP/T5 combination with a single Qwen2.5-VL-7B vision-language model as text encoder and handles in-image text rendering through simple character-level tokenization of quoted text rather than a dedicated glyph module. Its VAE is derived from FLUX.1-dev's with an added token-merging step for efficiency. A companion LongCat-Image-Edit model reuses the same backbone with reference-image conditioning for instruction-based editing. Both the technical report and open weights were released under Apache-2.0.
+
+[Paper](https://arxiv.org/abs/2512.07584) · [GitHub](https://github.com/meituan-longcat/LongCat-Image) · [Model card](https://huggingface.co/meituan-longcat/LongCat-Image)
+
+![LongCat-Image — Figure 12](../assets/architectures/longcat-image.png)
+
+*Figure 12 · [Image source](https://arxiv.org/abs/2512.07584)*
+
+<a id="diffusion-fuzzy-system"></a>
+
+### Diffusion Fuzzy System (DFS)
+
+**First paper submission:** 2025-12-01 · [Architecture card](../models/latent-unet.md#diffusion-fuzzy-system)
+
+The Diffusion Fuzzy System (Jiangnan University and collaborators, 2025; the manuscript carries an IEEE Transactions on Fuzzy Systems identifier) builds a multi-path latent diffusion model in which each diffusion path learns one class of image features and fuzzy rules coordinate the paths. K-medoids clustering picks representative images that define fuzzy sets; membership degrees of the noisy latent to each set, computed from feature and semantic similarity, weight the path outputs at every denoising step through rule chains of forward and reverse cascaded rules. An encoder and decoder compress 256x256 images into 32x32 latents to keep the multi-path cost down. In the text-to-image setting the noise predictor receives noise and text embeddings, and the paper reports results on LSUN Bedroom, LSUN Church and MS COCO against single-path and multi-path diffusion baselines.
+
+[Paper](https://arxiv.org/abs/2512.01533) · GitHub: no author-linked repository found
+
+![Diffusion Fuzzy System (DFS) — Figure 2 (PDF p. 3)](../assets/architectures/diffusion-fuzzy-system.png)
+
+*Figure 2 (PDF p. 3) · [Image source](https://arxiv.org/abs/2512.01533)*
+
+<a id="ovis-image"></a>
+
+### Ovis-Image
+
+**First paper submission:** 2025-11-28 · [Architecture card](../models/dit.md#ovis-image)
+
+Ovis-Image is a 7B-class (10B total, including its frozen encoders) open text-to-image model from the Ovis team, built by adapting the Ovis-U1 unified understanding/generation framework into a dedicated generation model with a larger MMDiT backbone. It conditions on the team's own Ovis2.5-2B vision-language model as text encoder, chosen because its multimodal pretraining already aligns text and image representations, and reuses FLUX.1-schnell's VAE unchanged. The paper's main claim is that a carefully designed, text-rendering-focused training recipe -- rather than a new architectural component -- lets a comparatively small model match the legible-text quality of much larger systems such as Qwen-Image, while remaining efficient enough to run on a single high-end GPU.
+
+[Paper](https://arxiv.org/abs/2511.22982) · [GitHub](https://github.com/ATH-MaaS/Ovis-Image) · [Model card](https://huggingface.co/ATH-MaaS/Ovis-Image-7B)
+
+![Ovis-Image — Figure 2](../assets/architectures/ovis-image.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2511.22982)*
+
+<a id="z-image"></a>
+
+### Z-Image
+
+**First paper submission:** 2025-11-27 · [Architecture card](../models/dit.md#z-image)
+
+Z-Image is Alibaba Tongyi's compact, 6.15B-parameter text-to-image foundation model built around a single-stream diffusion transformer (S3-DiT) rather than the dual-stream-then-single-stream designs common in comparable open DiTs. It conditions on a small Qwen3-4B language model for bilingual text understanding and reuses the FLUX VAE for image tokenization, aiming for strong quality and efficiency at a fraction of the parameter count of contemporaries. A distilled Z-Image-Turbo variant combines a decoupled distribution-matching distillation method with reinforcement learning to reach sub-second, 8-step generation on enterprise GPUs, while Z-Image-Edit extends the same backbone with a SigLIP-2 semantic encoder for reference-image editing. Code and both released checkpoints use the Apache-2.0 license.
+
+[Paper](https://arxiv.org/abs/2511.22699) · [GitHub](https://github.com/Tongyi-MAI/Z-Image) · [Model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+
+![Z-Image — Figure 10](../assets/architectures/z-image.png)
+
+*Figure 10 · [Image source](https://arxiv.org/abs/2511.22699)*
+
+<a id="pixeldit"></a>
+
+### PixelDiT
+
+**First paper submission:** 2025-11-25 · [Architecture card](../models/pixel-diffusion.md#pixeldit)
+
+PixelDiT (NVIDIA and University of Rochester, 2025) trains a diffusion transformer directly on pixels instead of in an autoencoder latent space. A patch-level pathway of DiT blocks processes coarse patch tokens to learn global semantics, and a pixel-level pathway of Pixel Transformer (PiT) blocks refines texture on per-pixel tokens. Pixel-wise AdaLN gives each pixel its own modulation computed from the semantic tokens, and pixel token compaction reduces the pixel tokens before global attention so that attention stays affordable at high resolution. The paper reports FID 1.61 on ImageNet 256 and 1.81 on ImageNet 512, and a text-to-image variant, PixelDiT-T2I, trained at 1024x1024 in pixel space that reaches 0.74 on GenEval and 83.5 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.20645) · [GitHub](https://github.com/NVlabs/PixelDiT) · [Model card](https://huggingface.co/nvidia/PixelDiT-1300M-1024px) · [Project](https://pixeldit.github.io)
+
+![PixelDiT — Figure 2 (PDF p. 3)](../assets/architectures/pixeldit.png)
+
+*Figure 2 (PDF p. 3) · [Image source](https://arxiv.org/abs/2511.20645)*
+
 <a id="proxt2i"></a>
 
 ### ProxT2I
@@ -870,6 +971,76 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 ![ProxT2I — Editorial input/output diagram](../assets/architectures/proxt2i.svg)
 
 *Editorial input/output diagram · [Image source](https://arxiv.org/abs/2511.18742)*
+
+<a id="deco"></a>
+
+### DeCo
+
+**First paper submission:** 2025-11-24 · [Architecture card](../models/pixel-diffusion.md#deco)
+
+DeCo (Peking University, Nanjing University and Huawei, 2025) is an end-to-end pixel diffusion framework that splits the generation of low-frequency semantics and high-frequency detail between two modules. The DiT works on patchified, downsampled input and supplies semantic guidance; a small stack of linear, attention-free decoder blocks operates at full pixel resolution and predicts the final velocity, so no VAE is used. A frequency-aware flow-matching loss converts the velocity to the DCT domain in YCbCr space and weights frequency bands with JPEG quantization-table priors, emphasizing visually salient frequencies. The paper reports FID 1.62 (256x256) and 2.22 (512x512) on class-conditional ImageNet and trains a text-to-image variant that reaches 0.86 on GenEval and 81.4 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.19365) · [GitHub](https://github.com/Zehong-Ma/DeCo) · [Model card](https://huggingface.co/zehongma/DeCo)
+
+![DeCo — Figure 3 (PDF p. 4)](../assets/architectures/deco.png)
+
+*Figure 3 (PDF p. 4) · [Image source](https://arxiv.org/abs/2511.19365)*
+
+<a id="mammothmoda2"></a>
+
+### MammothModa2
+
+**First paper submission:** 2025-11-23 · [Architecture card](../models/unified.md#mammothmoda2)
+
+MammothModa2 (Mammoth2), from ByteDance, is a unified autoregressive-diffusion (AR-Diffusion) model that couples an AR pathway for semantic planning with a diffusion decoder for high-fidelity pixel synthesis, aiming to combine AR's instruction-following strength with diffusion's texture quality. Built on the Qwen3-VL-8B vision-language backbone, it adds dedicated MoE-style generation experts (hard-routed, only in deeper layers) that model discrete visual tokens from a new tokenizer, MammothTok, without disturbing the original understanding experts. An AR-Diffusion feature alignment module aggregates multi-layer AR hidden states and injects them as in-context conditioning into a single-stream DiT. Trained end-to-end with joint next-token-prediction and flow-matching objectives, then supervised fine-tuning and DiffusionNFT reinforcement learning on both generation and editing, Mammoth2 reports 0.87 on GenEval, 87.2 on DPGBench and 4.06 on ImgEdit using about 60M supervised generation samples and no pretrained generator.
+
+[Paper](https://arxiv.org/abs/2511.18262) · [GitHub](https://github.com/bytedance/mammothmoda) · [Model card](https://huggingface.co/bytedance-research/MammothModa)
+
+![MammothModa2 — Figure 2](../assets/architectures/mammothmoda2.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2511.18262)*
+
+<a id="unimodel"></a>
+
+### UniModel
+
+**First paper submission:** 2025-11-21 · [Architecture card](../models/dit.md#unimodel)
+
+UniModel (TeleAI, China Telecom, 2025) proposes a visual-only way to unify image generation and understanding. Text prompts, captions and answers are rendered as images on a clean canvas, so every input and output is RGB pixels. For text-to-image generation the model takes the painted-text image as the condition and synthesizes an RGB image; for understanding it takes an RGB image and produces a painted-text image. Both directions share one MMDiT architecture, one rectified-flow loss and two learnable task embeddings, with input-output pairs swapped at random during training. The paper shows qualitative text-to-image and image-to-painted-text results and image-caption-image cycles, and states that direct quantitative comparison is not feasible because no other model accepts painted text as input.
+
+[Paper](https://arxiv.org/abs/2511.16917) · GitHub: no author-linked repository found
+
+![UniModel — Figure 2 (PDF p. 4)](../assets/architectures/unimodel.png)
+
+*Figure 2 (PDF p. 4) · [Image source](https://arxiv.org/abs/2511.16917)*
+
+<a id="unigen-1-5"></a>
+
+### UniGen-1.5
+
+**First paper submission:** 2025-11-18 · [Architecture card](../models/unified.md#unigen-1-5)
+
+UniGen-1.5 (Apple and Fudan University, 2025) extends the earlier UniGen unified model to image editing while keeping one 7B LLM for understanding, text-to-image generation and editing. Understanding uses continuous SigLIP2 features; generation uses MAGVITv2 discrete tokens at 384x384 that the LLM predicts as masked tokens over several decoding turns. For editing, the condition image enters as both semantic SigLIP2 features and low-level discrete tokens. The paper adds a unified reinforcement learning stage that uses shared reward models for generation and editing, and a short Edit Instruction Alignment stage before it. It reports 0.89 on GenEval, 86.83 on DPG-Bench and 4.31 on ImgEdit.
+
+[Paper](https://arxiv.org/abs/2511.14760) · GitHub: no author-linked repository found
+
+![UniGen-1.5 — Figure 2](../assets/architectures/unigen-1-5.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2511.14760)*
+
+<a id="mos"></a>
+
+### MoS (Mixture of States)
+
+**First paper submission:** 2025-11-15 · [Architecture card](../models/dit.md#mos)
+
+Mixture of States (Meta AI and KAUST, 2025) replaces cross-attention or full self-attention between a language model and a diffusion transformer with a small router that decides which hidden states of the understanding tower reach which layers of the generation tower. The router is a lightweight transformer of about 100M parameters that takes the denoising timestep, the noisy image latent and the context tokens, outputs per-token layer-to-layer affinities, and keeps the top-k states with an epsilon-greedy training strategy. The paper trains MoS-Image for text-to-image generation and MoS-Edit for instruction-based editing in 3B and 5B generation-tower sizes, reporting results that match or surpass models up to four times larger.
+
+[Paper](https://arxiv.org/abs/2511.12207) · GitHub: no author-linked repository found
+
+![MoS (Mixture of States) — Figure 3](../assets/architectures/mos.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2511.12207)*
 
 <a id="oboro"></a>
 
@@ -898,6 +1069,90 @@ FIBO (Bria AI) is an open-source text-to-image model trained exclusively on long
 ![FIBO — Figure 2](../assets/architectures/fibo.png)
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2511.06876)*
+
+<a id="infinitystar"></a>
+
+### InfinityStar
+
+**First paper submission:** 2025-11-06 · [Architecture card](../models/ar-token.md#infinitystar)
+
+InfinityStar (ByteDance, NeurIPS 2025) builds on the Infinity bitwise next-scale design and extends it to video with a spacetime pyramid: an image pyramid for the first frame is followed by clip pyramids of 5-second clips, all predicted by one autoregressive transformer over discrete tokens. A single model performs text-to-image, text-to-video, image-to-video and video extrapolation, the last two without task-specific training. The paper adds a discrete video tokenizer initialized from a continuous one, stochastic quantizer depth in tokenizer training, semantic-scale repetition for early scales, and spacetime sparse attention that attends only to the last scale of the preceding clip. InfinityStar-T2I scores 0.79 on GenEval and 86.55 on DPG-Bench, and the video model reaches 83.74 on VBench.
+
+[Paper](https://arxiv.org/abs/2511.04675) · [GitHub](https://github.com/FoundationVision/InfinityStar) · [Model card](https://huggingface.co/FoundationVision/InfinityStar)
+
+![InfinityStar — Figure 1](../assets/architectures/infinitystar.png)
+
+*Figure 1 · [Image source](https://arxiv.org/abs/2511.04675)*
+
+<a id="e-mmdit"></a>
+
+### E-MMDiT (AMD Nitro-E)
+
+**First paper submission:** 2025-10-31 · [Architecture card](../models/efficient.md#e-mmdit)
+
+E-MMDiT (AMD, 2025), released as Nitro-E, is a small MMDiT-style text-to-image model designed around token reduction so that it can be trained cheaply and run fast. Images are encoded by the highly compressive DC-AE (32× downsampling) and prompts by Llama 3.2-1B. Inside the transformer, a multi-path compression module condenses image tokens by 2× and 4× for the middle blocks and a reconstructor restores them, with positional embeddings re-injected (Position Reinforcement) to keep spatial coherence; Alternating Subregion Attention restricts attention to alternating token subregions, and AdaLN-affine computes modulation parameters cheaply. The 512px model was trained on about 25M public images in 1.5 days on one node of eight AMD MI300X GPUs and reaches 0.66 GenEval (0.72 after GRPO post-training). Distilled checkpoints sample in four steps and roughly double throughput.
+
+[Paper](https://arxiv.org/abs/2510.27135) · [GitHub](https://github.com/AMD-AGI/Nitro-E) · [Model card](https://huggingface.co/amd/Nitro-E)
+
+![E-MMDiT (AMD Nitro-E) — Figure 3 (PDF p. 3)](../assets/architectures/e-mmdit.png)
+
+*Figure 3 (PDF p. 3) · [Image source](https://arxiv.org/abs/2510.27135)*
+
+<a id="emu3-5"></a>
+
+### Emu3.5
+
+**First paper submission:** 2025-10-30 · [Architecture card](../models/unified.md#emu3-5)
+
+Emu3.5 is BAAI's successor to Emu3, described as a native multimodal world model that predicts the next state across vision and language. A single 34B decoder-only transformer is pretrained end-to-end with next-token prediction on about 13 trillion tokens of interleaved vision-language data, mostly frames and transcripts of internet videos, then fine-tuned and trained with large-scale reinforcement learning. It generates interleaved text and images, including text-to-image and any-to-image (X2I) generation and editing, and the paper reports image generation and editing results comparable to Gemini 2.5 Flash Image. For speed, DiDA converts token-by-token image decoding into bidirectional parallel prediction, about 20x faster per image.
+
+[Paper](https://arxiv.org/abs/2510.26583) · [GitHub](https://github.com/baaivision/Emu3.5) · [Model card](https://huggingface.co/BAAI/Emu3.5-Image)
+
+![Emu3.5 — Figure 3](../assets/architectures/emu3-5.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2510.26583)*
+
+<a id="lightfusion"></a>
+
+### LightFusion
+
+**First paper submission:** 2025-10-27 · [Architecture card](../models/unified.md#lightfusion)
+
+LightFusion (UC Santa Cruz, Tsinghua, Monash and ByteDance Seed, 2025) builds a unified multimodal model by fusing two publicly released models instead of training from scratch. Qwen2.5-VL-7B handles text and ViT tokens and keeps its understanding ability, while the Wan2.2-TI2V-5B diffusion transformer handles VAE tokens for generation. Multimodal self-attention blocks, zero-initialized so that both models start unchanged, are interleaved across all layers and let every token type attend to the others, so the generator receives hidden states from all VLM layers rather than only the last one. For editing, the source image enters as both ViT tokens and VAE tokens. The model is trained on about 35B tokens and reports 0.91 on GenEval and 82.16 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2510.22946) · GitHub: no author-linked repository found
+
+![LightFusion — Figure 2](../assets/architectures/lightfusion.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2510.22946)*
+
+<a id="blip3o-next"></a>
+
+### BLIP3o-NEXT
+
+**First paper submission:** 2025-10-17 · [Architecture card](../models/continuous-ar.md#blip3o-next)
+
+BLIP3o-NEXT is the successor to BLIP3-o in the BLIP3 series, positioned as a native image generation model that handles text-to-image generation and image editing in one Autoregressive + Diffusion architecture of about 3B parameters. Unlike BLIP3-o, the autoregressive model now predicts discrete image tokens, which makes GRPO reinforcement learning with verifiable rewards (GenEval-style composition and text rendering) directly applicable, and a diffusion transformer conditioned on the tokens' hidden states renders the final image. The paper also describes consistency techniques for editing, including a reconstruction task and VAE-latent conditioning of the diffusion model.
+
+[Paper](https://arxiv.org/abs/2510.15857) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-NEXT-SFT-3B)
+
+![BLIP3o-NEXT — Figure 1](../assets/architectures/blip3o-next.png)
+
+*Figure 1 · [Image source](https://arxiv.org/abs/2510.15857)*
+
+<a id="unifusion"></a>
+
+### UniFusion
+
+**First paper submission:** 2025-10-14 · [Architecture card](../models/dit.md#unifusion)
+
+UniFusion (Adobe Applied Research, 2025) conditions a diffusion transformer on a frozen vision-language model that encodes both text prompts and reference images, instead of using separate text and image encoders. A learnable Layerwise Attention Pooling (LAP) module, two transformer blocks followed by a fully connected layer, pools features from several VLM layers so that the DiT receives both high-level semantics and low-level detail. At inference the VLM can rewrite the user prompt in-model, and the DiT is conditioned only on the image and rewritten tokens (the paper's Verifi mechanism). The final model pairs an 8B DiT with an 8B VLM, was trained on about 830 million samples, and handles text-to-image generation, single-image editing and, zero-shot, multi-reference generation with one set of weights.
+
+[Paper](https://arxiv.org/abs/2510.12789) · [Project](https://thekevinli.github.io/unifusion/) · GitHub: no author-linked repository found
+
+![UniFusion — Figure 4](../assets/architectures/unifusion.png)
+
+*Figure 4 · [Image source](https://arxiv.org/abs/2510.12789)*
 
 <a id="vugen"></a>
 

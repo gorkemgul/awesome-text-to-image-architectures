@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**13 models · Reviewed 2026-09-29**
+**15 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -20,6 +20,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [B-cos Diffusion Models](#b-cos-diffusion) | 2025-07-05 | T → I | generation |
 | [Composer](#composer) | 2023-02-20 | T, I → I | editing |
 | [DALL·E 2 (unCLIP)](#dall-e-2) | 2022-04-13 | T, I → I | editing |
+| [DeCo](#deco) | 2025-11-24 | T → I | generation |
 | [DeepFloyd IF](#deepfloyd-if) | 2023-04-28 | T, I → I | editing |
 | [eDiff-I](#ediff-i) | 2022-11-02 | T, I → I | generation |
 | [GLIDE](#glide) | 2021-12-20 | T, I → I | editing |
@@ -27,6 +28,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Imagen](#imagen) | 2022-05-23 | T → I | generation |
 | [Karlo](#karlo) | 2022-12-01 | T, I → I | generation |
 | [Matryoshka Diffusion Models](#matryoshka-diffusion) | 2023-10-23 | T → I | generation |
+| [PixelDiT](#pixeldit) | 2025-11-25 | T → I | generation |
 | [PixelFlow](#pixelflow) | 2025-04-10 | T → I | generation |
 | [PixNerd](#pixnerd) | 2025-07-31 | T → I | generation |
 | [Re-Imagen](#re-imagen) | 2022-09-29 | T, I → I | generation |
@@ -101,6 +103,33 @@ Two-stage unCLIP stack: a prior maps the caption to a CLIP image embedding, and 
 **Input → output:** T, I → I · **Interaction:** editing
 
 The paper compares an autoregressive prior (over PCA-reduced, quantized CLIP image embeddings) with a diffusion prior implemented as a decoder-only causal transformer, and finds the diffusion prior comparable and more compute-efficient. The decoder is the 3.5B-parameter GLIDE architecture, with CLIP image embeddings added to the timestep embedding and projected into four extra context tokens alongside the GLIDE text encoder's outputs. The upsamplers are unconditional ADMNets without attention, trained with Gaussian blur and BSR degradations. Encoding an image with CLIP and decoding gives image variations; interpolating embeddings blends images, and "text diffs" in CLIP space edit an input image toward a new caption. The paper names the DALL·E 2 Preview platform as the first deployment of an unCLIP model; the linked openai/dalle-2-preview repository holds only a risks-and-limitations system card, not code or weights.
+
+</details>
+
+<a id="deco"></a>
+
+### DeCo
+
+Pixel-space flow-matching model whose diffusion transformer denoises a downsampled input to model low-frequency semantics, while a lightweight attention-free pixel decoder takes the full-resolution noisy image plus the DiT output as AdaLN conditioning and predicts the pixel velocity; trained with a JPEG-inspired frequency-aware flow-matching loss.
+
+DeCo (Peking University, Nanjing University and Huawei, 2025) is an end-to-end pixel diffusion framework that splits the generation of low-frequency semantics and high-frequency detail between two modules. The DiT works on patchified, downsampled input and supplies semantic guidance; a small stack of linear, attention-free decoder blocks operates at full pixel resolution and predicts the final velocity, so no VAE is used. A frequency-aware flow-matching loss converts the velocity to the DCT domain in YCbCr space and weights frequency bands with JPEG quantization-table priors, emphasizing visually salient frequencies. The paper reports FID 1.62 (256x256) and 2.22 (512x512) on class-conditional ImageNet and trains a text-to-image variant that reaches 0.86 on GenEval and 81.4 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.19365) · [GitHub](https://github.com/Zehong-Ma/DeCo) · [Model card](https://huggingface.co/zehongma/DeCo)
+
+![DeCo — Figure 3 (PDF p. 4)](../assets/architectures/deco.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2511.19365)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The text-to-image model (DeCo-XXL/16, about 1.1B parameters per the repository README) uses a Qwen3-1.7B text encoder with several jointly trained transformer layers on top of the frozen text features. It is trained on the BLIP3o dataset (about 36M pretraining images and 60k instruction-tuning images) at 256x256 for 200K steps, then 512x512 for 80K steps and a 40K-step fine-tune on BLIP3o-60k, in about 6 days on 8 H800 GPUs, and samples with an Adams-2nd solver at 25 steps and CFG scale 4.0. The pixel decoder in the ImageNet baselines replaces the final two DiT blocks of the baseline and has about 8.5M parameters. The GitHub repository has no license file; the Hugging Face model card lists Apache-2.0.
+
+**License:** weights: apache-2.0.
+
+**Variants:** DeCo-XL/16 (ImageNet 256 and 512); DeCo-XXL/16 (text-to-image).
 
 </details>
 
@@ -272,6 +301,33 @@ The innermost UNet runs at 64×64 and holds most parameters and self-attention (
 **License:** code: MIT.
 
 **Variants:** MDM 64×64; MDM 256×256; MDM 1024×1024.
+
+</details>
+
+<a id="pixeldit"></a>
+
+### PixelDiT
+
+Single-stage, autoencoder-free dual-level transformer in pixel space: a patch-level DiT (MM-DiT conditioning on frozen Gemma-2 text embeddings) captures global semantics, and a pixel-level pathway of Pixel Transformer blocks with pixel-wise AdaLN and pixel token compaction refines per-pixel detail.
+
+PixelDiT (NVIDIA and University of Rochester, 2025) trains a diffusion transformer directly on pixels instead of in an autoencoder latent space. A patch-level pathway of DiT blocks processes coarse patch tokens to learn global semantics, and a pixel-level pathway of Pixel Transformer (PiT) blocks refines texture on per-pixel tokens. Pixel-wise AdaLN gives each pixel its own modulation computed from the semantic tokens, and pixel token compaction reduces the pixel tokens before global attention so that attention stays affordable at high resolution. The paper reports FID 1.61 on ImageNet 256 and 1.81 on ImageNet 512, and a text-to-image variant, PixelDiT-T2I, trained at 1024x1024 in pixel space that reaches 0.74 on GenEval and 83.5 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.20645) · [GitHub](https://github.com/NVlabs/PixelDiT) · [Model card](https://huggingface.co/nvidia/PixelDiT-1300M-1024px) · [Project](https://pixeldit.github.io)
+
+![PixelDiT — Figure 2 (PDF p. 3)](../assets/architectures/pixeldit.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2511.20645)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+PixelDiT-T2I (about 1.3B parameters) uses hidden size 1536, 14 patch-level and 2 pixel-level layers, a frozen Gemma-2 text encoder with a prepended system prompt, and about 26M image-text pairs; it is pretrained from scratch at 512x512 and then continued at 1024x1024. At 512x512 the paper reports 0.78 GenEval and 83.7 DPG-Bench. The paper also shows training-free editing with FlowEdit in pixel space. Code and weights are in NVlabs/PixelDiT and the Hugging Face model cards; both state the NSCLv1 license, which limits use to non-commercial research or evaluation.
+
+**License:** code: NVIDIA License (NSCLv1); weights: nsclv1.
+
+**Variants:** PixelDiT-ImageNet; PixelDiT-1300M-1024px (text-to-image).
 
 </details>
 

@@ -6,7 +6,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 > Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).
 
-**339 models and families · Reviewed 2026-09-29**
+**349 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -16,13 +16,13 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | --- | ---: |
 | [Early neural text-to-image models](models/early.md) | 3 |
 | [Generative adversarial networks](models/gan.md) | 46 |
-| [Autoregressive image-token models](models/ar-token.md) | 24 |
+| [Autoregressive image-token models](models/ar-token.md) | 25 |
 | [Masked and parallel image-token models](models/masked.md) | 15 |
-| [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 13 |
-| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 22 |
-| [Diffusion transformers and flow matching](models/dit.md) | 67 |
+| [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 15 |
+| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 23 |
+| [Diffusion transformers and flow matching](models/dit.md) | 71 |
 | [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 18 |
-| [Unified multimodal understanding and generation](models/unified.md) | 84 |
+| [Unified multimodal understanding and generation](models/unified.md) | 86 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
 
@@ -31,7 +31,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 339 entries</summary>
+<summary>Alphabetical model list · 349 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -83,9 +83,11 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [DALL·E Mini](#dall-e-mini) | AR token | T → I |
 | [DART](#dart) | Continuous AR | T → I |
 | [DC-AR](#dc-ar) | Masked token | T → I |
+| [DeCo](#deco) | Pixel diffusion | T → I |
 | [DeepFloyd IF](#deepfloyd-if) | Pixel diffusion | T, I → I |
 | [DeepGen 1.0](#deepgen-1) | DiT / flow | T, I → I |
 | [DF-GAN](#df-gan) | GAN | T → I |
+| [Diffusion Fuzzy System (DFS)](#diffusion-fuzzy-system) | Latent U-Net | T → I |
 | [DiT-Air](#dit-air) | DiT / flow | T → I |
 | [DiverGAN](#divergan) | GAN | T → I |
 | [DM-GAN](#dm-gan) | GAN | T → I |
@@ -159,6 +161,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Imagen 4](#imagen-4) | API | T, I → I |
 | [Imagine Flash](#imagine-flash) | Efficient | T → I |
 | [Infinity](#infinity) | AR token | T → I |
+| [InfinityStar](#infinitystar) | AR token | T, I, V → I, V |
 | [InstaFlow](#instaflow) | Efficient | T → I |
 | [Instella-T2I](#instella-t2i) | DiT / flow | T → I |
 | [InternVL-U](#internvl-u) | Unified | T, I → T, I |
@@ -188,6 +191,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Lens](#lens) | DiT / flow | T → I |
 | [LI-DiT](#li-dit) | DiT / flow | T → I |
 | [Libra-2](#libra-2) | Unified | T, I → T, I |
+| [LightFusion](#lightfusion) | Unified | T, I → T, I |
 | [LINA](#lina) | Continuous AR | T → I |
 | [Liquid](#liquid) | Unified | T, I → T, I |
 | [LLaDA-Image](#llada-image) | DiT / flow | T, I → I |
@@ -235,6 +239,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Mogao](#mogao) | Unified | T, I → T, I |
 | [MonoFormer](#monoformer) | Unified | T → T, I |
 | [Moonworks Lunara](#moonworks-lunara) | DiT / flow | T → I |
+| [MoS (Mixture of States)](#mos) | DiT / flow | T, I → I |
 | [MSMT-GAN](#msmt-gan) | GAN | T → I |
 | [Muddit](#muddit) | Unified | T, I → T, I |
 | [Mural](#mural) | Unified | T → I, T |
@@ -273,6 +278,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [PixArt-α](#pixart-alpha) | DiT / flow | T → I |
 | [PixArt-δ](#pixart-delta) | Efficient | T → I |
 | [PixArt-Σ](#pixart-sigma) | DiT / flow | T → I |
+| [PixelDiT](#pixeldit) | Pixel diffusion | T → I |
 | [PixelFlow](#pixelflow) | Pixel diffusion | T → I |
 | [PixNerd](#pixnerd) | Pixel diffusion | T → I |
 | [Playground v2](#playground-v2) | Latent U-Net | T → I |
@@ -355,7 +361,11 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [UniDisc](#unidisc) | Unified | T, I → T, I |
 | [Unified-IO](#unified-io) | Unified | T, I → T, I |
 | [Unified-IO 2](#unified-io-2) | Unified | T, I, V, A → T, I, A |
+| [UniFusion](#unifusion) | DiT / flow | T, I → I |
+| [UniGen-1.5](#unigen-1-5) | Unified | T, I → T, I |
 | [UniGen-AR](#unigen-ar) | AR token | T, I → I |
+| [UniModel](#unimodel) | DiT / flow | T → I |
+| [UniPath](#unipath) | DiT / flow | T → I |
 | [UniSpace](#unispace) | Unified | T, I → T, I |
 | [UniVG](#univg) | DiT / flow | T, I → I |
 | [UniWorld-Design](#uniworld-design) | DiT / flow | T, I → I |
@@ -959,6 +969,18 @@ DC-AR (NVIDIA and MIT, ICCV 2025) combines MaskGIT-style masked prediction with 
 
 *Figure 4 (PDF p. 5) · [Source](https://arxiv.org/abs/2507.04947)*
 
+<a id="deco"></a>
+
+### DeCo
+
+DeCo (Peking University, Nanjing University and Huawei, 2025) is an end-to-end pixel diffusion framework that splits the generation of low-frequency semantics and high-frequency detail between two modules. The DiT works on patchified, downsampled input and supplies semantic guidance; a small stack of linear, attention-free decoder blocks operates at full pixel resolution and predicts the final velocity, so no VAE is used. A frequency-aware flow-matching loss converts the velocity to the DCT domain in YCbCr space and weights frequency bands with JPEG quantization-table priors, emphasizing visually salient frequencies. The paper reports FID 1.62 (256x256) and 2.22 (512x512) on class-conditional ImageNet and trains a text-to-image variant that reaches 0.86 on GenEval and 81.4 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.19365) · [GitHub](https://github.com/Zehong-Ma/DeCo) · [Model card](https://huggingface.co/zehongma/DeCo) · [Details](models/pixel-diffusion.md#deco)
+
+![DeCo — Figure 3 (PDF p. 4)](assets/architectures/deco.png)
+
+*Figure 3 (PDF p. 4) · [Source](https://arxiv.org/abs/2511.19365)*
+
 <a id="deepfloyd-if"></a>
 
 ### DeepFloyd IF
@@ -994,6 +1016,18 @@ Single-stage GAN that generates high-resolution images directly with one generat
 ![DF-GAN — Figure 2](assets/architectures/df-gan.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2008.05865)*
+
+<a id="diffusion-fuzzy-system"></a>
+
+### Diffusion Fuzzy System (DFS)
+
+The Diffusion Fuzzy System (Jiangnan University and collaborators, 2025; the manuscript carries an IEEE Transactions on Fuzzy Systems identifier) builds a multi-path latent diffusion model in which each diffusion path learns one class of image features and fuzzy rules coordinate the paths. K-medoids clustering picks representative images that define fuzzy sets; membership degrees of the noisy latent to each set, computed from feature and semantic similarity, weight the path outputs at every denoising step through rule chains of forward and reverse cascaded rules. An encoder and decoder compress 256x256 images into 32x32 latents to keep the multi-path cost down. In the text-to-image setting the noise predictor receives noise and text embeddings, and the paper reports results on LSUN Bedroom, LSUN Church and MS COCO against single-path and multi-path diffusion baselines.
+
+[Paper](https://arxiv.org/abs/2512.01533) · GitHub: no author-linked repository found · [Details](models/latent-unet.md#diffusion-fuzzy-system)
+
+![Diffusion Fuzzy System (DFS) — Figure 2 (PDF p. 3)](assets/architectures/diffusion-fuzzy-system.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2512.01533)*
 
 <a id="dit-air"></a>
 
@@ -1871,6 +1905,18 @@ Infinity (ByteDance, 2024) scales up VAR-style next-scale autoregressive image g
 
 *Figure 3 · [Source](https://arxiv.org/abs/2412.04431)*
 
+<a id="infinitystar"></a>
+
+### InfinityStar
+
+InfinityStar (ByteDance, NeurIPS 2025) builds on the Infinity bitwise next-scale design and extends it to video with a spacetime pyramid: an image pyramid for the first frame is followed by clip pyramids of 5-second clips, all predicted by one autoregressive transformer over discrete tokens. A single model performs text-to-image, text-to-video, image-to-video and video extrapolation, the last two without task-specific training. The paper adds a discrete video tokenizer initialized from a continuous one, stochastic quantizer depth in tokenizer training, semantic-scale repetition for early scales, and spacetime sparse attention that attends only to the last scale of the preceding clip. InfinityStar-T2I scores 0.79 on GenEval and 86.55 on DPG-Bench, and the video model reaches 83.74 on VBench.
+
+[Paper](https://arxiv.org/abs/2511.04675) · [GitHub](https://github.com/FoundationVision/InfinityStar) · [Model card](https://huggingface.co/FoundationVision/InfinityStar) · [Details](models/ar-token.md#infinitystar)
+
+![InfinityStar — Figure 1](assets/architectures/infinitystar.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2511.04675)*
+
 <a id="instaflow"></a>
 
 ### InstaFlow
@@ -2218,6 +2264,18 @@ Libra-2 extends the Libra family's decoupled vision-language design from image u
 ![Libra-2 — Fig. 2](assets/architectures/libra-2.png)
 
 *Fig. 2 · [Source](https://arxiv.org/abs/2608.20382)*
+
+<a id="lightfusion"></a>
+
+### LightFusion
+
+LightFusion (UC Santa Cruz, Tsinghua, Monash and ByteDance Seed, 2025) builds a unified multimodal model by fusing two publicly released models instead of training from scratch. Qwen2.5-VL-7B handles text and ViT tokens and keeps its understanding ability, while the Wan2.2-TI2V-5B diffusion transformer handles VAE tokens for generation. Multimodal self-attention blocks, zero-initialized so that both models start unchanged, are interleaved across all layers and let every token type attend to the others, so the generator receives hidden states from all VLM layers rather than only the last one. For editing, the source image enters as both ViT tokens and VAE tokens. The model is trained on about 35B tokens and reports 0.91 on GenEval and 82.16 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2510.22946) · GitHub: no author-linked repository found · [Details](models/unified.md#lightfusion)
+
+![LightFusion — Figure 2](assets/architectures/lightfusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.22946)*
 
 <a id="lina"></a>
 
@@ -2783,6 +2841,18 @@ Moonworks Lunara, from the startup Moonworks, is a text-to-image model built aro
 
 *Figure 4 (PDF p. 7) · [Source](https://arxiv.org/abs/2609.22272)*
 
+<a id="mos"></a>
+
+### MoS (Mixture of States)
+
+Mixture of States (Meta AI and KAUST, 2025) replaces cross-attention or full self-attention between a language model and a diffusion transformer with a small router that decides which hidden states of the understanding tower reach which layers of the generation tower. The router is a lightweight transformer of about 100M parameters that takes the denoising timestep, the noisy image latent and the context tokens, outputs per-token layer-to-layer affinities, and keeps the top-k states with an epsilon-greedy training strategy. The paper trains MoS-Image for text-to-image generation and MoS-Edit for instruction-based editing in 3B and 5B generation-tower sizes, reporting results that match or surpass models up to four times larger.
+
+[Paper](https://arxiv.org/abs/2511.12207) · GitHub: no author-linked repository found · [Details](models/dit.md#mos)
+
+![MoS (Mixture of States) — Figure 3](assets/architectures/mos.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2511.12207)*
+
 <a id="msmt-gan"></a>
 
 ### MSMT-GAN
@@ -3238,6 +3308,18 @@ PixArt-Σ is the successor to PixArt-α from Huawei Noah's Ark Lab and academic 
 ![PixArt-Σ — Figure 7](assets/architectures/pixart-sigma.png)
 
 *Figure 7 · [Source](https://arxiv.org/abs/2403.04692)*
+
+<a id="pixeldit"></a>
+
+### PixelDiT
+
+PixelDiT (NVIDIA and University of Rochester, 2025) trains a diffusion transformer directly on pixels instead of in an autoencoder latent space. A patch-level pathway of DiT blocks processes coarse patch tokens to learn global semantics, and a pixel-level pathway of Pixel Transformer (PiT) blocks refines texture on per-pixel tokens. Pixel-wise AdaLN gives each pixel its own modulation computed from the semantic tokens, and pixel token compaction reduces the pixel tokens before global attention so that attention stays affordable at high resolution. The paper reports FID 1.61 on ImageNet 256 and 1.81 on ImageNet 512, and a text-to-image variant, PixelDiT-T2I, trained at 1024x1024 in pixel space that reaches 0.74 on GenEval and 83.5 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2511.20645) · [GitHub](https://github.com/NVlabs/PixelDiT) · [Model card](https://huggingface.co/nvidia/PixelDiT-1300M-1024px) · [Project](https://pixeldit.github.io) · [Details](models/pixel-diffusion.md#pixeldit)
+
+![PixelDiT — Figure 2 (PDF p. 3)](assets/architectures/pixeldit.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2511.20645)*
 
 <a id="pixelflow"></a>
 
@@ -4223,6 +4305,30 @@ Unified-IO 2, from the Allen Institute for AI, is an autoregressive encoder-deco
 
 *Figure 2 · [Source](https://arxiv.org/abs/2312.17172)*
 
+<a id="unifusion"></a>
+
+### UniFusion
+
+UniFusion (Adobe Applied Research, 2025) conditions a diffusion transformer on a frozen vision-language model that encodes both text prompts and reference images, instead of using separate text and image encoders. A learnable Layerwise Attention Pooling (LAP) module, two transformer blocks followed by a fully connected layer, pools features from several VLM layers so that the DiT receives both high-level semantics and low-level detail. At inference the VLM can rewrite the user prompt in-model, and the DiT is conditioned only on the image and rewritten tokens (the paper's Verifi mechanism). The final model pairs an 8B DiT with an 8B VLM, was trained on about 830 million samples, and handles text-to-image generation, single-image editing and, zero-shot, multi-reference generation with one set of weights.
+
+[Paper](https://arxiv.org/abs/2510.12789) · [Project](https://thekevinli.github.io/unifusion/) · GitHub: no author-linked repository found · [Details](models/dit.md#unifusion)
+
+![UniFusion — Figure 4](assets/architectures/unifusion.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2510.12789)*
+
+<a id="unigen-1-5"></a>
+
+### UniGen-1.5
+
+UniGen-1.5 (Apple and Fudan University, 2025) extends the earlier UniGen unified model to image editing while keeping one 7B LLM for understanding, text-to-image generation and editing. Understanding uses continuous SigLIP2 features; generation uses MAGVITv2 discrete tokens at 384x384 that the LLM predicts as masked tokens over several decoding turns. For editing, the condition image enters as both semantic SigLIP2 features and low-level discrete tokens. The paper adds a unified reinforcement learning stage that uses shared reward models for generation and editing, and a short Edit Instruction Alignment stage before it. It reports 0.89 on GenEval, 86.83 on DPG-Bench and 4.31 on ImgEdit.
+
+[Paper](https://arxiv.org/abs/2511.14760) · GitHub: no author-linked repository found · [Details](models/unified.md#unigen-1-5)
+
+![UniGen-1.5 — Figure 2](assets/architectures/unigen-1-5.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2511.14760)*
+
 <a id="unigen-ar"></a>
 
 ### UniGen-AR
@@ -4234,6 +4340,30 @@ UniGen-AR (Carnegie Mellon University, UIUC and Toyota Research Institute) targe
 ![UniGen-AR — Figure 2](assets/architectures/unigen-ar.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2607.24157)*
+
+<a id="unimodel"></a>
+
+### UniModel
+
+UniModel (TeleAI, China Telecom, 2025) proposes a visual-only way to unify image generation and understanding. Text prompts, captions and answers are rendered as images on a clean canvas, so every input and output is RGB pixels. For text-to-image generation the model takes the painted-text image as the condition and synthesizes an RGB image; for understanding it takes an RGB image and produces a painted-text image. Both directions share one MMDiT architecture, one rectified-flow loss and two learnable task embeddings, with input-output pairs swapped at random during training. The paper shows qualitative text-to-image and image-to-painted-text results and image-caption-image cycles, and states that direct quantitative comparison is not feasible because no other model accepts painted text as input.
+
+[Paper](https://arxiv.org/abs/2511.16917) · GitHub: no author-linked repository found · [Details](models/dit.md#unimodel)
+
+![UniModel — Figure 2 (PDF p. 4)](assets/architectures/unimodel.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2511.16917)*
+
+<a id="unipath"></a>
+
+### UniPath
+
+UniPath (Fudan University, Fysics AI and collaborators, CVPR 2026) generates pathology images from text with Multi-Stream Control. A Raw-Text stream passes the prompt embedding; a High-Level Semantics stream appends learnable queries to the prompt in a frozen pathology MLLM and projects the final hidden states into paraphrase-robust Diagnostic Semantic Tokens, and the MLLM also expands prompts into diagnosis-aware attribute bundles; a Prototype stream retrieves component-level morphology prototypes from a bank (K_m = 16 per prompt) for finer control. The three condition sets are fused into one sequence for the DiT. The authors build a 2.65M image-text corpus with a 68K high-quality subset and a four-tier evaluation hierarchy, reporting a Patho-FID of 80.9.
+
+[Paper](https://arxiv.org/abs/2512.21058) · [GitHub](https://github.com/Hanminghao/UniPath) · [Model card](https://huggingface.co/minghaofdu/UniPath-7B) · [Details](models/dit.md#unipath)
+
+![UniPath — Figure 2](assets/architectures/unipath.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2512.21058)*
 
 <a id="unispace"></a>
 

@@ -2038,6 +2038,55 @@
    ]
   },
   {
+   "id": "deco",
+   "name": "DeCo",
+   "category": "pixel-diffusion",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Pixel-space flow-matching model whose diffusion transformer denoises a downsampled input to model low-frequency semantics, while a lightweight attention-free pixel decoder takes the full-resolution noisy image plus the DiT output as AdaLN conditioning and predicts the pixel velocity; trained with a JPEG-inspired frequency-aware flow-matching loss",
+   "description": "DeCo (Peking University, Nanjing University and Huawei, 2025) is an end-to-end pixel diffusion framework that splits the generation of low-frequency semantics and high-frequency detail between two modules. The DiT works on patchified, downsampled input and supplies semantic guidance; a small stack of linear, attention-free decoder blocks operates at full pixel resolution and predicts the final velocity, so no VAE is used. A frequency-aware flow-matching loss converts the velocity to the DCT domain in YCbCr space and weights frequency bands with JPEG quantization-table priors, emphasizing visually salient frequencies. The paper reports FID 1.62 (256x256) and 2.22 (512x512) on class-conditional ImageNet and trains a text-to-image variant that reaches 0.86 on GenEval and 81.4 on DPG-Bench.",
+   "notes": "The text-to-image model (DeCo-XXL/16, about 1.1B parameters per the repository README) uses a Qwen3-1.7B text encoder with several jointly trained transformer layers on top of the frozen text features. It is trained on the BLIP3o dataset (about 36M pretraining images and 60k instruction-tuning images) at 256x256 for 200K steps, then 512x512 for 80K steps and a 40K-step fine-tune on BLIP3o-60k, in about 6 days on 8 H800 GPUs, and samples with an Adams-2nd solver at 25 steps and CFG scale 4.0. The pixel decoder in the ImageNet baselines replaces the final two DiT blocks of the baseline and has about 8.5M parameters. The GitHub repository has no license file; the Hugging Face model card lists Apache-2.0.",
+   "variants": [
+    "DeCo-XL/16 (ImageNet 256 and 512)",
+    "DeCo-XXL/16 (text-to-image)"
+   ],
+   "source_date": "2025-11-24",
+   "source_date_kind": "paper",
+   "license": {
+    "code": null,
+    "weights": "apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "DeCo: Frequency-Decoupled Pixel Diffusion for End-to-End Image Generation",
+     "url": "https://arxiv.org/abs/2511.19365",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "Zehong-Ma/DeCo — official repository",
+     "url": "https://github.com/Zehong-Ma/DeCo",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "zehongma/DeCo — model card",
+     "url": "https://huggingface.co/zehongma/DeCo",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "deepfloyd-if",
    "name": "DeepFloyd IF",
    "category": "pixel-diffusion",
@@ -2171,6 +2220,34 @@
      "url": "https://github.com/tobran/DF-GAN",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "diffusion-fuzzy-system",
+   "name": "Diffusion Fuzzy System (DFS)",
+   "category": "latent-unet",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Latent multi-path diffusion model with U-Net noise predictors on 32x32 latents of 256x256 images, where each path is assigned to a cluster of image features and cascaded fuzzy rules with fuzzy-membership-based inference steer and combine the paths, conditioned on text embeddings",
+   "description": "The Diffusion Fuzzy System (Jiangnan University and collaborators, 2025; the manuscript carries an IEEE Transactions on Fuzzy Systems identifier) builds a multi-path latent diffusion model in which each diffusion path learns one class of image features and fuzzy rules coordinate the paths. K-medoids clustering picks representative images that define fuzzy sets; membership degrees of the noisy latent to each set, computed from feature and semantic similarity, weight the path outputs at every denoising step through rule chains of forward and reverse cascaded rules. An encoder and decoder compress 256x256 images into 32x32 latents to keep the multi-path cost down. In the text-to-image setting the noise predictor receives noise and text embeddings, and the paper reports results on LSUN Bedroom, LSUN Church and MS COCO against single-path and multi-path diffusion baselines.",
+   "notes": "Results are at 256x256 on LSUN and MS COCO (592,000 images split 7:1:2) and use FID, MIFID, IS, PSNR, SSIM, MS-SSIM, precision, recall and CLIP score; the paper reports improved FID and CLIP score over baselines such as LDM, GLIDE, unCLIP, SDG and the multi-path RAPHAEL, and uses a U-Net-based noise predictor. The text encoder and parameter counts are not specified in the main text. Experiments ran on 6 NVIDIA RTX A6000 GPUs. No repository or model weights are linked in the paper.",
+   "variants": [],
+   "source_date": "2025-12-01",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Diffusion Fuzzy System: Fuzzy Rule Guided Latent Multi-Path Diffusion Modeling",
+     "url": "https://arxiv.org/abs/2512.01533",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -5346,6 +5423,55 @@
    ]
   },
   {
+   "id": "infinitystar",
+   "name": "InfinityStar",
+   "category": "ar-token",
+   "inputs": [
+    "T",
+    "I",
+    "V"
+   ],
+   "outputs": [
+    "I",
+    "V"
+   ],
+   "interaction": "generation",
+   "architecture": "8B spacetime autoregressive transformer that predicts discrete bitwise multi-scale residual tokens (next-scale prediction) over an image pyramid followed by clip pyramids, with spacetime sparse attention and a BSQ video tokenizer fine-tuned from the Wan 2.1 VAE",
+   "description": "InfinityStar (ByteDance, NeurIPS 2025) builds on the Infinity bitwise next-scale design and extends it to video with a spacetime pyramid: an image pyramid for the first frame is followed by clip pyramids of 5-second clips, all predicted by one autoregressive transformer over discrete tokens. A single model performs text-to-image, text-to-video, image-to-video and video extrapolation, the last two without task-specific training. The paper adds a discrete video tokenizer initialized from a continuous one, stochastic quantizer depth in tokenizer training, semantic-scale repetition for early scales, and spacetime sparse attention that attends only to the last scale of the preceding clip. InfinityStar-T2I scores 0.79 on GenEval and 86.55 on DPG-Bench, and the video model reaches 83.74 on VBench.",
+   "notes": "Training is progressive: text-to-image pre-training on 130M images, then 70M high-quality images and 5M synthetic images, followed by text-to-video fine-tuning at 192p, 480p and 720p on about 16M videos. The tokenizer applies patchify layers to the Wan 2.1 VAE (4x16x16 compression, 64 latent dimensions) with multi-scale BSQ quantization. The classifier is bitwise and training uses bitwise self-correction as in Infinity. Image-to-video and video extrapolation are zero-shot capabilities of the same model. Video outputs and inputs are listed because the paper evaluates them; the image-generation results use the separately reported InfinityStar-T2I model.",
+   "variants": [],
+   "source_date": "2025-11-06",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "MIT"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "InfinityStar: Unified Spacetime AutoRegressive Modeling for Visual Generation",
+     "url": "https://arxiv.org/abs/2511.04675",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "FoundationVision/InfinityStar — official repository",
+     "url": "https://github.com/FoundationVision/InfinityStar",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "FoundationVision/InfinityStar — model card",
+     "url": "https://huggingface.co/FoundationVision/InfinityStar",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "instaflow",
    "name": "InstaFlow",
    "category": "efficient",
@@ -6616,6 +6742,36 @@
      "url": "https://github.com/YifanXu74/Libra",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "lightfusion",
+   "name": "LightFusion",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Frozen Qwen2.5-VL-7B understanding pathway and trainable Wan2.2-TI2V-5B diffusion transformer generation pathway, joined by zero-initialized multimodal self-attention blocks interleaved at every layer (double fusion)",
+   "description": "LightFusion (UC Santa Cruz, Tsinghua, Monash and ByteDance Seed, 2025) builds a unified multimodal model by fusing two publicly released models instead of training from scratch. Qwen2.5-VL-7B handles text and ViT tokens and keeps its understanding ability, while the Wan2.2-TI2V-5B diffusion transformer handles VAE tokens for generation. Multimodal self-attention blocks, zero-initialized so that both models start unchanged, are interleaved across all layers and let every token type attend to the others, so the generator receives hidden states from all VLM layers rather than only the last one. For editing, the source image enters as both ViT tokens and VAE tokens. The model is trained on about 35B tokens and reports 0.91 on GenEval and 82.16 on DPG-Bench.",
+   "notes": "Training uses about 45 million text-to-image and editing samples from public datasets plus a self-curated synthetic set of about 4.5 million, in three stages that raise the share of high-quality text-to-image and then editing data. The understanding branch is frozen throughout, so its MMBench (83.5), MMMU (58.6) and MM-Vet (67.1) scores in the paper equal those of Qwen2.5-VL-7B. The GenEval score of 0.91 uses LLM-rewritten prompts. Image editing results are 3.77 on ImgEdit-Bench and 6.06 on GEdit-Bench. The paper states that code, weights and data are released, but no repository was found at the project page or by repository search, so none is linked here.",
+   "variants": [],
+   "source_date": "2025-10-27",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "LightFusion: A Light-weighted, Double Fusion Framework for Unified Multimodal Understanding and Generation",
+     "url": "https://arxiv.org/abs/2510.22946",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -8667,6 +8823,40 @@
    ]
   },
   {
+   "id": "mos",
+   "name": "MoS (Mixture of States)",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Dual-tower diffusion model in which a frozen understanding tower (PLM-8B or InternVL-14B) feeds a 3B or 5B generation tower trained from scratch through a learnable token-wise router that selects top-k understanding hidden states per generation layer and denoising timestep",
+   "description": "Mixture of States (Meta AI and KAUST, 2025) replaces cross-attention or full self-attention between a language model and a diffusion transformer with a small router that decides which hidden states of the understanding tower reach which layers of the generation tower. The router is a lightweight transformer of about 100M parameters that takes the denoising timestep, the noisy image latent and the context tokens, outputs per-token layer-to-layer affinities, and keeps the top-k states with an epsilon-greedy training strategy. The paper trains MoS-Image for text-to-image generation and MoS-Edit for instruction-based editing in 3B and 5B generation-tower sizes, reporting results that match or surpass models up to four times larger.",
+   "notes": "MoS-S pairs the 8B PLM understanding tower with a 3B generation tower, and MoS-L pairs the 14B InternVL tower with a 5B generation tower; the understanding tower is frozen and the generation tower and router are initialized from scratch. Both use the Wan 2.2 VAE with 16x compression. MoS-Image is trained in four stages (512px, 1024px, aesthetic tuning and 2K super-resolution tuning) at about 3,000 A100 days in total, and MoS-Edit adds about 50 A100 days on roughly one million editing pairs. Benchmarks reported include GenEval, DPG, WISE, OneIG-EN, GEdit and ImgEdit. No code or weights were found linked in the paper.",
+   "variants": [
+    "MoS-S",
+    "MoS-L",
+    "MoS-Image",
+    "MoS-Edit"
+   ],
+   "source_date": "2025-11-15",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Mixture of States: Routing Token-Level Dynamics for Multimodal Generation",
+     "url": "https://arxiv.org/abs/2511.12207",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "msmt-gan",
    "name": "MSMT-GAN",
    "category": "gan",
@@ -10227,6 +10417,62 @@
      "url": "https://huggingface.co/PixArt-alpha/PixArt-Sigma-XL-2-1024-MS",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "pixeldit",
+   "name": "PixelDiT",
+   "category": "pixel-diffusion",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Single-stage, autoencoder-free dual-level transformer in pixel space: a patch-level DiT (MM-DiT conditioning on frozen Gemma-2 text embeddings) captures global semantics, and a pixel-level pathway of Pixel Transformer blocks with pixel-wise AdaLN and pixel token compaction refines per-pixel detail",
+   "description": "PixelDiT (NVIDIA and University of Rochester, 2025) trains a diffusion transformer directly on pixels instead of in an autoencoder latent space. A patch-level pathway of DiT blocks processes coarse patch tokens to learn global semantics, and a pixel-level pathway of Pixel Transformer (PiT) blocks refines texture on per-pixel tokens. Pixel-wise AdaLN gives each pixel its own modulation computed from the semantic tokens, and pixel token compaction reduces the pixel tokens before global attention so that attention stays affordable at high resolution. The paper reports FID 1.61 on ImageNet 256 and 1.81 on ImageNet 512, and a text-to-image variant, PixelDiT-T2I, trained at 1024x1024 in pixel space that reaches 0.74 on GenEval and 83.5 on DPG-Bench.",
+   "notes": "PixelDiT-T2I (about 1.3B parameters) uses hidden size 1536, 14 patch-level and 2 pixel-level layers, a frozen Gemma-2 text encoder with a prepended system prompt, and about 26M image-text pairs; it is pretrained from scratch at 512x512 and then continued at 1024x1024. At 512x512 the paper reports 0.78 GenEval and 83.7 DPG-Bench. The paper also shows training-free editing with FlowEdit in pixel space. Code and weights are in NVlabs/PixelDiT and the Hugging Face model cards; both state the NSCLv1 license, which limits use to non-commercial research or evaluation.",
+   "variants": [
+    "PixelDiT-ImageNet",
+    "PixelDiT-1300M-1024px (text-to-image)"
+   ],
+   "source_date": "2025-11-25",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "NVIDIA License (NSCLv1)",
+    "weights": "nsclv1"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "PixelDiT: Pixel Diffusion Transformers for Image Generation",
+     "url": "https://arxiv.org/abs/2511.20645",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "NVlabs/PixelDiT — official repository",
+     "url": "https://github.com/NVlabs/PixelDiT",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "nvidia/PixelDiT-1300M-1024px — model card",
+     "url": "https://huggingface.co/nvidia/PixelDiT-1300M-1024px",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    },
+    {
+     "kind": "project",
+     "title": "PixelDiT project page",
+     "url": "https://pixeldit.github.io",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -13664,6 +13910,72 @@
    ]
   },
   {
+   "id": "unifusion",
+   "name": "UniFusion",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Frozen InternVL3-8B vision-language model as the only encoder: a Layerwise Attention Pooling module aggregates hidden states from every third VLM layer into one conditioning sequence, refined by two bidirectional transformer blocks and prepended to the noisy VAE latents of an 8B diffusion transformer",
+   "description": "UniFusion (Adobe Applied Research, 2025) conditions a diffusion transformer on a frozen vision-language model that encodes both text prompts and reference images, instead of using separate text and image encoders. A learnable Layerwise Attention Pooling (LAP) module, two transformer blocks followed by a fully connected layer, pools features from several VLM layers so that the DiT receives both high-level semantics and low-level detail. At inference the VLM can rewrite the user prompt in-model, and the DiT is conditioned only on the image and rewritten tokens (the paper's Verifi mechanism). The final model pairs an 8B DiT with an 8B VLM, was trained on about 830 million samples, and handles text-to-image generation, single-image editing and, zero-shot, multi-reference generation with one set of weights.",
+   "notes": "The VLM is frozen and only the LAP, refiner and DiT are trained. Features come from every third VLM layer; input images are fed only to the VLM (up to 10 tiles) and no VAE tokens are added to the DiT input, which operates on a VAE latent space with 16x compression. The base model is trained on text-to-image, image reconstruction and mixed text-and-image data, and an early checkpoint is handed off from a pre-existing T5-conditioned model; editing instruction data is added afterwards. The paper reports that the editing fine-tune also improves text-to-image alignment and compares against Flux.1 [dev], BAGEL, Flux.1 Kontext [dev] and Qwen-Image without supervised fine-tuning or reinforcement learning. The paper describes the benchmark scores of GenEval and DPG-Bench as unreliable and relies mainly on qualitative and A/B comparisons. The project page lists code as coming soon.",
+   "variants": [],
+   "source_date": "2025-10-14",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniFusion: Vision-Language Model as Unified Encoder in Image Generation",
+     "url": "https://arxiv.org/abs/2510.12789",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "project",
+     "title": "UniFusion project page",
+     "url": "https://thekevinli.github.io/unifusion/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
+   "id": "unigen-1-5",
+   "name": "UniGen-1.5",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Qwen2.5-7B-initialized LLM with a frozen SigLIP2 encoder for understanding and a frozen MAGVITv2 discrete tokenizer for generation, trained for text-to-image and editing by masked image-token prediction with multi-step parallel decoding",
+   "description": "UniGen-1.5 (Apple and Fudan University, 2025) extends the earlier UniGen unified model to image editing while keeping one 7B LLM for understanding, text-to-image generation and editing. Understanding uses continuous SigLIP2 features; generation uses MAGVITv2 discrete tokens at 384x384 that the LLM predicts as masked tokens over several decoding turns. For editing, the condition image enters as both semantic SigLIP2 features and low-level discrete tokens. The paper adds a unified reinforcement learning stage that uses shared reward models for generation and editing, and a short Edit Instruction Alignment stage before it. It reports 0.89 on GenEval, 86.83 on DPG-Bench and 4.31 on ImgEdit.",
+   "notes": "Training runs pre-training on image-text data (ImageNet, CC-3M, CC-12M, SAM-11M with fine-grained captions) plus a small text-only share, then supervised fine-tuning with editing data, Edit Instruction Alignment and reinforcement learning. Both visual encoders stay frozen throughout. Understanding is evaluated on AI2D, GQA, POPE, MMMU, MathVista, ScienceQA and SeedBench. No code or weights were found linked in the paper.",
+   "variants": [],
+   "source_date": "2025-11-18",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniGen-1.5: Enhancing Image Generation and Editing through Reward Unification in Reinforcement Learning",
+     "url": "https://arxiv.org/abs/2511.14760",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "unigen-ar",
    "name": "UniGen-AR",
    "category": "ar-token",
@@ -13696,6 +14008,80 @@
      "url": "https://zpbao.github.io/projects/unigenar",
      "reviewed_on": "2026-09-29",
      "review_level": "project"
+    }
+   ]
+  },
+  {
+   "id": "unimodel",
+   "name": "UniModel",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Single MMDiT-style rectified-flow diffusion transformer that treats text as pixels: prompts are rendered as painted text images, encoded by a shared visual encoder, and the model denoises VAE latents to produce an RGB image, with learnable task embeddings selecting generation or the reverse image-to-painted-text direction",
+   "description": "UniModel (TeleAI, China Telecom, 2025) proposes a visual-only way to unify image generation and understanding. Text prompts, captions and answers are rendered as images on a clean canvas, so every input and output is RGB pixels. For text-to-image generation the model takes the painted-text image as the condition and synthesizes an RGB image; for understanding it takes an RGB image and produces a painted-text image. Both directions share one MMDiT architecture, one rectified-flow loss and two learnable task embeddings, with input-output pairs swapped at random during training. The paper shows qualitative text-to-image and image-to-painted-text results and image-caption-image cycles, and states that direct quantitative comparison is not feasible because no other model accepts painted text as input.",
+   "notes": "The paper builds on the MMDiT architecture of Qwen-Image but does not state model size, initialization, training data or compute. Evidence is qualitative only: text-to-image and image-to-text galleries and cycle inference examples, with no benchmark scores, so the card lists only text input and image output and is filed by generator architecture instead of the unified group. No repository or model card is linked in the paper.",
+   "variants": [],
+   "source_date": "2025-11-21",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniModel: A Visual-Only Framework for Unified Multimodal Understanding and Generation",
+     "url": "https://arxiv.org/abs/2511.16917",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "unipath",
+   "name": "UniPath",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "0.6B PixArt-alpha-derived flow-matching DiT over SD3-VAE latents, conditioned through cross-attention on a fused sequence from three streams: raw text tokens, Diagnostic Semantic Tokens distilled by 64 learnable queries into a frozen Patho-R1 7B pathology MLLM, and prototype tokens retrieved from a prototype bank",
+   "description": "UniPath (Fudan University, Fysics AI and collaborators, CVPR 2026) generates pathology images from text with Multi-Stream Control. A Raw-Text stream passes the prompt embedding; a High-Level Semantics stream appends learnable queries to the prompt in a frozen pathology MLLM and projects the final hidden states into paraphrase-robust Diagnostic Semantic Tokens, and the MLLM also expands prompts into diagnosis-aware attribute bundles; a Prototype stream retrieves component-level morphology prototypes from a bank (K_m = 16 per prompt) for finer control. The three condition sets are fused into one sequence for the DiT. The authors build a 2.65M image-text corpus with a 68K high-quality subset and a four-tier evaluation hierarchy, reporting a Patho-FID of 80.9.",
+   "notes": "The generator is a 0.6B DiT with 28 layers, 16 heads and hidden size 1152 trained with a flow-matching objective, using the Stable Diffusion 3 VAE with 8x downsampling; the MLLM and VAE are frozen. Training is two-stage (large-scale pretraining on the 2.65M corpus, then 500 steps on a 50K high-quality set; the abstract cites a 68K annotated subset) on 16 H100 GPUs. Baselines include SD1.5, SDXL, PixArt-alpha and the pathology model PixCell. The Hugging Face model-card metadata for UniPath-7B lists cc-by-nc-nd-4.0 with gated access; its pipeline tag is image-text-to-text, so it may hold the understanding model rather than the generator. The GitHub repository has no license file.",
+   "variants": [],
+   "source_date": "2025-12-24",
+   "source_date_kind": "paper",
+   "license": {
+    "code": null,
+    "weights": "cc-by-nc-nd-4.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Beyond Pixel Simulation: Pathology Image Generation via Diagnostic Semantic Tokens and Prototype Control",
+     "url": "https://arxiv.org/abs/2512.21058",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "Hanminghao/UniPath — official repository",
+     "url": "https://github.com/Hanminghao/UniPath",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "minghaofdu/UniPath-7B — model card",
+     "url": "https://huggingface.co/minghaofdu/UniPath-7B",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
     }
    ]
   },

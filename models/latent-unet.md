@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**22 models · Reviewed 2026-09-29**
+**23 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -20,6 +20,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [AltDiffusion](#altdiffusion) | 2023-08-19 | T → I | generation |
 | [Bridge Diffusion Model (BDM)](#bridge-diffusion) | 2023-09-02 | T → I | generation |
 | [CogView3](#cogview3) | 2024-03-08 | T → I | generation |
+| [Diffusion Fuzzy System (DFS)](#diffusion-fuzzy-system) | 2025-12-01 | T → I | generation |
 | [Emu (Meta)](#emu-meta) | 2023-09-27 | T → I | generation |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | 2022-10-27 | T → I | generation |
 | [Frido](#frido) | 2022-08-29 | T → I | generation |
@@ -116,6 +117,29 @@ Unlike earlier cascaded diffusion that conditions every super-resolution step on
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
 **Variants:** CogView3 base (512×512); CogView3 relay SR (1024×1024, iterative 2048×2048); CogView3 distilled.
+
+</details>
+
+<a id="diffusion-fuzzy-system"></a>
+
+### Diffusion Fuzzy System (DFS)
+
+Latent multi-path diffusion model with U-Net noise predictors on 32x32 latents of 256x256 images, where each path is assigned to a cluster of image features and cascaded fuzzy rules with fuzzy-membership-based inference steer and combine the paths, conditioned on text embeddings.
+
+The Diffusion Fuzzy System (Jiangnan University and collaborators, 2025; the manuscript carries an IEEE Transactions on Fuzzy Systems identifier) builds a multi-path latent diffusion model in which each diffusion path learns one class of image features and fuzzy rules coordinate the paths. K-medoids clustering picks representative images that define fuzzy sets; membership degrees of the noisy latent to each set, computed from feature and semantic similarity, weight the path outputs at every denoising step through rule chains of forward and reverse cascaded rules. An encoder and decoder compress 256x256 images into 32x32 latents to keep the multi-path cost down. In the text-to-image setting the noise predictor receives noise and text embeddings, and the paper reports results on LSUN Bedroom, LSUN Church and MS COCO against single-path and multi-path diffusion baselines.
+
+[Paper](https://arxiv.org/abs/2512.01533) · GitHub: no author-linked repository found
+
+![Diffusion Fuzzy System (DFS) — Figure 2 (PDF p. 3)](../assets/architectures/diffusion-fuzzy-system.png)
+
+*Figure 2 (PDF p. 3) · [Source](https://arxiv.org/abs/2512.01533)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Results are at 256x256 on LSUN and MS COCO (592,000 images split 7:1:2) and use FID, MIFID, IS, PSNR, SSIM, MS-SSIM, precision, recall and CLIP score; the paper reports improved FID and CLIP score over baselines such as LDM, GLIDE, unCLIP, SDG and the multi-path RAPHAEL, and uses a U-Net-based noise predictor. The text encoder and parameter counts are not specified in the main text. Experiments ran on 6 NVIDIA RTX A6000 GPUs. No repository or model weights are linked in the paper.
 
 </details>
 

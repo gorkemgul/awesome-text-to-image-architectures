@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**67 models · Reviewed 2026-09-29**
+**71 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -53,6 +53,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [MMCORE](#mmcore) | 2026-04-21 | T, I → I | editing |
 | [MMFace-DiT](#mmface-dit) | 2026-03-30 | T → I | generation |
 | [Moonworks Lunara](#moonworks-lunara) | 2026-09-11 | T → I | generation |
+| [MoS (Mixture of States)](#mos) | 2025-11-15 | T, I → I | editing |
 | [NAMI](#nami) | 2025-03-12 | T → I | generation |
 | [Nexus](#nexus) | 2026-08-17 | T → I | generation |
 | [Nucleus-Image](#nucleus-image) | 2026-04-14 | T → I | generation |
@@ -80,6 +81,9 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SVG-T2I](#svg-t2i) | 2025-12-12 | T → I | generation |
 | [Swift-Image](#swift-image) | 2026-08-20 | T, I → I | editing |
 | [TerraDiT](#terradit) | 2026-03-02 | T → I | generation |
+| [UniFusion](#unifusion) | 2025-10-14 | T, I → I | editing |
+| [UniModel](#unimodel) | 2025-11-21 | T → I | generation |
+| [UniPath](#unipath) | 2025-12-24 | T → I | generation |
 | [UniVG](#univg) | 2025-03-16 | T, I → I | editing |
 | [UniWorld-Design](#uniworld-design) | 2026-08-04 | T, I → I | editing |
 | [VUGEN](#vugen) | 2025-10-08 | T → I | generation |
@@ -1029,6 +1033,31 @@ Paper Figure 4 (PDF p. 7, overall architecture and training pipeline): text and 
 
 </details>
 
+<a id="mos"></a>
+
+### MoS (Mixture of States)
+
+Dual-tower diffusion model in which a frozen understanding tower (PLM-8B or InternVL-14B) feeds a 3B or 5B generation tower trained from scratch through a learnable token-wise router that selects top-k understanding hidden states per generation layer and denoising timestep.
+
+Mixture of States (Meta AI and KAUST, 2025) replaces cross-attention or full self-attention between a language model and a diffusion transformer with a small router that decides which hidden states of the understanding tower reach which layers of the generation tower. The router is a lightweight transformer of about 100M parameters that takes the denoising timestep, the noisy image latent and the context tokens, outputs per-token layer-to-layer affinities, and keeps the top-k states with an epsilon-greedy training strategy. The paper trains MoS-Image for text-to-image generation and MoS-Edit for instruction-based editing in 3B and 5B generation-tower sizes, reporting results that match or surpass models up to four times larger.
+
+[Paper](https://arxiv.org/abs/2511.12207) · GitHub: no author-linked repository found
+
+![MoS (Mixture of States) — Figure 3](../assets/architectures/mos.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2511.12207)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+MoS-S pairs the 8B PLM understanding tower with a 3B generation tower, and MoS-L pairs the 14B InternVL tower with a 5B generation tower; the understanding tower is frozen and the generation tower and router are initialized from scratch. Both use the Wan 2.2 VAE with 16x compression. MoS-Image is trained in four stages (512px, 1024px, aesthetic tuning and 2K super-resolution tuning) at about 3,000 A100 days in total, and MoS-Edit adds about 50 A100 days on roughly one million editing pairs. Benchmarks reported include GenEval, DPG, WISE, OneIG-EN, GEdit and ImgEdit. No code or weights were found linked in the paper.
+
+**Variants:** MoS-S; MoS-L; MoS-Image; MoS-Edit.
+
+</details>
+
 <a id="nami"></a>
 
 ### NAMI
@@ -1719,6 +1748,77 @@ Training is three-stage: unconditional generation, then text-conditioned generat
 **License:** code: Apache-2.0.
 
 **Variants:** TerraDiT-XL/2-alpha; TerraDiT-XL/2-Sigma.
+
+</details>
+
+<a id="unifusion"></a>
+
+### UniFusion
+
+Frozen InternVL3-8B vision-language model as the only encoder: a Layerwise Attention Pooling module aggregates hidden states from every third VLM layer into one conditioning sequence, refined by two bidirectional transformer blocks and prepended to the noisy VAE latents of an 8B diffusion transformer.
+
+UniFusion (Adobe Applied Research, 2025) conditions a diffusion transformer on a frozen vision-language model that encodes both text prompts and reference images, instead of using separate text and image encoders. A learnable Layerwise Attention Pooling (LAP) module, two transformer blocks followed by a fully connected layer, pools features from several VLM layers so that the DiT receives both high-level semantics and low-level detail. At inference the VLM can rewrite the user prompt in-model, and the DiT is conditioned only on the image and rewritten tokens (the paper's Verifi mechanism). The final model pairs an 8B DiT with an 8B VLM, was trained on about 830 million samples, and handles text-to-image generation, single-image editing and, zero-shot, multi-reference generation with one set of weights.
+
+[Paper](https://arxiv.org/abs/2510.12789) · [Project](https://thekevinli.github.io/unifusion/) · GitHub: no author-linked repository found
+
+![UniFusion — Figure 4](../assets/architectures/unifusion.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2510.12789)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The VLM is frozen and only the LAP, refiner and DiT are trained. Features come from every third VLM layer; input images are fed only to the VLM (up to 10 tiles) and no VAE tokens are added to the DiT input, which operates on a VAE latent space with 16x compression. The base model is trained on text-to-image, image reconstruction and mixed text-and-image data, and an early checkpoint is handed off from a pre-existing T5-conditioned model; editing instruction data is added afterwards. The paper reports that the editing fine-tune also improves text-to-image alignment and compares against Flux.1 [dev], BAGEL, Flux.1 Kontext [dev] and Qwen-Image without supervised fine-tuning or reinforcement learning. The paper describes the benchmark scores of GenEval and DPG-Bench as unreliable and relies mainly on qualitative and A/B comparisons. The project page lists code as coming soon.
+
+</details>
+
+<a id="unimodel"></a>
+
+### UniModel
+
+Single MMDiT-style rectified-flow diffusion transformer that treats text as pixels: prompts are rendered as painted text images, encoded by a shared visual encoder, and the model denoises VAE latents to produce an RGB image, with learnable task embeddings selecting generation or the reverse image-to-painted-text direction.
+
+UniModel (TeleAI, China Telecom, 2025) proposes a visual-only way to unify image generation and understanding. Text prompts, captions and answers are rendered as images on a clean canvas, so every input and output is RGB pixels. For text-to-image generation the model takes the painted-text image as the condition and synthesizes an RGB image; for understanding it takes an RGB image and produces a painted-text image. Both directions share one MMDiT architecture, one rectified-flow loss and two learnable task embeddings, with input-output pairs swapped at random during training. The paper shows qualitative text-to-image and image-to-painted-text results and image-caption-image cycles, and states that direct quantitative comparison is not feasible because no other model accepts painted text as input.
+
+[Paper](https://arxiv.org/abs/2511.16917) · GitHub: no author-linked repository found
+
+![UniModel — Figure 2 (PDF p. 4)](../assets/architectures/unimodel.png)
+
+*Figure 2 (PDF p. 4) · [Source](https://arxiv.org/abs/2511.16917)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The paper builds on the MMDiT architecture of Qwen-Image but does not state model size, initialization, training data or compute. Evidence is qualitative only: text-to-image and image-to-text galleries and cycle inference examples, with no benchmark scores, so the card lists only text input and image output and is filed by generator architecture instead of the unified group. No repository or model card is linked in the paper.
+
+</details>
+
+<a id="unipath"></a>
+
+### UniPath
+
+0.6B PixArt-alpha-derived flow-matching DiT over SD3-VAE latents, conditioned through cross-attention on a fused sequence from three streams: raw text tokens, Diagnostic Semantic Tokens distilled by 64 learnable queries into a frozen Patho-R1 7B pathology MLLM, and prototype tokens retrieved from a prototype bank.
+
+UniPath (Fudan University, Fysics AI and collaborators, CVPR 2026) generates pathology images from text with Multi-Stream Control. A Raw-Text stream passes the prompt embedding; a High-Level Semantics stream appends learnable queries to the prompt in a frozen pathology MLLM and projects the final hidden states into paraphrase-robust Diagnostic Semantic Tokens, and the MLLM also expands prompts into diagnosis-aware attribute bundles; a Prototype stream retrieves component-level morphology prototypes from a bank (K_m = 16 per prompt) for finer control. The three condition sets are fused into one sequence for the DiT. The authors build a 2.65M image-text corpus with a 68K high-quality subset and a four-tier evaluation hierarchy, reporting a Patho-FID of 80.9.
+
+[Paper](https://arxiv.org/abs/2512.21058) · [GitHub](https://github.com/Hanminghao/UniPath) · [Model card](https://huggingface.co/minghaofdu/UniPath-7B)
+
+![UniPath — Figure 2](../assets/architectures/unipath.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2512.21058)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The generator is a 0.6B DiT with 28 layers, 16 heads and hidden size 1152 trained with a flow-matching objective, using the Stable Diffusion 3 VAE with 8x downsampling; the MLLM and VAE are frozen. Training is two-stage (large-scale pretraining on the 2.65M corpus, then 500 steps on a 50K high-quality set; the abstract cites a 68K annotated subset) on 16 H100 GPUs. Baselines include SD1.5, SDXL, PixArt-alpha and the pathology model PixCell. The Hugging Face model-card metadata for UniPath-7B lists cc-by-nc-nd-4.0 with gated access; its pipeline tag is image-text-to-text, so it may hold the understanding model rather than the generator. The GitHub repository has no license file.
+
+**License:** weights: cc-by-nc-nd-4.0.
 
 </details>
 

@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**84 models · Reviewed 2026-09-29**
+**86 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -46,6 +46,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Lavida-O](#lavida-o) | 2025-09-23 | T, I → T, I | editing |
 | [LaVIT](#lavit) | 2023-09-09 | T, I → T, I | generation |
 | [Libra-2](#libra-2) | 2026-06-29 | T, I → T, I | generation |
+| [LightFusion](#lightfusion) | 2025-10-27 | T, I → T, I | editing |
 | [Liquid](#liquid) | 2024-12-05 | T, I → T, I | generation |
 | [LLaDA-o](#llada-o) | 2026-03-01 | T, I → T, I | generation |
 | [LLaDA2.0-Uni](#llada2-uni) | 2026-04-22 | T, I → T, I | editing |
@@ -94,6 +95,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [UniDisc](#unidisc) | 2025-03-26 | T, I → T, I | generation |
 | [Unified-IO](#unified-io) | 2022-06-17 | T, I → T, I | generation |
 | [Unified-IO 2](#unified-io-2) | 2023-12-28 | T, I, V, A → T, I, A | editing |
+| [UniGen-1.5](#unigen-1-5) | 2025-11-18 | T, I → T, I | editing |
 | [UniSpace](#unispace) | 2026-08-09 | T, I → T, I | editing |
 | [UniWorld-V1](#uniworld) | 2025-06-03 | T, I → T, I | editing |
 | [VARGPT-v1.1](#vargpt-v1-1) | 2025-04-03 | T, I → T, I | editing |
@@ -850,6 +852,29 @@ Libra-2 extends the Libra family's decoupled vision-language design from image u
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 Paper Figure 2 shows the overall architecture (switch attention/FFN, cross-modal bridges) and the two tokenization paths (hybrid discrete image tokenization and continuous-space tokenization). Libra-2 is 3B parameters total; trained on 200M LAION-COCO/LAION-Aesthetic pairs plus 14M JourneyDB/aesthetic samples. The paper says code "will be available" at the shared Libra GitHub repository, which at review time hosts the original Libra-1 (ICML 2024, understanding-only) implementation under Apache-2.0 and predates the Libra-2 release described here.
+
+</details>
+
+<a id="lightfusion"></a>
+
+### LightFusion
+
+Frozen Qwen2.5-VL-7B understanding pathway and trainable Wan2.2-TI2V-5B diffusion transformer generation pathway, joined by zero-initialized multimodal self-attention blocks interleaved at every layer (double fusion).
+
+LightFusion (UC Santa Cruz, Tsinghua, Monash and ByteDance Seed, 2025) builds a unified multimodal model by fusing two publicly released models instead of training from scratch. Qwen2.5-VL-7B handles text and ViT tokens and keeps its understanding ability, while the Wan2.2-TI2V-5B diffusion transformer handles VAE tokens for generation. Multimodal self-attention blocks, zero-initialized so that both models start unchanged, are interleaved across all layers and let every token type attend to the others, so the generator receives hidden states from all VLM layers rather than only the last one. For editing, the source image enters as both ViT tokens and VAE tokens. The model is trained on about 35B tokens and reports 0.91 on GenEval and 82.16 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2510.22946) · GitHub: no author-linked repository found
+
+![LightFusion — Figure 2](../assets/architectures/lightfusion.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.22946)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Training uses about 45 million text-to-image and editing samples from public datasets plus a self-curated synthetic set of about 4.5 million, in three stages that raise the share of high-quality text-to-image and then editing data. The understanding branch is frozen throughout, so its MMBench (83.5), MMMU (58.6) and MM-Vet (67.1) scores in the paper equal those of Qwen2.5-VL-7B. The GenEval score of 0.91 uses LLM-rewritten prompts. Image editing results are 3.77 on ImgEdit-Bench and 6.06 on GEdit-Bench. The paper states that code, weights and data are released, but no repository was found at the project page or by repository search, so none is linked here.
 
 </details>
 
@@ -2098,6 +2123,29 @@ Text is embedded with BPE; input images pass through a ViT encoder and a linear 
 **License:** code: Apache-2.0.
 
 **Variants:** Unified-IO 2 Large; Unified-IO 2 XL; Unified-IO 2 XXL.
+
+</details>
+
+<a id="unigen-1-5"></a>
+
+### UniGen-1.5
+
+Qwen2.5-7B-initialized LLM with a frozen SigLIP2 encoder for understanding and a frozen MAGVITv2 discrete tokenizer for generation, trained for text-to-image and editing by masked image-token prediction with multi-step parallel decoding.
+
+UniGen-1.5 (Apple and Fudan University, 2025) extends the earlier UniGen unified model to image editing while keeping one 7B LLM for understanding, text-to-image generation and editing. Understanding uses continuous SigLIP2 features; generation uses MAGVITv2 discrete tokens at 384x384 that the LLM predicts as masked tokens over several decoding turns. For editing, the condition image enters as both semantic SigLIP2 features and low-level discrete tokens. The paper adds a unified reinforcement learning stage that uses shared reward models for generation and editing, and a short Edit Instruction Alignment stage before it. It reports 0.89 on GenEval, 86.83 on DPG-Bench and 4.31 on ImgEdit.
+
+[Paper](https://arxiv.org/abs/2511.14760) · GitHub: no author-linked repository found
+
+![UniGen-1.5 — Figure 2](../assets/architectures/unigen-1-5.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2511.14760)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Training runs pre-training on image-text data (ImageNet, CC-3M, CC-12M, SAM-11M with fine-grained captions) plus a small text-only share, then supervised fine-tuning with editing data, Edit Instruction Alignment and reinforcement learning. Both visual encoders stay frozen throughout. Understanding is evaluated on AI2D, GQA, POPE, MMMU, MathVista, ScienceQA and SeedBench. No code or weights were found linked in the paper.
 
 </details>
 

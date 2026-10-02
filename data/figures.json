@@ -389,6 +389,14 @@
    "locator": "Figure 4 (PDF p. 5)",
    "sha256": "3f0539ca49fa291095cc6bff6919aceedc01673deb457a8e7b9c0cb5edd31a23"
   },
+  "deco": {
+   "kind": "source-figure",
+   "path": "assets/architectures/deco.png",
+   "source_url": "https://arxiv.org/abs/2511.19365",
+   "origin_url": "https://arxiv.org/pdf/2511.19365v2",
+   "locator": "Figure 3 (PDF p. 4)",
+   "sha256": "311c03dd8333b42babfe59a706ecb08d664882d163e90c2dc8553ab31ac4ab63"
+  },
   "deepfloyd-if": {
    "kind": "source-figure",
    "path": "assets/architectures/deepfloyd-if.png",
@@ -412,6 +420,14 @@
    "origin_url": "https://arxiv.org/html/2008.05865v4/i2.jpeg",
    "locator": "Figure 2",
    "sha256": "f0587d90cea7834819bca31d12f9eb2d3c5126599cdf744f228a2182c43a5a77"
+  },
+  "diffusion-fuzzy-system": {
+   "kind": "source-figure",
+   "path": "assets/architectures/diffusion-fuzzy-system.png",
+   "source_url": "https://arxiv.org/abs/2512.01533",
+   "origin_url": "https://arxiv.org/pdf/2512.01533v1",
+   "locator": "Figure 2 (PDF p. 3)",
+   "sha256": "440ef135db976440b14afec822903283bcac0af91b4d690751e35716190b015e"
   },
   "dit-air": {
    "kind": "source-figure",
@@ -1005,6 +1021,14 @@
    "locator": "Figure 3",
    "sha256": "15ec8a2d3dfb38834ca9b093a851e62677587e45c684fa42742bac64d1358ef9"
   },
+  "infinitystar": {
+   "kind": "source-figure",
+   "path": "assets/architectures/infinitystar.png",
+   "source_url": "https://arxiv.org/abs/2511.04675",
+   "origin_url": "https://arxiv.org/html/2511.04675v2/framework_new_v3.png",
+   "locator": "Figure 1",
+   "sha256": "c04a2523fc3fc816f21734fca076ba5d637a3fb5c469eabfd2405d0a7b4093ed"
+  },
   "instaflow": {
    "kind": "source-figure",
    "path": "assets/architectures/instaflow.png",
@@ -1236,6 +1260,14 @@
    "origin_url": "https://arxiv.org/html/2608.20382v1/overview.png",
    "locator": "Fig. 2",
    "sha256": "0ef0e50587b4c75bc65c72408ae405ade5cb6948f5fa886e0418925c41844d20"
+  },
+  "lightfusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lightfusion.png",
+   "source_url": "https://arxiv.org/abs/2510.22946",
+   "origin_url": "https://arxiv.org/html/2510.22946v4/arch_cropped.png",
+   "locator": "Figure 2",
+   "sha256": "39a8682de67384f860f4cff9333b07f65d64b0237f1ad4738351c5c9d5272715"
   },
   "lina": {
    "kind": "source-figure",
@@ -1613,6 +1645,14 @@
    "locator": "Figure 4 (PDF p. 7)",
    "sha256": "c030d17c2d0570da04e07459316ae202127a013a7e0d639f91c588ad93621c03"
   },
+  "mos": {
+   "kind": "source-figure",
+   "path": "assets/architectures/mos.png",
+   "source_url": "https://arxiv.org/abs/2511.12207",
+   "origin_url": "https://arxiv.org/html/2511.12207v2/mos_detail.png",
+   "locator": "Figure 3",
+   "sha256": "ccba88a864c1bab377c66972423939dd3de1c325ae4a16103d6b60c8141ded82"
+  },
   "msmt-gan": {
    "kind": "source-figure",
    "path": "assets/architectures/msmt-gan.png",
@@ -1916,6 +1956,14 @@
    "origin_url": "https://arxiv.org/html/2403.04692v2/kvcompress.png",
    "locator": "Figure 7",
    "sha256": "e9076918264dd6f98bddbb8e9db43f6b1d181c82cb644eb7926a69de97b484f1"
+  },
+  "pixeldit": {
+   "kind": "source-figure",
+   "path": "assets/architectures/pixeldit.png",
+   "source_url": "https://arxiv.org/abs/2511.20645",
+   "origin_url": "https://arxiv.org/pdf/2511.20645v2",
+   "locator": "Figure 2 (PDF p. 3)",
+   "sha256": "b715e69f5188d3ea4ca105ff6c2c1cebbe1d6eb62da928ab143ed8e7d3d395a7"
   },
   "pixelflow": {
    "kind": "source-figure",
@@ -2569,6 +2617,22 @@
    "locator": "Figure 2",
    "sha256": "fc6a5dcb6c70621d61e5928585dc449cc4918a1992cb79b573624150aa8b0d50"
   },
+  "unifusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unifusion.png",
+   "source_url": "https://arxiv.org/abs/2510.12789",
+   "origin_url": "https://arxiv.org/html/2510.12789v1/figures/final_arch_diagram_v3.png",
+   "locator": "Figure 4",
+   "sha256": "87e14c31152094cf02ac47fef8c5375d66f53181eaf1cbc1bf5177d667759806"
+  },
+  "unigen-1-5": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unigen-1-5.png",
+   "source_url": "https://arxiv.org/abs/2511.14760",
+   "origin_url": "https://arxiv.org/html/2511.14760v1/unigen1_5_architecture.png",
+   "locator": "Figure 2",
+   "sha256": "6415e00460f68b5b4381b6c8743691c3525bbe40ed93fa6c00f4288809201114"
+  },
   "unigen-ar": {
    "kind": "source-figure",
    "path": "assets/architectures/unigen-ar.png",
@@ -2576,6 +2640,22 @@
    "origin_url": "https://arxiv.org/html/2607.24157v1/fig-model.png",
    "locator": "Figure 2",
    "sha256": "30390c44acb224f15fad12d4a51a91da7008a7ca650dfd1e1fb90e7254cd978e"
+  },
+  "unimodel": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unimodel.png",
+   "source_url": "https://arxiv.org/abs/2511.16917",
+   "origin_url": "https://arxiv.org/pdf/2511.16917v1",
+   "locator": "Figure 2 (PDF p. 4)",
+   "sha256": "219bfaf74be080cbce617577d72837807da6a5cc31e8145716bac0aff9957841"
+  },
+  "unipath": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unipath.png",
+   "source_url": "https://arxiv.org/abs/2512.21058",
+   "origin_url": "https://arxiv.org/html/2512.21058v2/main_pic.png",
+   "locator": "Figure 2",
+   "sha256": "41b9008bc34bdfab6cc3909ee845690a26dc249b8fb706b1b2c9cb66610d1260"
   },
   "unispace": {
    "kind": "source-figure",

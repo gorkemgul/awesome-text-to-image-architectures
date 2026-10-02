@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 335 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 345 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -73,20 +73,30 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2026-01-14 | [GLM-Image](../models/continuous-ar.md#glm-image) | announcement | [Announcement](https://z.ai/blog/glm-image) · [GitHub](https://github.com/zai-org/GLM-Image) · [Model card](https://huggingface.co/zai-org/GLM-Image) |
 | 2026-01-05 | [NextFlow](../models/unified.md#nextflow) | paper | [Paper](https://arxiv.org/abs/2601.02204) · [GitHub](https://github.com/ByteVisionLab/NextFlow) |
 | 2025-12-26 | [Self-E](../models/efficient.md#self-e) | paper | [Paper](https://arxiv.org/abs/2512.22374) · GitHub: no author-linked repository found |
+| 2025-12-24 | [UniPath](../models/dit.md#unipath) | paper | [Paper](https://arxiv.org/abs/2512.21058) · [GitHub](https://github.com/Hanminghao/UniPath) · [Model card](https://huggingface.co/minghaofdu/UniPath-7B) |
 | 2025-12-19 | [PS-VAE](../models/dit.md#ps-vae) | paper | [Paper](https://arxiv.org/abs/2512.17909) · [Project](https://jshilong.github.io/PS-VAE-PAGE/) · GitHub: no author-linked repository found |
 | 2025-12-12 | [SVG-T2I](../models/dit.md#svg-t2i) | paper | [Paper](https://arxiv.org/abs/2512.11749) · [GitHub](https://github.com/KlingTeam/SVG-T2I) |
 | 2025-12-08 | [LongCat-Image](../models/dit.md#longcat-image) | paper | [Paper](https://arxiv.org/abs/2512.07584) · [GitHub](https://github.com/meituan-longcat/LongCat-Image) · [Model card](https://huggingface.co/meituan-longcat/LongCat-Image) |
+| 2025-12-01 | [Diffusion Fuzzy System (DFS)](../models/latent-unet.md#diffusion-fuzzy-system) | paper | [Paper](https://arxiv.org/abs/2512.01533) · GitHub: no author-linked repository found |
 | 2025-11-28 | [Ovis-Image](../models/dit.md#ovis-image) | paper | [Paper](https://arxiv.org/abs/2511.22982) · [GitHub](https://github.com/ATH-MaaS/Ovis-Image) · [Model card](https://huggingface.co/ATH-MaaS/Ovis-Image-7B) |
 | 2025-11-27 | [Z-Image](../models/dit.md#z-image) | paper | [Paper](https://arxiv.org/abs/2511.22699) · [GitHub](https://github.com/Tongyi-MAI/Z-Image) · [Model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) |
+| 2025-11-25 | [PixelDiT](../models/pixel-diffusion.md#pixeldit) | paper | [Paper](https://arxiv.org/abs/2511.20645) · [GitHub](https://github.com/NVlabs/PixelDiT) · [Model card](https://huggingface.co/nvidia/PixelDiT-1300M-1024px) · [Project](https://pixeldit.github.io) |
 | 2025-11-25 | [FLUX.2](../models/dit.md#flux-2) | announcement | [Announcement 1](https://bfl.ai/blog/flux-2) · [Announcement 2](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence) · [GitHub](https://github.com/black-forest-labs/flux2) · [Model card](https://huggingface.co/black-forest-labs/FLUX.2-dev) |
 | 2025-11-24 | [ProxT2I](../models/dit.md#proxt2i) | paper | [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found |
+| 2025-11-24 | [DeCo](../models/pixel-diffusion.md#deco) | paper | [Paper](https://arxiv.org/abs/2511.19365) · [GitHub](https://github.com/Zehong-Ma/DeCo) · [Model card](https://huggingface.co/zehongma/DeCo) |
 | 2025-11-23 | [MammothModa2](../models/unified.md#mammothmoda2) | paper | [Paper](https://arxiv.org/abs/2511.18262) · [GitHub](https://github.com/bytedance/mammothmoda) · [Model card](https://huggingface.co/bytedance-research/MammothModa) |
+| 2025-11-21 | [UniModel](../models/dit.md#unimodel) | paper | [Paper](https://arxiv.org/abs/2511.16917) · GitHub: no author-linked repository found |
 | 2025-11-19 | [Kandinsky 5.0 Image Lite](../models/dit.md#kandinsky-5) | paper | [Paper](https://arxiv.org/abs/2511.14993) · [GitHub](https://github.com/kandinskylab/kandinsky-5) · [Model card](https://huggingface.co/kandinskylab/Kandinsky-5.0-T2I-Lite) |
+| 2025-11-18 | [UniGen-1.5](../models/unified.md#unigen-1-5) | paper | [Paper](https://arxiv.org/abs/2511.14760) · GitHub: no author-linked repository found |
+| 2025-11-15 | [MoS (Mixture of States)](../models/dit.md#mos) | paper | [Paper](https://arxiv.org/abs/2511.12207) · GitHub: no author-linked repository found |
 | 2025-11-11 | [oboro:](../models/dit.md#oboro) | paper | [Paper](https://arxiv.org/abs/2511.08168) · [Model card](https://huggingface.co/aihub-geniac/oboro) · GitHub: no author-linked repository found |
 | 2025-11-10 | [FIBO](../models/dit.md#fibo) | paper | [Paper](https://arxiv.org/abs/2511.06876) · [GitHub](https://github.com/Bria-AI/FIBO) · [Model card](https://huggingface.co/briaai/FIBO) |
+| 2025-11-06 | [InfinityStar](../models/ar-token.md#infinitystar) | paper | [Paper](https://arxiv.org/abs/2511.04675) · [GitHub](https://github.com/FoundationVision/InfinityStar) · [Model card](https://huggingface.co/FoundationVision/InfinityStar) |
 | 2025-10-31 | [E-MMDiT (AMD Nitro-E)](../models/efficient.md#e-mmdit) | paper | [Paper](https://arxiv.org/abs/2510.27135) · [GitHub](https://github.com/AMD-AGI/Nitro-E) · [Model card](https://huggingface.co/amd/Nitro-E) |
 | 2025-10-30 | [Emu3.5](../models/unified.md#emu3-5) | paper | [Paper](https://arxiv.org/abs/2510.26583) · [GitHub](https://github.com/baaivision/Emu3.5) · [Model card](https://huggingface.co/BAAI/Emu3.5-Image) |
+| 2025-10-27 | [LightFusion](../models/unified.md#lightfusion) | paper | [Paper](https://arxiv.org/abs/2510.22946) · GitHub: no author-linked repository found |
 | 2025-10-17 | [BLIP3o-NEXT](../models/continuous-ar.md#blip3o-next) | paper | [Paper](https://arxiv.org/abs/2510.15857) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-NEXT-SFT-3B) |
+| 2025-10-14 | [UniFusion](../models/dit.md#unifusion) | paper | [Paper](https://arxiv.org/abs/2510.12789) · [Project](https://thekevinli.github.io/unifusion/) · GitHub: no author-linked repository found |
 | 2025-10-13 | [MAI-Image](../models/api.md#mai-image) | announcement | [Announcement 1](https://microsoft.ai/news/introducing-mai-image-1-debuting-in-the-top-10-on-lmarena/) · [Announcement 2](https://microsoft.ai/news/introducing-mai-image-2/) · [Announcement 3](https://microsoft.ai/news/mai-image-2-efficient/) · [Announcement 4](https://microsoft.ai/news/introducing-mai-image-2-5/) · [Announcement 5](https://microsoft.ai/news/pushing-the-quality-cost-frontier-with-mai-image-2-6/) |
 | 2025-10-08 | [VUGEN](../models/dit.md#vugen) | paper | [Paper](https://arxiv.org/abs/2510.06529) · GitHub: no author-linked repository found |
 | 2025-10-08 | [Ming-UniVision](../models/unified.md#ming-univision) | paper | [Paper](https://arxiv.org/abs/2510.06590) · [GitHub](https://github.com/inclusionAI/Ming-UniVision) · [Model card](https://huggingface.co/inclusionAI/Ming-UniVision-16B-A3B) |
