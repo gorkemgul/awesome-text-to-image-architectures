@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**256 model families and releases · Reviewed 2026-09-29**
+**267 model families and releases · Reviewed 2026-09-29**
 
 Short explanations of the catalog's described models, including later releases of older paper families. Each entry includes an image and links to primary sources. Editorial input/output diagrams are labeled. Verified source dates are listed in the [timeline](timeline.md); undated records remain undated.
 
@@ -27,6 +27,7 @@ Short explanations of the catalog's described models, including later releases o
 - [BLIP3o-NEXT](#blip3o-next)
 - [BLM-SGAN](#blm-sgan)
 - [Boogu-Image-0.1](#boogu-image)
+- [Bridge](#bridge)
 - [CAR (Channel-wise Autoregressive)](#car)
 - [Chameleon](#chameleon)
 - [CM3](#cm3)
@@ -80,6 +81,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Hi-MAR](#hi-mar)
 - [HiDream-I1](#hidream-i1)
 - [HiDream-O1-Image](#hidream-o1-image)
+- [Home-made Diffusion Model (HDM)](#hdm)
 - [Hunyuan-DiT](#hunyuan-dit)
 - [HunyuanImage 3.0](#hunyuanimage-3)
 - [HunyuanImage-2.1](#hunyuanimage-2-1)
@@ -102,6 +104,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Janus](#janus)
 - [Janus-Pro](#janus-pro)
 - [JanusFlow](#janusflow)
+- [JEPA-T](#jepa-t)
 - [JetFormer](#jetformer)
 - [JoyAI-Image](#joyai-image)
 - [JuZhou 1.0](#juzhou-1)
@@ -145,6 +148,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Manzano](#manzano)
 - [MARS](#mars-t2i)
 - [MaskGen](#maskgen)
+- [MaskGIL](#maskgil)
 - [Meissonic](#meissonic)
 - [MetaMorph](#metamorph)
 - [MetaQuery](#metaquery)
@@ -185,22 +189,26 @@ Short explanations of the catalog's described models, including later releases o
 - [OmniGen-AR](#omnigen-ar)
 - [OmniGen2](#omnigen2)
 - [OneCAT](#onecat)
+- [OneFlow](#oneflow)
 - [Orthus](#orthus)
 - [Ovis-Image](#ovis-image)
 - [Ovis-U1](#ovis-u1)
 - [Paella](#paella)
 - [PAR (Panoramic AutoRegressive)](#par-panorama)
 - [Parallel Multiscale PixelCNN](#multiscale-pixelcnn)
+- [Paris](#paris)
 - [Parti](#parti)
 - [PixArt-δ](#pixart-delta)
 - [PixArt-Σ](#pixart-sigma)
 - [PixelFlow](#pixelflow)
+- [PixNerd](#pixnerd)
 - [Playground v2](#playground-v2)
 - [Playground v3](#playground-v3)
 - [ProxT2I](#proxt2i)
 - [PS-VAE](#ps-vae)
 - [PSP-DiT](#psp-dit)
 - [PUMA](#puma)
+- [Query-Kontext](#query-kontext)
 - [Qwen-Image](#qwen-image)
 - [Qwen-Image-2.0](#qwen-image-2)
 - [Qwen-Image-Flash](#qwen-image-flash)
@@ -227,6 +235,7 @@ Short explanations of the catalog's described models, including later releases o
 - [Show-o2](#show-o2)
 - [SimpleAR](#simplear)
 - [Skywork UniPic](#skywork-unipic)
+- [Skywork UniPic 2.0](#skywork-unipic-2)
 - [SnapFusion](#snapfusion)
 - [SnapGen](#snapgen)
 - [SSD-1B](#ssd-1b)
@@ -249,6 +258,7 @@ Short explanations of the catalog's described models, including later releases o
 - [UFOGen](#ufogen)
 - [UGen](#ugen)
 - [UMT-BITG (Unifying Multimodal Transformer)](#generate-it)
+- [UniAlignment](#unialignment)
 - [UniDiffuser](#unidiffuser)
 - [UniDisc](#unidisc)
 - [Unified-IO](#unified-io)
@@ -262,6 +272,7 @@ Short explanations of the catalog's described models, including later releases o
 - [VILA-U](#vila-u)
 - [VL-GPT](#vl-gpt)
 - [VQ-Diffusion](#vq-diffusion)
+- [VUGEN](#vugen)
 - [X-Fusion](#x-fusion)
 - [X-LXMERT](#x-lxmert)
 - [X-Omni](#x-omni)
@@ -463,6 +474,18 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 ![Boogu-Image-0.1 — Editorial input/output diagram](../assets/architectures/boogu-image.svg)
 
 *Editorial input/output diagram · [Source](https://arxiv.org/abs/2607.13125)*
+
+<a id="bridge"></a>
+
+### Bridge
+
+Bridge (University of Maryland, CUHK MMLab and ByteDance) adds image generation to a pre-trained understanding MLLM while staying purely autoregressive. It copies the InternVL3-8B language backbone into a trainable generation expert and keeps the original model, including its continuous vision encoder, frozen as the understanding expert, with hard routing of tokens between experts and joint causal attention. Images for generation are represented as a short run of semantic tokens followed by pixel tokens, which the authors compare to chain-of-thought and which adds only 7.9% to the sequence length over pixel tokens alone. Training has three stages (large pretraining, a 60M-sample refinement and 28M-sample SFT) and an optional upscaling module raises 512px outputs to 1024px. The paper reports GenEval 0.82, DPG-Bench 85.51 and WISE 0.69, plus understanding results inherited from InternVL3 and ImgEdit editing.
+
+[Architecture and figure](../models/unified.md#bridge) · [Paper](https://arxiv.org/abs/2510.01546) · [GitHub](https://github.com/hywang66/Bridge) · [Project](https://hywang66.github.io/bridge/)
+
+![Bridge — Figure 2](../assets/architectures/bridge.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.01546)*
 
 <a id="car"></a>
 
@@ -1100,6 +1123,18 @@ HiDream.ai's HiDream-O1-Image drops both the VAE and the separate text encoder. 
 
 *Figure 7 · [Source](https://arxiv.org/abs/2605.11061)*
 
+<a id="hdm"></a>
+
+### Home-made Diffusion Model (HDM)
+
+HDM (Shih-Ying Yeh, Kohaku-Lab) is a small text-to-image model designed to be trained on consumer hardware. Its Cross-U-Transformer replaces the concatenation or addition used for skip connections in U-shaped transformers with cross-attention between matching encoder and decoder depths. Training combines TREAD token routing for faster convergence, a shifted square crop strategy with position maps that allows arbitrary aspect ratios without bucketing, and progressive resolution scaling from 256 to 1024 pixels. The 343M-parameter XUT-base model is trained on the Danbooru2023 anime dataset with natural-language captions for a reported cost of 535 to 620 US dollars on four RTX 5090 GPUs, and shows emergent camera-like control through the position map.
+
+[Architecture and figure](../models/dit.md#hdm) · [Paper](https://arxiv.org/abs/2509.06068) · [GitHub](https://github.com/KohakuBlueleaf/HDM) · [Model card](https://huggingface.co/KBlueLeaf/HDM-xut-340M-anime)
+
+![Home-made Diffusion Model (HDM) — Figure 2](../assets/architectures/hdm.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.06068)*
+
 <a id="hunyuan-dit"></a>
 
 ### Hunyuan-DiT
@@ -1363,6 +1398,18 @@ JanusFlow, from DeepSeek-AI with Peking University, HKU and Tsinghua, integrates
 ![JanusFlow — Figure 2](../assets/architectures/janusflow.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2411.07975)*
+
+<a id="jepa-t"></a>
+
+### JEPA-T
+
+JEPA-T is a token-based text-to-image model that applies a joint-embedding predictive architecture to conditional image generation. Images are encoded to continuous VAE tokens and a high fraction of them is masked; a context encoder processes the visible tokens together with a learnable buffer and the projected CLIP text embedding, and a predictor reconstructs the masked tokens against an EMA target encoder. Text is injected at two points: added at the predictor input and through cross-attention after the predictor, and the raw text embedding is also fused before the flow-matching loss. Training combines the JEPA consistency loss with conditional flow matching. The paper reports ImageNet-1K 256x256 FID 1.42 and IS 298.3 for the base model and claims class-conditional and free-text generation from the same network.
+
+[Architecture and figure](../models/continuous-ar.md#jepa-t) · [Paper](https://arxiv.org/abs/2510.00974) · [GitHub](https://github.com/justin-herry/JEPA-T)
+
+![JEPA-T — Figure 2](../assets/architectures/jepa-t.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.00974)*
 
 <a id="jetformer"></a>
 
@@ -1850,7 +1897,7 @@ MammothModa2 (Mammoth2), from ByteDance, is a unified autoregressive-diffusion (
 
 Manzano is Apple's unified multimodal model, designed to reduce the understanding/generation trade-off common in unified LLMs by using a hybrid image tokenizer rather than two unrelated tokenizers. A single ViT vision encoder feeds a continuous adapter (for image-to-text understanding) and a discrete FSQ adapter (for text-to-image generation), so both representations share a common semantic space instead of mixing a high-level semantic tokenizer with a low-level spatial VQ tokenizer. The unified autoregressive LLM decoder predicts high-level text and image tokens with a single next-token objective, and a separately scaled DiT-Air diffusion decoder renders the generated image tokens into pixels. The paper reports state-of-the-art results among unified models, particularly on text-rich understanding benchmarks, minimal task conflict between understanding and generation, and consistent gains when scaling the LLM decoder from 300M to 30B and the diffusion decoder up to 3.52B.
 
-[Architecture and figure](../models/unified.md#manzano) · [Paper](https://arxiv.org/abs/2509.16197)
+[Architecture and figure](../models/unified.md#manzano) · [Paper](https://arxiv.org/abs/2509.16197) · GitHub: no author-linked repository found
 
 ![Manzano — Figure 3](../assets/architectures/manzano.png)
 
@@ -1879,6 +1926,18 @@ MaskGen is a family of text-to-image masked generative models trained exclusivel
 ![MaskGen — Figure 3](../assets/architectures/maskgen.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2501.07730)*
+
+<a id="maskgil"></a>
+
+### MaskGIL
+
+MaskGIL (Masked Generative Image LLaMA; Shanghai AI Laboratory with Nanjing University and collaborators) revisits masked autoregressive image generation, which decodes many image tokens per step but had trailed standard next-token models. The authors first compare four discrete image tokenizers and then turn a LLaMA decoder into a bidirectional model with 2D rotary position embeddings, trained with masked token prediction. Class-conditional models from 111M to 1.4B parameters reach an ImageNet 256x256 FID of 3.71 in 8 inference steps, against 256 steps for comparable autoregressive models. A 775M text-driven variant generates images at several resolutions from text. The paper also shows a scheme that starts generation with an autoregressive model and lets the masked model complete the tokens, applied to Lumina-mGPT, and a speech-to-image demonstration that transcribes speech with Whisper before generating.
+
+[Architecture and figure](../models/masked.md#maskgil) · [Paper](https://arxiv.org/abs/2507.13032) · [GitHub](https://github.com/synbol/MaskGIL)
+
+![MaskGIL — Figure 2](../assets/architectures/maskgil.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.13032)*
 
 <a id="meissonic"></a>
 
@@ -2360,6 +2419,18 @@ OneCAT unifies multimodal understanding, text-to-image generation and instructio
 
 *Figure 3 · [Source](https://arxiv.org/abs/2509.03498)*
 
+<a id="oneflow"></a>
+
+### OneFlow
+
+OneFlow (FAIR at Meta) is a multimodal model that drops the fixed left-to-right ordering of autoregressive systems. Text is generated by Edit Flows, a continuous-time Markov chain that inserts tokens into variable-length sequences, while images are generated by flow matching on continuous latents, and both processes run together so text and images in an interleaved sequence are produced concurrently, with content tokens inserted before filler. A mixed-modal training scheme lets the model generate clean text and an image concurrently. In controlled experiments from 1B to 8B parameters against an autoregressive plus flow-matching baseline built on Transfusion and a LLaDA-style masked diffusion baseline, the paper reports better scaling on text-to-image (DPG-Bench, FID), captioning and visual question answering with up to 50% fewer training FLOPs.
+
+[Architecture and figure](../models/unified.md#oneflow) · [Paper](https://arxiv.org/abs/2510.03506) · GitHub: no author-linked repository found
+
+![OneFlow — Figure 1](../assets/architectures/oneflow.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2510.03506)*
+
 <a id="orthus"></a>
 
 ### Orthus
@@ -2432,6 +2503,18 @@ This DeepMind paper by Reed et al. makes PixelCNN practical at high resolution b
 
 *Figure 3 (PDF p. 3) · [Source](https://arxiv.org/abs/1703.03664)*
 
+<a id="paris"></a>
+
+### Paris
+
+Paris (Bagel Labs) is presented as the first publicly released diffusion model pre-trained entirely through decentralized computation. The training set of 11M LAION-Aesthetic images is clustered with DINOv2 features into 8 semantic groups, and each expert, a DiT-XL/2 with PixArt-alpha style conditioning optimizations, trains on its own cluster with no gradient, parameter or activation exchange, on heterogeneous hardware. A separate transformer router, trained afterwards to predict the cluster of a noisy latent, orchestrates the experts at inference, with top-1, top-2 or all-expert weighted combinations of their flow predictions. The report states that this reaches quality comparable to centrally trained baselines using 14x less data and 16x fewer GPU-days than the earlier decentralized diffusion baseline.
+
+[Architecture and figure](../models/dit.md#paris) · [Paper](https://arxiv.org/abs/2510.03434) · [GitHub](https://github.com/bageldotcom/paris) · [Model card](https://huggingface.co/bageldotcom/paris)
+
+![Paris — Figure 2 (PDF p. 6)](../assets/architectures/paris.png)
+
+*Figure 2 (PDF p. 6) · [Source](https://arxiv.org/abs/2510.03434)*
+
 <a id="parti"></a>
 
 ### Parti
@@ -2479,6 +2562,18 @@ PixelFlow (HKU and Adobe) generates images directly in raw pixels instead of an 
 ![PixelFlow — Figure 2](../assets/architectures/pixelflow.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2504.07963)*
+
+<a id="pixnerd"></a>
+
+### PixNerd
+
+PixNerd (Nanjing University, ByteDance Seed and NUS) removes the VAE from diffusion transformers without a cascaded or multi-scale pipeline. It keeps the token count of a latent diffusion transformer by using large pixel patches and decodes each patch with a neural field, where the transformer predicts per-patch MLP weights that map pixel coordinate encodings and noisy pixel values to velocity, instead of a single linear layer that cannot capture fine detail. The model is trained end to end with flow matching and representation alignment. On ImageNet, PixNerd-XL/16 reaches FID 2.15 at 256x256 and 2.84 at 512x512, and the paper extends the design to text-to-image with a 1.2B PixNerd-XXL/16 trained on about 45M recaptioned images, reporting 0.73 on GenEval and 80.9 on DPG-Bench.
+
+[Architecture and figure](../models/pixel-diffusion.md#pixnerd) · [Paper](https://arxiv.org/abs/2507.23268) · [GitHub](https://github.com/MCG-NJU/PixNerd) · [Model card](https://huggingface.co/MCG-NJU/PixNerd-XXL-P16-T2I)
+
+![PixNerd — Figure 1 (PDF p. 1)](../assets/architectures/pixnerd.png)
+
+*Figure 1 (PDF p. 1) · [Source](https://arxiv.org/abs/2507.23268)*
 
 <a id="playground-v2"></a>
 
@@ -2551,6 +2646,18 @@ PUMA (emPowering Unified MLLM with Multi-grAnular visual generation), from a gro
 ![PUMA — Figure 2](../assets/architectures/puma.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2410.13861)*
+
+<a id="query-kontext"></a>
+
+### Query-Kontext
+
+Query-Kontext (Baidu VIS and NUS) separates multimodal generative reasoning from high-fidelity rendering in a unified image generation and editing system. A VLM, Qwen2.5-VL-7B with LoRA, encodes the text prompt, any input images and learnable query tokens into a short sequence of kontext tokens that carry semantic cues and coarse image conditions for the diffusion model. Training has three stages: first the VLM is bridged to a lightweight 870M diffusion head, then the head is replaced by a roughly 10x larger in-house MMDiT with the VLM frozen, and finally a low-level image encoder and LoRA on the diffusion model add fine detail for identity preservation. A shifted rotary position embedding separates source images (negative coordinates) from reference images (positive coordinates). The paper reports GenEval 0.88 and results on GEdit-Bench, DreamBooth and DreamBench.
+
+[Architecture and figure](../models/dit.md#query-kontext) · [Paper](https://arxiv.org/abs/2509.26641) · GitHub: no author-linked repository found
+
+![Query-Kontext — Figure 2](../assets/architectures/query-kontext.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.26641)*
 
 <a id="qwen-image"></a>
 
@@ -2762,7 +2869,7 @@ Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the sa
 
 Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image editing system, built around a redesigned, more efficient diffusion transformer backbone that the technical report says substantially raises model capacity while cutting training and inference cost. Generation and editing share one model through a 'causal diffusion' post-training stage, so the same network can take a text prompt alone or a prompt plus one or several reference images and return one or multiple output images, evaluated as co-equal capabilities in the paper's benchmarks. A high-compression VAE and a Seed1.5-VL-based prompt/routing module keep image tokens few and route different input types, while adversarial distillation, quantization and speculative decoding push inference to roughly 1.4 seconds for a 2K image, over 10x faster than Seedream 3.0. Seedream 4.5 is a later product update of the same system rather than a new architecture. No public weights or code exist; the model is available only through ByteDance's API and products.
 
-[Architecture and figure](../models/dit.md#seedream-4) · [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5)
+[Architecture and figure](../models/dit.md#seedream-4) · [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
 ![Seedream 4.0 — Editorial input/output diagram](../assets/architectures/seedream-4.svg)
 
@@ -2863,6 +2970,18 @@ Skywork UniPic is a 1.5B-parameter unified autoregressive model from Skywork AI 
 ![Skywork UniPic — Figure 2](../assets/architectures/skywork-unipic.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2508.03320)*
+
+<a id="skywork-unipic-2"></a>
+
+### Skywork UniPic 2.0
+
+Skywork UniPic 2.0 (Skywork AI) is a follow-up to the autoregressive Skywork UniPic that switches to a diffusion generator. UniPic2-SD3.5M-Kontext is a 2B model based on SD3.5-Medium that is retrained on text-to-image and editing data, with reference-image latents injected into the DiT's self-attention sequence so one model handles both tasks. It is then post-trained with Progressive Dual-Task Reinforcement, which reinforces editing first and text-to-image second with GRPO and avoids cross-task interference. UniPic2-MetaQuery then connects the Kontext model to a frozen Qwen2.5-VL-7B through learnable queries and a connector, giving a unified model for understanding, generation and editing. The report gives GenEval 0.89 for the 2B Kontext model and 0.90 for UniPic2-MetaQuery.
+
+[Architecture and figure](../models/unified.md#skywork-unipic-2) · [Paper](https://arxiv.org/abs/2509.04548) · [GitHub](https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2) · [Model card](https://huggingface.co/Skywork/UniPic2-Metaquery-9B) · [Project](https://unipic-v2.github.io)
+
+![Skywork UniPic 2.0 — Figure 2](../assets/architectures/skywork-unipic-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.04548)*
 
 <a id="snapfusion"></a>
 
@@ -3128,6 +3247,18 @@ This ACM Multimedia 2021 paper from Sun Yat-sen University and Microsoft Researc
 
 *Figure 2 · [Source](https://arxiv.org/abs/2110.09753)*
 
+<a id="unialignment"></a>
+
+### UniAlignment
+
+UniAlignment (UCAS, Institute of Automation CAS and Ant Group) unifies image generation, understanding, editing and perception in one diffusion transformer without an external vision-language model at inference. A dual-stream design lets the same DiT weights parameterize a continuous flow-matching process for images and a discrete masked-diffusion process for text, in the manner of DualDiffusion. Two training-only objectives address the conflict between the streams: a contrastive loss between the output embeddings of the image and text branches (cross-modal alignment) and a REPA-style loss that matches intermediate DiT features to embeddings from a pretrained vision-language encoder (intrinsic-modal alignment). The 2B model is trained in several stages and evaluated on GenEval, DPG-Bench, editing, understanding benchmarks and the new SemGen-Bench.
+
+[Architecture and figure](../models/unified.md#unialignment) · [Paper](https://arxiv.org/abs/2509.23760) · GitHub: no author-linked repository found
+
+![UniAlignment — Figure 3](../assets/architectures/unialignment.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2509.23760)*
+
 <a id="unidiffuser"></a>
 
 ### UniDiffuser
@@ -3283,6 +3414,18 @@ VQ-Diffusion (Microsoft Research, 2021) applies denoising diffusion to the discr
 ![VQ-Diffusion — Figure 1](../assets/architectures/vq-diffusion.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2111.14822)*
+
+<a id="vugen"></a>
+
+### VUGEN
+
+VUGEN (Meta FAIR) gives a vision-language model image generation by working in the space of the VLM's own visual understanding features. A learned dimension reducer compresses the high-dimensional output of the VLM's understanding encoder into a low-dimensional, tractable latent while a pixel decoder is jointly trained to reconstruct the image from it. The VLM then gets a new image generation tower, a copy of its transformer weights, trained with rectified flow matching to sample in the reduced space conditioned on the text prompt, with the original tower frozen so understanding is unchanged. A pixel-space diffusion decoder, distilled to a single step, maps the generated features to images and is found on par with or better than a VAE-based latent diffusion decoder. The paper reports DPG-Bench 71.17 to 74.32 and COCO FID 11.86 to 9.06 against its baseline.
+
+[Architecture and figure](../models/dit.md#vugen) · [Paper](https://arxiv.org/abs/2510.06529) · GitHub: no author-linked repository found
+
+![VUGEN — Figure 1](../assets/architectures/vugen.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2510.06529)*
 
 <a id="x-fusion"></a>
 

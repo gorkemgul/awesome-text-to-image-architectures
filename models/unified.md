@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**80 models · Reviewed 2026-09-29**
+**84 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -21,6 +21,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [ARM](#arm) | 2026-06-09 | T, I → T, I | editing |
 | [BAGEL](#bagel) | 2025-05-20 | T, I → T, I | editing |
 | [BLIP3-o](#blip3-o) | 2025-05-14 | T, I → T, I | generation |
+| [Bridge](#bridge) | 2025-10-02 | T, I → T, I | editing |
 | [Chameleon](#chameleon) | 2024-05-16 | T, I → T, I | generation |
 | [CM3](#cm3) | 2022-01-19 | T, I → T, I | generation |
 | [CoDi](#codi) | 2023-05-19 | T, I, V, A → T, I, V, A | generation |
@@ -71,6 +72,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [OFA](#ofa) | 2022-02-07 | T, I → T, I | generation |
 | [OmniGen2](#omnigen2) | 2025-06-23 | T, I → T, I | editing |
 | [OneCAT](#onecat) | 2025-09-03 | T, I → T, I | editing |
+| [OneFlow](#oneflow) | 2025-10-03 | T, I → T, I | generation |
 | [Orthus](#orthus) | 2024-11-28 | T, I → T, I | editing |
 | [Ovis-U1](#ovis-u1) | 2025-06-29 | T, I → T, I | editing |
 | [PUMA](#puma) | 2024-10-17 | T, I → T, I | editing |
@@ -80,12 +82,14 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Show-o](#show-o) | 2024-08-22 | T, I → T, I | editing |
 | [Show-o2](#show-o2) | 2025-06-18 | T, I, V → T, I, V | generation |
 | [Skywork UniPic](#skywork-unipic) | 2025-08-05 | T, I → T, I | editing |
+| [Skywork UniPic 2.0](#skywork-unipic-2) | 2025-09-04 | T, I → T, I | editing |
 | [STARFlow2](#starflow2) | 2026-05-08 | T, I → T, I | editing |
 | [SynerGen-VL](#synergen-vl) | 2024-12-12 | T, I → T, I | generation |
 | [Tar](#tar) | 2025-06-23 | T, I → T, I | generation |
 | [TMDM-3B](#tmdm-3b) | 2026-02-25 | T, I, A → T, I, A | generation |
 | [Transfusion](#transfusion) | 2024-08-20 | T, I → T, I | generation |
 | [UGen](#ugen) | 2025-03-27 | T, I → T, I | generation |
+| [UniAlignment](#unialignment) | 2025-09-28 | T, I → T, I | editing |
 | [UniDiffuser](#unidiffuser) | 2023-03-12 | T, I → T, I | generation |
 | [UniDisc](#unidisc) | 2025-03-26 | T, I → T, I | generation |
 | [Unified-IO](#unified-io) | 2022-06-17 | T, I → T, I | generation |
@@ -201,6 +205,29 @@ Learnable query vectors appended to the prompt are processed by the autoregressi
 **License:** weights: Apache-2.0.
 
 **Variants:** BLIP3o-Model-8B; BLIP3o-Model-4B.
+
+</details>
+
+<a id="bridge"></a>
+
+### Bridge
+
+Mixture-of-Transformers built on InternVL3-8B with a frozen understanding expert and a newly trained generation expert (a copy of the LLM) under unified causal attention, generating images autoregressively as 81 semantic tokens (TA-Tok) followed by 1024 pixel tokens (LlamaGen VQGAN).
+
+Bridge (University of Maryland, CUHK MMLab and ByteDance) adds image generation to a pre-trained understanding MLLM while staying purely autoregressive. It copies the InternVL3-8B language backbone into a trainable generation expert and keeps the original model, including its continuous vision encoder, frozen as the understanding expert, with hard routing of tokens between experts and joint causal attention. Images for generation are represented as a short run of semantic tokens followed by pixel tokens, which the authors compare to chain-of-thought and which adds only 7.9% to the sequence length over pixel tokens alone. Training has three stages (large pretraining, a 60M-sample refinement and 28M-sample SFT) and an optional upscaling module raises 512px outputs to 1024px. The paper reports GenEval 0.82, DPG-Bench 85.51 and WISE 0.69, plus understanding results inherited from InternVL3 and ImgEdit editing.
+
+[Paper](https://arxiv.org/abs/2510.01546) · [GitHub](https://github.com/hywang66/Bridge) · [Project](https://hywang66.github.io/bridge/)
+
+![Bridge — Figure 2](../assets/architectures/bridge.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.01546)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+The semantic tokens come from the TA-Tok encoder (384x384 input pooled to 81 tokens from a 65,536 codebook) and the pixel tokens from LlamaGen-VQGAN (32x32 tokens from 512x512, 16,384 codebook); only the LlamaGen decoder reconstructs images. Understanding is evaluated on POPE, MME, MMBench, SEED-Bench and MMMU and is preserved by freezing the understanding expert. The optional upscaler uses Lumina-Accessory. The project page links a GitHub repository whose README says the code is coming soon; no license file or weights were found at review time.
 
 </details>
 
@@ -1021,7 +1048,7 @@ Shared vision-transformer encoder with two lightweight adapters (continuous for 
 
 Manzano is Apple's unified multimodal model, designed to reduce the understanding/generation trade-off common in unified LLMs by using a hybrid image tokenizer rather than two unrelated tokenizers. A single ViT vision encoder feeds a continuous adapter (for image-to-text understanding) and a discrete FSQ adapter (for text-to-image generation), so both representations share a common semantic space instead of mixing a high-level semantic tokenizer with a low-level spatial VQ tokenizer. The unified autoregressive LLM decoder predicts high-level text and image tokens with a single next-token objective, and a separately scaled DiT-Air diffusion decoder renders the generated image tokens into pixels. The paper reports state-of-the-art results among unified models, particularly on text-rich understanding benchmarks, minimal task conflict between understanding and generation, and consistent gains when scaling the LLM decoder from 300M to 30B and the diffusion decoder up to 3.52B.
 
-[Paper](https://arxiv.org/abs/2509.16197)
+[Paper](https://arxiv.org/abs/2509.16197) · GitHub: no author-linked repository found
 
 ![Manzano — Figure 3](../assets/architectures/manzano.png)
 
@@ -1506,6 +1533,31 @@ OneCAT is initialized from pretrained Qwen2.5 and builds Modality-MoE by replica
 
 </details>
 
+<a id="oneflow"></a>
+
+### OneFlow
+
+Non-autoregressive multimodal transformer, initialized from Llama 3.2 1B in the controlled setup, that combines an insertion-based Edit Flow over discrete text tokens with Flow Matching over SD3-VAE image latents, using a SigLIP2 encoder for understanding inputs and U-Net adapters, so a variable number of images and text are denoised and inserted concurrently.
+
+OneFlow (FAIR at Meta) is a multimodal model that drops the fixed left-to-right ordering of autoregressive systems. Text is generated by Edit Flows, a continuous-time Markov chain that inserts tokens into variable-length sequences, while images are generated by flow matching on continuous latents, and both processes run together so text and images in an interleaved sequence are produced concurrently, with content tokens inserted before filler. A mixed-modal training scheme lets the model generate clean text and an image concurrently. In controlled experiments from 1B to 8B parameters against an autoregressive plus flow-matching baseline built on Transfusion and a LLaDA-style masked diffusion baseline, the paper reports better scaling on text-to-image (DPG-Bench, FID), captioning and visual question answering with up to 50% fewer training FLOPs.
+
+[Paper](https://arxiv.org/abs/2510.03506) · GitHub: no author-linked repository found
+
+![OneFlow — Figure 1](../assets/architectures/oneflow.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2510.03506)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Pretraining uses about 400M image-text examples (filtered CC12M, YFCC and licensed data) with sequence length 512 and global batch size 4096, followed by instruction finetuning on about 40M examples (PerceptionLM, Chameleon interleaving data, filtered Cambrian-7M) and higher-resolution 512x512 image generation data. Image sampling uses a first-order Euler solver with 50 steps, entropy rectifying guidance and guidance scale 5.0. Models of 1B, 3B and 8B parameters are trained for the scaling study. No repository or weights are linked from the paper.
+
+**Variants:** OneFlow-1B; OneFlow-3B; OneFlow-8B.
+
+</details>
+
 <a id="orthus"></a>
 
 ### Orthus
@@ -1747,6 +1799,33 @@ Generation uses MAR-Huge (about 1B parameters, 20 encoder and 20 decoder layers,
 
 </details>
 
+<a id="skywork-unipic-2"></a>
+
+### Skywork UniPic 2.0
+
+SD3.5-Medium DiT retrofitted into a Kontext model by concatenating reference-image VAE latents with the noisy latents, trained on generation and editing and post-trained with Flow-GRPO-style reinforcement, then joined to a frozen Qwen2.5-VL-7B through learnable queries and a 24-layer transformer connector in the MetaQuery manner.
+
+Skywork UniPic 2.0 (Skywork AI) is a follow-up to the autoregressive Skywork UniPic that switches to a diffusion generator. UniPic2-SD3.5M-Kontext is a 2B model based on SD3.5-Medium that is retrained on text-to-image and editing data, with reference-image latents injected into the DiT's self-attention sequence so one model handles both tasks. It is then post-trained with Progressive Dual-Task Reinforcement, which reinforces editing first and text-to-image second with GRPO and avoids cross-task interference. UniPic2-MetaQuery then connects the Kontext model to a frozen Qwen2.5-VL-7B through learnable queries and a connector, giving a unified model for understanding, generation and editing. The report gives GenEval 0.89 for the 2B Kontext model and 0.90 for UniPic2-MetaQuery.
+
+[Paper](https://arxiv.org/abs/2509.04548) · [GitHub](https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2) · [Model card](https://huggingface.co/Skywork/UniPic2-Metaquery-9B) · [Project](https://unipic-v2.github.io)
+
+![Skywork UniPic 2.0 — Figure 2](../assets/architectures/skywork-unipic-2.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.04548)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Connector pretraining uses 150M image-text pairs (30M open-source plus 120M internal synthetic) for 500K steps with both the MLLM and the DiT frozen; the Kontext model is trained on 5M editing and 6M text-to-image samples; the unified model is then jointly fine-tuned with the MLLM frozen. RL uses LoRA, rewards from the Skywork-EditReward model or GPT-4.1 for editing and GenEval-based verifiable rewards for text-to-image. Understanding scores for UniPic2-MetaQuery (MMBench 83.5, MMMU 58.6, MM-Vet 67.1) equal those of the frozen Qwen2.5-VL, so T is listed as an output for the unified variant only; UniPic2-SD3.5M-Kontext alone has no text output. The repository (UniPic-2 directory of the shared SkyworkAI/UniPic repository) and the Hugging Face model cards for UniPic2-SD3.5M-Kontext-2B and UniPic2-Metaquery-9B state the MIT license.
+
+**License:** code: MIT; weights: MIT.
+
+**Variants:** UniPic2-SD3.5M-Kontext (2B); UniPic2-SD3.5M-Kontext-GRPO (RL-trained); UniPic2-MetaQuery (7B MLLM + 2B DiT).
+
+</details>
+
 <a id="starflow2"></a>
 
 ### STARFlow2
@@ -1890,6 +1969,29 @@ UGen (Baidu) is a unified autoregressive model for text processing, image unders
 Evaluation covers text benchmarks, image understanding (VQAv2 and others, with POPE) and image generation on GenEval. Training has a text pretraining stage, a multimodal stage with progressive activation and an instruction-tuning stage with all parameters tuned. The paper reports results at 256×256 resolution and does not link code in the text; no repository was found at review time.
 
 **Variants:** UGen.
+
+</details>
+
+<a id="unialignment"></a>
+
+### UniAlignment
+
+Single SD3-based multimodal diffusion transformer with shared weights for a continuous flow-matching branch (image generation, editing, perception) and a discrete masked-diffusion branch (text), trained with a cross-modal contrastive alignment loss and an intrinsic-modal alignment loss against Qwen2.5-VL vision-encoder features.
+
+UniAlignment (UCAS, Institute of Automation CAS and Ant Group) unifies image generation, understanding, editing and perception in one diffusion transformer without an external vision-language model at inference. A dual-stream design lets the same DiT weights parameterize a continuous flow-matching process for images and a discrete masked-diffusion process for text, in the manner of DualDiffusion. Two training-only objectives address the conflict between the streams: a contrastive loss between the output embeddings of the image and text branches (cross-modal alignment) and a REPA-style loss that matches intermediate DiT features to embeddings from a pretrained vision-language encoder (intrinsic-modal alignment). The 2B model is trained in several stages and evaluated on GenEval, DPG-Bench, editing, understanding benchmarks and the new SemGen-Bench.
+
+[Paper](https://arxiv.org/abs/2509.23760) · GitHub: no author-linked repository found
+
+![UniAlignment — Figure 3](../assets/architectures/unialignment.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2509.23760)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Built on the open SD3 backbone with a frozen T5 text encoder and a pretrained VAE; source images for editing, personalization and perception are VAE-encoded and concatenated with the noisy latents. The vision encoder of Qwen2.5-VL-7B is used only for the alignment loss during training. Training uses 2M text-to-image pairs from Text-to-Image-2M plus internal captioning data, then multi-task data including editing, perception and GPT-4o-generated samples. The paper reports GenEval 0.81, DPG-Bench 85.64, GEdit-Bench-EN 6.57 and understanding results (MMBench 80.6 among others). SemGen-Bench is introduced in the same paper. No repository or weights are linked from the paper.
 
 </details>
 

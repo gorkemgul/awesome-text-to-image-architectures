@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**12 models · Reviewed 2026-09-29**
+**13 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -28,6 +28,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Karlo](#karlo) | 2022-12-01 | T, I → I | generation |
 | [Matryoshka Diffusion Models](#matryoshka-diffusion) | 2023-10-23 | T → I | generation |
 | [PixelFlow](#pixelflow) | 2025-04-10 | T → I | generation |
+| [PixNerd](#pixnerd) | 2025-07-31 | T → I | generation |
 | [Re-Imagen](#re-imagen) | 2022-09-29 | T, I → I | generation |
 
 </details>
@@ -298,6 +299,33 @@ Architecture changes to DiT: patch embedding on pixels, 2D RoPE instead of sin-c
 **License:** code: MIT; weights: MIT.
 
 **Variants:** PixelFlow-Text2Image.
+
+</details>
+
+<a id="pixnerd"></a>
+
+### PixNerd
+
+Single-scale pixel-space diffusion transformer with large 16x16 patches that replaces the final linear projection with a patch-wise neural field, where the transformer's hidden state predicts the weights of small MLPs that decode pixel velocity from coordinate encodings and the noisy pixel values, with Qwen3-1.7B text conditioning.
+
+PixNerd (Nanjing University, ByteDance Seed and NUS) removes the VAE from diffusion transformers without a cascaded or multi-scale pipeline. It keeps the token count of a latent diffusion transformer by using large pixel patches and decodes each patch with a neural field, where the transformer predicts per-patch MLP weights that map pixel coordinate encodings and noisy pixel values to velocity, instead of a single linear layer that cannot capture fine detail. The model is trained end to end with flow matching and representation alignment. On ImageNet, PixNerd-XL/16 reaches FID 2.15 at 256x256 and 2.84 at 512x512, and the paper extends the design to text-to-image with a 1.2B PixNerd-XXL/16 trained on about 45M recaptioned images, reporting 0.73 on GenEval and 80.9 on DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2507.23268) · [GitHub](https://github.com/MCG-NJU/PixNerd) · [Model card](https://huggingface.co/MCG-NJU/PixNerd-XXL-P16-T2I)
+
+![PixNerd — Figure 1 (PDF p. 1)](../assets/architectures/pixnerd.png)
+
+*Figure 1 (PDF p. 1) · [Source](https://arxiv.org/abs/2507.23268)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The text-to-image model uses a frozen Qwen3-1.7B text encoder with several jointly trained transformer layers on top of the frozen features, in the manner of Fluid, about 45M images from SAM, JourneyDB, ImageNet-1K and other open datasets recaptioned with Qwen2.5-VL-7B (English captions only), square 256x256 pretraining followed by 512x512 training and an SFT stage on the BLIP-3o dataset, and the Adams-2nd solver with 25 steps. The paper reports training-free arbitrary-resolution sampling by interpolating pixel coordinates. The ImageNet class-conditional PixNerd-XL/16 checkpoints are separate variants. The repository states the MIT license; the text-to-image checkpoint's model card metadata states Apache-2.0.
+
+**License:** code: MIT; weights: Apache-2.0.
+
+**Variants:** PixNerd-XXL/16 (text-to-image, 1.2B); PixNerd-XL/16 (ImageNet class-conditional, 700M).
 
 </details>
 

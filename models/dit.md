@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**63 models · Reviewed 2026-09-29**
+**67 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -33,6 +33,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [FLUX.2](#flux-2) | 2025-11-25 | T, I → I | generation |
 | [GenTron](#gentron) | 2023-12-07 | T → I | generation |
 | [HiDream-I1](#hidream-i1) | 2025-05-28 | T → I | generation |
+| [Home-made Diffusion Model (HDM)](#hdm) | 2025-09-07 | T → I | generation |
 | [Hunyuan-DiT](#hunyuan-dit) | 2024-05-14 | T → I | generation |
 | [HunyuanImage-2.1](#hunyuanimage-2-1) | 2025-09-08 | T → I | generation |
 | [i1](#i1) | 2026-06-09 | T → I | generation |
@@ -59,12 +60,14 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Omni-Dish](#omni-dish) | 2025-04-14 | T, I → I | editing |
 | [OmniGen](#omnigen) | 2024-09-17 | T, I → I | editing |
 | [Ovis-Image](#ovis-image) | 2025-11-28 | T → I | generation |
+| [Paris](#paris) | 2025-10-03 | T → I | generation |
 | [PixArt-α](#pixart-alpha) | 2023-09-30 | T → I | generation |
 | [PixArt-Σ](#pixart-sigma) | 2024-03-07 | T → I | generation |
 | [Playground v3](#playground-v3) | 2024-09-16 | T → I | generation |
 | [ProxT2I](#proxt2i) | 2025-11-24 | T → I | generation |
 | [PS-VAE](#ps-vae) | 2025-12-19 | T, I → I | editing |
 | [PSP-DiT](#psp-dit) | 2026-09-24 | T → I | generation |
+| [Query-Kontext](#query-kontext) | 2025-09-30 | T, I → I | editing |
 | [Qwen-Image](#qwen-image) | 2025-08-04 | T → I | generation |
 | [Qwen-Image-2.0](#qwen-image-2) | 2026-05-11 | T, I → I | generation |
 | [SANA](#sana) | 2024-10-14 | T → I | generation |
@@ -79,6 +82,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [TerraDiT](#terradit) | 2026-03-02 | T → I | generation |
 | [UniVG](#univg) | 2025-03-16 | T, I → I | editing |
 | [UniWorld-Design](#uniworld-design) | 2026-08-04 | T, I → I | editing |
+| [VUGEN](#vugen) | 2025-10-08 | T → I | generation |
 | [Z-Image](#z-image) | 2025-11-27 | T → I | generation |
 
 </details>
@@ -510,6 +514,33 @@ Paper Figure 3: captions are encoded by long-context CLIP-L/14 and CLIP-G/14 (po
 **License:** code: MIT; weights: MIT.
 
 **Variants:** HiDream-I1-Full; HiDream-I1-Dev; HiDream-I1-Fast.
+
+</details>
+
+<a id="hdm"></a>
+
+### Home-made Diffusion Model (HDM)
+
+Flow-matching latent diffusion model with a Cross-U-Transformer (XUT) backbone, a U-shaped transformer whose skip connections use cross-attention instead of concatenation, conditioned on Qwen3-0.6B hidden states and trained with TREAD token routing, shifted square crops and progressive resolution up to 1024px.
+
+HDM (Shih-Ying Yeh, Kohaku-Lab) is a small text-to-image model designed to be trained on consumer hardware. Its Cross-U-Transformer replaces the concatenation or addition used for skip connections in U-shaped transformers with cross-attention between matching encoder and decoder depths. Training combines TREAD token routing for faster convergence, a shifted square crop strategy with position maps that allows arbitrary aspect ratios without bucketing, and progressive resolution scaling from 256 to 1024 pixels. The 343M-parameter XUT-base model is trained on the Danbooru2023 anime dataset with natural-language captions for a reported cost of 535 to 620 US dollars on four RTX 5090 GPUs, and shows emergent camera-like control through the position map.
+
+[Paper](https://arxiv.org/abs/2509.06068) · [GitHub](https://github.com/KohakuBlueleaf/HDM) · [Model card](https://huggingface.co/KBlueLeaf/HDM-xut-340M-anime)
+
+![Home-made Diffusion Model (HDM) — Figure 2](../assets/architectures/hdm.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.06068)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The text encoder is Qwen3-0.6B (the last hidden state is used as the text embedding); XUT-small and XUT-large variants use Gemma3-270M and Gemma3-1B. The VAE is the SDXL VAE fine-tuned with EQ-VAE. Training data are about 7.6M Danbooru2023 images captioned with Pixtral-11M, so the released model is anime-domain. The paper's own validation focuses on XUT-base (343M parameters, 20 transformer blocks). The repository README states CC-BY-NC-SA 4.0 for the models, source code and documents until development finishes; the Hugging Face card metadata lists the license as cc. The repository is marked work in progress and carries its tech report as a Markdown file.
+
+**License:** code: CC-BY-NC-SA 4.0; weights: CC-BY-NC-SA 4.0.
+
+**Variants:** HDM-xut-340M-anime; XUT-small (230M); XUT-large (550M).
 
 </details>
 
@@ -1177,6 +1208,33 @@ Paper Figure 2: the user prompt (with a system prompt) is encoded by the frozen 
 
 </details>
 
+<a id="paris"></a>
+
+### Paris
+
+Ensemble of 8 independently trained DiT-XL/2 flow-matching experts (605M parameters each) on SD VAE latents with CLIP ViT-L/14 text conditioning, combined at inference by a lightweight timestep-aware DiT router (about 129M parameters) that weights or selects experts for each noisy input.
+
+Paris (Bagel Labs) is presented as the first publicly released diffusion model pre-trained entirely through decentralized computation. The training set of 11M LAION-Aesthetic images is clustered with DINOv2 features into 8 semantic groups, and each expert, a DiT-XL/2 with PixArt-alpha style conditioning optimizations, trains on its own cluster with no gradient, parameter or activation exchange, on heterogeneous hardware. A separate transformer router, trained afterwards to predict the cluster of a noisy latent, orchestrates the experts at inference, with top-1, top-2 or all-expert weighted combinations of their flow predictions. The report states that this reaches quality comparable to centrally trained baselines using 14x less data and 16x fewer GPU-days than the earlier decentralized diffusion baseline.
+
+[Paper](https://arxiv.org/abs/2510.03434) · [GitHub](https://github.com/bageldotcom/paris) · [Model card](https://huggingface.co/bageldotcom/paris)
+
+![Paris — Figure 2 (PDF p. 6)](../assets/architectures/paris.png)
+
+*Figure 2 (PDF p. 6) · [Source](https://arxiv.org/abs/2510.03434)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The model runs at 256x256 on 32x32x4 latents from sd-vae-ft-mse with a 2x2 patch size, 28 layers, 1152 hidden size and 16 heads per expert (4.84B total expert parameters). The reported training budget is 120 A40 GPU-days. The paper validates the recipe with DiT-B/2 experts (129M) and the DiT-XL/2 experts; image quality is reported as FID on LAION-Aesthetic against monolithic and decentralized baselines. The README and the Hugging Face model card state the MIT license for code and weights.
+
+**License:** code: MIT; weights: MIT.
+
+**Variants:** DiT-XL/2 experts (605M each); DiT-B/2 experts (129M each, validation).
+
+</details>
+
 <a id="pixart-alpha"></a>
 
 ### PixArt-α
@@ -1322,6 +1380,29 @@ Panoptic Scene Program Diffusion Transformer (PSP-DiT) targets compositional tex
 **Input → output:** T → I · **Interaction:** generation
 
 Paper Figure 1 (method overview): a scene-program latent (a graph of instances, attributes, relations, counts and global context) is denoised alongside the image latent through paired transformer-block streams connected by bidirectional cross-attention (panel C); a grounding head maps the refined scene latent to per-object ownership maps and a recognizer maps the refined image latent back to a recovered scene program, with a cycle-consistency loss tying the two (panel D). The paper reports improvements over a flat-text-conditioned DiT baseline on GenEval 2, SANEval-Simple, PSG-Score and DetailMaster, concentrated in counting, attribute binding, role-sensitive relations and long structured prompts, with modest inference overhead. Accepted to NeurIPS 2026; no repository or license is disclosed.
+
+</details>
+
+<a id="query-kontext"></a>
+
+### Query-Kontext
+
+Qwen2.5-VL-7B (LoRA) that turns the prompt, reference images and 128 learnable query tokens into 'kontext' tokens, passed through a two-layer MLP connector together with the text tokens into an in-house 10B MMDiT that also takes VAE latents of the source or reference images with a shifted 2D RoPE, trained in three stages.
+
+Query-Kontext (Baidu VIS and NUS) separates multimodal generative reasoning from high-fidelity rendering in a unified image generation and editing system. A VLM, Qwen2.5-VL-7B with LoRA, encodes the text prompt, any input images and learnable query tokens into a short sequence of kontext tokens that carry semantic cues and coarse image conditions for the diffusion model. Training has three stages: first the VLM is bridged to a lightweight 870M diffusion head, then the head is replaced by a roughly 10x larger in-house MMDiT with the VLM frozen, and finally a low-level image encoder and LoRA on the diffusion model add fine detail for identity preservation. A shifted rotary position embedding separates source images (negative coordinates) from reference images (positive coordinates). The paper reports GenEval 0.88 and results on GEdit-Bench, DreamBooth and DreamBench.
+
+[Paper](https://arxiv.org/abs/2509.26641) · GitHub: no author-linked repository found
+
+![Query-Kontext — Figure 2](../assets/architectures/query-kontext.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2509.26641)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The MMDiT is Baidu's own model (about 10B parameters, 42 layers) whose original text encoder is replaced by the MLLM; the connector is a two-layer MLP and up to 2 reference images are supported. Tasks are text-to-image, image reconstruction, instruction editing, customized single-subject generation and multi-subject composition, using a data pipeline of real, synthetic and open-source sets. The paper evaluates image generation and editing only; the VLM's understanding is not evaluated, so only I is listed as output. No repository or weights are linked from the paper.
 
 </details>
 
@@ -1489,7 +1570,7 @@ Efficient, scalable DiT backbone unifying text-to-image generation and multi-ima
 
 Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image editing system, built around a redesigned, more efficient diffusion transformer backbone that the technical report says substantially raises model capacity while cutting training and inference cost. Generation and editing share one model through a 'causal diffusion' post-training stage, so the same network can take a text prompt alone or a prompt plus one or several reference images and return one or multiple output images, evaluated as co-equal capabilities in the paper's benchmarks. A high-compression VAE and a Seed1.5-VL-based prompt/routing module keep image tokens few and route different input types, while adversarial distillation, quantization and speculative decoding push inference to roughly 1.4 seconds for a 2K image, over 10x faster than Seedream 3.0. Seedream 4.5 is a later product update of the same system rather than a new architecture. No public weights or code exist; the model is available only through ByteDance's API and products.
 
-[Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5)
+[Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
 ![Seedream 4.0 — Input/output diagram](../assets/architectures/seedream-4.svg)
 
@@ -1688,6 +1769,31 @@ UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation a
 Paper Figure 3 (LIB-MMDiT overview) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. The paper does not name the pretrained base model: it refers only to "the base model" and its transformer backbone. Only a project page is linked; no GitHub repository was found.
 
 **Variants:** UniWorld-Design T2RGBA; UniWorld-Design I2L.
+
+</details>
+
+<a id="vugen"></a>
+
+### VUGEN
+
+Mixture-of-Transformers on a 1B Perception Language Model with a frozen VLM tower and a new generation tower trained with rectified flow matching to sample dimension-reduced features of the VLM's native vision encoder, decoded to pixels by a VAE-free pixel diffusion decoder or a latent diffusion decoder.
+
+VUGEN (Meta FAIR) gives a vision-language model image generation by working in the space of the VLM's own visual understanding features. A learned dimension reducer compresses the high-dimensional output of the VLM's understanding encoder into a low-dimensional, tractable latent while a pixel decoder is jointly trained to reconstruct the image from it. The VLM then gets a new image generation tower, a copy of its transformer weights, trained with rectified flow matching to sample in the reduced space conditioned on the text prompt, with the original tower frozen so understanding is unchanged. A pixel-space diffusion decoder, distilled to a single step, maps the generated features to images and is found on par with or better than a VAE-based latent diffusion decoder. The paper reports DPG-Bench 71.17 to 74.32 and COCO FID 11.86 to 9.06 against its baseline.
+
+[Paper](https://arxiv.org/abs/2510.06529) · GitHub: no author-linked repository found
+
+![VUGEN — Figure 1](../assets/architectures/vugen.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2510.06529)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The backbone is PLM-1B (Perception Encoder with Llama 3), 1.2B trainable parameters in total with the mixture-of-transformers setup; the latent diffusion alternative is an MM-DiT with 28 blocks. Models are trained on ImageNet and the paper's StockMix mixture, with GenEval, DPG-Bench, CLIP score and FID reported. The VLM is frozen, so its understanding performance is that of the base PLM-1B (reported only for reference in the supplement) and T is not listed as a paper-evaluated output. No repository or weights are linked from the paper.
+
+**Variants:** VUGEN with pixel diffusion decoder (PDD); VUGEN with latent diffusion decoder (LDM).
 
 </details>
 

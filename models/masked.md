@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**14 models · Reviewed 2026-09-29**
+**15 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -23,6 +23,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [KNN-Diffusion](#knn-diffusion) | 2022-04-06 | T, I → I | editing |
 | [M6-UFC](#m6-ufc) | 2021-05-29 | T → I | generation |
 | [MaskGen](#maskgen) | 2025-01-13 | T → I | generation |
+| [MaskGIL](#maskgil) | 2025-07-17 | T → I | generation |
 | [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
 | [Muse](#muse) | 2023-01-02 | T → I | generation |
 | [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | 2026-06-29 | T → I | generation |
@@ -187,6 +188,31 @@ MaskGen is a family of text-to-image masked generative models trained exclusivel
 Paper Figure 3: a CLIP text encoder produces text tokens and a pooled text embedding (C) that, together with an aesthetic-condition embedding (A), modulate AdaLN in dual text/image branches of the MM-DiT block; image tokens come from the TA-TiTok tokenizer with random masking during training. A VQ head (linear, cross-entropy) or KL head (AdaMLP, diffusion loss) predicts masked tokens. Released sizes are MaskGen-L (568M, +44M DiffLoss MLP for the continuous variant) and MaskGen-XL (1.1B, +69M). TA-TiTok uses 32-128 1D tokens. The authors state they will release training code and model weights, but no repository was found at review time.
 
 **Variants:** MaskGen-L; MaskGen-XL.
+
+</details>
+
+<a id="maskgil"></a>
+
+### MaskGIL
+
+Masked autoregressive model that replaces the causal attention of a LLaMA transformer with bidirectional attention and 2D RoPE and predicts masked discrete image tokens in parallel in about 8 steps, with a Gemma-2B text encoder whose features are prefilled as conditioning in the text-driven variant.
+
+MaskGIL (Masked Generative Image LLaMA; Shanghai AI Laboratory with Nanjing University and collaborators) revisits masked autoregressive image generation, which decodes many image tokens per step but had trailed standard next-token models. The authors first compare four discrete image tokenizers and then turn a LLaMA decoder into a bidirectional model with 2D rotary position embeddings, trained with masked token prediction. Class-conditional models from 111M to 1.4B parameters reach an ImageNet 256x256 FID of 3.71 in 8 inference steps, against 256 steps for comparable autoregressive models. A 775M text-driven variant generates images at several resolutions from text. The paper also shows a scheme that starts generation with an autoregressive model and lets the masked model complete the tokens, applied to Lumina-mGPT, and a speech-to-image demonstration that transcribes speech with Whisper before generating.
+
+[Paper](https://arxiv.org/abs/2507.13032) · [GitHub](https://github.com/synbol/MaskGIL)
+
+![MaskGIL — Figure 2](../assets/architectures/maskgil.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.13032)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The class-conditional models use the LlamaGen-VQ tokenizer after a tokenizer comparison; the text-driven model uses the Chameleon-VQ tokenizer, a Gemma-2B text encoder whose features pass through an MLP and are used as prefilling token embeddings, and 2M high-aesthetic images captioned by a mixture of captioners. Training runs at 256x256 and then 512x512 with multi-resolution size buckets for arbitrary aspect ratios. The paper reports a GenEval overall score of 0.49 for the text-driven model and notes limited training data. The README lists only class-conditional (ImageNet 256x256) checkpoints and releases code; no text-driven checkpoint is listed. The repository carries no license file.
+
+**Variants:** MaskGIL-B (111M); MaskGIL-L (343M); MaskGIL-XL (775M); MaskGIL-XXL (1.4B); Text-driven MaskGIL (775M).
 
 </details>
 

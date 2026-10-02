@@ -20502,8 +20502,9 @@
    "title": "DiT360: High-Fidelity Panoramic Image Generation via Hybrid Training",
    "listed_on": "2025-10-13",
    "paper_url": "https://arxiv.org/abs/2510.11712",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2510.11496",
@@ -20870,8 +20871,12 @@
    "title": "VUGEN: Visual Understanding priors for GENeration",
    "listed_on": "2025-10-08",
    "paper_url": "https://arxiv.org/abs/2510.06529",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-08",
+   "model_id": "vugen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2510.07340",
@@ -20905,8 +20910,12 @@
    "title": "Lumina-DiMOO: An Omni Diffusion Large Language Model for Multi-Modal Generation and Understanding",
    "listed_on": "2025-10-07",
    "paper_url": "https://arxiv.org/abs/2510.06308",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-07",
+   "model_id": "lumina-dimoo",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2510.06215",
@@ -21003,8 +21012,9 @@
    "title": "Factuality Matters: When Image Generation and Editing Meet Structured Visuals",
    "listed_on": "2025-10-06",
    "paper_url": "https://arxiv.org/abs/2510.05091",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2510.05081",
@@ -21146,8 +21156,12 @@
    "title": "OneFlow: Concurrent Mixed-Modal and Interleaved Generation with Edit Flows",
    "listed_on": "2025-10-03",
    "paper_url": "https://arxiv.org/abs/2510.03506",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-03",
+   "model_id": "oneflow",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2510.03458",
@@ -21163,8 +21177,19 @@
    "title": "Paris: A Decentralized Trained Open-Weight Diffusion Model",
    "listed_on": "2025-10-03",
    "paper_url": "https://arxiv.org/abs/2510.03434",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-03",
+   "model_id": "paris",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/bageldotcom/paris",
+     "evidence_url": "https://github.com/bageldotcom/paris",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2510.03397",
@@ -21333,8 +21358,19 @@
    "title": "Growing Visual Generative Capacity for Pre-Trained MLLMs",
    "listed_on": "2025-10-02",
    "paper_url": "https://arxiv.org/abs/2510.01546",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-02",
+   "model_id": "bridge",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/hywang66/Bridge",
+     "evidence_url": "https://hywang66.github.io/bridge/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2510.01540",
@@ -21404,8 +21440,19 @@
    "title": "JEPA-T: Joint-Embedding Predictive Architecture with Text Fusion for Image Generation",
    "listed_on": "2025-10-01",
    "paper_url": "https://arxiv.org/abs/2510.00974",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-10-01",
+   "model_id": "jepa-t",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/justin-herry/JEPA-T",
+     "evidence_url": "https://arxiv.org/pdf/2510.00974v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2510.00894",
@@ -21475,8 +21522,12 @@
    "title": "Query-Kontext: An Unified Multimodal Model for Image Generation and Editing",
    "listed_on": "2025-09-30",
    "paper_url": "https://arxiv.org/abs/2509.26641",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-30",
+   "model_id": "query-kontext",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2509.26538",
@@ -21663,8 +21714,9 @@
    "title": "Environment-Aware Satellite Image Generation with Diffusion Models",
    "listed_on": "2025-09-29",
    "paper_url": "https://arxiv.org/abs/2509.24875",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2509.24798",
@@ -21734,8 +21786,12 @@
    "title": "UniAlignment: Semantic Alignment for Unified Image Generation, Understanding, Manipulation and Perception",
    "listed_on": "2025-09-28",
    "paper_url": "https://arxiv.org/abs/2509.23760",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-28",
+   "model_id": "unialignment",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2509.23643",
@@ -22210,8 +22266,12 @@
    "title": "Seedream 4.0: Toward Next-generation Multimodal Image Generation",
    "listed_on": "2025-09-24",
    "paper_url": "https://arxiv.org/abs/2509.20427",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-24",
+   "model_id": "seedream-4",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2509.20358",
@@ -22272,8 +22332,12 @@
    "title": "Lavida-O: Elastic Large Masked Diffusion Models for Unified Multimodal Understanding and Generation",
    "listed_on": "2025-09-23",
    "paper_url": "https://arxiv.org/abs/2509.19244",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-23",
+   "model_id": "lavida-o",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2509.19203",
@@ -22469,8 +22533,12 @@
    "title": "MANZANO: A Simple and Scalable Unified Multimodal Model with a Hybrid Vision Tokenizer",
    "listed_on": "2025-09-19",
    "paper_url": "https://arxiv.org/abs/2509.16197",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-19",
+   "model_id": "manzano",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2509.16141",
@@ -23143,8 +23211,19 @@
    "title": "Home-made Diffusion Model from Scratch to Hatch",
    "listed_on": "2025-09-07",
    "paper_url": "https://arxiv.org/abs/2509.06068",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-07",
+   "model_id": "hdm",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/KohakuBlueleaf/HDM",
+     "evidence_url": "https://arxiv.org/pdf/2509.06068v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2509.05978",
@@ -23223,8 +23302,19 @@
    "title": "Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model",
    "listed_on": "2025-09-04",
    "paper_url": "https://arxiv.org/abs/2509.04548",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-09-04",
+   "model_id": "skywork-unipic-2",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2",
+     "evidence_url": "https://github.com/SkyworkAI/UniPic/blob/main/UniPic-2/README.md",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2509.04545",
@@ -23807,8 +23897,9 @@
    "title": "Improving Performance, Robustness, and Fairness of Radiographic AI Models with Finely-Controllable Synthetic Data",
    "listed_on": "2025-08-22",
    "paper_url": "https://arxiv.org/abs/2508.16783",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2508.16752",
@@ -23923,8 +24014,9 @@
    "title": "SATURN: Autoregressive Image Generation Guided by Scene Graphs",
    "listed_on": "2025-08-20",
    "paper_url": "https://arxiv.org/abs/2508.14502",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2508.14485",
@@ -24192,8 +24284,12 @@
    "title": "NextStep-1: Toward Autoregressive Image Generation with Continuous Tokens at Scale",
    "listed_on": "2025-08-14",
    "paper_url": "https://arxiv.org/abs/2508.10711",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-08-14",
+   "model_id": "nextstep-1",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2508.10710",
@@ -24884,8 +24980,12 @@
    "title": "Skywork UniPic: Unified Autoregressive Modeling for Visual Understanding and Generation",
    "listed_on": "2025-08-05",
    "paper_url": "https://arxiv.org/abs/2508.03320",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-08-05",
+   "model_id": "skywork-unipic",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2508.03300",
@@ -24964,8 +25064,12 @@
    "title": "Qwen-Image Technical Report",
    "listed_on": "2025-08-04",
    "paper_url": "https://arxiv.org/abs/2508.02324",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-08-04",
+   "model_id": "qwen-image",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2508.02107",
@@ -25170,8 +25274,19 @@
    "title": "PixNerd: Pixel Neural Field Diffusion",
    "listed_on": "2025-07-31",
    "paper_url": "https://arxiv.org/abs/2507.23268",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-31",
+   "model_id": "pixnerd",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/MCG-NJU/PixNerd",
+     "evidence_url": "https://arxiv.org/pdf/2507.23268v2",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2508.08270",
@@ -25259,8 +25374,12 @@
    "title": "X-Omni: Reinforcement Learning Makes Discrete Autoregressive Image Generative Models Great Again",
    "listed_on": "2025-07-29",
    "paper_url": "https://arxiv.org/abs/2507.22058",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-29",
+   "model_id": "x-omni",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2507.21820",
@@ -25528,8 +25647,12 @@
    "title": "Lumina-mGPT 2.0: Stand-Alone AutoRegressive Image Modeling",
    "listed_on": "2025-07-23",
    "paper_url": "https://arxiv.org/abs/2507.17801",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-23",
+   "model_id": "lumina-mgpt-2",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2507.17268",
@@ -25770,8 +25893,19 @@
    "title": "Resurrect Mask AutoRegressive Modeling for Efficient and Scalable Image Generation",
    "listed_on": "2025-07-17",
    "paper_url": "https://arxiv.org/abs/2507.13032",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-17",
+   "model_id": "maskgil",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/synbol/MaskGIL",
+     "evidence_url": "https://arxiv.org/pdf/2507.13032v1",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2507.12945",
@@ -26021,8 +26155,9 @@
    "title": "MENTOR: Efficient Multimodal-Conditioned Tuning for Autoregressive Vision Generation Models",
    "listed_on": "2025-07-13",
    "paper_url": "https://arxiv.org/abs/2507.09574",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2507.09168",

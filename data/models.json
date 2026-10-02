@@ -915,6 +915,50 @@
    ]
   },
   {
+   "id": "bridge",
+   "name": "Bridge",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Mixture-of-Transformers built on InternVL3-8B with a frozen understanding expert and a newly trained generation expert (a copy of the LLM) under unified causal attention, generating images autoregressively as 81 semantic tokens (TA-Tok) followed by 1024 pixel tokens (LlamaGen VQGAN)",
+   "description": "Bridge (University of Maryland, CUHK MMLab and ByteDance) adds image generation to a pre-trained understanding MLLM while staying purely autoregressive. It copies the InternVL3-8B language backbone into a trainable generation expert and keeps the original model, including its continuous vision encoder, frozen as the understanding expert, with hard routing of tokens between experts and joint causal attention. Images for generation are represented as a short run of semantic tokens followed by pixel tokens, which the authors compare to chain-of-thought and which adds only 7.9% to the sequence length over pixel tokens alone. Training has three stages (large pretraining, a 60M-sample refinement and 28M-sample SFT) and an optional upscaling module raises 512px outputs to 1024px. The paper reports GenEval 0.82, DPG-Bench 85.51 and WISE 0.69, plus understanding results inherited from InternVL3 and ImgEdit editing.",
+   "notes": "The semantic tokens come from the TA-Tok encoder (384x384 input pooled to 81 tokens from a 65,536 codebook) and the pixel tokens from LlamaGen-VQGAN (32x32 tokens from 512x512, 16,384 codebook); only the LlamaGen decoder reconstructs images. Understanding is evaluated on POPE, MME, MMBench, SEED-Bench and MMMU and is preserved by freezing the understanding expert. The optional upscaler uses Lumina-Accessory. The project page links a GitHub repository whose README says the code is coming soon; no license file or weights were found at review time.",
+   "variants": [],
+   "source_date": "2025-10-02",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Growing Visual Generative Capacity for Pre-Trained MLLMs",
+     "url": "https://arxiv.org/abs/2510.01546",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "hywang66/Bridge — official repository (code coming soon)",
+     "url": "https://github.com/hywang66/Bridge",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "Bridge project page",
+     "url": "https://hywang66.github.io/bridge/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
    "id": "bridge-diffusion",
    "name": "Bridge Diffusion Model (BDM)",
    "category": "latent-unet",
@@ -4320,6 +4364,56 @@
    ]
   },
   {
+   "id": "hdm",
+   "name": "Home-made Diffusion Model (HDM)",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Flow-matching latent diffusion model with a Cross-U-Transformer (XUT) backbone, a U-shaped transformer whose skip connections use cross-attention instead of concatenation, conditioned on Qwen3-0.6B hidden states and trained with TREAD token routing, shifted square crops and progressive resolution up to 1024px",
+   "description": "HDM (Shih-Ying Yeh, Kohaku-Lab) is a small text-to-image model designed to be trained on consumer hardware. Its Cross-U-Transformer replaces the concatenation or addition used for skip connections in U-shaped transformers with cross-attention between matching encoder and decoder depths. Training combines TREAD token routing for faster convergence, a shifted square crop strategy with position maps that allows arbitrary aspect ratios without bucketing, and progressive resolution scaling from 256 to 1024 pixels. The 343M-parameter XUT-base model is trained on the Danbooru2023 anime dataset with natural-language captions for a reported cost of 535 to 620 US dollars on four RTX 5090 GPUs, and shows emergent camera-like control through the position map.",
+   "notes": "The text encoder is Qwen3-0.6B (the last hidden state is used as the text embedding); XUT-small and XUT-large variants use Gemma3-270M and Gemma3-1B. The VAE is the SDXL VAE fine-tuned with EQ-VAE. Training data are about 7.6M Danbooru2023 images captioned with Pixtral-11M, so the released model is anime-domain. The paper's own validation focuses on XUT-base (343M parameters, 20 transformer blocks). The repository README states CC-BY-NC-SA 4.0 for the models, source code and documents until development finishes; the Hugging Face card metadata lists the license as cc. The repository is marked work in progress and carries its tech report as a Markdown file.",
+   "variants": [
+    "HDM-xut-340M-anime",
+    "XUT-small (230M)",
+    "XUT-large (550M)"
+   ],
+   "source_date": "2025-09-07",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "CC-BY-NC-SA 4.0",
+    "weights": "CC-BY-NC-SA 4.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Home-made Diffusion Model from Scratch to Hatch",
+     "url": "https://arxiv.org/abs/2509.06068",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "KohakuBlueLeaf/HDM — official repository",
+     "url": "https://github.com/KohakuBlueleaf/HDM",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "KBlueLeaf/HDM-xut-340M-anime — model card",
+     "url": "https://huggingface.co/KBlueLeaf/HDM-xut-340M-anime",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "hi-mar",
    "name": "Hi-MAR",
    "category": "continuous-ar",
@@ -5541,6 +5635,47 @@
      "url": "https://huggingface.co/deepseek-ai/JanusFlow-1.3B",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "jepa-t",
+   "name": "JEPA-T",
+   "category": "continuous-ar",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "ViT-Base joint-embedding predictive transformer with a context encoder over unmasked VAE tokens, a predictor that receives CLIP text embeddings by addition and a cross-attention layer after the predictor, an EMA target encoder, and a conditional flow-matching loss over masked positions, sampled iteratively in 64 steps",
+   "description": "JEPA-T is a token-based text-to-image model that applies a joint-embedding predictive architecture to conditional image generation. Images are encoded to continuous VAE tokens and a high fraction of them is masked; a context encoder processes the visible tokens together with a learnable buffer and the projected CLIP text embedding, and a predictor reconstructs the masked tokens against an EMA target encoder. Text is injected at two points: added at the predictor input and through cross-attention after the predictor, and the raw text embedding is also fused before the flow-matching loss. Training combines the JEPA consistency loss with conditional flow matching. The paper reports ImageNet-1K 256x256 FID 1.42 and IS 298.3 for the base model and claims class-conditional and free-text generation from the same network.",
+   "notes": "Evidence is limited to ImageNet-1K at 256x256: class labels are converted to prompts and captions are generated with Qwen-VL, a frozen CLIP ViT-B/16 text encoder is used with a ViT-Base backbone and a VAE with compression factor 16, and quantitative results are FID, IS, precision and recall against ImageNet baselines. The paper reports no text-to-image benchmark such as GenEval or COCO. The README lists the model release as a TODO and licenses the code under CC BY-NC-SA 4.0, with no weights released at review time.",
+   "variants": [
+    "JEPA-T base/large/huge (code configurations)"
+   ],
+   "source_date": "2025-10-01",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "CC BY-NC-SA 4.0",
+    "weights": null
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "JEPA-T: Joint-Embedding Predictive Architecture with Text Fusion for Image Generation",
+     "url": "https://arxiv.org/abs/2510.00974",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "justin-herry/JEPA-T — official repository",
+     "url": "https://github.com/justin-herry/JEPA-T",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
     }
    ]
   },
@@ -7550,7 +7685,8 @@
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
     }
-   ]
+   ],
+   "github_status": "not-found"
   },
   {
    "id": "mars-t2i",
@@ -7622,6 +7758,47 @@
      "url": "https://tacju.github.io/projects/maskgen",
      "reviewed_on": "2026-09-29",
      "review_level": "project"
+    }
+   ]
+  },
+  {
+   "id": "maskgil",
+   "name": "MaskGIL",
+   "category": "masked",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Masked autoregressive model that replaces the causal attention of a LLaMA transformer with bidirectional attention and 2D RoPE and predicts masked discrete image tokens in parallel in about 8 steps, with a Gemma-2B text encoder whose features are prefilled as conditioning in the text-driven variant",
+   "description": "MaskGIL (Masked Generative Image LLaMA; Shanghai AI Laboratory with Nanjing University and collaborators) revisits masked autoregressive image generation, which decodes many image tokens per step but had trailed standard next-token models. The authors first compare four discrete image tokenizers and then turn a LLaMA decoder into a bidirectional model with 2D rotary position embeddings, trained with masked token prediction. Class-conditional models from 111M to 1.4B parameters reach an ImageNet 256x256 FID of 3.71 in 8 inference steps, against 256 steps for comparable autoregressive models. A 775M text-driven variant generates images at several resolutions from text. The paper also shows a scheme that starts generation with an autoregressive model and lets the masked model complete the tokens, applied to Lumina-mGPT, and a speech-to-image demonstration that transcribes speech with Whisper before generating.",
+   "notes": "The class-conditional models use the LlamaGen-VQ tokenizer after a tokenizer comparison; the text-driven model uses the Chameleon-VQ tokenizer, a Gemma-2B text encoder whose features pass through an MLP and are used as prefilling token embeddings, and 2M high-aesthetic images captioned by a mixture of captioners. Training runs at 256x256 and then 512x512 with multi-resolution size buckets for arbitrary aspect ratios. The paper reports a GenEval overall score of 0.49 for the text-driven model and notes limited training data. The README lists only class-conditional (ImageNet 256x256) checkpoints and releases code; no text-driven checkpoint is listed. The repository carries no license file.",
+   "variants": [
+    "MaskGIL-B (111M)",
+    "MaskGIL-L (343M)",
+    "MaskGIL-XL (775M)",
+    "MaskGIL-XXL (1.4B)",
+    "Text-driven MaskGIL (775M)"
+   ],
+   "source_date": "2025-07-17",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Resurrect Mask AutoRegressive Modeling for Efficient and Scalable Image Generation",
+     "url": "https://arxiv.org/abs/2507.13032",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "synbol/MaskGIL — official repository",
+     "url": "https://github.com/synbol/MaskGIL",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
     }
    ]
   },
@@ -9472,6 +9649,40 @@
    ]
   },
   {
+   "id": "oneflow",
+   "name": "OneFlow",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Non-autoregressive multimodal transformer, initialized from Llama 3.2 1B in the controlled setup, that combines an insertion-based Edit Flow over discrete text tokens with Flow Matching over SD3-VAE image latents, using a SigLIP2 encoder for understanding inputs and U-Net adapters, so a variable number of images and text are denoised and inserted concurrently",
+   "description": "OneFlow (FAIR at Meta) is a multimodal model that drops the fixed left-to-right ordering of autoregressive systems. Text is generated by Edit Flows, a continuous-time Markov chain that inserts tokens into variable-length sequences, while images are generated by flow matching on continuous latents, and both processes run together so text and images in an interleaved sequence are produced concurrently, with content tokens inserted before filler. A mixed-modal training scheme lets the model generate clean text and an image concurrently. In controlled experiments from 1B to 8B parameters against an autoregressive plus flow-matching baseline built on Transfusion and a LLaDA-style masked diffusion baseline, the paper reports better scaling on text-to-image (DPG-Bench, FID), captioning and visual question answering with up to 50% fewer training FLOPs.",
+   "notes": "Pretraining uses about 400M image-text examples (filtered CC12M, YFCC and licensed data) with sequence length 512 and global batch size 4096, followed by instruction finetuning on about 40M examples (PerceptionLM, Chameleon interleaving data, filtered Cambrian-7M) and higher-resolution 512x512 image generation data. Image sampling uses a first-order Euler solver with 50 steps, entropy rectifying guidance and guidance scale 5.0. Models of 1B, 3B and 8B parameters are trained for the scaling study. No repository or weights are linked from the paper.",
+   "variants": [
+    "OneFlow-1B",
+    "OneFlow-3B",
+    "OneFlow-8B"
+   ],
+   "source_date": "2025-10-03",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "OneFlow: Concurrent Mixed-Modal and Interleaved Generation with Edit Flows",
+     "url": "https://arxiv.org/abs/2510.03506",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "op-gan",
    "name": "OP-GAN",
    "category": "gan",
@@ -9781,6 +9992,55 @@
    ]
   },
   {
+   "id": "paris",
+   "name": "Paris",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Ensemble of 8 independently trained DiT-XL/2 flow-matching experts (605M parameters each) on SD VAE latents with CLIP ViT-L/14 text conditioning, combined at inference by a lightweight timestep-aware DiT router (about 129M parameters) that weights or selects experts for each noisy input",
+   "description": "Paris (Bagel Labs) is presented as the first publicly released diffusion model pre-trained entirely through decentralized computation. The training set of 11M LAION-Aesthetic images is clustered with DINOv2 features into 8 semantic groups, and each expert, a DiT-XL/2 with PixArt-alpha style conditioning optimizations, trains on its own cluster with no gradient, parameter or activation exchange, on heterogeneous hardware. A separate transformer router, trained afterwards to predict the cluster of a noisy latent, orchestrates the experts at inference, with top-1, top-2 or all-expert weighted combinations of their flow predictions. The report states that this reaches quality comparable to centrally trained baselines using 14x less data and 16x fewer GPU-days than the earlier decentralized diffusion baseline.",
+   "notes": "The model runs at 256x256 on 32x32x4 latents from sd-vae-ft-mse with a 2x2 patch size, 28 layers, 1152 hidden size and 16 heads per expert (4.84B total expert parameters). The reported training budget is 120 A40 GPU-days. The paper validates the recipe with DiT-B/2 experts (129M) and the DiT-XL/2 experts; image quality is reported as FID on LAION-Aesthetic against monolithic and decentralized baselines. The README and the Hugging Face model card state the MIT license for code and weights.",
+   "variants": [
+    "DiT-XL/2 experts (605M each)",
+    "DiT-B/2 experts (129M each, validation)"
+   ],
+   "source_date": "2025-10-03",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "MIT"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Paris: A Decentralized Trained Open-Weight Diffusion Model",
+     "url": "https://arxiv.org/abs/2510.03434",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "bageldotcom/paris — official repository",
+     "url": "https://github.com/bageldotcom/paris",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "bageldotcom/paris — model card",
+     "url": "https://huggingface.co/bageldotcom/paris",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "parti",
    "name": "Parti",
    "category": "ar-token",
@@ -10019,6 +10279,55 @@
    ]
   },
   {
+   "id": "pixnerd",
+   "name": "PixNerd",
+   "category": "pixel-diffusion",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Single-scale pixel-space diffusion transformer with large 16x16 patches that replaces the final linear projection with a patch-wise neural field, where the transformer's hidden state predicts the weights of small MLPs that decode pixel velocity from coordinate encodings and the noisy pixel values, with Qwen3-1.7B text conditioning",
+   "description": "PixNerd (Nanjing University, ByteDance Seed and NUS) removes the VAE from diffusion transformers without a cascaded or multi-scale pipeline. It keeps the token count of a latent diffusion transformer by using large pixel patches and decodes each patch with a neural field, where the transformer predicts per-patch MLP weights that map pixel coordinate encodings and noisy pixel values to velocity, instead of a single linear layer that cannot capture fine detail. The model is trained end to end with flow matching and representation alignment. On ImageNet, PixNerd-XL/16 reaches FID 2.15 at 256x256 and 2.84 at 512x512, and the paper extends the design to text-to-image with a 1.2B PixNerd-XXL/16 trained on about 45M recaptioned images, reporting 0.73 on GenEval and 80.9 on DPG-Bench.",
+   "notes": "The text-to-image model uses a frozen Qwen3-1.7B text encoder with several jointly trained transformer layers on top of the frozen features, in the manner of Fluid, about 45M images from SAM, JourneyDB, ImageNet-1K and other open datasets recaptioned with Qwen2.5-VL-7B (English captions only), square 256x256 pretraining followed by 512x512 training and an SFT stage on the BLIP-3o dataset, and the Adams-2nd solver with 25 steps. The paper reports training-free arbitrary-resolution sampling by interpolating pixel coordinates. The ImageNet class-conditional PixNerd-XL/16 checkpoints are separate variants. The repository states the MIT license; the text-to-image checkpoint's model card metadata states Apache-2.0.",
+   "variants": [
+    "PixNerd-XXL/16 (text-to-image, 1.2B)",
+    "PixNerd-XL/16 (ImageNet class-conditional, 700M)"
+   ],
+   "source_date": "2025-07-31",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "Apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "PixNerd: Pixel Neural Field Diffusion",
+     "url": "https://arxiv.org/abs/2507.23268",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "MCG-NJU/PixNerd — official repository",
+     "url": "https://github.com/MCG-NJU/PixNerd",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "MCG-NJU/PixNerd-XXL-P16-T2I — model card",
+     "url": "https://huggingface.co/MCG-NJU/PixNerd-XXL-P16-T2I",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "playground-v2",
    "name": "Playground v2",
    "category": "latent-unet",
@@ -10228,6 +10537,35 @@
      "url": "https://github.com/rongyaofang/PUMA",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "query-kontext",
+   "name": "Query-Kontext",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Qwen2.5-VL-7B (LoRA) that turns the prompt, reference images and 128 learnable query tokens into 'kontext' tokens, passed through a two-layer MLP connector together with the text tokens into an in-house 10B MMDiT that also takes VAE latents of the source or reference images with a shifted 2D RoPE, trained in three stages",
+   "description": "Query-Kontext (Baidu VIS and NUS) separates multimodal generative reasoning from high-fidelity rendering in a unified image generation and editing system. A VLM, Qwen2.5-VL-7B with LoRA, encodes the text prompt, any input images and learnable query tokens into a short sequence of kontext tokens that carry semantic cues and coarse image conditions for the diffusion model. Training has three stages: first the VLM is bridged to a lightweight 870M diffusion head, then the head is replaced by a roughly 10x larger in-house MMDiT with the VLM frozen, and finally a low-level image encoder and LoRA on the diffusion model add fine detail for identity preservation. A shifted rotary position embedding separates source images (negative coordinates) from reference images (positive coordinates). The paper reports GenEval 0.88 and results on GEdit-Bench, DreamBooth and DreamBench.",
+   "notes": "The MMDiT is Baidu's own model (about 10B parameters, 42 layers) whose original text encoder is replaced by the MLLM; the connector is a two-layer MLP and up to 2 reference images are supported. Tasks are text-to-image, image reconstruction, instruction editing, customized single-subject generation and multi-subject composition, using a data pipeline of real, synthetic and open-source sets. The paper evaluates image generation and editing only; the VLM's understanding is not evaluated, so only I is listed as output. No repository or weights are linked from the paper.",
+   "variants": [],
+   "source_date": "2025-09-30",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Query-Kontext: An Unified Multimodal Model for Image Generation and Editing",
+     "url": "https://arxiv.org/abs/2509.26641",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -11357,7 +11695,8 @@
      "reviewed_on": "2026-09-29",
      "review_level": "announcement"
     }
-   ]
+   ],
+   "github_status": "not-found"
   },
   {
    "id": "seedream-5",
@@ -11753,6 +12092,65 @@
      "url": "https://huggingface.co/Skywork/Skywork-UniPic-1.5B",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "skywork-unipic-2",
+   "name": "Skywork UniPic 2.0",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "SD3.5-Medium DiT retrofitted into a Kontext model by concatenating reference-image VAE latents with the noisy latents, trained on generation and editing and post-trained with Flow-GRPO-style reinforcement, then joined to a frozen Qwen2.5-VL-7B through learnable queries and a 24-layer transformer connector in the MetaQuery manner",
+   "description": "Skywork UniPic 2.0 (Skywork AI) is a follow-up to the autoregressive Skywork UniPic that switches to a diffusion generator. UniPic2-SD3.5M-Kontext is a 2B model based on SD3.5-Medium that is retrained on text-to-image and editing data, with reference-image latents injected into the DiT's self-attention sequence so one model handles both tasks. It is then post-trained with Progressive Dual-Task Reinforcement, which reinforces editing first and text-to-image second with GRPO and avoids cross-task interference. UniPic2-MetaQuery then connects the Kontext model to a frozen Qwen2.5-VL-7B through learnable queries and a connector, giving a unified model for understanding, generation and editing. The report gives GenEval 0.89 for the 2B Kontext model and 0.90 for UniPic2-MetaQuery.",
+   "notes": "Connector pretraining uses 150M image-text pairs (30M open-source plus 120M internal synthetic) for 500K steps with both the MLLM and the DiT frozen; the Kontext model is trained on 5M editing and 6M text-to-image samples; the unified model is then jointly fine-tuned with the MLLM frozen. RL uses LoRA, rewards from the Skywork-EditReward model or GPT-4.1 for editing and GenEval-based verifiable rewards for text-to-image. Understanding scores for UniPic2-MetaQuery (MMBench 83.5, MMMU 58.6, MM-Vet 67.1) equal those of the frozen Qwen2.5-VL, so T is listed as an output for the unified variant only; UniPic2-SD3.5M-Kontext alone has no text output. The repository (UniPic-2 directory of the shared SkyworkAI/UniPic repository) and the Hugging Face model cards for UniPic2-SD3.5M-Kontext-2B and UniPic2-Metaquery-9B state the MIT license.",
+   "variants": [
+    "UniPic2-SD3.5M-Kontext (2B)",
+    "UniPic2-SD3.5M-Kontext-GRPO (RL-trained)",
+    "UniPic2-MetaQuery (7B MLLM + 2B DiT)"
+   ],
+   "source_date": "2025-09-04",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "MIT"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Skywork UniPic 2.0: Building Kontext Model with Online RL for Unified Multimodal Model",
+     "url": "https://arxiv.org/abs/2509.04548",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "SkyworkAI/UniPic — UniPic-2 directory",
+     "url": "https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "Skywork/UniPic2-Metaquery-9B — model card",
+     "url": "https://huggingface.co/Skywork/UniPic2-Metaquery-9B",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    },
+    {
+     "kind": "project",
+     "title": "UniPic 2.0 project page",
+     "url": "https://unipic-v2.github.io",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -13036,6 +13434,36 @@
    ]
   },
   {
+   "id": "unialignment",
+   "name": "UniAlignment",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Single SD3-based multimodal diffusion transformer with shared weights for a continuous flow-matching branch (image generation, editing, perception) and a discrete masked-diffusion branch (text), trained with a cross-modal contrastive alignment loss and an intrinsic-modal alignment loss against Qwen2.5-VL vision-encoder features",
+   "description": "UniAlignment (UCAS, Institute of Automation CAS and Ant Group) unifies image generation, understanding, editing and perception in one diffusion transformer without an external vision-language model at inference. A dual-stream design lets the same DiT weights parameterize a continuous flow-matching process for images and a discrete masked-diffusion process for text, in the manner of DualDiffusion. Two training-only objectives address the conflict between the streams: a contrastive loss between the output embeddings of the image and text branches (cross-modal alignment) and a REPA-style loss that matches intermediate DiT features to embeddings from a pretrained vision-language encoder (intrinsic-modal alignment). The 2B model is trained in several stages and evaluated on GenEval, DPG-Bench, editing, understanding benchmarks and the new SemGen-Bench.",
+   "notes": "Built on the open SD3 backbone with a frozen T5 text encoder and a pretrained VAE; source images for editing, personalization and perception are VAE-encoded and concatenated with the noisy latents. The vision encoder of Qwen2.5-VL-7B is used only for the alignment loss during training. Training uses 2M text-to-image pairs from Text-to-Image-2M plus internal captioning data, then multi-task data including editing, perception and GPT-4o-generated samples. The paper reports GenEval 0.81, DPG-Bench 85.64, GEdit-Bench-EN 6.57 and understanding results (MMBench 80.6 among others). SemGen-Bench is introduced in the same paper. No repository or weights are linked from the paper.",
+   "variants": [],
+   "source_date": "2025-09-28",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniAlignment: Semantic Alignment for Unified Image Generation, Understanding, Manipulation and Perception",
+     "url": "https://arxiv.org/abs/2509.23760",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "unidiffuser",
    "name": "UniDiffuser",
    "category": "unified",
@@ -13696,6 +14124,37 @@
      "url": "https://github.com/microsoft/VQ-Diffusion",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "vugen",
+   "name": "VUGEN",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Mixture-of-Transformers on a 1B Perception Language Model with a frozen VLM tower and a new generation tower trained with rectified flow matching to sample dimension-reduced features of the VLM's native vision encoder, decoded to pixels by a VAE-free pixel diffusion decoder or a latent diffusion decoder",
+   "description": "VUGEN (Meta FAIR) gives a vision-language model image generation by working in the space of the VLM's own visual understanding features. A learned dimension reducer compresses the high-dimensional output of the VLM's understanding encoder into a low-dimensional, tractable latent while a pixel decoder is jointly trained to reconstruct the image from it. The VLM then gets a new image generation tower, a copy of its transformer weights, trained with rectified flow matching to sample in the reduced space conditioned on the text prompt, with the original tower frozen so understanding is unchanged. A pixel-space diffusion decoder, distilled to a single step, maps the generated features to images and is found on par with or better than a VAE-based latent diffusion decoder. The paper reports DPG-Bench 71.17 to 74.32 and COCO FID 11.86 to 9.06 against its baseline.",
+   "notes": "The backbone is PLM-1B (Perception Encoder with Llama 3), 1.2B trainable parameters in total with the mixture-of-transformers setup; the latent diffusion alternative is an MM-DiT with 28 blocks. Models are trained on ImageNet and the paper's StockMix mixture, with GenEval, DPG-Bench, CLIP score and FID reported. The VLM is frozen, so its understanding performance is that of the base PLM-1B (reported only for reference in the supplement) and T is not listed as a paper-evaluated output. No repository or weights are linked from the paper.",
+   "variants": [
+    "VUGEN with pixel diffusion decoder (PDD)",
+    "VUGEN with latent diffusion decoder (LDM)"
+   ],
+   "source_date": "2025-10-08",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "VUGEN: Visual Understanding priors for GENeration",
+     "url": "https://arxiv.org/abs/2510.06529",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },

@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 324 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 335 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -88,19 +88,30 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-10-30 | [Emu3.5](../models/unified.md#emu3-5) | paper | [Paper](https://arxiv.org/abs/2510.26583) · [GitHub](https://github.com/baaivision/Emu3.5) · [Model card](https://huggingface.co/BAAI/Emu3.5-Image) |
 | 2025-10-17 | [BLIP3o-NEXT](../models/continuous-ar.md#blip3o-next) | paper | [Paper](https://arxiv.org/abs/2510.15857) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-NEXT-SFT-3B) |
 | 2025-10-13 | [MAI-Image](../models/api.md#mai-image) | announcement | [Announcement 1](https://microsoft.ai/news/introducing-mai-image-1-debuting-in-the-top-10-on-lmarena/) · [Announcement 2](https://microsoft.ai/news/introducing-mai-image-2/) · [Announcement 3](https://microsoft.ai/news/mai-image-2-efficient/) · [Announcement 4](https://microsoft.ai/news/introducing-mai-image-2-5/) · [Announcement 5](https://microsoft.ai/news/pushing-the-quality-cost-frontier-with-mai-image-2-6/) |
+| 2025-10-08 | [VUGEN](../models/dit.md#vugen) | paper | [Paper](https://arxiv.org/abs/2510.06529) · GitHub: no author-linked repository found |
 | 2025-10-08 | [Ming-UniVision](../models/unified.md#ming-univision) | paper | [Paper](https://arxiv.org/abs/2510.06590) · [GitHub](https://github.com/inclusionAI/Ming-UniVision) · [Model card](https://huggingface.co/inclusionAI/Ming-UniVision-16B-A3B) |
 | 2025-10-07 | [Lumina-DiMOO](../models/unified.md#lumina-dimoo) | paper | [Paper](https://arxiv.org/abs/2510.06308) · [GitHub](https://github.com/Alpha-VLLM/Lumina-DiMOO) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-DiMOO) |
+| 2025-10-03 | [Paris](../models/dit.md#paris) | paper | [Paper](https://arxiv.org/abs/2510.03434) · [GitHub](https://github.com/bageldotcom/paris) · [Model card](https://huggingface.co/bageldotcom/paris) |
+| 2025-10-03 | [OneFlow](../models/unified.md#oneflow) | paper | [Paper](https://arxiv.org/abs/2510.03506) · GitHub: no author-linked repository found |
+| 2025-10-02 | [Bridge](../models/unified.md#bridge) | paper | [Paper](https://arxiv.org/abs/2510.01546) · [GitHub](https://github.com/hywang66/Bridge) · [Project](https://hywang66.github.io/bridge/) |
+| 2025-10-01 | [JEPA-T](../models/continuous-ar.md#jepa-t) | paper | [Paper](https://arxiv.org/abs/2510.00974) · [GitHub](https://github.com/justin-herry/JEPA-T) |
+| 2025-09-30 | [Query-Kontext](../models/dit.md#query-kontext) | paper | [Paper](https://arxiv.org/abs/2509.26641) · GitHub: no author-linked repository found |
+| 2025-09-28 | [UniAlignment](../models/unified.md#unialignment) | paper | [Paper](https://arxiv.org/abs/2509.23760) · GitHub: no author-linked repository found |
 | 2025-09-28 | [HunyuanImage 3.0](../models/unified.md#hunyuanimage-3) | paper | [Paper](https://arxiv.org/abs/2509.23951) · [GitHub](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0) · [Model card](https://huggingface.co/tencent/HunyuanImage-3.0) |
-| 2025-09-24 | [Seedream 4.0](../models/dit.md#seedream-4) | paper | [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) |
+| 2025-09-24 | [Seedream 4.0](../models/dit.md#seedream-4) | paper | [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found |
 | 2025-09-23 | [Lavida-O](../models/unified.md#lavida-o) | paper | [Paper](https://arxiv.org/abs/2509.19244) · [GitHub](https://github.com/adobe-research/LaVida-O) · [Model card](https://huggingface.co/jacklishufan/LaViDa-O-v1.0) |
-| 2025-09-19 | [Manzano](../models/unified.md#manzano) | paper | [Paper](https://arxiv.org/abs/2509.16197) |
+| 2025-09-19 | [Manzano](../models/unified.md#manzano) | paper | [Paper](https://arxiv.org/abs/2509.16197) · GitHub: no author-linked repository found |
 | 2025-09-08 | [HunyuanImage-2.1](../models/dit.md#hunyuanimage-2-1) | announcement | [GitHub](https://github.com/Tencent-Hunyuan/HunyuanImage-2.1) · [Model card](https://huggingface.co/tencent/HunyuanImage-2.1) |
+| 2025-09-07 | [Home-made Diffusion Model (HDM)](../models/dit.md#hdm) | paper | [Paper](https://arxiv.org/abs/2509.06068) · [GitHub](https://github.com/KohakuBlueleaf/HDM) · [Model card](https://huggingface.co/KBlueLeaf/HDM-xut-340M-anime) |
+| 2025-09-04 | [Skywork UniPic 2.0](../models/unified.md#skywork-unipic-2) | paper | [Paper](https://arxiv.org/abs/2509.04548) · [GitHub](https://github.com/SkyworkAI/UniPic/tree/main/UniPic-2) · [Model card](https://huggingface.co/Skywork/UniPic2-Metaquery-9B) · [Project](https://unipic-v2.github.io) |
 | 2025-09-03 | [OneCAT](../models/unified.md#onecat) | paper | [Paper](https://arxiv.org/abs/2509.03498) · [GitHub](https://github.com/onecat-ai/OneCAT) · [Model card](https://huggingface.co/onecat-ai/OneCAT-3B) |
 | 2025-08-14 | [NextStep-1](../models/continuous-ar.md#nextstep-1) | paper | [Paper](https://arxiv.org/abs/2508.10711) · [GitHub](https://github.com/stepfun-ai/NextStep-1) · [Model card](https://huggingface.co/stepfun-ai/NextStep-1-Large) |
 | 2025-08-05 | [Skywork UniPic](../models/unified.md#skywork-unipic) | paper | [Paper](https://arxiv.org/abs/2508.03320) · [GitHub](https://github.com/SkyworkAI/UniPic) · [Model card](https://huggingface.co/Skywork/Skywork-UniPic-1.5B) |
 | 2025-08-04 | [Qwen-Image](../models/dit.md#qwen-image) | paper | [Paper](https://arxiv.org/abs/2508.02324) · [GitHub](https://github.com/QwenLM/Qwen-Image) · [Model card 1](https://huggingface.co/Qwen/Qwen-Image) · [Model card 2](https://huggingface.co/Qwen/Qwen-Image-2512) |
+| 2025-07-31 | [PixNerd](../models/pixel-diffusion.md#pixnerd) | paper | [Paper](https://arxiv.org/abs/2507.23268) · [GitHub](https://github.com/MCG-NJU/PixNerd) · [Model card](https://huggingface.co/MCG-NJU/PixNerd-XXL-P16-T2I) |
 | 2025-07-29 | [X-Omni](../models/unified.md#x-omni) | paper | [Paper](https://arxiv.org/abs/2507.22058) · [GitHub](https://github.com/X-Omni-Team/X-Omni) · [Model card](https://huggingface.co/X-Omni/X-Omni-En) |
 | 2025-07-23 | [Lumina-mGPT 2.0](../models/ar-token.md#lumina-mgpt-2) | paper | [Paper](https://arxiv.org/abs/2507.17801) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-2.0) |
+| 2025-07-17 | [MaskGIL](../models/masked.md#maskgil) | paper | [Paper](https://arxiv.org/abs/2507.13032) · [GitHub](https://github.com/synbol/MaskGIL) |
 | 2025-07-08 | [NeoBabel](../models/masked.md#neobabel) | paper | [Paper](https://arxiv.org/abs/2507.06137) · [GitHub](https://github.com/mmderakhshani/NeoBabel) · [Project](https://Neo-Babel.github.io) |
 | 2025-07-07 | [DC-AR](../models/masked.md#dc-ar) | paper | [Paper](https://arxiv.org/abs/2507.04947) · [GitHub](https://github.com/dc-ai-projects/DC-AR) · [Model card](https://huggingface.co/dc-ai/dc-ar-512) |
 | 2025-07-05 | [B-cos Diffusion Models](../models/pixel-diffusion.md#b-cos-diffusion) | paper | [Paper](https://arxiv.org/abs/2507.03846) · GitHub: no author-linked repository found |

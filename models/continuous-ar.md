@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**17 models · Reviewed 2026-09-29**
+**18 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -27,6 +27,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
 | [HART](#hart) | 2024-10-14 | T → I | generation |
 | [Hi-MAR](#hi-mar) | 2025-05-26 | T → I | generation |
+| [JEPA-T](#jepa-t) | 2025-10-01 | T → I | generation |
 | [JetFormer](#jetformer) | 2024-11-29 | T, I → I, T | generation |
 | [LINA](#lina) | 2026-01-30 | T → I | generation |
 | [NextStep-1](#nextstep-1) | 2025-08-14 | T, I → I | editing |
@@ -294,6 +295,33 @@ Class-conditional ImageNet 256x256 variants are Hi-MAR-B/L/H with 244M, 529M and
 **License:** weights: afl-3.0.
 
 **Variants:** Hi-MAR-S (text-to-image); Hi-MAR-B; Hi-MAR-L; Hi-MAR-H.
+
+</details>
+
+<a id="jepa-t"></a>
+
+### JEPA-T
+
+ViT-Base joint-embedding predictive transformer with a context encoder over unmasked VAE tokens, a predictor that receives CLIP text embeddings by addition and a cross-attention layer after the predictor, an EMA target encoder, and a conditional flow-matching loss over masked positions, sampled iteratively in 64 steps.
+
+JEPA-T is a token-based text-to-image model that applies a joint-embedding predictive architecture to conditional image generation. Images are encoded to continuous VAE tokens and a high fraction of them is masked; a context encoder processes the visible tokens together with a learnable buffer and the projected CLIP text embedding, and a predictor reconstructs the masked tokens against an EMA target encoder. Text is injected at two points: added at the predictor input and through cross-attention after the predictor, and the raw text embedding is also fused before the flow-matching loss. Training combines the JEPA consistency loss with conditional flow matching. The paper reports ImageNet-1K 256x256 FID 1.42 and IS 298.3 for the base model and claims class-conditional and free-text generation from the same network.
+
+[Paper](https://arxiv.org/abs/2510.00974) · [GitHub](https://github.com/justin-herry/JEPA-T)
+
+![JEPA-T — Figure 2](../assets/architectures/jepa-t.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2510.00974)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Evidence is limited to ImageNet-1K at 256x256: class labels are converted to prompts and captions are generated with Qwen-VL, a frozen CLIP ViT-B/16 text encoder is used with a ViT-Base backbone and a VAE with compression factor 16, and quantitative results are FID, IS, precision and recall against ImageNet baselines. The paper reports no text-to-image benchmark such as GenEval or COCO. The README lists the model release as a TODO and licenses the code under CC BY-NC-SA 4.0, with no weights released at review time.
+
+**License:** code: CC BY-NC-SA 4.0.
+
+**Variants:** JEPA-T base/large/huge (code configurations).
 
 </details>
 
