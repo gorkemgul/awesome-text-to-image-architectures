@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**286 model families and releases · Reviewed 2026-09-29**
+**285 model families and releases · Reviewed 2026-09-29**
 
 Short explanations of the catalog's described models, including later releases of older paper families. Each entry includes an image and links to primary sources. Editorial input/output diagrams are labeled. Verified source dates are listed in the [timeline](timeline.md); undated records remain undated.
 
@@ -59,7 +59,6 @@ Short explanations of the catalog's described models, including later releases o
 - [Emu2](#emu2)
 - [Emu3](#emu3)
 - [Emu3.5](#emu3-5)
-- [Emuru](#emuru)
 - [ERNIE-Image](#ernie-image)
 - [ERNIE-ViLG](#ernie-vilg)
 - [FIBO](#fibo)
@@ -877,18 +876,6 @@ Emu3.5 is BAAI's successor to Emu3, described as a native multimodal world model
 ![Emu3.5 — Figure 3](../assets/architectures/emu3-5.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2510.26583)*
-
-<a id="emuru"></a>
-
-### Emuru
-
-Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.
-
-[Architecture and figure](../models/continuous-ar.md#emuru) · [Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru)
-
-![Emuru — Figure 2](../assets/architectures/emuru.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2503.17074)*
 
 <a id="ernie-image"></a>
 

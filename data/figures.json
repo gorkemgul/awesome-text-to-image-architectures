@@ -589,14 +589,6 @@
    "locator": "Figure 3",
    "sha256": "6d8dc5ecadf750aeac3c1d266921df309ae9b6df99f4880aefba84d289103071"
   },
-  "emuru": {
-   "kind": "source-figure",
-   "path": "assets/architectures/emuru.png",
-   "source_url": "https://arxiv.org/abs/2503.17074",
-   "origin_url": "https://arxiv.org/html/2503.17074v2/overview.png",
-   "locator": "Figure 2",
-   "sha256": "cb1553485e6c7656bf9b93529e64162454a2e717ffadfaea25478dd8d9549df3"
-  },
   "ernie-image": {
    "kind": "io-diagram",
    "path": "assets/architectures/ernie-image.svg",

@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**136 model families · 136 papers · 101 new catalog entries · Reviewed 2026-09-29**
+**135 model families · 135 papers · 100 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **88** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **127** images come from primary sources; **9** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **87** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **126** images come from primary sources; **9** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,11 +19,11 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 136 |
+| Included | 135 |
 | Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1969 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 839 |
 | No distinct text-to-image system identified in the reviewed source | 5 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1271 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1272 |
 
 </details>
 
@@ -146,7 +146,6 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [Lumina-Image 2.0](#lumina-image-2)
 - [UniDisc](#unidisc)
 - [LongTextAR](#longtextar)
-- [Emuru](#emuru)
 - [UniVG](#univg)
 - [GoT](#got)
 - [FlowTok](#flowtok)
@@ -1794,20 +1793,6 @@ LongTextAR (Central South University and Microsoft) targets images containing pa
 ![LongTextAR — Figure 3](../assets/architectures/longtextar.png)
 
 *Figure 3 · [Image source](https://arxiv.org/abs/2503.20198)*
-
-<a id="emuru"></a>
-
-### Emuru
-
-**First paper submission:** 2025-03-21 · [Architecture card](../models/continuous-ar.md#emuru)
-
-Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.
-
-[Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru)
-
-![Emuru — Figure 2](../assets/architectures/emuru.png)
-
-*Figure 2 · [Image source](https://arxiv.org/abs/2503.17074)*
 
 <a id="univg"></a>
 

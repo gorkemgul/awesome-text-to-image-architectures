@@ -33771,18 +33771,8 @@
    "listed_on": "2025-03-21",
    "paper_url": "https://arxiv.org/abs/2503.17074",
    "review_level": "paper",
-   "decision": "included",
-   "reason": "distinct-t2i-system",
-   "first_submitted": "2025-03-21",
-   "model_id": "emuru",
-   "catalog_action": "added",
-   "repository_evidence": [
-    {
-     "url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
-     "evidence_url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
-     "verification": "readme-paper-link"
-    }
-   ]
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.16949",

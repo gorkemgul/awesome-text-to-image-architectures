@@ -3048,55 +3048,6 @@
    ]
   },
   {
-   "id": "emuru",
-   "name": "Emuru",
-   "category": "continuous-ar",
-   "inputs": [
-    "T",
-    "I"
-   ],
-   "outputs": [
-    "I"
-   ],
-   "interaction": "generation",
-   "architecture": "T5-Large encoder-decoder that autoregressively predicts continuous latents of a single-channel text-image VAE, conditioned on the text to render and a style image, with the VAE decoder producing the text-line image",
-   "description": "Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.",
-   "notes": "The paper positions Emuru as the first autoregressive model for styled handwritten text generation. Evaluation covers typewritten and handwritten sets (including IAM and CVL lines) against GAN- and diffusion-based baselines with FID, handwriting-distance and character-error-rate metrics. The model targets text-line images rather than general scenes. The code is MIT-licensed on GitHub and the Hugging Face model card lists mit.",
-   "variants": [
-    "Emuru"
-   ],
-   "source_date": "2025-03-21",
-   "source_date_kind": "paper",
-   "license": {
-    "code": "MIT",
-    "weights": "mit"
-   },
-   "github_status": "author-linked",
-   "sources": [
-    {
-     "kind": "paper",
-     "title": "Zero-Shot Styled Text Image Generation, but Make It Autoregressive",
-     "url": "https://arxiv.org/abs/2503.17074",
-     "reviewed_on": "2026-09-29",
-     "review_level": "paper"
-    },
-    {
-     "kind": "repository",
-     "title": "aimagelab/Emuru-autoregressive-text-img — official repository",
-     "url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
-     "reviewed_on": "2026-09-29",
-     "review_level": "readme"
-    },
-    {
-     "kind": "model-card",
-     "title": "blowing-up-groundhogs/emuru — model card",
-     "url": "https://huggingface.co/blowing-up-groundhogs/emuru",
-     "reviewed_on": "2026-09-29",
-     "review_level": "model-card"
-    }
-   ]
-  },
-  {
    "id": "ernie-image",
    "name": "ERNIE-Image",
    "category": "dit",

@@ -6,7 +6,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 > Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).
 
-**358 models and families · Reviewed 2026-09-29**
+**357 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 15 |
 | [Latent diffusion with U-Net backbones](models/latent-unet.md) | 24 |
 | [Diffusion transformers and flow matching](models/dit.md) | 73 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 19 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 18 |
 | [Unified multimodal understanding and generation](models/unified.md) | 90 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
@@ -31,7 +31,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 358 entries</summary>
+<summary>Alphabetical model list · 357 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -108,7 +108,6 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Emu2](#emu2) | Unified | T, I, V → T, I |
 | [Emu3](#emu3) | Unified | T, I, V → T, I, V |
 | [Emu3.5](#emu3-5) | Unified | T, I → T, I |
-| [Emuru](#emuru) | Continuous AR | T, I → I |
 | [ERNIE-Image](#ernie-image) | DiT / flow | T → I |
 | [ERNIE-ViLG](#ernie-vilg) | AR token | T → I |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | Latent U-Net | T → I |
@@ -1277,18 +1276,6 @@ Emu3.5 is BAAI's successor to Emu3, described as a native multimodal world model
 ![Emu3.5 — Figure 3](assets/architectures/emu3-5.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2510.26583)*
-
-<a id="emuru"></a>
-
-### Emuru
-
-Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.
-
-[Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru) · [Details](models/continuous-ar.md#emuru)
-
-![Emuru — Figure 2](assets/architectures/emuru.png)
-
-*Figure 2 · [Source](https://arxiv.org/abs/2503.17074)*
 
 <a id="ernie-image"></a>
 

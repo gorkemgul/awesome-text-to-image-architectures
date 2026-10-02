@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 354 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 353 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -161,7 +161,6 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-03-27 | [Lumina-Image 2.0](../models/dit.md#lumina-image-2) | paper | [Paper](https://arxiv.org/abs/2503.21758) · [GitHub](https://github.com/Alpha-VLLM/Lumina-Image-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-Image-2.0) |
 | 2025-03-26 | [UniDisc](../models/unified.md#unidisc) | paper | [Paper](https://arxiv.org/abs/2503.20853) · [GitHub](https://github.com/alexanderswerdlow/unidisc) · [Project](https://unidisc.github.io) · [Model card](https://huggingface.co/aswerdlow/unidisc_interleaved) |
 | 2025-03-26 | [LongTextAR](../models/ar-token.md#longtextar) | paper | [Paper](https://arxiv.org/abs/2503.20198) · [Project](https://fingerrec.github.io/longtextar) · GitHub: no author-linked repository found |
-| 2025-03-21 | [Emuru](../models/continuous-ar.md#emuru) | paper | [Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru) |
 | 2025-03-16 | [UniVG](../models/dit.md#univg) | paper | [Paper](https://arxiv.org/abs/2503.12652) · GitHub: no author-linked repository found |
 | 2025-03-13 | [GoT](../models/latent-unet.md#got) | paper | [Paper](https://arxiv.org/abs/2503.10639) · [GitHub](https://github.com/rongyaofang/GoT) · [Model card](https://huggingface.co/LucasFang/GoT-6B) |
 | 2025-03-13 | [FlowTok](../models/dit.md#flowtok) | paper | [Paper](https://arxiv.org/abs/2503.10772) · [GitHub](https://github.com/TACJu/FlowTok) |
