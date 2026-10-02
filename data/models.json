@@ -499,6 +499,38 @@
    ]
   },
   {
+   "id": "b-cos-diffusion",
+   "name": "B-cos Diffusion Models",
+   "category": "pixel-diffusion",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Pixel-space (64x64, no VAE) diffusion U-Net laid out as in Stable Diffusion 2.1 with all modules replaced by B-cos counterparts, conditioned on CLIP ViT-H/14 token embeddings, so that the model output is a dynamic linear map from which per-token, per-pixel attributions can be read off",
+   "description": "This paper extends B-cos networks, which make a model's output a dynamic linear function of its input to give faithful explanations, to text-to-image diffusion. The authors build the Stable Diffusion 2.1 U-Net from B-cos modules, drop the VAE to keep the explanation in pixel space, and train variants that predict the clean image x0 or the noise epsilon and that use either a B-cos token embedding or the frozen CLIP text encoder. Because the denoiser is interpretable by construction, the model can show which pixel regions each prompt token influenced and can flag prompt elements that the generated image failed to represent.",
+   "notes": "Proof-of-concept scale: the models are trained for one million steps with batch size 3 on a 20,000-pair subset of LAION-2B-en-aesthetics restricted to five objects (banana, cat, goat, flamingo, penguin) at 64x64. FID over 100,000 samples is 21.18 for a vanilla Stable Diffusion baseline trained the same way, 21.46 for B-cos CLIP eps, 50.54 for B-cos CLIP x0 and 43.08 for B-cos x0. No code or checkpoints are linked from the paper.",
+   "variants": [
+    "B-cos x0",
+    "B-cos CLIP x0",
+    "B-cos CLIP eps"
+   ],
+   "source_date": "2025-07-05",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Interpretable Diffusion Models with B-cos Networks",
+     "url": "https://arxiv.org/abs/2507.03846",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "bagel",
    "name": "BAGEL",
    "category": "unified",
@@ -1910,6 +1942,54 @@
      "url": "https://arxiv.org/abs/2410.08159",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "dc-ar",
+   "name": "DC-AR",
+   "category": "masked",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Hybrid masked autoregressive text-to-image model on the DC-HT deep-compression hybrid tokenizer (32x spatial compression, discrete tokens plus continuous residual tokens): a PixArt-alpha-based transformer (28 layers, width 1152, adaLN removed) with T5-base cross-attention unmasks the discrete tokens, and a 6-layer MLP diffusion head refines the residual tokens",
+   "description": "DC-AR (NVIDIA and MIT, ICCV 2025) combines MaskGIT-style masked prediction with a hybrid tokenizer. DC-HT compresses images 32x per side, trained in three adaptation stages, and decodes both its quantized discrete tokens and the continuous latent. DC-AR first generates all discrete tokens through an iterative unmasking schedule that fixes structure, then produces the continuous residual tokens, which only refine detail, through a lightweight diffusion head conditioned on the transformer's hidden states; the two are summed and decoded. Because the transformer works on discrete tokens only, the paper reports high-resolution text-to-image generation in 12 unmasking steps plus 20 diffusion steps for the head.",
+   "notes": "The 671M-parameter model is trained at 512x512 by fine-tuning from a 256x256 model, which the resolution-generalizable 2D tokenizer allows. Reported: gFID 5.49 on MJHQ-30K and 0.69 on GenEval, with 1.5-7.9x higher throughput and 2.0-3.5x lower latency than the compared diffusion and autoregressive models. The paper's safety discussion uses ShieldGemma-2B to screen prompts. The Hugging Face card (dc-ai/dc-ar-512) lists license 'other' with license name ncslv1; no code license was established.",
+   "variants": [
+    "dc-ar-512"
+   ],
+   "source_date": "2025-07-07",
+   "source_date_kind": "paper",
+   "license": {
+    "code": null,
+    "weights": "ncslv1"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "DC-AR: Efficient Masked Autoregressive Image Generation with Deep Compression Hybrid Tokenizer",
+     "url": "https://arxiv.org/abs/2507.04947",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "dc-ai-projects/DC-AR — official repository",
+     "url": "https://github.com/dc-ai-projects/DC-AR",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "dc-ai/dc-ar-512 — model card",
+     "url": "https://huggingface.co/dc-ai/dc-ar-512",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
     }
    ]
   },
@@ -4240,6 +4320,57 @@
    ]
   },
   {
+   "id": "hi-mar",
+   "name": "Hi-MAR",
+   "category": "continuous-ar",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Two-phase hierarchical masked autoregressive transformer over continuous VAE tokens: a first phase predicts low-resolution pivot tokens, a second phase predicts the dense tokens conditioned on them through scale-aware (adaLN-Zero) transformer blocks and a Diffusion Transformer head that attends over all tokens, with CLIP text embeddings as context tokens for text-to-image",
+   "description": "Hi-MAR (HiDream.ai, ICML 2025) extends the masked autoregressive (MAR) model with a coarse-to-fine hierarchy. In the first phase the transformer predicts a few low-resolution image tokens that capture global structure; the conditional tokens it outputs, rather than the clean low-resolution tokens, are fed to the second phase to avoid a train-inference mismatch. A scale-aware transformer block signals which phase is running, and the usual per-token MLP diffusion head of MAR is replaced in the second phase by a Diffusion Transformer head that models the interdependence of all tokens. The paper evaluates class-conditional ImageNet generation at three sizes and a small text-to-image model on MS-COCO.",
+   "notes": "Class-conditional ImageNet 256x256 variants are Hi-MAR-B/L/H with 244M, 529M and 1090M parameters (FID 1.93, 1.66 and 1.52 with CFG). The text-to-image model, Hi-MAR-S, is trained on MS-COCO at 256x256 following the U-ViT-S/2 (Deep) configuration and reaches FID 4.77 on MS-COCO 256x256, with T2I-CompBench compositional results; it is a small-scale research model, not a large text-to-image release. The second phase uses few steps (4 in the experiments). The Hugging Face card lists afl-3.0; no code license was found.",
+   "variants": [
+    "Hi-MAR-S (text-to-image)",
+    "Hi-MAR-B",
+    "Hi-MAR-L",
+    "Hi-MAR-H"
+   ],
+   "source_date": "2025-05-26",
+   "source_date_kind": "paper",
+   "license": {
+    "code": null,
+    "weights": "afl-3.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Hierarchical Masked Autoregressive Models with Low-Resolution Token Pivots",
+     "url": "https://arxiv.org/abs/2505.20288",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "HiDream-ai/himar — official repository",
+     "url": "https://github.com/HiDream-ai/himar",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "HiDream-ai/Hi-MAR — model card",
+     "url": "https://huggingface.co/HiDream-ai/Hi-MAR",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "hidream-i1",
    "name": "HiDream-I1",
    "category": "dit",
@@ -5167,6 +5298,48 @@
      "url": "https://huggingface.co/XCLiu/instaflow_0_9B_from_sd_1_5",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "instella-t2i",
+   "name": "Instella-T2I",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "1D binary image tokenizer that represents an image with 128 tokens of 64 binary values each, with a transformer image stream mirroring the 1B AMD OLMo-1B (16 blocks, hidden size 2048) that attends jointly to text features taken from every block of a frozen OLMo-1B; trained either as a Bernoulli (binary) diffusion model or as an autoregressive model",
+   "description": "Instella-T2I (AMD GenAI, 2025) is the first text-to-image model of the AMD Instella family and was trained on AMD Instinct MI300X GPUs. Its tokenizer encodes an image as a 1D sequence of binary vectors instead of one-hot codebook indices, so a 1024x1024 image needs only 128 tokens, a 32-fold reduction relative to standard VQ-VAEs. The generator is a decoder-style transformer whose every block receives image features from the previous block and text features from the same depth of a frozen language model. The same architecture is trained with a continuous-time Bernoulli diffusion objective and with a causal autoregressive objective. The paper reports competitive results without private data or post-training, with about 0.4 s for 20 sampling steps of the diffusion model.",
+   "notes": "Reported in Table 1: the diffusion model (1.2B) scores 0.64 on GenEval, 0.332 CLIP and 0.900 ImageReward at 1024 resolution; the autoregressive model (0.8B) scores 0.46 GenEval. Pretraining only, on filtered and recaptioned open data (about 100M LAION-COCO images after filtering) plus synthetic data; training is about 200 GPU-days on one 8-GPU node. The tokenizer is trained on a ~600M-image LAION subset and decodes at 512, 768 and 1024 resolution. The repository ships diffusion and AR checkpoints and a binary autoencoder; its LICENSE is titled Instella_T2I_1B [RESEARCH-ONLY RAIL-MS] and covers model and source code.",
+   "variants": [
+    "Binary diffusion model",
+    "Autoregressive model"
+   ],
+   "source_date": "2025-06-26",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Instella_T2I_1B [RESEARCH-ONLY RAIL-MS]",
+    "weights": "Instella_T2I_1B [RESEARCH-ONLY RAIL-MS]"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Instella-T2I: Pushing the Limits of 1D Discrete Latent Space Image Generation",
+     "url": "https://arxiv.org/abs/2506.21022",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "AMD-AGI/Instella-T2I — official repository",
+     "url": "https://github.com/AMD-AGI/Instella-T2I",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
     }
    ]
   },
@@ -7696,6 +7869,105 @@
    ]
   },
   {
+   "id": "mindomni",
+   "name": "MindOmni",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Qwen2.5-VL (ViT plus LLM, 7B) joined by a connector of two LLM decoder layers to an OmniGen diffusion decoder, trained in three stages: pretraining on caption and editing data, supervised fine-tuning on chain-of-thought instruction data, and reinforcement learning with the proposed RGPO policy-optimization algorithm",
+   "description": "MindOmni (Tsinghua, Tencent ARC Lab, CUHK and HKU, 2025) is a unified multimodal model aimed at reasoning generation, where the model thinks in text before it produces an image. It is built from Qwen2.5-VL for understanding and reasoning and the OmniGen diffusion decoder for rendering, bridged by a two-layer decoder connector. After pretraining and a supervised stage with chain-of-thought instruction data, the paper applies Reasoning Generation Policy Optimization (RGPO), a GRPO-style algorithm with multimodal feedback and KL regularization on both text and image outputs, so that the generated reasoning guides the rewritten prompt that the diffusion decoder renders. The same model answers visual questions and edits images.",
+   "notes": "Reported results: 83% overall on GenEval, 71% on the WISE reasoning-generation benchmark with thinking, and understanding scores of 51.6 MMMU, 83.2 MMBench and 68.1 RealWorldQA at 7B. RGPO keeps understanding close to the Qwen2.5-VL backbone through the text KL term. The paper shows editing and segmentation-style edits qualitatively. Training data are open image-caption pairs plus in-house data. The repository states the MIT License and the Hugging Face card lists apache-2.0; the released checkpoint is the version after RGPO tuning.",
+   "variants": [
+    "MindOmni",
+    "MindOmni (higher-quality-data variant)"
+   ],
+   "source_date": "2025-05-19",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "MindOmni: Unleashing Reasoning Generation in Vision Language Models with RGPO",
+     "url": "https://arxiv.org/abs/2505.13031",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "TencentARC/MindOmni — official repository",
+     "url": "https://github.com/TencentARC/MindOmni",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "EasonXiao-888/MindOmni — model card",
+     "url": "https://huggingface.co/EasonXiao-888/MindOmni",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "ming-lite-uni",
+   "name": "Ming-Lite-Uni",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Frozen M2-omni MLLM (Llama-3.1-8B or Llama-3.3-70B backbone with a NaViT vision encoder) whose hidden states for multi-scale learnable query tokens (4x4, 8x8, 16x16) pass through a trained connector into a fine-tuned SANA diffusion transformer, trained with a flow-matching loss and multi-scale representation alignment",
+   "description": "Ming-Lite-Uni (Inclusion AI, Ant Group, 2025) is an alpha-stage open-source unified model that keeps a native multimodal autoregressive model frozen for understanding and attaches a trainable diffusion generator to it. The paper presents an integration of MetaQueries and M2-omni with two additions: sets of learnable query tokens at several scales, each marked by start and end tokens, and a multi-scale representation alignment loss that ties intermediate DiT states to the final semantic representation. The connector maps the MLLM output for these queries into the conditioning of the diffusion transformer, which is the only part trained for generation. The model handles text-to-image generation, instruction-based image editing and style transfer in conversational use, and is evaluated on understanding benchmarks and on GenEval.",
+   "notes": "The paper reports 0.62 overall on GenEval, and understanding results on seven OpenCompass benchmarks (MMBench, MMStar, MMMU, MathVista, HallusionBench, AI2D, MM-Vet). Editing and style transfer are shown qualitatively only. Training data combine LAION-5B, Zero, COYO, Wukong, Midjourney and web-search image-text pairs with about 5M editing samples (InstructPix2Pix, SEED-Data-Edit, UltraEdit, SynCD, Subjects200K, HQ-Edit, MagicBrush) and style data. The README calls the release an alpha version. The repository and Hugging Face card list the MIT license.",
+   "variants": [],
+   "source_date": "2025-05-05",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "mit"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Ming-Lite-Uni: Advancements in Unified Architecture for Natural Multimodal Interaction",
+     "url": "https://arxiv.org/abs/2505.02471",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "inclusionAI/Ming (Ming-unify, Ming-Lite-Omni-Preview branch) — repository linked from the paper",
+     "url": "https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "inclusionAI/Ming-Lite-Uni — model card",
+     "url": "https://huggingface.co/inclusionAI/Ming-Lite-Uni",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "ming-omni",
    "name": "Ming-Omni",
    "category": "unified",
@@ -8471,6 +8743,52 @@
      "url": "https://arxiv.org/abs/2606.29814",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "neobabel",
+   "name": "NeoBabel",
+   "category": "masked",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "2B Gemma-2-based transformer with an extended embedding table for the 8,192 MAGVIT-v2 lookup-free image tokens used by Show-o (256x256 images as 16x16 tokens), causal attention over text and bidirectional attention over image tokens, trained with a masked discrete-diffusion loss on the image tokens",
+   "description": "NeoBabel (Cohere Labs and University of Amsterdam, 2025) is a multilingual text-to-image model that accepts prompts in English, Chinese, Dutch, French, Hindi and Persian directly rather than through translation. It builds on the Gemma-2 multilingual language model and its tokenizer, adds discrete image tokens in a shared embedding space, and unmasks image tokens in parallel in the manner of Show-o. Training combines large multilingual pretraining on image-text pairs in three stages with two stages of instruction tuning, and merges checkpoints along the training trajectory. The paper introduces multilingual versions of GenEval and DPG-Bench (m-GenEval, m-DPG) and cross-lingual consistency and code-switching metrics, and also shows multilingual text-guided inpainting and extrapolation.",
+   "notes": "Reported 0.75 on m-GenEval and 0.68 on m-DPG, with strong English performance at 2B parameters. The authors release code, checkpoints and a 124M-pair multilingual pretraining dataset, plus instruction and evaluation data. The repository states Apache-2.0; the Hugging Face model page has no license metadata, so no weight license is recorded.",
+   "variants": [],
+   "source_date": "2025-07-08",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": null
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "NeoBabel: A Multilingual Open Tower for Visual Generation",
+     "url": "https://arxiv.org/abs/2507.06137",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "mmderakhshani/NeoBabel — official repository",
+     "url": "https://github.com/mmderakhshani/NeoBabel",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "NeoBabel project page",
+     "url": "https://Neo-Babel.github.io",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -9408,6 +9726,57 @@
      "url": "https://arxiv.org/abs/2312.16486",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "par-panorama",
+   "name": "PAR (Panoramic AutoRegressive)",
+   "category": "continuous-ar",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Text-conditioned masked autoregressive encoder-decoder transformer (Phi-2 text embeddings) that conditions a small MLP diffusion head to predict continuous VAE-latent tokens of equirectangular panoramas, initialized from NOVA and trained with a cyclic-translation consistency loss plus pixel- and latent-space circular padding around the VAE",
+   "description": "PAR (NeurIPS 2025) targets 360-degree panorama generation with one model for text-to-panorama and panorama outpainting. The paper argues that diffusion models violate their i.i.d. Gaussian noise assumption on equirectangular projections and that existing systems use separate models for text and image conditioning. PAR instead masks and predicts latent tokens in arbitrary order, so known regions (an input image) and a text prompt are handled by the same masked autoregressive architecture. A consistency loss aligns predictions under cyclic horizontal shifts of the panorama, which are semantically equivalent, and circular padding applied before the VAE encoder and after the latent is decoded removes the seam at the image edge. The authors also show text-guided panorama editing.",
+   "notes": "Initialized from NOVA and trained for 20K iterations at 512x1024 on Matterport3D with captions produced by Janus-Pro-7B. Reported on Matterport3D text-to-panorama: FAED 3.39, FID 41.15 and discontinuity score 0.58 for the 0.3B model, with 0.6B and 1.4B models also trained; outpainting FID 32.68 with a prompt. Zero-shot outpainting and Structured3D results are in the appendix. The repository states Apache-2.0; no weights or model card were reviewed.",
+   "variants": [
+    "PAR-0.3B",
+    "PAR-0.6B",
+    "PAR-1.4B"
+   ],
+   "source_date": "2025-05-22",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": null
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Conditional Panoramic Image Generation via Masked Autoregressive Modeling",
+     "url": "https://arxiv.org/abs/2505.16862",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "wang-chaoyang/par — official repository",
+     "url": "https://github.com/wang-chaoyang/par",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "PAR project page",
+     "url": "https://wang-chaoyang.github.io/project/par",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -12543,6 +12912,38 @@
      "kind": "paper",
      "title": "Transfusion: Predict the Next Token and Diffuse Images with One Multi-Modal Model",
      "url": "https://arxiv.org/abs/2408.11039",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "transition-matching",
+   "name": "Transition Matching (DTM, ARTM, FHTM)",
+   "category": "continuous-ar",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Discrete-time, continuous-state generative paradigm in which a 1.7B DiT backbone and a small flow head (about 40M-parameter MLP) learn Markov transition kernels: DTM generalizes flow matching to discrete time, while ARTM and FHTM are partially and fully causal autoregressive variants, with Flan-UL2 text conditioning and SDXL-VAE latents",
+   "description": "Transition Matching (Weizmann Institute and FAIR at Meta, 2025) is a framework that unifies diffusion or flow models and continuous autoregressive generation by decomposing generation into a small number of Markov transitions with non-deterministic kernels. Difference Transition Matching (DTM) learns the transition probability between consecutive states with a backbone and a small flow head and converges to flow matching as the number of steps grows. Autoregressive Transition Matching (ARTM) and Full History Transition Matching (FHTM) apply the same idea to partially causal and fully causal token models, trained with an independent linear supervision process. The paper compares the variants with flow matching and MAR baselines under one architecture, data and hyper-parameter setting for text-to-image generation.",
+   "notes": "All text-to-image experiments use the same 1.7B DiT backbone, trained for 500K iterations on 350M licensed Shutterstock image-caption pairs at 256x256, with CLIP-tokenized captions fed through Flan-UL2 and cross-attention. The paper reports DTM as leading on text adherence and FHTM as the first fully causal model to match flow-matching quality in the continuous domain, with GenEval and preference metrics in Tables 1, 2 and 7. DTM sampling took 1.6 s versus 10.8 s for flow matching in the reported setting. These are research models from a controlled comparison; no public code or checkpoints were found for this paper.",
+   "variants": [
+    "DTM",
+    "ARTM",
+    "FHTM"
+   ],
+   "source_date": "2025-06-30",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Transition Matching: Scalable and Flexible Generative Modeling",
+     "url": "https://arxiv.org/abs/2506.23589",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
     }

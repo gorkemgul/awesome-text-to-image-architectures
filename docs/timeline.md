@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 315 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 324 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -101,7 +101,12 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-08-04 | [Qwen-Image](../models/dit.md#qwen-image) | paper | [Paper](https://arxiv.org/abs/2508.02324) · [GitHub](https://github.com/QwenLM/Qwen-Image) · [Model card 1](https://huggingface.co/Qwen/Qwen-Image) · [Model card 2](https://huggingface.co/Qwen/Qwen-Image-2512) |
 | 2025-07-29 | [X-Omni](../models/unified.md#x-omni) | paper | [Paper](https://arxiv.org/abs/2507.22058) · [GitHub](https://github.com/X-Omni-Team/X-Omni) · [Model card](https://huggingface.co/X-Omni/X-Omni-En) |
 | 2025-07-23 | [Lumina-mGPT 2.0](../models/ar-token.md#lumina-mgpt-2) | paper | [Paper](https://arxiv.org/abs/2507.17801) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-2.0) |
+| 2025-07-08 | [NeoBabel](../models/masked.md#neobabel) | paper | [Paper](https://arxiv.org/abs/2507.06137) · [GitHub](https://github.com/mmderakhshani/NeoBabel) · [Project](https://Neo-Babel.github.io) |
+| 2025-07-07 | [DC-AR](../models/masked.md#dc-ar) | paper | [Paper](https://arxiv.org/abs/2507.04947) · [GitHub](https://github.com/dc-ai-projects/DC-AR) · [Model card](https://huggingface.co/dc-ai/dc-ar-512) |
+| 2025-07-05 | [B-cos Diffusion Models](../models/pixel-diffusion.md#b-cos-diffusion) | paper | [Paper](https://arxiv.org/abs/2507.03846) · GitHub: no author-linked repository found |
+| 2025-06-30 | [Transition Matching (DTM, ARTM, FHTM)](../models/continuous-ar.md#transition-matching) | paper | [Paper](https://arxiv.org/abs/2506.23589) · GitHub: no author-linked repository found |
 | 2025-06-29 | [Ovis-U1](../models/unified.md#ovis-u1) | paper | [Paper](https://arxiv.org/abs/2506.23044) · [GitHub](https://github.com/AIDC-AI/Ovis-U1) · [Model card](https://huggingface.co/AIDC-AI/Ovis-U1-3B) |
+| 2025-06-26 | [Instella-T2I](../models/dit.md#instella-t2i) | paper | [Paper](https://arxiv.org/abs/2506.21022) · [GitHub](https://github.com/AMD-AGI/Instella-T2I) |
 | 2025-06-23 | [Tar](../models/unified.md#tar) | paper | [Paper](https://arxiv.org/abs/2506.18898) · [GitHub](https://github.com/csuhan/Tar) · [Model card](https://huggingface.co/csuhan/Tar-7B-v0.1) |
 | 2025-06-23 | [OmniGen2](../models/unified.md#omnigen2) | paper | [Paper](https://arxiv.org/abs/2506.18871) · [GitHub](https://github.com/VectorSpaceLab/OmniGen2) · [Model card](https://huggingface.co/OmniGen2/OmniGen2) |
 | 2025-06-18 | [Show-o2](../models/unified.md#show-o2) | paper | [Paper](https://arxiv.org/abs/2506.15564) · [GitHub](https://github.com/showlab/Show-o) · [Model card](https://huggingface.co/showlab/show-o2-7B) |
@@ -111,11 +116,15 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-06-03 | [UniWorld-V1](../models/unified.md#uniworld) | paper | [Paper](https://arxiv.org/abs/2506.03147) · [GitHub](https://github.com/PKU-YuanGroup/UniWorld) · [Model card](https://huggingface.co/LanguageBind/UniWorld-V1) |
 | 2025-05-29 | [Muddit](../models/unified.md#muddit) | paper | [Paper](https://arxiv.org/abs/2505.23606) · [GitHub](https://github.com/M-E-AGI-Lab/Muddit) · [Model card](https://huggingface.co/MeissonFlow/Muddit) |
 | 2025-05-28 | [HiDream-I1](../models/dit.md#hidream-i1) | paper | [Paper](https://arxiv.org/abs/2505.22705) · [GitHub](https://github.com/HiDream-ai/HiDream-I1) · [Model card](https://huggingface.co/HiDream-ai/HiDream-I1-Full) |
+| 2025-05-26 | [Hi-MAR](../models/continuous-ar.md#hi-mar) | paper | [Paper](https://arxiv.org/abs/2505.20288) · [GitHub](https://github.com/HiDream-ai/himar) · [Model card](https://huggingface.co/HiDream-ai/Hi-MAR) |
+| 2025-05-22 | [PAR (Panoramic AutoRegressive)](../models/continuous-ar.md#par-panorama) | paper | [Paper](https://arxiv.org/abs/2505.16862) · [GitHub](https://github.com/wang-chaoyang/par) · [Project](https://wang-chaoyang.github.io/project/par) |
 | 2025-05-21 | [MMaDA](../models/unified.md#mmada) | paper | [Paper](https://arxiv.org/abs/2505.15809) · [GitHub](https://github.com/Gen-Verse/MMaDA) · [Model card](https://huggingface.co/Gen-Verse/MMaDA-8B-MixCoT) |
 | 2025-05-20 | [Imagen 4](../models/api.md#imagen-4) | announcement | [Model card](https://storage.googleapis.com/deepmind-media/Model-Cards/Imagen-4-Model-Card.pdf) · [Announcement 1](https://blog.google/technology/ai/generative-media-models-io-2025/) · [Announcement 2](https://developers.googleblog.com/announcing-imagen-4-fast-and-imagen-4-family-generally-available-in-the-gemini-api/) · [Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes) |
 | 2025-05-20 | [BAGEL](../models/unified.md#bagel) | paper | [Paper](https://arxiv.org/abs/2505.14683) · [GitHub](https://github.com/ByteDance-Seed/Bagel) · [Model card](https://huggingface.co/ByteDance-Seed/BAGEL-7B-MoT) |
+| 2025-05-19 | [MindOmni](../models/unified.md#mindomni) | paper | [Paper](https://arxiv.org/abs/2505.13031) · [GitHub](https://github.com/TencentARC/MindOmni) · [Model card](https://huggingface.co/EasonXiao-888/MindOmni) |
 | 2025-05-14 | [BLIP3-o](../models/unified.md#blip3-o) | paper | [Paper](https://arxiv.org/abs/2505.09568) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-Model-8B) |
 | 2025-05-08 | [Mogao](../models/unified.md#mogao) | paper | [Paper](https://arxiv.org/abs/2505.05472) · GitHub: no author-linked repository found |
+| 2025-05-05 | [Ming-Lite-Uni](../models/unified.md#ming-lite-uni) | paper | [Paper](https://arxiv.org/abs/2505.02471) · [GitHub](https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify) · [Model card](https://huggingface.co/inclusionAI/Ming-Lite-Uni) |
 | 2025-04-30 | [Nexus-Gen](../models/unified.md#nexus-gen) | paper | [Paper](https://arxiv.org/abs/2504.21356) · [GitHub](https://github.com/modelscope/Nexus-Gen) · [Model card](https://huggingface.co/modelscope/Nexus-Gen) |
 | 2025-04-29 | [X-Fusion](../models/unified.md#x-fusion) | paper | [Paper](https://arxiv.org/abs/2504.20996) · [Project](https://sichengmo.github.io/XFusion/) · GitHub: no author-linked repository found |
 | 2025-04-23 | [GPT Image 1](../models/api.md#gpt-image-1) | announcement | [Docs 1](https://developers.openai.com/api/docs/models/gpt-image-1) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-1-mini) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-1.5) · [Announcement](https://developers.openai.com/api/docs/changelog) |

@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**11 models · Reviewed 2026-09-29**
+**12 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,6 +17,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [B-cos Diffusion Models](#b-cos-diffusion) | 2025-07-05 | T → I | generation |
 | [Composer](#composer) | 2023-02-20 | T, I → I | editing |
 | [DALL·E 2 (unCLIP)](#dall-e-2) | 2022-04-13 | T, I → I | editing |
 | [DeepFloyd IF](#deepfloyd-if) | 2023-04-28 | T, I → I | editing |
@@ -32,6 +33,31 @@ Dates refer to papers or announcements, not necessarily model releases.
 </details>
 
 ## Architectures
+
+<a id="b-cos-diffusion"></a>
+
+### B-cos Diffusion Models
+
+Pixel-space (64x64, no VAE) diffusion U-Net laid out as in Stable Diffusion 2.1 with all modules replaced by B-cos counterparts, conditioned on CLIP ViT-H/14 token embeddings, so that the model output is a dynamic linear map from which per-token, per-pixel attributions can be read off.
+
+This paper extends B-cos networks, which make a model's output a dynamic linear function of its input to give faithful explanations, to text-to-image diffusion. The authors build the Stable Diffusion 2.1 U-Net from B-cos modules, drop the VAE to keep the explanation in pixel space, and train variants that predict the clean image x0 or the noise epsilon and that use either a B-cos token embedding or the frozen CLIP text encoder. Because the denoiser is interpretable by construction, the model can show which pixel regions each prompt token influenced and can flag prompt elements that the generated image failed to represent.
+
+[Paper](https://arxiv.org/abs/2507.03846) · GitHub: no author-linked repository found
+
+![B-cos Diffusion Models — Figure 4 (PDF p. 9)](../assets/architectures/b-cos-diffusion.png)
+
+*Figure 4 (PDF p. 9) · [Source](https://arxiv.org/abs/2507.03846)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Proof-of-concept scale: the models are trained for one million steps with batch size 3 on a 20,000-pair subset of LAION-2B-en-aesthetics restricted to five objects (banana, cat, goat, flamingo, penguin) at 64x64. FID over 100,000 samples is 21.18 for a vanilla Stable Diffusion baseline trained the same way, 21.46 for B-cos CLIP eps, 50.54 for B-cos CLIP x0 and 43.08 for B-cos x0. No code or checkpoints are linked from the paper.
+
+**Variants:** B-cos x0; B-cos CLIP x0; B-cos CLIP eps.
+
+</details>
 
 <a id="composer"></a>
 

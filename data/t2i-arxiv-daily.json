@@ -26218,8 +26218,19 @@
    "title": "NeoBabel: A Multilingual Open Tower for Visual Generation",
    "listed_on": "2025-07-08",
    "paper_url": "https://arxiv.org/abs/2507.06137",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-08",
+   "model_id": "neobabel",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/mmderakhshani/NeoBabel",
+     "evidence_url": "https://arxiv.org/abs/2507.06137",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2507.06121",
@@ -26316,8 +26327,19 @@
    "title": "DC-AR: Efficient Masked Autoregressive Image Generation with Deep Compression Hybrid Tokenizer",
    "listed_on": "2025-07-07",
    "paper_url": "https://arxiv.org/abs/2507.04947",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-07",
+   "model_id": "dc-ar",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/dc-ai-projects/DC-AR",
+     "evidence_url": "https://arxiv.org/abs/2507.04947",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2507.04946",
@@ -26441,16 +26463,18 @@
    "title": "LVLM-Composer's Explicit Planning for Image Generation",
    "listed_on": "2025-07-05",
    "paper_url": "https://arxiv.org/abs/2507.04152",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "no-distinct-t2i-system"
   },
   {
    "arxiv_id": "2507.04151",
    "title": "Unlocking Compositional Control: Self-Supervision for LVLM-Based Image Generation",
    "listed_on": "2025-07-05",
    "paper_url": "https://arxiv.org/abs/2507.04151",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "no-distinct-t2i-system"
   },
   {
    "arxiv_id": "2507.03958",
@@ -26475,8 +26499,12 @@
    "title": "Interpretable Diffusion Models with B-cos Networks",
    "listed_on": "2025-07-05",
    "paper_url": "https://arxiv.org/abs/2507.03846",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-07-05",
+   "model_id": "b-cos-diffusion",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2507.03738",
@@ -26627,8 +26655,9 @@
    "title": "Autoregressive Image Generation with Linear Complexity: A Spatial-Aware Decay Perspective",
    "listed_on": "2025-07-02",
    "paper_url": "https://arxiv.org/abs/2507.01652",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2507.01496",
@@ -26761,8 +26790,12 @@
    "title": "Transition Matching: Scalable and Flexible Generative Modeling",
    "listed_on": "2025-06-30",
    "paper_url": "https://arxiv.org/abs/2506.23589",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-06-30",
+   "model_id": "transition-matching",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2506.23577",
@@ -26778,8 +26811,9 @@
    "title": "PathDiff: Histopathology Image Synthesis with Unpaired Text and Mask Conditions",
    "listed_on": "2025-06-30",
    "paper_url": "https://arxiv.org/abs/2506.23440",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2506.23418",
@@ -26822,8 +26856,19 @@
    "title": "Ovis-U1 Technical Report",
    "listed_on": "2025-06-29",
    "paper_url": "https://arxiv.org/abs/2506.23044",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-06-29",
+   "model_id": "ovis-u1",
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/AIDC-AI/Ovis-U1",
+     "evidence_url": "https://github.com/AIDC-AI/Ovis-U1",
+     "verification": "existing-reviewed-source"
+    }
+   ]
   },
   {
    "arxiv_id": "2506.22864",
@@ -26974,8 +27019,19 @@
    "title": "Instella-T2I: Pushing the Limits of 1D Discrete Latent Space Image Generation",
    "listed_on": "2025-06-26",
    "paper_url": "https://arxiv.org/abs/2506.21022",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-06-26",
+   "model_id": "instella-t2i",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/AMD-AGI/Instella-T2I",
+     "evidence_url": "https://github.com/AMD-AGI/Instella-T2I",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2506.21015",
@@ -27180,8 +27236,19 @@
    "title": "OmniGen2: Towards Instruction-Aligned Multimodal Generation",
    "listed_on": "2025-06-23",
    "paper_url": "https://arxiv.org/abs/2506.18871",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-06-23",
+   "model_id": "omnigen2",
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/VectorSpaceLab/OmniGen2",
+     "evidence_url": "https://github.com/VectorSpaceLab/OmniGen2",
+     "verification": "existing-reviewed-source"
+    }
+   ]
   },
   {
    "arxiv_id": "2506.18438",
@@ -27242,8 +27309,9 @@
    "title": "ShareGPT-4o-Image: Aligning Multimodal Models with GPT-4o-Level Image Generation",
    "listed_on": "2025-06-22",
    "paper_url": "https://arxiv.org/abs/2506.18095",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2506.17705",
@@ -28330,8 +28398,19 @@
    "title": "UniWorld-V1: High-Resolution Semantic Encoders for Unified Visual Understanding and Generation",
    "listed_on": "2025-06-03",
    "paper_url": "https://arxiv.org/abs/2506.03147",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-06-03",
+   "model_id": "uniworld",
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/PKU-YuanGroup/UniWorld",
+     "evidence_url": "https://github.com/PKU-YuanGroup/UniWorld",
+     "verification": "existing-reviewed-source"
+    }
+   ]
   },
   {
    "arxiv_id": "2506.03131",
@@ -28491,8 +28570,9 @@
    "title": "Many-for-Many: Unify the Training of Multiple Video and Image Generation and Manipulation Tasks",
    "listed_on": "2025-06-02",
    "paper_url": "https://arxiv.org/abs/2506.01758",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2506.01539",
@@ -28517,8 +28597,9 @@
    "title": "Janus-Pro-R1: Advancing Collaborative Visual Comprehension and Generation via Reinforcement Learning",
    "listed_on": "2025-06-02",
    "paper_url": "https://arxiv.org/abs/2506.01480",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2506.01430",
@@ -28931,8 +29012,19 @@
    "title": "HiDream-I1: A High-Efficient Image Generative Foundation Model with Sparse Diffusion Transformer",
    "listed_on": "2025-05-28",
    "paper_url": "https://arxiv.org/abs/2505.22705",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-28",
+   "model_id": "hidream-i1",
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/HiDream-ai/HiDream-I1",
+     "evidence_url": "https://github.com/HiDream-ai/HiDream-I1",
+     "verification": "existing-reviewed-source"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.22613",
@@ -28957,8 +29049,9 @@
    "title": "PrismLayers: Open Data for High-Quality Multi-Layer Transparent Image Generative Models",
    "listed_on": "2025-05-28",
    "paper_url": "https://arxiv.org/abs/2505.22523",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2505.22360",
@@ -29244,8 +29337,19 @@
    "title": "Hierarchical Masked Autoregressive Models with Low-Resolution Token Pivots",
    "listed_on": "2025-05-26",
    "paper_url": "https://arxiv.org/abs/2505.20288",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-26",
+   "model_id": "hi-mar",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/HiDream-ai/himar",
+     "evidence_url": "https://arxiv.org/abs/2505.20288",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.20275",
@@ -29720,8 +29824,19 @@
    "title": "Conditional Panoramic Image Generation via Masked Autoregressive Modeling",
    "listed_on": "2025-05-22",
    "paper_url": "https://arxiv.org/abs/2505.16862",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-22",
+   "model_id": "par-panorama",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/wang-chaoyang/par",
+     "evidence_url": "https://wang-chaoyang.github.io/project/par",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.16792",
@@ -29854,8 +29969,19 @@
    "title": "MMaDA: Multimodal Large Diffusion Language Models",
    "listed_on": "2025-05-21",
    "paper_url": "https://arxiv.org/abs/2505.15809",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-21",
+   "model_id": "mmada",
+   "catalog_action": "existing",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Gen-Verse/MMaDA",
+     "evidence_url": "https://github.com/Gen-Verse/MMaDA",
+     "verification": "existing-reviewed-source"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.15779",
@@ -29979,8 +30105,9 @@
    "title": "Hunyuan-Game: Industrial-grade Intelligent Game Creation Model",
    "listed_on": "2025-05-20",
    "paper_url": "https://arxiv.org/abs/2505.14135",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "no-distinct-t2i-system"
   },
   {
    "arxiv_id": "2505.14131",
@@ -30050,8 +30177,19 @@
    "title": "MindOmni: Unleashing Reasoning Generation in Vision Language Models with RGPO",
    "listed_on": "2025-05-19",
    "paper_url": "https://arxiv.org/abs/2505.13031",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-19",
+   "model_id": "mindomni",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/TencentARC/MindOmni",
+     "evidence_url": "https://arxiv.org/abs/2505.13031",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.12795",
@@ -30490,8 +30628,9 @@
    "title": "Learning Graph Representation of Agent Diffusers",
    "listed_on": "2025-05-10",
    "paper_url": "https://arxiv.org/abs/2505.06761",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2505.06668",
@@ -30588,8 +30727,12 @@
    "title": "Mogao: An Omni Foundation Model for Interleaved Multi-Modal Generation",
    "listed_on": "2025-05-08",
    "paper_url": "https://arxiv.org/abs/2505.05472",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-08",
+   "model_id": "mogao",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2505.05470",
@@ -30902,8 +31045,19 @@
    "title": "Ming-Lite-Uni: Advancements in Unified Architecture for Natural Multimodal Interaction",
    "listed_on": "2025-05-05",
    "paper_url": "https://arxiv.org/abs/2505.02471",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-05-05",
+   "model_id": "ming-lite-uni",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify",
+     "evidence_url": "https://arxiv.org/abs/2505.02471",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2505.04639",
@@ -31018,8 +31172,9 @@
    "title": "T2I-R1: Reinforcing Image Generation with Collaborative Semantic-level and Token-level CoT",
    "listed_on": "2025-05-01",
    "paper_url": "https://arxiv.org/abs/2505.00703",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2505.00502",

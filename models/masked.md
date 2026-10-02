@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**12 models · Reviewed 2026-09-29**
+**14 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -18,6 +18,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
 | [aMUSEd](#amused) | 2024-01-03 | T → I | generation |
+| [DC-AR](#dc-ar) | 2025-07-07 | T → I | generation |
 | [GRN (Generative Refinement Networks)](#grn) | 2026-04-14 | T → I, V | generation |
 | [KNN-Diffusion](#knn-diffusion) | 2022-04-06 | T, I → I | editing |
 | [M6-UFC](#m6-ufc) | 2021-05-29 | T → I | generation |
@@ -25,6 +26,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Meissonic](#meissonic) | 2024-10-10 | T → I | generation |
 | [Muse](#muse) | 2023-01-02 | T → I | generation |
 | [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | 2026-06-29 | T → I | generation |
+| [NeoBabel](#neobabel) | 2025-07-08 | T → I | generation |
 | [Paella](#paella) | 2022-11-14 | T, I → I | editing |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | 2021-10-19 | T → I | generation |
 | [VQ-Diffusion](#vq-diffusion) | 2021-11-29 | T, I → I | editing |
@@ -58,6 +60,33 @@ A 146M-parameter VQGAN (8192-entry codebook, 16x downsampling) tokenizes images;
 **License:** code: Apache-2.0; weights: openrail++.
 
 **Variants:** aMUSEd-256; aMUSEd-512.
+
+</details>
+
+<a id="dc-ar"></a>
+
+### DC-AR
+
+Hybrid masked autoregressive text-to-image model on the DC-HT deep-compression hybrid tokenizer (32x spatial compression, discrete tokens plus continuous residual tokens): a PixArt-alpha-based transformer (28 layers, width 1152, adaLN removed) with T5-base cross-attention unmasks the discrete tokens, and a 6-layer MLP diffusion head refines the residual tokens.
+
+DC-AR (NVIDIA and MIT, ICCV 2025) combines MaskGIT-style masked prediction with a hybrid tokenizer. DC-HT compresses images 32x per side, trained in three adaptation stages, and decodes both its quantized discrete tokens and the continuous latent. DC-AR first generates all discrete tokens through an iterative unmasking schedule that fixes structure, then produces the continuous residual tokens, which only refine detail, through a lightweight diffusion head conditioned on the transformer's hidden states; the two are summed and decoded. Because the transformer works on discrete tokens only, the paper reports high-resolution text-to-image generation in 12 unmasking steps plus 20 diffusion steps for the head.
+
+[Paper](https://arxiv.org/abs/2507.04947) · [GitHub](https://github.com/dc-ai-projects/DC-AR) · [Model card](https://huggingface.co/dc-ai/dc-ar-512)
+
+![DC-AR — Figure 4 (PDF p. 5)](../assets/architectures/dc-ar.png)
+
+*Figure 4 (PDF p. 5) · [Source](https://arxiv.org/abs/2507.04947)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The 671M-parameter model is trained at 512x512 by fine-tuning from a 256x256 model, which the resolution-generalizable 2D tokenizer allows. Reported: gFID 5.49 on MJHQ-30K and 0.69 on GenEval, with 1.5-7.9x higher throughput and 2.0-3.5x lower latency than the compared diffusion and autoregressive models. The paper's safety discussion uses ShieldGemma-2B to screen prompts. The Hugging Face card (dc-ai/dc-ar-512) lists license 'other' with license name ncslv1; no code license was established.
+
+**License:** weights: ncslv1.
+
+**Variants:** dc-ar-512.
 
 </details>
 
@@ -229,6 +258,31 @@ Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for 
 **Input → output:** T → I · **Interaction:** generation
 
 Paper Figure 3: unlike prior single-pass masked diffusion models such as Meissonic, Nemotron-Labs-Diffusion-Image's single decoder-only transformer processes prompt tokens together with masked and deliberately corrupted VQ image tokens, predicting both an unmasking and a correction distribution so previously unmasked tokens can be revised later in sampling (Figure 5/9 ablate the correction threshold). The Grouped Cross-Entropy (GCE) loss assigns positive learning signal to tokens neighboring the ground truth in the tokenizer's embedding space, addressing sparse per-token signal at large codebook sizes, and a custom fused GCE kernel reduces training VRAM. The paper reports strong few-step generation (1-5 steps, Figure 7) at 1024px. No repository or license information is disclosed.
+
+</details>
+
+<a id="neobabel"></a>
+
+### NeoBabel
+
+2B Gemma-2-based transformer with an extended embedding table for the 8,192 MAGVIT-v2 lookup-free image tokens used by Show-o (256x256 images as 16x16 tokens), causal attention over text and bidirectional attention over image tokens, trained with a masked discrete-diffusion loss on the image tokens.
+
+NeoBabel (Cohere Labs and University of Amsterdam, 2025) is a multilingual text-to-image model that accepts prompts in English, Chinese, Dutch, French, Hindi and Persian directly rather than through translation. It builds on the Gemma-2 multilingual language model and its tokenizer, adds discrete image tokens in a shared embedding space, and unmasks image tokens in parallel in the manner of Show-o. Training combines large multilingual pretraining on image-text pairs in three stages with two stages of instruction tuning, and merges checkpoints along the training trajectory. The paper introduces multilingual versions of GenEval and DPG-Bench (m-GenEval, m-DPG) and cross-lingual consistency and code-switching metrics, and also shows multilingual text-guided inpainting and extrapolation.
+
+[Paper](https://arxiv.org/abs/2507.06137) · [GitHub](https://github.com/mmderakhshani/NeoBabel) · [Project](https://Neo-Babel.github.io)
+
+![NeoBabel — Figure 2](../assets/architectures/neobabel.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.06137)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Reported 0.75 on m-GenEval and 0.68 on m-DPG, with strong English performance at 2B parameters. The authors release code, checkpoints and a 124M-pair multilingual pretraining dataset, plus instruction and evaluation data. The repository states Apache-2.0; the Hugging Face model page has no license metadata, so no weight license is recorded.
+
+**License:** code: Apache-2.0.
 
 </details>
 

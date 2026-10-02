@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**72 model families · 72 papers · 62 new catalog entries · Reviewed 2026-09-29**
+**87 model families · 87 papers · 71 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **43** have author-linked GitHub sources; **29** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **65** images come from primary sources; **7** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **55** have author-linked GitHub sources; **32** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **80** images come from primary sources; **7** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,12 +19,12 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 72 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1827 |
-| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 770 |
-| No distinct text-to-image system identified in the reviewed source | 1 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1153 |
-| Not yet screened | 397 |
+| Included | 87 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1831 |
+| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 772 |
+| No distinct text-to-image system identified in the reviewed source | 4 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1155 |
+| Not yet screened | 371 |
 
 </details>
 
@@ -85,7 +85,22 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [ProxT2I](#proxt2i)
 - [oboro:](#oboro)
 - [FIBO](#fibo)
+- [NeoBabel](#neobabel)
+- [DC-AR](#dc-ar)
+- [B-cos Diffusion Models](#b-cos-diffusion)
+- [Transition Matching (DTM, ARTM, FHTM)](#transition-matching)
+- [Ovis-U1](#ovis-u1)
+- [Instella-T2I](#instella-t2i)
+- [OmniGen2](#omnigen2)
+- [UniWorld-V1](#uniworld)
 - [Muddit](#muddit)
+- [HiDream-I1](#hidream-i1)
+- [Hi-MAR](#hi-mar)
+- [PAR (Panoramic AutoRegressive)](#par-panorama)
+- [MMaDA](#mmada)
+- [MindOmni](#mindomni)
+- [Mogao](#mogao)
+- [Ming-Lite-Uni](#ming-lite-uni)
 - [X-Fusion](#x-fusion)
 - [SimpleAR](#simplear)
 - [Omni-Dish](#omni-dish)
@@ -864,6 +879,118 @@ FIBO (Bria AI) is an open-source text-to-image model trained exclusively on long
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2511.06876)*
 
+<a id="neobabel"></a>
+
+### NeoBabel
+
+**First paper submission:** 2025-07-08 · [Architecture card](../models/masked.md#neobabel)
+
+NeoBabel (Cohere Labs and University of Amsterdam, 2025) is a multilingual text-to-image model that accepts prompts in English, Chinese, Dutch, French, Hindi and Persian directly rather than through translation. It builds on the Gemma-2 multilingual language model and its tokenizer, adds discrete image tokens in a shared embedding space, and unmasks image tokens in parallel in the manner of Show-o. Training combines large multilingual pretraining on image-text pairs in three stages with two stages of instruction tuning, and merges checkpoints along the training trajectory. The paper introduces multilingual versions of GenEval and DPG-Bench (m-GenEval, m-DPG) and cross-lingual consistency and code-switching metrics, and also shows multilingual text-guided inpainting and extrapolation.
+
+[Paper](https://arxiv.org/abs/2507.06137) · [GitHub](https://github.com/mmderakhshani/NeoBabel) · [Project](https://Neo-Babel.github.io)
+
+![NeoBabel — Figure 2](../assets/architectures/neobabel.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2507.06137)*
+
+<a id="dc-ar"></a>
+
+### DC-AR
+
+**First paper submission:** 2025-07-07 · [Architecture card](../models/masked.md#dc-ar)
+
+DC-AR (NVIDIA and MIT, ICCV 2025) combines MaskGIT-style masked prediction with a hybrid tokenizer. DC-HT compresses images 32x per side, trained in three adaptation stages, and decodes both its quantized discrete tokens and the continuous latent. DC-AR first generates all discrete tokens through an iterative unmasking schedule that fixes structure, then produces the continuous residual tokens, which only refine detail, through a lightweight diffusion head conditioned on the transformer's hidden states; the two are summed and decoded. Because the transformer works on discrete tokens only, the paper reports high-resolution text-to-image generation in 12 unmasking steps plus 20 diffusion steps for the head.
+
+[Paper](https://arxiv.org/abs/2507.04947) · [GitHub](https://github.com/dc-ai-projects/DC-AR) · [Model card](https://huggingface.co/dc-ai/dc-ar-512)
+
+![DC-AR — Figure 4 (PDF p. 5)](../assets/architectures/dc-ar.png)
+
+*Figure 4 (PDF p. 5) · [Image source](https://arxiv.org/abs/2507.04947)*
+
+<a id="b-cos-diffusion"></a>
+
+### B-cos Diffusion Models
+
+**First paper submission:** 2025-07-05 · [Architecture card](../models/pixel-diffusion.md#b-cos-diffusion)
+
+This paper extends B-cos networks, which make a model's output a dynamic linear function of its input to give faithful explanations, to text-to-image diffusion. The authors build the Stable Diffusion 2.1 U-Net from B-cos modules, drop the VAE to keep the explanation in pixel space, and train variants that predict the clean image x0 or the noise epsilon and that use either a B-cos token embedding or the frozen CLIP text encoder. Because the denoiser is interpretable by construction, the model can show which pixel regions each prompt token influenced and can flag prompt elements that the generated image failed to represent.
+
+[Paper](https://arxiv.org/abs/2507.03846) · GitHub: no author-linked repository found
+
+![B-cos Diffusion Models — Figure 4 (PDF p. 9)](../assets/architectures/b-cos-diffusion.png)
+
+*Figure 4 (PDF p. 9) · [Image source](https://arxiv.org/abs/2507.03846)*
+
+<a id="transition-matching"></a>
+
+### Transition Matching (DTM, ARTM, FHTM)
+
+**First paper submission:** 2025-06-30 · [Architecture card](../models/continuous-ar.md#transition-matching)
+
+Transition Matching (Weizmann Institute and FAIR at Meta, 2025) is a framework that unifies diffusion or flow models and continuous autoregressive generation by decomposing generation into a small number of Markov transitions with non-deterministic kernels. Difference Transition Matching (DTM) learns the transition probability between consecutive states with a backbone and a small flow head and converges to flow matching as the number of steps grows. Autoregressive Transition Matching (ARTM) and Full History Transition Matching (FHTM) apply the same idea to partially causal and fully causal token models, trained with an independent linear supervision process. The paper compares the variants with flow matching and MAR baselines under one architecture, data and hyper-parameter setting for text-to-image generation.
+
+[Paper](https://arxiv.org/abs/2506.23589) · GitHub: no author-linked repository found
+
+![Transition Matching (DTM, ARTM, FHTM) — Figure 5 (PDF p. 6)](../assets/architectures/transition-matching.png)
+
+*Figure 5 (PDF p. 6) · [Image source](https://arxiv.org/abs/2506.23589)*
+
+<a id="ovis-u1"></a>
+
+### Ovis-U1
+
+**First paper submission:** 2025-06-29 · [Architecture card](../models/unified.md#ovis-u1)
+
+Ovis-U1 is Alibaba's 3-billion-parameter unified model built on the Ovis series, adding text-to-image generation and instruction-based image editing to multimodal understanding. Unlike approaches that freeze a pretrained multimodal LLM and bolt on a generator, Ovis-U1 is trained from a language model with unified data from the start, which the report shows improves both understanding and generation over single-task training. It reports 69.6 on OpenCompass, 83.72/0.89 on DPG-Bench/GenEval for text-to-image generation, and 4.00/6.42 on ImgEdit-Bench/GEdit-Bench-EN for editing.
+
+[Paper](https://arxiv.org/abs/2506.23044) · [GitHub](https://github.com/AIDC-AI/Ovis-U1) · [Model card](https://huggingface.co/AIDC-AI/Ovis-U1-3B)
+
+![Ovis-U1 — Figure 2](../assets/architectures/ovis-u1.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2506.23044)*
+
+<a id="instella-t2i"></a>
+
+### Instella-T2I
+
+**First paper submission:** 2025-06-26 · [Architecture card](../models/dit.md#instella-t2i)
+
+Instella-T2I (AMD GenAI, 2025) is the first text-to-image model of the AMD Instella family and was trained on AMD Instinct MI300X GPUs. Its tokenizer encodes an image as a 1D sequence of binary vectors instead of one-hot codebook indices, so a 1024x1024 image needs only 128 tokens, a 32-fold reduction relative to standard VQ-VAEs. The generator is a decoder-style transformer whose every block receives image features from the previous block and text features from the same depth of a frozen language model. The same architecture is trained with a continuous-time Bernoulli diffusion objective and with a causal autoregressive objective. The paper reports competitive results without private data or post-training, with about 0.4 s for 20 sampling steps of the diffusion model.
+
+[Paper](https://arxiv.org/abs/2506.21022) · [GitHub](https://github.com/AMD-AGI/Instella-T2I)
+
+![Instella-T2I — Figure 3 (PDF p. 8)](../assets/architectures/instella-t2i.png)
+
+*Figure 3 (PDF p. 8) · [Image source](https://arxiv.org/abs/2506.21022)*
+
+<a id="omnigen2"></a>
+
+### OmniGen2
+
+**First paper submission:** 2025-06-23 · [Architecture card](../models/unified.md#omnigen2)
+
+OmniGen2 is an open generative model from the OmniGen team (VectorSpaceLab) for text-to-image generation, instruction-based image editing and in-context (subject-driven) generation. Unlike OmniGen v1, which used one shared transformer, it decouples text and image generation: a vision-language model reads the multimodal context and emits a special token that triggers image generation, and a separately parameterized diffusion transformer, trained from scratch, synthesizes the image conditioned on the VLM's hidden states and on VAE features of reference images. The paper introduces the OmniContext benchmark for in-context generation and aligns the model with a staged Flow-GRPO curriculum over editing, text-to-image and in-context tasks.
+
+[Paper](https://arxiv.org/abs/2506.18871) · [GitHub](https://github.com/VectorSpaceLab/OmniGen2) · [Model card](https://huggingface.co/OmniGen2/OmniGen2)
+
+![OmniGen2 — Figure 2](../assets/architectures/omnigen2.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2506.18871)*
+
+<a id="uniworld"></a>
+
+### UniWorld-V1
+
+**First paper submission:** 2025-06-03 · [Architecture card](../models/unified.md#uniworld)
+
+UniWorld-V1, from Peking University's Yuan group and collaborators, is a unified framework for image understanding, text-to-image generation, image manipulation and image perception tasks such as detection or segmentation rendered as images. Motivated by experiments suggesting that GPT-4o-Image relies on semantic encoders rather than VAEs, it conditions a FLUX diffusion transformer on features from a frozen multimodal LLM (high-level semantics) and from a SigLIP2 encoder (low-level control for reference images). Trained on only 2.7M samples, it is reported to be competitive with BAGEL on image editing benchmarks and scores 0.79 on GenEval.
+
+[Paper](https://arxiv.org/abs/2506.03147) · [GitHub](https://github.com/PKU-YuanGroup/UniWorld) · [Model card](https://huggingface.co/LanguageBind/UniWorld-V1)
+
+![UniWorld-V1 — Figure 3](../assets/architectures/uniworld.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2506.03147)*
+
 <a id="muddit"></a>
 
 ### Muddit
@@ -877,6 +1004,104 @@ Muddit ("Meissonic II") is a second-generation unified discrete diffusion model 
 ![Muddit — Figure 2](../assets/architectures/muddit.png)
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2505.23606)*
+
+<a id="hidream-i1"></a>
+
+### HiDream-I1
+
+**First paper submission:** 2025-05-28 · [Architecture card](../models/dit.md#hidream-i1)
+
+HiDream-I1 is a 17B-parameter open text-to-image diffusion transformer from HiDream-ai that combines a dual-stream-then-single-stream DiT backbone (in the style of FLUX/SD3) with sparse Mixture-of-Experts feed-forward layers, so only a subset of experts activates per token despite the large parameter count. It conditions on three complementary text representations at once: pooled long-context CLIP embeddings for global style through adaptive layer norm, T5-XXL token embeddings, and features drawn from multiple layers of a frozen Llama-3.1-8B-Instruct language model. The Full/Dev/Fast variants trade off inference steps and distillation for speed, and the model was released under the MIT license for both code and weights.
+
+[Paper](https://arxiv.org/abs/2505.22705) · [GitHub](https://github.com/HiDream-ai/HiDream-I1) · [Model card](https://huggingface.co/HiDream-ai/HiDream-I1-Full)
+
+![HiDream-I1 — Figure 3](../assets/architectures/hidream-i1.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2505.22705)*
+
+<a id="hi-mar"></a>
+
+### Hi-MAR
+
+**First paper submission:** 2025-05-26 · [Architecture card](../models/continuous-ar.md#hi-mar)
+
+Hi-MAR (HiDream.ai, ICML 2025) extends the masked autoregressive (MAR) model with a coarse-to-fine hierarchy. In the first phase the transformer predicts a few low-resolution image tokens that capture global structure; the conditional tokens it outputs, rather than the clean low-resolution tokens, are fed to the second phase to avoid a train-inference mismatch. A scale-aware transformer block signals which phase is running, and the usual per-token MLP diffusion head of MAR is replaced in the second phase by a Diffusion Transformer head that models the interdependence of all tokens. The paper evaluates class-conditional ImageNet generation at three sizes and a small text-to-image model on MS-COCO.
+
+[Paper](https://arxiv.org/abs/2505.20288) · [GitHub](https://github.com/HiDream-ai/himar) · [Model card](https://huggingface.co/HiDream-ai/Hi-MAR)
+
+![Hi-MAR — Figure 2](../assets/architectures/hi-mar.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2505.20288)*
+
+<a id="par-panorama"></a>
+
+### PAR (Panoramic AutoRegressive)
+
+**First paper submission:** 2025-05-22 · [Architecture card](../models/continuous-ar.md#par-panorama)
+
+PAR (NeurIPS 2025) targets 360-degree panorama generation with one model for text-to-panorama and panorama outpainting. The paper argues that diffusion models violate their i.i.d. Gaussian noise assumption on equirectangular projections and that existing systems use separate models for text and image conditioning. PAR instead masks and predicts latent tokens in arbitrary order, so known regions (an input image) and a text prompt are handled by the same masked autoregressive architecture. A consistency loss aligns predictions under cyclic horizontal shifts of the panorama, which are semantically equivalent, and circular padding applied before the VAE encoder and after the latent is decoded removes the seam at the image edge. The authors also show text-guided panorama editing.
+
+[Paper](https://arxiv.org/abs/2505.16862) · [GitHub](https://github.com/wang-chaoyang/par) · [Project](https://wang-chaoyang.github.io/project/par)
+
+![PAR (Panoramic AutoRegressive) — Figure 2 (PDF p. 5)](../assets/architectures/par-panorama.png)
+
+*Figure 2 (PDF p. 5) · [Image source](https://arxiv.org/abs/2505.16862)*
+
+<a id="mmada"></a>
+
+### MMaDA
+
+**First paper submission:** 2025-05-21 · [Architecture card](../models/unified.md#mmada)
+
+MMaDA (Multimodal Large Diffusion Language Model), from the Gen-Verse team, unifies textual reasoning, multimodal understanding and text-to-image generation in one discrete-diffusion foundation model rather than pairing an autoregressive language model with a separate diffusion generator. Where prior unified models (Show-o, Transfusion) keep autoregressive text modeling and diffusion-based vision modeling as distinct branches, MMaDA applies the same masked discrete-diffusion formulation and architecture to both text and image tokens. Training follows pretraining, a mixed long chain-of-thought finetuning stage that aligns reasoning formats across text and image tasks, and UniGRPO, a policy-gradient RL algorithm adapted to diffusion models with diversified rewards. The paper reports MMaDA-8B beating LLaMA-3-7B and Qwen2-7B on textual reasoning, Show-o and SEED-X on multimodal understanding, and SDXL and Janus on text-to-image generation.
+
+[Paper](https://arxiv.org/abs/2505.15809) · [GitHub](https://github.com/Gen-Verse/MMaDA) · [Model card](https://huggingface.co/Gen-Verse/MMaDA-8B-MixCoT)
+
+![MMaDA — Figure 2](../assets/architectures/mmada.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2505.15809)*
+
+<a id="mindomni"></a>
+
+### MindOmni
+
+**First paper submission:** 2025-05-19 · [Architecture card](../models/unified.md#mindomni)
+
+MindOmni (Tsinghua, Tencent ARC Lab, CUHK and HKU, 2025) is a unified multimodal model aimed at reasoning generation, where the model thinks in text before it produces an image. It is built from Qwen2.5-VL for understanding and reasoning and the OmniGen diffusion decoder for rendering, bridged by a two-layer decoder connector. After pretraining and a supervised stage with chain-of-thought instruction data, the paper applies Reasoning Generation Policy Optimization (RGPO), a GRPO-style algorithm with multimodal feedback and KL regularization on both text and image outputs, so that the generated reasoning guides the rewritten prompt that the diffusion decoder renders. The same model answers visual questions and edits images.
+
+[Paper](https://arxiv.org/abs/2505.13031) · [GitHub](https://github.com/TencentARC/MindOmni) · [Model card](https://huggingface.co/EasonXiao-888/MindOmni)
+
+![MindOmni — Figure 2](../assets/architectures/mindomni.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2505.13031)*
+
+<a id="mogao"></a>
+
+### Mogao
+
+**First paper submission:** 2025-05-08 · [Architecture card](../models/unified.md#mogao)
+
+Mogao is a ByteDance Seed unified model aimed at interleaved multimodal generation: it can read and write arbitrary sequences of text and images causally, combining autoregressive text generation with diffusion-based image synthesis in one transformer. Its design adds a deep-fusion (MMDiT-inspired) block structure, dual visual encoders that give conditioning images both ViT and VAE representations, an interleaved 3D rotary position embedding, and multimodal classifier-free guidance. The paper reports multimodal understanding and text-to-image results, interleaved generation, and qualitative zero-shot image editing without editing-specific training data.
+
+[Paper](https://arxiv.org/abs/2505.05472) · GitHub: no author-linked repository found
+
+![Mogao — Figure 3](../assets/architectures/mogao.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2505.05472)*
+
+<a id="ming-lite-uni"></a>
+
+### Ming-Lite-Uni
+
+**First paper submission:** 2025-05-05 · [Architecture card](../models/unified.md#ming-lite-uni)
+
+Ming-Lite-Uni (Inclusion AI, Ant Group, 2025) is an alpha-stage open-source unified model that keeps a native multimodal autoregressive model frozen for understanding and attaches a trainable diffusion generator to it. The paper presents an integration of MetaQueries and M2-omni with two additions: sets of learnable query tokens at several scales, each marked by start and end tokens, and a multi-scale representation alignment loss that ties intermediate DiT states to the final semantic representation. The connector maps the MLLM output for these queries into the conditioning of the diffusion transformer, which is the only part trained for generation. The model handles text-to-image generation, instruction-based image editing and style transfer in conversational use, and is evaluated on understanding benchmarks and on GenEval.
+
+[Paper](https://arxiv.org/abs/2505.02471) · [GitHub](https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify) · [Model card](https://huggingface.co/inclusionAI/Ming-Lite-Uni)
+
+![Ming-Lite-Uni — Figure 2](../assets/architectures/ming-lite-uni.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2505.02471)*
 
 <a id="x-fusion"></a>
 

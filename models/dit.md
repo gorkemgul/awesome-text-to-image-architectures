@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**62 models · Reviewed 2026-09-29**
+**63 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -37,6 +37,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [HunyuanImage-2.1](#hunyuanimage-2-1) | 2025-09-08 | T → I | generation |
 | [i1](#i1) | 2026-06-09 | T → I | generation |
 | [Ideogram 4.0](#ideogram-4) | 2026-06-03 | T → I | generation |
+| [Instella-T2I](#instella-t2i) | 2025-06-26 | T → I | generation |
 | [Kandinsky 5.0 Image Lite](#kandinsky-5) | 2025-11-19 | T → I | generation |
 | [Krea 2](#krea-2) | 2026-06-23 | T → I | generation |
 | [LaDe](#lade) | 2026-03-18 | T → I | generation |
@@ -615,6 +616,33 @@ Blog and repository documentation (docs/model_architecture.md; no rendered diagr
 **License:** code: Apache-2.0; weights: Ideogram 4 Non-Commercial License.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="instella-t2i"></a>
+
+### Instella-T2I
+
+1D binary image tokenizer that represents an image with 128 tokens of 64 binary values each, with a transformer image stream mirroring the 1B AMD OLMo-1B (16 blocks, hidden size 2048) that attends jointly to text features taken from every block of a frozen OLMo-1B; trained either as a Bernoulli (binary) diffusion model or as an autoregressive model.
+
+Instella-T2I (AMD GenAI, 2025) is the first text-to-image model of the AMD Instella family and was trained on AMD Instinct MI300X GPUs. Its tokenizer encodes an image as a 1D sequence of binary vectors instead of one-hot codebook indices, so a 1024x1024 image needs only 128 tokens, a 32-fold reduction relative to standard VQ-VAEs. The generator is a decoder-style transformer whose every block receives image features from the previous block and text features from the same depth of a frozen language model. The same architecture is trained with a continuous-time Bernoulli diffusion objective and with a causal autoregressive objective. The paper reports competitive results without private data or post-training, with about 0.4 s for 20 sampling steps of the diffusion model.
+
+[Paper](https://arxiv.org/abs/2506.21022) · [GitHub](https://github.com/AMD-AGI/Instella-T2I)
+
+![Instella-T2I — Figure 3 (PDF p. 8)](../assets/architectures/instella-t2i.png)
+
+*Figure 3 (PDF p. 8) · [Source](https://arxiv.org/abs/2506.21022)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Reported in Table 1: the diffusion model (1.2B) scores 0.64 on GenEval, 0.332 CLIP and 0.900 ImageReward at 1024 resolution; the autoregressive model (0.8B) scores 0.46 GenEval. Pretraining only, on filtered and recaptioned open data (about 100M LAION-COCO images after filtering) plus synthetic data; training is about 200 GPU-days on one 8-GPU node. The tokenizer is trained on a ~600M-image LAION subset and decodes at 512, 768 and 1024 resolution. The repository ships diffusion and AR checkpoints and a binary autoencoder; its LICENSE is titled Instella_T2I_1B [RESEARCH-ONLY RAIL-MS] and covers model and source code.
+
+**License:** code: Instella_T2I_1B [RESEARCH-ONLY RAIL-MS]; weights: Instella_T2I_1B [RESEARCH-ONLY RAIL-MS].
+
+**Variants:** Binary diffusion model; Autoregressive model.
 
 </details>
 

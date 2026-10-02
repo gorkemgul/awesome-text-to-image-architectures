@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**14 models · Reviewed 2026-09-29**
+**17 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -26,11 +26,14 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Fluid](#fluid) | 2024-10-17 | T → I | generation |
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
 | [HART](#hart) | 2024-10-14 | T → I | generation |
+| [Hi-MAR](#hi-mar) | 2025-05-26 | T → I | generation |
 | [JetFormer](#jetformer) | 2024-11-29 | T, I → I, T | generation |
 | [LINA](#lina) | 2026-01-30 | T → I | generation |
 | [NextStep-1](#nextstep-1) | 2025-08-14 | T, I → I | editing |
 | [Normalizing Trajectory Models](#ntm) | 2026-05-08 | T → I | generation |
+| [PAR (Panoramic AutoRegressive)](#par-panorama) | 2025-05-22 | T, I → I | editing |
 | [STARFlow](#starflow) | 2025-06-06 | T, I → I | editing |
+| [Transition Matching (DTM, ARTM, FHTM)](#transition-matching) | 2025-06-30 | T → I | generation |
 
 </details>
 
@@ -267,6 +270,33 @@ The hybrid tokenizer is initialized from a pretrained VAR tokenizer and trained 
 
 </details>
 
+<a id="hi-mar"></a>
+
+### Hi-MAR
+
+Two-phase hierarchical masked autoregressive transformer over continuous VAE tokens: a first phase predicts low-resolution pivot tokens, a second phase predicts the dense tokens conditioned on them through scale-aware (adaLN-Zero) transformer blocks and a Diffusion Transformer head that attends over all tokens, with CLIP text embeddings as context tokens for text-to-image.
+
+Hi-MAR (HiDream.ai, ICML 2025) extends the masked autoregressive (MAR) model with a coarse-to-fine hierarchy. In the first phase the transformer predicts a few low-resolution image tokens that capture global structure; the conditional tokens it outputs, rather than the clean low-resolution tokens, are fed to the second phase to avoid a train-inference mismatch. A scale-aware transformer block signals which phase is running, and the usual per-token MLP diffusion head of MAR is replaced in the second phase by a Diffusion Transformer head that models the interdependence of all tokens. The paper evaluates class-conditional ImageNet generation at three sizes and a small text-to-image model on MS-COCO.
+
+[Paper](https://arxiv.org/abs/2505.20288) · [GitHub](https://github.com/HiDream-ai/himar) · [Model card](https://huggingface.co/HiDream-ai/Hi-MAR)
+
+![Hi-MAR — Figure 2](../assets/architectures/hi-mar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.20288)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Class-conditional ImageNet 256x256 variants are Hi-MAR-B/L/H with 244M, 529M and 1090M parameters (FID 1.93, 1.66 and 1.52 with CFG). The text-to-image model, Hi-MAR-S, is trained on MS-COCO at 256x256 following the U-ViT-S/2 (Deep) configuration and reaches FID 4.77 on MS-COCO 256x256, with T2I-CompBench compositional results; it is a small-scale research model, not a large text-to-image release. The second phase uses few steps (4 in the experiments). The Hugging Face card lists afl-3.0; no code license was found.
+
+**License:** weights: afl-3.0.
+
+**Variants:** Hi-MAR-S (text-to-image); Hi-MAR-B; Hi-MAR-L; Hi-MAR-H.
+
+</details>
+
 <a id="jetformer"></a>
 
 ### JetFormer
@@ -371,6 +401,33 @@ Paper Figure 3 (inline TikZ, cropped from the PDF): the shared Transporter fT ma
 
 </details>
 
+<a id="par-panorama"></a>
+
+### PAR (Panoramic AutoRegressive)
+
+Text-conditioned masked autoregressive encoder-decoder transformer (Phi-2 text embeddings) that conditions a small MLP diffusion head to predict continuous VAE-latent tokens of equirectangular panoramas, initialized from NOVA and trained with a cyclic-translation consistency loss plus pixel- and latent-space circular padding around the VAE.
+
+PAR (NeurIPS 2025) targets 360-degree panorama generation with one model for text-to-panorama and panorama outpainting. The paper argues that diffusion models violate their i.i.d. Gaussian noise assumption on equirectangular projections and that existing systems use separate models for text and image conditioning. PAR instead masks and predicts latent tokens in arbitrary order, so known regions (an input image) and a text prompt are handled by the same masked autoregressive architecture. A consistency loss aligns predictions under cyclic horizontal shifts of the panorama, which are semantically equivalent, and circular padding applied before the VAE encoder and after the latent is decoded removes the seam at the image edge. The authors also show text-guided panorama editing.
+
+[Paper](https://arxiv.org/abs/2505.16862) · [GitHub](https://github.com/wang-chaoyang/par) · [Project](https://wang-chaoyang.github.io/project/par)
+
+![PAR (Panoramic AutoRegressive) — Figure 2 (PDF p. 5)](../assets/architectures/par-panorama.png)
+
+*Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2505.16862)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Initialized from NOVA and trained for 20K iterations at 512x1024 on Matterport3D with captions produced by Janus-Pro-7B. Reported on Matterport3D text-to-panorama: FAED 3.39, FID 41.15 and discontinuity score 0.58 for the 0.3B model, with 0.6B and 1.4B models also trained; outpainting FID 32.68 with a prompt. Zero-shot outpainting and Structured3D results are in the appendix. The repository states Apache-2.0; no weights or model card were reviewed.
+
+**License:** code: Apache-2.0.
+
+**Variants:** PAR-0.3B; PAR-0.6B; PAR-1.4B.
+
+</details>
+
 <a id="starflow"></a>
 
 ### STARFlow
@@ -395,5 +452,30 @@ Text conditioning uses a T5-XL encoder; a variant initializes the deep block fro
 **License:** weights: apple-amlr.
 
 **Variants:** STARFlow 3.8B (T5-XL); STARFlow with Gemma2-initialized deep block.
+
+</details>
+
+<a id="transition-matching"></a>
+
+### Transition Matching (DTM, ARTM, FHTM)
+
+Discrete-time, continuous-state generative paradigm in which a 1.7B DiT backbone and a small flow head (about 40M-parameter MLP) learn Markov transition kernels: DTM generalizes flow matching to discrete time, while ARTM and FHTM are partially and fully causal autoregressive variants, with Flan-UL2 text conditioning and SDXL-VAE latents.
+
+Transition Matching (Weizmann Institute and FAIR at Meta, 2025) is a framework that unifies diffusion or flow models and continuous autoregressive generation by decomposing generation into a small number of Markov transitions with non-deterministic kernels. Difference Transition Matching (DTM) learns the transition probability between consecutive states with a backbone and a small flow head and converges to flow matching as the number of steps grows. Autoregressive Transition Matching (ARTM) and Full History Transition Matching (FHTM) apply the same idea to partially causal and fully causal token models, trained with an independent linear supervision process. The paper compares the variants with flow matching and MAR baselines under one architecture, data and hyper-parameter setting for text-to-image generation.
+
+[Paper](https://arxiv.org/abs/2506.23589) · GitHub: no author-linked repository found
+
+![Transition Matching (DTM, ARTM, FHTM) — Figure 5 (PDF p. 6)](../assets/architectures/transition-matching.png)
+
+*Figure 5 (PDF p. 6) · [Source](https://arxiv.org/abs/2506.23589)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+All text-to-image experiments use the same 1.7B DiT backbone, trained for 500K iterations on 350M licensed Shutterstock image-caption pairs at 256x256, with CLIP-tokenized captions fed through Flan-UL2 and cross-attention. The paper reports DTM as leading on text adherence and FHTM as the first fully causal model to match flow-matching quality in the continuous domain, with GenEval and preference metrics in Tables 1, 2 and 7. DTM sampling took 1.6 s versus 10.8 s for flow matching in the reported setting. These are research models from a controlled comparison; no public code or checkpoints were found for this paper.
+
+**Variants:** DTM; ARTM; FHTM.
 
 </details>

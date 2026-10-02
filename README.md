@@ -6,7 +6,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 > Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).
 
-**319 models and families · Reviewed 2026-09-29**
+**328 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -17,12 +17,12 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | [Early neural text-to-image models](models/early.md) | 3 |
 | [Generative adversarial networks](models/gan.md) | 46 |
 | [Autoregressive image-token models](models/ar-token.md) | 24 |
-| [Masked and parallel image-token models](models/masked.md) | 12 |
-| [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 11 |
+| [Masked and parallel image-token models](models/masked.md) | 14 |
+| [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 12 |
 | [Latent diffusion with U-Net backbones](models/latent-unet.md) | 22 |
-| [Diffusion transformers and flow matching](models/dit.md) | 62 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 14 |
-| [Unified multimodal understanding and generation](models/unified.md) | 78 |
+| [Diffusion transformers and flow matching](models/dit.md) | 63 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 17 |
+| [Unified multimodal understanding and generation](models/unified.md) | 80 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
 
@@ -31,7 +31,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 319 entries</summary>
+<summary>Alphabetical model list · 328 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -46,6 +46,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [AttnGAN](#attngan) | GAN | T → I |
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
 | [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | GAN | T → I |
+| [B-cos Diffusion Models](#b-cos-diffusion) | Pixel diffusion | T → I |
 | [BAGEL](#bagel) | Unified | T, I → T, I |
 | [BIT (Bidirectional Image-Text Diffusion Bridges)](#bit) | DiT / flow | T, I → T, I |
 | [BitDance](#bitdance) | Continuous AR | T → I |
@@ -80,6 +81,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [DALL·E 3](#dall-e-3) | API | T → I |
 | [DALL·E Mini](#dall-e-mini) | AR token | T → I |
 | [DART](#dart) | Continuous AR | T → I |
+| [DC-AR](#dc-ar) | Masked token | T → I |
 | [DeepFloyd IF](#deepfloyd-if) | Pixel diffusion | T, I → I |
 | [DeepGen 1.0](#deepgen-1) | DiT / flow | T, I → I |
 | [DF-GAN](#df-gan) | GAN | T → I |
@@ -134,6 +136,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Grok Imagine Image](#grok-imagine-image) | API | T, I → I |
 | [HART](#hart) | Continuous AR | T → I |
 | [HDGAN](#hdgan) | GAN | T → I |
+| [Hi-MAR](#hi-mar) | Continuous AR | T → I |
 | [HiDream-I1](#hidream-i1) | DiT / flow | T → I |
 | [HiDream-O1-Image](#hidream-o1-image) | Pixel diffusion | T, I → I |
 | [Hierarchical text-to-image via inferred semantic layout (Hong et al.)](#hong-semantic-layout) | GAN | T → I |
@@ -155,6 +158,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Imagine Flash](#imagine-flash) | Efficient | T → I |
 | [Infinity](#infinity) | AR token | T → I |
 | [InstaFlow](#instaflow) | Efficient | T → I |
+| [Instella-T2I](#instella-t2i) | DiT / flow | T → I |
 | [InternVL-U](#internvl-u) | Unified | T, I → T, I |
 | [Janus](#janus) | Unified | T, I → T, I |
 | [Janus-Pro](#janus-pro) | Unified | T, I → T, I |
@@ -212,6 +216,8 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MetaMorph](#metamorph) | Unified | T, I → T, I |
 | [MetaQuery](#metaquery) | Unified | T, I → T, I |
 | [Midjourney](#midjourney) | API | T, I → I |
+| [MindOmni](#mindomni) | Unified | T, I → T, I |
+| [Ming-Lite-Uni](#ming-lite-uni) | Unified | T, I → T, I |
 | [Ming-Omni](#ming-omni) | Unified | T, I, V, A → T, I, A |
 | [Ming-UniVision](#ming-univision) | Unified | T, I → T, I |
 | [MiniMax Image-01](#minimax-image-01) | API | T, I → I |
@@ -232,6 +238,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Muse Image](#muse-image) | API | T, I → I |
 | [NAMI](#nami) | DiT / flow | T → I |
 | [Nemotron-Labs-Diffusion-Image](#nemotron-labs-diffusion-image) | Masked token | T → I |
+| [NeoBabel](#neobabel) | Masked token | T → I |
 | [NExT-GPT](#next-gpt) | Unified | T, I, V, A → T, I, V, A |
 | [NextFlow](#nextflow) | Unified | T, I → T, I |
 | [NextStep-1](#nextstep-1) | Continuous AR | T, I → I |
@@ -254,6 +261,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Ovis-U1](#ovis-u1) | Unified | T, I → T, I |
 | [Paella](#paella) | Masked token | T, I → I |
 | [PanGu-Draw](#pangu-draw) | Latent U-Net | T → I |
+| [PAR (Panoramic AutoRegressive)](#par-panorama) | Continuous AR | T, I → I |
 | [Parallel Multiscale PixelCNN](#multiscale-pixelcnn) | Early | T → I |
 | [Parti](#parti) | AR token | T → I |
 | [PixArt-α](#pixart-alpha) | DiT / flow | T → I |
@@ -328,6 +336,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [TIME (Text and Image Mutual-Translation)](#time-gan) | GAN | T → I |
 | [TMDM-3B](#tmdm-3b) | Unified | T, I, A → T, I, A |
 | [Transfusion](#transfusion) | Unified | T, I → T, I |
+| [Transition Matching (DTM, ARTM, FHTM)](#transition-matching) | Continuous AR | T → I |
 | [TReCS](#trecs) | GAN | T → I |
 | [UFOGen](#ufogen) | Efficient | T → I |
 | [UGen](#ugen) | Unified | T, I → T, I |
@@ -494,6 +503,18 @@ Text-to-image GAN whose generator blocks route feature points through a sparsely
 ![Aurora (Sparse MoE GAN) — Figure 2](assets/architectures/aurora-moe-gan.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.03904)*
+
+<a id="b-cos-diffusion"></a>
+
+### B-cos Diffusion Models
+
+This paper extends B-cos networks, which make a model's output a dynamic linear function of its input to give faithful explanations, to text-to-image diffusion. The authors build the Stable Diffusion 2.1 U-Net from B-cos modules, drop the VAE to keep the explanation in pixel space, and train variants that predict the clean image x0 or the noise epsilon and that use either a B-cos token embedding or the frozen CLIP text encoder. Because the denoiser is interpretable by construction, the model can show which pixel regions each prompt token influenced and can flag prompt elements that the generated image failed to represent.
+
+[Paper](https://arxiv.org/abs/2507.03846) · GitHub: no author-linked repository found · [Details](models/pixel-diffusion.md#b-cos-diffusion)
+
+![B-cos Diffusion Models — Figure 4 (PDF p. 9)](assets/architectures/b-cos-diffusion.png)
+
+*Figure 4 (PDF p. 9) · [Source](https://arxiv.org/abs/2507.03846)*
 
 <a id="bagel"></a>
 
@@ -902,6 +923,18 @@ DART (Apple, with CUHK and Mila) merges autoregression and diffusion. Instead of
 ![DART — Figure 2](assets/architectures/dart.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2410.08159)*
+
+<a id="dc-ar"></a>
+
+### DC-AR
+
+DC-AR (NVIDIA and MIT, ICCV 2025) combines MaskGIT-style masked prediction with a hybrid tokenizer. DC-HT compresses images 32x per side, trained in three adaptation stages, and decodes both its quantized discrete tokens and the continuous latent. DC-AR first generates all discrete tokens through an iterative unmasking schedule that fixes structure, then produces the continuous residual tokens, which only refine detail, through a lightweight diffusion head conditioned on the transformer's hidden states; the two are summed and decoded. Because the transformer works on discrete tokens only, the paper reports high-resolution text-to-image generation in 12 unmasking steps plus 20 diffusion steps for the head.
+
+[Paper](https://arxiv.org/abs/2507.04947) · [GitHub](https://github.com/dc-ai-projects/DC-AR) · [Model card](https://huggingface.co/dc-ai/dc-ar-512) · [Details](models/masked.md#dc-ar)
+
+![DC-AR — Figure 4 (PDF p. 5)](assets/architectures/dc-ar.png)
+
+*Figure 4 (PDF p. 5) · [Source](https://arxiv.org/abs/2507.04947)*
 
 <a id="deepfloyd-if"></a>
 
@@ -1551,6 +1584,18 @@ Single-stream residual generator that emits side-output images of growing resolu
 
 *Figure 1 (top panel) · [Source](https://arxiv.org/abs/1802.09178)*
 
+<a id="hi-mar"></a>
+
+### Hi-MAR
+
+Hi-MAR (HiDream.ai, ICML 2025) extends the masked autoregressive (MAR) model with a coarse-to-fine hierarchy. In the first phase the transformer predicts a few low-resolution image tokens that capture global structure; the conditional tokens it outputs, rather than the clean low-resolution tokens, are fed to the second phase to avoid a train-inference mismatch. A scale-aware transformer block signals which phase is running, and the usual per-token MLP diffusion head of MAR is replaced in the second phase by a Diffusion Transformer head that models the interdependence of all tokens. The paper evaluates class-conditional ImageNet generation at three sizes and a small text-to-image model on MS-COCO.
+
+[Paper](https://arxiv.org/abs/2505.20288) · [GitHub](https://github.com/HiDream-ai/himar) · [Model card](https://huggingface.co/HiDream-ai/Hi-MAR) · [Details](models/continuous-ar.md#hi-mar)
+
+![Hi-MAR — Figure 2](assets/architectures/hi-mar.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.20288)*
+
 <a id="hidream-i1"></a>
 
 ### HiDream-I1
@@ -1802,6 +1847,18 @@ InstaFlow (UT Austin and collaborators, 2023) turns Stable Diffusion into a one-
 ![InstaFlow — Figure 3](assets/architectures/instaflow.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2309.06380)*
+
+<a id="instella-t2i"></a>
+
+### Instella-T2I
+
+Instella-T2I (AMD GenAI, 2025) is the first text-to-image model of the AMD Instella family and was trained on AMD Instinct MI300X GPUs. Its tokenizer encodes an image as a 1D sequence of binary vectors instead of one-hot codebook indices, so a 1024x1024 image needs only 128 tokens, a 32-fold reduction relative to standard VQ-VAEs. The generator is a decoder-style transformer whose every block receives image features from the previous block and text features from the same depth of a frozen language model. The same architecture is trained with a continuous-time Bernoulli diffusion objective and with a causal autoregressive objective. The paper reports competitive results without private data or post-training, with about 0.4 s for 20 sampling steps of the diffusion model.
+
+[Paper](https://arxiv.org/abs/2506.21022) · [GitHub](https://github.com/AMD-AGI/Instella-T2I) · [Details](models/dit.md#instella-t2i)
+
+![Instella-T2I — Figure 3 (PDF p. 8)](assets/architectures/instella-t2i.png)
+
+*Figure 3 (PDF p. 8) · [Source](https://arxiv.org/abs/2506.21022)*
 
 <a id="internvl-u"></a>
 
@@ -2487,6 +2544,30 @@ Midjourney is a closed text-to-image service offered through its web app and Dis
 
 *Editorial input/output diagram · [Source](https://updates.midjourney.com/v8-alpha/)*
 
+<a id="mindomni"></a>
+
+### MindOmni
+
+MindOmni (Tsinghua, Tencent ARC Lab, CUHK and HKU, 2025) is a unified multimodal model aimed at reasoning generation, where the model thinks in text before it produces an image. It is built from Qwen2.5-VL for understanding and reasoning and the OmniGen diffusion decoder for rendering, bridged by a two-layer decoder connector. After pretraining and a supervised stage with chain-of-thought instruction data, the paper applies Reasoning Generation Policy Optimization (RGPO), a GRPO-style algorithm with multimodal feedback and KL regularization on both text and image outputs, so that the generated reasoning guides the rewritten prompt that the diffusion decoder renders. The same model answers visual questions and edits images.
+
+[Paper](https://arxiv.org/abs/2505.13031) · [GitHub](https://github.com/TencentARC/MindOmni) · [Model card](https://huggingface.co/EasonXiao-888/MindOmni) · [Details](models/unified.md#mindomni)
+
+![MindOmni — Figure 2](assets/architectures/mindomni.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.13031)*
+
+<a id="ming-lite-uni"></a>
+
+### Ming-Lite-Uni
+
+Ming-Lite-Uni (Inclusion AI, Ant Group, 2025) is an alpha-stage open-source unified model that keeps a native multimodal autoregressive model frozen for understanding and attaches a trainable diffusion generator to it. The paper presents an integration of MetaQueries and M2-omni with two additions: sets of learnable query tokens at several scales, each marked by start and end tokens, and a multi-scale representation alignment loss that ties intermediate DiT states to the final semantic representation. The connector maps the MLLM output for these queries into the conditioning of the diffusion transformer, which is the only part trained for generation. The model handles text-to-image generation, instruction-based image editing and style transfer in conversational use, and is evaluated on understanding benchmarks and on GenEval.
+
+[Paper](https://arxiv.org/abs/2505.02471) · [GitHub](https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify) · [Model card](https://huggingface.co/inclusionAI/Ming-Lite-Uni) · [Details](models/unified.md#ming-lite-uni)
+
+![Ming-Lite-Uni — Figure 2](assets/architectures/ming-lite-uni.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.02471)*
+
 <a id="ming-omni"></a>
 
 ### Ming-Omni
@@ -2726,6 +2807,18 @@ Nemotron-Labs-Diffusion-Image (NVIDIA) is a masked discrete diffusion model for 
 ![Nemotron-Labs-Diffusion-Image — Figure 3 (PDF p. 5)](assets/architectures/nemotron-labs-diffusion-image.png)
 
 *Figure 3 (PDF p. 5) · [Source](https://arxiv.org/abs/2606.29814)*
+
+<a id="neobabel"></a>
+
+### NeoBabel
+
+NeoBabel (Cohere Labs and University of Amsterdam, 2025) is a multilingual text-to-image model that accepts prompts in English, Chinese, Dutch, French, Hindi and Persian directly rather than through translation. It builds on the Gemma-2 multilingual language model and its tokenizer, adds discrete image tokens in a shared embedding space, and unmasks image tokens in parallel in the manner of Show-o. Training combines large multilingual pretraining on image-text pairs in three stages with two stages of instruction tuning, and merges checkpoints along the training trajectory. The paper introduces multilingual versions of GenEval and DPG-Bench (m-GenEval, m-DPG) and cross-lingual consistency and code-switching metrics, and also shows multilingual text-guided inpainting and extrapolation.
+
+[Paper](https://arxiv.org/abs/2507.06137) · [GitHub](https://github.com/mmderakhshani/NeoBabel) · [Project](https://Neo-Babel.github.io) · [Details](models/masked.md#neobabel)
+
+![NeoBabel — Figure 2](assets/architectures/neobabel.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2507.06137)*
 
 <a id="next-gpt"></a>
 
@@ -2990,6 +3083,18 @@ Bilingual latent diffusion model (5B in its largest version) whose denoising is 
 ![PanGu-Draw — Figure 1](assets/architectures/pangu-draw.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2312.16486)*
+
+<a id="par-panorama"></a>
+
+### PAR (Panoramic AutoRegressive)
+
+PAR (NeurIPS 2025) targets 360-degree panorama generation with one model for text-to-panorama and panorama outpainting. The paper argues that diffusion models violate their i.i.d. Gaussian noise assumption on equirectangular projections and that existing systems use separate models for text and image conditioning. PAR instead masks and predicts latent tokens in arbitrary order, so known regions (an input image) and a text prompt are handled by the same masked autoregressive architecture. A consistency loss aligns predictions under cyclic horizontal shifts of the panorama, which are semantically equivalent, and circular padding applied before the VAE encoder and after the latent is decoded removes the seam at the image edge. The authors also show text-guided panorama editing.
+
+[Paper](https://arxiv.org/abs/2505.16862) · [GitHub](https://github.com/wang-chaoyang/par) · [Project](https://wang-chaoyang.github.io/project/par) · [Details](models/continuous-ar.md#par-panorama)
+
+![PAR (Panoramic AutoRegressive) — Figure 2 (PDF p. 5)](assets/architectures/par-panorama.png)
+
+*Figure 2 (PDF p. 5) · [Source](https://arxiv.org/abs/2505.16862)*
 
 <a id="multiscale-pixelcnn"></a>
 
@@ -3878,6 +3983,18 @@ Transfusion is a training recipe from Meta, Waymo and USC for one multimodal mod
 ![Transfusion — Figure 1](assets/architectures/transfusion.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2408.11039)*
+
+<a id="transition-matching"></a>
+
+### Transition Matching (DTM, ARTM, FHTM)
+
+Transition Matching (Weizmann Institute and FAIR at Meta, 2025) is a framework that unifies diffusion or flow models and continuous autoregressive generation by decomposing generation into a small number of Markov transitions with non-deterministic kernels. Difference Transition Matching (DTM) learns the transition probability between consecutive states with a backbone and a small flow head and converges to flow matching as the number of steps grows. Autoregressive Transition Matching (ARTM) and Full History Transition Matching (FHTM) apply the same idea to partially causal and fully causal token models, trained with an independent linear supervision process. The paper compares the variants with flow matching and MAR baselines under one architecture, data and hyper-parameter setting for text-to-image generation.
+
+[Paper](https://arxiv.org/abs/2506.23589) · GitHub: no author-linked repository found · [Details](models/continuous-ar.md#transition-matching)
+
+![Transition Matching (DTM, ARTM, FHTM) — Figure 5 (PDF p. 6)](assets/architectures/transition-matching.png)
+
+*Figure 5 (PDF p. 6) · [Source](https://arxiv.org/abs/2506.23589)*
 
 <a id="trecs"></a>
 

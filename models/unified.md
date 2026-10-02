@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**78 models · Reviewed 2026-09-29**
+**80 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -55,6 +55,8 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Manzano](#manzano) | 2025-09-19 | T, I → T, I | editing |
 | [MetaMorph](#metamorph) | 2024-12-18 | T, I → T, I | generation |
 | [MetaQuery](#metaquery) | 2025-04-08 | T, I → T, I | editing |
+| [MindOmni](#mindomni) | 2025-05-19 | T, I → T, I | editing |
+| [Ming-Lite-Uni](#ming-lite-uni) | 2025-05-05 | T, I → T, I | editing |
 | [Ming-Omni](#ming-omni) | 2025-06-11 | T, I, V, A → T, I, A | editing |
 | [Ming-UniVision](#ming-univision) | 2025-10-08 | T, I → T, I | editing |
 | [MM-Interleaved](#mm-interleaved) | 2024-01-18 | T, I → T, I | generation |
@@ -1085,6 +1087,58 @@ The 256 learnable queries use the MLLM's causal mask; a 24-layer Enc-Proj connec
 **License:** code: CC BY-NC 4.0.
 
 **Variants:** MetaQuery-B; MetaQuery-L; MetaQuery-XL; MetaQuery-B-Instruct.
+
+</details>
+
+<a id="mindomni"></a>
+
+### MindOmni
+
+Qwen2.5-VL (ViT plus LLM, 7B) joined by a connector of two LLM decoder layers to an OmniGen diffusion decoder, trained in three stages: pretraining on caption and editing data, supervised fine-tuning on chain-of-thought instruction data, and reinforcement learning with the proposed RGPO policy-optimization algorithm.
+
+MindOmni (Tsinghua, Tencent ARC Lab, CUHK and HKU, 2025) is a unified multimodal model aimed at reasoning generation, where the model thinks in text before it produces an image. It is built from Qwen2.5-VL for understanding and reasoning and the OmniGen diffusion decoder for rendering, bridged by a two-layer decoder connector. After pretraining and a supervised stage with chain-of-thought instruction data, the paper applies Reasoning Generation Policy Optimization (RGPO), a GRPO-style algorithm with multimodal feedback and KL regularization on both text and image outputs, so that the generated reasoning guides the rewritten prompt that the diffusion decoder renders. The same model answers visual questions and edits images.
+
+[Paper](https://arxiv.org/abs/2505.13031) · [GitHub](https://github.com/TencentARC/MindOmni) · [Model card](https://huggingface.co/EasonXiao-888/MindOmni)
+
+![MindOmni — Figure 2](../assets/architectures/mindomni.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.13031)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Reported results: 83% overall on GenEval, 71% on the WISE reasoning-generation benchmark with thinking, and understanding scores of 51.6 MMMU, 83.2 MMBench and 68.1 RealWorldQA at 7B. RGPO keeps understanding close to the Qwen2.5-VL backbone through the text KL term. The paper shows editing and segmentation-style edits qualitatively. Training data are open image-caption pairs plus in-house data. The repository states the MIT License and the Hugging Face card lists apache-2.0; the released checkpoint is the version after RGPO tuning.
+
+**License:** code: MIT; weights: apache-2.0.
+
+**Variants:** MindOmni; MindOmni (higher-quality-data variant).
+
+</details>
+
+<a id="ming-lite-uni"></a>
+
+### Ming-Lite-Uni
+
+Frozen M2-omni MLLM (Llama-3.1-8B or Llama-3.3-70B backbone with a NaViT vision encoder) whose hidden states for multi-scale learnable query tokens (4x4, 8x8, 16x16) pass through a trained connector into a fine-tuned SANA diffusion transformer, trained with a flow-matching loss and multi-scale representation alignment.
+
+Ming-Lite-Uni (Inclusion AI, Ant Group, 2025) is an alpha-stage open-source unified model that keeps a native multimodal autoregressive model frozen for understanding and attaches a trainable diffusion generator to it. The paper presents an integration of MetaQueries and M2-omni with two additions: sets of learnable query tokens at several scales, each marked by start and end tokens, and a multi-scale representation alignment loss that ties intermediate DiT states to the final semantic representation. The connector maps the MLLM output for these queries into the conditioning of the diffusion transformer, which is the only part trained for generation. The model handles text-to-image generation, instruction-based image editing and style transfer in conversational use, and is evaluated on understanding benchmarks and on GenEval.
+
+[Paper](https://arxiv.org/abs/2505.02471) · [GitHub](https://github.com/inclusionAI/Ming/tree/Ming-Lite-Omni-Preview/Ming-unify) · [Model card](https://huggingface.co/inclusionAI/Ming-Lite-Uni)
+
+![Ming-Lite-Uni — Figure 2](../assets/architectures/ming-lite-uni.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2505.02471)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+The paper reports 0.62 overall on GenEval, and understanding results on seven OpenCompass benchmarks (MMBench, MMStar, MMMU, MathVista, HallusionBench, AI2D, MM-Vet). Editing and style transfer are shown qualitatively only. Training data combine LAION-5B, Zero, COYO, Wukong, Midjourney and web-search image-text pairs with about 5M editing samples (InstructPix2Pix, SEED-Data-Edit, UltraEdit, SynCD, Subjects200K, HQ-Edit, MagicBrush) and style data. The README calls the release an alpha version. The repository and Hugging Face card list the MIT license.
+
+**License:** code: MIT; weights: mit.
 
 </details>
 
