@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**21 models · Reviewed 2026-09-29**
+**22 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -23,6 +23,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Emu (Meta)](#emu-meta) | 2023-09-27 | T → I | generation |
 | [ERNIE-ViLG 2.0](#ernie-vilg-2) | 2022-10-27 | T → I | generation |
 | [Frido](#frido) | 2022-08-29 | T → I | generation |
+| [GoT](#got) | 2025-03-13 | T, I → I | editing |
 | [Kandinsky 2](#kandinsky-2) | 2023-10-05 | T, I → I | editing |
 | [Kandinsky 3](#kandinsky-3) | 2023-12-06 | T, I → I | editing |
 | [Kolors](#kolors) | 2024-07-06 | T → I | generation |
@@ -184,6 +185,33 @@ MS-VQGAN encodes an image into quantized feature maps at several spatial scales;
 **License:** code: MIT.
 
 **Variants:** Frido-f16f8 (COCO text-to-image).
+
+</details>
+
+<a id="got"></a>
+
+### GoT
+
+Qwen2.5-VL-3B (LoRA-updated) that writes a Generation Chain-of-Thought with bounding boxes and then emits 64 guidance tokens for an SDXL-based diffusion decoder with a semantic-spatial guidance module (semantic, spatial-mask and reference-image pathways), trained end to end.
+
+GoT (Generation Chain-of-Thought; CUHK MMLab, HKU, SenseTime and collaborators) makes an MLLM reason about a prompt before an image is drawn. Given a caption or an editing instruction, the MLLM writes a step-by-step description of objects, attributes and relations with explicit bounding-box coordinates. Its hidden states for 64 special image tokens become semantic guidance for the diffusion module, and the boxes are rendered as colour-coded masks that serve as spatial guidance. For editing, the source image is a third, reference-image pathway in the manner of InstructPix2Pix. The diffusion module follows SDXL and is optimized together with the MLLM through a joint cross-entropy and diffusion loss. Users can edit the generated chain, such as moving a box, to change the image. The authors build over 8M GoT-annotated image pairs for training.
+
+[Paper](https://arxiv.org/abs/2503.10639) · [GitHub](https://github.com/rongyaofang/GoT) · [Model card](https://huggingface.co/LucasFang/GoT-6B)
+
+![GoT — Figure 3](../assets/architectures/got.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2503.10639)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Training data: Laion-Aesthetics-High-Resolution-GoT (3.77M), JourneyDB-GoT (4.09M), 600K FLUX.1-generated images with LAHR prompts, OmniEdit-GoT (736,691 single-turn edits) and SEED-Edit-Multiturn-GoT (180,190). Qwen2.5-VL-3B decoder weights are updated with LoRA while the SDXL-based module is fully optimized; the vision encoder is frozen. The paper reports GenEval (overall 0.64) and image-editing benchmarks (Emu-Edit, ImagenHub, Reason-Edit) and interactive generation. The reasoning text is a conditioning step; the paper does not evaluate image understanding as an output, so only I is listed as output. The README lists the GoT-6B checkpoint on Hugging Face, whose model card carries no license metadata.
+
+**License:** code: MIT.
+
+**Variants:** GoT-6B.
 
 </details>
 

@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**13 models · Reviewed 2026-09-29**
+**14 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -22,6 +22,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [DART](#dart) | 2024-10-10 | T → I | generation |
 | [DREAM](#dream) | 2026-03-03 | T → I | generation |
 | [DuetGen](#duetgen) | 2026-09-19 | T → I | generation |
+| [Emuru](#emuru) | 2025-03-21 | T, I → I | generation |
 | [Fluid](#fluid) | 2024-10-17 | T → I | generation |
 | [GLM-Image](#glm-image) | 2026-01-14 | T, I → I | editing |
 | [HART](#hart) | 2024-10-14 | T → I | generation |
@@ -161,6 +162,33 @@ DuetGen is a visual text generation system for producing text-rich images (e.g. 
 **Input → output:** T → I · **Interaction:** generation
 
 Paper Figure 2 (framework overview): an AR Planner predicts text bounding boxes and content autoregressively, its last-layer hidden states (prompt, bbox, text content) are mean-pooled through a Spatial Head for an auxiliary box-regression loss and passed via a Light-Mapper into a Joint Sequence DiT renderer trained with a region-weighted diffusion loss that upweights text-render regions; because planner and renderer are optimized jointly (rather than the usual separately-trained plan-then-render pipeline), rendering supervision reshapes the planner's representations. At inference, Phase-Aware Attention Modulation (Figure 2b) reweights image-region attention toward the query's paired bounding-box and content tokens. No repository or license is disclosed.
+
+</details>
+
+<a id="emuru"></a>
+
+### Emuru
+
+T5-Large encoder-decoder that autoregressively predicts continuous latents of a single-channel text-image VAE, conditioned on the text to render and a style image, with the VAE decoder producing the text-line image.
+
+Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.
+
+[Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru)
+
+![Emuru — Figure 2](../assets/architectures/emuru.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.17074)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** generation
+
+The paper positions Emuru as the first autoregressive model for styled handwritten text generation. Evaluation covers typewritten and handwritten sets (including IAM and CVL lines) against GAN- and diffusion-based baselines with FID, handwriting-distance and character-error-rate metrics. The model targets text-line images rather than general scenes. The code is MIT-licensed on GitHub and the Hugging Face model card lists mit.
+
+**License:** code: MIT; weights: mit.
+
+**Variants:** Emuru.
 
 </details>
 

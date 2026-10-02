@@ -31089,8 +31089,12 @@
    "title": "X-Fusion: Introducing New Modality to Frozen Large Language Models",
    "listed_on": "2025-04-29",
    "paper_url": "https://arxiv.org/abs/2504.20996",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-29",
+   "model_id": "x-fusion",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2504.20518",
@@ -31448,8 +31452,9 @@
    "title": "Cross-attention for State-based model RWKV-7",
    "listed_on": "2025-04-19",
    "paper_url": "https://arxiv.org/abs/2504.14260",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2504.14219",
@@ -31744,8 +31749,12 @@
    "title": "SimpleAR: Pushing the Frontier of Autoregressive Visual Generation through Pretraining, SFT, and RL",
    "listed_on": "2025-04-15",
    "paper_url": "https://arxiv.org/abs/2504.11455",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-15",
+   "model_id": "simplear",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2504.11379",
@@ -31878,8 +31887,19 @@
    "title": "Omni-Dish: Photorealistic and Faithful Image Generation and Editing for Arbitrary Chinese Dishes",
    "listed_on": "2025-04-14",
    "paper_url": "https://arxiv.org/abs/2504.09948",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-14",
+   "model_id": "omni-dish",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/LiuHuijie6410/OmniDish",
+     "evidence_url": "https://liuhuijie6410.github.io/OmniDish/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2504.10542",
@@ -31895,8 +31915,9 @@
    "title": "D$^2$iT: Dynamic Diffusion Transformer for Accurate Image Generation",
    "listed_on": "2025-04-13",
    "paper_url": "https://arxiv.org/abs/2504.09454",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2504.11478",
@@ -32011,16 +32032,21 @@
    "title": "PixelFlow: Pixel-Space Generative Models with Flow",
    "listed_on": "2025-04-10",
    "paper_url": "https://arxiv.org/abs/2504.07963",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-10",
+   "model_id": "pixelflow",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2504.07960",
    "title": "VisualCloze: A Universal Image Generation Framework via Visual In-Context Learning",
    "listed_on": "2025-04-10",
    "paper_url": "https://arxiv.org/abs/2504.07960",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2504.07945",
@@ -32090,8 +32116,9 @@
    "title": "IGG: Image Generation Informed by Geodesic Dynamics in Deformation Spaces",
    "listed_on": "2025-04-09",
    "paper_url": "https://arxiv.org/abs/2504.07999",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2504.07261",
@@ -32224,8 +32251,9 @@
    "title": "PartStickers: Generating Parts of Objects for Rapid Prototyping",
    "listed_on": "2025-04-07",
    "paper_url": "https://arxiv.org/abs/2504.05508",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2504.05152",
@@ -32367,8 +32395,19 @@
    "title": "VARGPT-v1.1: Improve Visual Autoregressive Large Unified Model via Iterative Instruction Tuning and Reinforcement Learning",
    "listed_on": "2025-04-03",
    "paper_url": "https://arxiv.org/abs/2504.02949",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-03",
+   "model_id": "vargpt-v1-1",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/VARGPT-family/VARGPT-v1.1",
+     "evidence_url": "https://arxiv.org/abs/2504.02949",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2504.02782",
@@ -32510,8 +32549,9 @@
    "title": "IntrinsiX: High-Quality PBR Generation using Image Priors",
    "listed_on": "2025-04-01",
    "paper_url": "https://arxiv.org/abs/2504.01008",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2504.00996",
@@ -32761,24 +32801,30 @@
    "title": "A Unified Image-Dense Annotation Generation Model for Underwater Scenes",
    "listed_on": "2025-03-27",
    "paper_url": "https://arxiv.org/abs/2503.21771",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.21758",
    "title": "Lumina-Image 2.0: A Unified and Efficient Image Generative Framework",
    "listed_on": "2025-03-27",
    "paper_url": "https://arxiv.org/abs/2503.21758",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-27",
+   "model_id": "lumina-image-2",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2503.21749",
    "title": "LeX-Art: Rethinking Text Generation via Scalable High-Quality Data Synthesis",
    "listed_on": "2025-03-27",
    "paper_url": "https://arxiv.org/abs/2503.21749",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.21747",
@@ -32839,8 +32885,12 @@
    "title": "UGen: Unified Autoregressive Multimodal Model with Progressive Vocabulary Learning",
    "listed_on": "2025-03-27",
    "paper_url": "https://arxiv.org/abs/2503.21193",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-27",
+   "model_id": "ugen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.20960",
@@ -32856,8 +32906,19 @@
    "title": "Unified Multimodal Discrete Diffusion",
    "listed_on": "2025-03-26",
    "paper_url": "https://arxiv.org/abs/2503.20853",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-26",
+   "model_id": "unidisc",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/alexanderswerdlow/unidisc",
+     "evidence_url": "https://unidisc.github.io",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.20744",
@@ -32909,8 +32970,9 @@
    "title": "MMGen: Unified Multi-modal Image Generation and Understanding in One Go",
    "listed_on": "2025-03-26",
    "paper_url": "https://arxiv.org/abs/2503.20644",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.20540",
@@ -32935,8 +32997,12 @@
    "title": "Beyond Words: Advancing Long-Text Image Generation via Multimodal Autoregressive Models",
    "listed_on": "2025-03-26",
    "paper_url": "https://arxiv.org/abs/2503.20198",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-26",
+   "model_id": "longtextar",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2504.00010",
@@ -33312,8 +33378,19 @@
    "title": "Zero-Shot Styled Text Image Generation, but Make It Autoregressive",
    "listed_on": "2025-03-21",
    "paper_url": "https://arxiv.org/abs/2503.17074",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-21",
+   "model_id": "emuru",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
+     "evidence_url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.16949",
@@ -33401,8 +33478,9 @@
    "title": "VerbDiff: Text-Only Diffusion Models with Enhanced Interaction Awareness",
    "listed_on": "2025-03-20",
    "paper_url": "https://arxiv.org/abs/2503.16406",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.16397",
@@ -33823,16 +33901,21 @@
    "title": "DreamLayer: Simultaneous Multi-Layer Generation via Diffusion Mode",
    "listed_on": "2025-03-17",
    "paper_url": "https://arxiv.org/abs/2503.12838",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.12652",
    "title": "UniVG: A Generalist Diffusion Model for Unified Image Generation and Editing",
    "listed_on": "2025-03-16",
    "paper_url": "https://arxiv.org/abs/2503.12652",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-16",
+   "model_id": "univg",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.12615",
@@ -34146,8 +34229,19 @@
    "title": "GoT: Unleashing Reasoning Capability of Multimodal Large Language Model for Visual Generation and Editing",
    "listed_on": "2025-03-13",
    "paper_url": "https://arxiv.org/abs/2503.10639",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-13",
+   "model_id": "got",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/rongyaofang/GoT",
+     "evidence_url": "https://arxiv.org/abs/2503.10639",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.10618",
@@ -34220,8 +34314,9 @@
    "title": "PlanGen: Towards Unified Layout Planning and Image Generation in Auto-Regressive Vision Language Models",
    "listed_on": "2025-03-13",
    "paper_url": "https://arxiv.org/abs/2503.10127",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.10125",
@@ -34363,8 +34458,12 @@
    "title": "SANA-Sprint: One-Step Diffusion with Continuous-Time Consistency Distillation",
    "listed_on": "2025-03-12",
    "paper_url": "https://arxiv.org/abs/2503.09641",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-12",
+   "model_id": "sana-sprint",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2503.09601",
@@ -34416,8 +34515,12 @@
    "title": "NAMI: Efficient Image Generation via Bridged Progressive Rectified Flow Transformers",
    "listed_on": "2025-03-12",
    "paper_url": "https://arxiv.org/abs/2503.09242",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-12",
+   "model_id": "nami",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.09237",

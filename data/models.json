@@ -2808,6 +2808,55 @@
    ]
   },
   {
+   "id": "emuru",
+   "name": "Emuru",
+   "category": "continuous-ar",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "T5-Large encoder-decoder that autoregressively predicts continuous latents of a single-channel text-image VAE, conditioned on the text to render and a style image, with the VAE decoder producing the text-line image",
+   "description": "Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.",
+   "notes": "The paper positions Emuru as the first autoregressive model for styled handwritten text generation. Evaluation covers typewritten and handwritten sets (including IAM and CVL lines) against GAN- and diffusion-based baselines with FID, handwriting-distance and character-error-rate metrics. The model targets text-line images rather than general scenes. The code is MIT-licensed on GitHub and the Hugging Face model card lists mit.",
+   "variants": [
+    "Emuru"
+   ],
+   "source_date": "2025-03-21",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "mit"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Zero-Shot Styled Text Image Generation, but Make It Autoregressive",
+     "url": "https://arxiv.org/abs/2503.17074",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "aimagelab/Emuru-autoregressive-text-img — official repository",
+     "url": "https://github.com/aimagelab/Emuru-autoregressive-text-img",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "blowing-up-groundhogs/emuru — model card",
+     "url": "https://huggingface.co/blowing-up-groundhogs/emuru",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
    "id": "ernie-image",
    "name": "ERNIE-Image",
    "category": "dit",
@@ -3788,6 +3837,55 @@
      "kind": "model-card",
      "title": "zai-org/GLM-Image — model card",
      "url": "https://huggingface.co/zai-org/GLM-Image",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "got",
+   "name": "GoT",
+   "category": "latent-unet",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Qwen2.5-VL-3B (LoRA-updated) that writes a Generation Chain-of-Thought with bounding boxes and then emits 64 guidance tokens for an SDXL-based diffusion decoder with a semantic-spatial guidance module (semantic, spatial-mask and reference-image pathways), trained end to end",
+   "description": "GoT (Generation Chain-of-Thought; CUHK MMLab, HKU, SenseTime and collaborators) makes an MLLM reason about a prompt before an image is drawn. Given a caption or an editing instruction, the MLLM writes a step-by-step description of objects, attributes and relations with explicit bounding-box coordinates. Its hidden states for 64 special image tokens become semantic guidance for the diffusion module, and the boxes are rendered as colour-coded masks that serve as spatial guidance. For editing, the source image is a third, reference-image pathway in the manner of InstructPix2Pix. The diffusion module follows SDXL and is optimized together with the MLLM through a joint cross-entropy and diffusion loss. Users can edit the generated chain, such as moving a box, to change the image. The authors build over 8M GoT-annotated image pairs for training.",
+   "notes": "Training data: Laion-Aesthetics-High-Resolution-GoT (3.77M), JourneyDB-GoT (4.09M), 600K FLUX.1-generated images with LAHR prompts, OmniEdit-GoT (736,691 single-turn edits) and SEED-Edit-Multiturn-GoT (180,190). Qwen2.5-VL-3B decoder weights are updated with LoRA while the SDXL-based module is fully optimized; the vision encoder is frozen. The paper reports GenEval (overall 0.64) and image-editing benchmarks (Emu-Edit, ImagenHub, Reason-Edit) and interactive generation. The reasoning text is a conditioning step; the paper does not evaluate image understanding as an output, so only I is listed as output. The README lists the GoT-6B checkpoint on Hugging Face, whose model card carries no license metadata.",
+   "variants": [
+    "GoT-6B"
+   ],
+   "source_date": "2025-03-13",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": null
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "GoT: Unleashing Reasoning Capability of Multimodal Large Language Model for Visual Generation and Editing",
+     "url": "https://arxiv.org/abs/2503.10639",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "rongyaofang/GoT — official repository",
+     "url": "https://github.com/rongyaofang/GoT",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "LucasFang/GoT-6B — model card",
+     "url": "https://huggingface.co/LucasFang/GoT-6B",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
     }
@@ -6586,6 +6684,43 @@
    ]
   },
   {
+   "id": "longtextar",
+   "name": "LongTextAR",
+   "category": "ar-token",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Llama2-based autoregressive decoder over a hybrid BPE vocabulary whose visual part is a TextBinarizer tokenizer (a lookup-free binary quantizer of 8192 or 65536 codes built for dense text), generating images that render long passages from a text prompt",
+   "description": "LongTextAR (Central South University and Microsoft) targets images containing paragraphs of text, such as slides and documents, which short-prompt text-to-image systems render poorly. The authors first find that VQ image tokenizers in autoregressive models, such as Chameleon's, lose text detail, and then train TextBinarizer, a binary tokenizer that avoids a codebook embedding and reconstructs dense text better. The autoregressive model uses a Llama2-based language model with a 65,536-entry BPE vocabulary whose first entries are allocated to the visual tokens; only the visual-token embeddings are updated, so the language model's text handling is kept. The paper reports gains over SD3.5 Large and GPT-4o with DALL-E 3 on long-text OCR accuracy and F-measure, controllable font, size, colour and alignment, and an interleaved slide-generation demonstration.",
+   "notes": "The tokenizer is trained on an 11M-image set of PDF pages, documents and generated text images; the language model is trained on subsets of RenderedText, Marion10M, LAION-COCO, AnyWords3M and the CleanTextSynth part of TextAtlas5M, with 10% held out for testing. The training objective is masked prediction of the image tokens given the prompt. The model size is not stated in the paper. The project page lists GitHub as coming soon, and no repository was found at review time.",
+   "variants": [
+    "LongTextAR"
+   ],
+   "source_date": "2025-03-26",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Beyond Words: Advancing Long-Text Image Generation via Multimodal Autoregressive Models",
+     "url": "https://arxiv.org/abs/2503.20198",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "project",
+     "title": "LongTextAR project page",
+     "url": "https://fingerrec.github.io/longtextar",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
    "id": "luma-uni-1",
    "name": "Luma Uni-1",
    "category": "api",
@@ -8281,6 +8416,37 @@
    ]
   },
   {
+   "id": "nami",
+   "name": "NAMI",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Flux-style MM-DiT rectified-flow transformer that generates in three resolution stages (256, 512, 1024 px), using fewer layers at low resolution and joining the stages with a BridgeFlow module, conditioned on mT5 and mCLIP text encoders",
+   "description": "NAMI (360 AI Research and Tsinghua University) is a 2B-parameter text-to-image model built to cut the inference cost of large flow transformers. It splits the rectified flow into time windows, one per resolution, in the manner of pyramid flow matching. Early windows run at low resolution with only a subset of the transformer layers, since they mainly set layout and coarse concepts, and more layers are added as resolution rises. A BridgeFlow module aligns the upsampled end point of one stage with the starting point of the next. Training uses multiple resolutions per batch. The paper reports a 64% reduction in 1024-pixel inference time against a same-size Flux-style baseline and also introduces the NAMI-1K human-preference benchmark.",
+   "notes": "The model uses MM-DiT blocks from FLUX with 22 layers, 2048 channels and 16 heads (2B parameters), with mT5 and mCLIP text encoders for multilingual prompts; a 0.6B version is used for ablations. K=3 stages at 256, 512 and 1024 px with time windows in a 1:1:1 ratio. The BridgeFlow modules are pretrained for about 10k steps before joint multi-resolution training on roughly 100M images from LAION and GRIT-20M plus 100K internal high-quality images. Reported on GenEval, DPG-Bench and NAMI-1K against open models. No code or weights link was found in the paper at review time.",
+   "variants": [
+    "NAMI-2B",
+    "NAMI-0.6B (ablation scale)"
+   ],
+   "source_date": "2025-03-12",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "NAMI: Efficient Image Generation via Bridged Progressive Rectified Flow Transformers",
+     "url": "https://arxiv.org/abs/2503.09242",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "nemotron-labs-diffusion-image",
    "name": "Nemotron-Labs-Diffusion-Image",
    "category": "masked",
@@ -8766,6 +8932,52 @@
      "url": "https://github.com/OFA-Sys/OFA",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "omni-dish",
+   "name": "Omni-Dish",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "7B Flux-architecture rectified-flow transformer with the frozen FLUX.1-dev VAE and a Qwen2.5-7B text encoder, trained in coarse-to-fine stages on 100M dish name-image pairs for Chinese dishes, plus a DiT editing variant trained on Omni-Dish-generated pairs",
+   "description": "Omni-Dish (Meituan and Beihang University) is described as the first text-to-image model tailored to Chinese dishes. It adopts the FLUX architecture at 7B parameters, swaps the text encoder for Qwen2.5-7B so that Chinese prompts work, and trains on about 100M dish name-image pairs after name correction and quality tagging. Training first teaches dish concepts from names with tags, then adds VLLM recaptions, then fine-tunes on manually annotated high-quality data and applies DPO on human preferences. At inference a library of high-quality captions and an LLM expand a short dish name into a detailed caption. For editing, Concept-Enhanced Prompt-to-Prompt builds source-target pairs from the model, and an editing model with extra input channels for the source image is trained on them mixed with general editing data.",
+   "notes": "Model structure and training stages follow the paper (Table 1 has five stages, the last two on manually annotated data); the paper reports comparisons on dish generation and editing against general models. The project README documents the dish editing dataset (OmniDish-Edit-70K on Hugging Face) and its data loader; no model weights are listed there at review time, and the repository carries no license file.",
+   "variants": [
+    "Omni-Dish",
+    "Omni-Dish editing model"
+   ],
+   "source_date": "2025-04-14",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Omni-Dish: Photorealistic and Faithful Image Generation and Editing for Arbitrary Chinese Dishes",
+     "url": "https://arxiv.org/abs/2504.09948",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "LiuHuijie6410/OmniDish — project repository",
+     "url": "https://github.com/LiuHuijie6410/OmniDish",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "Omni-Dish project page",
+     "url": "https://liuhuijie6410.github.io/OmniDish/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -12391,6 +12603,38 @@
    ]
   },
   {
+   "id": "ugen",
+   "name": "UGen",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Single TinyLlama-1.1B-initialized autoregressive transformer over discrete text tokens and 16,384-code MoVQGAN image tokens, trained with progressive vocabulary learning in which visual token IDs are activated incrementally",
+   "description": "UGen (Baidu) is a unified autoregressive model for text processing, image understanding and text-to-image generation that keeps the plain decoder-only design and changes how the vocabulary is trained. Text and images are converted to discrete tokens (an SBER-MoVQGAN with a 16,384-entry codebook and 8× compression for 256×256 images), and one transformer predicts all of them. Starting from a TinyLlama checkpoint, the new visual embeddings are initialized randomly. Because training with the full visual vocabulary hurts the other tasks, progressive vocabulary learning activates the visual token IDs in stages during training. The paper reports a 13.3% overall improvement over a vanilla unified autoregressive baseline and competitive results against task-specific models.",
+   "notes": "Evaluation covers text benchmarks, image understanding (VQAv2 and others, with POPE) and image generation on GenEval. Training has a text pretraining stage, a multimodal stage with progressive activation and an instruction-tuning stage with all parameters tuned. The paper reports results at 256×256 resolution and does not link code in the text; no repository was found at review time.",
+   "variants": [
+    "UGen"
+   ],
+   "source_date": "2025-03-27",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UGen: Unified Autoregressive Multimodal Model with Progressive Vocabulary Learning",
+     "url": "https://arxiv.org/abs/2503.21193",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "unidiffuser",
    "name": "UniDiffuser",
    "category": "unified",
@@ -12436,6 +12680,61 @@
      "kind": "model-card",
      "title": "thu-ml/unidiffuser-v1",
      "url": "https://huggingface.co/thu-ml/unidiffuser-v1",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "unidisc",
+   "name": "UniDisc",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Bidirectional decoder-only transformer that models text tokens and LFQ image tokens in one discrete diffusion process with random masking, evaluated for text-to-image, captioning, joint inpainting, retrieval and VQA",
+   "description": "UniDisc (Carnegie Mellon University) replaces the autoregressive objective of unified multimodal models with masked discrete diffusion over a joint text and image vocabulary. Text is tokenized with a Llama tokenizer and 256×256 images with a lookup-free-quantization tokenizer. A bidirectional transformer with 2D RoPE for image tokens, 1D RoPE for text and modality embeddings predicts masked tokens of both modalities, and classifier-free guidance comes from masking an entire modality during training. The same model generates an image from text, a caption from an image, or inpaints image and text jointly, and the authors compare it with a matched autoregressive baseline in scaling, FID/CLIP, inference-cost and reasoning tests.",
+   "notes": "Controlled comparisons against a Chameleon-style autoregressive transformer use identical architecture, data and hyperparameters apart from the attention mask and loss; the paper reports better conditional-generation FID and CLIP and flexible inference trade-offs. Understanding is assessed through captioning, CLEVR-VQA and retrieval. A 1.4B-parameter model is trained in two stages on web-scale image-text data (250M pairs at 256×256 in the first stage). The released checkpoints on Hugging Face are an interleaved and a non-interleaved model; the repository has no LICENSE file and the model cards carry no license metadata, so no license is recorded.",
+   "variants": [
+    "UniDisc 1.4B",
+    "unidisc_interleaved",
+    "unidisc_non_interleaved"
+   ],
+   "source_date": "2025-03-26",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Unified Multimodal Discrete Diffusion",
+     "url": "https://arxiv.org/abs/2503.20853",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "alexanderswerdlow/unidisc — official repository",
+     "url": "https://github.com/alexanderswerdlow/unidisc",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "UniDisc project page",
+     "url": "https://unidisc.github.io",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    },
+    {
+     "kind": "model-card",
+     "title": "aswerdlow/unidisc_interleaved — model card",
+     "url": "https://huggingface.co/aswerdlow/unidisc_interleaved",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
     }
@@ -12609,6 +12908,39 @@
    ]
   },
   {
+   "id": "univg",
+   "name": "UniVG",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "3.7B MM-DiT flow-matching model with a CLIP-bigG text encoder and an 8-channel VAE, trained from scratch on text-to-image and then multi-task data, where extra inputs enter by channel concatenation (source image, mask) or embedding replacement (external condition tokens)",
+   "description": "UniVG (Apple) is a generalist diffusion model that serves text-to-image generation, inpainting and outpainting, instruction-based editing, identity-preserving generation, layout-guided generation, depth estimation, pose estimation and referring segmentation with one set of weights. It keeps the MM-DiT design nearly unchanged: the noisy latent is concatenated along channels with the VAE latent of an input image and a resized mask, and other conditions such as layout or a face embedding replace placeholder tokens in the prompt embeddings. Training is progressive: text-to-image foundation training from scratch, multi-task training, then a separate stage for identity preservation to avoid forgetting. The paper studies data mixing and finds that editing and text-to-image can coexist without loss in text-to-image quality.",
+   "notes": "Stage I trains the MM-DiT from scratch on text-to-image (batch 512, 400K steps); stage II adds in/outpainting, instruction editing, auxiliary tasks and layout-guided generation for another 400K steps; stage III adds ID-preserving data. The model has 38 MM-DiT layers, hidden size 2432 and 38 heads (3.7B total); the text encoder and VAE are internal. Text-to-image is reported on GenEval (0.70), T2I-CompBench, DSG and HPSv2. Scale study uses B (416M), L (1.8B) and XL (3.7B) models. No code or weights link was found in the paper at review time; the paper mentions apple/axlearn only as a framework reference.",
+   "variants": [
+    "UniVG-XL (3.7B)",
+    "UniVG-L (1.8B, scaling study)",
+    "UniVG-B (416M, scaling study)"
+   ],
+   "source_date": "2025-03-16",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniVG: A Generalist Diffusion Model for Unified Image Generation and Editing",
+     "url": "https://arxiv.org/abs/2503.12652",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "uniworld",
    "name": "UniWorld-V1",
    "category": "unified",
@@ -12718,6 +13050,64 @@
      "url": "https://arxiv.org/abs/2210.16031",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "vargpt-v1-1",
+   "name": "VARGPT-v1.1",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "Qwen2-7B LLM with a ViT visual encoder and projector for next-token understanding, plus a 2B visual decoder initialized from Infinity-2B that predicts multi-scale bitwise image tokens (next-scale prediction) from LLM features through generation projectors",
+   "description": "VARGPT-v1.1 (Peking University and CUHK) is a unified visual autoregressive model that understands images by next-token prediction and generates them by next-scale prediction in the style of VAR and Infinity. It upgrades the earlier VARGPT with a Qwen2-7B backbone, a multi-scale bitwise tokenizer with an infinite-vocabulary classifier, and an extra 2B visual decoder initialized from Infinity-2B. Training runs in stages: pretraining of the generation mapper, supervised fine-tuning at 256 and then 512 pixels, and iterative rounds of instruction tuning and direct preference optimization with 8.3M visual-generation instruction pairs. A further SFT on about 11K StyleBooth pairs gives image editing without architectural change. The paper reports results on multimodal understanding benchmarks and on GenEval and DPG-Bench.",
+   "notes": "Qwen2-VL-style understanding path (ViT encoder and two-layer projector) with a causal mask over all LLM tokens; the generation features pass through input and output projectors and the visual decoder, with classifier-free guidance at sampling (top-k 900, top-p 0.95). The README lists VARGPT-v1.1 (7B+2B) and an editing checkpoint on Hugging Face; the code is Apache-2.0 and the Hugging Face card lists apache-2.0. The editing ability comes from a small SFT set and is shown qualitatively.",
+   "variants": [
+    "VARGPT-v1.1",
+    "VARGPT-v1.1-edit"
+   ],
+   "source_date": "2025-04-03",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": "apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "VARGPT-v1.1: Improve Visual Autoregressive Large Unified Model via Iterative Instruction Tuning and Reinforcement Learning",
+     "url": "https://arxiv.org/abs/2504.02949",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "VARGPT-family/VARGPT-v1.1 — official repository",
+     "url": "https://github.com/VARGPT-family/VARGPT-v1.1",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "VARGPT-family/VARGPT-v1.1 — model card",
+     "url": "https://huggingface.co/VARGPT-family/VARGPT-v1.1",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    },
+    {
+     "kind": "project",
+     "title": "VARGPT-v1.1 project page",
+     "url": "https://vargpt1-1.github.io/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -12974,6 +13364,47 @@
      "url": "https://huggingface.co/stabilityai/stable-cascade",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "x-fusion",
+   "name": "X-Fusion",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Dual-tower transformer in which every layer pairs a frozen pretrained LLaMA-3 text block with a trainable vision block initialized from it, predicting text tokens with cross-entropy and flow-matching image latents (SD1.5 VAE, 2×2 patches) with a diffusion loss",
+   "description": "X-Fusion (UCLA, UW-Madison and Adobe Research) adds image understanding and generation to a pretrained LLM without changing its language weights. Each transformer layer has the frozen text block and a separate trainable vision block copied from it, and their outputs are merged per token according to modality. Images are encoded by the SD1.5 VAE, patchified and processed with a flow-matching loss in the style of Stable Diffusion 3, while text is trained with the usual next-token loss. The paper compares this dual-tower design with single-tower, gated-layer and dual-projection alternatives on LLaMA-3.2-1B and reports the best generation and understanding quality for the dual tower. It also studies data mix, noise in image-to-text samples and feature alignment, and shows editing, VQA and localization after fine-tuning.",
+   "notes": "Text-to-image is evaluated with FID on 30K MS-COCO prompts and understanding with captioning (BLIP2-ITM) and MMLU for language retention; most experiments use LLaMA-3 1B and 3B models with an 8B variant trained for 200K steps. Training uses batches of 0.8M tokens for 100K steps, with loss weights 0.2 for text and 1 for diffusion. The project page and paper do not link code; no repository was found at review time.",
+   "variants": [
+    "X-Fusion (LLaMA-3.2-1B)",
+    "X-Fusion (LLaMA-3.2-3B)",
+    "X-Fusion (LLaMA-3.1-8B)"
+   ],
+   "source_date": "2025-04-29",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "X-Fusion: Introducing New Modality to Frozen Large Language Models",
+     "url": "https://arxiv.org/abs/2504.20996",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "project",
+     "title": "X-Fusion project page",
+     "url": "https://sichengmo.github.io/XFusion/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },

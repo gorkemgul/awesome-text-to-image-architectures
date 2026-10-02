@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**58 model families · 58 papers · 52 new catalog entries · Reviewed 2026-09-29**
+**72 model families · 72 papers · 62 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **34** have author-linked GitHub sources; **24** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **52** images come from primary sources; **6** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **43** have author-linked GitHub sources; **29** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **65** images come from primary sources; **7** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,12 +19,12 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 58 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1818 |
+| Included | 72 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1827 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 770 |
 | No distinct text-to-image system identified in the reviewed source | 1 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1150 |
-| Not yet screened | 423 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1153 |
+| Not yet screened | 397 |
 
 </details>
 
@@ -86,8 +86,22 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [oboro:](#oboro)
 - [FIBO](#fibo)
 - [Muddit](#muddit)
+- [X-Fusion](#x-fusion)
+- [SimpleAR](#simplear)
+- [Omni-Dish](#omni-dish)
+- [PixelFlow](#pixelflow)
+- [VARGPT-v1.1](#vargpt-v1-1)
+- [UGen](#ugen)
+- [Lumina-Image 2.0](#lumina-image-2)
+- [UniDisc](#unidisc)
+- [LongTextAR](#longtextar)
+- [Emuru](#emuru)
+- [UniVG](#univg)
+- [GoT](#got)
 - [FlowTok](#flowtok)
 - [DiT-Air](#dit-air)
+- [SANA-Sprint](#sana-sprint)
+- [NAMI](#nami)
 - [MaskGen](#maskgen)
 
 </details>
@@ -864,6 +878,174 @@ Muddit ("Meissonic II") is a second-generation unified discrete diffusion model 
 
 *Figure 2 · [Image source](https://arxiv.org/abs/2505.23606)*
 
+<a id="x-fusion"></a>
+
+### X-Fusion
+
+**First paper submission:** 2025-04-29 · [Architecture card](../models/unified.md#x-fusion)
+
+X-Fusion (UCLA, UW-Madison and Adobe Research) adds image understanding and generation to a pretrained LLM without changing its language weights. Each transformer layer has the frozen text block and a separate trainable vision block copied from it, and their outputs are merged per token according to modality. Images are encoded by the SD1.5 VAE, patchified and processed with a flow-matching loss in the style of Stable Diffusion 3, while text is trained with the usual next-token loss. The paper compares this dual-tower design with single-tower, gated-layer and dual-projection alternatives on LLaMA-3.2-1B and reports the best generation and understanding quality for the dual tower. It also studies data mix, noise in image-to-text samples and feature alignment, and shows editing, VQA and localization after fine-tuning.
+
+[Paper](https://arxiv.org/abs/2504.20996) · [Project](https://sichengmo.github.io/XFusion/) · GitHub: no author-linked repository found
+
+![X-Fusion — Figure 1](../assets/architectures/x-fusion.png)
+
+*Figure 1 · [Image source](https://arxiv.org/abs/2504.20996)*
+
+<a id="simplear"></a>
+
+### SimpleAR
+
+**First paper submission:** 2025-04-15 · [Architecture card](../models/ar-token.md#simplear)
+
+SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a Qwen-architecture decoder-only transformer predicts discrete Cosmos-Tokenizer image tokens after text tokens with no bespoke visual modules, and the authors show that adding supervised fine-tuning on curated data and a GRPO reinforcement-learning stage with CLIP-based rewards lets a 0.5-1.5B model reach competitive GenEval and DPG scores, while vLLM serving makes 1024px sampling practical in seconds.
+
+[Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
+
+![SimpleAR — Editorial input/output diagram](../assets/architectures/simplear.svg)
+
+*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2504.11455)*
+
+<a id="omni-dish"></a>
+
+### Omni-Dish
+
+**First paper submission:** 2025-04-14 · [Architecture card](../models/dit.md#omni-dish)
+
+Omni-Dish (Meituan and Beihang University) is described as the first text-to-image model tailored to Chinese dishes. It adopts the FLUX architecture at 7B parameters, swaps the text encoder for Qwen2.5-7B so that Chinese prompts work, and trains on about 100M dish name-image pairs after name correction and quality tagging. Training first teaches dish concepts from names with tags, then adds VLLM recaptions, then fine-tunes on manually annotated high-quality data and applies DPO on human preferences. At inference a library of high-quality captions and an LLM expand a short dish name into a detailed caption. For editing, Concept-Enhanced Prompt-to-Prompt builds source-target pairs from the model, and an editing model with extra input channels for the source image is trained on them mixed with general editing data.
+
+[Paper](https://arxiv.org/abs/2504.09948) · [GitHub](https://github.com/LiuHuijie6410/OmniDish) · [Project](https://liuhuijie6410.github.io/OmniDish/)
+
+![Omni-Dish — Figure 4](../assets/architectures/omni-dish.png)
+
+*Figure 4 · [Image source](https://arxiv.org/abs/2504.09948)*
+
+<a id="pixelflow"></a>
+
+### PixelFlow
+
+**First paper submission:** 2025-04-10 · [Architecture card](../models/pixel-diffusion.md#pixelflow)
+
+PixelFlow (HKU and Adobe) generates images directly in raw pixels instead of an autoencoder latent, so the whole model is trained end to end. Its cost stays manageable because early, high-noise steps run at low resolution: the generation interval is split into stages, and at each stage the still-noisy result of the previous stage is upsampled and used as the starting point for flow matching at the next resolution. A single DiT-XL-style transformer handles every stage, with a resolution embedding, 2D RoPE and sequence packing for mixed resolutions. For text-to-image generation, cross-attention to Flan-T5-XL embeddings follows every self-attention layer; the paper reports benchmark results for a 512×512 model and also shows 1024×1024 samples.
+
+[Paper](https://arxiv.org/abs/2504.07963) · [GitHub](https://github.com/ShoufaChen/PixelFlow) · [Model card](https://huggingface.co/ShoufaChen/PixelFlow-Text2Image)
+
+![PixelFlow — Figure 2](../assets/architectures/pixelflow.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2504.07963)*
+
+<a id="vargpt-v1-1"></a>
+
+### VARGPT-v1.1
+
+**First paper submission:** 2025-04-03 · [Architecture card](../models/unified.md#vargpt-v1-1)
+
+VARGPT-v1.1 (Peking University and CUHK) is a unified visual autoregressive model that understands images by next-token prediction and generates them by next-scale prediction in the style of VAR and Infinity. It upgrades the earlier VARGPT with a Qwen2-7B backbone, a multi-scale bitwise tokenizer with an infinite-vocabulary classifier, and an extra 2B visual decoder initialized from Infinity-2B. Training runs in stages: pretraining of the generation mapper, supervised fine-tuning at 256 and then 512 pixels, and iterative rounds of instruction tuning and direct preference optimization with 8.3M visual-generation instruction pairs. A further SFT on about 11K StyleBooth pairs gives image editing without architectural change. The paper reports results on multimodal understanding benchmarks and on GenEval and DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2504.02949) · [GitHub](https://github.com/VARGPT-family/VARGPT-v1.1) · [Model card](https://huggingface.co/VARGPT-family/VARGPT-v1.1) · [Project](https://vargpt1-1.github.io/)
+
+![VARGPT-v1.1 — Figure 4 (PDF p. 4)](../assets/architectures/vargpt-v1-1.png)
+
+*Figure 4 (PDF p. 4) · [Image source](https://arxiv.org/abs/2504.02949)*
+
+<a id="ugen"></a>
+
+### UGen
+
+**First paper submission:** 2025-03-27 · [Architecture card](../models/unified.md#ugen)
+
+UGen (Baidu) is a unified autoregressive model for text processing, image understanding and text-to-image generation that keeps the plain decoder-only design and changes how the vocabulary is trained. Text and images are converted to discrete tokens (an SBER-MoVQGAN with a 16,384-entry codebook and 8× compression for 256×256 images), and one transformer predicts all of them. Starting from a TinyLlama checkpoint, the new visual embeddings are initialized randomly. Because training with the full visual vocabulary hurts the other tasks, progressive vocabulary learning activates the visual token IDs in stages during training. The paper reports a 13.3% overall improvement over a vanilla unified autoregressive baseline and competitive results against task-specific models.
+
+[Paper](https://arxiv.org/abs/2503.21193) · GitHub: no author-linked repository found
+
+![UGen — Figure 2](../assets/architectures/ugen.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.21193)*
+
+<a id="lumina-image-2"></a>
+
+### Lumina-Image 2.0
+
+**First paper submission:** 2025-03-27 · [Architecture card](../models/dit.md#lumina-image-2)
+
+Lumina-Image 2.0 is Alpha-VLLM's follow-up to the Lumina-Next diffusion transformer, redesigning how text and image tokens interact. Instead of cross-attention or the two-stream joint-attention blocks used by Stable Diffusion 3 and FLUX, it concatenates Gemma2-encoded text tokens and noised image tokens into a single sequence and lets one set of self-attention layers ('Unified Next-DiT') attend across both, which the authors argue improves text-image interaction and simplifies extending the model to new tasks. Training data quality comes from a purpose-built captioning pipeline (UniCap) that fine-tunes vision-language models to produce detailed, multi-granularity, bilingual captions rather than relying on off-the-shelf alt text. The 2.6B-parameter model and code were released under Apache-2.0.
+
+[Paper](https://arxiv.org/abs/2503.21758) · [GitHub](https://github.com/Alpha-VLLM/Lumina-Image-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-Image-2.0)
+
+![Lumina-Image 2.0 — Figure 2](../assets/architectures/lumina-image-2.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.21758)*
+
+<a id="unidisc"></a>
+
+### UniDisc
+
+**First paper submission:** 2025-03-26 · [Architecture card](../models/unified.md#unidisc)
+
+UniDisc (Carnegie Mellon University) replaces the autoregressive objective of unified multimodal models with masked discrete diffusion over a joint text and image vocabulary. Text is tokenized with a Llama tokenizer and 256×256 images with a lookup-free-quantization tokenizer. A bidirectional transformer with 2D RoPE for image tokens, 1D RoPE for text and modality embeddings predicts masked tokens of both modalities, and classifier-free guidance comes from masking an entire modality during training. The same model generates an image from text, a caption from an image, or inpaints image and text jointly, and the authors compare it with a matched autoregressive baseline in scaling, FID/CLIP, inference-cost and reasoning tests.
+
+[Paper](https://arxiv.org/abs/2503.20853) · [GitHub](https://github.com/alexanderswerdlow/unidisc) · [Project](https://unidisc.github.io) · [Model card](https://huggingface.co/aswerdlow/unidisc_interleaved)
+
+![UniDisc — Figure 2](../assets/architectures/unidisc.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.20853)*
+
+<a id="longtextar"></a>
+
+### LongTextAR
+
+**First paper submission:** 2025-03-26 · [Architecture card](../models/ar-token.md#longtextar)
+
+LongTextAR (Central South University and Microsoft) targets images containing paragraphs of text, such as slides and documents, which short-prompt text-to-image systems render poorly. The authors first find that VQ image tokenizers in autoregressive models, such as Chameleon's, lose text detail, and then train TextBinarizer, a binary tokenizer that avoids a codebook embedding and reconstructs dense text better. The autoregressive model uses a Llama2-based language model with a 65,536-entry BPE vocabulary whose first entries are allocated to the visual tokens; only the visual-token embeddings are updated, so the language model's text handling is kept. The paper reports gains over SD3.5 Large and GPT-4o with DALL-E 3 on long-text OCR accuracy and F-measure, controllable font, size, colour and alignment, and an interleaved slide-generation demonstration.
+
+[Paper](https://arxiv.org/abs/2503.20198) · [Project](https://fingerrec.github.io/longtextar) · GitHub: no author-linked repository found
+
+![LongTextAR — Figure 3](../assets/architectures/longtextar.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2503.20198)*
+
+<a id="emuru"></a>
+
+### Emuru
+
+**First paper submission:** 2025-03-21 · [Architecture card](../models/continuous-ar.md#emuru)
+
+Emuru (University of Modena and Reggio Emilia and Google) is a domain-specific generator for styled text images: given a string and a reference style image such as a font or a person's handwriting, it renders the string in that style. A VAE with auxiliary text-recognition and writer-identification losses maps a text-line image to a variable-length sequence of continuous vectors, one per image column. A T5-Large encoder-decoder with linear adapters then predicts these vectors one at a time, with the encoder reading the text and the decoder reading the style latents, and the VAE decoder turns the sequence into a background-free image. Both stages are trained only on synthetic renderings of English text in over 100,000 typewritten and calligraphic fonts, and the paper reports zero-shot generation of unseen fonts and handwriting for lines of any length.
+
+[Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru)
+
+![Emuru — Figure 2](../assets/architectures/emuru.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.17074)*
+
+<a id="univg"></a>
+
+### UniVG
+
+**First paper submission:** 2025-03-16 · [Architecture card](../models/dit.md#univg)
+
+UniVG (Apple) is a generalist diffusion model that serves text-to-image generation, inpainting and outpainting, instruction-based editing, identity-preserving generation, layout-guided generation, depth estimation, pose estimation and referring segmentation with one set of weights. It keeps the MM-DiT design nearly unchanged: the noisy latent is concatenated along channels with the VAE latent of an input image and a resized mask, and other conditions such as layout or a face embedding replace placeholder tokens in the prompt embeddings. Training is progressive: text-to-image foundation training from scratch, multi-task training, then a separate stage for identity preservation to avoid forgetting. The paper studies data mixing and finds that editing and text-to-image can coexist without loss in text-to-image quality.
+
+[Paper](https://arxiv.org/abs/2503.12652) · GitHub: no author-linked repository found
+
+![UniVG — Figure 2](../assets/architectures/univg.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.12652)*
+
+<a id="got"></a>
+
+### GoT
+
+**First paper submission:** 2025-03-13 · [Architecture card](../models/latent-unet.md#got)
+
+GoT (Generation Chain-of-Thought; CUHK MMLab, HKU, SenseTime and collaborators) makes an MLLM reason about a prompt before an image is drawn. Given a caption or an editing instruction, the MLLM writes a step-by-step description of objects, attributes and relations with explicit bounding-box coordinates. Its hidden states for 64 special image tokens become semantic guidance for the diffusion module, and the boxes are rendered as colour-coded masks that serve as spatial guidance. For editing, the source image is a third, reference-image pathway in the manner of InstructPix2Pix. The diffusion module follows SDXL and is optimized together with the MLLM through a joint cross-entropy and diffusion loss. Users can edit the generated chain, such as moving a box, to change the image. The authors build over 8M GoT-annotated image pairs for training.
+
+[Paper](https://arxiv.org/abs/2503.10639) · [GitHub](https://github.com/rongyaofang/GoT) · [Model card](https://huggingface.co/LucasFang/GoT-6B)
+
+![GoT — Figure 3](../assets/architectures/got.png)
+
+*Figure 3 · [Image source](https://arxiv.org/abs/2503.10639)*
+
 <a id="flowtok"></a>
 
 ### FlowTok
@@ -891,6 +1073,34 @@ DiT-Air (Apple) is an empirical study of architectural choices for text-to-image
 ![DiT-Air — Figure 4 (Simple DiT variant)](../assets/architectures/dit-air.png)
 
 *Figure 4 (Simple DiT variant) · [Image source](https://arxiv.org/abs/2503.10618)*
+
+<a id="sana-sprint"></a>
+
+### SANA-Sprint
+
+**First paper submission:** 2025-03-12 · [Architecture card](../models/efficient.md#sana-sprint)
+
+SANA-Sprint (NVIDIA, MIT, Tsinghua and Hugging Face, 2025) makes the SANA text-to-image transformer generate 1024×1024 images in one to four steps, about 0.1 s on an H100. Continuous-time consistency models require a TrigFlow parameterization, so the paper converts the pretrained flow-matching SANA model to TrigFlow by transforming its inputs and outputs mathematically instead of pretraining a new model. The student is then trained with an sCM loss that keeps it consistent with the teacher's trajectory and a LADD-style GAN loss, with discriminator heads on the frozen teacher's features, that sharpens one-step samples. A single model serves all step counts from one to four. The paper also combines SANA-Sprint with ControlNet for interactive generation.
+
+[Paper](https://arxiv.org/abs/2503.09641) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_Sprint_1.6B_1024px) · [Project](https://nvlabs.github.io/Sana/Sprint/)
+
+![SANA-Sprint — Figure 2](../assets/architectures/sana-sprint.png)
+
+*Figure 2 · [Image source](https://arxiv.org/abs/2503.09641)*
+
+<a id="nami"></a>
+
+### NAMI
+
+**First paper submission:** 2025-03-12 · [Architecture card](../models/dit.md#nami)
+
+NAMI (360 AI Research and Tsinghua University) is a 2B-parameter text-to-image model built to cut the inference cost of large flow transformers. It splits the rectified flow into time windows, one per resolution, in the manner of pyramid flow matching. Early windows run at low resolution with only a subset of the transformer layers, since they mainly set layout and coarse concepts, and more layers are added as resolution rises. A BridgeFlow module aligns the upsampled end point of one stage with the starting point of the next. Training uses multiple resolutions per batch. The paper reports a 64% reduction in 1024-pixel inference time against a same-size Flux-style baseline and also introduces the NAMI-1K human-preference benchmark.
+
+[Paper](https://arxiv.org/abs/2503.09242) · GitHub: no author-linked repository found
+
+![NAMI — Figure 4](../assets/architectures/nami.png)
+
+*Figure 4 · [Image source](https://arxiv.org/abs/2503.09242)*
 
 <a id="maskgen"></a>
 

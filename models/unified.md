@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**74 models · Reviewed 2026-09-29**
+**78 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -83,13 +83,17 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Tar](#tar) | 2025-06-23 | T, I → T, I | generation |
 | [TMDM-3B](#tmdm-3b) | 2026-02-25 | T, I, A → T, I, A | generation |
 | [Transfusion](#transfusion) | 2024-08-20 | T, I → T, I | generation |
+| [UGen](#ugen) | 2025-03-27 | T, I → T, I | generation |
 | [UniDiffuser](#unidiffuser) | 2023-03-12 | T, I → T, I | generation |
+| [UniDisc](#unidisc) | 2025-03-26 | T, I → T, I | generation |
 | [Unified-IO](#unified-io) | 2022-06-17 | T, I → T, I | generation |
 | [Unified-IO 2](#unified-io-2) | 2023-12-28 | T, I, V, A → T, I, A | editing |
 | [UniSpace](#unispace) | 2026-08-09 | T, I → T, I | editing |
 | [UniWorld-V1](#uniworld) | 2025-06-03 | T, I → T, I | editing |
+| [VARGPT-v1.1](#vargpt-v1-1) | 2025-04-03 | T, I → T, I | editing |
 | [VILA-U](#vila-u) | 2024-09-06 | T, I, V → T, I, V | generation |
 | [VL-GPT](#vl-gpt) | 2023-12-14 | T, I → T, I | generation |
+| [X-Fusion](#x-fusion) | 2025-04-29 | T, I → T, I | generation |
 | [X-Omni](#x-omni) | 2025-07-29 | T, I → T, I | generation |
 
 </details>
@@ -1810,6 +1814,31 @@ Images are encoded by a pretrained VAE (an 86M-parameter VAE trained by the auth
 
 </details>
 
+<a id="ugen"></a>
+
+### UGen
+
+Single TinyLlama-1.1B-initialized autoregressive transformer over discrete text tokens and 16,384-code MoVQGAN image tokens, trained with progressive vocabulary learning in which visual token IDs are activated incrementally.
+
+UGen (Baidu) is a unified autoregressive model for text processing, image understanding and text-to-image generation that keeps the plain decoder-only design and changes how the vocabulary is trained. Text and images are converted to discrete tokens (an SBER-MoVQGAN with a 16,384-entry codebook and 8× compression for 256×256 images), and one transformer predicts all of them. Starting from a TinyLlama checkpoint, the new visual embeddings are initialized randomly. Because training with the full visual vocabulary hurts the other tasks, progressive vocabulary learning activates the visual token IDs in stages during training. The paper reports a 13.3% overall improvement over a vanilla unified autoregressive baseline and competitive results against task-specific models.
+
+[Paper](https://arxiv.org/abs/2503.21193) · GitHub: no author-linked repository found
+
+![UGen — Figure 2](../assets/architectures/ugen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.21193)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Evaluation covers text benchmarks, image understanding (VQAv2 and others, with POPE) and image generation on GenEval. Training has a text pretraining stage, a multimodal stage with progressive activation and an instruction-tuning stage with all parameters tuned. The paper reports results at 256×256 resolution and does not link code in the text; no repository was found at review time.
+
+**Variants:** UGen.
+
+</details>
+
 <a id="unidiffuser"></a>
 
 ### UniDiffuser
@@ -1834,6 +1863,31 @@ Images are encoded to latents with the Stable Diffusion autoencoder and further 
 **License:** code: AGPL-3.0; weights: AGPL-3.0.
 
 **Variants:** UniDiffuser-v0; UniDiffuser-v1.
+
+</details>
+
+<a id="unidisc"></a>
+
+### UniDisc
+
+Bidirectional decoder-only transformer that models text tokens and LFQ image tokens in one discrete diffusion process with random masking, evaluated for text-to-image, captioning, joint inpainting, retrieval and VQA.
+
+UniDisc (Carnegie Mellon University) replaces the autoregressive objective of unified multimodal models with masked discrete diffusion over a joint text and image vocabulary. Text is tokenized with a Llama tokenizer and 256×256 images with a lookup-free-quantization tokenizer. A bidirectional transformer with 2D RoPE for image tokens, 1D RoPE for text and modality embeddings predicts masked tokens of both modalities, and classifier-free guidance comes from masking an entire modality during training. The same model generates an image from text, a caption from an image, or inpaints image and text jointly, and the authors compare it with a matched autoregressive baseline in scaling, FID/CLIP, inference-cost and reasoning tests.
+
+[Paper](https://arxiv.org/abs/2503.20853) · [GitHub](https://github.com/alexanderswerdlow/unidisc) · [Project](https://unidisc.github.io) · [Model card](https://huggingface.co/aswerdlow/unidisc_interleaved)
+
+![UniDisc — Figure 2](../assets/architectures/unidisc.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.20853)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Controlled comparisons against a Chameleon-style autoregressive transformer use identical architecture, data and hyperparameters apart from the attention mask and loss; the paper reports better conditional-generation FID and CLIP and flexible inference trade-offs. Understanding is assessed through captioning, CLEVR-VQA and retrieval. A 1.4B-parameter model is trained in two stages on web-scale image-text data (250M pairs at 256×256 in the first stage). The released checkpoints on Hugging Face are an interleaved and a non-interleaved model; the repository has no LICENSE file and the model cards carry no license metadata, so no license is recorded.
+
+**Variants:** UniDisc 1.4B; unidisc_interleaved; unidisc_non_interleaved.
 
 </details>
 
@@ -1939,6 +1993,33 @@ Understanding is performed by the frozen Qwen2.5-VL-7B autoregressively; for gen
 
 </details>
 
+<a id="vargpt-v1-1"></a>
+
+### VARGPT-v1.1
+
+Qwen2-7B LLM with a ViT visual encoder and projector for next-token understanding, plus a 2B visual decoder initialized from Infinity-2B that predicts multi-scale bitwise image tokens (next-scale prediction) from LLM features through generation projectors.
+
+VARGPT-v1.1 (Peking University and CUHK) is a unified visual autoregressive model that understands images by next-token prediction and generates them by next-scale prediction in the style of VAR and Infinity. It upgrades the earlier VARGPT with a Qwen2-7B backbone, a multi-scale bitwise tokenizer with an infinite-vocabulary classifier, and an extra 2B visual decoder initialized from Infinity-2B. Training runs in stages: pretraining of the generation mapper, supervised fine-tuning at 256 and then 512 pixels, and iterative rounds of instruction tuning and direct preference optimization with 8.3M visual-generation instruction pairs. A further SFT on about 11K StyleBooth pairs gives image editing without architectural change. The paper reports results on multimodal understanding benchmarks and on GenEval and DPG-Bench.
+
+[Paper](https://arxiv.org/abs/2504.02949) · [GitHub](https://github.com/VARGPT-family/VARGPT-v1.1) · [Model card](https://huggingface.co/VARGPT-family/VARGPT-v1.1) · [Project](https://vargpt1-1.github.io/)
+
+![VARGPT-v1.1 — Figure 4 (PDF p. 4)](../assets/architectures/vargpt-v1-1.png)
+
+*Figure 4 (PDF p. 4) · [Source](https://arxiv.org/abs/2504.02949)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** editing
+
+Qwen2-VL-style understanding path (ViT encoder and two-layer projector) with a causal mask over all LLM tokens; the generation features pass through input and output projectors and the visual decoder, with classifier-free guidance at sampling (top-k 900, top-p 0.95). The README lists VARGPT-v1.1 (7B+2B) and an editing checkpoint on Hugging Face; the code is Apache-2.0 and the Hugging Face card lists apache-2.0. The editing ability comes from a small SFT set and is shown qualitatively.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** VARGPT-v1.1; VARGPT-v1.1-edit.
+
+</details>
+
 <a id="vila-u"></a>
 
 ### VILA-U
@@ -1988,6 +2069,31 @@ VL-GPT, from Xi'an Jiaotong University, Tencent AI Lab, ARC Lab (Tencent PCG) an
 The tokenizer's visual encoder is CLIP-L and the detokenizer's diffusion decoder uses the U-Net and VAE from IP-Adapter Plus; both stay frozen, and only the causal transformer and transformer decoder are trained. Each image is represented by N = 32 visual embeddings. The full model has about 7.5B parameters, with LoRA used during multimodal pretraining; instruction tuning data include InstructPix2Pix and MagicBrush editing data. The official repository states that the project was terminated and that code and weights will not be released, so the GitHub source contains no implementation.
 
 **License:** code: Apache-2.0.
+
+</details>
+
+<a id="x-fusion"></a>
+
+### X-Fusion
+
+Dual-tower transformer in which every layer pairs a frozen pretrained LLaMA-3 text block with a trainable vision block initialized from it, predicting text tokens with cross-entropy and flow-matching image latents (SD1.5 VAE, 2×2 patches) with a diffusion loss.
+
+X-Fusion (UCLA, UW-Madison and Adobe Research) adds image understanding and generation to a pretrained LLM without changing its language weights. Each transformer layer has the frozen text block and a separate trainable vision block copied from it, and their outputs are merged per token according to modality. Images are encoded by the SD1.5 VAE, patchified and processed with a flow-matching loss in the style of Stable Diffusion 3, while text is trained with the usual next-token loss. The paper compares this dual-tower design with single-tower, gated-layer and dual-projection alternatives on LLaMA-3.2-1B and reports the best generation and understanding quality for the dual tower. It also studies data mix, noise in image-to-text samples and feature alignment, and shows editing, VQA and localization after fine-tuning.
+
+[Paper](https://arxiv.org/abs/2504.20996) · [Project](https://sichengmo.github.io/XFusion/) · GitHub: no author-linked repository found
+
+![X-Fusion — Figure 1](../assets/architectures/x-fusion.png)
+
+*Figure 1 · [Source](https://arxiv.org/abs/2504.20996)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Text-to-image is evaluated with FID on 30K MS-COCO prompts and understanding with captioning (BLIP2-ITM) and MMLU for language retention; most experiments use LLaMA-3 1B and 3B models with an 8B variant trained for 200K steps. Training uses batches of 0.8M tokens for 100K steps, with loss weights 0.2 for text and 1 for diffusion. The project page and paper do not link code; no repository was found at review time.
+
+**Variants:** X-Fusion (LLaMA-3.2-1B); X-Fusion (LLaMA-3.2-3B); X-Fusion (LLaMA-3.1-8B).
 
 </details>
 

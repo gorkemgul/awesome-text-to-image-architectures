@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**59 models · Reviewed 2026-09-29**
+**62 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -51,9 +51,11 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [MMCORE](#mmcore) | 2026-04-21 | T, I → I | editing |
 | [MMFace-DiT](#mmface-dit) | 2026-03-30 | T → I | generation |
 | [Moonworks Lunara](#moonworks-lunara) | 2026-09-11 | T → I | generation |
+| [NAMI](#nami) | 2025-03-12 | T → I | generation |
 | [Nexus](#nexus) | 2026-08-17 | T → I | generation |
 | [Nucleus-Image](#nucleus-image) | 2026-04-14 | T → I | generation |
 | [oboro:](#oboro) | 2025-11-11 | T → I | generation |
+| [Omni-Dish](#omni-dish) | 2025-04-14 | T, I → I | editing |
 | [OmniGen](#omnigen) | 2024-09-17 | T, I → I | editing |
 | [Ovis-Image](#ovis-image) | 2025-11-28 | T → I | generation |
 | [PixArt-α](#pixart-alpha) | 2023-09-30 | T → I | generation |
@@ -74,6 +76,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [SVG-T2I](#svg-t2i) | 2025-12-12 | T → I | generation |
 | [Swift-Image](#swift-image) | 2026-08-20 | T, I → I | editing |
 | [TerraDiT](#terradit) | 2026-03-02 | T → I | generation |
+| [UniVG](#univg) | 2025-03-16 | T, I → I | editing |
 | [UniWorld-Design](#uniworld-design) | 2026-08-04 | T, I → I | editing |
 | [Z-Image](#z-image) | 2025-11-27 | T → I | generation |
 
@@ -967,6 +970,31 @@ Paper Figure 4 (PDF p. 7, overall architecture and training pipeline): text and 
 
 </details>
 
+<a id="nami"></a>
+
+### NAMI
+
+Flux-style MM-DiT rectified-flow transformer that generates in three resolution stages (256, 512, 1024 px), using fewer layers at low resolution and joining the stages with a BridgeFlow module, conditioned on mT5 and mCLIP text encoders.
+
+NAMI (360 AI Research and Tsinghua University) is a 2B-parameter text-to-image model built to cut the inference cost of large flow transformers. It splits the rectified flow into time windows, one per resolution, in the manner of pyramid flow matching. Early windows run at low resolution with only a subset of the transformer layers, since they mainly set layout and coarse concepts, and more layers are added as resolution rises. A BridgeFlow module aligns the upsampled end point of one stage with the starting point of the next. Training uses multiple resolutions per batch. The paper reports a 64% reduction in 1024-pixel inference time against a same-size Flux-style baseline and also introduces the NAMI-1K human-preference benchmark.
+
+[Paper](https://arxiv.org/abs/2503.09242) · GitHub: no author-linked repository found
+
+![NAMI — Figure 4](../assets/architectures/nami.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2503.09242)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The model uses MM-DiT blocks from FLUX with 22 layers, 2048 channels and 16 heads (2B parameters), with mT5 and mCLIP text encoders for multilingual prompts; a 0.6B version is used for ablations. K=3 stages at 256, 512 and 1024 px with time windows in a 1:1:1 ratio. The BridgeFlow modules are pretrained for about 10k steps before joint multi-resolution training on roughly 100M images from LAION and GRIT-20M plus 100K internal high-quality images. Reported on GenEval, DPG-Bench and NAMI-1K against open models. No code or weights link was found in the paper at review time.
+
+**Variants:** NAMI-2B; NAMI-0.6B (ablation scale).
+
+</details>
+
 <a id="nexus"></a>
 
 ### Nexus
@@ -1041,6 +1069,31 @@ Paper Figure 1: text and image inputs pass through encoders (T5-XXL text encoder
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
 **Variants:** oboro:base.
+
+</details>
+
+<a id="omni-dish"></a>
+
+### Omni-Dish
+
+7B Flux-architecture rectified-flow transformer with the frozen FLUX.1-dev VAE and a Qwen2.5-7B text encoder, trained in coarse-to-fine stages on 100M dish name-image pairs for Chinese dishes, plus a DiT editing variant trained on Omni-Dish-generated pairs.
+
+Omni-Dish (Meituan and Beihang University) is described as the first text-to-image model tailored to Chinese dishes. It adopts the FLUX architecture at 7B parameters, swaps the text encoder for Qwen2.5-7B so that Chinese prompts work, and trains on about 100M dish name-image pairs after name correction and quality tagging. Training first teaches dish concepts from names with tags, then adds VLLM recaptions, then fine-tunes on manually annotated high-quality data and applies DPO on human preferences. At inference a library of high-quality captions and an LLM expand a short dish name into a detailed caption. For editing, Concept-Enhanced Prompt-to-Prompt builds source-target pairs from the model, and an editing model with extra input channels for the source image is trained on them mixed with general editing data.
+
+[Paper](https://arxiv.org/abs/2504.09948) · [GitHub](https://github.com/LiuHuijie6410/OmniDish) · [Project](https://liuhuijie6410.github.io/OmniDish/)
+
+![Omni-Dish — Figure 4](../assets/architectures/omni-dish.png)
+
+*Figure 4 · [Source](https://arxiv.org/abs/2504.09948)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Model structure and training stages follow the paper (Table 1 has five stages, the last two on manually annotated data); the paper reports comparisons on dish generation and editing against general models. The project README documents the dish editing dataset (OmniDish-Edit-70K on Hugging Face) and its data loader; no model weights are listed there at review time, and the repository carries no license file.
+
+**Variants:** Omni-Dish; Omni-Dish editing model.
 
 </details>
 
@@ -1557,6 +1610,31 @@ Training is three-stage: unconditional generation, then text-conditioned generat
 **License:** code: Apache-2.0.
 
 **Variants:** TerraDiT-XL/2-alpha; TerraDiT-XL/2-Sigma.
+
+</details>
+
+<a id="univg"></a>
+
+### UniVG
+
+3.7B MM-DiT flow-matching model with a CLIP-bigG text encoder and an 8-channel VAE, trained from scratch on text-to-image and then multi-task data, where extra inputs enter by channel concatenation (source image, mask) or embedding replacement (external condition tokens).
+
+UniVG (Apple) is a generalist diffusion model that serves text-to-image generation, inpainting and outpainting, instruction-based editing, identity-preserving generation, layout-guided generation, depth estimation, pose estimation and referring segmentation with one set of weights. It keeps the MM-DiT design nearly unchanged: the noisy latent is concatenated along channels with the VAE latent of an input image and a resized mask, and other conditions such as layout or a face embedding replace placeholder tokens in the prompt embeddings. Training is progressive: text-to-image foundation training from scratch, multi-task training, then a separate stage for identity preservation to avoid forgetting. The paper studies data mixing and finds that editing and text-to-image can coexist without loss in text-to-image quality.
+
+[Paper](https://arxiv.org/abs/2503.12652) · GitHub: no author-linked repository found
+
+![UniVG — Figure 2](../assets/architectures/univg.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.12652)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+Stage I trains the MM-DiT from scratch on text-to-image (batch 512, 400K steps); stage II adds in/outpainting, instruction editing, auxiliary tasks and layout-guided generation for another 400K steps; stage III adds ID-preserving data. The model has 38 MM-DiT layers, hidden size 2432 and 38 heads (3.7B total); the text encoder and VAE are internal. Text-to-image is reported on GenEval (0.70), T2I-CompBench, DSG and HPSv2. Scale study uses B (416M), L (1.8B) and XL (3.7B) models. No code or weights link was found in the paper at review time; the paper mentions apple/axlearn only as a framework reference.
+
+**Variants:** UniVG-XL (3.7B); UniVG-L (1.8B, scaling study); UniVG-B (416M, scaling study).
 
 </details>
 

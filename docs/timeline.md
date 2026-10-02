@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 305 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 315 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -117,17 +117,27 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-05-14 | [BLIP3-o](../models/unified.md#blip3-o) | paper | [Paper](https://arxiv.org/abs/2505.09568) · [GitHub](https://github.com/JiuhaiChen/BLIP3o) · [Model card](https://huggingface.co/BLIP3o/BLIP3o-Model-8B) |
 | 2025-05-08 | [Mogao](../models/unified.md#mogao) | paper | [Paper](https://arxiv.org/abs/2505.05472) · GitHub: no author-linked repository found |
 | 2025-04-30 | [Nexus-Gen](../models/unified.md#nexus-gen) | paper | [Paper](https://arxiv.org/abs/2504.21356) · [GitHub](https://github.com/modelscope/Nexus-Gen) · [Model card](https://huggingface.co/modelscope/Nexus-Gen) |
+| 2025-04-29 | [X-Fusion](../models/unified.md#x-fusion) | paper | [Paper](https://arxiv.org/abs/2504.20996) · [Project](https://sichengmo.github.io/XFusion/) · GitHub: no author-linked repository found |
 | 2025-04-23 | [GPT Image 1](../models/api.md#gpt-image-1) | announcement | [Docs 1](https://developers.openai.com/api/docs/models/gpt-image-1) · [Docs 2](https://developers.openai.com/api/docs/models/gpt-image-1-mini) · [Docs 3](https://developers.openai.com/api/docs/models/gpt-image-1.5) · [Announcement](https://developers.openai.com/api/docs/changelog) |
 | 2025-04-15 | [SimpleAR](../models/ar-token.md#simplear) | paper | [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR) |
 | 2025-04-15 | [Seedream 3.0](../models/dit.md#seedream-3) | paper | [Paper](https://arxiv.org/abs/2504.11346) |
 | 2025-04-15 | [Kolors 2.0](../models/api.md#kolors-2) | announcement | [Announcement](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15) |
+| 2025-04-14 | [Omni-Dish](../models/dit.md#omni-dish) | paper | [Paper](https://arxiv.org/abs/2504.09948) · [GitHub](https://github.com/LiuHuijie6410/OmniDish) · [Project](https://liuhuijie6410.github.io/OmniDish/) |
 | 2025-04-10 | [PixelFlow](../models/pixel-diffusion.md#pixelflow) | paper | [Paper](https://arxiv.org/abs/2504.07963) · [GitHub](https://github.com/ShoufaChen/PixelFlow) · [Model card](https://huggingface.co/ShoufaChen/PixelFlow-Text2Image) |
 | 2025-04-08 | [MetaQuery](../models/unified.md#metaquery) | paper | [Paper](https://arxiv.org/abs/2504.06256) · [GitHub](https://github.com/facebookresearch/metaquery) |
+| 2025-04-03 | [VARGPT-v1.1](../models/unified.md#vargpt-v1-1) | paper | [Paper](https://arxiv.org/abs/2504.02949) · [GitHub](https://github.com/VARGPT-family/VARGPT-v1.1) · [Model card](https://huggingface.co/VARGPT-family/VARGPT-v1.1) · [Project](https://vargpt1-1.github.io/) |
 | 2025-04-02 | [ILLUME+](../models/unified.md#illume-plus) | paper | [Paper](https://arxiv.org/abs/2504.01934) · [GitHub](https://github.com/illume-unified-mllm/ILLUME_plus) · [Model card](https://huggingface.co/ILLUME-MLLM/illume_plus-qwen2_5-3b-hf) |
+| 2025-03-27 | [UGen](../models/unified.md#ugen) | paper | [Paper](https://arxiv.org/abs/2503.21193) · GitHub: no author-linked repository found |
 | 2025-03-27 | [Lumina-Image 2.0](../models/dit.md#lumina-image-2) | paper | [Paper](https://arxiv.org/abs/2503.21758) · [GitHub](https://github.com/Alpha-VLLM/Lumina-Image-2.0) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-Image-2.0) |
+| 2025-03-26 | [UniDisc](../models/unified.md#unidisc) | paper | [Paper](https://arxiv.org/abs/2503.20853) · [GitHub](https://github.com/alexanderswerdlow/unidisc) · [Project](https://unidisc.github.io) · [Model card](https://huggingface.co/aswerdlow/unidisc_interleaved) |
+| 2025-03-26 | [LongTextAR](../models/ar-token.md#longtextar) | paper | [Paper](https://arxiv.org/abs/2503.20198) · [Project](https://fingerrec.github.io/longtextar) · GitHub: no author-linked repository found |
+| 2025-03-21 | [Emuru](../models/continuous-ar.md#emuru) | paper | [Paper](https://arxiv.org/abs/2503.17074) · [GitHub](https://github.com/aimagelab/Emuru-autoregressive-text-img) · [Model card](https://huggingface.co/blowing-up-groundhogs/emuru) |
+| 2025-03-16 | [UniVG](../models/dit.md#univg) | paper | [Paper](https://arxiv.org/abs/2503.12652) · GitHub: no author-linked repository found |
+| 2025-03-13 | [GoT](../models/latent-unet.md#got) | paper | [Paper](https://arxiv.org/abs/2503.10639) · [GitHub](https://github.com/rongyaofang/GoT) · [Model card](https://huggingface.co/LucasFang/GoT-6B) |
 | 2025-03-13 | [FlowTok](../models/dit.md#flowtok) | paper | [Paper](https://arxiv.org/abs/2503.10772) · [GitHub](https://github.com/TACJu/FlowTok) |
 | 2025-03-13 | [DiT-Air](../models/dit.md#dit-air) | paper | [Paper](https://arxiv.org/abs/2503.10618) · GitHub: no author-linked repository found |
 | 2025-03-12 | [SANA-Sprint](../models/efficient.md#sana-sprint) | paper | [Paper](https://arxiv.org/abs/2503.09641) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_Sprint_1.6B_1024px) · [Project](https://nvlabs.github.io/Sana/Sprint/) |
+| 2025-03-12 | [NAMI](../models/dit.md#nami) | paper | [Paper](https://arxiv.org/abs/2503.09242) · GitHub: no author-linked repository found |
 | 2025-03-12 | [Gemini native image generation](../models/api.md#gemini-image) | announcement | [Announcement 1](https://developers.googleblog.com/en/experiment-with-gemini-20-flash-native-image-generation/) · [Announcement 2](https://developers.googleblog.com/en/introducing-gemini-2-5-flash-image/) · [Announcement 3](https://blog.google/innovation-and-ai/products/nano-banana-pro/) · [Announcement 4](https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/) · [Announcement 5](https://cloud.google.com/blog/products/ai-machine-learning/nano-banana-2-lite-and-gemini-omni-flash-available) · [Model card 1](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Image-Model-Card.pdf) · [Model card 2](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Image-Model-Card.pdf) · [Model card 3](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Lite-Image-Model-Card.pdf) · [Docs](https://ai.google.dev/gemini-api/docs/image-generation) |
 | 2025-03-10 | [Seedream 2.0](../models/dit.md#seedream-2) | paper | [Paper](https://arxiv.org/abs/2503.07703) |
 | 2025-03-04 | [CogView4](../models/dit.md#cogview4) | announcement | [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4) |

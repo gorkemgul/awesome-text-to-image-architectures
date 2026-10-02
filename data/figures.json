@@ -541,6 +541,14 @@
    "locator": "Figure 3",
    "sha256": "6d8dc5ecadf750aeac3c1d266921df309ae9b6df99f4880aefba84d289103071"
   },
+  "emuru": {
+   "kind": "source-figure",
+   "path": "assets/architectures/emuru.png",
+   "source_url": "https://arxiv.org/abs/2503.17074",
+   "origin_url": "https://arxiv.org/html/2503.17074v2/overview.png",
+   "locator": "Figure 2",
+   "sha256": "cb1553485e6c7656bf9b93529e64162454a2e717ffadfaea25478dd8d9549df3"
+  },
   "ernie-image": {
    "kind": "io-diagram",
    "path": "assets/architectures/ernie-image.svg",
@@ -724,6 +732,14 @@
    "origin_url": "https://raw.githubusercontent.com/zai-org/GLM-Image/main/resources/architecture_1.jpeg",
    "locator": "README architecture figure (architecture_1)",
    "sha256": "6b57ad4117c95142b1061413b5cdebcb2693cb368e085e006cb678aac431b56e"
+  },
+  "got": {
+   "kind": "source-figure",
+   "path": "assets/architectures/got.png",
+   "source_url": "https://arxiv.org/abs/2503.10639",
+   "origin_url": "https://arxiv.org/html/2503.10639v1/main_figure.png",
+   "locator": "Figure 3",
+   "sha256": "fa6ac1ef365e59b8833fb5481797165c441fef0c04efdf8908d84725e4c86f1b"
   },
   "gpt-image-1": {
    "kind": "io-diagram",
@@ -1229,6 +1245,14 @@
    "locator": "Figure 2",
    "sha256": "480cd126d333f982669745ab2b15857252cc8517ad943e5ba688fd4016b3c240"
   },
+  "longtextar": {
+   "kind": "source-figure",
+   "path": "assets/architectures/longtextar.png",
+   "source_url": "https://arxiv.org/abs/2503.20198",
+   "origin_url": "https://arxiv.org/html/2503.20198v1/figures/src/main_ppl.png",
+   "locator": "Figure 3",
+   "sha256": "b8ad3e752839db259d92d7f242a79bb2cb6af0908332350387bc800effe48f2d"
+  },
   "luma-uni-1": {
    "kind": "io-diagram",
    "path": "assets/architectures/luma-uni-1.svg",
@@ -1557,6 +1581,14 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "nami": {
+   "kind": "source-figure",
+   "path": "assets/architectures/nami.png",
+   "source_url": "https://arxiv.org/abs/2503.09242",
+   "origin_url": "https://arxiv.org/html/2503.09242v3/images/method.png",
+   "locator": "Figure 4",
+   "sha256": "e7dca33a0105c080a0519f1cc115d11ed2753fa3eed1ff1ec4d7fe6532b5bbc0"
+  },
   "nemotron-labs-diffusion-image": {
    "kind": "source-figure",
    "path": "assets/architectures/nemotron-labs-diffusion-image.png",
@@ -1652,6 +1684,14 @@
    "origin_url": "https://arxiv.org/html/2202.03052v2/M6U_new_0126_v3.png",
    "locator": "Figure 2",
    "sha256": "2555708735137eeb1e9d6aed29ae4be12c7f8500dd0ed2c09146c4c507c419c6"
+  },
+  "omni-dish": {
+   "kind": "source-figure",
+   "path": "assets/architectures/omni-dish.png",
+   "source_url": "https://arxiv.org/abs/2504.09948",
+   "origin_url": "https://arxiv.org/html/2504.09948v3/overveiw_15.png",
+   "locator": "Figure 4",
+   "sha256": "29e44c59e228c17426f3f433f865de4ffc37bba09b6fdd9f173f865deac25759"
   },
   "omnigen": {
    "kind": "source-figure",
@@ -2337,6 +2377,14 @@
    "locator": "Figure 3",
    "sha256": "26245118225cf5d4be91b9e38ed959bf49aa809e1fd99741df1e0d627ef8a605"
   },
+  "ugen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/ugen.png",
+   "source_url": "https://arxiv.org/abs/2503.21193",
+   "origin_url": "https://arxiv.org/html/2503.21193v1/ugen-arc-vob-tit-vt.png",
+   "locator": "Figure 2",
+   "sha256": "4666408e53da5abbda68500beab943748e70fd2cd451afcaca6dfff33dfec4cb"
+  },
   "unidiffuser": {
    "kind": "source-figure",
    "path": "assets/architectures/unidiffuser.png",
@@ -2344,6 +2392,14 @@
    "origin_url": "https://arxiv.org/html/2303.06555v2/pipeline.png",
    "locator": "Figure 4",
    "sha256": "665a6c2109e09a200110f832e88d3f5fa06a58bb0e432abfb0729cf0533e3a04"
+  },
+  "unidisc": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unidisc.png",
+   "source_url": "https://arxiv.org/abs/2503.20853",
+   "origin_url": "https://arxiv.org/html/2503.20853v1/method_figure.png",
+   "locator": "Figure 2",
+   "sha256": "0cc907df23489c9cd0335dc084d5db3e45f35da2577d3dd443b210ca9eda81eb"
   },
   "unified-io": {
    "kind": "source-figure",
@@ -2377,6 +2433,14 @@
    "locator": "Figure 3",
    "sha256": "e088805f066d22b607824d17c7599f76b4664be83d7c722a7c686ae36b42bf2d"
   },
+  "univg": {
+   "kind": "source-figure",
+   "path": "assets/architectures/univg.png",
+   "source_url": "https://arxiv.org/abs/2503.12652",
+   "origin_url": "https://arxiv.org/html/2503.12652v2/_img/architecture.png",
+   "locator": "Figure 2",
+   "sha256": "9ee7fdab494350c9adaa389c30d0969a0a6ac9ce9d215094544603f73aef0d75"
+  },
   "uniworld": {
    "kind": "source-figure",
    "path": "assets/architectures/uniworld.png",
@@ -2400,6 +2464,14 @@
    "origin_url": "https://arxiv.org/html/2210.16031v3/architecture.png",
    "locator": "Figure 2",
    "sha256": "544eab7d4c7797b862f0364fefca9e46b34723f012eca6113ff9dd7d024529c9"
+  },
+  "vargpt-v1-1": {
+   "kind": "source-figure",
+   "path": "assets/architectures/vargpt-v1-1.png",
+   "source_url": "https://arxiv.org/abs/2504.02949",
+   "origin_url": "https://arxiv.org/pdf/2504.02949v1",
+   "locator": "Figure 4 (PDF p. 4)",
+   "sha256": "1bb0a1c43631e9d291ed339afdd6659f8ac1fa4c1760d409100bf9cc4b85b101"
   },
   "versatile-diffusion": {
    "kind": "source-figure",
@@ -2440,6 +2512,14 @@
    "origin_url": "https://arxiv.org/html/2306.00637v2/Wuerstchen_inference_cropped.png",
    "locator": "Figure 2",
    "sha256": "c96140f2dd889bc036292a3106e0b560cf61ece9452635835dd84db8e4004cf8"
+  },
+  "x-fusion": {
+   "kind": "source-figure",
+   "path": "assets/architectures/x-fusion.png",
+   "source_url": "https://arxiv.org/abs/2504.20996",
+   "origin_url": "https://arxiv.org/html/2504.20996v1/dualtower_7.png",
+   "locator": "Figure 1",
+   "sha256": "fd4b5595c2966a856fe71cd3f847abd7ec253b092c772535c48c5e87360412d9"
   },
   "x-lxmert": {
    "kind": "source-figure",

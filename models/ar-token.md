@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**23 models · Reviewed 2026-09-29**
+**24 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -27,6 +27,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Infinity](#infinity) | 2024-12-05 | T → I | generation |
 | [L-Verse](#l-verse) | 2021-11-22 | T, I → T, I | generation |
 | [LlamaGen](#llamagen) | 2024-06-10 | T → I | generation |
+| [LongTextAR](#longtextar) | 2025-03-26 | T → I | generation |
 | [Lumina-mGPT](#lumina-mgpt) | 2024-08-05 | T → I | generation |
 | [Lumina-mGPT 2.0](#lumina-mgpt-2) | 2025-07-23 | T, I → I | editing |
 | [M6](#m6) | 2021-03-01 | T → I | generation |
@@ -296,6 +297,31 @@ LlamaGen reuses the Llama large-language-model architecture unmodified (RMSNorm,
 **License:** code: MIT; weights: mit.
 
 Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+</details>
+
+<a id="longtextar"></a>
+
+### LongTextAR
+
+Llama2-based autoregressive decoder over a hybrid BPE vocabulary whose visual part is a TextBinarizer tokenizer (a lookup-free binary quantizer of 8192 or 65536 codes built for dense text), generating images that render long passages from a text prompt.
+
+LongTextAR (Central South University and Microsoft) targets images containing paragraphs of text, such as slides and documents, which short-prompt text-to-image systems render poorly. The authors first find that VQ image tokenizers in autoregressive models, such as Chameleon's, lose text detail, and then train TextBinarizer, a binary tokenizer that avoids a codebook embedding and reconstructs dense text better. The autoregressive model uses a Llama2-based language model with a 65,536-entry BPE vocabulary whose first entries are allocated to the visual tokens; only the visual-token embeddings are updated, so the language model's text handling is kept. The paper reports gains over SD3.5 Large and GPT-4o with DALL-E 3 on long-text OCR accuracy and F-measure, controllable font, size, colour and alignment, and an interleaved slide-generation demonstration.
+
+[Paper](https://arxiv.org/abs/2503.20198) · [Project](https://fingerrec.github.io/longtextar) · GitHub: no author-linked repository found
+
+![LongTextAR — Figure 3](../assets/architectures/longtextar.png)
+
+*Figure 3 · [Source](https://arxiv.org/abs/2503.20198)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The tokenizer is trained on an 11M-image set of PDF pages, documents and generated text images; the language model is trained on subsets of RenderedText, Marion10M, LAION-COCO, AnyWords3M and the CleanTextSynth part of TextAtlas5M, with 10% held out for testing. The training objective is masked prediction of the image tokens given the prompt. The model size is not stated in the paper. The project page lists GitHub as coming soon, and no repository was found at review time.
+
+**Variants:** LongTextAR.
 
 </details>
 
