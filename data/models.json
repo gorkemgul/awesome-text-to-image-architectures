@@ -377,6 +377,45 @@
    ]
   },
   {
+   "id": "art-multilayer",
+   "name": "ART (Anonymous Region Transformer)",
+   "category": "dit",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "FLUX.1-dev MMDiT adapted to generate a variable number of RGBA layers jointly from a global prompt and an anonymous region layout, with layout-conditioned multi-layer 3D RoPE, layer-wise region crop of visual tokens and a ViT-based multi-layer transparency autoencoder",
+   "description": "ART (Microsoft Research Asia with Tsinghua, Peking and USTC) generates multi-layer transparent images, such as graphic designs, from a global text prompt and an anonymous region layout: a set of bounding boxes with no per-region captions, so the model decides which text content belongs in which region. An MMDiT based on FLUX.1-dev is turned into a multi-layer generator by encoding each token's width, height and layer index in a layout-conditional 3D RoPE; a layer-wise region crop keeps only the visual tokens inside each region, which the authors report to be over 12 times faster than full attention and makes 50-plus layers practical. A separate multi-layer transparency autoencoder encodes and decodes the RGBA layers jointly with a ViT built on the frozen FLUX VAE. Layouts can be predicted from the prompt by a fine-tuned Llama-3.1-8B planner. The system is trained on a private dataset of about one million multi-layer transparent designs.",
+   "notes": "The output is a set of transparent layers plus the merged image, not a single flat image; the card therefore lists the composite image as the output. System-level experiments use FLUX.1-dev, and ablations train the MMDiT with LoRA (rank 64) at 512x512. The training data (MLTD, about 1M designs, average 11 layers, up to 50+) is private. The GitHub repository (MIT license) says that on 2025-07-23 its model weights, inference checkpoints and training code were removed because the training data may have come from illegal sources, so no weights are available through it. The project page linked in the paper no longer resolves. No weights license is stated.",
+   "variants": [],
+   "source_date": "2025-02-25",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": null
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "ART: Anonymous Region Transformer for Variable Multi-Layer Transparent Image Generation",
+     "url": "https://arxiv.org/abs/2502.18364",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "microsoft/art-msra — official repository",
+     "url": "https://github.com/microsoft/art-msra",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    }
+   ]
+  },
+  {
    "id": "attngan",
    "name": "AttnGAN",
    "category": "gan",
@@ -3564,6 +3603,35 @@
    ]
   },
   {
+   "id": "fox",
+   "name": "FoX",
+   "category": "unified",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Transfusion-style unified transformer with Functionality-oriented eXperts (FoXperts): separate Linguistic (Qwen2-0.5B-initialized), Semantic Vision and Generative Vision expert weights joined by shared multimodal attention, generating SD3-VAE latent patches with rectified-flow noise prediction, plus a multimodal chain-of-thought of planning, acting, reflection and correction",
+   "description": "FoX (Zhejiang University and Alibaba Group) is a unified generative model aimed at complex compositional text-to-image prompts. Its backbone, FoXperts, routes tokens to three expert sets by function instead of by modality: a Linguistic Expert shared by text understanding and generation, a Semantic Vision Expert for image understanding and a Generative Vision Expert for image generation, each with its own attention projections, FFN and layer norm and linked by a shared multimodal attention layer. Images are encoded with the SD3 VAE, 2x2 patches are merged into tokens in Transfusion fashion, and generation is trained with rectified-flow noise prediction. On top of this the paper introduces a Multimodal Chain of Thought for images, in which the model plans a dense caption and object layout, draws the image, predicts an artifact map of defective regions and inpaints those regions; the steps are trained as decoupled tasks so no multi-step data tuples are needed. The paper reports 0.77 on GenEval with 1.3B parameters and competitive MME, MMBench and VQAv2 understanding scores.",
+   "notes": "Training: stage I trains the Linguistic and Generative Vision experts on text-to-image at 256x256 (about 300M image-text pairs); stage II mixes text-to-image and image-to-text at 8:1 at 512x512 (about 120M generation and 20M understanding samples), with the Semantic Vision Expert initialized from the stage-I Generative Vision Expert. Chain-of-thought tasks (planning and acting, reflection, correction) are then trained jointly at a 1:1:1 ratio on about 100K samples each. Text output is evaluated through captioning and VQA; results include MS-COCO FID 7.24 and T2I-CompBench scores. Image input is used for understanding and for the correction step's masked-image inpainting rather than as a separate editing interface. No code or weights link was found in the paper.",
+   "variants": [],
+   "source_date": "2025-03-03",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Towards Enhanced Image Generation Via Multi-modal Chain of Thought in Unified Generative Models",
+     "url": "https://arxiv.org/abs/2503.01298",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "frido",
    "name": "Frido",
    "category": "latent-unet",
@@ -4040,6 +4108,55 @@
      "url": "https://huggingface.co/zai-org/GLM-Image",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "goku",
+   "name": "Goku",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I",
+    "V"
+   ],
+   "interaction": "generation",
+   "architecture": "Rectified-flow transformer in the GenTron/DiT style with full attention over packed image and video latents from a joint 3D image-video VAE, Flan-T5 cross-attention, adaLN-Zero timestep conditioning, 3D RoPE and QK-normalization, trained jointly for text-to-image and text-to-video",
+   "description": "Goku (HKU and ByteDance) is a family of joint image-and-video generation models built on rectified-flow transformers. Images and videos are encoded by one jointly trained 3D image-video VAE (8x8 spatial compression for images, plus 4x temporal compression for video) and packed into a single token sequence in the Patch n' Pack manner, so one network with full attention generates both. Each block follows GenTron: self-attention, cross-attention to Flan-T5 text embeddings, an FFN and adaLN-Zero timestep modulation, with added 3D RoPE and query-key RMSNorm. Training runs in stages: text-to-image pretraining, joint image-video learning at progressively higher resolution, then modality-specific fine-tuning. The paper reports 0.76 on GenEval and 83.65 on DPG-Bench for text-to-image, alongside 84.85 on VBench for text-to-video.",
+   "notes": "Sizes in the paper are Goku-2B (28 layers, width 1792, 28 heads) and Goku-8B (40 layers, width 3072, 48 heads); Goku-1B was used only for class-conditional ImageNet pilot experiments comparing rectified flow with DDPM. The reported text-to-image rows are for Goku-T2I (2B); GenEval is 0.70 with the original short prompts and 0.76 with prompts rewritten by ChatGPT-4o. Goku-T2V (8B) is fine-tuned from the pretrained Goku-T2I (8B) weights, and Goku-I2V adds the first-frame image as a channel-concatenated condition through one extra MLP layer, producing video rather than images. The GitHub repository contains configs and code and the README repeats the benchmark results; it has no license file and the README does not point to released checkpoints. No architecture overview figure is published in the paper, so the card uses a generated input/output diagram.",
+   "variants": [
+    "Goku-T2I (2B)",
+    "Goku-T2I (8B)",
+    "Goku-T2V (8B)",
+    "Goku-I2V"
+   ],
+   "source_date": "2025-02-07",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Goku: Flow Based Video Generative Foundation Models",
+     "url": "https://arxiv.org/abs/2502.04896",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "Saiyan-World/goku — official repository",
+     "url": "https://github.com/Saiyan-World/goku",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "project",
+     "title": "Goku project page",
+     "url": "https://saiyan-world.github.io/goku/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
     }
    ]
   },
@@ -6545,6 +6662,38 @@
    ]
   },
   {
+   "id": "laytongen",
+   "name": "LaytonGen",
+   "category": "ar-token",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "LlamaGen GPT-XL (675M) autoregressive transformer conditioned on Flan-T5-XL features that predicts 256 discrete tokens of the Layton Latent Consistency Tokenizer, whose decoder is a ControlNet-style adapted latent diffusion model distilled to 1-2 steps, giving 1024x1024 images",
+   "description": "LaytonGen (OPPO AI Center, Nankai and Tsinghua) is the text-to-image generator built on Layton, a tokenizer that represents a 1024x1024 image with only 256 discrete tokens. Layton quantizes features from a downsampled input with a LlamaGen-initialized encoder and codebook, and decodes them with a pretrained latent diffusion model whose frozen blocks are paired with trainable cloned blocks through zero convolutions (the LADD structure); a few-step consistency variant of the LDM (Hyper-SD or TLCM) lets the decoder be trained with a pixel reconstruction loss in one or two steps. LaytonGen then trains an autoregressive transformer with cross-entropy on the 256 tokens, taking text features from Flan-T5-XL through an MLP. Training images are 40M FLUX.1-dev samples re-captioned with Qwen2-VL and filtered with ImageReward and MPS. The paper reports a GenEval score of 0.73, compared with 0.32 for LlamaGen and a lower value for Show-o.",
+   "notes": "The tokenizer is the paper's main subject (10.8 rFID for 1024x1024 reconstruction on MSCOCO-2017 5K); LaytonGen is its text-to-image extension and is listed as a family with the variants LaytonGen-H, -H* and -T*, where H and T name the Hyper-SD or TLCM decoder and * marks tokenizers trained on synthetic data instead of ImageNet. The autoregressive model trains for 200K iterations with batch size 320 on 8 A100 GPUs. The paper's project link points to github.com/OPPO-Mente-Lab/Layton, which returned 404 on review, so no repository, license or weights could be verified.",
+   "variants": [
+    "LaytonGen-H",
+    "LaytonGen-H*",
+    "LaytonGen-T*"
+   ],
+   "source_date": "2025-03-11",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Layton: Latent Consistency Tokenizer for 1024-pixel Image Reconstruction and Generation by 256 Tokens",
+     "url": "https://arxiv.org/abs/2503.08377",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    }
+   ]
+  },
+  {
    "id": "lcm",
    "name": "Latent Consistency Models (LCM)",
    "category": "efficient",
@@ -6772,6 +6921,55 @@
      "url": "https://arxiv.org/abs/2510.22946",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "lightgen",
+   "name": "LightGen",
+   "category": "continuous-ar",
+   "inputs": [
+    "T"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "0.7B text-conditioned masked autoregressive model built on Fluid/MAR (masked encoder-decoder over continuous VAE tokens with a small diffusion MLP head), conditioned by cross-attention on T5-XXL features through a trainable text aligner, trained on a 2M-image synthetic dataset and refined with DPO",
+   "description": "LightGen (HKUST and Everlyn AI) is a compact text-to-image model trained to show that image generation does not need hundreds of millions of images or billions of parameters. It builds on Fluid's masked autoregressive design: images are encoded to continuous latents by a frozen VAE, patchified and randomly masked, a masked encoder-decoder predicts semantic tokens, and a tiny diffusion MLP turns them into image tokens under a diffusion loss. Text from a frozen T5-XXL encoder is aligned by a trainable text aligner and enters as keys and values of a cross-attention step, and interpolated positional embeddings allow several resolutions. The training data are synthetic: captions from understanding models are rendered into images by strong text-to-image models, giving about 2M images, and a final Direct Preference Optimization stage targets positional accuracy and fine detail. The paper reports GenEval 0.62 at 512x512 with 0.7B parameters and demonstrates zero-shot inpainting.",
+   "notes": "Pre-training runs 100k steps at 256x256 (batch size 2048) followed by fine-tuning at 512x512 with a tenth of the learning rate; the 256x256 GenEval overall is reported as 0.49 at 80k steps and 0.53 (both without DPO). The paper builds on the Fluid architecture rather than introducing a new backbone, so the distinctive contribution is the data-distillation and DPO training recipe at small scale. The repository README marks DPO post-processing code and the complete checkpoint as to-do items; the Hugging Face repository carries 256 and 512 checkpoints. The GitHub repository has an MIT LICENSE and the model card lists mit.",
+   "variants": [
+    "checkpoint-256",
+    "checkpoint-512"
+   ],
+   "source_date": "2025-03-11",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "mit"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "LightGen: Efficient Image Generation through Knowledge Distillation and Direct Preference Optimization",
+     "url": "https://arxiv.org/abs/2503.08619",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "XianfengWu01/LightGen — official repository",
+     "url": "https://github.com/XianfengWu01/LightGen",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "Beckham808/LightGen — model card",
+     "url": "https://huggingface.co/Beckham808/LightGen",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
     }
    ]
   },
@@ -7997,6 +8195,36 @@
      "url": "https://github.com/apple-aiml-research/ml-mdm",
      "reviewed_on": "2026-09-29",
      "review_level": "readme"
+    }
+   ]
+  },
+  {
+   "id": "medunifier",
+   "name": "MedUnifier",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Medical vision-language pre-training framework with a frozen ViT-g image encoder, a BERT-style image-text encoder using learnable query embeddings, a causal text generator for reports and a hierarchical two-level VQ-VAE image generator fed through latent adapters, trained with ITC, ITM, image-grounded text generation and text-grounded image generation losses",
+   "description": "MedUnifier (MedVisAI Lab, NTU and A*STAR) is a unified vision-and-language pre-training model for chest radiology that adds text-grounded image generation to the usual understanding objectives. A BERT-style encoder fuses learnable query embeddings with ViT-g visual features and report text, with different self-attention masks for image-text contrastive learning, image-text matching and causal report generation. For generation, the model uses discrete visual representations: latent adapters turn the encoder's text-informed top-level features and the bottom-level local features concatenated with the text representation into feature maps, which are vector-quantized by a two-level hierarchical VQ-VAE and decoded to a radiograph. New images are produced by sampling the two quantized latent levels from PixelSNAIL priors and decoding them. The model is pre-trained on MIMIC-CXR and evaluated on classification, retrieval, report generation and image generation.",
+   "notes": "Image generation is a secondary objective and is evaluated only with FID on reconstructed and synthetic MIMIC-CXR images (Table 5) and qualitative samples in the appendix, where the paper reports comparable FID with and without the generation module; images are 224x224 chest radiographs. Text outputs are radiology reports, evaluated with BLEU, METEOR and ROUGE-L. No code or weights link was found in the paper, so the card carries no repository source.",
+   "variants": [],
+   "source_date": "2025-03-02",
+   "source_date_kind": "paper",
+   "github_status": "not-found",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "MedUnifier: Unifying Vision-and-Language Pre-training on Medical Data with Vision Generation Task using Discrete Visual Representations",
+     "url": "https://arxiv.org/abs/2503.01019",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
     }
    ]
   },
@@ -9783,6 +10011,54 @@
      "kind": "model-card",
      "title": "OmniGen2/OmniGen2 — model card",
      "url": "https://huggingface.co/OmniGen2/OmniGen2",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "omnimamba",
+   "name": "OmniMamba",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Mamba-2-1.3B (48 layers) as a single next-token predictor for text and discrete LlamaGen VQ image tokens, with decoupled text and image vocabularies and heads, task-specific LoRA in each block's input projection, a DINOv2+SigLIP encoder for understanding inputs, and a decoupled two-stage training strategy",
+   "description": "OmniMamba (HUST and Horizon Robotics) is presented as the first unified multimodal understanding and generation model built on a linear-complexity state space model. A single Mamba-2-1.3B backbone predicts the next token for both text and images. Understanding inputs go through DINOv2 and SigLIP encoders and an MLP, while generation uses the discrete VQ tokenizer from LlamaGen. Decoupled vocabularies with separate text and image output heads constrain each modality's output space, and rank-8 task-specific LoRA modules (0.65% extra parameters) are switched between understanding and text-to-image tasks. Training is split into a module-specific pre-training stage with the Mamba-2 weights frozen and a joint fine-tuning stage, which addresses the imbalance between understanding and generation data. The paper trains on 2M image-text pairs and reports speedups of up to 119.2x and 63% lower GPU memory against Show-o for long-sequence generation.",
+   "notes": "Resolution is 384 for understanding inputs and 256 for generation. Visual generation is trained and evaluated on MS-COCO, where the paper reports an FID-30K of 5.95 (trained on 83K COCO images), alongside POPE, MME-P, VQAv2, GQA and MMMU understanding results against Show-o and JanusFlow. The GitHub repository contains a LICENSE file detected as MIT while its README badge says Apache 2.0; the Hugging Face model card lists MIT. Code and weights were released on 2025-03-19 per the README.",
+   "variants": [],
+   "source_date": "2025-03-11",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "MIT",
+    "weights": "mit"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "OmniMamba: Efficient and Unified Multimodal Understanding and Generation via State Space Models",
+     "url": "https://arxiv.org/abs/2503.08686",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "hustvl/OmniMamba — official repository",
+     "url": "https://github.com/hustvl/OmniMamba",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "hustvl/OmniMamba — model card",
+     "url": "https://huggingface.co/hustvl/OmniMamba",
      "reviewed_on": "2026-09-29",
      "review_level": "model-card"
     }
@@ -11877,7 +12153,8 @@
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
     }
-   ]
+   ],
+   "github_status": "not-found"
   },
   {
    "id": "seedream-3",
@@ -13439,6 +13716,63 @@
    ]
   },
   {
+   "id": "text2earth",
+   "name": "Text2Earth",
+   "category": "latent-unet",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "1.3B-parameter latent diffusion U-Net with an OpenCLIP ViT-H text encoder cross-attended in the U-Net and a resolution embedding added to the timestep embedding, trained on the 10.5M-pair Git-10M remote-sensing image-text dataset",
+   "description": "Text2Earth (Beihang University, with NUS) is a text-driven remote sensing image generator trained on Git-10M, a global-scale dataset of 10.5 million remote-sensing image-text pairs that records resolution and geospatial metadata. The model is a latent diffusion system: a VAE compresses images, an OpenCLIP ViT-H encoder supplies text embeddings through cross-attention, and a denoising U-Net predicts noise. Its distinguishing mechanism is a resolution guidance module that projects the requested ground resolution into an embedding added to the timestep embedding, so users can specify the image resolution. A dynamic condition adaptation strategy randomly drops the text and resolution conditions in training and mixes conditional and null predictions at sampling, in the manner of classifier-free guidance. A second variant takes a masked image concatenated to the latent for text-driven editing, inpainting and iterative outpainting of unbounded scenes.",
+   "notes": "The paper describes the U-Net as following the Stable Diffusion architecture and does not state whether weights were initialized from Stable Diffusion. Training used 8 A100 GPUs, batch size 1024 and 256x256 outputs, first on all of Git-10M and then fine-tuned on a high-quality subset. Two versions are described: Text2Earth_t (text and resolution to image) and Text2Earth_e (masked-image editing with an extra concatenated condition). The paper also demonstrates text-driven generation of panchromatic, near-infrared, SAR, low-resolution and foggy variants on an RSICD extension whose modalities were synthesized by conversion, plus image-to-image translation. Reported gains over earlier remote-sensing text-to-image models on the RSICD benchmark are +26.23 FID and +20.95% zero-shot classification accuracy. The repository ships Text2Earth and Text2Earth-inpainting checkpoints loadable through diffusers; the Hugging Face model card lists apache-2.0 and the GitHub repository carries an Apache-2.0 license file.",
+   "variants": [
+    "Text2Earth",
+    "Text2Earth-inpainting"
+   ],
+   "source_date": "2025-01-01",
+   "source_date_kind": "paper",
+   "license": {
+    "code": "Apache-2.0",
+    "weights": "apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "Text2Earth: Unlocking Text-driven Remote Sensing Image Generation with a Global-Scale Dataset and a Foundation Model",
+     "url": "https://arxiv.org/abs/2501.00895",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "Chen-Yang-Liu/Text2Earth — official repository",
+     "url": "https://github.com/Chen-Yang-Liu/Text2Earth",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "lcybuaa/Text2Earth — model card",
+     "url": "https://huggingface.co/lcybuaa/Text2Earth",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    },
+    {
+     "kind": "project",
+     "title": "Text2Earth project page",
+     "url": "https://chen-yang-liu.github.io/Text2Earth/",
+     "reviewed_on": "2026-09-29",
+     "review_level": "project"
+    }
+   ]
+  },
+  {
    "id": "text2scene",
    "name": "Text2Scene",
    "category": "early",
@@ -13706,6 +14040,53 @@
      "url": "https://arxiv.org/abs/2509.23760",
      "reviewed_on": "2026-09-29",
      "review_level": "paper"
+    }
+   ]
+  },
+  {
+   "id": "unicms",
+   "name": "UniCMs",
+   "category": "unified",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "T",
+    "I"
+   ],
+   "interaction": "generation",
+   "architecture": "Show-o-initialized unified transformer with discrete tokens for text and images, consistency-distilled on multimodal denoising trajectories (mask-diffusion trajectories for image tokens, Jacobi parallel-decoding trajectories of an autoregressive model for text) to generate in a few steps without classifier-free guidance",
+   "description": "UniCMs (Shanghai Jiao Tong University, Huawei and Tongji University) is a unified consistency model for efficient text-to-image generation and image-to-text understanding. The difficulty it addresses is that consistency distillation needs a denoising-style trajectory for every modality. The paper keeps discrete tokens for both: image tokens follow standard mask-based discrete diffusion, while the text trajectory is the parallel (Jacobi) decoding trace of an autoregressive language model, so text also becomes a sequence of progressively corrected tokens. Starting from Show-o's architecture and weights, the model is trained on trajectories collected from Show-o with a unified consistency objective, trajectory segmentation, trajectory regeneration in a second stage and a regularization term against trivial collapse. At 512 pixels it samples images in a few steps without classifier-free guidance and reports better GenEval, ImageReward and CLIP Score than SD3 at about one eighth of the sampling time, plus 1.5x faster long-text generation than Show-o.",
+   "notes": "Trained on COCO 2017 captions for image trajectories, LLaVA instruction-tuning data for text trajectories and RefinedWeb text to preserve language modelling; each of the two stages ran 18 hours on 8 A100 GPUs for the 512 model. The reported understanding results use the 1.3B model (POPE, ScienceQA-IMG, MMMU, NoCaps, Flickr30k). The paper also shows inpainting and extrapolation at 256 resolution. The card uses the paper's Figure 2, which illustrates the unified denoising trajectories; the paper has no separate architecture overview because the network is Show-o's. The repository README lists UniCMs-256 and UniCMs-512 weights on Hugging Face; no license was found in the repository or on the model cards.",
+   "variants": [
+    "UniCMs-256",
+    "UniCMs-512"
+   ],
+   "source_date": "2025-02-08",
+   "source_date_kind": "paper",
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "UniCMs: A Unified Consistency Model For Efficient Multimodal Generation and Understanding",
+     "url": "https://arxiv.org/abs/2502.05415",
+     "reviewed_on": "2026-09-29",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "zhijie-group/UniCMs — official repository",
+     "url": "https://github.com/zhijie-group/UniCMs",
+     "reviewed_on": "2026-09-29",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "SJTU-Deng-Lab/UniCMs-512 — model card",
+     "url": "https://huggingface.co/SJTU-DENG-Lab/UniCMs-512",
+     "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
     }
    ]
   },

@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 345 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-09-29**. 354 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -169,12 +169,21 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-03-12 | [SANA-Sprint](../models/efficient.md#sana-sprint) | paper | [Paper](https://arxiv.org/abs/2503.09641) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/Sana_Sprint_1.6B_1024px) · [Project](https://nvlabs.github.io/Sana/Sprint/) |
 | 2025-03-12 | [NAMI](../models/dit.md#nami) | paper | [Paper](https://arxiv.org/abs/2503.09242) · GitHub: no author-linked repository found |
 | 2025-03-12 | [Gemini native image generation](../models/api.md#gemini-image) | announcement | [Announcement 1](https://developers.googleblog.com/en/experiment-with-gemini-20-flash-native-image-generation/) · [Announcement 2](https://developers.googleblog.com/en/introducing-gemini-2-5-flash-image/) · [Announcement 3](https://blog.google/innovation-and-ai/products/nano-banana-pro/) · [Announcement 4](https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/) · [Announcement 5](https://cloud.google.com/blog/products/ai-machine-learning/nano-banana-2-lite-and-gemini-omni-flash-available) · [Model card 1](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Image-Model-Card.pdf) · [Model card 2](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Image-Model-Card.pdf) · [Model card 3](https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-1-Flash-Lite-Image-Model-Card.pdf) · [Docs](https://ai.google.dev/gemini-api/docs/image-generation) |
-| 2025-03-10 | [Seedream 2.0](../models/dit.md#seedream-2) | paper | [Paper](https://arxiv.org/abs/2503.07703) |
+| 2025-03-11 | [OmniMamba](../models/unified.md#omnimamba) | paper | [Paper](https://arxiv.org/abs/2503.08686) · [GitHub](https://github.com/hustvl/OmniMamba) · [Model card](https://huggingface.co/hustvl/OmniMamba) |
+| 2025-03-11 | [LightGen](../models/continuous-ar.md#lightgen) | paper | [Paper](https://arxiv.org/abs/2503.08619) · [GitHub](https://github.com/XianfengWu01/LightGen) · [Model card](https://huggingface.co/Beckham808/LightGen) |
+| 2025-03-11 | [LaytonGen](../models/ar-token.md#laytongen) | paper | [Paper](https://arxiv.org/abs/2503.08377) · GitHub: no author-linked repository found |
+| 2025-03-10 | [Seedream 2.0](../models/dit.md#seedream-2) | paper | [Paper](https://arxiv.org/abs/2503.07703) · GitHub: no author-linked repository found |
 | 2025-03-04 | [CogView4](../models/dit.md#cogview4) | announcement | [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4) |
+| 2025-03-03 | [FoX](../models/unified.md#fox) | paper | [Paper](https://arxiv.org/abs/2503.01298) · GitHub: no author-linked repository found |
+| 2025-03-02 | [MedUnifier](../models/unified.md#medunifier) | paper | [Paper](https://arxiv.org/abs/2503.01019) · GitHub: no author-linked repository found |
 | 2025-02-28 | [MiniMax Image-01](../models/api.md#minimax-image-01) | announcement | [Announcement](https://www.minimax.io/news/image-01) · [Docs 1](https://platform.minimax.io/docs/api-reference/image-generation-t2i) · [Docs 2](https://platform.minimax.io/docs/api-reference/image-generation-i2i) |
+| 2025-02-25 | [ART (Anonymous Region Transformer)](../models/dit.md#art-multilayer) | paper | [Paper](https://arxiv.org/abs/2502.18364) · [GitHub](https://github.com/microsoft/art-msra) |
+| 2025-02-08 | [UniCMs](../models/unified.md#unicms) | paper | [Paper](https://arxiv.org/abs/2502.05415) · [GitHub](https://github.com/zhijie-group/UniCMs) · [Model card](https://huggingface.co/SJTU-DENG-Lab/UniCMs-512) |
+| 2025-02-07 | [Goku](../models/dit.md#goku) | paper | [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/) |
 | 2025-01-30 | [SANA 1.5](../models/dit.md#sana-1-5) | paper | [Paper](https://arxiv.org/abs/2501.18427) · [GitHub](https://github.com/NVlabs/Sana) · [Model card](https://huggingface.co/Efficient-Large-Model/SANA1.5_4.8B_1024px) |
 | 2025-01-29 | [Janus-Pro](../models/unified.md#janus-pro) | paper | [Paper](https://arxiv.org/abs/2501.17811) · [GitHub](https://github.com/deepseek-ai/Janus) · [Model card](https://huggingface.co/deepseek-ai/Janus-Pro-7B) |
 | 2025-01-13 | [MaskGen](../models/masked.md#maskgen) | paper | [Paper](https://arxiv.org/abs/2501.07730) · [Project](https://tacju.github.io/projects/maskgen) · GitHub: no author-linked repository found |
+| 2025-01-01 | [Text2Earth](../models/latent-unet.md#text2earth) | paper | [Paper](https://arxiv.org/abs/2501.00895) · [GitHub](https://github.com/Chen-Yang-Liu/Text2Earth) · [Model card](https://huggingface.co/lcybuaa/Text2Earth) · [Project](https://chen-yang-liu.github.io/Text2Earth/) |
 | 2024-12-18 | [MetaMorph](../models/unified.md#metamorph) | paper | [Paper](https://arxiv.org/abs/2412.14164) · [GitHub](https://github.com/facebookresearch/metamorph) |
 | 2024-12-12 | [SynerGen-VL](../models/unified.md#synergen-vl) | paper | [Paper](https://arxiv.org/abs/2412.09604) · GitHub: no author-linked repository found |
 | 2024-12-12 | [SnapGen](../models/efficient.md#snapgen) | paper | [Paper](https://arxiv.org/abs/2412.09619) · [Project](https://snap-research.github.io/snapgen) · GitHub: no author-linked repository found |

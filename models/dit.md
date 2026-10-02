@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**71 models · Reviewed 2026-09-29**
+**73 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -17,6 +17,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 
 | Model | Source date | Input → output | Interaction |
 | --- | --- | --- | --- |
+| [ART (Anonymous Region Transformer)](#art-multilayer) | 2025-02-25 | T → I | generation |
 | [AuraFlow](#auraflow) | 2024-07-12 | T → I | generation |
 | [BIT (Bidirectional Image-Text Diffusion Bridges)](#bit) | 2026-08-28 | T, I → T, I | generation |
 | [Boogu-Image-0.1](#boogu-image) | 2026-07-14 | T, I → I | editing |
@@ -32,6 +33,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [FLUX.1 Kontext](#flux-1-kontext) | 2025-06-17 | T, I → I | editing |
 | [FLUX.2](#flux-2) | 2025-11-25 | T, I → I | generation |
 | [GenTron](#gentron) | 2023-12-07 | T → I | generation |
+| [Goku](#goku) | 2025-02-07 | T, I → I, V | generation |
 | [HiDream-I1](#hidream-i1) | 2025-05-28 | T → I | generation |
 | [Home-made Diffusion Model (HDM)](#hdm) | 2025-09-07 | T → I | generation |
 | [Hunyuan-DiT](#hunyuan-dit) | 2024-05-14 | T → I | generation |
@@ -92,6 +94,31 @@ Dates refer to papers or announcements, not necessarily model releases.
 </details>
 
 ## Architectures
+
+<a id="art-multilayer"></a>
+
+### ART (Anonymous Region Transformer)
+
+FLUX.1-dev MMDiT adapted to generate a variable number of RGBA layers jointly from a global prompt and an anonymous region layout, with layout-conditioned multi-layer 3D RoPE, layer-wise region crop of visual tokens and a ViT-based multi-layer transparency autoencoder.
+
+ART (Microsoft Research Asia with Tsinghua, Peking and USTC) generates multi-layer transparent images, such as graphic designs, from a global text prompt and an anonymous region layout: a set of bounding boxes with no per-region captions, so the model decides which text content belongs in which region. An MMDiT based on FLUX.1-dev is turned into a multi-layer generator by encoding each token's width, height and layer index in a layout-conditional 3D RoPE; a layer-wise region crop keeps only the visual tokens inside each region, which the authors report to be over 12 times faster than full attention and makes 50-plus layers practical. A separate multi-layer transparency autoencoder encodes and decodes the RGBA layers jointly with a ViT built on the frozen FLUX VAE. Layouts can be predicted from the prompt by a fine-tuned Llama-3.1-8B planner. The system is trained on a private dataset of about one million multi-layer transparent designs.
+
+[Paper](https://arxiv.org/abs/2502.18364) · [GitHub](https://github.com/microsoft/art-msra)
+
+![ART (Anonymous Region Transformer) — Figure 4 (PDF p. 4)](../assets/architectures/art-multilayer.png)
+
+*Figure 4 (PDF p. 4) · [Source](https://arxiv.org/abs/2502.18364)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The output is a set of transparent layers plus the merged image, not a single flat image; the card therefore lists the composite image as the output. System-level experiments use FLUX.1-dev, and ablations train the MMDiT with LoRA (rank 64) at 512x512. The training data (MLTD, about 1M designs, average 11 layers, up to 50+) is private. The GitHub repository (MIT license) says that on 2025-07-23 its model weights, inference checkpoints and training code were removed because the training data may have come from illegal sources, so no weights are available through it. The project page linked in the paper no longer resolves. No weights license is stated.
+
+**License:** code: MIT.
+
+</details>
 
 <a id="auraflow"></a>
 
@@ -491,6 +518,33 @@ GenTron is a 2023 study from Adobe and Johns Hopkins that adapts the class-condi
 Paper Section 3.2 and Figure 2: GenTron patchifies the latent with a 2x2 patchify layer as in DiT-XL/2, then compares adapting adaLN with text embeddings (adaLN-Zero, substituting the one-hot class embedding) against adding a multi-head cross-attention layer per block while keeping adaLN to model the timestep and a pooled text embedding; cross-attention is found to give sharper, more text-aligned results and is used for the final model. Text conditioning combines CLIP-L and Flan-T5-XXL embeddings. Two sizes are trained: GenTron-XL/2 (~930M params, depth 28, width 1152) and GenTron-G/2 (~3.1B params, depth 48, width 1664). The paper also extends GenTron to text-to-video with a temporal self-attention layer and motion-free guidance (Figure 3), which is out of this catalog's scope. No public weights or training code were found.
 
 **Variants:** GenTron-XL/2; GenTron-G/2.
+
+</details>
+
+<a id="goku"></a>
+
+### Goku
+
+Rectified-flow transformer in the GenTron/DiT style with full attention over packed image and video latents from a joint 3D image-video VAE, Flan-T5 cross-attention, adaLN-Zero timestep conditioning, 3D RoPE and QK-normalization, trained jointly for text-to-image and text-to-video.
+
+Goku (HKU and ByteDance) is a family of joint image-and-video generation models built on rectified-flow transformers. Images and videos are encoded by one jointly trained 3D image-video VAE (8x8 spatial compression for images, plus 4x temporal compression for video) and packed into a single token sequence in the Patch n' Pack manner, so one network with full attention generates both. Each block follows GenTron: self-attention, cross-attention to Flan-T5 text embeddings, an FFN and adaLN-Zero timestep modulation, with added 3D RoPE and query-key RMSNorm. Training runs in stages: text-to-image pretraining, joint image-video learning at progressively higher resolution, then modality-specific fine-tuning. The paper reports 0.76 on GenEval and 83.65 on DPG-Bench for text-to-image, alongside 84.85 on VBench for text-to-video.
+
+[Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
+
+![Goku — Input/output diagram](../assets/architectures/goku.svg)
+
+*Input/output diagram · [Source](https://arxiv.org/abs/2502.04896)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I, V · **Interaction:** generation
+
+Sizes in the paper are Goku-2B (28 layers, width 1792, 28 heads) and Goku-8B (40 layers, width 3072, 48 heads); Goku-1B was used only for class-conditional ImageNet pilot experiments comparing rectified flow with DDPM. The reported text-to-image rows are for Goku-T2I (2B); GenEval is 0.70 with the original short prompts and 0.76 with prompts rewritten by ChatGPT-4o. Goku-T2V (8B) is fine-tuned from the pretrained Goku-T2I (8B) weights, and Goku-I2V adds the first-frame image as a channel-concatenated condition through one extra MLP layer, producing video rather than images. The GitHub repository contains configs and code and the README repeats the benchmark results; it has no license file and the README does not point to released checkpoints. No architecture overview figure is published in the paper, so the card uses a generated input/output diagram.
+
+Editorial summary of documented inputs and outputs; internal architecture is not shown.
+
+**Variants:** Goku-T2I (2B); Goku-T2I (8B); Goku-T2V (8B); Goku-I2V.
 
 </details>
 
@@ -1551,7 +1605,7 @@ MMDiT diffusion transformer conditioned jointly on a self-developed bilingual (C
 
 Seedream 2.0 is ByteDance's bilingual (Chinese and English) text-to-image foundation model, built as an MMDiT diffusion transformer that conditions jointly on a self-developed decoder-only LLM text encoder and a Glyph-ByT5 encoder dedicated to rendering legible text inside images. Its own VAE and a new Scaled RoPE positional scheme are meant to keep quality consistent at resolutions beyond what the model was trained on. The technical report emphasizes native, balanced Chinese-English understanding and aesthetic alignment through large-scale knowledge injection and active-learning-based data curation, and Seedream 3.0 (also in this catalog) reports that it inherits this same core MMDiT design. No public weights or code are available; the model is served only through ByteDance's own products.
 
-[Paper](https://arxiv.org/abs/2503.07703)
+[Paper](https://arxiv.org/abs/2503.07703) · GitHub: no author-linked repository found
 
 ![Seedream 2.0 — Figure 10](../assets/architectures/seedream-2.png)
 

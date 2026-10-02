@@ -6,7 +6,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 > Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).
 
-**349 models and families · Reviewed 2026-09-29**
+**358 models and families · Reviewed 2026-09-29**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -16,13 +16,13 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | --- | ---: |
 | [Early neural text-to-image models](models/early.md) | 3 |
 | [Generative adversarial networks](models/gan.md) | 46 |
-| [Autoregressive image-token models](models/ar-token.md) | 25 |
+| [Autoregressive image-token models](models/ar-token.md) | 26 |
 | [Masked and parallel image-token models](models/masked.md) | 15 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 15 |
-| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 23 |
-| [Diffusion transformers and flow matching](models/dit.md) | 71 |
-| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 18 |
-| [Unified multimodal understanding and generation](models/unified.md) | 86 |
+| [Latent diffusion with U-Net backbones](models/latent-unet.md) | 24 |
+| [Diffusion transformers and flow matching](models/dit.md) | 73 |
+| [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 19 |
+| [Unified multimodal understanding and generation](models/unified.md) | 90 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
 | [Commercial image-generation interfaces](models/api.md) | 21 |
 
@@ -31,7 +31,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 349 entries</summary>
+<summary>Alphabetical model list · 358 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -43,6 +43,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [aMUSEd](#amused) | Masked token | T → I |
 | [AR-Omni](#ar-omni) | Unified | T, I, A → T, I, A |
 | [ARM](#arm) | Unified | T, I → T, I |
+| [ART (Anonymous Region Transformer)](#art-multilayer) | DiT / flow | T → I |
 | [AttnGAN](#attngan) | GAN | T → I |
 | [AuraFlow](#auraflow) | DiT / flow | T → I |
 | [Aurora (Sparse MoE GAN)](#aurora-moe-gan) | GAN | T → I |
@@ -120,6 +121,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [FLUX.1](#flux-1) | DiT / flow | T → I |
 | [FLUX.1 Kontext](#flux-1-kontext) | DiT / flow | T, I → I |
 | [FLUX.2](#flux-2) | DiT / flow | T, I → I |
+| [FoX](#fox) | Unified | T → T, I |
 | [Frido](#frido) | Latent U-Net | T → I |
 | [GALIP](#galip) | GAN | T → I |
 | [GAN-INT-CLS](#gan-int-cls) | GAN | T → I |
@@ -130,6 +132,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [GILL](#gill) | Unified | T, I → T, I |
 | [GLIDE](#glide) | Pixel diffusion | T, I → I |
 | [GLM-Image](#glm-image) | Continuous AR | T, I → I |
+| [Goku](#goku) | DiT / flow | T, I → I, V |
 | [GoT](#got) | Latent U-Net | T, I → I |
 | [GPT Image 1](#gpt-image-1) | API | T, I → I |
 | [GPT Image 2](#gpt-image-2) | API | T, I → I |
@@ -188,10 +191,12 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [Latent Diffusion Models (LDM)](#ldm) | Latent U-Net | T → I |
 | [Lavida-O](#lavida-o) | Unified | T, I → T, I |
 | [LaVIT](#lavit) | Unified | T, I → T, I |
+| [LaytonGen](#laytongen) | AR token | T → I |
 | [Lens](#lens) | DiT / flow | T → I |
 | [LI-DiT](#li-dit) | DiT / flow | T → I |
 | [Libra-2](#libra-2) | Unified | T, I → T, I |
 | [LightFusion](#lightfusion) | Unified | T, I → T, I |
+| [LightGen](#lightgen) | Continuous AR | T → I |
 | [LINA](#lina) | Continuous AR | T → I |
 | [Liquid](#liquid) | Unified | T, I → T, I |
 | [LLaDA-Image](#llada-image) | DiT / flow | T, I → I |
@@ -220,6 +225,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [MaskGen](#maskgen) | Masked token | T → I |
 | [MaskGIL](#maskgil) | Masked token | T → I |
 | [Matryoshka Diffusion Models](#matryoshka-diffusion) | Pixel diffusion | T → I |
+| [MedUnifier](#medunifier) | Unified | T, I → T, I |
 | [Meissonic](#meissonic) | Masked token | T → I |
 | [MetaMorph](#metamorph) | Unified | T, I → T, I |
 | [MetaQuery](#metaquery) | Unified | T, I → T, I |
@@ -263,6 +269,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [OmniGen](#omnigen) | DiT / flow | T, I → I |
 | [OmniGen-AR](#omnigen-ar) | AR token | T, I → I |
 | [OmniGen2](#omnigen2) | Unified | T, I → T, I |
+| [OmniMamba](#omnimamba) | Unified | T, I → T, I |
 | [OneCAT](#onecat) | Unified | T, I → T, I |
 | [OneFlow](#oneflow) | Unified | T, I → T, I |
 | [OP-GAN](#op-gan) | GAN | T → I |
@@ -347,6 +354,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [TediGAN](#tedigan) | GAN | T, I → I |
 | [TerraDiT](#terradit) | DiT / flow | T → I |
 | [Text-SeGAN](#text-segan) | GAN | T → I |
+| [Text2Earth](#text2earth) | Latent U-Net | T, I → I |
 | [Text2Scene](#text2scene) | Early | T → I |
 | [TIME (Text and Image Mutual-Translation)](#time-gan) | GAN | T → I |
 | [TMDM-3B](#tmdm-3b) | Unified | T, I, A → T, I, A |
@@ -357,6 +365,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [UGen](#ugen) | Unified | T, I → T, I |
 | [UMT-BITG (Unifying Multimodal Transformer)](#generate-it) | Masked token | T → I |
 | [UniAlignment](#unialignment) | Unified | T, I → T, I |
+| [UniCMs](#unicms) | Unified | T, I → T, I |
 | [UniDiffuser](#unidiffuser) | Unified | T, I → T, I |
 | [UniDisc](#unidisc) | Unified | T, I → T, I |
 | [Unified-IO](#unified-io) | Unified | T, I → T, I |
@@ -488,6 +497,18 @@ ARM unifies image understanding, text-to-image generation and instruction-based 
 ![ARM — Figure 2](assets/architectures/arm.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2606.11188)*
+
+<a id="art-multilayer"></a>
+
+### ART (Anonymous Region Transformer)
+
+ART (Microsoft Research Asia with Tsinghua, Peking and USTC) generates multi-layer transparent images, such as graphic designs, from a global text prompt and an anonymous region layout: a set of bounding boxes with no per-region captions, so the model decides which text content belongs in which region. An MMDiT based on FLUX.1-dev is turned into a multi-layer generator by encoding each token's width, height and layer index in a layout-conditional 3D RoPE; a layer-wise region crop keeps only the visual tokens inside each region, which the authors report to be over 12 times faster than full attention and makes 50-plus layers practical. A separate multi-layer transparency autoencoder encodes and decodes the RGBA layers jointly with a ViT built on the frozen FLUX VAE. Layouts can be predicted from the prompt by a fine-tuned Llama-3.1-8B planner. The system is trained on a private dataset of about one million multi-layer transparent designs.
+
+[Paper](https://arxiv.org/abs/2502.18364) · [GitHub](https://github.com/microsoft/art-msra) · [Details](models/dit.md#art-multilayer)
+
+![ART (Anonymous Region Transformer) — Figure 4 (PDF p. 4)](assets/architectures/art-multilayer.png)
+
+*Figure 4 (PDF p. 4) · [Source](https://arxiv.org/abs/2502.18364)*
 
 <a id="attngan"></a>
 
@@ -1413,6 +1434,18 @@ FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pa
 
 *Editorial input/output diagram · [Source](https://bfl.ai/blog/flux-2)*
 
+<a id="fox"></a>
+
+### FoX
+
+FoX (Zhejiang University and Alibaba Group) is a unified generative model aimed at complex compositional text-to-image prompts. Its backbone, FoXperts, routes tokens to three expert sets by function instead of by modality: a Linguistic Expert shared by text understanding and generation, a Semantic Vision Expert for image understanding and a Generative Vision Expert for image generation, each with its own attention projections, FFN and layer norm and linked by a shared multimodal attention layer. Images are encoded with the SD3 VAE, 2x2 patches are merged into tokens in Transfusion fashion, and generation is trained with rectified-flow noise prediction. On top of this the paper introduces a Multimodal Chain of Thought for images, in which the model plans a dense caption and object layout, draws the image, predicts an artifact map of defective regions and inpaints those regions; the steps are trained as decoupled tasks so no multi-step data tuples are needed. The paper reports 0.77 on GenEval with 1.3B parameters and competitive MME, MMBench and VQAv2 understanding scores.
+
+[Paper](https://arxiv.org/abs/2503.01298) · GitHub: no author-linked repository found · [Details](models/unified.md#fox)
+
+![FoX — Figure 2](assets/architectures/fox.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.01298)*
+
 <a id="frido"></a>
 
 ### Frido
@@ -1532,6 +1565,18 @@ GLM-Image (Z.ai) splits image generation into a semantic stage and a detail stag
 ![GLM-Image — README architecture figure (architecture_1)](assets/architectures/glm-image.png)
 
 *README architecture figure (architecture_1) · [Source](https://github.com/zai-org/GLM-Image)*
+
+<a id="goku"></a>
+
+### Goku
+
+Goku (HKU and ByteDance) is a family of joint image-and-video generation models built on rectified-flow transformers. Images and videos are encoded by one jointly trained 3D image-video VAE (8x8 spatial compression for images, plus 4x temporal compression for video) and packed into a single token sequence in the Patch n' Pack manner, so one network with full attention generates both. Each block follows GenTron: self-attention, cross-attention to Flan-T5 text embeddings, an FFN and adaLN-Zero timestep modulation, with added 3D RoPE and query-key RMSNorm. Training runs in stages: text-to-image pretraining, joint image-video learning at progressively higher resolution, then modality-specific fine-tuning. The paper reports 0.76 on GenEval and 83.65 on DPG-Bench for text-to-image, alongside 84.85 on VBench for text-to-video.
+
+[Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/) · [Details](models/dit.md#goku)
+
+![Goku — Editorial input/output diagram](assets/architectures/goku.svg)
+
+*Editorial input/output diagram · [Source](https://arxiv.org/abs/2502.04896)*
 
 <a id="got"></a>
 
@@ -2229,6 +2274,18 @@ LaVIT (Language-VIsion Transformer), from Peking University and Kuaishou Technol
 
 *Figure 2 · [Source](https://arxiv.org/abs/2309.04669)*
 
+<a id="laytongen"></a>
+
+### LaytonGen
+
+LaytonGen (OPPO AI Center, Nankai and Tsinghua) is the text-to-image generator built on Layton, a tokenizer that represents a 1024x1024 image with only 256 discrete tokens. Layton quantizes features from a downsampled input with a LlamaGen-initialized encoder and codebook, and decodes them with a pretrained latent diffusion model whose frozen blocks are paired with trainable cloned blocks through zero convolutions (the LADD structure); a few-step consistency variant of the LDM (Hyper-SD or TLCM) lets the decoder be trained with a pixel reconstruction loss in one or two steps. LaytonGen then trains an autoregressive transformer with cross-entropy on the 256 tokens, taking text features from Flan-T5-XL through an MLP. Training images are 40M FLUX.1-dev samples re-captioned with Qwen2-VL and filtered with ImageReward and MPS. The paper reports a GenEval score of 0.73, compared with 0.32 for LlamaGen and a lower value for Show-o.
+
+[Paper](https://arxiv.org/abs/2503.08377) · GitHub: no author-linked repository found · [Details](models/ar-token.md#laytongen)
+
+![LaytonGen — Figure 2](assets/architectures/laytongen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08377)*
+
 <a id="lens"></a>
 
 ### Lens
@@ -2276,6 +2333,18 @@ LightFusion (UC Santa Cruz, Tsinghua, Monash and ByteDance Seed, 2025) builds a 
 ![LightFusion — Figure 2](assets/architectures/lightfusion.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2510.22946)*
+
+<a id="lightgen"></a>
+
+### LightGen
+
+LightGen (HKUST and Everlyn AI) is a compact text-to-image model trained to show that image generation does not need hundreds of millions of images or billions of parameters. It builds on Fluid's masked autoregressive design: images are encoded to continuous latents by a frozen VAE, patchified and randomly masked, a masked encoder-decoder predicts semantic tokens, and a tiny diffusion MLP turns them into image tokens under a diffusion loss. Text from a frozen T5-XXL encoder is aligned by a trainable text aligner and enters as keys and values of a cross-attention step, and interpolated positional embeddings allow several resolutions. The training data are synthetic: captions from understanding models are rendered into images by strong text-to-image models, giving about 2M images, and a final Direct Preference Optimization stage targets positional accuracy and fine detail. The paper reports GenEval 0.62 at 512x512 with 0.7B parameters and demonstrates zero-shot inpainting.
+
+[Paper](https://arxiv.org/abs/2503.08619) · [GitHub](https://github.com/XianfengWu01/LightGen) · [Model card](https://huggingface.co/Beckham808/LightGen) · [Details](models/continuous-ar.md#lightgen)
+
+![LightGen — Figure 2](assets/architectures/lightgen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08619)*
 
 <a id="lina"></a>
 
@@ -2612,6 +2681,18 @@ Single end-to-end pixel-space diffusion model that jointly denoises several reso
 ![Matryoshka Diffusion Models — Figure 3](assets/architectures/matryoshka-diffusion.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2310.15111)*
+
+<a id="medunifier"></a>
+
+### MedUnifier
+
+MedUnifier (MedVisAI Lab, NTU and A*STAR) is a unified vision-and-language pre-training model for chest radiology that adds text-grounded image generation to the usual understanding objectives. A BERT-style encoder fuses learnable query embeddings with ViT-g visual features and report text, with different self-attention masks for image-text contrastive learning, image-text matching and causal report generation. For generation, the model uses discrete visual representations: latent adapters turn the encoder's text-informed top-level features and the bottom-level local features concatenated with the text representation into feature maps, which are vector-quantized by a two-level hierarchical VQ-VAE and decoded to a radiograph. New images are produced by sampling the two quantized latent levels from PixelSNAIL priors and decoding them. The model is pre-trained on MIMIC-CXR and evaluated on classification, retrieval, report generation and image generation.
+
+[Paper](https://arxiv.org/abs/2503.01019) · GitHub: no author-linked repository found · [Details](models/unified.md#medunifier)
+
+![MedUnifier — Figure 2](assets/architectures/medunifier.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.01019)*
 
 <a id="meissonic"></a>
 
@@ -3128,6 +3209,18 @@ OmniGen2 is an open generative model from the OmniGen team (VectorSpaceLab) for 
 ![OmniGen2 — Figure 2](assets/architectures/omnigen2.png)
 
 *Figure 2 · [Source](https://arxiv.org/abs/2506.18871)*
+
+<a id="omnimamba"></a>
+
+### OmniMamba
+
+OmniMamba (HUST and Horizon Robotics) is presented as the first unified multimodal understanding and generation model built on a linear-complexity state space model. A single Mamba-2-1.3B backbone predicts the next token for both text and images. Understanding inputs go through DINOv2 and SigLIP encoders and an MLP, while generation uses the discrete VQ tokenizer from LlamaGen. Decoupled vocabularies with separate text and image output heads constrain each modality's output space, and rank-8 task-specific LoRA modules (0.65% extra parameters) are switched between understanding and text-to-image tasks. Training is split into a module-specific pre-training stage with the Mamba-2 weights frozen and a joint fine-tuning stage, which addresses the imbalance between understanding and generation data. The paper trains on 2M image-text pairs and reports speedups of up to 119.2x and 63% lower GPU memory against Show-o for long-sequence generation.
+
+[Paper](https://arxiv.org/abs/2503.08686) · [GitHub](https://github.com/hustvl/OmniMamba) · [Model card](https://huggingface.co/hustvl/OmniMamba) · [Details](models/unified.md#omnimamba)
+
+![OmniMamba — Figure 2](assets/architectures/omnimamba.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08686)*
 
 <a id="onecat"></a>
 
@@ -3699,7 +3792,7 @@ SEED-X, from Tencent AI Lab and ARC Lab (Tencent PCG), is a unified multimodal f
 
 Seedream 2.0 is ByteDance's bilingual (Chinese and English) text-to-image foundation model, built as an MMDiT diffusion transformer that conditions jointly on a self-developed decoder-only LLM text encoder and a Glyph-ByT5 encoder dedicated to rendering legible text inside images. Its own VAE and a new Scaled RoPE positional scheme are meant to keep quality consistent at resolutions beyond what the model was trained on. The technical report emphasizes native, balanced Chinese-English understanding and aesthetic alignment through large-scale knowledge injection and active-learning-based data curation, and Seedream 3.0 (also in this catalog) reports that it inherits this same core MMDiT design. No public weights or code are available; the model is served only through ByteDance's own products.
 
-[Paper](https://arxiv.org/abs/2503.07703) · [Details](models/dit.md#seedream-2)
+[Paper](https://arxiv.org/abs/2503.07703) · GitHub: no author-linked repository found · [Details](models/dit.md#seedream-2)
 
 ![Seedream 2.0 — Figure 10](assets/architectures/seedream-2.png)
 
@@ -4137,6 +4230,18 @@ TAC-GAN variant whose discriminator predicts image source (real/fake) and semant
 
 *Figure 3 · [Source](https://arxiv.org/abs/1812.05083)*
 
+<a id="text2earth"></a>
+
+### Text2Earth
+
+Text2Earth (Beihang University, with NUS) is a text-driven remote sensing image generator trained on Git-10M, a global-scale dataset of 10.5 million remote-sensing image-text pairs that records resolution and geospatial metadata. The model is a latent diffusion system: a VAE compresses images, an OpenCLIP ViT-H encoder supplies text embeddings through cross-attention, and a denoising U-Net predicts noise. Its distinguishing mechanism is a resolution guidance module that projects the requested ground resolution into an embedding added to the timestep embedding, so users can specify the image resolution. A dynamic condition adaptation strategy randomly drops the text and resolution conditions in training and mixes conditional and null predictions at sampling, in the manner of classifier-free guidance. A second variant takes a masked image concatenated to the latent for text-driven editing, inpainting and iterative outpainting of unbounded scenes.
+
+[Paper](https://arxiv.org/abs/2501.00895) · [GitHub](https://github.com/Chen-Yang-Liu/Text2Earth) · [Model card](https://huggingface.co/lcybuaa/Text2Earth) · [Project](https://chen-yang-liu.github.io/Text2Earth/) · [Details](models/latent-unet.md#text2earth)
+
+![Text2Earth — Figure 7](assets/architectures/text2earth.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2501.00895)*
+
 <a id="text2scene"></a>
 
 ### Text2Scene
@@ -4256,6 +4361,18 @@ UniAlignment (UCAS, Institute of Automation CAS and Ant Group) unifies image gen
 ![UniAlignment — Figure 3](assets/architectures/unialignment.png)
 
 *Figure 3 · [Source](https://arxiv.org/abs/2509.23760)*
+
+<a id="unicms"></a>
+
+### UniCMs
+
+UniCMs (Shanghai Jiao Tong University, Huawei and Tongji University) is a unified consistency model for efficient text-to-image generation and image-to-text understanding. The difficulty it addresses is that consistency distillation needs a denoising-style trajectory for every modality. The paper keeps discrete tokens for both: image tokens follow standard mask-based discrete diffusion, while the text trajectory is the parallel (Jacobi) decoding trace of an autoregressive language model, so text also becomes a sequence of progressively corrected tokens. Starting from Show-o's architecture and weights, the model is trained on trajectories collected from Show-o with a unified consistency objective, trajectory segmentation, trajectory regeneration in a second stage and a regularization term against trivial collapse. At 512 pixels it samples images in a few steps without classifier-free guidance and reports better GenEval, ImageReward and CLIP Score than SD3 at about one eighth of the sampling time, plus 1.5x faster long-text generation than Show-o.
+
+[Paper](https://arxiv.org/abs/2502.05415) · [GitHub](https://github.com/zhijie-group/UniCMs) · [Model card](https://huggingface.co/SJTU-DENG-Lab/UniCMs-512) · [Details](models/unified.md#unicms)
+
+![UniCMs — Figure 2](assets/architectures/unicms.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2502.05415)*
 
 <a id="unidiffuser"></a>
 

@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**23 models · Reviewed 2026-09-29**
+**24 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -37,6 +37,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Stable Diffusion 1.x](#stable-diffusion-1) | 2022-08-22 | T, I → I | editing |
 | [Stable Diffusion 2.x](#stable-diffusion-2) | 2022-11-24 | T, I → I | editing |
 | [Taiyi-Diffusion-XL](#taiyi-diffusion-xl) | 2024-01-26 | T → I | generation |
+| [Text2Earth](#text2earth) | 2025-01-01 | T, I → I | editing |
 | [UPainting](#upainting) | 2022-10-28 | T → I | generation |
 | [Versatile Diffusion](#versatile-diffusion) | 2022-11-15 | T, I → I, T | generation |
 | [Würstchen](#wuerstchen) | 2023-06-01 | T → I | generation |
@@ -538,6 +539,33 @@ The report describes a time-conditional U-Net denoiser in a VAE latent space, wi
 **License:** code: Apache-2.0; weights: apache-2.0.
 
 **Variants:** Taiyi-Stable-Diffusion-XL-3.5B.
+
+</details>
+
+<a id="text2earth"></a>
+
+### Text2Earth
+
+1.3B-parameter latent diffusion U-Net with an OpenCLIP ViT-H text encoder cross-attended in the U-Net and a resolution embedding added to the timestep embedding, trained on the 10.5M-pair Git-10M remote-sensing image-text dataset.
+
+Text2Earth (Beihang University, with NUS) is a text-driven remote sensing image generator trained on Git-10M, a global-scale dataset of 10.5 million remote-sensing image-text pairs that records resolution and geospatial metadata. The model is a latent diffusion system: a VAE compresses images, an OpenCLIP ViT-H encoder supplies text embeddings through cross-attention, and a denoising U-Net predicts noise. Its distinguishing mechanism is a resolution guidance module that projects the requested ground resolution into an embedding added to the timestep embedding, so users can specify the image resolution. A dynamic condition adaptation strategy randomly drops the text and resolution conditions in training and mixes conditional and null predictions at sampling, in the manner of classifier-free guidance. A second variant takes a masked image concatenated to the latent for text-driven editing, inpainting and iterative outpainting of unbounded scenes.
+
+[Paper](https://arxiv.org/abs/2501.00895) · [GitHub](https://github.com/Chen-Yang-Liu/Text2Earth) · [Model card](https://huggingface.co/lcybuaa/Text2Earth) · [Project](https://chen-yang-liu.github.io/Text2Earth/)
+
+![Text2Earth — Figure 7](../assets/architectures/text2earth.png)
+
+*Figure 7 · [Source](https://arxiv.org/abs/2501.00895)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The paper describes the U-Net as following the Stable Diffusion architecture and does not state whether weights were initialized from Stable Diffusion. Training used 8 A100 GPUs, batch size 1024 and 256x256 outputs, first on all of Git-10M and then fine-tuned on a high-quality subset. Two versions are described: Text2Earth_t (text and resolution to image) and Text2Earth_e (masked-image editing with an extra concatenated condition). The paper also demonstrates text-driven generation of panchromatic, near-infrared, SAR, low-resolution and foggy variants on an RSICD extension whose modalities were synthesized by conversion, plus image-to-image translation. Reported gains over earlier remote-sensing text-to-image models on the RSICD benchmark are +26.23 FID and +20.95% zero-shot classification accuracy. The repository ships Text2Earth and Text2Earth-inpainting checkpoints loadable through diffusers; the Hugging Face model card lists apache-2.0 and the GitHub repository carries an Apache-2.0 license file.
+
+**License:** code: Apache-2.0; weights: apache-2.0.
+
+**Variants:** Text2Earth; Text2Earth-inpainting.
 
 </details>
 

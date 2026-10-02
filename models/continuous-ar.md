@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**18 models · Reviewed 2026-09-29**
+**19 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -29,6 +29,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Hi-MAR](#hi-mar) | 2025-05-26 | T → I | generation |
 | [JEPA-T](#jepa-t) | 2025-10-01 | T → I | generation |
 | [JetFormer](#jetformer) | 2024-11-29 | T, I → I, T | generation |
+| [LightGen](#lightgen) | 2025-03-11 | T → I | generation |
 | [LINA](#lina) | 2026-01-30 | T → I | generation |
 | [NextStep-1](#nextstep-1) | 2025-08-14 | T, I → I | editing |
 | [Normalizing Trajectory Models](#ntm) | 2026-05-08 | T → I | generation |
@@ -349,6 +350,33 @@ The flow uses 32 affine coupling blocks with channel-wise splitting, each built 
 **License:** code: Apache-2.0.
 
 **Variants:** JetFormer-B; JetFormer-M; JetFormer-L.
+
+</details>
+
+<a id="lightgen"></a>
+
+### LightGen
+
+0.7B text-conditioned masked autoregressive model built on Fluid/MAR (masked encoder-decoder over continuous VAE tokens with a small diffusion MLP head), conditioned by cross-attention on T5-XXL features through a trainable text aligner, trained on a 2M-image synthetic dataset and refined with DPO.
+
+LightGen (HKUST and Everlyn AI) is a compact text-to-image model trained to show that image generation does not need hundreds of millions of images or billions of parameters. It builds on Fluid's masked autoregressive design: images are encoded to continuous latents by a frozen VAE, patchified and randomly masked, a masked encoder-decoder predicts semantic tokens, and a tiny diffusion MLP turns them into image tokens under a diffusion loss. Text from a frozen T5-XXL encoder is aligned by a trainable text aligner and enters as keys and values of a cross-attention step, and interpolated positional embeddings allow several resolutions. The training data are synthetic: captions from understanding models are rendered into images by strong text-to-image models, giving about 2M images, and a final Direct Preference Optimization stage targets positional accuracy and fine detail. The paper reports GenEval 0.62 at 512x512 with 0.7B parameters and demonstrates zero-shot inpainting.
+
+[Paper](https://arxiv.org/abs/2503.08619) · [GitHub](https://github.com/XianfengWu01/LightGen) · [Model card](https://huggingface.co/Beckham808/LightGen)
+
+![LightGen — Figure 2](../assets/architectures/lightgen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08619)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+Pre-training runs 100k steps at 256x256 (batch size 2048) followed by fine-tuning at 512x512 with a tenth of the learning rate; the 256x256 GenEval overall is reported as 0.49 at 80k steps and 0.53 (both without DPO). The paper builds on the Fluid architecture rather than introducing a new backbone, so the distinctive contribution is the data-distillation and DPO training recipe at small scale. The repository README marks DPO post-processing code and the complete checkpoint as to-do items; the Hugging Face repository carries 256 and 512 checkpoints. The GitHub repository has an MIT LICENSE and the model card lists mit.
+
+**License:** code: MIT; weights: mit.
+
+**Variants:** checkpoint-256; checkpoint-512.
 
 </details>
 

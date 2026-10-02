@@ -65,6 +65,14 @@
    "locator": "Figure 2",
    "sha256": "176e1339759766084a4d365353a2df9a9315461f6c383b780d36f2c03ab176d6"
   },
+  "art-multilayer": {
+   "kind": "source-figure",
+   "path": "assets/architectures/art-multilayer.png",
+   "source_url": "https://arxiv.org/abs/2502.18364",
+   "origin_url": "https://arxiv.org/pdf/2502.18364v1",
+   "locator": "Figure 4 (PDF p. 4)",
+   "sha256": "7479ba1f736fd35f0603278e08791b4940d4927b5bd7a033386bf6dadbb202c0"
+  },
   "attngan": {
    "kind": "source-figure",
    "path": "assets/architectures/attngan.png",
@@ -685,6 +693,14 @@
    "locator": "Input/output diagram",
    "sha256": null
   },
+  "fox": {
+   "kind": "source-figure",
+   "path": "assets/architectures/fox.png",
+   "source_url": "https://arxiv.org/abs/2503.01298",
+   "origin_url": "https://arxiv.org/html/2503.01298v3/framework.png",
+   "locator": "Figure 2",
+   "sha256": "c78b38a3eb80d4429ec2ae7a6e441735a7160361631d0940491b931934587879"
+  },
   "frido": {
    "kind": "source-figure",
    "path": "assets/architectures/frido.png",
@@ -772,6 +788,14 @@
    "origin_url": "https://raw.githubusercontent.com/zai-org/GLM-Image/main/resources/architecture_1.jpeg",
    "locator": "README architecture figure (architecture_1)",
    "sha256": "6b57ad4117c95142b1061413b5cdebcb2693cb368e085e006cb678aac431b56e"
+  },
+  "goku": {
+   "kind": "io-diagram",
+   "path": "assets/architectures/goku.svg",
+   "source_url": "https://arxiv.org/abs/2502.04896",
+   "origin_url": null,
+   "locator": "Input/output diagram",
+   "sha256": null
   },
   "got": {
    "kind": "source-figure",
@@ -1221,6 +1245,14 @@
    "locator": "Figure 2",
    "sha256": "e8bf6fc3bc492d0877e26d3781c2f736e3a8e070a9b744fcb283442c35506eeb"
   },
+  "laytongen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/laytongen.png",
+   "source_url": "https://arxiv.org/abs/2503.08377",
+   "origin_url": "https://arxiv.org/html/2503.08377v3/pipeline.png",
+   "locator": "Figure 2",
+   "sha256": "6200a9a7e655fdbe2fd3a86c19468915ead2c404331c7eb2e8f3809b236c3570"
+  },
   "lcm": {
    "kind": "io-diagram",
    "path": "assets/architectures/lcm.svg",
@@ -1268,6 +1300,14 @@
    "origin_url": "https://arxiv.org/html/2510.22946v4/arch_cropped.png",
    "locator": "Figure 2",
    "sha256": "39a8682de67384f860f4cff9333b07f65d64b0237f1ad4738351c5c9d5272715"
+  },
+  "lightgen": {
+   "kind": "source-figure",
+   "path": "assets/architectures/lightgen.png",
+   "source_url": "https://arxiv.org/abs/2503.08619",
+   "origin_url": "https://arxiv.org/html/2503.08619v1/figure02.png",
+   "locator": "Figure 2",
+   "sha256": "95f8b9537c1545ca81a4487ed521af79a0d78a0f01919da56a8b1a4536c1abac"
   },
   "lina": {
    "kind": "source-figure",
@@ -1492,6 +1532,14 @@
    "origin_url": "https://arxiv.org/html/2310.15111v2/figures/mdm_architecture.jpg",
    "locator": "Figure 3",
    "sha256": "d733d08bfe8c33c8212e86cb8869d0feb2c1e84d23023da1e1216dc1e1a8d585"
+  },
+  "medunifier": {
+   "kind": "source-figure",
+   "path": "assets/architectures/medunifier.png",
+   "source_url": "https://arxiv.org/abs/2503.01019",
+   "origin_url": "https://arxiv.org/html/2503.01019v3/Fig_2_v3.png",
+   "locator": "Figure 2",
+   "sha256": "ab9494675dba6086eb5e8aa60398075e5cf83a069e5b7ecb34315148e8dc44bc"
   },
   "meissonic": {
    "kind": "source-figure",
@@ -1844,6 +1892,14 @@
    "origin_url": "https://arxiv.org/html/2506.18871v4/Fig2_new.png",
    "locator": "Figure 2",
    "sha256": "1872948e26d0e470014be00337cde788d73263aea97bd3cb325b90b16af8b503"
+  },
+  "omnimamba": {
+   "kind": "source-figure",
+   "path": "assets/architectures/omnimamba.png",
+   "source_url": "https://arxiv.org/abs/2503.08686",
+   "origin_url": "https://arxiv.org/html/2503.08686v1/arch.png",
+   "locator": "Figure 2",
+   "sha256": "23b6e71e8e0037b7d2ca37b0041848aa0b2cf7b2640a546bbd098158c290c452"
   },
   "onecat": {
    "kind": "source-figure",
@@ -2513,6 +2569,14 @@
    "locator": "Figure 3",
    "sha256": "4683f47192bdeb79b5d6f8be5b1a4b7836f29a29fe4d37b1dc8e814ef3871e86"
   },
+  "text2earth": {
+   "kind": "source-figure",
+   "path": "assets/architectures/text2earth.png",
+   "source_url": "https://arxiv.org/abs/2501.00895",
+   "origin_url": "https://arxiv.org/html/2501.00895v2/model.png",
+   "locator": "Figure 7",
+   "sha256": "fce36f51848aa6411c8512ff0adc9fe28c1e697e905cbd561aa25cd3bae89787"
+  },
   "text2scene": {
    "kind": "source-figure",
    "path": "assets/architectures/text2scene.png",
@@ -2584,6 +2648,14 @@
    "origin_url": "https://arxiv.org/html/2509.23760v1/3.png",
    "locator": "Figure 3",
    "sha256": "fc70b817ad489a3eb540012ef3f6819f585904742edcba2a65c03fb1a0c20b9e"
+  },
+  "unicms": {
+   "kind": "source-figure",
+   "path": "assets/architectures/unicms.png",
+   "source_url": "https://arxiv.org/abs/2502.05415",
+   "origin_url": "https://arxiv.org/html/2502.05415v2/trajectory_final.png",
+   "locator": "Figure 2",
+   "sha256": "d1b99219e2d5427fc68ddb36a4f0fcfc4cd9ecf595bd43a34686cc423d0238cf"
   },
   "unidiffuser": {
    "kind": "source-figure",

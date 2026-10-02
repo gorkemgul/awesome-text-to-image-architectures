@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**25 models · Reviewed 2026-09-29**
+**26 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -27,6 +27,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Infinity](#infinity) | 2024-12-05 | T → I | generation |
 | [InfinityStar](#infinitystar) | 2025-11-06 | T, I, V → I, V | generation |
 | [L-Verse](#l-verse) | 2021-11-22 | T, I → T, I | generation |
+| [LaytonGen](#laytongen) | 2025-03-11 | T → I | generation |
 | [LlamaGen](#llamagen) | 2024-06-10 | T → I | generation |
 | [LongTextAR](#longtextar) | 2025-03-26 | T → I | generation |
 | [Lumina-mGPT](#lumina-mgpt) | 2024-08-05 | T → I | generation |
@@ -296,6 +297,31 @@ L-Verse (LG AI Research) pairs an improved image tokenizer, AugVAE, with a singl
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 AugVAE is trained as a hierarchical VQ-VAE with weight-shared quantizers and then fine-tuned to a single-level model (AugVAE-SL, about 100M parameters, trained on ImageNet-1K) that maps a 256 × 256 image to 32 × 32 tokens from an 8192-entry codebook. BiART is a 500M-parameter full-attention GPT transformer over 64 BPE text tokens and 1024 image tokens; [REF]/[GEN] segment embeddings let the same model generate images from text or captions from images without fine-tuning (paper Figure 2). Trained on MS-COCO Captions, with a scalability experiment on Conceptual Captions for zero-shot text-to-image generation. The paper states its source code is available at github.com/tgisaturday/L-Verse, which returned 404 at review, so no repository is recorded.
+
+</details>
+
+<a id="laytongen"></a>
+
+### LaytonGen
+
+LlamaGen GPT-XL (675M) autoregressive transformer conditioned on Flan-T5-XL features that predicts 256 discrete tokens of the Layton Latent Consistency Tokenizer, whose decoder is a ControlNet-style adapted latent diffusion model distilled to 1-2 steps, giving 1024x1024 images.
+
+LaytonGen (OPPO AI Center, Nankai and Tsinghua) is the text-to-image generator built on Layton, a tokenizer that represents a 1024x1024 image with only 256 discrete tokens. Layton quantizes features from a downsampled input with a LlamaGen-initialized encoder and codebook, and decodes them with a pretrained latent diffusion model whose frozen blocks are paired with trainable cloned blocks through zero convolutions (the LADD structure); a few-step consistency variant of the LDM (Hyper-SD or TLCM) lets the decoder be trained with a pixel reconstruction loss in one or two steps. LaytonGen then trains an autoregressive transformer with cross-entropy on the 256 tokens, taking text features from Flan-T5-XL through an MLP. Training images are 40M FLUX.1-dev samples re-captioned with Qwen2-VL and filtered with ImageReward and MPS. The paper reports a GenEval score of 0.73, compared with 0.32 for LlamaGen and a lower value for Show-o.
+
+[Paper](https://arxiv.org/abs/2503.08377) · GitHub: no author-linked repository found
+
+![LaytonGen — Figure 2](../assets/architectures/laytongen.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08377)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → I · **Interaction:** generation
+
+The tokenizer is the paper's main subject (10.8 rFID for 1024x1024 reconstruction on MSCOCO-2017 5K); LaytonGen is its text-to-image extension and is listed as a family with the variants LaytonGen-H, -H* and -T*, where H and T name the Hyper-SD or TLCM decoder and * marks tokenizers trained on synthetic data instead of ImageNet. The autoregressive model trains for 200K iterations with batch size 320 on 8 A100 GPUs. The paper's project link points to github.com/OPPO-Mente-Lab/Layton, which returned 404 on review, so no repository, license or weights could be verified.
+
+**Variants:** LaytonGen-H; LaytonGen-H*; LaytonGen-T*.
 
 </details>
 

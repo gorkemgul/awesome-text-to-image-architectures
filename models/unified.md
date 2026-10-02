@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**86 models · Reviewed 2026-09-29**
+**90 models · Reviewed 2026-09-29**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -33,6 +33,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Emu3](#emu3) | 2024-09-27 | T, I, V → T, I, V | generation |
 | [Emu3.5](#emu3-5) | 2025-10-30 | T, I → T, I | editing |
 | [FLAT](#flat) | 2026-09-15 | T, I → T, I | generation |
+| [FoX](#fox) | 2025-03-03 | T → T, I | generation |
 | [GILL](#gill) | 2023-05-26 | T, I → T, I | generation |
 | [HunyuanImage 3.0](#hunyuanimage-3) | 2025-09-28 | T, I → T, I | editing |
 | [ILLUME](#illume) | 2024-12-09 | T, I → T, I | editing |
@@ -55,6 +56,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [LWM](#lwm) | 2024-02-13 | T, I, V → T, I, V | generation |
 | [MammothModa2](#mammothmoda2) | 2025-11-23 | T, I → T, I | editing |
 | [Manzano](#manzano) | 2025-09-19 | T, I → T, I | editing |
+| [MedUnifier](#medunifier) | 2025-03-02 | T, I → T, I | generation |
 | [MetaMorph](#metamorph) | 2024-12-18 | T, I → T, I | generation |
 | [MetaQuery](#metaquery) | 2025-04-08 | T, I → T, I | editing |
 | [MindOmni](#mindomni) | 2025-05-19 | T, I → T, I | editing |
@@ -72,6 +74,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Nexus-Gen](#nexus-gen) | 2025-04-30 | T, I → T, I | editing |
 | [OFA](#ofa) | 2022-02-07 | T, I → T, I | generation |
 | [OmniGen2](#omnigen2) | 2025-06-23 | T, I → T, I | editing |
+| [OmniMamba](#omnimamba) | 2025-03-11 | T, I → T, I | generation |
 | [OneCAT](#onecat) | 2025-09-03 | T, I → T, I | editing |
 | [OneFlow](#oneflow) | 2025-10-03 | T, I → T, I | generation |
 | [Orthus](#orthus) | 2024-11-28 | T, I → T, I | editing |
@@ -91,6 +94,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [Transfusion](#transfusion) | 2024-08-20 | T, I → T, I | generation |
 | [UGen](#ugen) | 2025-03-27 | T, I → T, I | generation |
 | [UniAlignment](#unialignment) | 2025-09-28 | T, I → T, I | editing |
+| [UniCMs](#unicms) | 2025-02-08 | T, I → T, I | generation |
 | [UniDiffuser](#unidiffuser) | 2023-03-12 | T, I → T, I | generation |
 | [UniDisc](#unidisc) | 2025-03-26 | T, I → T, I | generation |
 | [Unified-IO](#unified-io) | 2022-06-17 | T, I → T, I | generation |
@@ -515,6 +519,29 @@ FLAT (Meta AI) is a representation-pretraining framework that jointly optimizes 
 **Input → output:** T, I → T, I · **Interaction:** generation
 
 Paper Figure 1 (PDF p. 3, architecture overview): a shared, LoRA-adapted VLM encoder produces continuous register-token representations for image and caption inputs; nested dropout over prefix-K tokens lets the same encoder output variable-length representations, which are aligned contrastively and also decoded by a rectified-flow-matching image decoder (text-to-image) and a next-token cross-entropy text decoder (image-to-text) from the same 1D sequence space. The paper reports a T2I GenEval score of 71.1 zero-shot from the joint pretraining stage and 83.1 after task-specific fine-tuning, alongside strong retrieval and interpolation/arithmetic properties of the shared representation. No repository or license is disclosed.
+
+</details>
+
+<a id="fox"></a>
+
+### FoX
+
+Transfusion-style unified transformer with Functionality-oriented eXperts (FoXperts): separate Linguistic (Qwen2-0.5B-initialized), Semantic Vision and Generative Vision expert weights joined by shared multimodal attention, generating SD3-VAE latent patches with rectified-flow noise prediction, plus a multimodal chain-of-thought of planning, acting, reflection and correction.
+
+FoX (Zhejiang University and Alibaba Group) is a unified generative model aimed at complex compositional text-to-image prompts. Its backbone, FoXperts, routes tokens to three expert sets by function instead of by modality: a Linguistic Expert shared by text understanding and generation, a Semantic Vision Expert for image understanding and a Generative Vision Expert for image generation, each with its own attention projections, FFN and layer norm and linked by a shared multimodal attention layer. Images are encoded with the SD3 VAE, 2x2 patches are merged into tokens in Transfusion fashion, and generation is trained with rectified-flow noise prediction. On top of this the paper introduces a Multimodal Chain of Thought for images, in which the model plans a dense caption and object layout, draws the image, predicts an artifact map of defective regions and inpaints those regions; the steps are trained as decoupled tasks so no multi-step data tuples are needed. The paper reports 0.77 on GenEval with 1.3B parameters and competitive MME, MMBench and VQAv2 understanding scores.
+
+[Paper](https://arxiv.org/abs/2503.01298) · GitHub: no author-linked repository found
+
+![FoX — Figure 2](../assets/architectures/fox.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.01298)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T → T, I · **Interaction:** generation
+
+Training: stage I trains the Linguistic and Generative Vision experts on text-to-image at 256x256 (about 300M image-text pairs); stage II mixes text-to-image and image-to-text at 8:1 at 512x512 (about 120M generation and 20M understanding samples), with the Semantic Vision Expert initialized from the stage-I Generative Vision Expert. Chain-of-thought tasks (planning and acting, reflection, correction) are then trained jointly at a 1:1:1 ratio on about 100K samples each. Text output is evaluated through captioning and VQA; results include MS-COCO FID 7.24 and T2I-CompBench scores. Image input is used for understanding and for the correction step's masked-image inpainting rather than as a separate editing interface. No code or weights link was found in the paper.
 
 </details>
 
@@ -1090,6 +1117,29 @@ The hybrid tokenizer applies a 3x3 Spatial-to-Channel compression (reducing spat
 
 </details>
 
+<a id="medunifier"></a>
+
+### MedUnifier
+
+Medical vision-language pre-training framework with a frozen ViT-g image encoder, a BERT-style image-text encoder using learnable query embeddings, a causal text generator for reports and a hierarchical two-level VQ-VAE image generator fed through latent adapters, trained with ITC, ITM, image-grounded text generation and text-grounded image generation losses.
+
+MedUnifier (MedVisAI Lab, NTU and A*STAR) is a unified vision-and-language pre-training model for chest radiology that adds text-grounded image generation to the usual understanding objectives. A BERT-style encoder fuses learnable query embeddings with ViT-g visual features and report text, with different self-attention masks for image-text contrastive learning, image-text matching and causal report generation. For generation, the model uses discrete visual representations: latent adapters turn the encoder's text-informed top-level features and the bottom-level local features concatenated with the text representation into feature maps, which are vector-quantized by a two-level hierarchical VQ-VAE and decoded to a radiograph. New images are produced by sampling the two quantized latent levels from PixelSNAIL priors and decoding them. The model is pre-trained on MIMIC-CXR and evaluated on classification, retrieval, report generation and image generation.
+
+[Paper](https://arxiv.org/abs/2503.01019) · GitHub: no author-linked repository found
+
+![MedUnifier — Figure 2](../assets/architectures/medunifier.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.01019)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Image generation is a secondary objective and is evaluated only with FID on reconstructed and synthetic MIMIC-CXR images (Table 5) and qualitative samples in the appendix, where the paper reports comparable FID with and without the generation module; images are 224x224 chest radiographs. Text outputs are radiology reports, evaluated with BLEU, METEOR and ROUGE-L. No code or weights link was found in the paper, so the card carries no repository source.
+
+</details>
+
 <a id="metamorph"></a>
 
 ### MetaMorph
@@ -1528,6 +1578,31 @@ OmniGen2 is an open generative model from the OmniGen team (VectorSpaceLab) for 
 The VLM is initialized from Qwen2.5-VL-3B; only the hidden states of text tokens from its final layer condition the diffusion decoder, since VAE features supply visual detail (paper Figure 2, Section 3.2). The diffusion decoder shares parameters across modalities like Lumina-Image 2.0, uses a two-layer transformer refiner to align VLM states, VAE features and noisy latents, and uses Omni-RoPE, which gives each image an instance identity plus local 2D coordinates. The paper's comparison table lists 3B parameters for text generation plus 4B for image generation. Training uses a 256 to 512 to 1024 resolution curriculum, then SFT at 1024 and reinforcement learning with GenEval rewards, EditScore and a Qwen2.5-VL-72B judge.
 
 **License:** code: Apache-2.0; weights: Apache-2.0.
+
+</details>
+
+<a id="omnimamba"></a>
+
+### OmniMamba
+
+Mamba-2-1.3B (48 layers) as a single next-token predictor for text and discrete LlamaGen VQ image tokens, with decoupled text and image vocabularies and heads, task-specific LoRA in each block's input projection, a DINOv2+SigLIP encoder for understanding inputs, and a decoupled two-stage training strategy.
+
+OmniMamba (HUST and Horizon Robotics) is presented as the first unified multimodal understanding and generation model built on a linear-complexity state space model. A single Mamba-2-1.3B backbone predicts the next token for both text and images. Understanding inputs go through DINOv2 and SigLIP encoders and an MLP, while generation uses the discrete VQ tokenizer from LlamaGen. Decoupled vocabularies with separate text and image output heads constrain each modality's output space, and rank-8 task-specific LoRA modules (0.65% extra parameters) are switched between understanding and text-to-image tasks. Training is split into a module-specific pre-training stage with the Mamba-2 weights frozen and a joint fine-tuning stage, which addresses the imbalance between understanding and generation data. The paper trains on 2M image-text pairs and reports speedups of up to 119.2x and 63% lower GPU memory against Show-o for long-sequence generation.
+
+[Paper](https://arxiv.org/abs/2503.08686) · [GitHub](https://github.com/hustvl/OmniMamba) · [Model card](https://huggingface.co/hustvl/OmniMamba)
+
+![OmniMamba — Figure 2](../assets/architectures/omnimamba.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2503.08686)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Resolution is 384 for understanding inputs and 256 for generation. Visual generation is trained and evaluated on MS-COCO, where the paper reports an FID-30K of 5.95 (trained on 83K COCO images), alongside POPE, MME-P, VQAv2, GQA and MMMU understanding results against Show-o and JanusFlow. The GitHub repository contains a LICENSE file detected as MIT while its README badge says Apache 2.0; the Hugging Face model card lists MIT. Code and weights were released on 2025-03-19 per the README.
+
+**License:** code: MIT; weights: mit.
 
 </details>
 
@@ -2017,6 +2092,31 @@ UniAlignment (UCAS, Institute of Automation CAS and Ant Group) unifies image gen
 **Input → output:** T, I → T, I · **Interaction:** editing
 
 Built on the open SD3 backbone with a frozen T5 text encoder and a pretrained VAE; source images for editing, personalization and perception are VAE-encoded and concatenated with the noisy latents. The vision encoder of Qwen2.5-VL-7B is used only for the alignment loss during training. Training uses 2M text-to-image pairs from Text-to-Image-2M plus internal captioning data, then multi-task data including editing, perception and GPT-4o-generated samples. The paper reports GenEval 0.81, DPG-Bench 85.64, GEdit-Bench-EN 6.57 and understanding results (MMBench 80.6 among others). SemGen-Bench is introduced in the same paper. No repository or weights are linked from the paper.
+
+</details>
+
+<a id="unicms"></a>
+
+### UniCMs
+
+Show-o-initialized unified transformer with discrete tokens for text and images, consistency-distilled on multimodal denoising trajectories (mask-diffusion trajectories for image tokens, Jacobi parallel-decoding trajectories of an autoregressive model for text) to generate in a few steps without classifier-free guidance.
+
+UniCMs (Shanghai Jiao Tong University, Huawei and Tongji University) is a unified consistency model for efficient text-to-image generation and image-to-text understanding. The difficulty it addresses is that consistency distillation needs a denoising-style trajectory for every modality. The paper keeps discrete tokens for both: image tokens follow standard mask-based discrete diffusion, while the text trajectory is the parallel (Jacobi) decoding trace of an autoregressive language model, so text also becomes a sequence of progressively corrected tokens. Starting from Show-o's architecture and weights, the model is trained on trajectories collected from Show-o with a unified consistency objective, trajectory segmentation, trajectory regeneration in a second stage and a regularization term against trivial collapse. At 512 pixels it samples images in a few steps without classifier-free guidance and reports better GenEval, ImageReward and CLIP Score than SD3 at about one eighth of the sampling time, plus 1.5x faster long-text generation than Show-o.
+
+[Paper](https://arxiv.org/abs/2502.05415) · [GitHub](https://github.com/zhijie-group/UniCMs) · [Model card](https://huggingface.co/SJTU-DENG-Lab/UniCMs-512)
+
+![UniCMs — Figure 2](../assets/architectures/unicms.png)
+
+*Figure 2 · [Source](https://arxiv.org/abs/2502.05415)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → T, I · **Interaction:** generation
+
+Trained on COCO 2017 captions for image trajectories, LLaVA instruction-tuning data for text trajectories and RefinedWeb text to preserve language modelling; each of the two stages ran 18 hours on 8 A100 GPUs for the 512 model. The reported understanding results use the 1.3B model (POPE, ScienceQA-IMG, MMMU, NoCaps, Flickr30k). The paper also shows inpainting and extrapolation at 256 resolution. The card uses the paper's Figure 2, which illustrates the unified denoising trajectories; the paper has no separate architecture overview because the network is Show-o's. The repository README lists UniCMs-256 and UniCMs-512 weights on Hugging Face; no license was found in the repository or on the model cards.
+
+**Variants:** UniCMs-256; UniCMs-512.
 
 </details>
 

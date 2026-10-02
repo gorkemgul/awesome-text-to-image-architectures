@@ -34955,8 +34955,19 @@
    "title": "OmniMamba: Efficient and Unified Multimodal Understanding and Generation via State Space Models",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08686",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-11",
+   "model_id": "omnimamba",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/hustvl/OmniMamba",
+     "evidence_url": "https://arxiv.org/abs/2503.08686",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.08663",
@@ -34981,8 +34992,19 @@
    "title": "LightGen: Efficient Image Generation through Knowledge Distillation and Direct Preference Optimization",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08619",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-11",
+   "model_id": "lightgen",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/XianfengWu01/LightGen",
+     "evidence_url": "https://arxiv.org/abs/2503.08619",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2503.08497",
@@ -35016,8 +35038,12 @@
    "title": "Layton: Latent Consistency Tokenizer for 1024-pixel Image Reconstruction and Generation by 256 Tokens",
    "listed_on": "2025-03-11",
    "paper_url": "https://arxiv.org/abs/2503.08377",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-11",
+   "model_id": "laytongen",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.08354",
@@ -35114,8 +35140,12 @@
    "title": "Seedream 2.0: A Native Chinese-English Bilingual Image Generation Foundation Model",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07703",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-10",
+   "model_id": "seedream-2",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2503.07677",
@@ -35419,8 +35449,9 @@
    "title": "X2I: Seamless Integration of Multimodal Understanding into Diffusion Transformer via Attention Distillation",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.06134",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06132",
@@ -35697,16 +35728,21 @@
    "title": "DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01645",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.01298",
    "title": "Towards Enhanced Image Generation Via Multi-modal Chain of Thought in Unified Generative Models",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01298",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-03",
+   "model_id": "fox",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.01294",
@@ -35749,8 +35785,12 @@
    "title": "MedUnifier: Unifying Vision-and-Language Pre-training on Medical Data with Vision Generation Task using Discrete Visual Representations",
    "listed_on": "2025-03-02",
    "paper_url": "https://arxiv.org/abs/2503.01019",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-03-02",
+   "model_id": "medunifier",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2503.00945",
@@ -36036,8 +36076,19 @@
    "title": "ART: Anonymous Region Transformer for Variable Multi-Layer Transparent Image Generation",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.18364",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-02-25",
+   "model_id": "art-multilayer",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/microsoft/art-msra",
+     "evidence_url": "https://github.com/microsoft/art-msra",
+     "verification": "readme-paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2502.18359",
@@ -37079,16 +37130,28 @@
    "title": "Diverse Image Generation with Diffusion Models and Cross Class Label Learning for Polyp Classification",
    "listed_on": "2025-02-08",
    "paper_url": "https://arxiv.org/abs/2502.05444",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.05415",
    "title": "UniCMs: A Unified Consistency Model For Efficient Multimodal Generation and Understanding",
    "listed_on": "2025-02-08",
    "paper_url": "https://arxiv.org/abs/2502.05415",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-02-08",
+   "model_id": "unicms",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/zhijie-group/UniCMs",
+     "evidence_url": "https://arxiv.org/abs/2502.05415",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2502.05178",
@@ -37131,8 +37194,19 @@
    "title": "Goku: Flow Based Video Generative Foundation Models",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.04896",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-02-07",
+   "model_id": "goku",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Saiyan-World/goku",
+     "evidence_url": "https://saiyan-world.github.io/goku/",
+     "verification": "project-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2502.04599",
@@ -37571,8 +37645,12 @@
    "title": "SANA 1.5: Efficient Scaling of Training-Time and Inference-Time Compute in Linear Diffusion Transformer",
    "listed_on": "2025-01-30",
    "paper_url": "https://arxiv.org/abs/2501.18427",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-01-30",
+   "model_id": "sana-1-5",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2501.18096",
@@ -37633,8 +37711,12 @@
    "title": "Janus-Pro: Unified Multimodal Understanding and Generation with Data and Model Scaling",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.17811",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-01-29",
+   "model_id": "janus-pro",
+   "catalog_action": "existing"
   },
   {
    "arxiv_id": "2501.17726",
@@ -38172,8 +38254,9 @@
    "title": "Enhanced Multi-Scale Cross-Attention for Person Image Generation",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.08900",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.08727",
@@ -38381,8 +38464,9 @@
    "title": "EmotiCrafter: Text-to-Emotional-Image Generation based on Valence-Arousal Model",
    "listed_on": "2025-01-10",
    "paper_url": "https://arxiv.org/abs/2501.05710",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.05444",
@@ -38434,8 +38518,9 @@
    "title": "EditAR: Unified Conditional Generation with Autoregressive Models",
    "listed_on": "2025-01-08",
    "paper_url": "https://arxiv.org/abs/2501.04699",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.04606",
@@ -38721,8 +38806,19 @@
    "title": "Text2Earth: Unlocking Text-driven Remote Sensing Image Generation with a Global-Scale Dataset and a Foundation Model",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00895",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "paper",
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-01-01",
+   "model_id": "text2earth",
+   "catalog_action": "added",
+   "repository_evidence": [
+    {
+     "url": "https://github.com/Chen-Yang-Liu/Text2Earth",
+     "evidence_url": "https://arxiv.org/abs/2501.00895",
+     "verification": "paper-link"
+    }
+   ]
   },
   {
    "arxiv_id": "2501.00811",
