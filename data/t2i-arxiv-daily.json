@@ -35194,64 +35194,72 @@
    "title": "Text-IRSTD: Leveraging Semantic Text to Promote Infrared Small Target Detection in Complex Scenes",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07249",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07209",
    "title": "Synthetic Lung X-ray Generation through Cross-Attention and Affinity Transformation",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07209",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.07197",
    "title": "Effective and Efficient Masked Image Generation Models",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07197",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07076",
    "title": "NFIG: Multi-Scale Autoregressive Image Generation via Frequency Ordering",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07076",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.07050",
    "title": "TIDE : Temporal-Aware Sparse Autoencoders for Interpretable Diffusion Transformers in Image Generation",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07050",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.07004",
    "title": "NukesFormers: Unpaired Hyperspectral Image Generation with Non-Uniform Domain Alignment",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.07004",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06998",
    "title": "SOYO: A Tuning-Free Approach for Video Style Morphing via Style-Adaptive Interpolation in Diffusion Models",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.06998",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06956",
    "title": "LatexBlend: Scaling Multi-concept Customized Generation with Latent Textual Blending",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.06956",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06884",
@@ -35267,16 +35275,18 @@
    "title": "Towards Generalization of Tactile Image Generation: Reference-Free Evaluation in a Leakage-Free Setting",
    "listed_on": "2025-03-10",
    "paper_url": "https://arxiv.org/abs/2503.06860",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06790",
    "title": "GenDR: Lighten Generative Detail Restoration",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06790",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06684",
@@ -35292,32 +35302,36 @@
    "title": "Learning Few-Step Diffusion Models by Trajectory Distribution Matching",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06674",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06652",
    "title": "Adding Additional Control to One-Step Diffusion with Joint Distribution Matching",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06652",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06632",
    "title": "Towards More Accurate Personalized Image Generation: Addressing Overfitting and Evaluation Bias",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06632",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06568",
    "title": "Conceptrol: Concept Control of Zero-shot Personalized Image Generation",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06568",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06506",
@@ -35333,8 +35347,9 @@
    "title": "DynamicID: Zero-Shot Multi-ID Image Personalization with Flexible Facial Editability",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06505",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06453",
@@ -35350,48 +35365,54 @@
    "title": "Consistent Image Layout Editing with Diffusion Models",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06419",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06380",
    "title": "TI-JEPA: An Innovative Energy-based Joint Embedding Strategy for Text-Image Multimodal Systems",
    "listed_on": "2025-03-09",
    "paper_url": "https://arxiv.org/abs/2503.06380",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.10660",
    "title": "Text-to-3D Generation using Jensen-Shannon Score Distillation",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.10660",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06287",
    "title": "Your Large Vision-Language Model Only Needs A Few Attention Heads For Visual Grounding",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.06287",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06211",
    "title": "LF${}^{2}$AR: Accounting for Layerwise Dynamics to Improve Multimodal Adaptation of Language Models",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.06211",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.06186",
    "title": "PTDiffusion: Free Lunch for Generating Optical Illusion Hidden Pictures with Phase-Transferred Diffusion Model",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.06186",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.06134",
@@ -35406,48 +35427,54 @@
    "title": "USP: Unified Self-Supervised Pretraining for Image Generation and Understanding",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.06132",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.05990",
    "title": "HealthiVert-GAN: A Novel Framework of Pseudo-Healthy Vertebral Image Synthesis for Interpretable Compression Fracture Grading",
    "listed_on": "2025-03-08",
    "paper_url": "https://arxiv.org/abs/2503.05990",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.05665",
    "title": "AIM-Fair: Advancing Algorithmic Fairness via Selectively Fine-Tuning Biased Models with Contextual Synthetic Data",
    "listed_on": "2025-03-07",
    "paper_url": "https://arxiv.org/abs/2503.05665",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.05305",
    "title": "Frequency Autoregressive Image Generation with Continuous Tokens",
    "listed_on": "2025-03-07",
    "paper_url": "https://arxiv.org/abs/2503.05305",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.05298",
    "title": "Coreference as an indicator of context scope in multimodal narrative",
    "listed_on": "2025-03-07",
    "paper_url": "https://arxiv.org/abs/2503.05298",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.05228",
    "title": "RecipeGen: A Benchmark for Real-World Recipe Image Generation",
    "listed_on": "2025-03-07",
    "paper_url": "https://arxiv.org/abs/2503.05228",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.05149",
@@ -35463,16 +35490,18 @@
    "title": "LEDiT: Your Length-Extrapolatable Diffusion Transformer without Positional Encoding",
    "listed_on": "2025-03-06",
    "paper_url": "https://arxiv.org/abs/2503.04344",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.04229",
    "title": "Synthetic Data is an Elegant GIFT for Continual Vision-Language Models",
    "listed_on": "2025-03-06",
    "paper_url": "https://arxiv.org/abs/2503.04229",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.04215",
@@ -35488,128 +35517,144 @@
    "title": "E$^2$AT: Multimodal Jailbreak Defense via Dynamic Joint Optimization for Multimodal Large Language Models",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.04833",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.03664",
    "title": "A Generative Approach to High Fidelity 3D Reconstruction from Text Data",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.03664",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.03651",
    "title": "DoraCycle: Domain-Oriented Adaptation of Unified Generative Model in Multimodal Cycles",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.03651",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.03236",
    "title": "GenColor: Generative Color-Concept Association in Visual Design",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.03236",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.03204",
    "title": "Find Matching Faces Based On Face Parameters",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.03204",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.03068",
    "title": "Multi-View Depth Consistent Image Generation Using Generative AI Models: Application on Architectural Design of University Buildings",
    "listed_on": "2025-03-05",
    "paper_url": "https://arxiv.org/abs/2503.03068",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.02874",
    "title": "Prompting Generative AI with Interaction-Augmented Instructions",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02874",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.02865",
    "title": "FairSense-AI: Responsible AI Meets Sustainability",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02865",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.02861",
    "title": "Evaluation of Architectural Synthesis Using Generative AI",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02861",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.02819",
    "title": "Feynman-Kac Correctors in Diffusion: Annealing, Guidance, and Product of Experts",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02819",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.02690",
    "title": "Generative Modeling of Microweather Wind Velocities for Urban Air Mobility",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02690",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.02631",
    "title": "Reflection on Data Storytelling Tools in the Generative AI Era from the Human-AI Collaboration Perspective",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02631",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.02508",
    "title": "Q&C: When Quantization Meets Cache in Efficient Image Generation",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02508",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.02357",
    "title": "Q-Eval-100K: Evaluating Visual Quality and Alignment Level for Text-to-Vision Content",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02357",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.02206",
    "title": "Language-Guided Visual Perception Disentanglement for Image Quality Assessment and Conditional Image Generation",
    "listed_on": "2025-03-04",
    "paper_url": "https://arxiv.org/abs/2503.02206",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.02127",
    "title": "HanDrawer: Leveraging Spatial Information to Render Realistic Hands Using a Conditional Diffusion Model in Single Stage",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.02127",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.01839",
@@ -35625,24 +35670,27 @@
    "title": "GRAIN: Exact Graph Reconstruction from Gradients",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01838",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.01667",
    "title": "ToLo: A Two-Stage, Training-Free Layout-To-Image Generation Framework For High-Overlap Layouts",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01667",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.01654",
    "title": "A Shared Encoder Approach to Multimodal Representation Learning",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01654",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.01645",
@@ -35665,24 +35713,27 @@
    "title": "Fine-Grained Controllable Apparel Showcase Image Generation via Garment-Centric Outpainting",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01294",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.01167",
    "title": "Enhancing Vision-Language Compositional Understanding with Multimodal Synthetic Data",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01167",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.01158",
    "title": "EasyCraft: A Robust and Efficient Framework for Automatic Avatar Crafting",
    "listed_on": "2025-03-03",
    "paper_url": "https://arxiv.org/abs/2503.01158",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.01122",
@@ -35706,8 +35757,9 @@
    "title": "Cross Modality Medical Image Synthesis for Improving Liver Segmentation",
    "listed_on": "2025-03-02",
    "paper_url": "https://arxiv.org/abs/2503.00945",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.00897",
@@ -35723,8 +35775,9 @@
    "title": "Evaluating and Predicting Distorted Human Body Parts for Generated Images",
    "listed_on": "2025-03-02",
    "paper_url": "https://arxiv.org/abs/2503.00811",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.00791",
@@ -35740,16 +35793,18 @@
    "title": "Flow Matching for Medical Image Synthesis: Bridging the Gap Between Speed and Quality",
    "listed_on": "2025-03-01",
    "paper_url": "https://arxiv.org/abs/2503.00266",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.00196",
    "title": "PRISM: High-Resolution & Precise Counterfactual Medical Image Generation using Language-guided Stable Diffusion",
    "listed_on": "2025-02-28",
    "paper_url": "https://arxiv.org/abs/2503.00196",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.21318",
@@ -35765,8 +35820,9 @@
    "title": "MIGE: Mutually Enhanced Multimodal Instruction-Based Image Generation and Editing",
    "listed_on": "2025-02-28",
    "paper_url": "https://arxiv.org/abs/2502.21291",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.21151",
@@ -35782,8 +35838,9 @@
    "title": "Advancing AI-Powered Medical Image Synthesis: Insights from MedVQA-GI Challenge Using CLIP, Fine-Tuned Stable Diffusion, and Dream-Booth + LoRA",
    "listed_on": "2025-02-28",
    "paper_url": "https://arxiv.org/abs/2502.20667",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.20623",
@@ -35799,72 +35856,81 @@
    "title": "LIVS: A Pluralistic Alignment Dataset for Inclusive Public Spaces",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2503.01894",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.20504",
    "title": "A Thousand Words or An Image: Studying the Influence of Persona Modality in Multimodal LLMs",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20504",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.20459",
    "title": "Broken Letters, Broken Narratives: A Case Study on Arabic Script in DALL-E 3",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20459",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.20376",
    "title": "Tight Inversion: Image-Conditioned Inversion for Real Image Editing",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20376",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.20172",
    "title": "Multimodal Representation Alignment for Image Generation: Text-Image Interleaved Control Is Easier Than You Think",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20172",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.20126",
    "title": "FlexiDiT: Your Diffusion Transformer Can Easily Generate High-Quality Samples with Less Compute",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20126",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.20104",
    "title": "New Dataset and Methods for Fine-Grained Compositional Referring Expression Comprehension via Specialist-MLLM Collaboration",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.20104",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.19842",
    "title": "CLIP Under the Microscope: A Fine-Grained Analysis of Multi-Object Representation",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.19842",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.19828",
    "title": "Analyzing CLIP's Performance Limitations in Multi-Object Scenarios: A Controlled High-Resolution Study",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.19828",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.19771",
@@ -35880,80 +35946,90 @@
    "title": "Language-Informed Hyperspectral Image Synthesis for Imbalanced-Small Sample Classification via Semi-Supervised Conditional Diffusion Model",
    "listed_on": "2025-02-27",
    "paper_url": "https://arxiv.org/abs/2502.19700",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.01873",
    "title": "Online Pseudo-average Shifting Attention(PASA) for Robust Low-precision LLM Inference: Algorithms and Numerical Analysis",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2503.01873",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2503.00054",
    "title": "Deciphering the complaint aspects: Towards an aspect-based complaint identification model with video complaint dataset in finance",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2503.00054",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.19623",
    "title": "3D Nephrographic Image Synthesis in CT Urography with the Diffusion Model and Swin Transformer",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2502.19623",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.19285",
    "title": "On the Importance of Text Preprocessing for Multimodal Representation Learning and Pathology Report Generation",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2502.19285",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.19108",
    "title": "U-Sticker: A Large-Scale Multi-Domain User Sticker Dataset for Retrieval and Personalization",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2502.19108",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.19038",
    "title": "FungalZSL: Zero-Shot Fungal Classification with Image Captioning Using a Synthetic Data Approach",
    "listed_on": "2025-02-26",
    "paper_url": "https://arxiv.org/abs/2502.19038",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2503.04783",
    "title": "Comparative Analysis Based on DeepSeek, ChatGPT, and Google Gemini: Features, Techniques, Performance, Future Prospects",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2503.04783",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2503.01872",
    "title": "FairGen: Controlling Sensitive Attributes for Fair Generations in Diffusion Models via Adaptive Latent Guidance",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2503.01872",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.18576",
    "title": "Investigating Youth AI Auditing",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.18576",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.18364",
@@ -35968,8 +36044,9 @@
    "title": "Responsible AI Agents",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.18359",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.18302",
@@ -35985,104 +36062,117 @@
    "title": "NusaAksara: A Multimodal and Multilingual Benchmark for Preserving Indonesian Indigenous Scripts",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.18148",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.17812",
    "title": "Can Multimodal LLMs Perform Time Series Anomaly Detection?",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.17812",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.17793",
    "title": "SYNTHIA: Novel Concept Design with Affordance Composition",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.17793",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.17775",
    "title": "FoREST: Frame of Reference Evaluation in Spatial Reasoning Tasks",
    "listed_on": "2025-02-25",
    "paper_url": "https://arxiv.org/abs/2502.17775",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.17710",
    "title": "Mind the Gesture: Evaluating AI Sensitivity to Culturally Offensive Non-Verbal Gestures",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17710",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.17537",
    "title": "Rethinking the Vulnerability of Concept Erasure and a New Method",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17537",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.17360",
    "title": "RELICT: A Replica Detection Framework for Medical Image Generation",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17360",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.17315",
    "title": "HIPPO: Enhancing the Table Understanding Capability of LLMs through Hybrid-Modal Preference Optimization",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17315",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.17160",
    "title": "A Pragmatic Note on Evaluating Generative Models with Fréchet Inception Distance for Retinal Image Synthesis",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17160",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.17157",
    "title": "DICEPTION: A Generalist Diffusion Model for Visual Perceptual Tasks",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17157",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.17028",
    "title": "Distributional Vision-Language Alignment by Cauchy-Schwarz Divergence",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.17028",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.16965",
    "title": "Autoregressive Image Generation with Vision Full-view Prompt",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.16965",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.16915",
    "title": "Multi-Dimensional Quality Assessment for Text-to-3D Assets: Dataset and Model",
    "listed_on": "2025-02-24",
    "paper_url": "https://arxiv.org/abs/2502.16915",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.16902",
@@ -36134,24 +36224,27 @@
    "title": "Learning from Rendering: Realistic and Controllable Extreme Rainy Image Synthesis for Autonomous Driving Simulation",
    "listed_on": "2025-02-23",
    "paper_url": "https://arxiv.org/abs/2502.16421",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.18512",
    "title": "FCoT-VL:Advancing Text-oriented Large Vision-Language Models with Efficient Visual Token Compression",
    "listed_on": "2025-02-22",
    "paper_url": "https://arxiv.org/abs/2502.18512",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.17516",
    "title": "A Survey on Mechanistic Interpretability for Multi-Modal Foundation Models",
    "listed_on": "2025-02-22",
    "paper_url": "https://arxiv.org/abs/2502.17516",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.16368",
@@ -36176,16 +36269,18 @@
    "title": "Creative Blends of Visual Concepts",
    "listed_on": "2025-02-22",
    "paper_url": "https://arxiv.org/abs/2502.16062",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.15989",
    "title": "Mean-Shift Distillation for Diffusion Mode Seeking",
    "listed_on": "2025-02-21",
    "paper_url": "https://arxiv.org/abs/2502.15989",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.15972",
@@ -36201,16 +36296,18 @@
    "title": "ELIP: Enhanced Visual-Language Foundation Models for Image Retrieval",
    "listed_on": "2025-02-21",
    "paper_url": "https://arxiv.org/abs/2502.15682",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.15681",
    "title": "One-step Diffusion Models with $f$-Divergence Distribution Matching",
    "listed_on": "2025-02-21",
    "paper_url": "https://arxiv.org/abs/2502.15681",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.15278",
@@ -36226,16 +36323,18 @@
    "title": "Agonistic Image Generation: Unsettling the Hegemony of Intention",
    "listed_on": "2025-02-21",
    "paper_url": "https://arxiv.org/abs/2502.15242",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.15204",
    "title": "Lung-DDPM: Semantic Layout-guided Diffusion Models for Thoracic CT Image Synthesis",
    "listed_on": "2025-02-21",
    "paper_url": "https://arxiv.org/abs/2502.15204",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.15203",
@@ -36251,8 +36350,9 @@
    "title": "Multimodal Quantitative Language for Generative Recommendation",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2504.05314",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.14846",
@@ -36268,40 +36368,45 @@
    "title": "Dynamic Concepts Personalization from Single Videos",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14844",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.14799",
    "title": "A Survey on Text-Driven 360-Degree Panorama Generation",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14799",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.14779",
    "title": "DC-ControlNet: Decoupling Inter- and Intra-Element Conditions in Image Generation with Diffusion Models",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14779",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.14377",
    "title": "RelaCtrl: Relevance-Guided Efficient Control for Diffusion Transformers",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14377",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.14296",
    "title": "On the Trustworthiness of Generative Foundation Models: Guideline, Assessment, and Perspective",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14296",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.14285",
@@ -36317,8 +36422,9 @@
    "title": "Bridging Text and Vision: A Multi-View Text-Vision Registration Approach for Cross-Modal Place Recognition",
    "listed_on": "2025-02-20",
    "paper_url": "https://arxiv.org/abs/2502.14195",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.14070",
@@ -36334,8 +36440,9 @@
    "title": "DP-Adapter: Dual-Pathway Adapter for Boosting Fidelity and Text Consistency in Customizable Human Image Generation",
    "listed_on": "2025-02-19",
    "paper_url": "https://arxiv.org/abs/2502.13999",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.13997",
@@ -36360,24 +36467,27 @@
    "title": "FlexTok: Resampling Images into 1D Token Sequences of Flexible Length",
    "listed_on": "2025-02-19",
    "paper_url": "https://arxiv.org/abs/2502.13967",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.13855",
    "title": "MagicGeo: Training-Free Text-Guided Geometric Diagram Generation",
    "listed_on": "2025-02-19",
    "paper_url": "https://arxiv.org/abs/2502.13855",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.13081",
    "title": "Personalized Image Generation with Deep Generative Models: A Decade Survey",
    "listed_on": "2025-02-18",
    "paper_url": "https://arxiv.org/abs/2502.13081",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.12691",
@@ -36411,8 +36521,9 @@
    "title": "Computational Safety for Generative AI: A Hypothesis Testing Perspective",
    "listed_on": "2025-02-18",
    "paper_url": "https://arxiv.org/abs/2502.12445",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.14896",
@@ -36428,48 +36539,54 @@
    "title": "Achieving Upper Bound Accuracy of Joint Training in Continual Learning",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.12388",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.12095",
    "title": "Descriminative-Generative Custom Tokens for Vision-Language Models",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.12095",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.12089",
    "title": "How Compositional Generalization and Creativity Improve as Diffusion Models are Trained",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.12089",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.11925",
    "title": "GRAPHGPT-O: Synergistic Multimodal Comprehension and Generation on Graphs",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.11925",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.11748",
    "title": "ILIAS: Instance-Level Image retrieval At Scale",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.11748",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.11532",
    "title": "Control-CLIP: Decoupling Category and Style Guidance in CLIP for Specific-Domain Generation",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.11532",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.11477",
@@ -36485,64 +36602,72 @@
    "title": "Do we Really Need Visual Instructions? Towards Visual Instruction-Free Fine-tuning for Large Vision-Language Models",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.11427",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.11361",
    "title": "VLDBench Evaluating Multimodal Disinformation with Regulatory Alignment",
    "listed_on": "2025-02-17",
    "paper_url": "https://arxiv.org/abs/2502.11361",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.14888",
    "title": "Beyond Cross-Modal Alignment: Measuring and Leveraging Modality Gap in Vision-Language Models",
    "listed_on": "2025-02-16",
    "paper_url": "https://arxiv.org/abs/2502.14888",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.11184",
    "title": "Can't See the Forest for the Trees: Benchmarking Multimodal Safety Awareness for Multimodal LLMs",
    "listed_on": "2025-02-16",
    "paper_url": "https://arxiv.org/abs/2502.11184",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.11158",
    "title": "AnyRefill: A Unified, Data-Efficient Framework for Left-Prompt-Guided Vision Tasks",
    "listed_on": "2025-02-16",
    "paper_url": "https://arxiv.org/abs/2502.11158",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.11079",
    "title": "Phantom: Subject-consistent video generation via cross-modal alignment",
    "listed_on": "2025-02-16",
    "paper_url": "https://arxiv.org/abs/2502.11079",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.11068",
    "title": "MAnchors: Memorization-Based Acceleration of Anchors via Rule Reuse and Transformation",
    "listed_on": "2025-02-16",
    "paper_url": "https://arxiv.org/abs/2502.11068",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.10803",
    "title": "Beyond Known Fakes: Generalized Detection of AI-Generated Images via Post-hoc Distribution Alignment",
    "listed_on": "2025-02-15",
    "paper_url": "https://arxiv.org/abs/2502.10803",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.10663",
@@ -36558,16 +36683,18 @@
    "title": "Classifier-free Guidance with Adaptive Scaling",
    "listed_on": "2025-02-14",
    "paper_url": "https://arxiv.org/abs/2502.10574",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.09963",
    "title": "Generating on Generated: An Approach Towards Self-Evolving Diffusion Models",
    "listed_on": "2025-02-14",
    "paper_url": "https://arxiv.org/abs/2502.09963",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.09867",
@@ -36583,48 +36710,54 @@
    "title": "Large Language Models and Provenance Metadata for Determining the Relevance of Images and Videos in News Stories",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09689",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.09611",
    "title": "Designing a Conditional Prior Distribution for Flow-Based Generative Models",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09611",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.09488",
    "title": "Foundation Neural-Networks Quantum States as a Unified Ansatz for Multiple Hamiltonians",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09488",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.09411",
    "title": "ImageRAG: Dynamic Image Retrieval for Reference-Guided Image Generation",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09411",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.09307",
    "title": "When the LM misunderstood the human chuckled: Analyzing garden path effects in humans and language models",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09307",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.09294",
    "title": "Indeterminacy in Affective Computing: Considering Meaning and Context in Data Collection Practices",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.09294",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.09064",
@@ -36640,32 +36773,36 @@
    "title": "Dynamic watermarks in images generated by diffusion models",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.08927",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.08921",
    "title": "Detecting Malicious Concepts without Image Generation in AI-Generated Content (AIGC)",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.08921",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.08914",
    "title": "Diffusion Models Through a Global Lens: Are They Culturally Inclusive?",
    "listed_on": "2025-02-13",
    "paper_url": "https://arxiv.org/abs/2502.08914",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.10458",
    "title": "I Think, Therefore I Diffuse: Enabling Multimodal In-Context Reasoning in Diffusion Models",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.10458",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.08690",
@@ -36681,48 +36818,54 @@
    "title": "Ultrasound Image Generation using Latent Diffusion Models",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08580",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.08528",
    "title": "BCDDM: Branch-Corrected Denoising Diffusion Model for Black Hole Image Generation",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08528",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.08468",
    "title": "mmE5: Improving Multimodal Multilingual Embeddings via High-quality Synthetic Data",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08468",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.08438",
    "title": "Composite Sketch+Text Queries for Retrieving Objects with Elusive Names and Complex Interactions",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08438",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.08364",
    "title": "A Survey on Pre-Trained Diffusion Model Distillations",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08364",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.08231",
    "title": "Keep your distance: learning dispersed embeddings on $\\mathbb{S}_m$",
    "listed_on": "2025-02-12",
    "paper_url": "https://arxiv.org/abs/2502.08231",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.08106",
@@ -36756,40 +36899,45 @@
    "title": "TextAtlas5M: A Large-scale Dataset for Dense Text Image Generation",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07870",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.07849",
    "title": "Classifier-Free Guidance: From High-Dimensional Analysis to Generalized Guidance Forms",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07849",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.07784",
    "title": "MatSwap: Light-aware material transfers in images",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07784",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.07753",
    "title": "Direct Ascent Synthesis: Revealing Hidden Generative Capabilities in Discriminative Models",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07753",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.07701",
    "title": "Magic 1-For-1: Generating One Minute Video Clips within One Minute",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07701",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.07556",
@@ -36805,24 +36953,27 @@
    "title": "The Devil is in the Prompts: De-Identification Traces Enhance Memorization Risks in Synthetic Chest X-Ray Generation",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07516",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.07500",
    "title": "Unified Graph Networks (UGN): A Deep Neural Framework for Solving Graph Problems",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07500",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.07466",
    "title": "Less is More: Masking Elements in Image Condition Features Avoids Content Leakages in Style Transfer Diffusion Models",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07466",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.07455",
@@ -36838,80 +36989,90 @@
    "title": "PDV: Prompt Directional Vectors for Zero-shot Composed Image Retrieval",
    "listed_on": "2025-02-11",
    "paper_url": "https://arxiv.org/abs/2502.07215",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.07829",
    "title": "Preference Alignment on Diffusion Model: A Comprehensive Survey for Image Generation and Editing",
    "listed_on": "2025-02-10",
    "paper_url": "https://arxiv.org/abs/2502.07829",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.07825",
    "title": "Pre-Trained Video Generative Models as World Simulators",
    "listed_on": "2025-02-10",
    "paper_url": "https://arxiv.org/abs/2502.07825",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.06593",
    "title": "SAGI: Semantically Aligned and Uncertainty Guided AI Image Inpainting",
    "listed_on": "2025-02-10",
    "paper_url": "https://arxiv.org/abs/2502.06593",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.06392",
    "title": "TANGLED: Generating 3D Hair Strands from Images with Arbitrary Styles and Viewpoints",
    "listed_on": "2025-02-10",
    "paper_url": "https://arxiv.org/abs/2502.06392",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.06130",
    "title": "Self-Correcting Decoding with Generative Feedback for Mitigating Hallucinations in Large Vision-Language Models",
    "listed_on": "2025-02-10",
    "paper_url": "https://arxiv.org/abs/2502.06130",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.06023",
    "title": "Dual Caption Preference Optimization for Diffusion Models",
    "listed_on": "2025-02-09",
    "paper_url": "https://arxiv.org/abs/2502.06023",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.05895",
    "title": "Beyond Fine-Tuning: A Systematic Study of Sampling Techniques in Personalized Image Generation",
    "listed_on": "2025-02-09",
    "paper_url": "https://arxiv.org/abs/2502.05895",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.06863",
    "title": "BF-GAN: Development of an AI-driven Bubbly Flow Image Generation Model Using Generative Adversarial Networks",
    "listed_on": "2025-02-08",
    "paper_url": "https://arxiv.org/abs/2502.06863",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.05456",
    "title": "Framework for On the Fly Input Refinement for Deep Learning Models",
    "listed_on": "2025-02-08",
    "paper_url": "https://arxiv.org/abs/2502.05456",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.05444",
@@ -36934,32 +37095,36 @@
    "title": "QLIP: Text-Aligned Visual Tokenization Unifies Auto-Regressive Multimodal Understanding and Generation",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.05178",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.05153",
    "title": "Hummingbird: High Fidelity Image Generation via Multimodal Context Alignment",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.05153",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.05066",
    "title": "Beautiful Images, Toxic Words: Understanding and Addressing Offensive Text in Generated Images",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.05066",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04923",
    "title": "Cached Multi-Lora Composition for Multi-Concept Image Generation",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.04923",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04896",
@@ -36974,72 +37139,81 @@
    "title": "Fuzzy Linkography: Automatic Graphical Summarization of Creative Activity Traces",
    "listed_on": "2025-02-07",
    "paper_url": "https://arxiv.org/abs/2502.04599",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.04475",
    "title": "Augmented Conditioning Is Enough For Effective Training Image Generation",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04475",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04468",
    "title": "Iterative Importance Fine-tuning of Diffusion Models",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04468",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04412",
    "title": "Decoder-Only LLMs are Better Controllers for Diffusion Models",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04412",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04263",
    "title": "Cross the Gap: Exposing the Intra-modal Misalignment in CLIP via Modality Inversion",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04263",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.04223",
    "title": "Éclair -- Extracting Content and Layout with Integrated Reading Order for Documents",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04223",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.04176",
    "title": "MRAMG-Bench: A Comprehensive Benchmark for Advancing Multimodal Retrieval-Augmented Multimodal Generation",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04176",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.04116",
    "title": "Generative Adversarial Networks Bridging Art and Machine Intelligence",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04116",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.04050",
    "title": "PartEdit: Fine-Grained Image Editing using Pre-Trained Diffusion Models",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.04050",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.03826",
@@ -37055,48 +37229,54 @@
    "title": "DICE: Distilling Classifier-Free Guidance into Text Embeddings",
    "listed_on": "2025-02-06",
    "paper_url": "https://arxiv.org/abs/2502.03726",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.18477",
    "title": "Personalized Image Generation for Recommendations Beyond Catalogs",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.18477",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.06823",
    "title": "CTR-Driven Advertising Image Generation with Multimodal Large Language Models",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.06823",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.04378",
    "title": "DILLEMA: Diffusion and Large Language Models for Multi-Modal Augmentation",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.04378",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.04364",
    "title": "Lost in Edits? A $λ$-Compass for AIGC Provenance",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.04364",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.03566",
    "title": "CLIP Behaves like a Bag-of-Words Model Cross-modally but not Uni-modally",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.03566",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.03512",
@@ -37112,8 +37292,9 @@
    "title": "On Fairness of Unified Multimodal Large Language Model for Image Generation",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.03429",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.03420",
@@ -37129,88 +37310,99 @@
    "title": "MotionAgent: Fine-grained Controllable Video Generation via Motion Field Agent",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.03207",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.02863",
    "title": "OceanChat: The Effect of Virtual Conversational AI Agents on Sustainable Attitude and Behavior Change",
    "listed_on": "2025-02-05",
    "paper_url": "https://arxiv.org/abs/2502.02863",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.05214",
    "title": "CoRPA: Adversarial Image Generation for Chest X-rays Using Concept Vector Perturbations and Generative Models",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.05214",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.02589",
    "title": "COCONut-PanCap: Joint Panoptic Segmentation and Grounded Captions for Fine-Grained Understanding and Generation",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.02589",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2502.02588",
    "title": "Calibrated Multi-Preference Optimization for Aligning Diffusion Models",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.02588",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.02465",
    "title": "Towards Consistent and Controllable Image Synthesis for Face Editing",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.02465",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.02202",
    "title": "Multi-level Supervised Contrastive Learning",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.02202",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.01972",
    "title": "Layer Separation: Adjustable Joint Space Width Images Synthesis in Conventional Radiography",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.01972",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.01960",
    "title": "MPIC: Position-Independent Multimodal Context Caching System for Efficient MLLM Serving",
    "listed_on": "2025-02-04",
    "paper_url": "https://arxiv.org/abs/2502.01960",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.01842",
    "title": "Texture Image Synthesis Using Spatial GAN Based on Vision Transformers",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.01842",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.01828",
    "title": "From Foresight to Forethought: VLM-In-the-Loop Policy Steering via Latent Alignment",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.01828",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.01720",
@@ -37235,72 +37427,81 @@
    "title": "Improved Training Technique for Latent Consistency Models",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.01441",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.01309",
    "title": "Heterogeneous Image GNN: Graph-Conditioned Diffusion for Image Synthesis",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.01309",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.01189",
    "title": "Compressed Image Generation with Denoising Diffusion Codebook Models",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.01189",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.00965",
    "title": "CLIP-UP: A Simple and Efficient Mixture-of-Experts CLIP Training Recipe with Sparse Upcycling",
    "listed_on": "2025-02-03",
    "paper_url": "https://arxiv.org/abs/2502.00965",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.01690",
    "title": "HuViDPO:Enhancing Video Generation through Direct Preference Optimization for Human-Centric Alignment",
    "listed_on": "2025-02-02",
    "paper_url": "https://arxiv.org/abs/2502.01690",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.00848",
    "title": "RealRAG: Retrieval-augmented Realistic Image Generation via Self-reflective Contrastive Learning",
    "listed_on": "2025-02-02",
    "paper_url": "https://arxiv.org/abs/2502.00848",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.00826",
    "title": "Weak Supervision Dynamic KL-Weighted Diffusion Models Guided by Large Language Models",
    "listed_on": "2025-02-02",
    "paper_url": "https://arxiv.org/abs/2502.00826",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.00586",
    "title": "Less is More: Simplifying Network Traffic Classification Leveraging RFCs",
    "listed_on": "2025-02-01",
    "paper_url": "https://arxiv.org/abs/2502.00586",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.00543",
    "title": "VertiFormer: A Data-Efficient Multi-Task Transformer for Off-Road Robot Mobility",
    "listed_on": "2025-02-01",
    "paper_url": "https://arxiv.org/abs/2502.00543",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.00433",
@@ -37316,48 +37517,54 @@
    "title": "Scalable Framework for Classifying AI-Generated Content Across Modalities",
    "listed_on": "2025-02-01",
    "paper_url": "https://arxiv.org/abs/2502.00375",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2502.00283",
    "title": "How Generative AI supports human in conceptual design",
    "listed_on": "2025-02-01",
    "paper_url": "https://arxiv.org/abs/2502.00283",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.19066",
    "title": "Concept Steerers: Leveraging K-Sparse Autoencoders for Test-Time Controllable Generations",
    "listed_on": "2025-01-31",
    "paper_url": "https://arxiv.org/abs/2501.19066",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.18940",
    "title": "TV-Dialogue: Crafting Theme-Aware Video Dialogues with Immersive Interaction",
    "listed_on": "2025-01-31",
    "paper_url": "https://arxiv.org/abs/2501.18940",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.18865",
    "title": "REG: Rectified Gradient Guidance for Conditional Diffusion Models",
    "listed_on": "2025-01-31",
    "paper_url": "https://arxiv.org/abs/2501.18865",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.18588",
    "title": "Inkspire: Supporting Design Exploration with Generative AI through Analogical Sketching",
    "listed_on": "2025-01-30",
    "paper_url": "https://arxiv.org/abs/2501.18588",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.18427",
@@ -37372,8 +37579,9 @@
    "title": "LLMs can see and hear without any training",
    "listed_on": "2025-01-30",
    "paper_url": "https://arxiv.org/abs/2501.18096",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.06798",
@@ -37389,32 +37597,36 @@
    "title": "Multimodal Large Language Models for Image, Text, and Speech Data Augmentation: A Survey",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.18648",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.18052",
    "title": "SAeUron: Interpretable Concept Unlearning in Diffusion Models with Sparse Autoencoders",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.18052",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.18033",
    "title": "Generative AI for Vision: A Comprehensive Study of Frameworks and Applications",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.18033",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.18006",
    "title": "Topological Signatures of Adversaries in Multimodal Alignments",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.18006",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.17811",
@@ -37429,16 +37641,18 @@
    "title": "VICCA: Visual Interpretation and Comprehension of Chest X-ray Anomalies in Generated Report Without Human Feedback",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.17726",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.17654",
    "title": "Exploring Vision Language Models for Multimodal and Multilingual Stance Detection",
    "listed_on": "2025-01-29",
    "paper_url": "https://arxiv.org/abs/2501.17654",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.18642",
@@ -37463,48 +37677,54 @@
    "title": "RODEO: Robust Outlier Detection via Exposing Adaptive Out-of-Distribution Samples",
    "listed_on": "2025-01-28",
    "paper_url": "https://arxiv.org/abs/2501.16971",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.16764",
    "title": "DiffSplat: Repurposing Image Diffusion Models for Scalable Gaussian Splat Generation",
    "listed_on": "2025-01-28",
    "paper_url": "https://arxiv.org/abs/2501.16764",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.16679",
    "title": "Polyp-Gen: Realistic and Diverse Polyp Image Generation for Endoscopic Dataset Expansion",
    "listed_on": "2025-01-28",
    "paper_url": "https://arxiv.org/abs/2501.16679",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.16612",
    "title": "CascadeV: An Implementation of Wurstchen Architecture for Video Generation",
    "listed_on": "2025-01-28",
    "paper_url": "https://arxiv.org/abs/2501.16612",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.16601",
    "title": "Non-Western Perspectives on Web Inclusivity: A Study of Accessibility Practices in the Global South",
    "listed_on": "2025-01-28",
    "paper_url": "https://arxiv.org/abs/2501.16601",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.16559",
    "title": "LoRA-X: Bridging Foundation Models with Training-Free Cross-Model Adaptation",
    "listed_on": "2025-01-27",
    "paper_url": "https://arxiv.org/abs/2501.16559",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.15775",
@@ -37520,8 +37740,9 @@
    "title": "IP-Prompter: Training-Free Theme-Specific Image Generation via Dynamic Visual Prompting",
    "listed_on": "2025-01-26",
    "paper_url": "https://arxiv.org/abs/2501.15641",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.15562",
@@ -37537,16 +37758,18 @@
    "title": "\"See What I Imagine, Imagine What I See\": Human-AI Co-Creation System for 360$^\\circ$ Panoramic Video Generation in VR",
    "listed_on": "2025-01-26",
    "paper_url": "https://arxiv.org/abs/2501.15456",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.15445",
    "title": "StochSync: Stochastic Diffusion Synchronization for Image Generation in Arbitrary Spaces",
    "listed_on": "2025-01-26",
    "paper_url": "https://arxiv.org/abs/2501.15445",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.15379",
@@ -37562,8 +37785,9 @@
    "title": "\"Stones from Other Hills can Polish Jade\": Zero-shot Anomaly Image Synthesis via Cross-domain Anomaly Injection",
    "listed_on": "2025-01-25",
    "paper_url": "https://arxiv.org/abs/2501.15211",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.15052",
@@ -37579,32 +37803,36 @@
    "title": "BOLDreams: Dreaming with pruned in-silico fMRI Encoding Models of the Visual Cortex",
    "listed_on": "2025-01-24",
    "paper_url": "https://arxiv.org/abs/2501.14854",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.14171",
    "title": "Fully Guided Neural Schrödinger bridge for Brain MR image synthesis",
    "listed_on": "2025-01-24",
    "paper_url": "https://arxiv.org/abs/2501.14171",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.14046",
    "title": "LLM-guided Instance-level Image Manipulation with Diffusion U-Net Cross-Attention Maps",
    "listed_on": "2025-01-23",
    "paper_url": "https://arxiv.org/abs/2501.14046",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.13926",
    "title": "Can We Generate Images with CoT? Let's Verify and Reinforce Image Generation Step by Step",
    "listed_on": "2025-01-23",
    "paper_url": "https://arxiv.org/abs/2501.13926",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.13920",
@@ -37629,40 +37857,45 @@
    "title": "RAMQA: A Unified Framework for Retrieval-Augmented Multi-Modal Question Answering",
    "listed_on": "2025-01-23",
    "paper_url": "https://arxiv.org/abs/2501.13297",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.13972",
    "title": "Synthetic CT image generation from CBCT: A Systematic Review",
    "listed_on": "2025-01-22",
    "paper_url": "https://arxiv.org/abs/2501.13972",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.13968",
    "title": "Triplet Synthesis For Enhancing Composed Image Retrieval via Counterfactual Image Generation",
    "listed_on": "2025-01-22",
    "paper_url": "https://arxiv.org/abs/2501.13968",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.13107",
    "title": "Accelerate High-Quality Diffusion Models with Inner Loop Feedback",
    "listed_on": "2025-01-22",
    "paper_url": "https://arxiv.org/abs/2501.13107",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12976",
    "title": "LiT: Delving into a Simple Linear Diffusion Transformer for Image Generation",
    "listed_on": "2025-01-22",
    "paper_url": "https://arxiv.org/abs/2501.12976",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12910",
@@ -37678,64 +37911,72 @@
    "title": "T2ISafety: Benchmark for Assessing Fairness, Toxicity, and Privacy in Image Generation",
    "listed_on": "2025-01-22",
    "paper_url": "https://arxiv.org/abs/2501.12612",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.12431",
    "title": "Modality Interactive Mixture-of-Experts for Fake News Detection",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12431",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.12390",
    "title": "GPS as a Control Signal for Image Generation",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12390",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12382",
    "title": "DiffDoctor: Diagnosing Image Diffusion Models Before Treating",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12382",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12381",
    "title": "Parallel Sequence Modeling via Generalized Spatial Propagation Network",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12381",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12374",
    "title": "Expertise elevates AI usage: experimental evidence comparing laypeople and professional artists",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12374",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.12224",
    "title": "TokenVerse: Versatile Multi-concept Personalization in Token Modulation Space",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12224",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.12173",
    "title": "ComposeAnyone: Controllable Layout-to-Human Generation with Decoupled Multimodal Conditions",
    "listed_on": "2025-01-21",
    "paper_url": "https://arxiv.org/abs/2501.12173",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.11815",
@@ -37751,24 +37992,27 @@
    "title": "Are generative models fair? A study of racial bias in dermatological image generation",
    "listed_on": "2025-01-20",
    "paper_url": "https://arxiv.org/abs/2501.11752",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.10913",
    "title": "Know \"No\" Better: A Data-Driven Approach for Enhancing Negation Awareness in CLIP",
    "listed_on": "2025-01-19",
    "paper_url": "https://arxiv.org/abs/2501.10913",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.10768",
    "title": "MAPS: Advancing Multi-Modal Reasoning in Expert-Level Physical Science",
    "listed_on": "2025-01-18",
    "paper_url": "https://arxiv.org/abs/2501.10768",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.09927",
@@ -37784,32 +38028,36 @@
    "title": "Erasing More Than Intended? How Concept Erasure Degrades the Generation of Non-Target Concepts",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09833",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.09826",
    "title": "PIXELS: Progressive Image Xemplar-based Editing with Latent Surgery",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09826",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09732",
    "title": "Inference-Time Scaling for Diffusion Models beyond Scaling Denoising Steps",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09732",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09532",
    "title": "AdaFV: Rethinking of Visual-Language alignment for VLM acceleration",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09532",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.09503",
@@ -37825,48 +38073,54 @@
    "title": "Dynamic Neural Style Transfer for Artistic Image Generation using VGG19",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09420",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.09391",
    "title": "Contract-Inspired Contest Theory for Controllable Image Generation in Mobile Edge Metaverse",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09391",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09284",
    "title": "SEAL: Entangled White-box Watermarks on Low-Rank Adaptation",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09284",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09253",
    "title": "PATCHEDSERVE: A Patch Management Framework for SLO-Optimized Hybrid Resolution Diffusion Serving",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09253",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09236",
    "title": "Exploring the Capabilities of Vision-Language Models to Detect Visual Bugs in HTML5 <canvas> Applications",
    "listed_on": "2025-01-16",
    "paper_url": "https://arxiv.org/abs/2501.09236",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.10462",
    "title": "BloomScene: Lightweight Structured 3D Gaussian Splatting for Crossmodal Scene Generation",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.10462",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.09194",
@@ -37891,24 +38145,27 @@
    "title": "CookingDiffusion: Cooking Procedural Image Generation with Stable Diffusion",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.09042",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.09014",
    "title": "How Do Generative Models Draw a Software Engineer? A Case Study on Stable Diffusion Bias",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.09014",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.09008",
    "title": "SimGen: A Diffusion-Based Framework for Simultaneous Surgical Image and Segmentation Mask Generation",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.09008",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.08900",
@@ -37932,16 +38189,18 @@
    "title": "Yuan: Yielding Unblemished Aesthetics Through A Unified Network for Visual Imperfections Removal in Generated Images",
    "listed_on": "2025-01-15",
    "paper_url": "https://arxiv.org/abs/2501.08505",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2502.08648",
    "title": "Scientific Map of Artificial Intelligence in Communication (2004-2024)",
    "listed_on": "2025-01-14",
    "paper_url": "https://arxiv.org/abs/2502.08648",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.08441",
@@ -37957,8 +38216,9 @@
    "title": "FramePainter: Endowing Interactive Image Editing with Video Diffusion Priors",
    "listed_on": "2025-01-14",
    "paper_url": "https://arxiv.org/abs/2501.08225",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.07730",
@@ -37977,24 +38237,27 @@
    "title": "SST-EM: Advanced Metrics for Evaluating Semantic, Spatial and Temporal Aspects in Video Editing",
    "listed_on": "2025-01-13",
    "paper_url": "https://arxiv.org/abs/2501.07554",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.07530",
    "title": "IP-FaceDiff: Identity-Preserving Facial Video Editing with Diffusion",
    "listed_on": "2025-01-13",
    "paper_url": "https://arxiv.org/abs/2501.07530",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.07244",
    "title": "Can Vision-Language Models Evaluate Handwritten Math?",
    "listed_on": "2025-01-13",
    "paper_url": "https://arxiv.org/abs/2501.07244",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.07086",
@@ -38010,64 +38273,72 @@
    "title": "Enhancing Image Generation Fidelity via Progressive Prompts",
    "listed_on": "2025-01-13",
    "paper_url": "https://arxiv.org/abs/2501.07070",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.06942",
    "title": "Comparison of Autoencoders for tokenization of ASL datasets",
    "listed_on": "2025-01-12",
    "paper_url": "https://arxiv.org/abs/2501.06942",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.06848",
    "title": "A General Framework for Inference-time Scaling and Steering of Diffusion Models",
    "listed_on": "2025-01-12",
    "paper_url": "https://arxiv.org/abs/2501.06848",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.06781",
    "title": "Eliza: A Web3 friendly AI Agent Operating System",
    "listed_on": "2025-01-12",
    "paper_url": "https://arxiv.org/abs/2501.06781",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.06770",
    "title": "SuperNeRF-GAN: A Universal 3D-Consistent Super-Resolution Framework for Efficient and Enhanced 3D-Aware Image Synthesis",
    "listed_on": "2025-01-12",
    "paper_url": "https://arxiv.org/abs/2501.06770",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.06751",
    "title": "Padding Tone: A Mechanistic Analysis of Padding Tokens in T2I Models",
    "listed_on": "2025-01-12",
    "paper_url": "https://arxiv.org/abs/2501.06751",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.06655",
    "title": "Personalized Preference Fine-tuning of Diffusion Models",
    "listed_on": "2025-01-11",
    "paper_url": "https://arxiv.org/abs/2501.06655",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.06533",
    "title": "DivTrackee versus DynTracker: Promoting Diversity in Anti-Facial Recognition against Dynamic FR Strategy",
    "listed_on": "2025-01-11",
    "paper_url": "https://arxiv.org/abs/2501.06533",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.06481",
@@ -38083,24 +38354,27 @@
    "title": "Ultrasound Image Synthesis Using Generative AI for Lung Ultrasound Detection",
    "listed_on": "2025-01-10",
    "paper_url": "https://arxiv.org/abs/2501.06356",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.06173",
    "title": "VideoAuteur: Towards Long Narrative Video Generation",
    "listed_on": "2025-01-10",
    "paper_url": "https://arxiv.org/abs/2501.06173",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.05839",
    "title": "Poetry in Pixels: Prompt Tuning for Poem Image Generation via Diffusion Models",
    "listed_on": "2025-01-10",
    "paper_url": "https://arxiv.org/abs/2501.05839",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.05710",
@@ -38115,40 +38389,45 @@
    "title": "Can MLLMs Reason in Multimodality? EMMA: An Enhanced MultiModal ReAsoning Benchmark",
    "listed_on": "2025-01-09",
    "paper_url": "https://arxiv.org/abs/2501.05444",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.05413",
    "title": "Seeing Sound: Assembling Sounds from Visuals for Audio-to-Image Generation",
    "listed_on": "2025-01-09",
    "paper_url": "https://arxiv.org/abs/2501.05413",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.05359",
    "title": "SC-Pro: Training-Free Framework for Defending Unsafe Image Synthesis Attack",
    "listed_on": "2025-01-09",
    "paper_url": "https://arxiv.org/abs/2501.05359",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.05131",
    "title": "3DIS-FLUX: simple and efficient multi-instance generation with DiT rendering",
    "listed_on": "2025-01-09",
    "paper_url": "https://arxiv.org/abs/2501.05131",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.05122",
    "title": "Centurio: On Drivers of Multilingual Ability of Large Vision-Language Model",
    "listed_on": "2025-01-09",
    "paper_url": "https://arxiv.org/abs/2501.05122",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.04699",
@@ -38163,24 +38442,27 @@
    "title": "Enhancing Low-Cost Video Editing with Lightweight Adaptors and Temporal-Aware Inversion",
    "listed_on": "2025-01-08",
    "paper_url": "https://arxiv.org/abs/2501.04606",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.04477",
    "title": "Rethinking High-speed Image Reconstruction Framework with Spike Camera",
    "listed_on": "2025-01-08",
    "paper_url": "https://arxiv.org/abs/2501.04477",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.04374",
    "title": "Instructive3D: Editing Large Reconstruction Models with Text Instructions",
    "listed_on": "2025-01-08",
    "paper_url": "https://arxiv.org/abs/2501.04374",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.04304",
@@ -38196,24 +38478,27 @@
    "title": "HistoryPalette: Supporting Exploration and Reuse of Past Alternatives in Image Generation and Editing",
    "listed_on": "2025-01-07",
    "paper_url": "https://arxiv.org/abs/2501.04163",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.03722",
    "title": "Self-adaptive vision-language model for 3D segmentation of pulmonary artery and vein",
    "listed_on": "2025-01-07",
    "paper_url": "https://arxiv.org/abs/2501.03722",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.03631",
    "title": "Exploring Iterative Manifold Constraint for Zero-shot Image Editing",
    "listed_on": "2025-01-07",
    "paper_url": "https://arxiv.org/abs/2501.03631",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.03567",
@@ -38238,8 +38523,9 @@
    "title": "Textualize Visual Prompt for Image Editing via Diffusion Bridge",
    "listed_on": "2025-01-07",
    "paper_url": "https://arxiv.org/abs/2501.03495",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.03490",
@@ -38255,16 +38541,18 @@
    "title": "License Plate Images Generation with Diffusion Models",
    "listed_on": "2025-01-06",
    "paper_url": "https://arxiv.org/abs/2501.03374",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.02725",
    "title": "Advances in Artificial Intelligence: A Review for the Creative Industries",
    "listed_on": "2025-01-06",
    "paper_url": "https://arxiv.org/abs/2501.02725",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.02523",
@@ -38280,16 +38568,18 @@
    "title": "ACE++: Instruction-Based Image Creation and Editing via Context-Aware Content Filling",
    "listed_on": "2025-01-05",
    "paper_url": "https://arxiv.org/abs/2501.02487",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.02461",
    "title": "FedRSClip: Federated Learning for Remote Sensing Scene Classification Using Vision-Language Models",
    "listed_on": "2025-01-05",
    "paper_url": "https://arxiv.org/abs/2501.02461",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.02376",
@@ -38305,16 +38595,18 @@
    "title": "Hyperbolic Contrastive Learning for Hierarchical 3D Point Cloud Embedding",
    "listed_on": "2025-01-04",
    "paper_url": "https://arxiv.org/abs/2501.02285",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.02064",
    "title": "ArtCrafter: Text-Image Aligning Style Transfer via Embedding Reframing",
    "listed_on": "2025-01-03",
    "paper_url": "https://arxiv.org/abs/2501.02064",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01633",
@@ -38330,80 +38622,90 @@
    "title": "Free-Form Motion Control: Controlling the 6D Poses of Camera and Objects in Video Generation",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01425",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.01424",
    "title": "Object-level Visual Prompts for Compositional Image Generation",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01424",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01407",
    "title": "Nested Attention: Semantic-aware Attention Values for Concept Personalization",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01407",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01368",
    "title": "Test-time Controllable Image Generation by Explicit Spatial Constraint Enforcement",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01368",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01197",
    "title": "LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01197",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01156",
    "title": "TexAVi: Generating Stereoscopic VR Video Clips from Text Descriptions",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01156",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.01125",
    "title": "DuMo: Dual Encoder Modulation Network for Precise Concept Erasure",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01125",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.01097",
    "title": "EliGen: Entity-Level Controlled Image Generation with Regional Attention",
    "listed_on": "2025-01-02",
    "paper_url": "https://arxiv.org/abs/2501.01097",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "component-or-training-method"
   },
   {
    "arxiv_id": "2501.00962",
    "title": "OASIS Uncovers: High-Quality T2I Models, Same Old Stereotypes",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00962",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "data-or-evaluation"
   },
   {
    "arxiv_id": "2501.00954",
    "title": "Enhancing Early Diabetic Retinopathy Detection through Synthetic DR1 Image Generation: A StyleGAN3 Approach",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00954",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.00917",
@@ -38427,16 +38729,18 @@
    "title": "Regression Guided Strategy to Automated Facial Beauty Optimization through Image Synthesis",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00811",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   },
   {
    "arxiv_id": "2501.00750",
    "title": "Beyond Text: Implementing Multimodal Large Language Model-Powered Multi-Agent Systems Using a No-Code Platform",
    "listed_on": "2025-01-01",
    "paper_url": "https://arxiv.org/abs/2501.00750",
-   "review_level": "title",
-   "decision": "pending"
+   "review_level": "abstract",
+   "decision": "excluded",
+   "reason": "outside-t2i"
   }
  ],
  "source_row_count": 4220,

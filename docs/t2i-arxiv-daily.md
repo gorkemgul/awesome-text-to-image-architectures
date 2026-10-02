@@ -20,11 +20,11 @@ Dates are first paper submission dates, not verified software release dates. Wit
 | Decision | Papers |
 | --- | ---: |
 | Included | 124 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1839 |
-| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 773 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1964 |
+| Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 839 |
 | No distinct text-to-image system identified in the reviewed source | 5 |
-| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1157 |
-| Not yet screened | 322 |
+| Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1270 |
+| Not yet screened | 18 |
 
 </details>
 
