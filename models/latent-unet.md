@@ -152,9 +152,9 @@ Quality-tuned 1024×1024 latent diffusion model with a 2.8B-parameter U-Net, a 1
 
 [Paper](https://arxiv.org/abs/2309.15807)
 
-![Emu (Meta) — Input/output diagram](../assets/architectures/emu-meta.svg)
+![Emu (Meta) — Source-based architecture diagram](../assets/architectures/emu-meta.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2309.15807)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2309.15807)*
 
 <details>
 <summary>Details</summary>
@@ -162,8 +162,6 @@ Quality-tuned 1024×1024 latent diffusion model with a 2.8B-parameter U-Net, a 1
 **Input → output:** T → I · **Interaction:** generation
 
 The autoencoder raises the latent channel count from the usual 4 to 16 and adds a Fourier feature transform on the input to improve reconstruction of fine details (paper Sec. 3.1, Figure 3). The U-Net increases channel sizes and the number of residual blocks per stage. Pre-training uses 1.1 billion internal image-text pairs with progressively increasing resolution and a 0.02 noise offset at the end; quality-tuning then fine-tunes on a few thousand human-selected, highly aesthetic images (batch 64, noise offset 0.1, at most 15K iterations with early stopping). The paper shows the same quality-tuning also helps pixel diffusion and masked generative transformer models. No architecture diagram is published (figures are samples, data examples and evaluations). Distinct from BAAI's multimodal Emu.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -300,9 +298,9 @@ Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model
 
 [Paper](https://github.com/Kwai-Kolors/Kolors/blob/master/imgs/Kolors_paper.pdf) · [GitHub](https://github.com/Kwai-Kolors/Kolors) · [Model card](https://huggingface.co/Kwai-Kolors/Kolors)
 
-![Kolors — Input/output diagram](../assets/architectures/kolors.svg)
+![Kolors — Source-based architecture diagram](../assets/architectures/kolors.svg)
 
-*Input/output diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
+*Source-based architecture diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
 
 <details>
 <summary>Details</summary>
@@ -312,8 +310,6 @@ Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model
 The report states that the backbone strictly follows the SDXL U-Net and that the contributions are the text encoder, re-captioning, data curation and the high-resolution noise schedule; it has no architecture diagram. The technical report is hosted as a PDF in the official repository rather than on arXiv, so the date is the repository's dated release line ("2024.07.06 ... We release Kolors"). ControlNet, IP-Adapter, inpainting and LoRA releases in the same repository are add-ons and are not covered. The Hugging Face card metadata lists apache-2.0, while the repository README says the weights are fully open for academic research and commercial use requires registration with the licensor under its model license (MODEL_LICENSE).
 
 **License:** code: Apache-2.0; weights: apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Kolors (Kwai-Kolors/Kolors); Kolors-diffusers.
 
@@ -375,9 +371,9 @@ Playground v2 is a latent diffusion text-to-image model from Playground that its
 
 [Paper](https://arxiv.org/abs/2402.17245) · [Model card 1](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) · [Model card 2](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) · GitHub: no author-linked repository found
 
-![Playground v2 — Input/output diagram](../assets/architectures/playground-v2.svg)
+![Playground v2 — Source-based architecture diagram](../assets/architectures/playground-v2.svg)
 
-*Input/output diagram · [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic)*
+*Source-based architecture diagram · [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic)*
 
 <details>
 <summary>Details</summary>
@@ -387,8 +383,6 @@ Playground v2 is a latent diffusion text-to-image model from Playground that its
 The v2.5 report states that, following v2, the underlying model architecture was not changed; its contributions are the training recipe (EDM noise schedule and preconditioning instead of v2's offset noise with a DDPM schedule, balanced bucketed multi-aspect training, and SFT-style human preference alignment). The v2.5 report has no architecture figure. The v2 release is not separately dated here because no dated primary announcement was verified.
 
 **License:** weights: playground-v2-community (v2); playground-v2dot5-community (v2.5).
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** playground-v2-1024px-aesthetic; Playground v2.5 (playground-v2.5-1024px-aesthetic).
 
@@ -471,9 +465,9 @@ Latent diffusion model with an 860M U-Net conditioned through cross-attention on
 
 [Announcement](https://stability.ai/news/stable-diffusion-public-release) · [GitHub](https://github.com/CompVis/stable-diffusion) · [Model card](https://huggingface.co/CompVis/stable-diffusion-v1-4) · [Paper](https://arxiv.org/abs/2112.10752)
 
-![Stable Diffusion 1.x — Input/output diagram](../assets/architectures/stable-diffusion-1.svg)
+![Stable Diffusion 1.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-1.svg)
 
-*Input/output diagram · [Source](https://github.com/CompVis/stable-diffusion)*
+*Source-based architecture diagram · [Source](https://github.com/CompVis/stable-diffusion)*
 
 <details>
 <summary>Details</summary>
@@ -483,8 +477,6 @@ Latent diffusion model with an 860M U-Net conditioned through cross-attention on
 Stable Diffusion v1 is a specific LDM configuration: a downsampling-factor-8 autoencoder (H×W×3 images to H/8×W/8×4 latents), an 860M U-Net and a 123M frozen CLIP ViT-L/14 text encoder, pretrained at 256×256 and fine-tuned at 512×512 on LAION-5B subsets (official README and v1-4 model card). Checkpoints v1-1 to v1-4 differ in training data and steps, and v1-3/v1-4 drop the text condition 10% of the time for classifier-free guidance. The README documents SDEdit-style text-guided image-to-image translation with the same weights (img2img script), which is the basis for the image input and editing label. The reference sampling script adds a safety checker and invisible watermarking. The original runwayml/stable-diffusion-v1-5 Hugging Face repository was not reachable at review, so v1.5 is not described here. Built on the LDM paper (see `ldm`).
 
 **License:** code: CreativeML Open RAIL-M; weights: creativeml-openrail-m.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** sd-v1-1; sd-v1-2; sd-v1-3; sd-v1-4.
 
@@ -498,9 +490,9 @@ Latent diffusion U-Net (865M parameters) conditioned through cross-attention on 
 
 [Announcement 1](https://stability.ai/news/stable-diffusion-v2-release) · [Announcement 2](https://stability.ai/news/stablediffusion2-1-release7-dec-2022) · [Paper](https://arxiv.org/abs/2307.01952) · GitHub: no author-linked repository found
 
-![Stable Diffusion 2.x — Input/output diagram](../assets/architectures/stable-diffusion-2.svg)
+![Stable Diffusion 2.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-2.svg)
 
-*Input/output diagram · [Source](https://stability.ai/news/stable-diffusion-v2-release)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2307.01952)*
 
 <details>
 <summary>Details</summary>
@@ -508,8 +500,6 @@ Latent diffusion U-Net (865M parameters) conditioned through cross-attention on 
 **Input → output:** T, I → I · **Interaction:** editing
 
 The 2.0 announcement introduces text-to-image models trained with a new OpenCLIP text encoder at default resolutions of 512×512 and 768×768, on an aesthetic, NSFW-filtered LAION-5B subset. The SDXL paper (Table 1) gives the SD 2.0/2.1 U-Net as 865M parameters with OpenCLIP ViT-H text features (context dimension 1024) and no pooled text embedding. The 2.0 release also includes a 4× upscaler diffusion model, a depth-guided depth2img model for structure-preserving image-to-image, and a text-guided inpainting model fine-tuned from the 2.0 base; these are the basis for the image input and editing label. Version 2.1 (announced 2022-12-07) fine-tunes 2.0 with less aggressive dataset filtering. The GitHub repository linked from the announcement (Stability-AI/StableDiffusion) and the stabilityai/stable-diffusion-2 Hugging Face cards were unavailable at review, so no license is recorded.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** 2.0 (512 and 768); 2.1 (512 and 768); x4 upscaler; depth2img; 2.0 inpainting.
 

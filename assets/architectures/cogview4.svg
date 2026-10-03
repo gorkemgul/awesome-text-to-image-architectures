@@ -1,25 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">CogView4: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+<title id="title">CogView4 architecture</title>
+<desc id="desc">Source-based reconstruction. transformer/config.json: 28 layers, 32 heads, patch2, 16 channels; vae/config.json: AutoencoderKL; scheduler/scheduler_config.json: Euler flow matching; diffusers transformer_cogview4.py joint attention, image RoPE, timestep/size/crop modulation</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1400" height="800" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">CogView4</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="185.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">6B diffusion transformer conditioned</text>
-<text x="560" y="211.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">on the bilingual GLM-4-9B language</text>
-<text x="560" y="237.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">model as text encoder (internal</text>
-<text x="560" y="263.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">architecture not documented beyond</text>
-<text x="560" y="289.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">this)</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">generation</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="243.0" font-size="17" fill="#0369a1">Text</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">CogView4</text>
+<rect x="535" y="160" width="390" height="475" rx="5" fill="#edf4fa" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="549" y="183" font-size="15" font-weight="600" fill="#334155">CogView4-6B backbone</text>
+<polyline points="145.0,235.0 145.0,300.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="250.0,372.5 275.0,372.5 275.0,352.5 300.0,352.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="490.0,352.5 527.5,352.5 527.5,432.5 565.0,432.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="250.0,657.5 275.0,657.5 275.0,632.5 300.0,632.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="490,632 525,632 525,555 565,555" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="730.0,655.0 730.0,605.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="730.0" y="620.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">modulation</text>
+<polyline points="895.0,432.5 967.5,432.5 967.5,315.0 1040.0,315.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="967.5" y="363.75" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">velocity</text>
+<polyline points="1160.0,370.0 1160.0,450.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1160.0" y="400.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">final latents</text>
+<polyline points="1160.0,595.0 1160.0,650.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1280,315 1340,315 1340,755 395,755 395,695" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="50.0" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="82.66666666666667" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="115.33333333333334" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="128.66666666666669" y="170" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="148.0" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="161.33333333333334" y="170" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="180.66666666666669" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="213.33333333333337" y="150" width="26.666666666666668" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="145.0" y="205" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Chinese / English prompt</text>
+<polygon points="48,306 242,306 191.2,403 98.80000000000001,403" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="145.0" y="426" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">GLM-4-9B encoder</text>
+<rect x="310.0" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="339.3333333333333" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="368.6666666666667" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="380.33333333333337" y="320" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="398.0" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="409.6666666666667" y="320" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="427.3333333333333" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="456.66666666666663" y="300" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="395.0" y="355" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Projected text tokens</text>
+<rect x="107.0" y="614" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="102.0" y="609" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="97.0" y="604" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<path d="M114.2 604 v55 M97.0 615.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M131.4 604 v55 M97.0 626.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M148.6 604 v55 M97.0 637.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M165.8 604 v55 M97.0 648.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<text x="145.0" y="693" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">16-channel noise</text>
+<rect x="310.0" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="339.3333333333333" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="368.6666666666667" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="380.33333333333337" y="600" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="398.0" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="409.6666666666667" y="600" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="427.3333333333333" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="456.66666666666663" y="580" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="395.0" y="635" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">2 × 2 patch embedding</text>
+<rect x="573" y="268" width="322" height="337" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="569" y="264" width="322" height="337" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="565" y="260" width="322" height="337" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="583" y="306" width="286" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="726.0" y="332.5" text-anchor="middle" font-size="12" fill="#1f2937">AdaLN timestep modulation</text>
+<rect x="583" y="356" width="286" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="726.0" y="382.5" text-anchor="middle" font-size="12" fill="#1f2937">Joint text/image attention</text>
+<rect x="583" y="406" width="286" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="726.0" y="432.5" text-anchor="middle" font-size="12" fill="#1f2937">Image RoPE + QK norm</text>
+<rect x="583" y="456" width="286" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="726.0" y="482.5" text-anchor="middle" font-size="12" fill="#1f2937">Feed-forward + residual</text>
+<text x="730.0" y="285" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">28 transformer blocks</text>
+<rect x="570" y="655" width="320" height="85" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="730.0" y="702.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Timestep + size + crop</text>
+<rect x="1040" y="260" width="240" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1160.0" y="320.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Euler flow sampling</text>
+<polygon points="1107.2,456 1212.8,456 1272,535 1048,535" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1160.0" y="558" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">16-channel KL VAE</text>
+<text x="1160.0" y="576" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Decoder</text>
+<rect x="1105.0" y="658" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1186.4" cy="676.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1113.0 721 L1144.6 682.5 L1168.8 708.4 L1184.2 693.0 L1208.0 721 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1160.0" y="753" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Generated image</text>
 </g></svg>

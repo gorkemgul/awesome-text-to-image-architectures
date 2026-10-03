@@ -13,7 +13,7 @@ import re
 import sys
 from urllib.parse import urlsplit
 
-from figures import render_credits, render_interface, validate_figures
+from figures import render_credits, render_interface, render_architecture, validate_figures
 from daily import render_daily, validate_daily
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -340,6 +340,8 @@ def main():
             figure = figures[model["id"]]
             if figure["kind"] == "io-diagram":
                 outputs[ROOT / figure["path"]] = render_interface(model)
+            elif figure["kind"] == "architecture-diagram":
+                outputs[ROOT / figure["path"]] = render_architecture(model, figure["diagram"])
         for key, (_, filename, _) in CATEGORIES.items():
             outputs[ROOT / "models" / filename] = render_category(key, [m for m in models if m["category"] == key], catalog["as_of"], figures)
         validate_local_links(outputs)

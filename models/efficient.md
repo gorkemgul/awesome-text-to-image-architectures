@@ -289,9 +289,9 @@ Latent Consistency Models (Tsinghua University, 2023) carry consistency models f
 
 [Paper 1](https://arxiv.org/abs/2310.04378) · [Paper 2](https://arxiv.org/abs/2311.05556) · [GitHub](https://github.com/luosiallen/latent-consistency-model) · [Model card 1](https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7) · [Model card 2](https://huggingface.co/latent-consistency/lcm-sdxl)
 
-![Latent Consistency Models (LCM) — Input/output diagram](../assets/architectures/lcm.svg)
+![Latent Consistency Models (LCM) — Source-based architecture diagram](../assets/architectures/lcm.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2310.04378)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2310.04378)*
 
 <details>
 <summary>Details</summary>
@@ -301,8 +301,6 @@ Latent Consistency Models (Tsinghua University, 2023) carry consistency models f
 Latent consistency distillation initializes the student from the teacher U-Net and adds parameters that condition on the classifier-free guidance scale ω, so guidance is distilled into a single forward pass (one-stage guided distillation over an augmented PF-ODE, ω sampled in [2, 14]). A DDIM solver with skipping step k = 20 provides the teacher target. Paper experiments distill Stable Diffusion v2.1-base (512 px, LAION-Aesthetics-6+) and Stable Diffusion v2.1 (768 px, LAION-Aesthetics-6.5+); the released LCM_Dreamshaper_v7 checkpoint is distilled from Dreamshaper v7, a fine-tune of SD v1.5, in 4,000 iterations. The paper also proposes Latent Consistency Fine-tuning (LCF) for customized datasets. LCM-LoRA (arXiv 2311.05556) applies LoRA distillation to SD-V1.5, SSD-1B and SDXL and is released as add-on LoRA weights; full-parameter LCM SDXL and SSD-1B checkpoints were released alongside. License: the LCM_Dreamshaper_v7 card states MIT; the LCM SDXL and LCM-LoRA SDXL cards state openrail++.
 
 **License:** code: MIT; weights: MIT.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** LCM_Dreamshaper_v7; LCM SDXL (full-parameter); LCM SSD-1B (full-parameter); LCM-LoRA (SD-V1.5, SSD-1B, SDXL).
 
@@ -395,9 +393,9 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 
 [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
 
-![Qwen-Image-Flash — Input/output diagram](../assets/architectures/qwen-image-flash.svg)
+![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2606.03746)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.03746)*
 
 <details>
 <summary>Details</summary>
@@ -405,8 +403,6 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 **Input → output:** T, I → I · **Interaction:** editing
 
 No dedicated architecture diagram is given; the reviewed figures are qualitative comparisons only, so an editorial input/output diagram is used. The paper does not state that Qwen-Image-Flash weights are released by its authors; unrelated third-party Hugging Face uploads of a same-named NVIDIA-distilled model were found but are not linked by this paper and are not treated as evidence of an author release.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -497,9 +493,9 @@ SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need 
 
 [Paper](https://arxiv.org/abs/2402.13929) · [Model card](https://huggingface.co/ByteDance/SDXL-Lightning) · GitHub: no author-linked repository found
 
-![SDXL-Lightning — Input/output diagram](../assets/architectures/sdxl-lightning.svg)
+![SDXL-Lightning — Source-based architecture diagram](../assets/architectures/sdxl-lightning.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2402.13929)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2402.13929)*
 
 <details>
 <summary>Details</summary>
@@ -509,8 +505,6 @@ SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need 
 Distillation schedule: 128 → 32 steps with MSE loss and classifier-free guidance (scale 6), then adversarial stages 32 → 8 → 4 → 2 → 1. At each stage the discriminator is first conditioned on both the teacher's input x_t and the target x_{t−ns} to preserve the probability flow, then fine-tuned without the x_t condition to relax mode coverage and remove "Janus" (conjoined-subject) artifacts; one- and two-step models use a skip-level teacher for this phase. Each stage trains LoRA first (rank 64, LCM-LoRA settings), then merges it and trains the whole U-Net. Pure noise is swapped in at t = T during training to fix SDXL's non-zero terminal SNR; the one-step model predicts x0, and its outputs are re-noised to timesteps {10, 250, 500, 750} before the discriminator. Distillation data are LAION and COYO subsets filtered to images above 1024px; training used 64 A100 80G GPUs at batch size 512 on square images. The model card calls the one-step model more experimental.
 
 **License:** weights: CreativeML Open RAIL++-M.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** SDXL-Lightning 1-step (full U-Net, x0); SDXL-Lightning 2-step (full U-Net and LoRA); SDXL-Lightning 4-step (full U-Net and LoRA); SDXL-Lightning 8-step (full U-Net and LoRA).
 
@@ -699,9 +693,9 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
 
-![Z-Image Turbo++ — Input/output diagram](../assets/architectures/z-image-turbo-pp.svg)
+![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2606.12575)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.12575)*
 
 <details>
 <summary>Details</summary>
@@ -709,7 +703,5 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 **Input → output:** T → I · **Interaction:** generation
 
 No architecture diagram is given in the paper; the reviewed source contains only qualitative sample and ablation figures, so an editorial input/output diagram is used. No GitHub or Hugging Face link for a released checkpoint was found at review time.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>

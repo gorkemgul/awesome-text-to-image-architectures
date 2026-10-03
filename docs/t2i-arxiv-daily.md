@@ -10,7 +10,7 @@ Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-t
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **87** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **126** images come from primary sources; **9** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **87** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **126** images come from primary sources; **9** are source-based architecture diagrams; **0** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -348,9 +348,9 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 
 [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
-![Boogu-Image-0.1 — Editorial input/output diagram](../assets/architectures/boogu-image.svg)
+![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2607.13125)*
+*Source-based architecture diagram · [Image source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)*
 
 <a id="nemotron-labs-diffusion-image"></a>
 
@@ -446,9 +446,9 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
 
-![Z-Image Turbo++ — Editorial input/output diagram](../assets/architectures/z-image-turbo-pp.svg)
+![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2606.12575)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2606.12575)*
 
 <a id="i1"></a>
 
@@ -516,9 +516,9 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 
 [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
 
-![Qwen-Image-Flash — Editorial input/output diagram](../assets/architectures/qwen-image-flash.svg)
+![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2606.03746)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2606.03746)*
 
 <a id="cosmos3"></a>
 
@@ -544,9 +544,9 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 
 [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
 
-![ERNIE-Image — Editorial input/output diagram](../assets/architectures/ernie-image.svg)
+![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2605.25347)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2605.25347)*
 
 <a id="car"></a>
 
@@ -642,9 +642,9 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
-![Nucleus-Image — Editorial input/output diagram](../assets/architectures/nucleus-image.svg)
+![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2604.12163)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2604.12163)*
 
 <a id="grn"></a>
 
@@ -978,9 +978,9 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 
 [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found
 
-![ProxT2I — Editorial input/output diagram](../assets/architectures/proxt2i.svg)
+![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2511.18742)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2511.18742)*
 
 <a id="deco"></a>
 
@@ -1286,9 +1286,9 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 
 [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
-![Seedream 4.0 — Editorial input/output diagram](../assets/architectures/seedream-4.svg)
+![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2509.20427)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2509.20427)*
 
 <a id="lavida-o"></a>
 
@@ -1692,9 +1692,9 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 
 [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
 
-![SimpleAR — Editorial input/output diagram](../assets/architectures/simplear.svg)
+![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2504.11455)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2504.11455)*
 
 <a id="omni-dish"></a>
 
@@ -2000,9 +2000,9 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 
 [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
 
-![Goku — Editorial input/output diagram](../assets/architectures/goku.svg)
+![Goku — Source-based architecture diagram](../assets/architectures/goku.svg)
 
-*Editorial input/output diagram · [Image source](https://arxiv.org/abs/2502.04896)*
+*Source-based architecture diagram · [Image source](https://arxiv.org/abs/2502.04896)*
 
 <a id="sana-1-5"></a>
 

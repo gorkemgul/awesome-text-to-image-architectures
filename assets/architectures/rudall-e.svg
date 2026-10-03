@@ -1,24 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">ruDALL-E: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2140" height="900" viewBox="0 0 2140 900" role="img" aria-labelledby="title desc">
+<title id="title">ruDALL-E architecture</title>
+<desc id="desc">Source-based reconstruction. Official README Minimal Example; rudalle/tokenizer.py YTTMTokenizerWrapper; rudalle/dalle/__init__.py Malevich image_tokens_per_dim=32, text_seq_length=128, image_vocab_size=8192; rudalle/pipelines.py generate_images, vae.decode, cherry_pick_by_ruclip and super_resolution.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="2140" height="900" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">ruDALL-E</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">DALL·E-style transformer that</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">autoregressively models YTTM text</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">tokens followed by 1024 Sber VQ-GAN</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">image tokens as one stream</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">generation</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="243.0" font-size="17" fill="#0369a1">Text</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">ruDALL-E</text>
+<rect x="505" y="170" width="370" height="365" rx="5" fill="#fafafa" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="519" y="193" font-size="15" font-weight="600" fill="#334155">Autoregressive image prior</text>
+<rect x="1140" y="600" width="965" height="260" rx="5" fill="#fafafa" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="1154" y="623" font-size="15" font-weight="600" fill="#334155">Candidate selection and optional super-resolution</text>
+<polyline points="210.0,350.0 232.5,350.0 232.5,350.0 255.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="480.0,350.0 507.5,350.0 507.5,350.0 535.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="845.0,350.0 872.5,350.0 872.5,350.0 900.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1150.0,350.0 1177.5,350.0 1177.5,350.0 1205.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1415.0,350.0 1442.5,350.0 1442.5,350.0 1470.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1580,440 1580,550 1325,550 1325,650" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1450.0,735.0 1500.0,735.0 1500.0,735.0 1550.0,735.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1800.0,735.0 1825.0,735.0 1825.0,735.0 1850.0,735.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1025,260 1025,125 690,125 690,215" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="865" y="112" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">Append generated code</text>
+<polyline points="125,440 125,570 1140,570 1140,735 1200,735" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="655" y="557" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">Prompt</text>
+<rect x="40" y="260" width="170" height="180" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="125.0" y="355.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Russian prompt</text>
+<rect x="265.0" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="300.1666666666667" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="335.33333333333337" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="349.9166666666667" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#7c3aed">⋯</text>
+<rect x="370.5" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="385.0833333333333" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#7c3aed">⋯</text>
+<rect x="405.6666666666667" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="440.83333333333337" y="270" width="29.166666666666668" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="367.5" y="325" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">YTTM BPE tokenizer</text>
+<text x="367.5" y="345" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">128 text positions</text>
+<rect x="543" y="223" width="302" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="539" y="219" width="302" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="535" y="215" width="302" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="553" y="283" width="266" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="686.0" y="309.5" text-anchor="middle" font-size="12" fill="#1f2937">Text + previous image codes</text>
+<rect x="553" y="333" width="266" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="686.0" y="359.5" text-anchor="middle" font-size="12" fill="#1f2937">Top-k / top-p sampling</text>
+<text x="690.0" y="240" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">ruDALL-E transformer</text>
+<text x="690.0" y="260" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Joint causal sequence</text>
+<rect x="987.0" y="279" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="982.0" y="274" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="977.0" y="269" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<path d="M994.2 269 v55 M977.0 280.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1011.4 269 v55 M977.0 291.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1028.6 269 v55 M977.0 302.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1045.8 269 v55 M977.0 313.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<text x="1025.0" y="358" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">1,024 image codes</text>
+<text x="1025.0" y="378" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">32 × 32 · 8,192 entries</text>
+<polygon points="1263.8,266 1356.2,266 1407,376 1213,376" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1310.0" y="399" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Sber VQ-GAN</text>
+<text x="1310.0" y="419" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Decoder</text>
+<rect x="1525.0" y="268" width="110" height="70" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<circle cx="1606.4" cy="286.2" r="7.0" fill="#d97706" opacity="0.55"/>
+<path d="M1533.0 331 L1564.6 292.5 L1588.8 318.4 L1604.2 303.0 L1628.0 331 Z" fill="#d97706" opacity="0.35"/>
+<text x="1580.0" y="363" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Candidate images</text>
+<rect x="1208" y="658" width="242" height="162" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="1204" y="654" width="242" height="162" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="1200" y="650" width="242" height="162" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="1325.0" y="730.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">ruCLIP reranking</text>
+<text x="1325.0" y="750.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Text-image similarity</text>
+<polygon points="1620.0,656 1730.0,656 1792,756 1558,756" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1675.0" y="779" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Real-ESRGAN</text>
+<text x="1675.0" y="799" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Optional upscaling</text>
+<rect x="1900.0" y="658" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1981.4" cy="676.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1908.0 721 L1939.6 682.5 L1963.8 708.4 L1979.2 693.0 L2003.0 721 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1955.0" y="753" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Selected image</text>
 </g></svg>

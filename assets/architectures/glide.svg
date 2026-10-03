@@ -1,28 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">GLIDE: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+<title id="title">GLIDE architecture</title>
+<desc id="desc">Source-based reconstruction. Sec. 3.1: base ADM U-Net with jointly trained width-2048 text transformer; final token replaces class embedding and token sequence augments attention context. Separate width-1024 text encoder conditions 64-to-256 diffusion upsampler. Sec. 4.1 inpainting uses masked RGB and mask channels.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1400" height="800" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">GLIDE</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="172.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Cascaded pixel-space diffusion: a</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">text-conditional ADM U-Net at 64×64</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">plus a text-conditional diffusion</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">upsampler to 256×256, with text</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">encoded by a transformer trained</text>
-<text x="560" y="302.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">jointly with the model</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="220.0" font-size="17" fill="#0369a1">Text</text>
-<rect x="42" y="242.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="266.0" font-size="17" fill="#0369a1">Images</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">GLIDE</text>
+<rect x="35" y="625" width="1330" height="160" rx="5" fill="#f3f3f3" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="49" y="648" font-size="15" font-weight="600" fill="#334155">Optional inpainting inputs</text>
+<polyline points="205.0,315.0 240.0,315.0 240.0,305.0 275.0,305.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="565.0,305.0 595.0,305.0 595.0,315.0 625.0,315.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="795.0,315.0 822.5,315.0 822.5,305.0 850.0,305.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1140.0,305.0 1167.5,305.0 1167.5,315.0 1195.0,315.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="240.0,512.5 270.0,512.5 270.0,515.0 300.0,515.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="148,555 148,610 1010,610 1010,590" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="435.0,440.0 420.0,410.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1010.0,440.0 995.0,410.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="400,720 260,720 260,380 275,380" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="300" y="748" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">extra channels</text>
+<rect x="84.5" y="259" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="79.5" y="254" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="74.5" y="249" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<path d="M91.7 249 v55 M74.5 260.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M108.9 249 v55 M74.5 271.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M126.1 249 v55 M74.5 282.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M143.3 249 v55 M74.5 293.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<text x="122.5" y="338" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Pixel noise</text>
+<text x="122.5" y="356" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">64 × 64</text>
+<rect x="287" y="208.0" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="520" y="208.0" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M320 228.33333333333334 H520" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M303 248.66666666666666 L317 258.6666666666667 M522 258.6666666666667 L536 248.66666666666666" fill="none" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="301" y="258.6666666666667" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="506" y="258.6666666666667" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M334 279.0 H506" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M317 299.33333333333337 L331 309.3333333333333 M508 309.3333333333333 L522 299.33333333333337" fill="none" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="315" y="309.3333333333333" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="492" y="309.3333333333333" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M348 329.66666666666663 H492" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M348 329.66666666666663 H492" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="420.0" y="373" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Base ADM U-Net</text>
+<text x="420.0" y="391" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Pixel denoising</text>
+<rect x="655.0" y="233" width="110" height="70" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<circle cx="736.4" cy="251.2" r="7.0" fill="#d97706" opacity="0.55"/>
+<path d="M663.0 296 L694.6 257.5 L718.8 283.4 L734.2 268.0 L758.0 296 Z" fill="#d97706" opacity="0.35"/>
+<text x="710.0" y="328" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">64 × 64 RGB</text>
+<rect x="862" y="208.0" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="1095" y="208.0" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M895 228.33333333333334 H1095" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M878 248.66666666666666 L892 258.6666666666667 M1097 258.6666666666667 L1111 248.66666666666666" fill="none" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="876" y="258.6666666666667" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="1081" y="258.6666666666667" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M909 279.0 H1081" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M892 299.33333333333337 L906 309.3333333333333 M1083 309.3333333333333 L1097 299.33333333333337" fill="none" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="890" y="309.3333333333333" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="1067" y="309.3333333333333" width="33" height="40.666666666666664" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<path d="M923 329.66666666666663 H1067" fill="none" stroke="#2563eb" stroke-width="1.1" stroke-dasharray="4 3"/>
+<path d="M923 329.66666666666663 H1067" fill="none" stroke="#2563eb" stroke-width="2"/>
+<text x="995.0" y="373" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Diffusion upsampler</text>
+<text x="995.0" y="391" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">64 → 256</text>
+<rect x="1225.0" y="233" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1306.4" cy="251.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1233.0 296 L1264.6 257.5 L1288.8 283.4 L1304.2 268.0 L1328.0 296 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1280.0" y="328" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">256 × 256 RGB</text>
+<rect x="55" y="470" width="185" height="85" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="147.5" y="517.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Text prompt</text>
+<polygon points="308,446 562,446 494.4,530 375.6,530" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="435.0" y="553" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Base text transformer</text>
+<text x="435.0" y="571" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Width 2048</text>
+<polygon points="878,446 1142,446 1071.6,530 948.4,530" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="1010.0" y="553" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Upsampler transformer</text>
+<text x="1010.0" y="571" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Width 1024</text>
+<rect x="622.0" y="684" width="86" height="46" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="617.0" y="679" width="86" height="46" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="612.0" y="674" width="86" height="46" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<path d="M629.2 674 v46 M612.0 683.2 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M646.4 674 v46 M612.0 692.4 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M663.6 674 v46 M612.0 701.6 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M680.8 674 v46 M612.0 710.8 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<text x="660.0" y="754" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Masked RGB + mask</text>
+<text x="660.0" y="772" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Inpainting branch</text>
 </g></svg>

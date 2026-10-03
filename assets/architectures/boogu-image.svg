@@ -1,31 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">Boogu-Image-0.1: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+<title id="title">Boogu-Image-0.1 architecture</title>
+<desc id="desc">Source-based reconstruction. Base model_index.json and transformer/config.json: Qwen3VLForConditionalGeneration, AutoencoderKL, flow Euler scheduler, 40 layers with 8 double-stream, 2 refiner layers; diagram explicitly Base inference; boogu/models/transformers/transformer_boogu.py forward and img_patch_embed_and_refine verify context/noise refiners, dual→fusion→single topology</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1400" height="800" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">Boogu-Image-0.1</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="133.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Latent flow-matching transformer (40</text>
-<text x="560" y="159.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">layers including 8 double-stream</text>
-<text x="560" y="185.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">layers, hidden size 3,360, patch</text>
-<text x="560" y="211.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">size 2, 16-channel AutoencoderKL</text>
-<text x="560" y="237.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">latents) conditioned on Qwen3-VL-8B</text>
-<text x="560" y="263.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">instruction features, served through</text>
-<text x="560" y="289.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">an agentic inference pipeline with</text>
-<text x="560" y="315.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">prompt rewriting, Base/Turbo routing</text>
-<text x="560" y="341.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">and reflection</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="220.0" font-size="17" fill="#0369a1">Text</text>
-<rect x="42" y="242.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="266.0" font-size="17" fill="#0369a1">Images</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">Boogu-Image-0.1</text>
+<rect x="490" y="160" width="565" height="445" rx="5" fill="#edf5fa" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="504" y="183" font-size="15" font-weight="600" fill="#334155">Boogu-Image-0.1-Base • inference backbone</text>
+<polyline points="135.0,230.0 135.0,290.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="230.0,357.5 255.0,357.5 255.0,362.5 280.0,362.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="460.0,362.5 487.5,362.5 487.5,372.5 515.0,372.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="705.0,372.5 737.5,372.5 737.5,400.0 770.0,400.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="230.0,620.0 255.0,620.0 255.0,620.0 280.0,620.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="460,620 660,620 660,525 770,525" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="900.0,635.0 900.0,555.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1030.0,400.0 1065.0,400.0 1065.0,305.0 1100.0,305.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1210.0,360.0 1210.0,450.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1210.0" y="395.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">final latents</text>
+<polyline points="1210.0,595.0 1210.0,650.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1320,305 1360,305 1360,745 370,745 370,680" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="865.0" y="735.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">next step</text>
+<rect x="50.0" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="79.33333333333333" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="108.66666666666666" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="120.33333333333333" y="170" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="138.0" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="149.66666666666666" y="170" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="167.33333333333331" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="196.66666666666666" y="150" width="23.333333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="135.0" y="205" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Generation instruction</text>
+<polygon points="48,296 222,296 176.79999999999998,383 93.2,383" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="135.0" y="406" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen3-VL-8B</text>
+<rect x="290.0" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="317.6666666666667" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="345.3333333333333" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="356.16666666666663" y="330" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="373.0" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="383.8333333333333" y="330" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="400.6666666666667" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="428.33333333333337" y="310" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="370.0" y="365" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Instruction features</text>
+<text x="370.0" y="383" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">4096 dimensions</text>
+<rect x="523" y="273" width="182" height="207" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="519" y="269" width="182" height="207" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="515" y="265" width="182" height="207" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="610.0" y="377.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">2 context refiner layers</text>
+<rect x="778" y="253" width="252" height="302" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="774" y="249" width="252" height="302" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="770" y="245" width="252" height="302" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="788" y="291" width="216" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="896.0" y="317.5" text-anchor="middle" font-size="12" fill="#1f2937">8 double-stream layers</text>
+<rect x="788" y="341" width="216" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="896.0" y="367.5" text-anchor="middle" font-size="12" fill="#1f2937">Fuse instruction + image</text>
+<rect x="788" y="391" width="216" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="896.0" y="417.5" text-anchor="middle" font-size="12" fill="#1f2937">32 single-stream layers</text>
+<rect x="788" y="441" width="216" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="896.0" y="467.5" text-anchor="middle" font-size="12" fill="#1f2937">Width 3360</text>
+<text x="900.0" y="270" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">40 transformer layers</text>
+<rect x="97.0" y="579" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="92.0" y="574" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="87.0" y="569" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<path d="M104.2 569 v55 M87.0 580.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M121.4 569 v55 M87.0 591.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M138.6 569 v55 M87.0 602.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M155.8 569 v55 M87.0 613.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<text x="135.0" y="658" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">16-channel noise</text>
+<rect x="290.0" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="317.6666666666667" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="345.3333333333333" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="356.16666666666663" y="590" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="373.0" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="383.8333333333333" y="590" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="400.6666666666667" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="428.33333333333337" y="570" width="21.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="370.0" y="625" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">2 × 2 patches</text>
+<text x="370.0" y="643" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">2 noise refiner layers</text>
+<rect x="795" y="635" width="210" height="85" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="900.0" y="682.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Flow timestep</text>
+<rect x="1100" y="250" width="220" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1210.0" y="301.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Euler flow sampler</text>
+<text x="1210.0" y="319.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Base generation</text>
+<polygon points="1161.6,456 1258.4,456 1312,553 1108,553" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1210.0" y="576" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">AutoencoderKL decode</text>
+<rect x="1155.0" y="658" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1236.4" cy="676.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1163.0 721 L1194.6 682.5 L1218.8 708.4 L1234.2 693.0 L1258.0 721 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1210.0" y="753" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Generated image</text>
 </g></svg>

@@ -1,29 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">Nucleus-Image: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1010" viewBox="0 0 1400 1010" role="img" aria-labelledby="title desc">
+<title id="title">Nucleus-Image architecture</title>
+<desc id="desc">Source-based reconstruction. §3 / Fig.10: Qwen3-VL-8B, Qwen-Image VAE, 32 layers (3 dense + 29 MoE), 64 routed + shared expert, Expert-Choice Router; §6 cached text KV and image-only queries; §5 rectified flow</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1400" height="1010" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">Nucleus-Image</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="133.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Sparse mixture-of-experts diffusion</text>
-<text x="560" y="159.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">transformer scaling to 17B total</text>
-<text x="560" y="185.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">parameters across 64 routed experts</text>
-<text x="560" y="211.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">per layer (about 2B active per</text>
-<text x="560" y="237.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">forward pass), using Expert-Choice</text>
-<text x="560" y="263.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Routing, with text tokens excluded</text>
-<text x="560" y="289.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">from the backbone and handled</text>
-<text x="560" y="315.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">instead through joint attention with</text>
-<text x="560" y="341.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">text-KV sharing across timesteps</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">generation</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="243.0" font-size="17" fill="#0369a1">Text</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">Nucleus-Image</text>
+<rect x="530" y="205" width="590" height="535" rx="5" fill="#eef5ef" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="544" y="228" font-size="15" font-weight="600" fill="#334155">MoE block ×29 • preceded by 3 dense blocks</text>
+<polyline points="137.5,220.0 137.5,270.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="240.0,337.5 267.5,337.5 267.5,342.5 295.0,342.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="515.0,342.5 535.0,342.5 535.0,397.5 555.0,397.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="240,572 530,572 530,450 555,450" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="385.0" y="562.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">image tokens</text>
+<polyline points="800.0,397.5 830.0,397.5 830.0,427.5 860.0,427.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="677.5,490.0 677.5,575.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="677.5" y="522.5" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">unmodulated tokens</text>
+<polyline points="800,630 825,630 825,485 860,485" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="825.0" y="547.5" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">token selection</text>
+<polyline points="800,445 825,445 825,655 860,655" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1095,425 1120,425 1120,520 1140,520" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1095,655 1120,655 1120,565 1140,565" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="677.5,750.0 677.5,685.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="555,790 535,790 535,515 677,515 677,490" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1250,490 1250,280" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1250.0" y="375.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">velocity</text>
+<polyline points="1360,227 1380,227 1380,735 1360,735" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1250.0,800.0 1250.0,855.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1250,175 1250,110 265,110 265,665 137,665 137,635" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="757.5" y="100.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">next step</text>
+<rect x="45.0" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="76.83333333333333" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="108.66666666666666" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="121.58333333333333" y="165" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="140.5" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="153.41666666666666" y="165" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#0284c7">⋯</text>
+<rect x="172.33333333333331" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<rect x="204.16666666666666" y="145" width="25.833333333333332" height="30" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<text x="137.5" y="200" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Text prompt</text>
+<polygon points="43,276 232,276 182.6,363 92.4,363" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="137.5" y="386" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen3-VL-8B-Instruct</text>
+<rect x="305.0" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="339.3333333333333" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="373.66666666666663" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="387.8333333333333" y="310" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="408.0" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="422.1666666666667" y="310" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="442.3333333333333" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="476.66666666666663" y="290" width="28.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="405.0" y="345" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Text KV cache</text>
+<text x="405.0" y="363" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Shared across timesteps</text>
+<rect x="99.5" y="529" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="94.5" y="524" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="89.5" y="519" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<path d="M106.7 519 v55 M89.5 530.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M123.9 519 v55 M89.5 541.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M141.1 519 v55 M89.5 552.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M158.3 519 v55 M89.5 563.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<text x="137.5" y="608" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">16-channel latent noise</text>
+<rect x="563" y="313" width="237" height="177" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="559" y="309" width="237" height="177" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="555" y="305" width="237" height="177" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="677.5" y="384.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Joint GQA attention</text>
+<text x="677.5" y="402.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Image queries only</text>
+<text x="677.5" y="420.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">QK norm + mRoPE</text>
+<rect x="555" y="575" width="245" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="677.5" y="626.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Expert-Choice Router</text>
+<text x="677.5" y="644.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Unmodulated tokens + t</text>
+<rect x="868" y="333" width="227" height="197" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="864" y="329" width="227" height="197" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="860" y="325" width="227" height="197" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="977.5" y="423.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">64 routed experts</text>
+<text x="977.5" y="441.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">SwiGLU networks</text>
+<rect x="860" y="600" width="235" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="977.5" y="651.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Shared SwiGLU expert</text>
+<text x="977.5" y="669.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">All image tokens</text>
+<rect x="1140" y="490" width="220" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1250.0" y="541.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Combine expert outputs</text>
+<text x="1250.0" y="559.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Residual + modulation</text>
+<rect x="555" y="750" width="245" height="80" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="677.5" y="795.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Timestep embedding</text>
+<rect x="1140" y="175" width="220" height="105" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1250.0" y="232.5" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Rectified-flow sampling</text>
+<polygon points="1201.6,671 1298.4,671 1352,758 1148,758" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1250.0" y="781" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen-Image VAE decode</text>
+<rect x="1195.0" y="863" width="110" height="67" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1276.4" cy="880.42" r="6.7" fill="#16a34a" opacity="0.55"/>
+<path d="M1203.0 923 L1234.6 886.45 L1258.8 911.24 L1274.2 896.5 L1298.0 923 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1250.0" y="955" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Generated image</text>
 </g></svg>

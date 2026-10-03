@@ -135,9 +135,9 @@ DALL·E (OpenAI, 2021) showed that a single large autoregressive transformer, tr
 
 [Paper](https://arxiv.org/abs/2102.12092) · [GitHub](https://github.com/openai/DALL-E)
 
-![DALL·E — Input/output diagram](../assets/architectures/dall-e.svg)
+![DALL·E — Source-based architecture diagram](../assets/architectures/dall-e.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2102.12092)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2102.12092)*
 
 <details>
 <summary>Details</summary>
@@ -147,8 +147,6 @@ DALL·E (OpenAI, 2021) showed that a single large autoregressive transformer, tr
 Stage 1 trains a discrete VAE (Gumbel-softmax relaxation) that compresses a 256 × 256 image into a 32 × 32 grid of tokens from an 8192-entry codebook. Stage 2 trains a 12-billion-parameter sparse transformer on up to 256 text tokens (vocabulary 16,384) concatenated with the 1024 image tokens, using causal text attention and row, column or convolutional masks for image-to-image attention; it was trained on 250 million image-text pairs. Samples are reranked with a contrastive image-text model (CLIP), best of 512 in the reported MS-COCO results. The paper also shows rudimentary zero-shot image-to-image translation by prompting with a partial image. The official repository releases only the discrete VAE; the transformer is not released.
 
 **License:** code: Modified MIT License.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -162,9 +160,9 @@ DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed 
 
 [GitHub](https://github.com/borisdayma/dalle-mini) · [Model card 1](https://huggingface.co/dalle-mini/dalle-mini) · [Model card 2](https://huggingface.co/dalle-mini/dalle-mega) · [Announcement](https://wandb.ai/dalle-mini/dalle-mini/reports/DALL-E-Mini-Explained-with-Demo--Vmlldzo4NjIxODA)
 
-![DALL·E Mini — Input/output diagram](../assets/architectures/dall-e-mini.svg)
+![DALL·E Mini — Source-based architecture diagram](../assets/architectures/dall-e-mini.svg)
 
-*Input/output diagram · [Source](https://github.com/borisdayma/dalle-mini)*
+*Source-based architecture diagram · [Source](https://huggingface.co/dalle-mini/dalle-mini)*
 
 <details>
 <summary>Details</summary>
@@ -174,8 +172,6 @@ DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed 
 Per the model card, images are encoded into token sequences by a VQGAN encoder, prompts are encoded by a BART encoder, and the BART decoder autoregressively predicts the next image token with a softmax cross-entropy loss against the VQGAN codes. The README points to a VQGAN-f16-16384 checkpoint for encoding and decoding, and the model configuration in the repository uses a 16,384-entry image vocabulary and 256 image tokens. The model card lists Conceptual Captions, Conceptual 12M and a 2-million-image subsample of the OpenAI YFCC100M subset as training data, and English-only prompts. No paper exists; the date is the publication date of the developers' W&B report "DALL·E Mini Explained". The public demo is the Craiyon service linked from the README.
 
 **License:** code: Apache-2.0; weights: apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** DALL·E Mini; DALL·E Mega.
 
@@ -329,15 +325,15 @@ The tokenizer is the paper's main subject (10.8 rFID for 1024x1024 reconstructio
 
 ### LlamaGen
 
-Llama-style decoder-only transformer that autoregressively predicts VQGAN image tokens after text tokens, with no vision-specific inductive biases added to the architecture.
+Llama-style decoder-only transformer that autoregressively predicts VQGAN image tokens conditioned on MLP-projected FLAN-T5 XL text embeddings.
 
 LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture transformer, without any image-specific architectural changes, can do competitive text-to-image generation as next-token prediction over discrete VQGAN tokens. The authors study image tokenizer design, model scaling from 100M to 3.1B parameters, and training-data quality, and release two 775M-parameter text-conditional checkpoints trained in two stages on web and high-aesthetic data.
 
 [Paper](https://arxiv.org/abs/2406.06525) · [GitHub](https://github.com/FoundationVision/LlamaGen) · [Model card](https://huggingface.co/FoundationVision/LlamaGen)
 
-![LlamaGen — Input/output diagram](../assets/architectures/llamagen.svg)
+![LlamaGen — Source-based architecture diagram](../assets/architectures/llamagen.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2406.06525)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2406.06525)*
 
 <details>
 <summary>Details</summary>
@@ -347,8 +343,6 @@ LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture tran
 LlamaGen reuses the Llama large-language-model architecture unmodified (RMSNorm, SwiGLU, rotary position embeddings) for next-token image generation, arguing that scaling a vanilla autoregressive transformer with an improved VQGAN tokenizer (downsample ratios 16 or 8, up to 16,384-entry codebook) is enough to match or beat diffusion models on class-conditional and text-conditional benchmarks (paper Figure 1). The text-conditional models are 775M parameters, trained in two stages: stage I on a 50M-image LAION-COCO subset with short BLIP captions, stage II fine-tuning on 10M internal high-aesthetic images with long LLaVA captions (paper Figures 4-6). Class-conditional siblings range from 111M to 3.1B parameters. Serving through vLLM with KV caching gives a reported 300-400% inference speedup.
 
 **License:** code: MIT; weights: mit.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -387,20 +381,18 @@ Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chamel
 
 [Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768)
 
-![Lumina-mGPT — Input/output diagram](../assets/architectures/lumina-mgpt.svg)
+![Lumina-mGPT — Source-based architecture diagram](../assets/architectures/lumina-mgpt.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2408.02657)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2408.02657)*
 
 <details>
 <summary>Details</summary>
 
 **Input → output:** T → I · **Interaction:** generation
 
-Lumina-mGPT continues pretraining from the Chameleon multimodal transformer, then applies supervised fine-tuning with a Resolution-Aware Prompt (an explicit target-resolution token) and an Unambiguous Image Representation (row-delimiter tokens so the autoregressive decoder respects image width) to control aspect ratio and resolution (paper Figure 2). The Chameleon VQ-VAE (from the pretrained checkpoint) provides image tokens; the paper reports progressive resolution fine-tuning stages and shows attention analysis of dedicated indicator tokens (paper Figure 5). Beyond text-to-image, the same model is fine-tuned for controllable generation, subject-driven generation and dense prediction, but the paper's own comparisons center on text-to-image quality. Public checkpoints are released at 7B parameters (768px-tuned); the HuggingFace model card lists no license, so weight terms are not established.
+Lumina-mGPT continues pretraining from the Chameleon multimodal transformer, then applies supervised fine-tuning with a Resolution-Aware Prompt (target width and height expressed in the text prompt) and an Unambiguous Image Representation (height/width indicator and row-delimiter tokens in the generated image sequence) to control aspect ratio and resolution (paper Figure 2). The Chameleon VQ-VAE (from the pretrained checkpoint) provides image tokens; the paper reports progressive resolution fine-tuning stages and shows attention analysis of dedicated indicator tokens (paper Figure 5). Beyond text-to-image, the same model is fine-tuned for controllable generation, subject-driven generation and dense prediction, but the paper's own comparisons center on text-to-image quality. Public checkpoints are released at 7B parameters (768px-tuned); the HuggingFace model card lists no license, so weight terms are not established.
 
 **License:** code: Apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -585,9 +577,9 @@ ruDALL-E is Sber AI and SberDevices' open reproduction of OpenAI's DALL·E for R
 
 [Announcement 1](https://habr.com/ru/company/sberdevices/blog/586926/) · [Announcement 2](https://habr.com/ru/company/sberbank/blog/589673/) · [GitHub](https://github.com/ai-forever/ru-dalle) · [Model card](https://huggingface.co/ai-forever/rudalle-Malevich)
 
-![ruDALL-E — Input/output diagram](../assets/architectures/rudall-e.svg)
+![ruDALL-E — Source-based architecture diagram](../assets/architectures/rudall-e.svg)
 
-*Input/output diagram · [Source](https://github.com/ai-forever/ru-dalle)*
+*Source-based architecture diagram · [Source](https://github.com/ai-forever/ru-dalle)*
 
 <details>
 <summary>Details</summary>
@@ -597,8 +589,6 @@ ruDALL-E is Sber AI and SberDevices' open reproduction of OpenAI's DALL·E for R
 Per the developers' Habr report, 256 × 256 images are compressed by their own Sber VQ-GAN into a 32 × 32 grid (1024 tokens), text is tokenized into 128 YTTM tokens, and a transformer written from the team's ruGPT training code learns the joint sequence, with positional coding of image blocks, convolutional and masked attention layers and weighted text and image losses. The published pipeline samples with top-k/top-p, reranks candidates with ruCLIP and optionally upsamples with Real-ESRGAN super-resolution. Prompts are Russian (the model card suggests machine translation for other languages); the model card lists 120 million text-image pairs for Malevich. The README also documents image prompts (partial-image continuation). No paper exists; the date is the first Habr announcement.
 
 **License:** code: Apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** ruDALL-E Malevich (XL, 1.3B); ruDALL-E Kandinsky (XXL, 12B); ruDALL-E Emojich (XL); ruDALL-E Surrealist (XL).
 
@@ -614,9 +604,9 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 
 [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
 
-![SimpleAR — Input/output diagram](../assets/architectures/simplear.svg)
+![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2504.11455)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11455)*
 
 <details>
 <summary>Details</summary>
@@ -626,8 +616,6 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 Text and image tokens share a single decoder-only transformer initialized from a Qwen-style language model, removing the need for a separate text encoder; images are discretized by Cosmos-Tokenizer (64k-entry codebook, 16x downsampling) and generated in raster-scan order up to 1024×1024 (paper Figure 1). Training has three stages: pretraining on about 43 million images from CC3M, CC12M, OpenImages, SAM1B and Megalith; supervised fine-tuning on roughly 11 million higher-quality and synthetic images (JourneyDB and others); and a reinforcement-learning stage using Group Relative Policy Optimization (GRPO) with CLIP-based reward models to improve aesthetics and prompt alignment. Released sizes are 0.5B and 1.5B parameters; with vLLM serving (KV caching, paged attention) the paper reports 1024px generation in about 14 seconds.
 
 **License:** code: MIT.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** SimpleAR-0.5B; SimpleAR-1.5B.
 

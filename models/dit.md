@@ -130,9 +130,9 @@ AuraFlow is an open text-to-image model from fal, developed with researcher Simo
 
 [Announcement](https://blog.fal.ai/auraflow/) · [Model card 1](https://huggingface.co/fal/AuraFlow) · [Model card 2](https://huggingface.co/fal/AuraFlow-v0.3) · GitHub: no author-linked repository found
 
-![AuraFlow — Input/output diagram](../assets/architectures/auraflow.svg)
+![AuraFlow — Source-based architecture diagram](../assets/architectures/auraflow.svg)
 
-*Input/output diagram · [Source](https://blog.fal.ai/auraflow/)*
+*Source-based architecture diagram · [Source](https://huggingface.co/fal/AuraFlow)*
 
 <details>
 <summary>Details</summary>
@@ -142,8 +142,6 @@ AuraFlow is an open text-to-image model from fal, developed with researcher Simo
 Per fal's launch post: the design started from a from-scratch MMDiT reimplementation (Simo Ryu's minRF / Lavenderflow experiments); most MMDiT blocks were replaced with large DiT encoder blocks to improve model FLOPs utilization, and a wide, shallow configuration (width 3072, 36 layers) gave 6.8B parameters. Training used maximal-update parameterization for learning-rate transfer, fully recaptioned data (no alt-text), and 256 → 512 → 1024 pre-training plus aspect-ratio fine-tuning. The post reports GenEval 0.64 after 1024px pre-training and 0.703 with DALL·E 3-style prompt enhancement. The text encoder and autoencoder are not described in the reviewed sources. v0.3 (model card) is fine-tuned on more aesthetic data and supports aspect ratios up to 1536 px. No paper or official training repository was found.
 
 **License:** weights: Apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** AuraFlow v0.1; AuraFlow v0.2; AuraFlow v0.3.
 
@@ -182,9 +180,9 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 
 [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
-![Boogu-Image-0.1 — Input/output diagram](../assets/architectures/boogu-image.svg)
+![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2607.13125)*
+*Source-based architecture diagram · [Source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)*
 
 <details>
 <summary>Details</summary>
@@ -195,8 +193,6 @@ Boogu-Image-0.1 ships Base, Turbo, Edit and Edit-Turbo variants (plus Turbo-Thin
 
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
-
 **Variants:** Boogu-Image-0.1-Base; Boogu-Image-0.1-Turbo; Boogu-Image-0.1-Edit; Boogu-Image-0.1-Edit-Turbo.
 
 </details>
@@ -205,15 +201,15 @@ Editorial summary of documented inputs and outputs; internal architecture is not
 
 ### CogView-3Plus
 
-Diffusion-transformer successor to CogView3 with a T5-XXL text encoder (internal architecture not documented beyond this).
+Diffusion-transformer successor to CogView3 with a T5-XXL text encoder and an AutoencoderKL image decoder.
 
-CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-image models, open-sourced alongside CogView3 in September 2024. Where CogView3 used a cascade of diffusion stages, CogView-3Plus moves to a single diffusion transformer conditioned on T5-XXL text features. The released 3B-parameter checkpoint generates images between 512 and 2048 pixels per side. Architectural details beyond this have not been published in a paper, so this entry documents only the interface and encoder stated by the developers.
+CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-image models, open-sourced alongside CogView3 in September 2024. Where CogView3 used a cascade of diffusion stages, CogView-3Plus moves to a single diffusion transformer conditioned on T5-XXL text features. The released 3B-parameter checkpoint generates images between 512 and 2048 pixels per side. The released pipeline combines the T5 encoder, a CogView3-Plus diffusion transformer, DDIM sampling and an AutoencoderKL decoder.
 
 [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView3-Plus-3B)
 
-![CogView-3Plus — Input/output diagram](../assets/architectures/cogview3-plus.svg)
+![CogView-3Plus — Source-based architecture diagram](../assets/architectures/cogview3-plus.svg)
 
-*Input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+*Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView3-Plus-3B)*
 
 <details>
 <summary>Details</summary>
@@ -224,8 +220,6 @@ README-level entry: the official repository describes CogView-3Plus as a series 
 
 **License:** code: Apache-2.0; weights: Apache-2.0.
 
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
-
 **Variants:** CogView3-Plus-3B.
 
 </details>
@@ -234,15 +228,15 @@ Editorial summary of documented inputs and outputs; internal architecture is not
 
 ### CogView4
 
-6B diffusion transformer conditioned on the bilingual GLM-4-9B language model as text encoder (internal architecture not documented beyond this).
+6B diffusion transformer with 28 joint text/image attention blocks, conditioned on GLM-4-9B text features and decoded through a 16-channel AutoencoderKL VAE.
 
 CogView4 is Zhipu AI's 6B-parameter open text-to-image model, the successor to CogView-3Plus. Its main change is the text side: it replaces the English-only T5 encoder with the bilingual GLM-4-9B language model, so it accepts long Chinese or English prompts and can render Chinese characters in images. Trained on captions and images of arbitrary length and resolution, it generates at flexible sizes up to about two megapixels. It was released under Apache-2.0 with diffusers support; no technical report describes its internals.
 
 [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4)
 
-![CogView4 — Input/output diagram](../assets/architectures/cogview4.svg)
+![CogView4 — Source-based architecture diagram](../assets/architectures/cogview4.svg)
 
-*Input/output diagram · [Source](https://github.com/zai-org/CogView4)*
+*Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView4-6B)*
 
 <details>
 <summary>Details</summary>
@@ -252,8 +246,6 @@ CogView4 is Zhipu AI's 6B-parameter open text-to-image model, the successor to C
 README- and documentation-level entry. The official repository lists CogView4-6B with GLM-4-9B as encoder, Chinese and English prompts up to 1024 tokens, native Chinese text rendering, and resolutions from 512 to 2048 px with at most 2^21 pixels; BF16/FP32 only. Zhipu's model documentation says the text encoder was changed from the English-only T5 of earlier models to the bilingual GLM-4 encoder and that training mixes captions of arbitrary length with images of arbitrary resolution. The repository recommends rewriting prompts with an LLM because the model was trained on long synthetic captions. No paper was found. The date is the repository's dated news line for the open-source release.
 
 **License:** code: Apache-2.0; weights: Apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** CogView4-6B.
 
@@ -319,9 +311,9 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 
 [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
 
-![ERNIE-Image — Input/output diagram](../assets/architectures/ernie-image.svg)
+![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2605.25347)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2605.25347)*
 
 <details>
 <summary>Details</summary>
@@ -331,8 +323,6 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 Paper text (no architecture diagram found in the reviewed sections; Figures 1-11 are sample/comparison figures only): ERNIE-Image is described as 'a latent diffusion model (LDM) built upon a single-stream DiT architecture with 8B parameters.' The team chose Ministral-3 (3B) as text encoder specifically to reduce memory versus a larger LLM, while still supporting long, complex instructions. It adopts the FLUX.2 VAE, described as providing 'a strong open-source latent space for high-fidelity image generation,' rather than training a new autoencoder. Training captions come from a VLM captioner instructed to pay particular attention to faithfully describing in-image text, aimed at text-rich content such as slides, diagrams, posters, UI screenshots and documents. Training is staged progressively from 256x256 to 512x512 to a final 1024x1024 with varied aspect ratios. Because no structural figure exists in the reviewed source, an editorial input/output diagram is used.
 
 **License:** code: Apache-2.0; weights: Apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -477,9 +467,9 @@ FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pa
 
 [Announcement 1](https://bfl.ai/blog/flux-2) · [Announcement 2](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence) · [GitHub](https://github.com/black-forest-labs/flux2) · [Model card](https://huggingface.co/black-forest-labs/FLUX.2-dev)
 
-![FLUX.2 — Input/output diagram](../assets/architectures/flux-2.svg)
+![FLUX.2 — Source-based architecture diagram](../assets/architectures/flux-2.svg)
 
-*Input/output diagram · [Source](https://bfl.ai/blog/flux-2)*
+*Source-based architecture diagram · [Source](https://github.com/black-forest-labs/flux2)*
 
 <details>
 <summary>Details</summary>
@@ -489,8 +479,6 @@ FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pa
 Blog-level entry (no paper found): Black Forest Labs describes FLUX.2 as pairing 'the Mistral-3 24B parameter vision-language model' — providing world knowledge and contextual/text understanding — with a rectified-flow diffusion transformer that handles spatial layout, materials and composition. The VAE was retrained to trade off compression, quality and learnability (detailed in a separate BFL research post, not reviewed here). [dev] is confirmed as a 32B open-weight model; parameter counts for [pro], [flex] and [klein] are not disclosed. The system natively supports combining up to 10 reference images into one generated output, and the same model performs both text-to-image generation and instruction-based editing, but the mechanism for multi-image conditioning is not detailed in the reviewed source. [pro]/[flex]/[max] are API-only; [dev] (32B, FLUX Non-Commercial License) and [klein] (a smaller, step-distilled model per BFL, with a 4B checkpoint under Apache-2.0 and a 9B checkpoint under the FLUX Non-Commercial License) have open weights. No architecture paper or figure was found, so an editorial input/output diagram is used instead of a paper figure.
 
 **License:** code: Apache-2.0; weights: FLUX Non-Commercial License ([dev], [klein]-9B); Apache-2.0 ([klein]-4B).
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** FLUX.2 [pro] (API); FLUX.2 [flex] (API); FLUX.2 [max] (API); FLUX.2 [dev] (32B, open weights); FLUX.2 [klein] 4B (open weights); FLUX.2 [klein] 9B (open weights).
 
@@ -531,9 +519,9 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 
 [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
 
-![Goku — Input/output diagram](../assets/architectures/goku.svg)
+![Goku — Source-based architecture diagram](../assets/architectures/goku.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2502.04896)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2502.04896)*
 
 <details>
 <summary>Details</summary>
@@ -541,8 +529,6 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 **Input → output:** T, I → I, V · **Interaction:** generation
 
 Sizes in the paper are Goku-2B (28 layers, width 1792, 28 heads) and Goku-8B (40 layers, width 3072, 48 heads); Goku-1B was used only for class-conditional ImageNet pilot experiments comparing rectified flow with DDPM. The reported text-to-image rows are for Goku-T2I (2B); GenEval is 0.70 with the original short prompts and 0.76 with prompts rewritten by ChatGPT-4o. Goku-T2V (8B) is fine-tuned from the pretrained Goku-T2I (8B) weights, and Goku-I2V adds the first-frame image as a channel-concatenated condition through one extra MLP layer, producing video rather than images. The GitHub repository contains configs and code and the README repeats the benchmark results; it has no license file and the README does not point to released checkpoints. No architecture overview figure is published in the paper, so the card uses a generated input/output diagram.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Goku-T2I (2B); Goku-T2I (8B); Goku-T2V (8B); Goku-I2V.
 
@@ -691,9 +677,9 @@ Ideogram 4.0 is Ideogram's first open-weight text-to-image foundation model, tra
 
 [Announcement](https://ideogram.ai/blog/ideogram-4.0/) · [GitHub](https://github.com/ideogram-oss/ideogram4) · [Model card](https://huggingface.co/ideogram-ai/ideogram-4-fp8)
 
-![Ideogram 4.0 — Input/output diagram](../assets/architectures/ideogram-4.svg)
+![Ideogram 4.0 — Source-based architecture diagram](../assets/architectures/ideogram-4.svg)
 
-*Input/output diagram · [Source](https://ideogram.ai/blog/ideogram-4.0/)*
+*Source-based architecture diagram · [Source](https://github.com/ideogram-oss/ideogram4)*
 
 <details>
 <summary>Details</summary>
@@ -703,8 +689,6 @@ Ideogram 4.0 is Ideogram's first open-weight text-to-image foundation model, tra
 Blog and repository documentation (docs/model_architecture.md; no rendered diagram image, only an ASCII schematic, so an editorial input/output diagram is used): text and image latent tokens are concatenated into one sequence and modulated per-block by AdaLN from the flow-matching timestep embedding, i.e. a single-stream design rather than a dual-stream one. The text conditioning comes from Qwen3-VL-8B-Instruct's hidden states at layers (0,3,...,33,35) concatenated along the feature dimension, rather than a single final hidden state. Each of the 34 transformer blocks uses QK-RMSNorm attention with 3D MRoPE and a SwiGLU MLP; model spec lists emb_dim 4608, 18 heads, intermediate size 12288. Sampling uses an Euler flow-matching scheduler with asymmetric classifier-free guidance, and a frozen KL autoencoder with 8x spatial compression decodes the final latents. Ideogram describes it as their first open-weight foundation model, trained from scratch rather than fine-tuned from an existing base. Some press describes the release as 'Apache 2.0,' which applies only to the inference code; the released fp8/nf4 weights are gated under Ideogram's own non-commercial license.
 
 **License:** code: Apache-2.0; weights: Ideogram 4 Non-Commercial License.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -1170,9 +1154,9 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
-![Nucleus-Image — Input/output diagram](../assets/architectures/nucleus-image.svg)
+![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2604.12163)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2604.12163)*
 
 <details>
 <summary>Details</summary>
@@ -1182,8 +1166,6 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 Training uses 1.5B image-text pairs after multi-stage filtering and deduplication, a progressive 256->512->1024 resolution curriculum, multi-aspect-ratio bucketing, progressive sparsification and the Muon optimizer, with no post-training stage (no RL, DPO or human-preference tuning). No architecture-overview figure was available in the paper; the catalog entry uses a generated input/output diagram. The paper's front matter links the WithNucleusAI/Nucleus-Image GitHub repository, which at review held only a README ("training recipe (coming soon ...)") and an Apache-2.0 LICENSE, and the NucleusAI Hugging Face weights (model-card metadata apache-2.0).
 
 **License:** weights: apache-2.0.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -1403,9 +1385,9 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 
 [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found
 
-![ProxT2I — Input/output diagram](../assets/architectures/proxt2i.svg)
+![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2511.18742)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2511.18742)*
 
 <details>
 <summary>Details</summary>
@@ -1413,8 +1395,6 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 **Input → output:** T → I · **Interaction:** generation
 
 Operates in the pretrained Stable Diffusion 3.5 VAE latent space at 256x256 (base) and 512x512 (fine-tuned) resolution; the U-ViT network serves as the backbone for both the proximal and competing score networks, trained with a proximal-matching loss. The authors state they will publicly release LAION-Face-T2I-15M and a companion LAION-Face-Hand-3M dataset upon publication; no code repository was found at review time.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -1630,9 +1610,9 @@ Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the sa
 
 [Paper](https://arxiv.org/abs/2504.11346)
 
-![Seedream 3.0 — Input/output diagram](../assets/architectures/seedream-3.svg)
+![Seedream 3.0 — Source-based architecture diagram](../assets/architectures/seedream-3.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2504.11346)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11346)*
 
 <details>
 <summary>Details</summary>
@@ -1640,8 +1620,6 @@ Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the sa
 **Input → output:** T → I · **Interaction:** generation
 
 Paper Section 2.2.1 states verbatim: 'Our core architecture design inherits from Seedream 2.0, which adopts an MMDiT to process the image and text tokens and capture the relationship between the two modalities. We have increased the total parameters in our base model...'. No architecture diagram is included in the paper (Figure 2 is a results visualization, not a structural figure); the reviewed sections describe training-side changes rather than a new block design: mixed-resolution training from 256px up to 2048px with size embeddings as extra conditioning, a defect-aware training paradigm that expands the dataset ~21.7% using a defect detector with spatial attention masking, dual-axis data sampling for visual morphology and semantic distribution, a cross-modality RoPE treating text tokens as 2D for tighter visual-text alignment, a DINOv2-L representation-alignment (REPA) loss, and resolution-aware timestep sampling. Because no architecture figure exists, an editorial input/output diagram is used instead of a paper figure. No public weights or repository were found; the model is served only through ByteDance products.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -1655,9 +1633,9 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 
 [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
-![Seedream 4.0 — Input/output diagram](../assets/architectures/seedream-4.svg)
+![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2509.20427)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2509.20427)*
 
 <details>
 <summary>Details</summary>
@@ -1665,8 +1643,6 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 **Input → output:** T, I → I · **Interaction:** editing
 
 Paper text (no architecture diagram found; Figures 1-16 are evaluation/comparison/sample figures only): the report states the team 'develop[s] an efficient and scalable DiT backbone, which substantially increases the model capacity while reducing the training and inference FLOPs considerably,' trained on billions of image-text pairs from 1K to 4K resolution. Generation and editing are unified through 'a joint post-training that integrates both T2I generation and image editing through a causal diffusion designed in the DiT framework,' allowing single- or multiple-image inputs and outputs from one model (so this entry lists optional image input for editing/multi-image use alongside text-to-image generation). An efficient, high-compression VAE reduces the number of latent tokens for both training and inference. A Seed1.5-VL-based module performs prompt engineering and routes text/single-image/multi-image inputs to generate captions. Post-training speed comes from Adversarial Distillation (ADP) followed by Adversarial Distribution Matching (ADM), adaptive 4/8-bit hybrid quantization and speculative decoding with KV-cache reuse, reported as more than 10x faster inference than Seedream 3.0 (about 1.4s for a 2K image without an external LLM/VLM at inference). Because no structural figure exists in the paper, an editorial input/output diagram is used. Seedream 4.5 (BytePlus ModelArk open beta, announced 2025-12-03) is a product upgrade without a new architecture source, so it is a variant. No public weights or repository were found; the model is API-only.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Seedream 4.5.
 

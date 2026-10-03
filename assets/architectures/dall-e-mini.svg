@@ -1,24 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">DALL·E Mini: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="900" viewBox="0 0 1900 900" role="img" aria-labelledby="title desc">
+<title id="title">DALL·E Mini architecture</title>
+<desc id="desc">Source-based reconstruction. Model card Training Procedure: BART encoder + autoregressive decoder, VQGAN codes and cross-entropy; official repository README FAQ: VQGAN-f16-16384 for image encoding/decoding.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1900" height="900" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">DALL·E Mini</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">BART-style encoder-decoder</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">transformer whose autoregressive</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">decoder predicts VQGAN image tokens</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">from the encoded English prompt</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">generation</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="243.0" font-size="17" fill="#0369a1">Text</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">DALL·E Mini</text>
+<rect x="730" y="170" width="360" height="365" rx="5" fill="#fafafa" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="744" y="193" font-size="15" font-weight="600" fill="#334155">Encoder-decoder generation</text>
+<rect x="40" y="610" width="1070" height="250" rx="5" fill="#fafafa" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="54" y="633" font-size="15" font-weight="600" fill="#334155">Training only: image tokenization and autoregressive supervision</text>
+<polyline points="210.0,350.0 230.0,350.0 230.0,350.0 250.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="450.0,350.0 475.0,350.0 475.0,350.0 500.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="710.0,350.0 735.0,350.0 735.0,350.0 760.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1060.0,350.0 1090.0,350.0 1090.0,350.0 1120.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1350.0,350.0 1380.0,350.0 1380.0,350.0 1410.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1590.0,350.0 1615.0,350.0 1615.0,350.0 1640.0,350.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1230,260 1230,130 890,130 890,215" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1060.0" y="116" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">Append predicted token</text>
+<polyline points="240.0,740.0 270.0,740.0 270.0,740.0 300.0,740.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<polyline points="490.0,740.0 520.0,740.0 520.0,740.0 550.0,740.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<polyline points="740.0,740.0 770.0,740.0 770.0,740.0 800.0,740.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<polyline points="925,660 925,580 910,580 910,485" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="1060" y="574" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">Train autoregressive model</text>
+<rect x="40" y="260" width="170" height="180" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="125.0" y="355.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">English prompt</text>
+<rect x="258" y="238" width="192" height="232" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.2"/>
+<rect x="254" y="234" width="192" height="232" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.2"/>
+<rect x="250" y="230" width="192" height="232" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.2"/>
+<text x="350.0" y="355.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">BART text encoder</text>
+<rect x="510.0" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="542.6666666666666" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="575.3333333333334" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="588.6666666666667" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="608.0" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="621.3333333333334" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="640.6666666666667" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="673.3333333333334" y="270" width="26.666666666666668" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="605.0" y="325" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Encoded text features</text>
+<rect x="768" y="223" width="292" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="764" y="219" width="292" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="760" y="215" width="292" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="778" y="263" width="256" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="906.0" y="289.5" text-anchor="middle" font-size="12" fill="#1f2937">Text conditioning</text>
+<rect x="778" y="313" width="256" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="906.0" y="339.5" text-anchor="middle" font-size="12" fill="#1f2937">Autoregressive decoder</text>
+<rect x="778" y="363" width="256" height="45" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="906.0" y="389.5" text-anchor="middle" font-size="12" fill="#1f2937">Next-image-token logits</text>
+<text x="910.0" y="240" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">BART image decoder</text>
+<rect x="1130.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="1166.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="1202.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="1217.0" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="1238.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="1253.0" y="290" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="1274.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="1310.0" y="270" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="1235.0" y="325" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Generated image codes</text>
+<polygon points="1460.4,266 1539.6,266 1582,376 1418,376" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.6"/>
+<text x="1500.0" y="399" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">VQGAN decoder</text>
+<text x="1500.0" y="419" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">f16–16384</text>
+<rect x="1690.0" y="268" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1771.4" cy="286.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1698.0 331 L1729.6 292.5 L1753.8 318.4 L1769.2 303.0 L1793.0 331 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1745.0" y="363" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Generated image</text>
+<rect x="100.0" y="668" width="110" height="70" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<circle cx="181.4" cy="686.2" r="7.0" fill="#0284c7" opacity="0.55"/>
+<path d="M108.0 731 L139.6 692.5 L163.8 718.4 L179.2 703.0 L203.0 731 Z" fill="#0284c7" opacity="0.35"/>
+<text x="155.0" y="763" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Training image</text>
+<polygon points="308,666 482,666 436.79999999999995,776 353.2,776" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.6"/>
+<text x="395.0" y="799" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">VQGAN encoder</text>
+<rect x="560.0" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="589.3333333333334" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="618.6666666666666" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="630.3333333333333" y="690" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="648.0" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="659.6666666666666" y="690" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="677.3333333333334" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="706.6666666666666" y="670" width="23.333333333333332" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="645.0" y="725" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Discrete image targets</text>
+<rect x="800" y="660" width="250" height="160" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="925.0" y="735.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Image-token</text>
+<text x="925.0" y="755.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Cross-entropy loss</text>
 </g></svg>

@@ -1505,14 +1505,14 @@
     "I"
    ],
    "interaction": "generation",
-   "architecture": "Diffusion-transformer successor to CogView3 with a T5-XXL text encoder (internal architecture not documented beyond this)",
+   "architecture": "Diffusion-transformer successor to CogView3 with a T5-XXL text encoder and an AutoencoderKL image decoder",
    "notes": "README-level entry: the official repository describes CogView-3Plus as a series of newly developed text-to-image models based on Diffusion Transformer, in contrast to CogView3's cascaded relay-diffusion design. The released CogView3-Plus-3B uses T5-XXL as text encoder with a 224-token prompt limit, English prompts, and resolutions from 512 to 2048 px (multiples of 32); BF16/FP32 only. No paper describing CogView-3Plus was found; the CogView3 paper covers the earlier cascaded model. The date is the repository's dated news line announcing the open-source release.",
    "variants": [
     "CogView3-Plus-3B"
    ],
    "source_date": "2024-09-29",
    "source_date_kind": "announcement",
-   "description": "CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-image models, open-sourced alongside CogView3 in September 2024. Where CogView3 used a cascade of diffusion stages, CogView-3Plus moves to a single diffusion transformer conditioned on T5-XXL text features. The released 3B-parameter checkpoint generates images between 512 and 2048 pixels per side. Architectural details beyond this have not been published in a paper, so this entry documents only the interface and encoder stated by the developers.",
+   "description": "CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-image models, open-sourced alongside CogView3 in September 2024. Where CogView3 used a cascade of diffusion stages, CogView-3Plus moves to a single diffusion transformer conditioned on T5-XXL text features. The released 3B-parameter checkpoint generates images between 512 and 2048 pixels per side. The released pipeline combines the T5 encoder, a CogView3-Plus diffusion transformer, DDIM sampling and an AutoencoderKL decoder.",
    "license": {
     "code": "Apache-2.0",
     "weights": "Apache-2.0"
@@ -1546,7 +1546,7 @@
     "I"
    ],
    "interaction": "generation",
-   "architecture": "6B diffusion transformer conditioned on the bilingual GLM-4-9B language model as text encoder (internal architecture not documented beyond this)",
+   "architecture": "6B diffusion transformer with 28 joint text/image attention blocks, conditioned on GLM-4-9B text features and decoded through a 16-channel AutoencoderKL VAE",
    "notes": "README- and documentation-level entry. The official repository lists CogView4-6B with GLM-4-9B as encoder, Chinese and English prompts up to 1024 tokens, native Chinese text rendering, and resolutions from 512 to 2048 px with at most 2^21 pixels; BF16/FP32 only. Zhipu's model documentation says the text encoder was changed from the English-only T5 of earlier models to the bilingual GLM-4 encoder and that training mixes captions of arbitrary length with images of arbitrary resolution. The repository recommends rewriting prompts with an LLM because the model was trained on long synthetic captions. No paper was found. The date is the repository's dated news line for the open-source release.",
    "variants": [
     "CogView4-6B"
@@ -7161,7 +7161,7 @@
     "I"
    ],
    "interaction": "generation",
-   "architecture": "Llama-style decoder-only transformer that autoregressively predicts VQGAN image tokens after text tokens, with no vision-specific inductive biases added to the architecture",
+   "architecture": "Llama-style decoder-only transformer that autoregressively predicts VQGAN image tokens conditioned on MLP-projected FLAN-T5 XL text embeddings",
    "notes": "LlamaGen reuses the Llama large-language-model architecture unmodified (RMSNorm, SwiGLU, rotary position embeddings) for next-token image generation, arguing that scaling a vanilla autoregressive transformer with an improved VQGAN tokenizer (downsample ratios 16 or 8, up to 16,384-entry codebook) is enough to match or beat diffusion models on class-conditional and text-conditional benchmarks (paper Figure 1). The text-conditional models are 775M parameters, trained in two stages: stage I on a 50M-image LAION-COCO subset with short BLIP captions, stage II fine-tuning on 10M internal high-aesthetic images with long LLaVA captions (paper Figures 4-6). Class-conditional siblings range from 111M to 3.1B parameters. Serving through vLLM with KV caching gives a reported 300-400% inference speedup.",
    "description": "LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture transformer, without any image-specific architectural changes, can do competitive text-to-image generation as next-token prediction over discrete VQGAN tokens. The authors study image tokenizer design, model scaling from 100M to 3.1B parameters, and training-data quality, and release two 775M-parameter text-conditional checkpoints trained in two stages on web and high-aesthetic data.",
    "variants": [],
@@ -7480,7 +7480,7 @@
    ],
    "interaction": "generation",
    "architecture": "Decoder-only autoregressive transformer, initialized from Chameleon's pretrained weights and fine-tuned to generate discrete image tokens for photorealistic text-to-image synthesis",
-   "notes": "Lumina-mGPT continues pretraining from the Chameleon multimodal transformer, then applies supervised fine-tuning with a Resolution-Aware Prompt (an explicit target-resolution token) and an Unambiguous Image Representation (row-delimiter tokens so the autoregressive decoder respects image width) to control aspect ratio and resolution (paper Figure 2). The Chameleon VQ-VAE (from the pretrained checkpoint) provides image tokens; the paper reports progressive resolution fine-tuning stages and shows attention analysis of dedicated indicator tokens (paper Figure 5). Beyond text-to-image, the same model is fine-tuned for controllable generation, subject-driven generation and dense prediction, but the paper's own comparisons center on text-to-image quality. Public checkpoints are released at 7B parameters (768px-tuned); the HuggingFace model card lists no license, so weight terms are not established.",
+   "notes": "Lumina-mGPT continues pretraining from the Chameleon multimodal transformer, then applies supervised fine-tuning with a Resolution-Aware Prompt (target width and height expressed in the text prompt) and an Unambiguous Image Representation (height/width indicator and row-delimiter tokens in the generated image sequence) to control aspect ratio and resolution (paper Figure 2). The Chameleon VQ-VAE (from the pretrained checkpoint) provides image tokens; the paper reports progressive resolution fine-tuning stages and shows attention analysis of dedicated indicator tokens (paper Figure 5). Beyond text-to-image, the same model is fine-tuned for controllable generation, subject-driven generation and dense prediction, but the paper's own comparisons center on text-to-image quality. Public checkpoints are released at 7B parameters (768px-tuned); the HuggingFace model card lists no license, so weight terms are not established.",
    "description": "Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chameleon multimodal transformer into a dedicated photorealistic text-to-image generator by continuing its autoregressive pretraining and adding resolution-control prompt designs, rather than training a new architecture from scratch. A single 7B decoder-only model handles flexible-resolution text-to-image generation alongside other tasks such as controllable and subject-driven generation.",
    "variants": [],
    "source_date": "2024-08-05",

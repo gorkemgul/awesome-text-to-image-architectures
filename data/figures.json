@@ -82,12 +82,286 @@
    "sha256": "88a4e1c9d3f8976feb41e12067ccd630ce9484f8a3cae15a580ed9de21f42df8"
   },
   "auraflow": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/auraflow.svg",
-   "source_url": "https://blog.fal.ai/auraflow/",
+   "source_url": "https://huggingface.co/fal/AuraFlow",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "model_index.json; transformer/config.json: UMT5EncoderModel, AutoencoderKL, FlowMatchEulerDiscreteScheduler, 4 MMDiT + 32 single DiT layers; fal launch Technical Details",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Text prompt",
+      "x": 35,
+      "y": 130,
+      "w": 175,
+      "h": 85,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "te",
+      "label": "UMT5 text encoder",
+      "x": 35,
+      "y": 250,
+      "w": 175,
+      "h": 125,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "txt",
+      "label": "Text embeddings",
+      "x": 260,
+      "y": 245,
+      "w": 160,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "z",
+      "label": "Noise latents\n4 channels",
+      "x": 35,
+      "y": 500,
+      "w": 175,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "patch",
+      "label": "2 × 2 patches",
+      "x": 260,
+      "y": 500,
+      "w": 160,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "dual",
+      "label": "4 MMDiT blocks",
+      "x": 465,
+      "y": 225,
+      "w": 235,
+      "h": 310,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "Text + image streams",
+       "Joint multimodal attention"
+      ]
+     },
+     {
+      "id": "single",
+      "label": "32 single DiT blocks",
+      "x": 750,
+      "y": 225,
+      "w": 235,
+      "h": 310,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "Merged token sequence",
+       "DiT encoder blocks"
+      ]
+     },
+     {
+      "id": "t",
+      "label": "Flow timestep",
+      "x": 510,
+      "y": 655,
+      "w": 220,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "fm",
+      "label": "Euler flow sampler",
+      "x": 1050,
+      "y": 245,
+      "w": 210,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "AutoencoderKL decode",
+      "x": 1050,
+      "y": 465,
+      "w": 210,
+      "h": 145,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1050,
+      "y": 655,
+      "w": 210,
+      "h": 115,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "te"
+     },
+     {
+      "from": "te",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "dual",
+      "points": [
+       [
+        420,
+        305
+       ],
+       [
+        465,
+        305
+       ]
+      ]
+     },
+     {
+      "from": "z",
+      "to": "patch"
+     },
+     {
+      "from": "patch",
+      "to": "dual",
+      "points": [
+       [
+        420,
+        560
+       ],
+       [
+        440,
+        560
+       ],
+       [
+        440,
+        430
+       ],
+       [
+        465,
+        430
+       ]
+      ]
+     },
+     {
+      "from": "dual",
+      "to": "single"
+     },
+     {
+      "from": "single",
+      "to": "fm"
+     },
+     {
+      "from": "fm",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "t",
+      "to": "dual",
+      "label": "modulation",
+      "points": [
+       [
+        555,
+        655
+       ],
+       [
+        555,
+        535
+       ]
+      ]
+     },
+     {
+      "from": "t",
+      "to": "single",
+      "points": [
+       [
+        730,
+        695
+       ],
+       [
+        867,
+        695
+       ],
+       [
+        867,
+        535
+       ]
+      ]
+     },
+     {
+      "from": "fm",
+      "to": "patch",
+      "label": "next denoising step",
+      "points": [
+       [
+        1260,
+        300
+       ],
+       [
+        1320,
+        300
+       ],
+       [
+        1320,
+        630
+       ],
+       [
+        340,
+        630
+       ],
+       [
+        340,
+        620
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 440,
+      "y": 145,
+      "w": 570,
+      "h": 435,
+      "label": "AuraFlow backbone • 6.8B • width 3072",
+      "color": "#f3edf9",
+      "dashed": true
+     }
+    ]
+   }
   },
   "aurora-moe-gan": {
    "kind": "source-figure",
@@ -162,12 +436,245 @@
    "sha256": "905acda144313f76b17a57382f73e86c51e013ed3b697b7b75f2eff868be0ad1"
   },
   "boogu-image": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/boogu-image.svg",
-   "source_url": "https://arxiv.org/abs/2607.13125",
+   "source_url": "https://huggingface.co/Boogu/Boogu-Image-0.1-Base",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Base model_index.json and transformer/config.json: Qwen3VLForConditionalGeneration, AutoencoderKL, flow Euler scheduler, 40 layers with 8 double-stream, 2 refiner layers; diagram explicitly Base inference; boogu/models/transformers/transformer_boogu.py forward and img_patch_embed_and_refine verify context/noise refiners, dual→fusion→single topology",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Generation instruction",
+      "x": 40,
+      "y": 140,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "Qwen3-VL-8B",
+      "x": 40,
+      "y": 290,
+      "w": 190,
+      "h": 135,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "feat",
+      "label": "Instruction features\n4096 dimensions",
+      "x": 280,
+      "y": 300,
+      "w": 180,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "refine",
+      "label": "2 context refiner layers",
+      "x": 515,
+      "y": 265,
+      "w": 190,
+      "h": 215,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14
+     },
+     {
+      "id": "blocks",
+      "label": "40 transformer layers",
+      "x": 770,
+      "y": 245,
+      "w": 260,
+      "h": 310,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "8 double-stream layers",
+       "Fuse instruction + image",
+       "32 single-stream layers",
+       "Width 3360"
+      ]
+     },
+     {
+      "id": "noise",
+      "label": "16-channel noise",
+      "x": 40,
+      "y": 560,
+      "w": 190,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "patch",
+      "label": "2 × 2 patches\n2 noise refiner layers",
+      "x": 280,
+      "y": 560,
+      "w": 180,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "t",
+      "label": "Flow timestep",
+      "x": 795,
+      "y": 635,
+      "w": 210,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Euler flow sampler\nBase generation",
+      "x": 1100,
+      "y": 250,
+      "w": 220,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "AutoencoderKL decode",
+      "x": 1100,
+      "y": 450,
+      "w": 220,
+      "h": 145,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1100,
+      "y": 650,
+      "w": 220,
+      "h": 115,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "feat"
+     },
+     {
+      "from": "feat",
+      "to": "refine"
+     },
+     {
+      "from": "refine",
+      "to": "blocks"
+     },
+     {
+      "from": "noise",
+      "to": "patch"
+     },
+     {
+      "from": "patch",
+      "to": "blocks",
+      "points": [
+       [
+        460,
+        620
+       ],
+       [
+        660,
+        620
+       ],
+       [
+        660,
+        525
+       ],
+       [
+        770,
+        525
+       ]
+      ]
+     },
+     {
+      "from": "t",
+      "to": "blocks"
+     },
+     {
+      "from": "blocks",
+      "to": "sample"
+     },
+     {
+      "from": "sample",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sample",
+      "to": "patch",
+      "label": "next step",
+      "points": [
+       [
+        1320,
+        305
+       ],
+       [
+        1360,
+        305
+       ],
+       [
+        1360,
+        745
+       ],
+       [
+        370,
+        745
+       ],
+       [
+        370,
+        680
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 490,
+      "y": 160,
+      "w": 565,
+      "h": 445,
+      "label": "Boogu-Image-0.1-Base • inference backbone",
+      "color": "#edf5fa",
+      "dashed": true
+     }
+    ]
+   }
   },
   "bridge": {
    "kind": "source-figure",
@@ -282,20 +789,437 @@
    "sha256": "0ac16901c2ab3cefeba5cf4264ee29350b8a0428aa836f48254f56d0a0f95921"
   },
   "cogview3-plus": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/cogview3-plus.svg",
-   "source_url": "https://github.com/zai-org/CogView4",
+   "source_url": "https://huggingface.co/zai-org/CogView3-Plus-3B",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "model_index.json: T5EncoderModel, CogView3PlusTransformer2DModel, CogVideoXDDIMScheduler, AutoencoderKL; official README model comparison T5-XXL and 224-token limit",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "English prompt\n≤224 tokens",
+      "x": 60,
+      "y": 150,
+      "w": 220,
+      "h": 100,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "T5-XXL encoder",
+      "x": 60,
+      "y": 315,
+      "w": 220,
+      "h": 140,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "txt",
+      "label": "Text feature sequence",
+      "x": 340,
+      "y": 310,
+      "w": 205,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nImage latents",
+      "x": 60,
+      "y": 600,
+      "w": 220,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "dit",
+      "label": "CogView3-Plus-3B\nDiffusion transformer",
+      "x": 610,
+      "y": 280,
+      "w": 300,
+      "h": 330,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14
+     },
+     {
+      "id": "time",
+      "label": "Diffusion timestep",
+      "x": 635,
+      "y": 665,
+      "w": 250,
+      "h": 80,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "ddim",
+      "label": "DDIM sampler\nCogVideoX scheduler",
+      "x": 1010,
+      "y": 280,
+      "w": 260,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "AutoencoderKL decoder",
+      "x": 1010,
+      "y": 455,
+      "w": 260,
+      "h": 140,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "img",
+      "label": "Generated image",
+      "x": 1010,
+      "y": 650,
+      "w": 260,
+      "h": 115,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "dit"
+     },
+     {
+      "from": "noise",
+      "to": "dit",
+      "points": [
+       [
+        280,
+        660
+       ],
+       [
+        550,
+        660
+       ],
+       [
+        550,
+        545
+       ],
+       [
+        610,
+        545
+       ]
+      ]
+     },
+     {
+      "from": "time",
+      "to": "dit"
+     },
+     {
+      "from": "dit",
+      "to": "ddim",
+      "label": "prediction"
+     },
+     {
+      "from": "ddim",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "img"
+     },
+     {
+      "from": "ddim",
+      "to": "noise",
+      "label": "next step",
+      "points": [
+       [
+        1270,
+        335
+       ],
+       [
+        1340,
+        335
+       ],
+       [
+        1340,
+        775
+       ],
+       [
+        170,
+        775
+       ],
+       [
+        170,
+        725
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 580,
+      "y": 185,
+      "w": 360,
+      "h": 455,
+      "label": "Latent diffusion generation",
+      "color": "#f1eff9",
+      "dashed": true
+     }
+    ]
+   }
   },
   "cogview4": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/cogview4.svg",
-   "source_url": "https://github.com/zai-org/CogView4",
+   "source_url": "https://huggingface.co/zai-org/CogView4-6B",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "transformer/config.json: 28 layers, 32 heads, patch2, 16 channels; vae/config.json: AutoencoderKL; scheduler/scheduler_config.json: Euler flow matching; diffusers transformer_cogview4.py joint attention, image RoPE, timestep/size/crop modulation",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Chinese / English prompt",
+      "x": 40,
+      "y": 140,
+      "w": 210,
+      "h": 95,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "GLM-4-9B encoder",
+      "x": 40,
+      "y": 300,
+      "w": 210,
+      "h": 145,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "text",
+      "label": "Projected text tokens",
+      "x": 300,
+      "y": 290,
+      "w": 190,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "16-channel noise",
+      "x": 40,
+      "y": 595,
+      "w": 210,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "patch",
+      "label": "2 × 2 patch embedding",
+      "x": 300,
+      "y": 570,
+      "w": 190,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "block",
+      "label": "28 transformer blocks",
+      "x": 565,
+      "y": 260,
+      "w": 330,
+      "h": 345,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "AdaLN timestep modulation",
+       "Joint text/image attention",
+       "Image RoPE + QK norm",
+       "Feed-forward + residual"
+      ]
+     },
+     {
+      "id": "cond",
+      "label": "Timestep + size + crop",
+      "x": 570,
+      "y": 655,
+      "w": 320,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sampler",
+      "label": "Euler flow sampling",
+      "x": 1040,
+      "y": 260,
+      "w": 240,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "16-channel KL VAE\nDecoder",
+      "x": 1040,
+      "y": 450,
+      "w": 240,
+      "h": 145,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1040,
+      "y": 650,
+      "w": 240,
+      "h": 115,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "text"
+     },
+     {
+      "from": "text",
+      "to": "block"
+     },
+     {
+      "from": "noise",
+      "to": "patch"
+     },
+     {
+      "from": "patch",
+      "to": "block",
+      "points": [
+       [
+        490,
+        632
+       ],
+       [
+        525,
+        632
+       ],
+       [
+        525,
+        555
+       ],
+       [
+        565,
+        555
+       ]
+      ]
+     },
+     {
+      "from": "cond",
+      "to": "block",
+      "label": "modulation"
+     },
+     {
+      "from": "block",
+      "to": "sampler",
+      "label": "velocity"
+     },
+     {
+      "from": "sampler",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sampler",
+      "to": "patch",
+      "points": [
+       [
+        1280,
+        315
+       ],
+       [
+        1340,
+        315
+       ],
+       [
+        1340,
+        755
+       ],
+       [
+        395,
+        755
+       ],
+       [
+        395,
+        695
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 535,
+      "y": 160,
+      "w": 390,
+      "h": 475,
+      "label": "CogView4-6B backbone",
+      "color": "#edf4fa",
+      "dashed": true
+     }
+    ]
+   }
   },
   "composer": {
    "kind": "source-figure",
@@ -350,12 +1274,346 @@
    "sha256": "000156f4cf8e047c1b36011d5dd00cb9f9157de3570a2a8fbcc730cca6c618d0"
   },
   "dall-e": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/dall-e.svg",
    "source_url": "https://arxiv.org/abs/2102.12092",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Paper §2.1–2.2 (discrete VAE, BPE + image stream, sparse decoder-only transformer); §2.6 (contrastive reranking).",
+    "width": 1900,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 40,
+      "y": 260,
+      "w": 170,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "bpe",
+      "label": "BPE tokenizer",
+      "x": 250,
+      "y": 260,
+      "w": 180,
+      "h": 180,
+      "kind": "encoder",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "text",
+      "label": "Text-token prefix\n≤256 BPE tokens",
+      "x": 470,
+      "y": 260,
+      "w": 220,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Sparse decoder-only\ntransformer · 64 layers",
+      "x": 740,
+      "y": 215,
+      "w": 320,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "Causal text attention",
+       "Image attends to text",
+       "Row / column / conv masks"
+      ]
+     },
+     {
+      "id": "codes",
+      "label": "1,024 image codes\n32 × 32 · 8,192 entries",
+      "x": 1110,
+      "y": 260,
+      "w": 240,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "Discrete VAE\nDecoder",
+      "x": 1400,
+      "y": 260,
+      "w": 190,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "candidate",
+      "label": "Candidate image\n256 × 256 RGB",
+      "x": 1640,
+      "y": 260,
+      "w": 210,
+      "h": 180,
+      "kind": "latent",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "rank",
+      "label": "CLIP reranking\nCaption-image score",
+      "x": 1350,
+      "y": 660,
+      "w": 230,
+      "h": 160,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Selected image",
+      "x": 1640,
+      "y": 660,
+      "w": 210,
+      "h": 160,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "imgtrain",
+      "label": "Training image",
+      "x": 70,
+      "y": 660,
+      "w": 170,
+      "h": 160,
+      "kind": "input",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "vqenc",
+      "label": "Discrete VAE encoder",
+      "x": 300,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 16
+     },
+     {
+      "id": "targets",
+      "label": "Discrete image targets",
+      "x": 550,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ce",
+      "label": "Next-token loss\nText + image training",
+      "x": 800,
+      "y": 660,
+      "w": 250,
+      "h": 160,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "bpe"
+     },
+     {
+      "from": "bpe",
+      "to": "text"
+     },
+     {
+      "from": "text",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "candidate"
+     },
+     {
+      "from": "candidate",
+      "to": "rank",
+      "points": [
+       [
+        1745,
+        440
+       ],
+       [
+        1745,
+        540
+       ],
+       [
+        1465,
+        540
+       ],
+       [
+        1465,
+        660
+       ]
+      ]
+     },
+     {
+      "from": "rank",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Append predicted token",
+      "points": [
+       [
+        1230,
+        260
+       ],
+       [
+        1230,
+        130
+       ],
+       [
+        890,
+        130
+       ],
+       [
+        890,
+        215
+       ]
+      ],
+      "label_position": [
+       1060.0,
+       116
+      ]
+     },
+     {
+      "from": "text",
+      "to": "rank",
+      "label": "Caption",
+      "points": [
+       [
+        580,
+        440
+       ],
+       [
+        580,
+        550
+       ],
+       [
+        1270,
+        550
+       ],
+       [
+        1270,
+        740
+       ],
+       [
+        1350,
+        740
+       ]
+      ],
+      "label_position": [
+       1000,
+       544
+      ]
+     },
+     {
+      "from": "imgtrain",
+      "to": "vqenc",
+      "dashed": true
+     },
+     {
+      "from": "vqenc",
+      "to": "targets",
+      "dashed": true
+     },
+     {
+      "from": "targets",
+      "to": "ce",
+      "dashed": true
+     },
+     {
+      "from": "ce",
+      "to": "ar",
+      "label": "Train autoregressive model",
+      "points": [
+       [
+        925,
+        660
+       ],
+       [
+        925,
+        580
+       ],
+       [
+        900,
+        580
+       ],
+       [
+        900,
+        485
+       ]
+      ],
+      "dashed": true,
+      "label_position": [
+       1060,
+       574
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 710,
+      "y": 170,
+      "w": 380,
+      "h": 365,
+      "label": "Autoregressive prior",
+      "dashed": false
+     },
+     {
+      "x": 40,
+      "y": 610,
+      "w": 1070,
+      "h": 250,
+      "label": "Training only: image tokenization and autoregressive supervision",
+      "dashed": true
+     },
+     {
+      "x": 1300,
+      "y": 610,
+      "w": 550,
+      "h": 250,
+      "label": "Contrastive sample selection",
+      "dashed": false
+     }
+    ]
+   }
   },
   "dall-e-2": {
    "kind": "source-figure",
@@ -374,12 +1632,259 @@
    "sha256": null
   },
   "dall-e-mini": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/dall-e-mini.svg",
-   "source_url": "https://github.com/borisdayma/dalle-mini",
+   "source_url": "https://huggingface.co/dalle-mini/dalle-mini",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Model card Training Procedure: BART encoder + autoregressive decoder, VQGAN codes and cross-entropy; official repository README FAQ: VQGAN-f16-16384 for image encoding/decoding.",
+    "width": 1900,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "English prompt",
+      "x": 40,
+      "y": 260,
+      "w": 170,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "enc",
+      "label": "BART text encoder",
+      "x": 250,
+      "y": 230,
+      "w": 200,
+      "h": 240,
+      "kind": "encoder",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "text",
+      "label": "Encoded text features",
+      "x": 500,
+      "y": 260,
+      "w": 210,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "BART image decoder",
+      "x": 760,
+      "y": 215,
+      "w": 300,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "Text conditioning",
+       "Autoregressive decoder",
+       "Next-image-token logits"
+      ]
+     },
+     {
+      "id": "codes",
+      "label": "Generated image codes",
+      "x": 1120,
+      "y": 260,
+      "w": 230,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "VQGAN decoder\nf16–16384",
+      "x": 1410,
+      "y": 260,
+      "w": 180,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1640,
+      "y": 260,
+      "w": 210,
+      "h": 180,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "imgtrain",
+      "label": "Training image",
+      "x": 70,
+      "y": 660,
+      "w": 170,
+      "h": 160,
+      "kind": "input",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "vqenc",
+      "label": "VQGAN encoder",
+      "x": 300,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 16
+     },
+     {
+      "id": "targets",
+      "label": "Discrete image targets",
+      "x": 550,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ce",
+      "label": "Image-token\nCross-entropy loss",
+      "x": 800,
+      "y": 660,
+      "w": 250,
+      "h": 160,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "text"
+     },
+     {
+      "from": "text",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Append predicted token",
+      "points": [
+       [
+        1230,
+        260
+       ],
+       [
+        1230,
+        130
+       ],
+       [
+        890,
+        130
+       ],
+       [
+        890,
+        215
+       ]
+      ],
+      "label_position": [
+       1060.0,
+       116
+      ]
+     },
+     {
+      "from": "imgtrain",
+      "to": "vqenc",
+      "dashed": true
+     },
+     {
+      "from": "vqenc",
+      "to": "targets",
+      "dashed": true
+     },
+     {
+      "from": "targets",
+      "to": "ce",
+      "dashed": true
+     },
+     {
+      "from": "ce",
+      "to": "ar",
+      "label": "Train autoregressive model",
+      "points": [
+       [
+        925,
+        660
+       ],
+       [
+        925,
+        580
+       ],
+       [
+        910,
+        580
+       ],
+       [
+        910,
+        485
+       ]
+      ],
+      "dashed": true,
+      "label_position": [
+       1060,
+       574
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 730,
+      "y": 170,
+      "w": 360,
+      "h": 365,
+      "label": "Encoder-decoder generation",
+      "dashed": false
+     },
+     {
+      "x": 40,
+      "y": 610,
+      "w": 1070,
+      "h": 250,
+      "label": "Training only: image tokenization and autoregressive supervision",
+      "dashed": true
+     }
+    ]
+   }
   },
   "dart": {
    "kind": "source-figure",
@@ -558,12 +2063,179 @@
    "sha256": "e9899b0d8d697660a6f2d02c975f7d24e3a6480a2eed3c9b62529878b078898f"
   },
   "emu-meta": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/emu-meta.svg",
    "source_url": "https://arxiv.org/abs/2309.15807",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 3.1: AE-16, 2.8B U-Net, CLIP ViT-L and T5-XXL conditioning; Sec. 3.4 quality tuning.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "Emu U-Net · 2.8B\nMultiscale latent denoising",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "AE-16\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "1024 × 1024\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "CLIP ViT-L + T5-XXL",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     }
+    ]
+   }
   },
   "emu2": {
    "kind": "source-figure",
@@ -590,12 +2262,220 @@
    "sha256": "6d8dc5ecadf750aeac3c1d266921df309ae9b6df99f4880aefba84d289103071"
   },
   "ernie-image": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/ernie-image.svg",
    "source_url": "https://arxiv.org/abs/2605.25347",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Technical Report §1: Ministral-3 3B text encoder, 8B single-stream DiT, FLUX.2 VAE, lightweight prompt enhancer; §2.2.2 flow velocity prediction",
+    "width": 1400,
+    "height": 850,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "User prompt",
+      "x": 40,
+      "y": 140,
+      "w": 180,
+      "h": 90,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enh",
+      "label": "Prompt Enhancer",
+      "x": 265,
+      "y": 140,
+      "w": 205,
+      "h": 110,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "Ministral-3 (3B)\nText encoder",
+      "x": 520,
+      "y": 135,
+      "w": 225,
+      "h": 135,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "features",
+      "label": "Text conditioning",
+      "x": 790,
+      "y": 145,
+      "w": 225,
+      "h": 110,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "Noise image latents",
+      "x": 40,
+      "y": 480,
+      "w": 200,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "dit",
+      "label": "8B single-stream DiT\nLatent diffusion",
+      "x": 390,
+      "y": 380,
+      "w": 380,
+      "h": 290,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14
+     },
+     {
+      "id": "t",
+      "label": "Flow timestep",
+      "x": 440,
+      "y": 705,
+      "w": 285,
+      "h": 75,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Flow velocity\nintegration",
+      "x": 860,
+      "y": 420,
+      "w": 205,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "FLUX.2 VAE decoder",
+      "x": 1140,
+      "y": 385,
+      "w": 215,
+      "h": 150,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1140,
+      "y": 625,
+      "w": 215,
+      "h": 125,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enh"
+     },
+     {
+      "from": "enh",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "features"
+     },
+     {
+      "from": "features",
+      "to": "dit",
+      "label": "conditioning",
+      "points": [
+       [
+        902,
+        255
+       ],
+       [
+        902,
+        320
+       ],
+       [
+        650,
+        320
+       ],
+       [
+        650,
+        380
+       ]
+      ]
+     },
+     {
+      "from": "noise",
+      "to": "dit"
+     },
+     {
+      "from": "t",
+      "to": "dit"
+     },
+     {
+      "from": "dit",
+      "to": "sample",
+      "label": "velocity"
+     },
+     {
+      "from": "sample",
+      "to": "vae"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sample",
+      "to": "noise",
+      "points": [
+       [
+        962,
+        530
+       ],
+       [
+        962,
+        685
+       ],
+       [
+        140,
+        685
+       ],
+       [
+        140,
+        605
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 350,
+      "y": 300,
+      "w": 455,
+      "h": 400,
+      "label": "ERNIE-Image generation backbone",
+      "color": "#f2eef8",
+      "dashed": true
+     }
+    ]
+   }
   },
   "ernie-vilg": {
    "kind": "source-figure",
@@ -678,12 +2558,289 @@
    "sha256": "1aa3338fb3ff0a0f88bac495e9d563c0da2a15e6e4e902d48e36c93f7c85aa38"
   },
   "flux-2": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/flux-2.svg",
-   "source_url": "https://bfl.ai/blog/flux-2",
+   "source_url": "https://github.com/black-forest-labs/flux2",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "src/flux2/model.py Flux2.forward / forward_kv_extract: img_in/txt_in, double blocks, concatenate text+image, single blocks, final layer; reference/image sequence concat and reference KV cache. BFL FLUX.2 announcement How It Works: Mistral-3 24B, retrained VAE",
+    "width": 1400,
+    "height": 850,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 35,
+      "y": 130,
+      "w": 185,
+      "h": 90,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "vlm",
+      "label": "Mistral-3 24B VLM",
+      "x": 35,
+      "y": 260,
+      "w": 185,
+      "h": 135,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "txt",
+      "label": "Text feature tokens",
+      "x": 265,
+      "y": 270,
+      "w": 170,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "Noise image latents",
+      "x": 35,
+      "y": 465,
+      "w": 185,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "ref",
+      "label": "Optional references\nVAE encode",
+      "x": 35,
+      "y": 635,
+      "w": 185,
+      "h": 135,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "img",
+      "label": "Image + reference\ntokens",
+      "x": 265,
+      "y": 475,
+      "w": 170,
+      "h": 140,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "dual",
+      "label": "Double-stream blocks",
+      "x": 485,
+      "y": 235,
+      "w": 235,
+      "h": 335,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "Text stream",
+       "Image / reference stream",
+       "Joint attention"
+      ]
+     },
+     {
+      "id": "single",
+      "label": "Single-stream blocks",
+      "x": 770,
+      "y": 235,
+      "w": 235,
+      "h": 335,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "Concatenate streams",
+       "Unified attention",
+       "Final image projection"
+      ]
+     },
+     {
+      "id": "t",
+      "label": "Timestep + guidance",
+      "x": 565,
+      "y": 680,
+      "w": 365,
+      "h": 80,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Rectified-flow sampling",
+      "x": 1070,
+      "y": 260,
+      "w": 240,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "FLUX.2 VAE decoder",
+      "x": 1070,
+      "y": 460,
+      "w": 240,
+      "h": 145,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1070,
+      "y": 670,
+      "w": 240,
+      "h": 120,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "vlm"
+     },
+     {
+      "from": "vlm",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "dual"
+     },
+     {
+      "from": "noise",
+      "to": "img"
+     },
+     {
+      "from": "ref",
+      "to": "img",
+      "points": [
+       [
+        220,
+        700
+       ],
+       [
+        350,
+        700
+       ],
+       [
+        350,
+        615
+       ]
+      ]
+     },
+     {
+      "from": "img",
+      "to": "dual"
+     },
+     {
+      "from": "dual",
+      "to": "single"
+     },
+     {
+      "from": "single",
+      "to": "sample",
+      "label": "velocity"
+     },
+     {
+      "from": "sample",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "t",
+      "to": "dual",
+      "points": [
+       [
+        640,
+        680
+       ],
+       [
+        602,
+        570
+       ]
+      ]
+     },
+     {
+      "from": "t",
+      "to": "single",
+      "points": [
+       [
+        850,
+        680
+       ],
+       [
+        887,
+        570
+       ]
+      ]
+     },
+     {
+      "from": "sample",
+      "to": "img",
+      "label": "next step",
+      "points": [
+       [
+        1310,
+        315
+       ],
+       [
+        1350,
+        315
+       ],
+       [
+        1350,
+        805
+       ],
+       [
+        455,
+        805
+       ],
+       [
+        455,
+        600
+       ],
+       [
+        435,
+        600
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 455,
+      "y": 145,
+      "w": 580,
+      "h": 465,
+      "label": "FLUX.2 transformer • reference token KV cache",
+      "color": "#f0eef8",
+      "dashed": true
+     }
+    ]
+   }
   },
   "fox": {
    "kind": "source-figure",
@@ -766,12 +2923,199 @@
    "sha256": "5395eca2f8e828c4699178f6fd57bcfcc997e5b43ca04e2da4c5958724a3081a"
   },
   "glide": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/glide.svg",
    "source_url": "https://arxiv.org/abs/2112.10741",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 3.1: base ADM U-Net with jointly trained width-2048 text transformer; final token replaces class embedding and token sequence augments attention context. Separate width-1024 text encoder conditions 64-to-256 diffusion upsampler. Sec. 4.1 inpainting uses masked RGB and mask channels.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Pixel noise\n64 × 64",
+      "x": 40,
+      "y": 240,
+      "w": 165,
+      "h": 150,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "base",
+      "label": "Base ADM U-Net\nPixel denoising",
+      "x": 275,
+      "y": 200,
+      "w": 290,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "low",
+      "label": "64 × 64 RGB",
+      "x": 625,
+      "y": 225,
+      "w": 170,
+      "h": 180,
+      "kind": "latent",
+      "visual": "image"
+     },
+     {
+      "id": "up",
+      "label": "Diffusion upsampler\n64 → 256",
+      "x": 850,
+      "y": 200,
+      "w": 290,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "output",
+      "label": "256 × 256 RGB",
+      "x": 1195,
+      "y": 225,
+      "w": 170,
+      "h": 180,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 55,
+      "y": 470,
+      "w": 185,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "txtbase",
+      "label": "Base text transformer\nWidth 2048",
+      "x": 300,
+      "y": 440,
+      "w": 270,
+      "h": 150,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "txtup",
+      "label": "Upsampler transformer\nWidth 1024",
+      "x": 870,
+      "y": 440,
+      "w": 280,
+      "h": 150,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "mask",
+      "label": "Masked RGB + mask\nInpainting branch",
+      "x": 400,
+      "y": 665,
+      "w": 520,
+      "h": 110,
+      "kind": "input",
+      "visual": "tensor"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "base"
+     },
+     {
+      "from": "base",
+      "to": "low"
+     },
+     {
+      "from": "low",
+      "to": "up"
+     },
+     {
+      "from": "up",
+      "to": "output"
+     },
+     {
+      "from": "text",
+      "to": "txtbase"
+     },
+     {
+      "from": "text",
+      "to": "txtup",
+      "points": [
+       [
+        148,
+        555
+       ],
+       [
+        148,
+        610
+       ],
+       [
+        1010,
+        610
+       ],
+       [
+        1010,
+        590
+       ]
+      ]
+     },
+     {
+      "from": "txtbase",
+      "to": "base"
+     },
+     {
+      "from": "txtup",
+      "to": "up"
+     },
+     {
+      "from": "mask",
+      "to": "base",
+      "label": "extra channels",
+      "points": [
+       [
+        400,
+        720
+       ],
+       [
+        260,
+        720
+       ],
+       [
+        260,
+        380
+       ],
+       [
+        275,
+        380
+       ]
+      ],
+      "label_position": [
+       300,
+       748
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Optional inpainting inputs",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "glm-image": {
    "kind": "source-figure",
@@ -782,12 +3126,252 @@
    "sha256": "6b57ad4117c95142b1061413b5cdebcb2693cb368e085e006cb678aac431b56e"
   },
   "goku": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/goku.svg",
    "source_url": "https://arxiv.org/abs/2502.04896",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "§2.1 joint 3D VAE; §2.2 GenTron blocks: full self-attention, Flan-T5 cross-attention, FFN, adaLN-Zero, 3D RoPE, QK RMSNorm; §2.3 rectified flow; §2.5 first-frame channel concat + MLP for I2V",
+    "width": 1400,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Text prompt",
+      "x": 50,
+      "y": 130,
+      "w": 210,
+      "h": 90,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "Flan-T5 encoder",
+      "x": 50,
+      "y": 275,
+      "w": 210,
+      "h": 140,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "txt",
+      "label": "Text embeddings",
+      "x": 320,
+      "y": 285,
+      "w": 215,
+      "h": 120,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "Image / video noise",
+      "x": 50,
+      "y": 535,
+      "w": 210,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "tokens",
+      "label": "Spatial-temporal tokens",
+      "x": 320,
+      "y": 530,
+      "w": 215,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "block",
+      "label": "GenTron-style blocks\n28 (2B) / 40 (8B)",
+      "x": 620,
+      "y": 245,
+      "w": 335,
+      "h": 360,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "adaLN-Zero modulation",
+       "Full space-time attention",
+       "3D RoPE + QK RMSNorm",
+       "Text cross-attention",
+       "Feed-forward network"
+      ]
+     },
+     {
+      "id": "time",
+      "label": "Flow timestep",
+      "x": 640,
+      "y": 680,
+      "w": 290,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Rectified-flow sampler",
+      "x": 1060,
+      "y": 255,
+      "w": 245,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "Joint image/video VAE\n8× spatial / 4× temporal",
+      "x": 1060,
+      "y": 445,
+      "w": 245,
+      "h": 155,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image / video",
+      "x": 1060,
+      "y": 665,
+      "w": 245,
+      "h": 125,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     },
+     {
+      "id": "ref",
+      "label": "I2V first frame\nVAE → broadcast\nChannel concat + MLP",
+      "x": 50,
+      "y": 715,
+      "w": 470,
+      "h": 110,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "block"
+     },
+     {
+      "from": "noise",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "block"
+     },
+     {
+      "from": "ref",
+      "to": "tokens",
+      "label": "I2V only",
+      "points": [
+       [
+        285,
+        715
+       ],
+       [
+        285,
+        690
+       ],
+       [
+        427,
+        690
+       ],
+       [
+        427,
+        660
+       ]
+      ]
+     },
+     {
+      "from": "time",
+      "to": "block"
+     },
+     {
+      "from": "block",
+      "to": "sample",
+      "label": "velocity"
+     },
+     {
+      "from": "sample",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sample",
+      "to": "tokens",
+      "label": "next step",
+      "points": [
+       [
+        1305,
+        310
+       ],
+       [
+        1350,
+        310
+       ],
+       [
+        1350,
+        850
+       ],
+       [
+        550,
+        850
+       ],
+       [
+        550,
+        625
+       ],
+       [
+        535,
+        625
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 585,
+      "y": 150,
+      "w": 410,
+      "h": 485,
+      "label": "Unified image / video transformer",
+      "color": "#eaf4f1",
+      "dashed": true
+     }
+    ]
+   }
   },
   "got": {
    "kind": "source-figure",
@@ -830,12 +3414,144 @@
    "sha256": "d060f7a8d7ce5f296932eb1df443de98fdf394e6c84889b51be5c29dfb5840fa"
   },
   "grok-aurora": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/grok-aurora.svg",
    "source_url": "https://x.ai/news/grok-image-generation-release",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "xAI dated announcement 2024-12-09: autoregressive mixture-of-experts predicts next tokens from interleaved text/image data. Tokenizer, codebook, expert layout and image decoding are not disclosed; unknown nodes state these limits explicitly.",
+    "width": 2040,
+    "height": 650,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 40,
+      "y": 280,
+      "w": 180,
+      "h": 190,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "tokens",
+      "label": "Text tokens\nTokenizer undisclosed",
+      "x": 285,
+      "y": 280,
+      "w": 240,
+      "h": 190,
+      "kind": "encoder",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Aurora\nAutoregressive\nmixture-of-experts",
+      "x": 595,
+      "y": 235,
+      "w": 380,
+      "h": 280,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "codes",
+      "label": "Predicted image tokens\nToken format undisclosed",
+      "x": 1045,
+      "y": 280,
+      "w": 290,
+      "h": 190,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "render",
+      "label": "Image formation\nPixel decoder undisclosed",
+      "x": 1405,
+      "y": 280,
+      "w": 300,
+      "h": 190,
+      "kind": "decoder",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1770,
+      "y": 280,
+      "w": 220,
+      "h": 190,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "render"
+     },
+     {
+      "from": "render",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Token feedback",
+      "points": [
+       [
+        1190,
+        280
+       ],
+       [
+        1190,
+        135
+       ],
+       [
+        785,
+        135
+       ],
+       [
+        785,
+        235
+       ]
+      ],
+      "label_position": [
+       985,
+       120
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 565,
+      "y": 185,
+      "w": 440,
+      "h": 390,
+      "label": "Reported autoregressive network",
+      "dashed": false
+     }
+    ]
+   }
   },
   "grok-imagine-image": {
    "kind": "io-diagram",
@@ -950,12 +3666,242 @@
    "sha256": null
   },
   "ideogram-4": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/ideogram-4.svg",
-   "source_url": "https://ideogram.ai/blog/ideogram-4.0/",
+   "source_url": "https://github.com/ideogram-oss/ideogram4",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "docs/model_architecture.md: hidden layers (0,3,…,33,35) concatenated; 34 single-stream blocks; AdaLN timestep, QK-RMSNorm, 3D MRoPE, SwiGLU; Euler asymmetric CFG; VAE decode",
+    "width": 1400,
+    "height": 850,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Text prompt",
+      "x": 40,
+      "y": 140,
+      "w": 195,
+      "h": 90,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "Frozen Qwen3-VL-8B\nInstruct encoder",
+      "x": 40,
+      "y": 300,
+      "w": 195,
+      "h": 145,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "hidden",
+      "label": "Layers 0,3,…,33,35\nConcatenate features",
+      "x": 290,
+      "y": 300,
+      "w": 210,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "noise",
+      "label": "Image latent noise",
+      "x": 40,
+      "y": 570,
+      "w": 195,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "join",
+      "label": "Text + image tokens\nSingle sequence",
+      "x": 535,
+      "y": 490,
+      "w": 205,
+      "h": 140,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "blocks",
+      "label": "34 transformer blocks",
+      "x": 790,
+      "y": 260,
+      "w": 285,
+      "h": 345,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14,
+      "layers": [
+       "AdaLN from timestep",
+       "QK-RMSNorm attention",
+       "3D MRoPE positions",
+       "SwiGLU MLP",
+       "Final velocity projection"
+      ]
+     },
+     {
+      "id": "t",
+      "label": "Timestep embedding",
+      "x": 795,
+      "y": 670,
+      "w": 280,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Euler + asymmetric CFG",
+      "x": 1130,
+      "y": 265,
+      "w": 225,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "Frozen KL VAE decoder",
+      "x": 1130,
+      "y": 455,
+      "w": 225,
+      "h": 145,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1130,
+      "y": 650,
+      "w": 225,
+      "h": 120,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "hidden"
+     },
+     {
+      "from": "hidden",
+      "to": "join",
+      "points": [
+       [
+        500,
+        365
+       ],
+       [
+        637,
+        365
+       ],
+       [
+        637,
+        490
+       ]
+      ]
+     },
+     {
+      "from": "noise",
+      "to": "join",
+      "points": [
+       [
+        235,
+        635
+       ],
+       [
+        535,
+        635
+       ],
+       [
+        535,
+        590
+       ]
+      ]
+     },
+     {
+      "from": "join",
+      "to": "blocks"
+     },
+     {
+      "from": "t",
+      "to": "blocks"
+     },
+     {
+      "from": "blocks",
+      "to": "sample",
+      "label": "velocity"
+     },
+     {
+      "from": "sample",
+      "to": "vae",
+      "label": "final latents"
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sample",
+      "to": "join",
+      "label": "next step",
+      "points": [
+       [
+        1355,
+        320
+       ],
+       [
+        1380,
+        320
+       ],
+       [
+        1380,
+        785
+       ],
+       [
+        637,
+        785
+       ],
+       [
+        637,
+        630
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 760,
+      "y": 150,
+      "w": 340,
+      "h": 485,
+      "label": "Ideogram4Transformer • single stream",
+      "color": "#f7f1e8",
+      "dashed": true
+     }
+    ]
+   }
   },
   "illume": {
    "kind": "source-figure",
@@ -1174,12 +4120,179 @@
    "sha256": "91abcc12833108c4f571c45e807247b2275b438e1f34369f5a1ad2cd47e60127"
   },
   "kolors": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/kolors.svg",
    "source_url": "https://github.com/Kwai-Kolors/Kolors",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Official pipeline_stable_diffusion_xl_chatglm_256.py: encode_prompt uses max_length=256, hidden_states[-2] and pooled last token; __call__ invokes unet, scheduler.step and vae.decode. Technical report architecture follows SDXL U-Net.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "SDXL U-Net backbone\nCross-attention conditioning",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "Generated\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "ChatGLM3-6B-Base\n256-token prompt",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     }
+    ]
+   }
   },
   "kolors-2": {
    "kind": "io-diagram",
@@ -1246,12 +4359,277 @@
    "sha256": "6200a9a7e655fdbe2fd3a86c19468915ead2c404331c7eb2e8f3809b236c3570"
   },
   "lcm": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/lcm.svg",
    "source_url": "https://arxiv.org/abs/2310.04378",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 4 latent consistency distillation adds guidance scale conditioning and DDIM skipping solver; Appendix B Algorithm 3: Gaussian latent, f_theta(z,omega,c,t) endpoint prediction, optional renoising, decoder D(z).",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "LCM U-Net\nDirect z_0 prediction\n1–4 evaluations",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "SD VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "Generated\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "Pretrained SD text encoder",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     },
+     {
+      "id": "teacher",
+      "label": "Stable Diffusion teacher\nCFG-guided DDIM solver",
+      "x": 80,
+      "y": 666,
+      "w": 360,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "loss",
+      "label": "Latent consistency distillation\nSkipping steps + EMA target",
+      "x": 655,
+      "y": 666,
+      "w": 555,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "omega",
+      "label": "Guidance scale ω\nTimestep t",
+      "x": 1000,
+      "y": 460,
+      "w": 280,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "re-noise and predict z_0",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     },
+     {
+      "from": "teacher",
+      "to": "loss",
+      "label": "ODE target",
+      "dashed": true
+     },
+     {
+      "from": "loss",
+      "to": "model",
+      "label": "training updates",
+      "points": [
+       [
+        930,
+        666
+       ],
+       [
+        930,
+        610
+       ],
+       [
+        710,
+        610
+       ],
+       [
+        710,
+        390
+       ],
+       [
+        670,
+        390
+       ]
+      ],
+      "dashed": true
+     },
+     {
+      "from": "omega",
+      "to": "model",
+      "label": "ω, t",
+      "points": [
+       [
+        1140,
+        460
+       ],
+       [
+        1140,
+        420
+       ],
+       [
+        625,
+        420
+       ],
+       [
+        625,
+        405
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "ldm": {
    "kind": "source-figure",
@@ -1342,12 +4720,265 @@
    "sha256": "b93de4d5f633116b0cf60e50d9e4e36e934eb4f40ae9a3c87e46417349025516"
   },
   "llamagen": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/llamagen.svg",
    "source_url": "https://arxiv.org/abs/2406.06525",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Paper §2.1–2.2 (raster-scan image codes, VQGAN decoder, codebook); §2.3 Text-conditional image generation (FLAN-T5 XL encoder, MLP, prefix embeddings); §3.3 text-conditional training.",
+    "width": 1900,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 40,
+      "y": 260,
+      "w": 160,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "enc",
+      "label": "FLAN-T5 XL\nText encoder",
+      "x": 240,
+      "y": 230,
+      "w": 190,
+      "h": 240,
+      "kind": "encoder",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "prefix",
+      "label": "MLP projection\nPrefix token embeddings",
+      "x": 475,
+      "y": 260,
+      "w": 235,
+      "h": 180,
+      "kind": "encoder",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Llama transformer\nRepeated decoder blocks",
+      "x": 760,
+      "y": 200,
+      "w": 330,
+      "h": 300,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "RMSNorm",
+       "Causal attention + RoPE",
+       "RMSNorm",
+       "SwiGLU feed-forward"
+      ]
+     },
+     {
+      "id": "codes",
+      "label": "Raster-scan image codes\n16,384-entry codebook",
+      "x": 1150,
+      "y": 260,
+      "w": 240,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "VQGAN decoder",
+      "x": 1440,
+      "y": 260,
+      "w": 180,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1670,
+      "y": 260,
+      "w": 180,
+      "h": 180,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "imgtrain",
+      "label": "Training image",
+      "x": 70,
+      "y": 660,
+      "w": 170,
+      "h": 160,
+      "kind": "input",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "vqenc",
+      "label": "VQGAN encoder",
+      "x": 300,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 16
+     },
+     {
+      "id": "targets",
+      "label": "Discrete image targets",
+      "x": 550,
+      "y": 660,
+      "w": 190,
+      "h": 160,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ce",
+      "label": "Image-token\nCross-entropy loss",
+      "x": 800,
+      "y": 660,
+      "w": 250,
+      "h": 160,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "prefix"
+     },
+     {
+      "from": "prefix",
+      "to": "ar",
+      "label": "Prefill",
+      "label_position": [
+       740,
+       385
+      ]
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Append generated code",
+      "points": [
+       [
+        1270,
+        260
+       ],
+       [
+        1270,
+        125
+       ],
+       [
+        925,
+        125
+       ],
+       [
+        925,
+        200
+       ]
+      ],
+      "label_position": [
+       1100,
+       112
+      ]
+     },
+     {
+      "from": "imgtrain",
+      "to": "vqenc",
+      "dashed": true
+     },
+     {
+      "from": "vqenc",
+      "to": "targets",
+      "dashed": true
+     },
+     {
+      "from": "targets",
+      "to": "ce",
+      "dashed": true
+     },
+     {
+      "from": "ce",
+      "to": "ar",
+      "label": "Train autoregressive model",
+      "points": [
+       [
+        925,
+        660
+       ],
+       [
+        925,
+        580
+       ],
+       [
+        925,
+        580
+       ],
+       [
+        925,
+        500
+       ]
+      ],
+      "dashed": true,
+      "label_position": [
+       1060,
+       574
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 730,
+      "y": 155,
+      "w": 390,
+      "h": 395,
+      "label": "Autoregressive image generator",
+      "dashed": false
+     },
+     {
+      "x": 40,
+      "y": 610,
+      "w": 1070,
+      "h": 250,
+      "label": "Training only: image tokenization and autoregressive supervision",
+      "dashed": true
+     }
+    ]
+   }
   },
   "longcat-image": {
    "kind": "source-figure",
@@ -1374,12 +5005,213 @@
    "sha256": "b8ad3e752839db259d92d7f242a79bb2cb6af0908332350387bc800effe48f2d"
   },
   "luma-uni-1": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/luma-uni-1.svg",
-   "source_url": "https://lumalabs.ai/uni-1",
+   "source_url": "https://lumalabs.ai/news/uni-1-1-api",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Official Uni-1.1 API announcement, What Unified Intelligence is (single sequence of text/image tokens, decoder-only autoregressive transformer); API capabilities (generation, references, editing). Tokenizer and pixel decoder internals are not disclosed.",
+    "width": 2150,
+    "height": 850,
+    "nodes": [
+     {
+      "id": "txt",
+      "label": "Text instructions",
+      "x": 40,
+      "y": 225,
+      "w": 225,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "img",
+      "label": "Reference / source images\nOptional",
+      "x": 40,
+      "y": 555,
+      "w": 225,
+      "h": 180,
+      "kind": "input",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "tokens",
+      "label": "Shared text-image tokens\nTokenizer undisclosed",
+      "x": 330,
+      "y": 325,
+      "w": 280,
+      "h": 210,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Uni-1\nDecoder-only\nautoregressive transformer",
+      "x": 680,
+      "y": 290,
+      "w": 410,
+      "h": 280,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "codes",
+      "label": "Generated image tokens\nShared output sequence",
+      "x": 1160,
+      "y": 325,
+      "w": 280,
+      "h": 210,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "render",
+      "label": "Image formation\nPixel decoder undisclosed",
+      "x": 1510,
+      "y": 325,
+      "w": 285,
+      "h": 210,
+      "kind": "decoder",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated / edited image",
+      "x": 1860,
+      "y": 325,
+      "w": 245,
+      "h": 210,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "txt",
+      "to": "tokens",
+      "points": [
+       [
+        265,
+        315
+       ],
+       [
+        295,
+        315
+       ],
+       [
+        295,
+        350
+       ],
+       [
+        350,
+        350
+       ]
+      ]
+     },
+     {
+      "from": "img",
+      "to": "tokens",
+      "points": [
+       [
+        265,
+        645
+       ],
+       [
+        295,
+        645
+       ],
+       [
+        295,
+        350
+       ],
+       [
+        350,
+        350
+       ]
+      ]
+     },
+     {
+      "from": "tokens",
+      "to": "ar",
+      "points": [
+       [
+        600,
+        350
+       ],
+       [
+        640,
+        350
+       ],
+       [
+        640,
+        430
+       ],
+       [
+        680,
+        430
+       ]
+      ]
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "render"
+     },
+     {
+      "from": "render",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Token feedback",
+      "points": [
+       [
+        1300,
+        325
+       ],
+       [
+        1300,
+        155
+       ],
+       [
+        885,
+        155
+       ],
+       [
+        885,
+        290
+       ]
+      ],
+      "label_position": [
+       1100,
+       140
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 650,
+      "y": 235,
+      "w": 470,
+      "h": 395,
+      "label": "Unified reasoning and generation",
+      "dashed": false
+     }
+    ]
+   }
   },
   "lumina-dimoo": {
    "kind": "source-figure",
@@ -1398,12 +5230,227 @@
    "sha256": "e2a0fa7cc1d598a221ee9a7b0e73552f7e5df3060231ab5b76c25afd595d7372"
   },
   "lumina-mgpt": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/lumina-mgpt.svg",
    "source_url": "https://arxiv.org/abs/2408.02657",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Paper §3.1 (BPE, decoder-only Chameleon architecture); §3.2.2 and Figure 2 (resolution-aware text prompt, Uni-Rep height/width + end-of-line tokens); §4.5/4.7 (Chameleon VQ-VAE decoding).",
+    "width": 1900,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Prompt + width × height\nResolution-aware text",
+      "x": 40,
+      "y": 260,
+      "w": 245,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "text",
+      "label": "BPE prompt tokens",
+      "x": 340,
+      "y": 260,
+      "w": 220,
+      "h": 180,
+      "kind": "encoder",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Chameleon-initialized\nDecoder-only transformer",
+      "x": 620,
+      "y": 215,
+      "w": 340,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "RoPE · SwiGLU",
+       "Pre / post normalization",
+       "QK-normalized attention"
+      ]
+     },
+     {
+      "id": "seq",
+      "label": "Uni-Rep image sequence\nHeight / width indicators\nCodes + end-of-line",
+      "x": 1020,
+      "y": 260,
+      "w": 280,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "grid",
+      "label": "Parse row delimiters\nRestore 2D code grid",
+      "x": 1360,
+      "y": 260,
+      "w": 230,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "Chameleon VQ-VAE\nDecoder",
+      "x": 1640,
+      "y": 240,
+      "w": 200,
+      "h": 220,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Flexible-resolution image",
+      "x": 1640,
+      "y": 620,
+      "w": 200,
+      "h": 190,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "train",
+      "label": "Progressive SFT\n512² → 768² → 1024²",
+      "x": 260,
+      "y": 660,
+      "w": 300,
+      "h": 160,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "trainimg",
+      "label": "High-quality image\nVQ-VAE target codes",
+      "x": 650,
+      "y": 660,
+      "w": 300,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "tensor",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "text"
+     },
+     {
+      "from": "text",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "seq"
+     },
+     {
+      "from": "seq",
+      "to": "grid"
+     },
+     {
+      "from": "grid",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "seq",
+      "to": "ar",
+      "label": "Append token",
+      "points": [
+       [
+        1160,
+        260
+       ],
+       [
+        1160,
+        125
+       ],
+       [
+        790,
+        125
+       ],
+       [
+        790,
+        215
+       ]
+      ],
+      "label_position": [
+       985,
+       112
+      ]
+     },
+     {
+      "from": "trainimg",
+      "to": "train",
+      "dashed": true
+     },
+     {
+      "from": "train",
+      "to": "ar",
+      "label": "Fine-tune",
+      "points": [
+       [
+        410,
+        660
+       ],
+       [
+        410,
+        585
+       ],
+       [
+        790,
+        585
+       ],
+       [
+        790,
+        485
+       ]
+      ],
+      "dashed": true,
+      "label_position": [
+       570,
+       572
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 590,
+      "y": 170,
+      "w": 400,
+      "h": 365,
+      "label": "Multimodal autoregressive model",
+      "dashed": false
+     },
+     {
+      "x": 190,
+      "y": 610,
+      "w": 830,
+      "h": 250,
+      "label": "Training only: flexible progressive supervised fine-tuning",
+      "dashed": true
+     }
+    ]
+   }
   },
   "lumina-mgpt-2": {
    "kind": "source-figure",
@@ -1814,12 +5861,410 @@
    "sha256": "0bf844ab1610d7fbd8823458079a0766f2bafbfce38b5e221cb2df149ae1ebed"
   },
   "nucleus-image": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/nucleus-image.svg",
    "source_url": "https://arxiv.org/abs/2604.12163",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "§3 / Fig.10: Qwen3-VL-8B, Qwen-Image VAE, 32 layers (3 dense + 29 MoE), 64 routed + shared expert, Expert-Choice Router; §6 cached text KV and image-only queries; §5 rectified flow",
+    "width": 1400,
+    "height": 1010,
+    "nodes": [
+     {
+      "id": "p",
+      "label": "Text prompt",
+      "x": 35,
+      "y": 135,
+      "w": 205,
+      "h": 85,
+      "kind": "input",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "enc",
+      "label": "Qwen3-VL-8B-Instruct",
+      "x": 35,
+      "y": 270,
+      "w": 205,
+      "h": 135,
+      "kind": "encoder",
+      "visual": "encoder",
+      "font_size": 14
+     },
+     {
+      "id": "kv",
+      "label": "Text KV cache\nShared across timesteps",
+      "x": 295,
+      "y": 280,
+      "w": 220,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 14
+     },
+     {
+      "id": "z",
+      "label": "16-channel latent noise",
+      "x": 35,
+      "y": 510,
+      "w": 205,
+      "h": 125,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 14
+     },
+     {
+      "id": "att",
+      "label": "Joint GQA attention\nImage queries only\nQK norm + mRoPE",
+      "x": 555,
+      "y": 305,
+      "w": 245,
+      "h": 185,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14
+     },
+     {
+      "id": "router",
+      "label": "Expert-Choice Router\nUnmodulated tokens + t",
+      "x": 555,
+      "y": 575,
+      "w": 245,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "experts",
+      "label": "64 routed experts\nSwiGLU networks",
+      "x": 860,
+      "y": 325,
+      "w": 235,
+      "h": 205,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 14
+     },
+     {
+      "id": "shared",
+      "label": "Shared SwiGLU expert\nAll image tokens",
+      "x": 860,
+      "y": 600,
+      "w": 235,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "add",
+      "label": "Combine expert outputs\nResidual + modulation",
+      "x": 1140,
+      "y": 490,
+      "w": 220,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "t",
+      "label": "Timestep embedding",
+      "x": 555,
+      "y": 750,
+      "w": 245,
+      "h": 80,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "sample",
+      "label": "Rectified-flow sampling",
+      "x": 1140,
+      "y": 175,
+      "w": 220,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain",
+      "font_size": 14
+     },
+     {
+      "id": "vae",
+      "label": "Qwen-Image VAE decode",
+      "x": 1140,
+      "y": 665,
+      "w": 220,
+      "h": 135,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 14
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1140,
+      "y": 855,
+      "w": 220,
+      "h": 110,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 14
+     }
+    ],
+    "edges": [
+     {
+      "from": "p",
+      "to": "enc"
+     },
+     {
+      "from": "enc",
+      "to": "kv"
+     },
+     {
+      "from": "kv",
+      "to": "att"
+     },
+     {
+      "from": "z",
+      "to": "att",
+      "label": "image tokens",
+      "points": [
+       [
+        240,
+        572
+       ],
+       [
+        530,
+        572
+       ],
+       [
+        530,
+        450
+       ],
+       [
+        555,
+        450
+       ]
+      ]
+     },
+     {
+      "from": "att",
+      "to": "experts"
+     },
+     {
+      "from": "att",
+      "to": "router",
+      "label": "unmodulated tokens"
+     },
+     {
+      "from": "router",
+      "to": "experts",
+      "label": "token selection",
+      "points": [
+       [
+        800,
+        630
+       ],
+       [
+        825,
+        630
+       ],
+       [
+        825,
+        485
+       ],
+       [
+        860,
+        485
+       ]
+      ]
+     },
+     {
+      "from": "att",
+      "to": "shared",
+      "points": [
+       [
+        800,
+        445
+       ],
+       [
+        825,
+        445
+       ],
+       [
+        825,
+        655
+       ],
+       [
+        860,
+        655
+       ]
+      ]
+     },
+     {
+      "from": "experts",
+      "to": "add",
+      "points": [
+       [
+        1095,
+        425
+       ],
+       [
+        1120,
+        425
+       ],
+       [
+        1120,
+        520
+       ],
+       [
+        1140,
+        520
+       ]
+      ]
+     },
+     {
+      "from": "shared",
+      "to": "add",
+      "points": [
+       [
+        1095,
+        655
+       ],
+       [
+        1120,
+        655
+       ],
+       [
+        1120,
+        565
+       ],
+       [
+        1140,
+        565
+       ]
+      ]
+     },
+     {
+      "from": "t",
+      "to": "router"
+     },
+     {
+      "from": "t",
+      "to": "att",
+      "points": [
+       [
+        555,
+        790
+       ],
+       [
+        535,
+        790
+       ],
+       [
+        535,
+        515
+       ],
+       [
+        677,
+        515
+       ],
+       [
+        677,
+        490
+       ]
+      ]
+     },
+     {
+      "from": "add",
+      "to": "sample",
+      "label": "velocity",
+      "points": [
+       [
+        1250,
+        490
+       ],
+       [
+        1250,
+        280
+       ]
+      ]
+     },
+     {
+      "from": "sample",
+      "to": "vae",
+      "points": [
+       [
+        1360,
+        227
+       ],
+       [
+        1380,
+        227
+       ],
+       [
+        1380,
+        735
+       ],
+       [
+        1360,
+        735
+       ]
+      ]
+     },
+     {
+      "from": "vae",
+      "to": "out"
+     },
+     {
+      "from": "sample",
+      "to": "z",
+      "label": "next step",
+      "points": [
+       [
+        1250,
+        175
+       ],
+       [
+        1250,
+        110
+       ],
+       [
+        265,
+        110
+       ],
+       [
+        265,
+        665
+       ],
+       [
+        137,
+        665
+       ],
+       [
+        137,
+        635
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 530,
+      "y": 205,
+      "w": 590,
+      "h": 535,
+      "label": "MoE block ×29 • preceded by 3 dense blocks",
+      "color": "#eef5ef",
+      "dashed": true
+     }
+    ]
+   }
   },
   "nuwa": {
    "kind": "source-figure",
@@ -2030,12 +6475,179 @@
    "sha256": "131913c2e131bccdb2c32ef71518ff15e558c51a54958ee32e7f6d19dc305806"
   },
   "playground-v2": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/playground-v2.svg",
    "source_url": "https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Model card Model Description: LDM with fixed OpenCLIP-ViT/G and CLIP-ViT/L, same architecture as SDXL; SDXL paper Sec. 2.1 supplies concatenated text and pooled conditioning.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "SDXL U-Net architecture\nText + pooled conditioning",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "1024 px\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "Frozen CLIP ViT-L\n+ OpenCLIP ViT-G",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     }
+    ]
+   }
   },
   "playground-v3": {
    "kind": "source-figure",
@@ -2046,12 +6658,282 @@
    "sha256": "c031867613ac6ddb3c90b91101279a28af57b22ca4a75368194bf43ed6725635"
   },
   "proxt2i": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/proxt2i.svg",
    "source_url": "https://arxiv.org/abs/2511.18742",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 4: MetaCLIP plus T5 text encoding, U-ViT proximal network in VAE latents; Appendix C describes pretrained SD3.5 VAE, t and lambda tokens. Sec. 3.3 GRPO tunes proximal stochastic sampler.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "Proximal U-ViT\nfθ(z; t, λ, c)",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 220,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Image + text + t + λ tokens",
+       "U-ViT transformer backbone",
+       "Conditional proximal operator"
+      ]
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "SD3.5 VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "256 / 512 px\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "MetaCLIP + T5\nToken-axis concatenation",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     },
+     {
+      "id": "teacher",
+      "label": "Human-preference reward model",
+      "x": 80,
+      "y": 666,
+      "w": 360,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "loss",
+      "label": "GRPO policy optimization\nStochastic proximal sampler",
+      "x": 655,
+      "y": 666,
+      "w": 555,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "param",
+      "label": "Timestep t\nProximal parameter λ",
+      "x": 1020,
+      "y": 470,
+      "w": 285,
+      "h": 80,
+      "kind": "input",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "implicit proximal steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     },
+     {
+      "from": "teacher",
+      "to": "loss",
+      "label": "reward",
+      "dashed": true
+     },
+     {
+      "from": "loss",
+      "to": "model",
+      "label": "training updates",
+      "points": [
+       [
+        930,
+        666
+       ],
+       [
+        930,
+        610
+       ],
+       [
+        710,
+        610
+       ],
+       [
+        710,
+        390
+       ],
+       [
+        670,
+        390
+       ]
+      ],
+      "dashed": true
+     },
+     {
+      "from": "param",
+      "to": "model",
+      "label": "t, λ",
+      "points": [
+       [
+        1162,
+        470
+       ],
+       [
+        1162,
+        420
+       ],
+       [
+        625,
+        420
+       ],
+       [
+        625,
+        415
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "ps-vae": {
    "kind": "source-figure",
@@ -2102,12 +6984,232 @@
    "sha256": "6c63eba7dca6ac60ff891871f31ba8e9a2f572887af2277822b8cc310edbffa9"
   },
   "qwen-image-flash": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/qwen-image-flash.svg",
    "source_url": "https://arxiv.org/abs/2606.03746",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Secs. 3.1-3.2 define conditional vector field and DMD student; Sec. 4.3 uses base teacher for first 3 steps and 50:50 base/RL teacher on step 4; Sec. 4.4 jointly distills T2I and editing. Encoder/decoder identities are not specified and not invented.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Prompt / edit instruction",
+      "x": 50,
+      "y": 125,
+      "w": 270,
+      "h": 80,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "source",
+      "label": "Optional source image",
+      "x": 50,
+      "y": 270,
+      "w": 270,
+      "h": 155,
+      "kind": "input",
+      "visual": "image"
+     },
+     {
+      "id": "cond",
+      "label": "Joint task conditioning\nc: text (+ source image)",
+      "x": 390,
+      "y": 115,
+      "w": 330,
+      "h": 145,
+      "kind": "encoder",
+      "visual": "tokens"
+     },
+     {
+      "id": "noise",
+      "label": "Gaussian noise",
+      "x": 60,
+      "y": 465,
+      "w": 220,
+      "h": 130,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "student",
+      "label": "Qwen-Image-Flash student\nUnified conditional flow\n4 network evaluations",
+      "x": 810,
+      "y": 245,
+      "w": 320,
+      "h": 230,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Condition c + noisy state z_t",
+       "Few-step flow integration",
+       "Generation / editing"
+      ]
+     },
+     {
+      "id": "image",
+      "label": "Generated / edited\nimage",
+      "x": 1190,
+      "y": 270,
+      "w": 170,
+      "h": 180,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "base",
+      "label": "Base teacher\nQwen-Image-2.0-Base",
+      "x": 55,
+      "y": 665,
+      "w": 330,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "sched",
+      "label": "DMD score target\nSteps 1–3: base teacher\nStep 4: 50:50 base / RL",
+      "x": 485,
+      "y": 665,
+      "w": 415,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "rl",
+      "label": "Specialized teacher\nQwen-Image-2.0-RL",
+      "x": 1015,
+      "y": 665,
+      "w": 330,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "cond"
+     },
+     {
+      "from": "source",
+      "to": "cond",
+      "points": [
+       [
+        320,
+        345
+       ],
+       [
+        350,
+        345
+       ],
+       [
+        350,
+        190
+       ],
+       [
+        390,
+        190
+       ]
+      ]
+     },
+     {
+      "from": "cond",
+      "to": "student",
+      "label": "c",
+      "points": [
+       [
+        720,
+        190
+       ],
+       [
+        970,
+        190
+       ],
+       [
+        970,
+        245
+       ]
+      ]
+     },
+     {
+      "from": "noise",
+      "to": "student",
+      "points": [
+       [
+        280,
+        530
+       ],
+       [
+        745,
+        530
+       ],
+       [
+        745,
+        390
+       ],
+       [
+        810,
+        390
+       ]
+      ]
+     },
+     {
+      "from": "student",
+      "to": "image"
+     },
+     {
+      "from": "base",
+      "to": "sched",
+      "dashed": true
+     },
+     {
+      "from": "rl",
+      "to": "sched",
+      "dashed": true
+     },
+     {
+      "from": "sched",
+      "to": "student",
+      "label": "distribution matching",
+      "points": [
+       [
+        690,
+        665
+       ],
+       [
+        690,
+        610
+       ],
+       [
+        1100,
+        610
+       ],
+       [
+        1100,
+        475
+       ]
+      ],
+      "dashed": true
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "raphael": {
    "kind": "source-figure",
@@ -2150,20 +7252,439 @@
    "sha256": null
   },
   "reve-image": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/reve-image.svg",
-   "source_url": "https://blog.reve.com/posts/the-new-reve/",
+   "source_url": "https://blog.reve.com/posts/the-layout-bet/",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Official The Layout Bet announcement 2026-06-03: any combination of layouts, instructions and images → Large Layout Model based on continued pretraining/post-training of open-source LLMs → thinking trace → structured hierarchical layout → final pixels. Pixel renderer internals are not disclosed. Diagram applies to Reve 2.0+ layout model.",
+    "width": 2180,
+    "height": 850,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text instructions",
+      "x": 40,
+      "y": 200,
+      "w": 250,
+      "h": 160,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "ref",
+      "label": "Reference / source image\nOptional",
+      "x": 40,
+      "y": 405,
+      "w": 250,
+      "h": 180,
+      "kind": "input",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "existing",
+      "label": "Existing layout\nOptional",
+      "x": 40,
+      "y": 640,
+      "w": 250,
+      "h": 150,
+      "kind": "input",
+      "visual": "tensor",
+      "font_size": 16
+     },
+     {
+      "id": "model",
+      "label": "Large Layout Model\nOpen-source LLM base",
+      "x": 370,
+      "y": 350,
+      "w": 380,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "think",
+      "label": "Internal thinking trace\nSpatial reasoning",
+      "x": 820,
+      "y": 395,
+      "w": 275,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "layout",
+      "label": "Hierarchical layout\nRegions · positions · sizes\nLocal descriptions",
+      "x": 1165,
+      "y": 370,
+      "w": 300,
+      "h": 230,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 16
+     },
+     {
+      "id": "render",
+      "label": "Pixel renderer\nArchitecture undisclosed",
+      "x": 1535,
+      "y": 395,
+      "w": 280,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated / edited image",
+      "x": 1885,
+      "y": 395,
+      "w": 250,
+      "h": 180,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "model",
+      "points": [
+       [
+        290,
+        280
+       ],
+       [
+        325,
+        280
+       ],
+       [
+        325,
+        415
+       ],
+       [
+        370,
+        415
+       ]
+      ]
+     },
+     {
+      "from": "ref",
+      "to": "model",
+      "points": [
+       [
+        290,
+        495
+       ],
+       [
+        370,
+        495
+       ]
+      ]
+     },
+     {
+      "from": "existing",
+      "to": "model",
+      "points": [
+       [
+        290,
+        715
+       ],
+       [
+        325,
+        715
+       ],
+       [
+        325,
+        560
+       ],
+       [
+        370,
+        560
+       ]
+      ]
+     },
+     {
+      "from": "model",
+      "to": "think"
+     },
+     {
+      "from": "think",
+      "to": "layout"
+     },
+     {
+      "from": "layout",
+      "to": "render"
+     },
+     {
+      "from": "render",
+      "to": "out"
+     }
+    ],
+    "groups": [
+     {
+      "x": 340,
+      "y": 300,
+      "w": 440,
+      "h": 370,
+      "label": "Reve 2.0+ layout model",
+      "dashed": false
+     }
+    ]
+   }
   },
   "rudall-e": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/rudall-e.svg",
    "source_url": "https://github.com/ai-forever/ru-dalle",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Official README Minimal Example; rudalle/tokenizer.py YTTMTokenizerWrapper; rudalle/dalle/__init__.py Malevich image_tokens_per_dim=32, text_seq_length=128, image_vocab_size=8192; rudalle/pipelines.py generate_images, vae.decode, cherry_pick_by_ruclip and super_resolution.",
+    "width": 2140,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Russian prompt",
+      "x": 40,
+      "y": 260,
+      "w": 170,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "txt",
+      "label": "YTTM BPE tokenizer\n128 text positions",
+      "x": 255,
+      "y": 260,
+      "w": 225,
+      "h": 180,
+      "kind": "encoder",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "ruDALL-E transformer\nJoint causal sequence",
+      "x": 535,
+      "y": 215,
+      "w": 310,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "Text + previous image codes",
+       "Top-k / top-p sampling"
+      ]
+     },
+     {
+      "id": "codes",
+      "label": "1,024 image codes\n32 × 32 · 8,192 entries",
+      "x": 900,
+      "y": 260,
+      "w": 250,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tensor",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "Sber VQ-GAN\nDecoder",
+      "x": 1205,
+      "y": 260,
+      "w": 210,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "candidate",
+      "label": "Candidate images",
+      "x": 1470,
+      "y": 260,
+      "w": 220,
+      "h": 180,
+      "kind": "latent",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "rank",
+      "label": "ruCLIP reranking\nText-image similarity",
+      "x": 1200,
+      "y": 650,
+      "w": 250,
+      "h": 170,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "sr",
+      "label": "Real-ESRGAN\nOptional upscaling",
+      "x": 1550,
+      "y": 650,
+      "w": 250,
+      "h": 170,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Selected image",
+      "x": 1850,
+      "y": 650,
+      "w": 210,
+      "h": 170,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "candidate"
+     },
+     {
+      "from": "candidate",
+      "to": "rank",
+      "points": [
+       [
+        1580,
+        440
+       ],
+       [
+        1580,
+        550
+       ],
+       [
+        1325,
+        550
+       ],
+       [
+        1325,
+        650
+       ]
+      ]
+     },
+     {
+      "from": "rank",
+      "to": "sr"
+     },
+     {
+      "from": "sr",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Append generated code",
+      "points": [
+       [
+        1025,
+        260
+       ],
+       [
+        1025,
+        125
+       ],
+       [
+        690,
+        125
+       ],
+       [
+        690,
+        215
+       ]
+      ],
+      "label_position": [
+       865,
+       112
+      ]
+     },
+     {
+      "from": "prompt",
+      "to": "rank",
+      "label": "Prompt",
+      "points": [
+       [
+        125,
+        440
+       ],
+       [
+        125,
+        570
+       ],
+       [
+        1140,
+        570
+       ],
+       [
+        1140,
+        735
+       ],
+       [
+        1200,
+        735
+       ]
+      ],
+      "label_position": [
+       655,
+       557
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 505,
+      "y": 170,
+      "w": 370,
+      "h": 365,
+      "label": "Autoregressive image prior",
+      "dashed": false
+     },
+     {
+      "x": 1140,
+      "y": 600,
+      "w": 965,
+      "h": 260,
+      "label": "Candidate selection and optional super-resolution",
+      "dashed": false
+     }
+    ]
+   }
   },
   "sana": {
    "kind": "source-figure",
@@ -2222,12 +7743,244 @@
    "sha256": "8e37305e8642fd67b29e261dc1110c295101a855c823c0c3f4f1b1f609a9d2ca"
   },
   "sdxl-lightning": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/sdxl-lightning.svg",
    "source_url": "https://arxiv.org/abs/2402.13929",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 3.2-3.6: progressive adversarial distillation; discriminator is SDXL U-Net encoder and mid-block; 128-to-32 MSE then 32-to-8-to-4-to-2-to-1 adversarial stages. Inference uses distilled SDXL U-Net and VAE.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "Lightning SDXL U-Net\n1 / 2 / 4 / 8 steps",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "SDXL VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "1024 px\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "SDXL dual text encoders",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     },
+     {
+      "id": "teacher",
+      "label": "SDXL teacher\n128 → 32 steps: MSE",
+      "x": 80,
+      "y": 666,
+      "w": 360,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "loss",
+      "label": "Adversarial progressive distillation\n32 → 8 → 4 → 2 → 1 steps\nDiscriminator: U-Net encoder + mid-block",
+      "x": 655,
+      "y": 666,
+      "w": 555,
+      "h": 105,
+      "kind": "model",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     },
+     {
+      "from": "teacher",
+      "to": "loss",
+      "label": "teacher targets",
+      "dashed": true
+     },
+     {
+      "from": "loss",
+      "to": "model",
+      "label": "training updates",
+      "points": [
+       [
+        930,
+        666
+       ],
+       [
+        930,
+        610
+       ],
+       [
+        710,
+        610
+       ],
+       [
+        710,
+        390
+       ],
+       [
+        670,
+        390
+       ]
+      ],
+      "dashed": true
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "sdxl-turbo": {
    "kind": "source-figure",
@@ -2270,20 +8023,458 @@
    "sha256": "fcb9222b237c3fb8ab038509c0ee8ee73ece17998fd10d2d24b0e1be74016cda"
   },
   "seedream-3": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/seedream-3.svg",
    "source_url": "https://arxiv.org/abs/2504.11346",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Secs. 2.2.1-2.2.2: inherited MMDiT, size conditioning, cross-modality 2D RoPE, flow matching, DINOv2-L feature alignment; Sec. 2.3 no separate refiner. Unspecified encoder/decoder identities omitted. Seedream 2.0 Sec. 3.1 (https://arxiv.org/abs/2503.07703) documents self-developed VAE; Seedream 3.0 Sec. 2.2.1 explicitly inherits this core.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 50,
+      "y": 120,
+      "w": 220,
+      "h": 85,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "txt",
+      "label": "Text token stream\nCross-modality 2D RoPE",
+      "x": 360,
+      "y": 110,
+      "w": 330,
+      "h": 145,
+      "kind": "encoder",
+      "visual": "tokens"
+     },
+     {
+      "id": "noise",
+      "label": "Noisy image tokens",
+      "x": 50,
+      "y": 340,
+      "w": 230,
+      "h": 150,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "size",
+      "label": "Target resolution\nSize embeddings",
+      "x": 70,
+      "y": 525,
+      "w": 260,
+      "h": 70,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "dit",
+      "label": "Seedream 3.0 MMDiT\nFlow-matching denoising",
+      "x": 490,
+      "y": 295,
+      "w": 380,
+      "h": 230,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Joint image / text tokens",
+       "Cross-modality RoPE",
+       "Scaled MMDiT backbone"
+      ]
+     },
+     {
+      "id": "lat",
+      "label": "Image latents",
+      "x": 950,
+      "y": 335,
+      "w": 150,
+      "h": 140,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "dec",
+      "label": "VAE decoder",
+      "x": 1140,
+      "y": 270,
+      "w": 170,
+      "h": 170,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "out",
+      "label": "512–2048 px image",
+      "x": 1130,
+      "y": 480,
+      "w": 200,
+      "h": 130,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "dino",
+      "label": "Frozen DINOv2-L\nTarget image features",
+      "x": 100,
+      "y": 666,
+      "w": 400,
+      "h": 110,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "repa",
+      "label": "REPA cosine-distance loss\nAlign MMDiT intermediate features",
+      "x": 720,
+      "y": 666,
+      "w": 510,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "dit"
+     },
+     {
+      "from": "noise",
+      "to": "dit"
+     },
+     {
+      "from": "size",
+      "to": "dit",
+      "label": "size condition",
+      "points": [
+       [
+        330,
+        560
+       ],
+       [
+        420,
+        560
+       ],
+       [
+        420,
+        485
+       ],
+       [
+        490,
+        485
+       ]
+      ]
+     },
+     {
+      "from": "dit",
+      "to": "lat"
+     },
+     {
+      "from": "lat",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "dino",
+      "to": "repa",
+      "dashed": true
+     },
+     {
+      "from": "repa",
+      "to": "dit",
+      "label": "training only",
+      "points": [
+       [
+        975,
+        666
+       ],
+       [
+        975,
+        625
+       ],
+       [
+        680,
+        625
+       ],
+       [
+        680,
+        525
+       ]
+      ],
+      "dashed": true
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Representation alignment during training",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "seedream-4": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/seedream-4.svg",
    "source_url": "https://arxiv.org/abs/2509.20427",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Introduction: causal diffusion DiT with high-compression VAE; Sec. 2.2: Seed1.5-VL prompt engineering routes and rewrites text/reference images, estimates aspect ratio, captions feed DiT; Sec. 2.3 adversarial distillation and ADM few-step acceleration.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "User prompt",
+      "x": 45,
+      "y": 130,
+      "w": 205,
+      "h": 75,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "ref",
+      "label": "Reference image(s)\nOptional for editing",
+      "x": 45,
+      "y": 280,
+      "w": 230,
+      "h": 160,
+      "kind": "input",
+      "visual": "image"
+     },
+     {
+      "id": "pe",
+      "label": "Seed1.5-VL prompt module\nRouting · captions · rewriting",
+      "x": 335,
+      "y": 110,
+      "w": 400,
+      "h": 150,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "enc",
+      "label": "High-compression\nVAE encoder",
+      "x": 350,
+      "y": 330,
+      "w": 240,
+      "h": 165,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "noise",
+      "label": "Latent noise",
+      "x": 65,
+      "y": 505,
+      "w": 200,
+      "h": 115,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "dit",
+      "label": "Seedream 4.0 DiT\nUnified causal diffusion",
+      "x": 750,
+      "y": 285,
+      "w": 335,
+      "h": 235,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Caption + reference conditioning",
+       "Causal diffusion DiT",
+       "Few-step generation / editing"
+      ]
+     },
+     {
+      "id": "dec",
+      "label": "High-compression\nVAE decoder",
+      "x": 1150,
+      "y": 260,
+      "w": 205,
+      "h": 170,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "out",
+      "label": "Generated / edited\nimage(s)",
+      "x": 1155,
+      "y": 470,
+      "w": 200,
+      "h": 145,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "adp",
+      "label": "Adversarial distillation\nADP initialization",
+      "x": 150,
+      "y": 666,
+      "w": 470,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "adm",
+      "label": "Adversarial distribution matching\nADM few-step fine-tuning",
+      "x": 785,
+      "y": 666,
+      "w": 490,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "pe"
+     },
+     {
+      "from": "ref",
+      "to": "pe",
+      "points": [
+       [
+        275,
+        360
+       ],
+       [
+        305,
+        360
+       ],
+       [
+        305,
+        185
+       ],
+       [
+        335,
+        185
+       ]
+      ]
+     },
+     {
+      "from": "ref",
+      "to": "enc"
+     },
+     {
+      "from": "pe",
+      "to": "dit",
+      "label": "caption conditioning",
+      "points": [
+       [
+        735,
+        185
+       ],
+       [
+        917,
+        185
+       ],
+       [
+        917,
+        285
+       ]
+      ]
+     },
+     {
+      "from": "enc",
+      "to": "dit"
+     },
+     {
+      "from": "noise",
+      "to": "dit",
+      "points": [
+       [
+        265,
+        562
+       ],
+       [
+        695,
+        562
+       ],
+       [
+        695,
+        470
+       ],
+       [
+        750,
+        470
+       ]
+      ]
+     },
+     {
+      "from": "dit",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "adp",
+      "to": "adm",
+      "dashed": true
+     },
+     {
+      "from": "adm",
+      "to": "dit",
+      "label": "distillation",
+      "points": [
+       [
+        1030,
+        666
+       ],
+       [
+        1030,
+        625
+       ],
+       [
+        1020,
+        625
+       ],
+       [
+        1020,
+        520
+       ]
+      ],
+      "dashed": true
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "seedream-5": {
    "kind": "io-diagram",
@@ -2342,12 +8533,228 @@
    "sha256": "c5736c2ce33068353598f4cfd50fcf7e6e21b353e8b3520351e8428b075ff48c"
   },
   "simplear": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/simplear.svg",
    "source_url": "https://arxiv.org/abs/2504.11455",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Paper §3.1 (text + raster-scan image token sequence); §3.2 (pretraining, SFT, GRPO with CLIP reward); §3.3 (sequential prediction, CFG, tokenizer decoding); §4.1 (Qwen architecture, Cosmos-Tokenizer 64k codebook/16× downsample).",
+    "width": 1900,
+    "height": 900,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Text prompt",
+      "x": 40,
+      "y": 260,
+      "w": 170,
+      "h": 180,
+      "kind": "input",
+      "visual": "plain",
+      "font_size": 16
+     },
+     {
+      "id": "txt",
+      "label": "Text tokenizer\nPrompt token prefix",
+      "x": 260,
+      "y": 260,
+      "w": 220,
+      "h": 180,
+      "kind": "encoder",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "ar",
+      "label": "Qwen-style decoder-only\nAutoregressive transformer",
+      "x": 540,
+      "y": 215,
+      "w": 360,
+      "h": 270,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16,
+      "layers": [
+       "Text + previous image codes",
+       "Next-token prediction",
+       "Classifier-free guidance"
+      ]
+     },
+     {
+      "id": "codes",
+      "label": "Raster-scan image codes\n64,000-entry vocabulary",
+      "x": 960,
+      "y": 260,
+      "w": 265,
+      "h": 180,
+      "kind": "latent",
+      "visual": "tokens",
+      "font_size": 16
+     },
+     {
+      "id": "dec",
+      "label": "Cosmos-Tokenizer\nDecoder · 16× scale",
+      "x": 1285,
+      "y": 260,
+      "w": 230,
+      "h": 180,
+      "kind": "decoder",
+      "visual": "decoder",
+      "font_size": 16
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1580,
+      "y": 260,
+      "w": 250,
+      "h": 180,
+      "kind": "output",
+      "visual": "image",
+      "font_size": 16
+     },
+     {
+      "id": "pre",
+      "label": "1 · Pretraining\nLanguage-modeling loss",
+      "x": 100,
+      "y": 670,
+      "w": 380,
+      "h": 160,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "sft",
+      "label": "2 · Supervised fine-tune\nLanguage-modeling loss",
+      "x": 600,
+      "y": 670,
+      "w": 380,
+      "h": 160,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     },
+     {
+      "id": "rl",
+      "label": "3 · GRPO reinforcement\nCLIP-based reward",
+      "x": 1100,
+      "y": 670,
+      "w": 420,
+      "h": 160,
+      "kind": "model",
+      "visual": "stack",
+      "font_size": 16
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "txt"
+     },
+     {
+      "from": "txt",
+      "to": "ar"
+     },
+     {
+      "from": "ar",
+      "to": "codes"
+     },
+     {
+      "from": "codes",
+      "to": "dec"
+     },
+     {
+      "from": "dec",
+      "to": "out"
+     },
+     {
+      "from": "codes",
+      "to": "ar",
+      "label": "Append image code",
+      "points": [
+       [
+        1092,
+        260
+       ],
+       [
+        1092,
+        125
+       ],
+       [
+        720,
+        125
+       ],
+       [
+        720,
+        215
+       ]
+      ],
+      "label_position": [
+       910,
+       112
+      ]
+     },
+     {
+      "from": "pre",
+      "to": "sft",
+      "dashed": true
+     },
+     {
+      "from": "sft",
+      "to": "rl",
+      "dashed": true
+     },
+     {
+      "from": "rl",
+      "to": "ar",
+      "label": "Updated generation policy",
+      "points": [
+       [
+        1310,
+        670
+       ],
+       [
+        1310,
+        580
+       ],
+       [
+        720,
+        580
+       ],
+       [
+        720,
+        485
+       ]
+      ],
+      "dashed": true,
+      "label_position": [
+       1050,
+       567
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 510,
+      "y": 170,
+      "w": 420,
+      "h": 365,
+      "label": "Unified text-image autoregression",
+      "dashed": false
+     },
+     {
+      "x": 40,
+      "y": 620,
+      "w": 1540,
+      "h": 250,
+      "label": "Training only: three-stage optimization",
+      "dashed": true
+     }
+    ]
+   }
   },
   "skywork-unipic": {
    "kind": "source-figure",
@@ -2398,20 +8805,420 @@
    "sha256": "cdf87f28deaab13b02b51d1a99121e06882d2582540d3aa8837a199c3577a33b"
   },
   "stable-diffusion-1": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/stable-diffusion-1.svg",
    "source_url": "https://github.com/CompVis/stable-diffusion",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "README Stable Diffusion v1 and Text-to-Image: factor-8 AE, 860M U-Net, frozen CLIP ViT-L/14 non-pooled embeddings; Image Modification and scripts/img2img.py document AE encoding and noise injection.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "860M U-Net\nCross-attention + CFG",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "Factor-8 AE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "512 × 512\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "Frozen CLIP ViT-L/14",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     },
+     {
+      "id": "init",
+      "label": "Source image",
+      "x": 80,
+      "y": 665,
+      "w": 250,
+      "h": 110,
+      "kind": "input",
+      "visual": "image"
+     },
+     {
+      "id": "ae",
+      "label": "AE encode + noise\nStrength sets start t",
+      "x": 560,
+      "y": 665,
+      "w": 350,
+      "h": 110,
+      "kind": "encoder",
+      "visual": "encoder"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     },
+     {
+      "from": "init",
+      "to": "ae"
+     },
+     {
+      "from": "ae",
+      "to": "model",
+      "label": "initial latent",
+      "points": [
+       [
+        910,
+        720
+       ],
+       [
+        1100,
+        720
+       ],
+       [
+        1100,
+        610
+       ],
+       [
+        285,
+        610
+       ],
+       [
+        285,
+        340
+       ],
+       [
+        360,
+        340
+       ]
+      ]
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Optional image-to-image branch",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   },
   "stable-diffusion-2": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/stable-diffusion-2.svg",
-   "source_url": "https://stability.ai/news/stable-diffusion-v2-release",
+   "source_url": "https://arxiv.org/abs/2307.01952",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "SDXL Table 1: SD 2.0/2.1 has 865M U-Net, OpenCLIP ViT-H, 1024-dimensional context and no pooled embedding; Stability AI 2.0 release documents 512/768px text-to-image LDMs. Diagram depicts core T2I branch, not depth/inpainting variants.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "noise",
+      "label": "Gaussian noise\nz_T",
+      "x": 50,
+      "y": 230,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "model",
+      "label": "865M U-Net\nCross-attention conditioning",
+      "x": 360,
+      "y": 195,
+      "w": 310,
+      "h": 210,
+      "kind": "model",
+      "visual": "unet"
+     },
+     {
+      "id": "latent",
+      "label": "Denoised latent\nz_0",
+      "x": 760,
+      "y": 230,
+      "w": 180,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "decoder",
+      "label": "VAE\ndecoder",
+      "x": 1000,
+      "y": 210,
+      "w": 145,
+      "h": 185,
+      "kind": "decoder",
+      "visual": "decoder"
+     },
+     {
+      "id": "image",
+      "label": "512 / 768 px\nRGB image",
+      "x": 1190,
+      "y": 210,
+      "w": 175,
+      "h": 185,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "text",
+      "label": "Text prompt",
+      "x": 60,
+      "y": 465,
+      "w": 190,
+      "h": 90,
+      "kind": "input",
+      "visual": "plain"
+     },
+     {
+      "id": "encoder",
+      "label": "OpenCLIP ViT-H\n1024-dimensional context",
+      "x": 315,
+      "y": 425,
+      "w": 275,
+      "h": 160,
+      "kind": "encoder",
+      "visual": "encoder"
+     },
+     {
+      "id": "tokens",
+      "label": "Text feature sequence",
+      "x": 695,
+      "y": 440,
+      "w": 300,
+      "h": 130,
+      "kind": "latent",
+      "visual": "tokens"
+     }
+    ],
+    "edges": [
+     {
+      "from": "noise",
+      "to": "model"
+     },
+     {
+      "from": "model",
+      "to": "latent"
+     },
+     {
+      "from": "latent",
+      "to": "decoder"
+     },
+     {
+      "from": "decoder",
+      "to": "image"
+     },
+     {
+      "from": "text",
+      "to": "encoder"
+     },
+     {
+      "from": "encoder",
+      "to": "tokens"
+     },
+     {
+      "from": "tokens",
+      "to": "model",
+      "label": "text conditioning",
+      "points": [
+       [
+        845,
+        440
+       ],
+       [
+        845,
+        420
+       ],
+       [
+        550,
+        420
+       ],
+       [
+        550,
+        405
+       ]
+      ],
+      "label_position": [
+       845,
+       425
+      ]
+     },
+     {
+      "from": "model",
+      "to": "model",
+      "label": "sampling steps",
+      "points": [
+       [
+        515,
+        195
+       ],
+       [
+        515,
+        145
+       ],
+       [
+        700,
+        145
+       ],
+       [
+        700,
+        300
+       ],
+       [
+        670,
+        300
+       ]
+      ]
+     }
+    ]
+   }
   },
   "stable-diffusion-3": {
    "kind": "source-figure",
@@ -2858,12 +9665,251 @@
    "sha256": "c597bc56c476596d1ab7acbef5cd36846700baadff04b7ec881ddd092c0e1ac1"
   },
   "z-image-turbo-pp": {
-   "kind": "io-diagram",
+   "kind": "architecture-diagram",
    "path": "assets/architectures/z-image-turbo-pp.svg",
    "source_url": "https://arxiv.org/abs/2606.12575",
    "origin_url": null,
-   "locator": "Input/output diagram",
-   "sha256": null
+   "locator": "Source-based architecture diagram",
+   "sha256": null,
+   "diagram": {
+    "evidence": "Sec. 3.1: S3-DiT text/image/latent stream; Sec. 4.2 teacher samples are discriminator real targets; Sec. 4.3 independent step weights initialized from eight-step teacher; Sec. 4.4 end-to-end gradients and explicit step-1 loss. Decoder not specified in this report.",
+    "width": 1400,
+    "height": 800,
+    "nodes": [
+     {
+      "id": "prompt",
+      "label": "Prompt conditioning",
+      "x": 70,
+      "y": 125,
+      "w": 260,
+      "h": 100,
+      "kind": "input",
+      "visual": "tokens"
+     },
+     {
+      "id": "noise",
+      "label": "Initial noise",
+      "x": 50,
+      "y": 360,
+      "w": 165,
+      "h": 145,
+      "kind": "input",
+      "visual": "tensor"
+     },
+     {
+      "id": "s1",
+      "label": "Step 1 · θ1\nIndependent S3-DiT",
+      "x": 300,
+      "y": 270,
+      "w": 280,
+      "h": 225,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Text + image + latent tokens",
+       "Single-stream transformer",
+       "First denoising step"
+      ]
+     },
+     {
+      "id": "mid",
+      "label": "Intermediate\nrepresentation",
+      "x": 645,
+      "y": 320,
+      "w": 170,
+      "h": 145,
+      "kind": "latent",
+      "visual": "tensor"
+     },
+     {
+      "id": "s2",
+      "label": "Step 2 · θ2\nIndependent S3-DiT",
+      "x": 865,
+      "y": 270,
+      "w": 280,
+      "h": 225,
+      "kind": "model",
+      "visual": "stack",
+      "layers": [
+       "Text + image + latent tokens",
+       "Single-stream transformer",
+       "Second denoising step"
+      ]
+     },
+     {
+      "id": "out",
+      "label": "Generated image",
+      "x": 1190,
+      "y": 300,
+      "w": 165,
+      "h": 180,
+      "kind": "output",
+      "visual": "image"
+     },
+     {
+      "id": "teacher",
+      "label": "8-step Z-Image Turbo\nInitializes θ1 and θ2\nGenerates real targets",
+      "x": 55,
+      "y": 665,
+      "w": 345,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "loss",
+      "label": "Teacher-aligned adversarial loss\n+ DMD regularization\n+ explicit step-1 loss",
+      "x": 490,
+      "y": 665,
+      "w": 430,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     },
+     {
+      "id": "disc",
+      "label": "GAN discriminator\nTeacher images: real\nStudent images: fake",
+      "x": 1005,
+      "y": 665,
+      "w": 340,
+      "h": 110,
+      "kind": "model",
+      "visual": "plain"
+     }
+    ],
+    "edges": [
+     {
+      "from": "prompt",
+      "to": "s1",
+      "points": [
+       [
+        200,
+        225
+       ],
+       [
+        200,
+        245
+       ],
+       [
+        440,
+        245
+       ],
+       [
+        440,
+        270
+       ]
+      ]
+     },
+     {
+      "from": "prompt",
+      "to": "s2",
+      "points": [
+       [
+        330,
+        175
+       ],
+       [
+        1005,
+        175
+       ],
+       [
+        1005,
+        270
+       ]
+      ]
+     },
+     {
+      "from": "noise",
+      "to": "s1"
+     },
+     {
+      "from": "s1",
+      "to": "mid"
+     },
+     {
+      "from": "mid",
+      "to": "s2"
+     },
+     {
+      "from": "s2",
+      "to": "out"
+     },
+     {
+      "from": "teacher",
+      "to": "loss",
+      "dashed": true
+     },
+     {
+      "from": "disc",
+      "to": "loss",
+      "dashed": true
+     },
+     {
+      "from": "out",
+      "to": "disc",
+      "label": "student samples",
+      "dashed": true
+     },
+     {
+      "from": "loss",
+      "to": "s1",
+      "label": "end-to-end gradients",
+      "points": [
+       [
+        700,
+        665
+       ],
+       [
+        700,
+        605
+       ],
+       [
+        440,
+        605
+       ],
+       [
+        440,
+        495
+       ]
+      ],
+      "dashed": true
+     },
+     {
+      "from": "loss",
+      "to": "s2",
+      "points": [
+       [
+        815,
+        665
+       ],
+       [
+        815,
+        605
+       ],
+       [
+        1005,
+        605
+       ],
+       [
+        1005,
+        495
+       ]
+      ],
+      "dashed": true
+     }
+    ],
+    "groups": [
+     {
+      "x": 35,
+      "y": 625,
+      "w": 1330,
+      "h": 160,
+      "label": "Training / distillation only",
+      "dashed": true,
+      "color": "#f3f3f3"
+     }
+    ]
+   }
   }
  }
 }

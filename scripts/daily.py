@@ -115,6 +115,8 @@ def render_daily(ledger, catalog, figures, model_link, source_links):
     added = sum(any(r["catalog_action"] == "added" for r in by_model[m["id"]]) for m in models)
     github = sum(m["github_status"] == "author-linked" for m in models)
     primary_figures = sum(figures[m["id"]]["kind"] == "source-figure" for m in models)
+    architecture_figures = sum(figures[m["id"]]["kind"] == "architecture-diagram" for m in models)
+    interface_figures = len(models) - primary_figures - architecture_figures
     included_papers = sum(len(rows) for rows in by_model.values())
     source = ledger["source"]
     lines = [
@@ -124,7 +126,7 @@ def render_daily(ledger, catalog, figures, model_link, source_links):
         f'**{len(models)} model families · {included_papers} papers · {added} new catalog entries · Reviewed {ledger["reviewed_on"]}**', "",
         f'Screens all **{ledger["eligible_row_count"]} papers** returned by the pinned arXiv API query `{source["search_query"]}`, retrieved on {source["retrieved_on"]} (snapshot SHA-256 `{source["snapshot_sha256"][:12]}…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.', "",
         "Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.", "",
-        f'Every family below has a description, a local image and paper links. **{github}** have author-linked GitHub sources; **{len(models) - github}** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **{primary_figures}** images come from primary sources; **{len(models) - primary_figures}** are labeled editorial input/output diagrams.', "",
+        f'Every family below has a description, a local image and paper links. **{github}** have author-linked GitHub sources; **{len(models) - github}** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **{primary_figures}** images come from primary sources; **{architecture_figures}** are source-based architecture diagrams; **{interface_figures}** are labeled editorial input/output diagrams.', "",
         "Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).", "",
         "<details>", "<summary>Screening counts</summary>", "",
         "| Decision | Papers |", "| --- | ---: |", f"| Included | {included_papers} |",

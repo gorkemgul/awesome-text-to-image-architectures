@@ -1,28 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">Reve Image: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2180" height="850" viewBox="0 0 2180 850" role="img" aria-labelledby="title desc">
+<title id="title">Reve Image architecture</title>
+<desc id="desc">Source-based reconstruction. Official The Layout Bet announcement 2026-06-03: any combination of layouts, instructions and images → Large Layout Model based on continued pretraining/post-training of open-source LLMs → thinking trace → structured hierarchical layout → final pixels. Pixel renderer internals are not disclosed. Diagram applies to Reve 2.0+ layout model.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="2180" height="850" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">Reve Image</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="172.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Closed image models that, per the</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">developer, derive a structured</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">layout from the prompt with a layout</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">model built on open-source LLMs and</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">then render pixels; renderer not</text>
-<text x="560" y="302.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">disclosed</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="220.0" font-size="17" fill="#0369a1">Text</text>
-<rect x="42" y="242.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="266.0" font-size="17" fill="#0369a1">Images</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">Reve Image</text>
+<rect x="340" y="300" width="440" height="370" rx="5" fill="#fafafa" stroke="#94a3b8" stroke-width="1.4"/>
+<text x="354" y="323" font-size="15" font-weight="600" fill="#334155">Reve 2.0+ layout model</text>
+<polyline points="290,280 325,280 325,415 370,415" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="290,495 370,495" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="290,715 325,715 325,560 370,560" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="750.0,485.0 785.0,485.0 785.0,485.0 820.0,485.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1095.0,485.0 1130.0,485.0 1130.0,485.0 1165.0,485.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1465.0,485.0 1500.0,485.0 1500.0,485.0 1535.0,485.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1815.0,485.0 1850.0,485.0 1850.0,485.0 1885.0,485.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="200" width="250" height="160" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="165.0" y="285.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Text instructions</text>
+<rect x="110.0" y="413" width="110" height="70" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<circle cx="191.4" cy="431.2" r="7.0" fill="#0284c7" opacity="0.55"/>
+<path d="M118.0 476 L149.6 437.5 L173.8 463.4 L189.2 448.0 L213.0 476 Z" fill="#0284c7" opacity="0.35"/>
+<text x="165.0" y="508" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Reference / source image</text>
+<text x="165.0" y="528" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Optional</text>
+<rect x="127.0" y="659" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="122.0" y="654" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="117.0" y="649" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<path d="M134.2 649 v55 M117.0 660.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M151.4 649 v55 M117.0 671.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M168.6 649 v55 M117.0 682.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M185.8 649 v55 M117.0 693.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<text x="165.0" y="738" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Existing layout</text>
+<text x="165.0" y="758" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Optional</text>
+<rect x="378" y="358" width="372" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="374" y="354" width="372" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="370" y="350" width="372" height="262" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<text x="560.0" y="480.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Large Layout Model</text>
+<text x="560.0" y="500.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Open-source LLM base</text>
+<rect x="852.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="888.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="924.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="939.5" y="425" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="960.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="975.5" y="425" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#d97706">⋯</text>
+<rect x="996.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<rect x="1032.5" y="405" width="30" height="30" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>
+<text x="957.5" y="460" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Internal thinking trace</text>
+<text x="957.5" y="480" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Spatial reasoning</text>
+<rect x="1277.0" y="389" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="1272.0" y="384" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<rect x="1267.0" y="379" width="86" height="55" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>
+<path d="M1284.2 379 v55 M1267.0 390.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1301.4 379 v55 M1267.0 401.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1318.6 379 v55 M1267.0 412.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<path d="M1335.8 379 v55 M1267.0 423.0 h86" stroke="#d97706" stroke-width="0.55" opacity="0.55"/>
+<text x="1315.0" y="468" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Hierarchical layout</text>
+<text x="1315.0" y="488" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Regions · positions · sizes</text>
+<text x="1315.0" y="508" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Local descriptions</text>
+<rect x="1535" y="395" width="280" height="180" rx="4" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.4"/>
+<text x="1675.0" y="480.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Pixel renderer</text>
+<text x="1675.0" y="500.0" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Architecture undisclosed</text>
+<rect x="1955.0" y="403" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="2036.4" cy="421.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1963.0 466 L1994.6 427.5 L2018.8 453.4 L2034.2 438.0 L2058.0 466 Z" fill="#16a34a" opacity="0.35"/>
+<text x="2010.0" y="498" text-anchor="middle" font-size="16" font-weight="500" fill="#111827">Generated / edited image</text>
 </g></svg>

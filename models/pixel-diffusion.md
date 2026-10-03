@@ -187,9 +187,9 @@ Cascaded pixel-space diffusion: a text-conditional ADM U-Net at 64×64 plus a te
 
 [Paper](https://arxiv.org/abs/2112.10741) · [GitHub](https://github.com/openai/glide-text2im)
 
-![GLIDE — Input/output diagram](../assets/architectures/glide.svg)
+![GLIDE — Source-based architecture diagram](../assets/architectures/glide.svg)
 
-*Input/output diagram · [Source](https://arxiv.org/abs/2112.10741)*
+*Source-based architecture diagram · [Source](https://arxiv.org/abs/2112.10741)*
 
 <details>
 <summary>Details</summary>
@@ -199,8 +199,6 @@ Cascaded pixel-space diffusion: a text-conditional ADM U-Net at 64×64 plus a te
 The transformer's final token embedding replaces the ADM class embedding, and its last-layer token sequence is projected and concatenated to the attention context of every attention layer. The paper's main model has a 3.5B-parameter 64×64 base (about 2.3B visual plus 1.2B text transformer) and a 1.5B-parameter upsampler; the paper compares classifier-free guidance with CLIP guidance using a noised CLIP model and prefers classifier-free guidance. The base model is fine-tuned for inpainting with four extra input channels (masked RGB image and mask), which enables text-driven editing of an input image. Only a smaller GLIDE (filtered) model trained on a filtered dataset (people and some other content removed) was released; the repository is archived and its code is MIT-licensed, while no separate weight license was found.
 
 **License:** code: MIT.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** GLIDE (filtered).
 

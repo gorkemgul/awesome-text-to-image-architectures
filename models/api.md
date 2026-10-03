@@ -213,9 +213,9 @@ Aurora is the image generation model xAI introduced in Grok on the X platform on
 
 [Announcement](https://x.ai/news/grok-image-generation-release)
 
-![Grok Aurora — Input/output diagram](../assets/architectures/grok-aurora.svg)
+![Grok Aurora — Source-based architecture diagram](../assets/architectures/grok-aurora.svg)
 
-*Input/output diagram · [Source](https://x.ai/news/grok-image-generation-release)*
+*Source-based architecture diagram · [Source](https://x.ai/news/grok-image-generation-release)*
 
 <details>
 <summary>Details</summary>
@@ -223,8 +223,6 @@ Aurora is the image generation model xAI introduced in Grok on the X platform on
 **Input → output:** T → I · **Interaction:** generation
 
 Date and all claims from xAI's announcement "Grok Image Generation Release" (datePublished 2024-12-09). The autoregressive mixture-of-experts description is the developer's own one-sentence statement; no paper, parameter count or tokenizer details are published, so the card stays in API. Image input and editing are described as a model capability whose release was still pending at announcement time, so the card lists text input and generation only. xAI's current API documentation lists Grok Imagine image models and does not name Aurora; any API availability of Aurora was not verified. Later xAI image models are on the `grok-imagine-image` card.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 </details>
 
@@ -398,9 +396,9 @@ Uni-1 is Luma AI's first unified understanding and generation model, offered for
 
 [Project](https://lumalabs.ai/uni-1) · [Announcement](https://lumalabs.ai/news/uni-1-1-api)
 
-![Luma Uni-1 — Input/output diagram](../assets/architectures/luma-uni-1.svg)
+![Luma Uni-1 — Source-based architecture diagram](../assets/architectures/luma-uni-1.svg)
 
-*Input/output diagram · [Source](https://lumalabs.ai/uni-1)*
+*Source-based architecture diagram · [Source](https://lumalabs.ai/news/uni-1-1-api)*
 
 <details>
 <summary>Details</summary>
@@ -408,8 +406,6 @@ Uni-1 is Luma AI's first unified understanding and generation model, offered for
 **Input → output:** T, I → I · **Interaction:** editing
 
 Kept in API: the only architectural statement is one sentence in Luma's own API announcement ("a decoder-only autoregressive transformer where text and image tokens share a single sequence"); no report, tokenizer or model size is published. The Uni-1 product page (undated) documents generation, editing and reference-guided generation with up to 9 images, and API access via platform.lumalabs.ai. The Uni-1 launch date was not found on a readable dated Luma page (the launch was announced on X, which was not verified), so the family date is left blank; the Uni-1.1 API post is dated 2026-05-05.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Uni-1; Uni-1.1 (API, 2026-05-05); Uni-1.1 Max.
 
@@ -558,9 +554,9 @@ Reve Image is the image model line from Reve AI, served through reve.com and an 
 
 [Announcement 1](https://blog.reve.com/posts/the-new-reve/) · [Announcement 2](https://blog.reve.com/posts/reve-editing-model/) · [Announcement 3](https://blog.reve.com/posts/reve-1.5-is-here/) · [Announcement 4](https://blog.reve.com/posts/announcing-reve-2.0/) · [Announcement 5](https://blog.reve.com/posts/the-layout-bet/) · [Announcement 6](https://blog.reve.com/posts/launching-reve-2.1/) · [Announcement 7](https://blog.reve.com/posts/the-reve-api/) · [Announcement 8](https://blog.reve.com/posts/a-new-chapter-for-reve/)
 
-![Reve Image — Input/output diagram](../assets/architectures/reve-image.svg)
+![Reve Image — Source-based architecture diagram](../assets/architectures/reve-image.svg)
 
-*Input/output diagram · [Source](https://blog.reve.com/posts/the-new-reve/)*
+*Source-based architecture diagram · [Source](https://blog.reve.com/posts/the-layout-bet/)*
 
 <details>
 <summary>Details</summary>
@@ -568,8 +564,6 @@ Reve Image is the image model line from Reve AI, served through reve.com and an 
 **Input → output:** T, I → I · **Interaction:** editing
 
 Architecture statements are the developer's blog descriptions, not a technical report: v1.5 "operating in native pixel space" (2026-02-23); "The Layout Bet" (2026-06-03) describes a unified Large Layout Model built by continued pretraining and post-training of open-source LLMs (Qwen is thanked) that takes any mix of layouts, instructions and images, derives a layout from its thinking trace and then renders pixels; the pixel renderer is not described. Dated posts on Reve's blog: Introducing the New Reve 2025-09-15 (image creation, editing, remix, API beta; mentions a "layout representation"); first editing model 2025-10-01 (single- and multi-image edits); v1.5 2026-02-23 (4K; editing and references announced as coming); Reve 2.0 2026-06-03 (native 4K, layout-based editing, multiple references; replaces earlier models); Reve 2.1 2026-07-09; Reve 2.1 API 2026-07-14 (native 4K × 4K). The original Reve Image 1.0 release (March 2025) is known only from third-party coverage, so the family date is left blank. A 2026-07-27 post announces an OpenAI investment, with members of Reve's research team joining OpenAI while Reve operates independently.
-
-Editorial summary of documented inputs and outputs; internal architecture is not shown.
 
 **Variants:** Reve Image 1.0; Reve editing model (2025-10-01); Reve v1.5 (2026-02-23); Reve 2.0 (2026-06-03); Reve 2.1 (2026-07-09; API 2026-07-14).
 

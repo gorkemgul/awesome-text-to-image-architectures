@@ -1,32 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="444" viewBox="0 0 1120 444" role="img" aria-labelledby="title desc">
-<title id="title">Qwen-Image-Flash: documented inputs and outputs</title>
-<desc id="desc">Editorial interface diagram. Internal architecture and per-task modality combinations are not shown. See the model notes and primary sources.</desc>
-<rect width="1120" height="100%" rx="18" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+<title id="title">Qwen-Image-Flash architecture</title>
+<desc id="desc">Source-based reconstruction. Secs. 3.1-3.2 define conditional vector field and DMD student; Sec. 4.3 uses base teacher for first 3 steps and 50:50 base/RL teacher on step 4; Sec. 4.4 jointly distills T2I and editing. Encoder/decoder identities are not specified and not invented.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#475569"/></marker></defs>
+<rect width="1400" height="800" fill="#ffffff"/>
 <g font-family="Arial, Helvetica, sans-serif">
-<text x="42" y="33" font-size="13" font-weight="700" letter-spacing="2" fill="#64748b">DOCUMENTED INTERFACE · EDITORIAL DIAGRAM</text>
-<text x="42" y="76" font-size="32" font-weight="700" fill="#0f172a">Qwen-Image-Flash</text>
-<rect x="365" y="140.0" width="390" height="194" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-<text x="560" y="177.0" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="2" fill="#64748b">MODEL / SYSTEM</text>
-<text x="560" y="120.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Distribution Matching Distillation</text>
-<text x="560" y="146.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">(DMD) student distilled from the</text>
-<text x="560" y="172.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">Qwen-Image-2.0-Base teacher for</text>
-<text x="560" y="198.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">unified few-step text-to-image</text>
-<text x="560" y="224.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">generation and editing, using a</text>
-<text x="560" y="250.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">step-wise multi-teacher guidance</text>
-<text x="560" y="276.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">schedule that anchors early</text>
-<text x="560" y="302.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">denoising steps to the base teacher</text>
-<text x="560" y="328.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">and blends in a specialized teacher</text>
-<text x="560" y="354.0" text-anchor="middle" font-size="19" font-weight="600" fill="#0f172a">only at the final step</text>
-<text x="560" y="304.0" text-anchor="middle" font-size="14" fill="#64748b">editing</text>
-<text x="42" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#0369a1">INPUTS</text>
-<rect x="42" y="196.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="220.0" font-size="17" fill="#0369a1">Text</text>
-<rect x="42" y="242.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="56" y="266.0" font-size="17" fill="#0369a1">Images</text>
-<text x="842" y="122" font-size="13" font-weight="700" letter-spacing="2" fill="#047857">OUTPUTS</text>
-<rect x="842" y="219.0" width="236" height="36" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-<text x="856" y="243.0" font-size="17" fill="#047857">Images</text>
-<path d="M292 237.0 H346 M337 230.0 L347 237.0 L337 244.0" fill="none" stroke="#0369a1" stroke-width="2.5"/>
-<path d="M773 237.0 H827 M818 230.0 L828 237.0 L818 244.0" fill="none" stroke="#047857" stroke-width="2.5"/>
-<text x="42" y="407" font-size="15" fill="#64748b">Input/output summary; internal architecture is not shown. Task and variant limits apply.</text>
+<text x="32" y="67" font-size="12" fill="#64748b">Architecture reconstructed from the cited primary source</text>
+<text x="32" y="39" font-size="25" font-weight="700" fill="#0f172a">Qwen-Image-Flash</text>
+<rect x="35" y="625" width="1330" height="160" rx="5" fill="#f3f3f3" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="49" y="648" font-size="15" font-weight="600" fill="#334155">Training / distillation only</text>
+<polyline points="320.0,165.0 355.0,165.0 355.0,187.5 390.0,187.5" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="320,345 350,345 350,190 390,190" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="720,190 970,190 970,245" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="845.0" y="180.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">c</text>
+<polyline points="280,530 745,530 745,390 810,390" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1130.0,360.0 1160.0,360.0 1160.0,360.0 1190.0,360.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="385.0,720.0 435.0,720.0 435.0,720.0 485.0,720.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<polyline points="1015.0,720.0 957.5,720.0 957.5,720.0 900.0,720.0" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<polyline points="690,665 690,610 1100,610 1100,475" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="895.0" y="600.0" text-anchor="middle" font-size="13" fill="#475569" stroke="#ffffff" stroke-width="5" paint-order="stroke">distribution matching</text>
+<rect x="50" y="125" width="270" height="80" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.4"/>
+<text x="185.0" y="170.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Prompt / edit instruction</text>
+<rect x="130.0" y="278" width="110" height="70" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.3"/>
+<circle cx="211.4" cy="296.2" r="7.0" fill="#0284c7" opacity="0.55"/>
+<path d="M138.0 341 L169.6 302.5 L193.8 328.4 L209.2 313.0 L233.0 341 Z" fill="#0284c7" opacity="0.35"/>
+<text x="185.0" y="373" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Optional source image</text>
+<rect x="450.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="486.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="522.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="537.0" y="145" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#7c3aed">⋯</text>
+<rect x="558.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="573.0" y="145" font-family="Georgia,serif" font-size="15" text-anchor="middle" fill="#7c3aed">⋯</text>
+<rect x="594.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<rect x="630.0" y="125" width="30" height="30" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.3"/>
+<text x="555.0" y="180" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Joint task conditioning</text>
+<text x="555.0" y="198" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">c: text (+ source image)</text>
+<rect x="132.0" y="484" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="127.0" y="479" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<rect x="122.0" y="474" width="86" height="55" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.1"/>
+<path d="M139.2 474 v55 M122.0 485.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M156.4 474 v55 M122.0 496.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M173.6 474 v55 M122.0 507.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<path d="M190.8 474 v55 M122.0 518.0 h86" stroke="#0284c7" stroke-width="0.55" opacity="0.55"/>
+<text x="170.0" y="563" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Gaussian noise</text>
+<rect x="818" y="253" width="312" height="222" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="814" y="249" width="312" height="222" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="810" y="245" width="312" height="222" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+<rect x="828" y="327.0" width="276" height="37.666666666666664" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="966.0" y="349.8333333333333" text-anchor="middle" font-size="12" fill="#1f2937">Condition c + noisy state z_t</text>
+<rect x="828" y="369.6666666666667" width="276" height="37.666666666666664" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="966.0" y="392.5" text-anchor="middle" font-size="12" fill="#1f2937">Few-step flow integration</text>
+<rect x="828" y="412.3333333333333" width="276" height="37.666666666666664" rx="3" fill="#ffffff" stroke="#2563eb" stroke-width="0.9"/>
+<text x="966.0" y="435.16666666666663" text-anchor="middle" font-size="12" fill="#1f2937">Generation / editing</text>
+<text x="970.0" y="270" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen-Image-Flash student</text>
+<text x="970.0" y="288" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Unified conditional flow</text>
+<text x="970.0" y="306" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">4 network evaluations</text>
+<rect x="1220.0" y="278" width="110" height="70" fill="#dcfce7" stroke="#16a34a" stroke-width="1.3"/>
+<circle cx="1301.4" cy="296.2" r="7.0" fill="#16a34a" opacity="0.55"/>
+<path d="M1228.0 341 L1259.6 302.5 L1283.8 328.4 L1299.2 313.0 L1323.0 341 Z" fill="#16a34a" opacity="0.35"/>
+<text x="1275.0" y="373" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Generated / edited</text>
+<text x="1275.0" y="391" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">image</text>
+<rect x="55" y="665" width="330" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="220.0" y="716.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Base teacher</text>
+<text x="220.0" y="734.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen-Image-2.0-Base</text>
+<rect x="485" y="665" width="415" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="692.5" y="707.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">DMD score target</text>
+<text x="692.5" y="725.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Steps 1–3: base teacher</text>
+<text x="692.5" y="743.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Step 4: 50:50 base / RL</text>
+<rect x="1015" y="665" width="330" height="110" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4"/>
+<text x="1180.0" y="716.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Specialized teacher</text>
+<text x="1180.0" y="734.0" text-anchor="middle" font-size="14" font-weight="500" fill="#111827">Qwen-Image-2.0-RL</text>
 </g></svg>
