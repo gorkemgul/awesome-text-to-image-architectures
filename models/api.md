@@ -213,7 +213,7 @@ Aurora is the image generation model xAI introduced in Grok on the X platform on
 
 [Announcement](https://x.ai/news/grok-image-generation-release)
 
-![Grok Aurora — Source-based architecture diagram](../assets/architectures/grok-aurora.svg)
+![Grok Aurora — Source-based architecture diagram](../assets/architectures/grok-aurora-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://x.ai/news/grok-image-generation-release)*
 
@@ -396,7 +396,7 @@ Uni-1 is Luma AI's first unified understanding and generation model, offered for
 
 [Project](https://lumalabs.ai/uni-1) · [Announcement](https://lumalabs.ai/news/uni-1-1-api)
 
-![Luma Uni-1 — Source-based architecture diagram](../assets/architectures/luma-uni-1.svg)
+![Luma Uni-1 — Source-based architecture diagram](../assets/architectures/luma-uni-1-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://lumalabs.ai/news/uni-1-1-api)*
 
@@ -554,7 +554,7 @@ Reve Image is the image model line from Reve AI, served through reve.com and an 
 
 [Announcement 1](https://blog.reve.com/posts/the-new-reve/) · [Announcement 2](https://blog.reve.com/posts/reve-editing-model/) · [Announcement 3](https://blog.reve.com/posts/reve-1.5-is-here/) · [Announcement 4](https://blog.reve.com/posts/announcing-reve-2.0/) · [Announcement 5](https://blog.reve.com/posts/the-layout-bet/) · [Announcement 6](https://blog.reve.com/posts/launching-reve-2.1/) · [Announcement 7](https://blog.reve.com/posts/the-reve-api/) · [Announcement 8](https://blog.reve.com/posts/a-new-chapter-for-reve/)
 
-![Reve Image — Source-based architecture diagram](../assets/architectures/reve-image.svg)
+![Reve Image — Source-based architecture diagram](../assets/architectures/reve-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://blog.reve.com/posts/the-layout-bet/)*
 

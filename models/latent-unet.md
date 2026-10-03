@@ -152,7 +152,7 @@ Quality-tuned 1024×1024 latent diffusion model with a 2.8B-parameter U-Net, a 1
 
 [Paper](https://arxiv.org/abs/2309.15807)
 
-![Emu (Meta) — Source-based architecture diagram](../assets/architectures/emu-meta.svg)
+![Emu (Meta) — Source-based architecture diagram](../assets/architectures/emu-meta-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2309.15807)*
 
@@ -298,7 +298,7 @@ Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model
 
 [Paper](https://github.com/Kwai-Kolors/Kolors/blob/master/imgs/Kolors_paper.pdf) · [GitHub](https://github.com/Kwai-Kolors/Kolors) · [Model card](https://huggingface.co/Kwai-Kolors/Kolors)
 
-![Kolors — Source-based architecture diagram](../assets/architectures/kolors.svg)
+![Kolors — Source-based architecture diagram](../assets/architectures/kolors-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
 
@@ -371,7 +371,7 @@ Playground v2 is a latent diffusion text-to-image model from Playground that its
 
 [Paper](https://arxiv.org/abs/2402.17245) · [Model card 1](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) · [Model card 2](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) · GitHub: no author-linked repository found
 
-![Playground v2 — Source-based architecture diagram](../assets/architectures/playground-v2.svg)
+![Playground v2 — Source-based architecture diagram](../assets/architectures/playground-v2-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic)*
 
@@ -465,7 +465,7 @@ Latent diffusion model with an 860M U-Net conditioned through cross-attention on
 
 [Announcement](https://stability.ai/news/stable-diffusion-public-release) · [GitHub](https://github.com/CompVis/stable-diffusion) · [Model card](https://huggingface.co/CompVis/stable-diffusion-v1-4) · [Paper](https://arxiv.org/abs/2112.10752)
 
-![Stable Diffusion 1.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-1.svg)
+![Stable Diffusion 1.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-1-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/CompVis/stable-diffusion)*
 
@@ -490,7 +490,7 @@ Latent diffusion U-Net (865M parameters) conditioned through cross-attention on 
 
 [Announcement 1](https://stability.ai/news/stable-diffusion-v2-release) · [Announcement 2](https://stability.ai/news/stablediffusion2-1-release7-dec-2022) · [Paper](https://arxiv.org/abs/2307.01952) · GitHub: no author-linked repository found
 
-![Stable Diffusion 2.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-2.svg)
+![Stable Diffusion 2.x — Source-based architecture diagram](../assets/architectures/stable-diffusion-2-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2307.01952)*
 

@@ -187,7 +187,7 @@ Cascaded pixel-space diffusion: a text-conditional ADM U-Net at 64×64 plus a te
 
 [Paper](https://arxiv.org/abs/2112.10741) · [GitHub](https://github.com/openai/glide-text2im)
 
-![GLIDE — Source-based architecture diagram](../assets/architectures/glide.svg)
+![GLIDE — Source-based architecture diagram](../assets/architectures/glide-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2112.10741)*
 

@@ -135,7 +135,7 @@ DALL·E (OpenAI, 2021) showed that a single large autoregressive transformer, tr
 
 [Paper](https://arxiv.org/abs/2102.12092) · [GitHub](https://github.com/openai/DALL-E)
 
-![DALL·E — Source-based architecture diagram](../assets/architectures/dall-e.svg)
+![DALL·E — Source-based architecture diagram](../assets/architectures/dall-e-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2102.12092)*
 
@@ -160,7 +160,7 @@ DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed 
 
 [GitHub](https://github.com/borisdayma/dalle-mini) · [Model card 1](https://huggingface.co/dalle-mini/dalle-mini) · [Model card 2](https://huggingface.co/dalle-mini/dalle-mega) · [Announcement](https://wandb.ai/dalle-mini/dalle-mini/reports/DALL-E-Mini-Explained-with-Demo--Vmlldzo4NjIxODA)
 
-![DALL·E Mini — Source-based architecture diagram](../assets/architectures/dall-e-mini.svg)
+![DALL·E Mini — Source-based architecture diagram](../assets/architectures/dall-e-mini-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/dalle-mini/dalle-mini)*
 
@@ -331,7 +331,7 @@ LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture tran
 
 [Paper](https://arxiv.org/abs/2406.06525) · [GitHub](https://github.com/FoundationVision/LlamaGen) · [Model card](https://huggingface.co/FoundationVision/LlamaGen)
 
-![LlamaGen — Source-based architecture diagram](../assets/architectures/llamagen.svg)
+![LlamaGen — Source-based architecture diagram](../assets/architectures/llamagen-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2406.06525)*
 
@@ -381,7 +381,7 @@ Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chamel
 
 [Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768)
 
-![Lumina-mGPT — Source-based architecture diagram](../assets/architectures/lumina-mgpt.svg)
+![Lumina-mGPT — Source-based architecture diagram](../assets/architectures/lumina-mgpt-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2408.02657)*
 
@@ -577,7 +577,7 @@ ruDALL-E is Sber AI and SberDevices' open reproduction of OpenAI's DALL·E for R
 
 [Announcement 1](https://habr.com/ru/company/sberdevices/blog/586926/) · [Announcement 2](https://habr.com/ru/company/sberbank/blog/589673/) · [GitHub](https://github.com/ai-forever/ru-dalle) · [Model card](https://huggingface.co/ai-forever/rudalle-Malevich)
 
-![ruDALL-E — Source-based architecture diagram](../assets/architectures/rudall-e.svg)
+![ruDALL-E — Source-based architecture diagram](../assets/architectures/rudall-e-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/ai-forever/ru-dalle)*
 
@@ -604,7 +604,7 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 
 [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
 
-![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear.svg)
+![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11455)*
 

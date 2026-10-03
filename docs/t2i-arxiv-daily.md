@@ -348,7 +348,7 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 
 [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
-![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image.svg)
+![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)*
 
@@ -446,7 +446,7 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
 
-![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp.svg)
+![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2606.12575)*
 
@@ -516,7 +516,7 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 
 [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
 
-![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash.svg)
+![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2606.03746)*
 
@@ -544,7 +544,7 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 
 [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
 
-![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image.svg)
+![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2605.25347)*
 
@@ -642,7 +642,7 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
-![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image.svg)
+![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2604.12163)*
 
@@ -978,7 +978,7 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 
 [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found
 
-![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i.svg)
+![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2511.18742)*
 
@@ -1286,7 +1286,7 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 
 [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
-![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4.svg)
+![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2509.20427)*
 
@@ -1692,7 +1692,7 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 
 [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
 
-![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear.svg)
+![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2504.11455)*
 
@@ -2000,7 +2000,7 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 
 [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
 
-![Goku — Source-based architecture diagram](../assets/architectures/goku.svg)
+![Goku — Source-based architecture diagram](../assets/architectures/goku-architecture.svg)
 
 *Source-based architecture diagram · [Image source](https://arxiv.org/abs/2502.04896)*
 

@@ -45,7 +45,8 @@ def validate_figures(catalog, manifest, root):
         if figure["kind"] in {"io-diagram", "architecture-diagram"}:
             if figure["kind"] == "architecture-diagram":
                 validate_architecture(figure.get("diagram", {}))
-            if path.name != f"{mid}.svg" or figure["origin_url"] is not None or figure["sha256"] is not None:
+            expected_name = f"{mid}-architecture.svg" if figure["kind"] == "architecture-diagram" else f"{mid}.svg"
+            if path.name != expected_name or figure["origin_url"] is not None or figure["sha256"] is not None:
                 raise ValueError(f"{mid}: interface diagrams must be generated locally")
             continue
         origin = urlsplit(figure["origin_url"])

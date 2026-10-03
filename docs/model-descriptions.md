@@ -393,7 +393,7 @@ AuraFlow is an open text-to-image model from fal, developed with researcher Simo
 
 [Architecture and figure](../models/dit.md#auraflow) · [Announcement](https://blog.fal.ai/auraflow/) · [Model card 1](https://huggingface.co/fal/AuraFlow) · [Model card 2](https://huggingface.co/fal/AuraFlow-v0.3) · GitHub: no author-linked repository found
 
-![AuraFlow — Source-based architecture diagram](../assets/architectures/auraflow.svg)
+![AuraFlow — Source-based architecture diagram](../assets/architectures/auraflow-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/fal/AuraFlow)*
 
@@ -501,7 +501,7 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 
 [Architecture and figure](../models/dit.md#boogu-image) · [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
-![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image.svg)
+![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)*
 
@@ -585,7 +585,7 @@ CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-im
 
 [Architecture and figure](../models/dit.md#cogview3-plus) · [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView3-Plus-3B)
 
-![CogView-3Plus — Source-based architecture diagram](../assets/architectures/cogview3-plus.svg)
+![CogView-3Plus — Source-based architecture diagram](../assets/architectures/cogview3-plus-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView3-Plus-3B)*
 
@@ -621,7 +621,7 @@ CogView4 is Zhipu AI's 6B-parameter open text-to-image model, the successor to C
 
 [Architecture and figure](../models/dit.md#cogview4) · [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4)
 
-![CogView4 — Source-based architecture diagram](../assets/architectures/cogview4.svg)
+![CogView4 — Source-based architecture diagram](../assets/architectures/cogview4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView4-6B)*
 
@@ -645,7 +645,7 @@ DALL·E (OpenAI, 2021) showed that a single large autoregressive transformer, tr
 
 [Architecture and figure](../models/ar-token.md#dall-e) · [Paper](https://arxiv.org/abs/2102.12092) · [GitHub](https://github.com/openai/DALL-E)
 
-![DALL·E — Source-based architecture diagram](../assets/architectures/dall-e.svg)
+![DALL·E — Source-based architecture diagram](../assets/architectures/dall-e-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2102.12092)*
 
@@ -669,7 +669,7 @@ DALL·E Mini is an open-source attempt to reproduce OpenAI's DALL·E, developed 
 
 [Architecture and figure](../models/ar-token.md#dall-e-mini) · [GitHub](https://github.com/borisdayma/dalle-mini) · [Model card 1](https://huggingface.co/dalle-mini/dalle-mini) · [Model card 2](https://huggingface.co/dalle-mini/dalle-mega) · [Announcement](https://wandb.ai/dalle-mini/dalle-mini/reports/DALL-E-Mini-Explained-with-Demo--Vmlldzo4NjIxODA)
 
-![DALL·E Mini — Source-based architecture diagram](../assets/architectures/dall-e-mini.svg)
+![DALL·E Mini — Source-based architecture diagram](../assets/architectures/dall-e-mini-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/dalle-mini/dalle-mini)*
 
@@ -885,7 +885,7 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 
 [Architecture and figure](../models/dit.md#ernie-image) · [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
 
-![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image.svg)
+![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2605.25347)*
 
@@ -993,7 +993,7 @@ FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pa
 
 [Architecture and figure](../models/dit.md#flux-2) · [Announcement 1](https://bfl.ai/blog/flux-2) · [Announcement 2](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence) · [GitHub](https://github.com/black-forest-labs/flux2) · [Model card](https://huggingface.co/black-forest-labs/FLUX.2-dev)
 
-![FLUX.2 — Source-based architecture diagram](../assets/architectures/flux-2.svg)
+![FLUX.2 — Source-based architecture diagram](../assets/architectures/flux-2-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/black-forest-labs/flux2)*
 
@@ -1065,7 +1065,7 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 
 [Architecture and figure](../models/dit.md#goku) · [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
 
-![Goku — Source-based architecture diagram](../assets/architectures/goku.svg)
+![Goku — Source-based architecture diagram](../assets/architectures/goku-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2502.04896)*
 
@@ -1125,7 +1125,7 @@ Aurora is the image generation model xAI introduced in Grok on the X platform on
 
 [Architecture and figure](../models/api.md#grok-aurora) · [Announcement](https://x.ai/news/grok-image-generation-release)
 
-![Grok Aurora — Source-based architecture diagram](../assets/architectures/grok-aurora.svg)
+![Grok Aurora — Source-based architecture diagram](../assets/architectures/grok-aurora-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://x.ai/news/grok-image-generation-release)*
 
@@ -1281,7 +1281,7 @@ Ideogram 4.0 is Ideogram's first open-weight text-to-image foundation model, tra
 
 [Architecture and figure](../models/dit.md#ideogram-4) · [Announcement](https://ideogram.ai/blog/ideogram-4.0/) · [GitHub](https://github.com/ideogram-oss/ideogram4) · [Model card](https://huggingface.co/ideogram-ai/ideogram-4-fp8)
 
-![Ideogram 4.0 — Source-based architecture diagram](../assets/architectures/ideogram-4.svg)
+![Ideogram 4.0 — Source-based architecture diagram](../assets/architectures/ideogram-4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/ideogram-oss/ideogram4)*
 
@@ -1569,7 +1569,7 @@ Kolors is a bilingual (Chinese and English) text-to-image latent diffusion model
 
 [Architecture and figure](../models/latent-unet.md#kolors) · [Paper](https://github.com/Kwai-Kolors/Kolors/blob/master/imgs/Kolors_paper.pdf) · [GitHub](https://github.com/Kwai-Kolors/Kolors) · [Model card](https://huggingface.co/Kwai-Kolors/Kolors)
 
-![Kolors — Source-based architecture diagram](../assets/architectures/kolors.svg)
+![Kolors — Source-based architecture diagram](../assets/architectures/kolors-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/Kwai-Kolors/Kolors)*
 
@@ -1629,7 +1629,7 @@ Latent Consistency Models (Tsinghua University, 2023) carry consistency models f
 
 [Architecture and figure](../models/efficient.md#lcm) · [Paper 1](https://arxiv.org/abs/2310.04378) · [Paper 2](https://arxiv.org/abs/2311.05556) · [GitHub](https://github.com/luosiallen/latent-consistency-model) · [Model card 1](https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7) · [Model card 2](https://huggingface.co/latent-consistency/lcm-sdxl)
 
-![Latent Consistency Models (LCM) — Source-based architecture diagram](../assets/architectures/lcm.svg)
+![Latent Consistency Models (LCM) — Source-based architecture diagram](../assets/architectures/lcm-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2310.04378)*
 
@@ -1797,7 +1797,7 @@ LlamaGen (HKU and ByteDance, 2024) shows that a standard Llama-architecture tran
 
 [Architecture and figure](../models/ar-token.md#llamagen) · [Paper](https://arxiv.org/abs/2406.06525) · [GitHub](https://github.com/FoundationVision/LlamaGen) · [Model card](https://huggingface.co/FoundationVision/LlamaGen)
 
-![LlamaGen — Source-based architecture diagram](../assets/architectures/llamagen.svg)
+![LlamaGen — Source-based architecture diagram](../assets/architectures/llamagen-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2406.06525)*
 
@@ -1845,7 +1845,7 @@ Uni-1 is Luma AI's first unified understanding and generation model, offered for
 
 [Architecture and figure](../models/api.md#luma-uni-1) · [Project](https://lumalabs.ai/uni-1) · [Announcement](https://lumalabs.ai/news/uni-1-1-api)
 
-![Luma Uni-1 — Source-based architecture diagram](../assets/architectures/luma-uni-1.svg)
+![Luma Uni-1 — Source-based architecture diagram](../assets/architectures/luma-uni-1-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://lumalabs.ai/news/uni-1-1-api)*
 
@@ -1881,7 +1881,7 @@ Lumina-mGPT (Shanghai AI Laboratory and collaborators, 2024) turns Meta's Chamel
 
 [Architecture and figure](../models/ar-token.md#lumina-mgpt) · [Paper](https://arxiv.org/abs/2408.02657) · [GitHub](https://github.com/Alpha-VLLM/Lumina-mGPT) · [Model card](https://huggingface.co/Alpha-VLLM/Lumina-mGPT-7B-768)
 
-![Lumina-mGPT — Source-based architecture diagram](../assets/architectures/lumina-mgpt.svg)
+![Lumina-mGPT — Source-based architecture diagram](../assets/architectures/lumina-mgpt-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2408.02657)*
 
@@ -2457,7 +2457,7 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 [Architecture and figure](../models/dit.md#nucleus-image) · [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
-![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image.svg)
+![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2604.12163)*
 
@@ -2745,7 +2745,7 @@ Playground v2 is a latent diffusion text-to-image model from Playground that its
 
 [Architecture and figure](../models/latent-unet.md#playground-v2) · [Paper](https://arxiv.org/abs/2402.17245) · [Model card 1](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) · [Model card 2](https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic) · GitHub: no author-linked repository found
 
-![Playground v2 — Source-based architecture diagram](../assets/architectures/playground-v2.svg)
+![Playground v2 — Source-based architecture diagram](../assets/architectures/playground-v2-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic)*
 
@@ -2769,7 +2769,7 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 
 [Architecture and figure](../models/dit.md#proxt2i) · [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found
 
-![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i.svg)
+![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2511.18742)*
 
@@ -2853,7 +2853,7 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 
 [Architecture and figure](../models/efficient.md#qwen-image-flash) · [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
 
-![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash.svg)
+![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.03746)*
 
@@ -2877,7 +2877,7 @@ Reve Image is the image model line from Reve AI, served through reve.com and an 
 
 [Architecture and figure](../models/api.md#reve-image) · [Announcement 1](https://blog.reve.com/posts/the-new-reve/) · [Announcement 2](https://blog.reve.com/posts/reve-editing-model/) · [Announcement 3](https://blog.reve.com/posts/reve-1.5-is-here/) · [Announcement 4](https://blog.reve.com/posts/announcing-reve-2.0/) · [Announcement 5](https://blog.reve.com/posts/the-layout-bet/) · [Announcement 6](https://blog.reve.com/posts/launching-reve-2.1/) · [Announcement 7](https://blog.reve.com/posts/the-reve-api/) · [Announcement 8](https://blog.reve.com/posts/a-new-chapter-for-reve/)
 
-![Reve Image — Source-based architecture diagram](../assets/architectures/reve-image.svg)
+![Reve Image — Source-based architecture diagram](../assets/architectures/reve-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://blog.reve.com/posts/the-layout-bet/)*
 
@@ -2889,7 +2889,7 @@ ruDALL-E is Sber AI and SberDevices' open reproduction of OpenAI's DALL·E for R
 
 [Architecture and figure](../models/ar-token.md#rudall-e) · [Announcement 1](https://habr.com/ru/company/sberdevices/blog/586926/) · [Announcement 2](https://habr.com/ru/company/sberbank/blog/589673/) · [GitHub](https://github.com/ai-forever/ru-dalle) · [Model card](https://huggingface.co/ai-forever/rudalle-Malevich)
 
-![ruDALL-E — Source-based architecture diagram](../assets/architectures/rudall-e.svg)
+![ruDALL-E — Source-based architecture diagram](../assets/architectures/rudall-e-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/ai-forever/ru-dalle)*
 
@@ -2961,7 +2961,7 @@ SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need 
 
 [Architecture and figure](../models/efficient.md#sdxl-lightning) · [Paper](https://arxiv.org/abs/2402.13929) · [Model card](https://huggingface.co/ByteDance/SDXL-Lightning) · GitHub: no author-linked repository found
 
-![SDXL-Lightning — Source-based architecture diagram](../assets/architectures/sdxl-lightning.svg)
+![SDXL-Lightning — Source-based architecture diagram](../assets/architectures/sdxl-lightning-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2402.13929)*
 
@@ -3021,7 +3021,7 @@ Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the sa
 
 [Architecture and figure](../models/dit.md#seedream-3) · [Paper](https://arxiv.org/abs/2504.11346)
 
-![Seedream 3.0 — Source-based architecture diagram](../assets/architectures/seedream-3.svg)
+![Seedream 3.0 — Source-based architecture diagram](../assets/architectures/seedream-3-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11346)*
 
@@ -3033,7 +3033,7 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 
 [Architecture and figure](../models/dit.md#seedream-4) · [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
-![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4.svg)
+![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2509.20427)*
 
@@ -3117,7 +3117,7 @@ SimpleAR (2025) is a deliberately plain autoregressive text-to-image baseline: a
 
 [Architecture and figure](../models/ar-token.md#simplear) · [Paper](https://arxiv.org/abs/2504.11455) · [GitHub](https://github.com/wdrink/SimpleAR)
 
-![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear.svg)
+![SimpleAR — Source-based architecture diagram](../assets/architectures/simplear-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11455)*
 
@@ -3717,6 +3717,6 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 [Architecture and figure](../models/efficient.md#z-image-turbo-pp) · [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
 
-![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp.svg)
+![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.12575)*

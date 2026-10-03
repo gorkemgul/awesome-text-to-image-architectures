@@ -130,7 +130,7 @@ AuraFlow is an open text-to-image model from fal, developed with researcher Simo
 
 [Announcement](https://blog.fal.ai/auraflow/) · [Model card 1](https://huggingface.co/fal/AuraFlow) · [Model card 2](https://huggingface.co/fal/AuraFlow-v0.3) · GitHub: no author-linked repository found
 
-![AuraFlow — Source-based architecture diagram](../assets/architectures/auraflow.svg)
+![AuraFlow — Source-based architecture diagram](../assets/architectures/auraflow-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/fal/AuraFlow)*
 
@@ -180,7 +180,7 @@ Boogu-Image-0.1 is an open-source unified image generation and instruction-editi
 
 [Paper](https://arxiv.org/abs/2607.13125) · [GitHub](https://github.com/Boogu-Project/Boogu-Image) · [Model card](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)
 
-![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image.svg)
+![Boogu-Image-0.1 — Source-based architecture diagram](../assets/architectures/boogu-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base)*
 
@@ -207,7 +207,7 @@ CogView-3Plus is the diffusion-transformer line of Zhipu AI's CogView text-to-im
 
 [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView3-Plus-3B)
 
-![CogView-3Plus — Source-based architecture diagram](../assets/architectures/cogview3-plus.svg)
+![CogView-3Plus — Source-based architecture diagram](../assets/architectures/cogview3-plus-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView3-Plus-3B)*
 
@@ -234,7 +234,7 @@ CogView4 is Zhipu AI's 6B-parameter open text-to-image model, the successor to C
 
 [GitHub](https://github.com/zai-org/CogView4) · [Model card](https://huggingface.co/zai-org/CogView4-6B) · [Docs](https://docs.bigmodel.cn/cn/guide/models/image-generation/cogview-4)
 
-![CogView4 — Source-based architecture diagram](../assets/architectures/cogview4.svg)
+![CogView4 — Source-based architecture diagram](../assets/architectures/cogview4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://huggingface.co/zai-org/CogView4-6B)*
 
@@ -311,7 +311,7 @@ ERNIE-Image is Baidu's open 8B-parameter text-to-image model, built as a single-
 
 [Paper](https://arxiv.org/abs/2605.25347) · [GitHub](https://github.com/baidu/ERNIE-Image) · [Model card](https://huggingface.co/baidu/ERNIE-Image)
 
-![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image.svg)
+![ERNIE-Image — Source-based architecture diagram](../assets/architectures/ernie-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2605.25347)*
 
@@ -467,7 +467,7 @@ FLUX.2 is Black Forest Labs' next-generation image model family after FLUX.1, pa
 
 [Announcement 1](https://bfl.ai/blog/flux-2) · [Announcement 2](https://bfl.ai/blog/flux2-klein-towards-interactive-visual-intelligence) · [GitHub](https://github.com/black-forest-labs/flux2) · [Model card](https://huggingface.co/black-forest-labs/FLUX.2-dev)
 
-![FLUX.2 — Source-based architecture diagram](../assets/architectures/flux-2.svg)
+![FLUX.2 — Source-based architecture diagram](../assets/architectures/flux-2-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/black-forest-labs/flux2)*
 
@@ -519,7 +519,7 @@ Goku (HKU and ByteDance) is a family of joint image-and-video generation models 
 
 [Paper](https://arxiv.org/abs/2502.04896) · [GitHub](https://github.com/Saiyan-World/goku) · [Project](https://saiyan-world.github.io/goku/)
 
-![Goku — Source-based architecture diagram](../assets/architectures/goku.svg)
+![Goku — Source-based architecture diagram](../assets/architectures/goku-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2502.04896)*
 
@@ -677,7 +677,7 @@ Ideogram 4.0 is Ideogram's first open-weight text-to-image foundation model, tra
 
 [Announcement](https://ideogram.ai/blog/ideogram-4.0/) · [GitHub](https://github.com/ideogram-oss/ideogram4) · [Model card](https://huggingface.co/ideogram-ai/ideogram-4-fp8)
 
-![Ideogram 4.0 — Source-based architecture diagram](../assets/architectures/ideogram-4.svg)
+![Ideogram 4.0 — Source-based architecture diagram](../assets/architectures/ideogram-4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://github.com/ideogram-oss/ideogram4)*
 
@@ -1154,7 +1154,7 @@ Nucleus-Image studies sparse mixture-of-experts scaling as a path to high-qualit
 
 [Paper](https://arxiv.org/abs/2604.12163) · [GitHub](https://github.com/WithNucleusAI/Nucleus-Image) · [Model card](https://huggingface.co/NucleusAI/Nucleus-Image)
 
-![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image.svg)
+![Nucleus-Image — Source-based architecture diagram](../assets/architectures/nucleus-image-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2604.12163)*
 
@@ -1385,7 +1385,7 @@ ProxT2I proposes a text-to-image diffusion model built on backward (implicit) di
 
 [Paper](https://arxiv.org/abs/2511.18742) · GitHub: no author-linked repository found
 
-![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i.svg)
+![ProxT2I — Source-based architecture diagram](../assets/architectures/proxt2i-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2511.18742)*
 
@@ -1610,7 +1610,7 @@ Seedream 3.0 is ByteDance's next Seedream generation, explicitly built on the sa
 
 [Paper](https://arxiv.org/abs/2504.11346)
 
-![Seedream 3.0 — Source-based architecture diagram](../assets/architectures/seedream-3.svg)
+![Seedream 3.0 — Source-based architecture diagram](../assets/architectures/seedream-3-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2504.11346)*
 
@@ -1633,7 +1633,7 @@ Seedream 4.0 is ByteDance's unified text-to-image generation and multi-image edi
 
 [Paper](https://arxiv.org/abs/2509.20427) · [Announcement](https://www.byteplus.com/en/blog/seedream4-5) · GitHub: no author-linked repository found
 
-![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4.svg)
+![Seedream 4.0 — Source-based architecture diagram](../assets/architectures/seedream-4-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2509.20427)*
 

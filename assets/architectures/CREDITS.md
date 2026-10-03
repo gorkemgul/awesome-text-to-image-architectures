@@ -18,7 +18,7 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | ARM | [Figure 2](arm.png) | [Source](https://arxiv.org/abs/2606.11188) | [Original](https://arxiv.org/html/2606.11188v1/tokenizer.png) |
 | ART (Anonymous Region Transformer) | [Figure 4 (PDF p. 4)](art-multilayer.png) | [Source](https://arxiv.org/abs/2502.18364) | [Original](https://arxiv.org/pdf/2502.18364v1) |
 | AttnGAN | [Figure 2](attngan.png) | [Source](https://arxiv.org/abs/1711.10485) | [Original](https://arxiv.org/html/1711.10485v1/framework_new.png) |
-| AuraFlow | [Source-based architecture diagram](auraflow.svg) | [Source](https://huggingface.co/fal/AuraFlow) | Reconstructed from primary source |
+| AuraFlow | [Source-based architecture diagram](auraflow-architecture.svg) | [Source](https://huggingface.co/fal/AuraFlow) | Reconstructed from primary source |
 | Aurora (Sparse MoE GAN) | [Figure 2](aurora-moe-gan.png) | [Source](https://arxiv.org/abs/2309.03904) | [Original](https://arxiv.org/html/2309.03904v1/framework.png) |
 | B-cos Diffusion Models | [Figure 4 (PDF p. 9)](b-cos-diffusion.png) | [Source](https://arxiv.org/abs/2507.03846) | [Original](https://arxiv.org/pdf/2507.03846v1) |
 | BAGEL | [Figure 2](bagel.png) | [Source](https://arxiv.org/abs/2505.14683) | [Original](https://arxiv.org/html/2505.14683v3/x2.png) |
@@ -28,7 +28,7 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | BLIP3-o | [Figure 1](blip3-o.png) | [Source](https://arxiv.org/abs/2505.09568) | [Original](https://arxiv.org/html/2505.09568v1/fig1.png) |
 | BLIP3o-NEXT | [Figure 1](blip3o-next.png) | [Source](https://arxiv.org/abs/2510.15857) | [Original](https://arxiv.org/html/2510.15857v1/figure1.png) |
 | BLM-SGAN | [Figure 2](blm-sgan.png) | [Source](https://arxiv.org/abs/2606.08847) | [Original](https://arxiv.org/html/2606.08847v1/mod.png) |
-| Boogu-Image-0.1 | [Source-based architecture diagram](boogu-image.svg) | [Source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base) | Reconstructed from primary source |
+| Boogu-Image-0.1 | [Source-based architecture diagram](boogu-image-architecture.svg) | [Source](https://huggingface.co/Boogu/Boogu-Image-0.1-Base) | Reconstructed from primary source |
 | Bridge | [Figure 2](bridge.png) | [Source](https://arxiv.org/abs/2510.01546) | [Original](https://arxiv.org/html/2510.01546v1/method_v8.png) |
 | Bridge Diffusion Model (BDM) | [Figure 2](bridge-diffusion.png) | [Source](https://arxiv.org/abs/2309.00952) | [Original](https://arxiv.org/html/2309.00952v2/BDM.png) |
 | C4Synth | [Figure 3](c4synth.png) | [Source](https://arxiv.org/abs/1809.10238) | [Original](https://arxiv.org/html/1809.10238v1/images/Architecture.png) |
@@ -41,20 +41,20 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | CM3 | [Figure 1 (PDF p. 3)](cm3.png) | [Source](https://arxiv.org/abs/2201.07520) | [Original](https://arxiv.org/pdf/2201.07520v1) |
 | CoDi | [Figure 2](codi.png) | [Source](https://arxiv.org/abs/2305.11846) | [Original](https://arxiv.org/html/2305.11846v1/main_architecture.png) |
 | CogView | [Figure 3](cogview.png) | [Source](https://arxiv.org/abs/2105.13290) | [Original](https://arxiv.org/html/2105.13290v3/cogviewframe.png) |
-| CogView-3Plus | [Source-based architecture diagram](cogview3-plus.svg) | [Source](https://huggingface.co/zai-org/CogView3-Plus-3B) | Reconstructed from primary source |
+| CogView-3Plus | [Source-based architecture diagram](cogview3-plus-architecture.svg) | [Source](https://huggingface.co/zai-org/CogView3-Plus-3B) | Reconstructed from primary source |
 | CogView2 | [Figure 2](cogview2.png) | [Source](https://arxiv.org/abs/2204.14217) | [Original](https://arxiv.org/html/2204.14217v2/coglm.png) |
 | CogView3 | [Figure 3](cogview3.png) | [Source](https://arxiv.org/abs/2403.05121) | [Original](https://arxiv.org/html/2403.05121v1/figures/CogView3_pipelinev2.jpg) |
-| CogView4 | [Source-based architecture diagram](cogview4.svg) | [Source](https://huggingface.co/zai-org/CogView4-6B) | Reconstructed from primary source |
+| CogView4 | [Source-based architecture diagram](cogview4-architecture.svg) | [Source](https://huggingface.co/zai-org/CogView4-6B) | Reconstructed from primary source |
 | Composer | [Figures 7 and 8 (global and local conditioning modules)](composer.png) | [Source](https://arxiv.org/abs/2302.09778) | [Panel 1](https://arxiv.org/html/2302.09778v2/figs_compressed/global.png) · [Panel 2](https://arxiv.org/html/2302.09778v2/figs_compressed/local.png) |
 | ControlGAN | [Figure 2](controlgan.png) | [Source](https://arxiv.org/abs/1909.07083) | [Original](https://arxiv.org/html/1909.07083v2/archi.png) |
 | Cosmos 3 | [Figure 5 (PDF p. 11)](cosmos3.png) | [Source](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) | [Original](https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf) |
 | CPGAN | [Figure 2](cpgan.png) | [Source](https://arxiv.org/abs/1912.08562) | [Original](https://arxiv.org/html/1912.08562v2/model_structure.png) |
 | CRD-CGAN | [Figure 2](crd-cgan.png) | [Source](https://arxiv.org/abs/2107.13516) | [Original](https://arxiv.org/html/2107.13516v1/framework.png) |
 | DAE-GAN | [Figure 2](dae-gan.png) | [Source](https://arxiv.org/abs/2108.12141) | [Original](https://arxiv.org/html/2108.12141v1/framework_v5.png) |
-| DALL·E | [Source-based architecture diagram](dall-e.svg) | [Source](https://arxiv.org/abs/2102.12092) | Reconstructed from primary source |
+| DALL·E | [Source-based architecture diagram](dall-e-architecture.svg) | [Source](https://arxiv.org/abs/2102.12092) | Reconstructed from primary source |
 | DALL·E 2 (unCLIP) | [Figure 2](dall-e-2.png) | [Source](https://arxiv.org/abs/2204.06125) | [Original](https://arxiv.org/html/2204.06125v1/figures/figurehead/unclip-figurehead.png) |
 | DALL·E 3 | [Input/output diagram](dall-e-3.svg) | [Source](https://cdn.openai.com/papers/DALL_E_3_System_Card.pdf) | Generated from catalog |
-| DALL·E Mini | [Source-based architecture diagram](dall-e-mini.svg) | [Source](https://huggingface.co/dalle-mini/dalle-mini) | Reconstructed from primary source |
+| DALL·E Mini | [Source-based architecture diagram](dall-e-mini-architecture.svg) | [Source](https://huggingface.co/dalle-mini/dalle-mini) | Reconstructed from primary source |
 | DART | [Figure 2](dart.png) | [Source](https://arxiv.org/abs/2410.08159) | [Original](https://arxiv.org/html/2410.08159v2/figures/pipeline_dart4.jpg) |
 | DC-AR | [Figure 4 (PDF p. 5)](dc-ar.png) | [Source](https://arxiv.org/abs/2507.04947) | [Original](https://arxiv.org/pdf/2507.04947v1) |
 | DeCo | [Figure 3 (PDF p. 4)](deco.png) | [Source](https://arxiv.org/abs/2511.19365) | [Original](https://arxiv.org/pdf/2511.19365v2) |
@@ -77,11 +77,11 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | E-MMDiT (AMD Nitro-E) | [Figure 3 (PDF p. 3)](e-mmdit.png) | [Source](https://arxiv.org/abs/2510.27135) | [Original](https://arxiv.org/pdf/2510.27135v1) |
 | eDiff-I | [Figure 5](ediff-i.png) | [Source](https://arxiv.org/abs/2211.01324) | [Original](https://arxiv.org/html/2211.01324v5/model_arch2.png) |
 | Emu (BAAI) | [Figure 2](emu-baai.png) | [Source](https://arxiv.org/abs/2307.05222) | [Original](https://arxiv.org/html/2307.05222v2/method.png) |
-| Emu (Meta) | [Source-based architecture diagram](emu-meta.svg) | [Source](https://arxiv.org/abs/2309.15807) | Reconstructed from primary source |
+| Emu (Meta) | [Source-based architecture diagram](emu-meta-architecture.svg) | [Source](https://arxiv.org/abs/2309.15807) | Reconstructed from primary source |
 | Emu2 | [Figure 2](emu2.png) | [Source](https://arxiv.org/abs/2312.13286) | [Original](https://arxiv.org/html/2312.13286v2/method.png) |
 | Emu3 | [Figure 1 (PDF p. 1)](emu3.png) | [Source](https://arxiv.org/abs/2409.18869) | [Original](https://arxiv.org/pdf/2409.18869v1) |
 | Emu3.5 | [Figure 3](emu3-5.png) | [Source](https://arxiv.org/abs/2510.26583) | [Original](https://arxiv.org/html/2510.26583v1/arch.png) |
-| ERNIE-Image | [Source-based architecture diagram](ernie-image.svg) | [Source](https://arxiv.org/abs/2605.25347) | Reconstructed from primary source |
+| ERNIE-Image | [Source-based architecture diagram](ernie-image-architecture.svg) | [Source](https://arxiv.org/abs/2605.25347) | Reconstructed from primary source |
 | ERNIE-ViLG | [Figure 1](ernie-vilg.png) | [Source](https://arxiv.org/abs/2112.15283) | [Original](https://arxiv.org/html/2112.15283v1/uni_model.png) |
 | ERNIE-ViLG 2.0 | [Figure 2](ernie-vilg-2.png) | [Source](https://arxiv.org/abs/2210.15257) | [Original](https://arxiv.org/html/2210.15257v2/model_overview6.png) |
 | FA-GAN | [Figure 2](fa-gan.png) | [Source](https://arxiv.org/abs/2109.00907) | [Original](https://arxiv.org/html/2109.00907v1/fig22.png) |
@@ -92,7 +92,7 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | Fluid | [Figure 3](fluid.png) | [Source](https://arxiv.org/abs/2410.13863) | [Original](https://arxiv.org/html/2410.13863v1/framework_new.png) |
 | FLUX.1 | [Figure 3 (FLUX.1 Kontext paper)](flux-1.png) | [Source](https://arxiv.org/abs/2506.15742) | [Original](https://arxiv.org/html/2506.15742v2/img/fusedditblock.jpg) |
 | FLUX.1 Kontext | [Figure 4](flux-1-kontext.png) | [Source](https://arxiv.org/abs/2506.15742) | [Original](https://arxiv.org/html/2506.15742v2/img/kontext_v2.jpg) |
-| FLUX.2 | [Source-based architecture diagram](flux-2.svg) | [Source](https://github.com/black-forest-labs/flux2) | Reconstructed from primary source |
+| FLUX.2 | [Source-based architecture diagram](flux-2-architecture.svg) | [Source](https://github.com/black-forest-labs/flux2) | Reconstructed from primary source |
 | FoX | [Figure 2](fox.png) | [Source](https://arxiv.org/abs/2503.01298) | [Original](https://arxiv.org/html/2503.01298v3/framework.png) |
 | Frido | [Figure 3 (PDF p. 4)](frido.png) | [Source](https://arxiv.org/abs/2208.13753) | [Original](https://arxiv.org/pdf/2208.13753v2) |
 | GALIP | [Figure 3](galip.png) | [Source](https://arxiv.org/abs/2301.12959) | [Original](https://arxiv.org/html/2301.12959v1/a3.png) |
@@ -102,15 +102,15 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | GenTron | [Figure 2 (PDF p. 3)](gentron.png) | [Source](https://arxiv.org/abs/2312.04557) | [Original](https://arxiv.org/pdf/2312.04557v2) |
 | GigaGAN | [Figure 4](gigagan.png) | [Source](https://arxiv.org/abs/2303.05511) | [Original](https://arxiv.org/html/2303.05511v2/architecture.png) |
 | GILL | [Figure 2 (PDF p. 3)](gill.png) | [Source](https://arxiv.org/abs/2305.17216) | [Original](https://arxiv.org/pdf/2305.17216v3) |
-| GLIDE | [Source-based architecture diagram](glide.svg) | [Source](https://arxiv.org/abs/2112.10741) | Reconstructed from primary source |
+| GLIDE | [Source-based architecture diagram](glide-architecture.svg) | [Source](https://arxiv.org/abs/2112.10741) | Reconstructed from primary source |
 | GLM-Image | [README architecture figure (architecture_1)](glm-image.png) | [Source](https://github.com/zai-org/GLM-Image) | [Original](https://raw.githubusercontent.com/zai-org/GLM-Image/main/resources/architecture_1.jpeg) |
-| Goku | [Source-based architecture diagram](goku.svg) | [Source](https://arxiv.org/abs/2502.04896) | Reconstructed from primary source |
+| Goku | [Source-based architecture diagram](goku-architecture.svg) | [Source](https://arxiv.org/abs/2502.04896) | Reconstructed from primary source |
 | GoT | [Figure 3](got.png) | [Source](https://arxiv.org/abs/2503.10639) | [Original](https://arxiv.org/html/2503.10639v1/main_figure.png) |
 | GPT Image 1 | [Input/output diagram](gpt-image-1.svg) | [Source](https://developers.openai.com/api/docs/models/gpt-image-1) | Generated from catalog |
 | GPT Image 2 | [Input/output diagram](gpt-image-2.svg) | [Source](https://developers.openai.com/api/docs/models/gpt-image-2) | Generated from catalog |
 | GR-GAN | [Figure 1](gr-gan.png) | [Source](https://arxiv.org/abs/2205.11273) | [Original](https://arxiv.org/html/2205.11273v2/Image/GAN_Model_V4.png) |
 | GRN (Generative Refinement Networks) | [Figure 4 (PDF p. 5)](grn.png) | [Source](https://arxiv.org/abs/2604.13030) | [Original](https://arxiv.org/pdf/2604.13030v2) |
-| Grok Aurora | [Source-based architecture diagram](grok-aurora.svg) | [Source](https://x.ai/news/grok-image-generation-release) | Reconstructed from primary source |
+| Grok Aurora | [Source-based architecture diagram](grok-aurora-architecture.svg) | [Source](https://x.ai/news/grok-image-generation-release) | Reconstructed from primary source |
 | Grok Imagine Image | [Input/output diagram](grok-imagine-image.svg) | [Source](https://docs.x.ai/docs/guides/image-generations) | Generated from catalog |
 | HART | [Figure 6](hart.png) | [Source](https://arxiv.org/abs/2410.10812) | [Original](https://arxiv.org/html/2410.10812v1/hybrid_transformer_img.png) |
 | HDGAN | [Figure 1 (top panel)](hdgan.png) | [Source](https://arxiv.org/abs/1802.09178) | [Original](https://arxiv.org/html/1802.09178v2/intro2.png) |
@@ -125,7 +125,7 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | Hyper-SD | [Figure 2 (PDF p. 5)](hyper-sd.png) | [Source](https://arxiv.org/abs/2404.13686) | [Original](https://arxiv.org/pdf/2404.13686v3) |
 | i1 | [Figure 4](i1.png) | [Source](https://arxiv.org/abs/2606.11289) | [Original](https://arxiv.org/html/2606.11289v1/i1_flowchart.png) |
 | Ideogram | [Input/output diagram](ideogram.svg) | [Source](https://developer.ideogram.ai/api-reference/generate-images/generate-v3) | Generated from catalog |
-| Ideogram 4.0 | [Source-based architecture diagram](ideogram-4.svg) | [Source](https://github.com/ideogram-oss/ideogram4) | Reconstructed from primary source |
+| Ideogram 4.0 | [Source-based architecture diagram](ideogram-4-architecture.svg) | [Source](https://github.com/ideogram-oss/ideogram4) | Reconstructed from primary source |
 | ILLUME | [Figure 3](illume.png) | [Source](https://arxiv.org/abs/2412.06673) | [Original](https://arxiv.org/html/2412.06673v1/framework.png) |
 | ILLUME+ | [Figure 3](illume-plus.png) | [Source](https://arxiv.org/abs/2504.01934) | [Original](https://arxiv.org/html/2504.01934v2/framework.png) |
 | ILLUME-X | [Figure 2](illume-x.png) | [Source](https://arxiv.org/abs/2606.30054) | [Original](https://arxiv.org/html/2606.30054v1/model.png) |
@@ -153,13 +153,13 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | Karlo | [README figure: improved 64→256 super-resolution module](karlo.png) | [Source](https://github.com/kakaobrain/karlo) | [Original](https://raw.githubusercontent.com/kakaobrain/karlo/main/assets/improved_sr_arch.jpg) |
 | KNN-Diffusion | [Figure 5](knn-diffusion.png) | [Source](https://arxiv.org/abs/2204.02849) | [Original](https://arxiv.org/html/2204.02849v2/resources/images/arch.png) |
 | KOALA | [Figure 2](koala.png) | [Source](https://arxiv.org/abs/2312.04005) | [Original](https://arxiv.org/html/2312.04005v3/arch.png) |
-| Kolors | [Source-based architecture diagram](kolors.svg) | [Source](https://github.com/Kwai-Kolors/Kolors) | Reconstructed from primary source |
+| Kolors | [Source-based architecture diagram](kolors-architecture.svg) | [Source](https://github.com/Kwai-Kolors/Kolors) | Reconstructed from primary source |
 | Kolors 2.0 | [Input/output diagram](kolors-2.svg) | [Source](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15) | Generated from catalog |
 | Krea 2 | [Blog — 'Single-stream MMDiT' figure](krea-2.png) | [Source](https://www.krea.ai/blog/krea-2-technical-report) | [Original](https://s.krea.ai/blog-posts/krea-2-technical-report/agent/1782227083196-single-stream-mmdit.png) |
 | L-Verse | [Figure 2](l-verse.png) | [Source](https://arxiv.org/abs/2111.11133) | [Original](https://arxiv.org/html/2111.11133v11/f_l_verse.png) |
 | LaDe | [Figure 5](lade.png) | [Source](https://arxiv.org/abs/2603.17965) | [Original](https://arxiv.org/html/2603.17965v1/framework.png) |
 | LAFITE | [Figure 3](lafite.png) | [Source](https://arxiv.org/abs/2111.13792) | [Original](https://arxiv.org/html/2111.13792v3/figures/model.png) |
-| Latent Consistency Models (LCM) | [Source-based architecture diagram](lcm.svg) | [Source](https://arxiv.org/abs/2310.04378) | Reconstructed from primary source |
+| Latent Consistency Models (LCM) | [Source-based architecture diagram](lcm-architecture.svg) | [Source](https://arxiv.org/abs/2310.04378) | Reconstructed from primary source |
 | Latent Diffusion Models (LDM) | [Figure 3 (PDF p. 4)](ldm.png) | [Source](https://arxiv.org/abs/2112.10752) | [Original](https://arxiv.org/pdf/2112.10752v2) |
 | Lavida-O | [Figure 2](lavida-o.png) | [Source](https://arxiv.org/abs/2509.19244) | [Original](https://arxiv.org/html/2509.19244v3/Artboard_42.png) |
 | LaVIT | [Figure 2](lavit.png) | [Source](https://arxiv.org/abs/2309.04669) | [Original](https://arxiv.org/html/2309.04669v3/fig1v3.png) |
@@ -174,14 +174,14 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | LLaDA-Image | [Figure 3](llada-image.png) | [Source](https://arxiv.org/abs/2609.03796) | [Original](https://arxiv.org/html/2609.03796v1/llada_image_arch.png) |
 | LLaDA-o | [Figure 2 (PDF p. 4)](llada-o.png) | [Source](https://arxiv.org/abs/2603.01068) | [Original](https://arxiv.org/pdf/2603.01068v1) |
 | LLaDA2.0-Uni | [Figure 4](llada2-uni.png) | [Source](https://arxiv.org/abs/2604.20796) | [Original](https://arxiv.org/html/2604.20796v1/architecture.png) |
-| LlamaGen | [Source-based architecture diagram](llamagen.svg) | [Source](https://arxiv.org/abs/2406.06525) | Reconstructed from primary source |
+| LlamaGen | [Source-based architecture diagram](llamagen-architecture.svg) | [Source](https://arxiv.org/abs/2406.06525) | Reconstructed from primary source |
 | LongCat-Image | [Figure 12](longcat-image.png) | [Source](https://arxiv.org/abs/2512.07584) | [Original](https://arxiv.org/html/2512.07584v1/model_struct.png) |
 | LongCat-Next | [Figure 2](longcat-next.png) | [Source](https://arxiv.org/abs/2603.27538) | [Original](https://arxiv.org/html/2603.27538v1/Overview.png) |
 | LongTextAR | [Figure 3](longtextar.png) | [Source](https://arxiv.org/abs/2503.20198) | [Original](https://arxiv.org/html/2503.20198v1/figures/src/main_ppl.png) |
-| Luma Uni-1 | [Source-based architecture diagram](luma-uni-1.svg) | [Source](https://lumalabs.ai/news/uni-1-1-api) | Reconstructed from primary source |
+| Luma Uni-1 | [Source-based architecture diagram](luma-uni-1-architecture.svg) | [Source](https://lumalabs.ai/news/uni-1-1-api) | Reconstructed from primary source |
 | Lumina-DiMOO | [Figure 3](lumina-dimoo.png) | [Source](https://arxiv.org/abs/2510.06308) | [Original](https://arxiv.org/html/2510.06308v1/framework.png) |
 | Lumina-Image 2.0 | [Figure 2](lumina-image-2.png) | [Source](https://arxiv.org/abs/2503.21758) | [Original](https://arxiv.org/html/2503.21758v1/lumina2-arc.png) |
-| Lumina-mGPT | [Source-based architecture diagram](lumina-mgpt.svg) | [Source](https://arxiv.org/abs/2408.02657) | Reconstructed from primary source |
+| Lumina-mGPT | [Source-based architecture diagram](lumina-mgpt-architecture.svg) | [Source](https://arxiv.org/abs/2408.02657) | Reconstructed from primary source |
 | Lumina-mGPT 2.0 | [Figure 2](lumina-mgpt-2.png) | [Source](https://arxiv.org/abs/2507.17801) | [Original](https://arxiv.org/html/2507.17801v1/architecture.png) |
 | Lumina-Next | [Figure 2](lumina-next.png) | [Source](https://arxiv.org/abs/2406.18583) | [Original](https://arxiv.org/html/2406.18583v1/architecture.png) |
 | Lumina-T2X (Lumina-T2I) | [Figure 3](lumina-t2x.png) | [Source](https://arxiv.org/abs/2405.05945) | [Original](https://arxiv.org/html/2405.05945v3/lumina-pipeline.png) |
@@ -232,7 +232,7 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | Nexus | [Figure 2](nexus.png) | [Source](https://arxiv.org/abs/2608.16104) | [Original](https://arxiv.org/html/2608.16104v1/2_WLJG.png) |
 | Nexus-Gen | [Figure 1](nexus-gen.png) | [Source](https://arxiv.org/abs/2504.21356) | [Original](https://arxiv.org/html/2504.21356v3/training2.png) |
 | Normalizing Trajectory Models | [Figure 3 (PDF p. 4)](ntm.png) | [Source](https://arxiv.org/abs/2605.08078) | [Original](https://arxiv.org/pdf/2605.08078v2) |
-| Nucleus-Image | [Source-based architecture diagram](nucleus-image.svg) | [Source](https://arxiv.org/abs/2604.12163) | Reconstructed from primary source |
+| Nucleus-Image | [Source-based architecture diagram](nucleus-image-architecture.svg) | [Source](https://arxiv.org/abs/2604.12163) | Reconstructed from primary source |
 | NÜWA | [Figure 2](nuwa.png) | [Source](https://arxiv.org/abs/2111.12417) | [Original](https://arxiv.org/html/2111.12417v1/Pipeline_2.png) |
 | Obj-GAN | [Figure 2](obj-gan.png) | [Source](https://arxiv.org/abs/1902.10740) | [Original](https://arxiv.org/html/1902.10740v1/overall_framework.png) |
 | oboro: | [Figure 1](oboro.png) | [Source](https://arxiv.org/abs/2511.08168) | [Original](https://arxiv.org/html/2511.08168v1/1-1-fig1.png) |
@@ -260,23 +260,23 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | PixelDiT | [Figure 2 (PDF p. 3)](pixeldit.png) | [Source](https://arxiv.org/abs/2511.20645) | [Original](https://arxiv.org/pdf/2511.20645v2) |
 | PixelFlow | [Figure 2](pixelflow.png) | [Source](https://arxiv.org/abs/2504.07963) | [Original](https://arxiv.org/html/2504.07963v1/main_pipeline.png) |
 | PixNerd | [Figure 1 (PDF p. 1)](pixnerd.png) | [Source](https://arxiv.org/abs/2507.23268) | [Original](https://arxiv.org/pdf/2507.23268v2) |
-| Playground v2 | [Source-based architecture diagram](playground-v2.svg) | [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) | Reconstructed from primary source |
+| Playground v2 | [Source-based architecture diagram](playground-v2-architecture.svg) | [Source](https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic) | Reconstructed from primary source |
 | Playground v3 | [Figure 2](playground-v3.png) | [Source](https://arxiv.org/abs/2409.10695) | [Original](https://arxiv.org/html/2409.10695v2/images/model_structure.png) |
-| ProxT2I | [Source-based architecture diagram](proxt2i.svg) | [Source](https://arxiv.org/abs/2511.18742) | Reconstructed from primary source |
+| ProxT2I | [Source-based architecture diagram](proxt2i-architecture.svg) | [Source](https://arxiv.org/abs/2511.18742) | Reconstructed from primary source |
 | PS-VAE | [Figure 5](ps-vae.png) | [Source](https://arxiv.org/abs/2512.17909) | [Original](https://arxiv.org/html/2512.17909v1/figures/pipeline.png) |
 | PSP-DiT | [Figure 1](psp-dit.png) | [Source](https://arxiv.org/abs/2609.31780) | [Original](https://arxiv.org/html/2609.31780v1/figures/method.png) |
 | PUMA | [Figure 2](puma.png) | [Source](https://arxiv.org/abs/2410.13861) | [Original](https://arxiv.org/html/2410.13861v2/main_figure.png) |
 | Query-Kontext | [Figure 2](query-kontext.png) | [Source](https://arxiv.org/abs/2509.26641) | [Original](https://arxiv.org/html/2509.26641v1/model_v4.png) |
 | Qwen-Image | [Figure 6](qwen-image.png) | [Source](https://arxiv.org/abs/2508.02324) | [Original](https://arxiv.org/html/2508.02324v1/figure_qwen-image-arch2.png) |
 | Qwen-Image-2.0 | [Figure 8](qwen-image-2.png) | [Source](https://arxiv.org/abs/2605.10730) | [Original](https://arxiv.org/html/2605.10730v1/framework.png) |
-| Qwen-Image-Flash | [Source-based architecture diagram](qwen-image-flash.svg) | [Source](https://arxiv.org/abs/2606.03746) | Reconstructed from primary source |
+| Qwen-Image-Flash | [Source-based architecture diagram](qwen-image-flash-architecture.svg) | [Source](https://arxiv.org/abs/2606.03746) | Reconstructed from primary source |
 | RAPHAEL | [Figure 3](raphael.png) | [Source](https://arxiv.org/abs/2305.18295) | [Original](https://arxiv.org/html/2305.18295v5/figure2_qsguo.png) |
 | RAT-GAN | [Figure 1](rat-gan.png) | [Source](https://arxiv.org/abs/2204.10482) | [Original](https://arxiv.org/html/2204.10482v1/framework_g.png) |
 | Re-Imagen | [Figure 3](re-imagen.png) | [Source](https://arxiv.org/abs/2209.14491) | [Original](https://arxiv.org/html/2209.14491v3/figures/reimagen.001.jpeg) |
 | Recraft | [Input/output diagram](recraft.svg) | [Source](https://www.recraft.ai/docs/api-reference/endpoints) | Generated from catalog |
 | Retrieval-Augmented Diffusion Models (RDM) | [Figure 3](rdm.png) | [Source](https://arxiv.org/abs/2204.11824) | [Original](https://arxiv.org/html/2204.11824v3/img/model_draft_9.jpg) |
-| Reve Image | [Source-based architecture diagram](reve-image.svg) | [Source](https://blog.reve.com/posts/the-layout-bet/) | Reconstructed from primary source |
-| ruDALL-E | [Source-based architecture diagram](rudall-e.svg) | [Source](https://github.com/ai-forever/ru-dalle) | Reconstructed from primary source |
+| Reve Image | [Source-based architecture diagram](reve-image-architecture.svg) | [Source](https://blog.reve.com/posts/the-layout-bet/) | Reconstructed from primary source |
+| ruDALL-E | [Source-based architecture diagram](rudall-e-architecture.svg) | [Source](https://github.com/ai-forever/ru-dalle) | Reconstructed from primary source |
 | SANA | [Figure 5](sana.png) | [Source](https://arxiv.org/abs/2410.10629) | [Original](https://arxiv.org/html/2410.10629v3/model.png) |
 | SANA 1.5 | [Figure 1](sana-1-5.png) | [Source](https://arxiv.org/abs/2501.18427) | [Original](https://arxiv.org/html/2501.18427v4/pipeline.png) |
 | SANA-Sprint | [Figure 2](sana-sprint.png) | [Source](https://arxiv.org/abs/2503.09641) | [Original](https://arxiv.org/html/2503.09641v4/paradigm.png) |
@@ -285,13 +285,13 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | SDN (Symmetrical Distillation Networks) | [Figure 2](sdn-t2i.png) | [Source](https://arxiv.org/abs/1808.06801) | [Original](https://arxiv.org/html/1808.06801v1/Framework.png) |
 | SDXL | [Figure 1 (right panel)](sdxl.png) | [Source](https://arxiv.org/abs/2307.01952) | [Original](https://arxiv.org/html/2307.01952v1/img/sdxl_pipeline.jpg) |
 | SDXL Turbo (Adversarial Diffusion Distillation) | [Figure 2](sdxl-turbo.png) | [Source](https://arxiv.org/abs/2311.17042) | [Original](https://arxiv.org/html/2311.17042v1/fig_new.png) |
-| SDXL-Lightning | [Source-based architecture diagram](sdxl-lightning.svg) | [Source](https://arxiv.org/abs/2402.13929) | Reconstructed from primary source |
+| SDXL-Lightning | [Source-based architecture diagram](sdxl-lightning-architecture.svg) | [Source](https://arxiv.org/abs/2402.13929) | Reconstructed from primary source |
 | SDXS | [Figure 3](sdxs.png) | [Source](https://arxiv.org/abs/2403.16627) | [Original](https://arxiv.org/html/2403.16627v2/main.png) |
 | SEED-LLaMA | [Figure 4 (PDF p. 5)](seed-llama.png) | [Source](https://arxiv.org/abs/2310.01218) | [Original](https://arxiv.org/pdf/2310.01218v1) |
 | SEED-X | [Figure 4](seed-x.png) | [Source](https://arxiv.org/abs/2404.14396) | [Original](https://arxiv.org/html/2404.14396v2/llm_method.png) |
 | Seedream 2.0 | [Figure 10](seedream-2.png) | [Source](https://arxiv.org/abs/2503.07703) | [Original](https://arxiv.org/html/2503.07703v1/figures/arch.png) |
-| Seedream 3.0 | [Source-based architecture diagram](seedream-3.svg) | [Source](https://arxiv.org/abs/2504.11346) | Reconstructed from primary source |
-| Seedream 4.0 | [Source-based architecture diagram](seedream-4.svg) | [Source](https://arxiv.org/abs/2509.20427) | Reconstructed from primary source |
+| Seedream 3.0 | [Source-based architecture diagram](seedream-3-architecture.svg) | [Source](https://arxiv.org/abs/2504.11346) | Reconstructed from primary source |
+| Seedream 4.0 | [Source-based architecture diagram](seedream-4-architecture.svg) | [Source](https://arxiv.org/abs/2509.20427) | Reconstructed from primary source |
 | Seedream 5.0 | [Input/output diagram](seedream-5.svg) | [Source](https://seed.bytedance.com/en/seedream5_0_lite) | Generated from catalog |
 | SeFi-Image | [Figure 7](sefi-image.png) | [Source](https://arxiv.org/abs/2606.22568) | [Original](https://arxiv.org/html/2606.22568v5/SFD_Framework.png) |
 | SegAttnGAN | [Figure 2](segattngan.png) | [Source](https://arxiv.org/abs/2005.12444) | [Original](https://arxiv.org/html/2005.12444v1/images/segattngan.png) |
@@ -299,15 +299,15 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | SenseNova-U1 | [Figure 4](sensenova-u1.png) | [Source](https://arxiv.org/abs/2605.12500) | [Original](https://arxiv.org/html/2605.12500v1/method_architecture.png) |
 | Show-o | [Figure 2](show-o.png) | [Source](https://arxiv.org/abs/2408.12528) | [Original](https://arxiv.org/html/2408.12528v7/show-o.png) |
 | Show-o2 | [Figure 1](show-o2.png) | [Source](https://arxiv.org/abs/2506.15564) | [Original](https://arxiv.org/html/2506.15564v3/overview.png) |
-| SimpleAR | [Source-based architecture diagram](simplear.svg) | [Source](https://arxiv.org/abs/2504.11455) | Reconstructed from primary source |
+| SimpleAR | [Source-based architecture diagram](simplear-architecture.svg) | [Source](https://arxiv.org/abs/2504.11455) | Reconstructed from primary source |
 | Skywork UniPic | [Figure 2](skywork-unipic.png) | [Source](https://arxiv.org/abs/2508.03320) | [Original](https://arxiv.org/html/2508.03320v1/architecture.png) |
 | Skywork UniPic 2.0 | [Figure 2](skywork-unipic-2.png) | [Source](https://arxiv.org/abs/2509.04548) | [Original](https://arxiv.org/html/2509.04548v2/unipicv2-pipeline.png) |
 | SnapFusion | [Figure 3 (PDF p. 4)](snapfusion.png) | [Source](https://arxiv.org/abs/2306.00980) | [Original](https://arxiv.org/pdf/2306.00980v3) |
 | SnapGen | [Figure 2 (PDF p. 4)](snapgen.png) | [Source](https://arxiv.org/abs/2412.09619) | [Original](https://arxiv.org/pdf/2412.09619v1) |
 | SSA-GAN | [Figure 2](ssa-gan.png) | [Source](https://arxiv.org/abs/2104.00567) | [Original](https://arxiv.org/html/2104.00567v6/pipeline2.png) |
 | SSD-1B | [Figure 2](ssd-1b.png) | [Source](https://arxiv.org/abs/2401.02677) | [Original](https://arxiv.org/html/2401.02677v1/SSD1B_Pipeline_Horizontal.png) |
-| Stable Diffusion 1.x | [Source-based architecture diagram](stable-diffusion-1.svg) | [Source](https://github.com/CompVis/stable-diffusion) | Reconstructed from primary source |
-| Stable Diffusion 2.x | [Source-based architecture diagram](stable-diffusion-2.svg) | [Source](https://arxiv.org/abs/2307.01952) | Reconstructed from primary source |
+| Stable Diffusion 1.x | [Source-based architecture diagram](stable-diffusion-1-architecture.svg) | [Source](https://github.com/CompVis/stable-diffusion) | Reconstructed from primary source |
+| Stable Diffusion 2.x | [Source-based architecture diagram](stable-diffusion-2-architecture.svg) | [Source](https://arxiv.org/abs/2307.01952) | Reconstructed from primary source |
 | Stable Diffusion 3 | [Figure 2 (PDF p. 5)](stable-diffusion-3.png) | [Source](https://arxiv.org/abs/2403.03206) | [Original](https://arxiv.org/pdf/2403.03206v1) |
 | StackGAN | [Figure 2](stackgan.png) | [Source](https://arxiv.org/abs/1612.03242) | [Original](https://arxiv.org/html/1612.03242v2/framework.png) |
 | StackGAN++ (StackGAN-v2) | [Fig. 2 (PDF p. 6)](stackgan-v2.png) | [Source](https://arxiv.org/abs/1710.10916) | [Original](https://arxiv.org/pdf/1710.10916v3) |
@@ -364,4 +364,4 @@ Source figures belong to their authors or publishers; see the [figure notice](FI
 | X-Omni | [Figure 3](x-omni.png) | [Source](https://arxiv.org/abs/2507.22058) | [Original](https://arxiv.org/html/2507.22058v1/fig3.png) |
 | XMC-GAN | [Figure 2 (PDF p. 3)](xmc-gan.png) | [Source](https://arxiv.org/abs/2101.04702) | [Original](https://arxiv.org/pdf/2101.04702v5) |
 | Z-Image | [Figure 10](z-image.png) | [Source](https://arxiv.org/abs/2511.22699) | [Original](https://arxiv.org/html/2511.22699v5/architecture.png) |
-| Z-Image Turbo++ | [Source-based architecture diagram](z-image-turbo-pp.svg) | [Source](https://arxiv.org/abs/2606.12575) | Reconstructed from primary source |
+| Z-Image Turbo++ | [Source-based architecture diagram](z-image-turbo-pp-architecture.svg) | [Source](https://arxiv.org/abs/2606.12575) | Reconstructed from primary source |

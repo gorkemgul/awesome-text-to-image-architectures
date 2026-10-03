@@ -83,7 +83,7 @@
   },
   "auraflow": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/auraflow.svg",
+   "path": "assets/architectures/auraflow-architecture.svg",
    "source_url": "https://huggingface.co/fal/AuraFlow",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -437,7 +437,7 @@
   },
   "boogu-image": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/boogu-image.svg",
+   "path": "assets/architectures/boogu-image-architecture.svg",
    "source_url": "https://huggingface.co/Boogu/Boogu-Image-0.1-Base",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -790,7 +790,7 @@
   },
   "cogview3-plus": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/cogview3-plus.svg",
+   "path": "assets/architectures/cogview3-plus-architecture.svg",
    "source_url": "https://huggingface.co/zai-org/CogView3-Plus-3B",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -996,7 +996,7 @@
   },
   "cogview4": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/cogview4.svg",
+   "path": "assets/architectures/cogview4-architecture.svg",
    "source_url": "https://huggingface.co/zai-org/CogView4-6B",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -1275,7 +1275,7 @@
   },
   "dall-e": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/dall-e.svg",
+   "path": "assets/architectures/dall-e-architecture.svg",
    "source_url": "https://arxiv.org/abs/2102.12092",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -1633,7 +1633,7 @@
   },
   "dall-e-mini": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/dall-e-mini.svg",
+   "path": "assets/architectures/dall-e-mini-architecture.svg",
    "source_url": "https://huggingface.co/dalle-mini/dalle-mini",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -2064,7 +2064,7 @@
   },
   "emu-meta": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/emu-meta.svg",
+   "path": "assets/architectures/emu-meta-architecture.svg",
    "source_url": "https://arxiv.org/abs/2309.15807",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -2263,7 +2263,7 @@
   },
   "ernie-image": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/ernie-image.svg",
+   "path": "assets/architectures/ernie-image-architecture.svg",
    "source_url": "https://arxiv.org/abs/2605.25347",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -2559,7 +2559,7 @@
   },
   "flux-2": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/flux-2.svg",
+   "path": "assets/architectures/flux-2-architecture.svg",
    "source_url": "https://github.com/black-forest-labs/flux2",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -2924,7 +2924,7 @@
   },
   "glide": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/glide.svg",
+   "path": "assets/architectures/glide-architecture.svg",
    "source_url": "https://arxiv.org/abs/2112.10741",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -3127,7 +3127,7 @@
   },
   "goku": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/goku.svg",
+   "path": "assets/architectures/goku-architecture.svg",
    "source_url": "https://arxiv.org/abs/2502.04896",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -3415,7 +3415,7 @@
   },
   "grok-aurora": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/grok-aurora.svg",
+   "path": "assets/architectures/grok-aurora-architecture.svg",
    "source_url": "https://x.ai/news/grok-image-generation-release",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -3667,7 +3667,7 @@
   },
   "ideogram-4": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/ideogram-4.svg",
+   "path": "assets/architectures/ideogram-4-architecture.svg",
    "source_url": "https://github.com/ideogram-oss/ideogram4",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -4121,7 +4121,7 @@
   },
   "kolors": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/kolors.svg",
+   "path": "assets/architectures/kolors-architecture.svg",
    "source_url": "https://github.com/Kwai-Kolors/Kolors",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -4360,7 +4360,7 @@
   },
   "lcm": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/lcm.svg",
+   "path": "assets/architectures/lcm-architecture.svg",
    "source_url": "https://arxiv.org/abs/2310.04378",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -4721,7 +4721,7 @@
   },
   "llamagen": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/llamagen.svg",
+   "path": "assets/architectures/llamagen-architecture.svg",
    "source_url": "https://arxiv.org/abs/2406.06525",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -5006,7 +5006,7 @@
   },
   "luma-uni-1": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/luma-uni-1.svg",
+   "path": "assets/architectures/luma-uni-1-architecture.svg",
    "source_url": "https://lumalabs.ai/news/uni-1-1-api",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -5231,7 +5231,7 @@
   },
   "lumina-mgpt": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/lumina-mgpt.svg",
+   "path": "assets/architectures/lumina-mgpt-architecture.svg",
    "source_url": "https://arxiv.org/abs/2408.02657",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -5862,7 +5862,7 @@
   },
   "nucleus-image": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/nucleus-image.svg",
+   "path": "assets/architectures/nucleus-image-architecture.svg",
    "source_url": "https://arxiv.org/abs/2604.12163",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -6476,7 +6476,7 @@
   },
   "playground-v2": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/playground-v2.svg",
+   "path": "assets/architectures/playground-v2-architecture.svg",
    "source_url": "https://huggingface.co/playgroundai/playground-v2-1024px-aesthetic",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -6659,7 +6659,7 @@
   },
   "proxt2i": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/proxt2i.svg",
+   "path": "assets/architectures/proxt2i-architecture.svg",
    "source_url": "https://arxiv.org/abs/2511.18742",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -6985,7 +6985,7 @@
   },
   "qwen-image-flash": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/qwen-image-flash.svg",
+   "path": "assets/architectures/qwen-image-flash-architecture.svg",
    "source_url": "https://arxiv.org/abs/2606.03746",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -7253,7 +7253,7 @@
   },
   "reve-image": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/reve-image.svg",
+   "path": "assets/architectures/reve-image-architecture.svg",
    "source_url": "https://blog.reve.com/posts/the-layout-bet/",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -7442,7 +7442,7 @@
   },
   "rudall-e": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/rudall-e.svg",
+   "path": "assets/architectures/rudall-e-architecture.svg",
    "source_url": "https://github.com/ai-forever/ru-dalle",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -7744,7 +7744,7 @@
   },
   "sdxl-lightning": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/sdxl-lightning.svg",
+   "path": "assets/architectures/sdxl-lightning-architecture.svg",
    "source_url": "https://arxiv.org/abs/2402.13929",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -8024,7 +8024,7 @@
   },
   "seedream-3": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/seedream-3.svg",
+   "path": "assets/architectures/seedream-3-architecture.svg",
    "source_url": "https://arxiv.org/abs/2504.11346",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -8233,7 +8233,7 @@
   },
   "seedream-4": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/seedream-4.svg",
+   "path": "assets/architectures/seedream-4-architecture.svg",
    "source_url": "https://arxiv.org/abs/2509.20427",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -8534,7 +8534,7 @@
   },
   "simplear": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/simplear.svg",
+   "path": "assets/architectures/simplear-architecture.svg",
    "source_url": "https://arxiv.org/abs/2504.11455",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -8806,7 +8806,7 @@
   },
   "stable-diffusion-1": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/stable-diffusion-1.svg",
+   "path": "assets/architectures/stable-diffusion-1-architecture.svg",
    "source_url": "https://github.com/CompVis/stable-diffusion",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -9047,7 +9047,7 @@
   },
   "stable-diffusion-2": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/stable-diffusion-2.svg",
+   "path": "assets/architectures/stable-diffusion-2-architecture.svg",
    "source_url": "https://arxiv.org/abs/2307.01952",
    "origin_url": null,
    "locator": "Source-based architecture diagram",
@@ -9666,7 +9666,7 @@
   },
   "z-image-turbo-pp": {
    "kind": "architecture-diagram",
-   "path": "assets/architectures/z-image-turbo-pp.svg",
+   "path": "assets/architectures/z-image-turbo-pp-architecture.svg",
    "source_url": "https://arxiv.org/abs/2606.12575",
    "origin_url": null,
    "locator": "Source-based architecture diagram",

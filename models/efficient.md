@@ -289,7 +289,7 @@ Latent Consistency Models (Tsinghua University, 2023) carry consistency models f
 
 [Paper 1](https://arxiv.org/abs/2310.04378) · [Paper 2](https://arxiv.org/abs/2311.05556) · [GitHub](https://github.com/luosiallen/latent-consistency-model) · [Model card 1](https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7) · [Model card 2](https://huggingface.co/latent-consistency/lcm-sdxl)
 
-![Latent Consistency Models (LCM) — Source-based architecture diagram](../assets/architectures/lcm.svg)
+![Latent Consistency Models (LCM) — Source-based architecture diagram](../assets/architectures/lcm-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2310.04378)*
 
@@ -393,7 +393,7 @@ Qwen-Image-Flash studies how to distill Qwen-Image-2.0 into a fast, few-step (4-
 
 [Paper](https://arxiv.org/abs/2606.03746) · GitHub: no author-linked repository found
 
-![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash.svg)
+![Qwen-Image-Flash — Source-based architecture diagram](../assets/architectures/qwen-image-flash-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.03746)*
 
@@ -493,7 +493,7 @@ SDXL-Lightning (ByteDance, 2024) distills SDXL into 1024px generators that need 
 
 [Paper](https://arxiv.org/abs/2402.13929) · [Model card](https://huggingface.co/ByteDance/SDXL-Lightning) · GitHub: no author-linked repository found
 
-![SDXL-Lightning — Source-based architecture diagram](../assets/architectures/sdxl-lightning.svg)
+![SDXL-Lightning — Source-based architecture diagram](../assets/architectures/sdxl-lightning-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2402.13929)*
 
@@ -693,7 +693,7 @@ Z-Image Turbo++ pushes Z-Image Turbo's 8-step distilled sampling down to 2 steps
 
 [Paper](https://arxiv.org/abs/2606.12575) · GitHub: no author-linked repository found
 
-![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp.svg)
+![Z-Image Turbo++ — Source-based architecture diagram](../assets/architectures/z-image-turbo-pp-architecture.svg)
 
 *Source-based architecture diagram · [Source](https://arxiv.org/abs/2606.12575)*
 
