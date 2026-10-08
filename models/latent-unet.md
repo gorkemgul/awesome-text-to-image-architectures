@@ -624,7 +624,7 @@ Three-stage cascade: a text-conditional ConvNeXt diffusion model generates 16×2
 
 Stage C works at a 42:1 spatial compression and is a sequence of 16 ConvNeXt blocks without downsampling, with text and timestep conditioning via cross-attention after each block; it deviates from the U-Net design, whereas Stage B is a 4-stage ConvNeXt U-Net in the unquantized 4×256×256 latent of the Stage A VQGAN, conditioned on text and on the Semantic Compressor latents (paper Sec. 3 and appendix). During training an EfficientNetV2-S Semantic Compressor provides the Stage C targets; it is replaced by Stage C at inference. The paper's model uses an 18M Stage A, 1B Stage B and 1B Stage C, conditioned on un-pooled CLIP-H text embeddings. Stable Cascade (Stability AI, announced 2024-02-12) is built on the Würstchen architecture, with Stage C in 1B and 3.6B and Stage B in 700M and 1.5B sizes; its weights use the non-commercial `stable-cascade-nc-community` license and its code (Stability-AI/StableCascade) is MIT.
 
-**License:** code: MIT; weights: mit.
+**License:** code: MIT; weights: mit (Würstchen v2); stable-cascade-nc-community (Stable Cascade).
 
 **Variants:** Würstchen v2; Stable Cascade (Stage C 1B / 3.6B, Stage B 700M / 1.5B).
 
