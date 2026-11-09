@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**18 models · Reviewed 2026-09-29**
+**18 models · Reviewed 2026-11-09**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 

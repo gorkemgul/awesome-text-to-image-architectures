@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**73 models · Reviewed 2026-09-29**
+**74 models · Reviewed 2026-11-09**
 
 Primary-source figures and labeled input/output diagrams. [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -88,6 +88,7 @@ Dates refer to papers or announcements, not necessarily model releases.
 | [UniPath](#unipath) | 2025-12-24 | T → I | generation |
 | [UniVG](#univg) | 2025-03-16 | T, I → I | editing |
 | [UniWorld-Design](#uniworld-design) | 2026-08-04 | T, I → I | editing |
+| [VisualCloze](#visualcloze) | 2025-04-10 | T, I → I | editing |
 | [VUGEN](#vugen) | 2025-10-08 | T → I | generation |
 | [Z-Image](#z-image) | 2025-11-27 | T → I | generation |
 
@@ -1899,6 +1900,33 @@ UniWorld-Design (Peking University and Rabbitpre AI) reframes image generation a
 Paper Figure 3 (LIB-MMDiT overview) and Figure 4: the shared autoencoder extends a pretrained RGB VAE's first/last convolutions to four (RGBA) channels, zero-initializing the new alpha filters so it starts as the original RGB model; both T2RGBA and I2L are trained with progressive distillation followed by DiffusionNFT post-training. I2L's LIB-MMDiT assigns a tag to the global instruction/composite condition and a separate tag to each target layer's prompt and image tokens, so an image query attends to global text and only its own layer's prompt (not other layers' prompts) while image-image and text-text attention stay unrestricted, letting the model jointly resolve occlusion and stacking order across an instruction-addressable decomposition (top-level, recursive, or targeted extraction). Compared with Qwen-Image-Layered, I2L reduces per-layer RGB L1 error by 37% and improves Alpha Soft IoU by 34%; T2RGBA reports the highest CLIP Score among compared RGBA generators. The paper does not name the pretrained base model: it refers only to "the base model" and its transformer backbone. Only a project page is linked; no GitHub repository was found.
 
 **Variants:** UniWorld-Design T2RGBA; UniWorld-Design I2L.
+
+</details>
+
+<a id="visualcloze"></a>
+
+### VisualCloze
+
+FLUX.1-Fill-dev rectified-flow infilling transformer fine-tuned with a rank-256 LoRA to complete the masked target cells of a grid of in-context examples and a query, with grid rows concatenated along the RoPE temporal axis.
+
+VisualCloze is a universal image-generation framework that defines a task by showing it rather than naming it. In-context example rows and a query row with blank targets are concatenated into one grid, and an infilling diffusion model completes the masked cells, like solving a visual cloze puzzle. Because this objective matches general image infilling, the authors fine-tune FLUX.1-Fill-dev without architectural changes, using their Graph200K dataset of interrelated tasks. A three-part instruction describes the grid layout, the task and optionally the target content. The same weights cover conditional generation, image restoration, editing, subject-driven generation and style transfer, and the examples help the model generalize to tasks it did not see in training.
+
+[Paper](https://arxiv.org/abs/2504.07960) · [GitHub](https://github.com/lzyhha/VisualCloze) · [Model card](https://huggingface.co/VisualCloze/VisualClozePipeline-384)
+
+![VisualCloze — Figure 5](../assets/architectures/visualcloze.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2504.07960)*
+
+<details>
+<summary>Details</summary>
+
+**Input → output:** T, I → I · **Interaction:** editing
+
+The paper (Section 4.2) formulates the model as infilling a concatenated grid given a language instruction and a binary mask, and (Figure 5) concatenates images horizontally within a row and concatenates rows temporally in the position embedding to handle mismatched aspect ratios. Section 4.3 fine-tunes FLUX.1-Fill-dev with a rank-256 LoRA for 20,000 iterations, using up to 2 in-context examples and 2 to 4 images per task during training, and resizes each image to an area of 384 x 384 or 512 x 512 before concatenation. Appendix B reports a separate FLUX.1-dev adaptation for comparison. The published diffusers pipeline adds an SDEdit upsampling stage through FLUX Fill. Weights are released as full pipelines and as LoRA files for each resolution. The model-card metadata states Apache-2.0, but the weights are built on FLUX.1-Fill-dev, which the FLUX.1 card records under the FLUX.1-dev Non-Commercial License. The official repository had no LICENSE file when reviewed, so no code license is recorded.
+
+**License:** weights: Apache-2.0.
+
+**Variants:** VisualCloze 384; VisualCloze 512.
 
 </details>
 

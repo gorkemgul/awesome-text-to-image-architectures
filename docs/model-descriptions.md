@@ -4,7 +4,7 @@
 
 [← All models](../README.md#models)
 
-**285 model families and releases · Reviewed 2026-09-29**
+**286 model families and releases · Reviewed 2026-11-09**
 
 Short explanations of the catalog's described models, including later releases of older paper families. Each entry includes an image and links to primary sources. Editorial input/output diagrams are labeled. Verified source dates are listed in the [timeline](timeline.md); undated records remain undated.
 
@@ -288,6 +288,7 @@ Short explanations of the catalog's described models, including later releases o
 - [UniWorld-V1](#uniworld)
 - [VARGPT-v1.1](#vargpt-v1-1)
 - [VILA-U](#vila-u)
+- [VisualCloze](#visualcloze)
 - [VL-GPT](#vl-gpt)
 - [VQ-Diffusion](#vq-diffusion)
 - [VUGEN](#vugen)
@@ -3624,6 +3625,18 @@ VILA-U, from Tsinghua, MIT, NVIDIA, UC Berkeley and UC San Diego, is a unified f
 ![VILA-U — Figure 1](../assets/architectures/vila-u.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2409.04429)*
+
+<a id="visualcloze"></a>
+
+### VisualCloze
+
+VisualCloze is a universal image-generation framework that defines a task by showing it rather than naming it. In-context example rows and a query row with blank targets are concatenated into one grid, and an infilling diffusion model completes the masked cells, like solving a visual cloze puzzle. Because this objective matches general image infilling, the authors fine-tune FLUX.1-Fill-dev without architectural changes, using their Graph200K dataset of interrelated tasks. A three-part instruction describes the grid layout, the task and optionally the target content. The same weights cover conditional generation, image restoration, editing, subject-driven generation and style transfer, and the examples help the model generalize to tasks it did not see in training.
+
+[Architecture and figure](../models/dit.md#visualcloze) · [Paper](https://arxiv.org/abs/2504.07960) · [GitHub](https://github.com/lzyhha/VisualCloze) · [Model card](https://huggingface.co/VisualCloze/VisualClozePipeline-384)
+
+![VisualCloze — Figure 5](../assets/architectures/visualcloze.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2504.07960)*
 
 <a id="vl-gpt"></a>
 

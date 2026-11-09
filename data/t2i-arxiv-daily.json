@@ -32437,8 +32437,11 @@
    "listed_on": "2025-04-10",
    "paper_url": "https://arxiv.org/abs/2504.07960",
    "review_level": "paper",
-   "decision": "excluded",
-   "reason": "component-or-training-method"
+   "decision": "included",
+   "reason": "distinct-t2i-system",
+   "first_submitted": "2025-04-10",
+   "model_id": "visualcloze",
+   "catalog_action": "added"
   },
   {
    "arxiv_id": "2504.07945",

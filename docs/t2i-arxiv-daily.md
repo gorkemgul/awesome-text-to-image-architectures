@@ -4,13 +4,13 @@
 
 [← Complete catalog](../README.md#models)
 
-**135 model families · 135 papers · 100 new catalog entries · Reviewed 2026-09-29**
+**136 model families · 136 papers · 101 new catalog entries · Reviewed 2026-09-29**
 
 Screens all **4220 papers** returned by the pinned arXiv API query `(abs:"text-to-image" OR ti:"image generation" OR ti:"image synthesis") AND submittedDate:[202501010000 TO 202609292359]`, retrieved on 2026-09-29 (snapshot SHA-256 `d9bb13e3c0f2…`). Inclusion requires a text-to-image model, distinct generation architecture or named generation system whose paper was first submitted on or after **January 1, 2025**. A later revision of a 2024 paper does not qualify. Earlier entries and releases without an arXiv paper are covered by the complete catalog.
 
 Datasets, benchmarks, guidance and control methods, personalization, editing-only methods, safety and concept erasure, acceleration techniques and methods without a distinct generation system are excluded. Closely related releases and renamed papers share a card. Descriptive names are used when a paper does not give its system a brand name.
 
-Every family below has a description, a local image and paper links. **87** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **126** images come from primary sources; **9** are source-based architecture diagrams; **0** are labeled editorial input/output diagrams.
+Every family below has a description, a local image and paper links. **88** have author-linked GitHub sources; **48** have no author-linked repository found in the reviewed sources. A missing link is a review result, not a claim that no repository exists. **127** images come from primary sources; **9** are source-based architecture diagrams; **0** are labeled editorial input/output diagrams.
 
 Dates are first paper submission dates, not verified software release dates. Withdrawals and renamed papers are noted on the affected cards. [Full screening and repository evidence](../data/t2i-arxiv-daily.json) · [Figure credits](../assets/architectures/CREDITS.md).
 
@@ -19,8 +19,8 @@ Dates are first paper submission dates, not verified software release dates. Wit
 
 | Decision | Papers |
 | --- | ---: |
-| Included | 135 |
-| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1969 |
+| Included | 136 |
+| Component, guidance, control, personalization, editing, safety, acceleration or training method without a distinct generation system | 1968 |
 | Dataset, benchmark, evaluation or analysis without a distinct text-to-image system | 839 |
 | No distinct text-to-image system identified in the reviewed source | 5 |
 | Image understanding, retrieval, video, 3D or application outside the text-to-image scope | 1272 |
@@ -140,6 +140,7 @@ Dates are first paper submission dates, not verified software release dates. Wit
 - [X-Fusion](#x-fusion)
 - [SimpleAR](#simplear)
 - [Omni-Dish](#omni-dish)
+- [VisualCloze](#visualcloze)
 - [PixelFlow](#pixelflow)
 - [VARGPT-v1.1](#vargpt-v1-1)
 - [UGen](#ugen)
@@ -1709,6 +1710,20 @@ Omni-Dish (Meituan and Beihang University) is described as the first text-to-ima
 ![Omni-Dish — Figure 4](../assets/architectures/omni-dish.png)
 
 *Figure 4 · [Image source](https://arxiv.org/abs/2504.09948)*
+
+<a id="visualcloze"></a>
+
+### VisualCloze
+
+**First paper submission:** 2025-04-10 · [Architecture card](../models/dit.md#visualcloze)
+
+VisualCloze is a universal image-generation framework that defines a task by showing it rather than naming it. In-context example rows and a query row with blank targets are concatenated into one grid, and an infilling diffusion model completes the masked cells, like solving a visual cloze puzzle. Because this objective matches general image infilling, the authors fine-tune FLUX.1-Fill-dev without architectural changes, using their Graph200K dataset of interrelated tasks. A three-part instruction describes the grid layout, the task and optionally the target content. The same weights cover conditional generation, image restoration, editing, subject-driven generation and style transfer, and the examples help the model generalize to tasks it did not see in training.
+
+[Paper](https://arxiv.org/abs/2504.07960) · [GitHub](https://github.com/lzyhha/VisualCloze) · [Model card](https://huggingface.co/VisualCloze/VisualClozePipeline-384)
+
+![VisualCloze — Figure 5](../assets/architectures/visualcloze.png)
+
+*Figure 5 · [Image source](https://arxiv.org/abs/2504.07960)*
 
 <a id="pixelflow"></a>
 
