@@ -6,7 +6,7 @@ A visual catalog of text-to-image models, from GANs to diffusion transformers an
 
 > Inspired by [Awesome TTS Architectures](https://github.com/kadirnar/awesome-tts-architectures) by [Kadir Nar](https://github.com/kadirnar). See [Acknowledgements](#acknowledgements).
 
-**357 models and families · Reviewed 2026-09-29**
+**358 models and families · Reviewed 2026-11-09**
 
 [Model list](#models) · [All diagrams](#model-figures) · [2025+ arXiv collection](docs/t2i-arxiv-daily.md) · [Descriptions](docs/model-descriptions.md) · [Timeline](docs/timeline.md) · [Methodology](docs/methodology.md) · [Contribute](CONTRIBUTING.md)
 
@@ -20,7 +20,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 | [Masked and parallel image-token models](models/masked.md) | 15 |
 | [Pixel-space and cascaded diffusion](models/pixel-diffusion.md) | 15 |
 | [Latent diffusion with U-Net backbones](models/latent-unet.md) | 24 |
-| [Diffusion transformers and flow matching](models/dit.md) | 73 |
+| [Diffusion transformers and flow matching](models/dit.md) | 74 |
 | [Continuous-token autoregressive and hybrid models](models/continuous-ar.md) | 18 |
 | [Unified multimodal understanding and generation](models/unified.md) | 90 |
 | [Few-step, distilled and on-device models](models/efficient.md) | 26 |
@@ -31,7 +31,7 @@ The [2025+ arXiv collection](docs/t2i-arxiv-daily.md) screens every arXiv paper 
 T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology.md#modalities-and-interaction).
 
 <details>
-<summary>Alphabetical model list · 357 entries</summary>
+<summary>Alphabetical model list · 358 entries</summary>
 
 | Model | Group | Input → output |
 | --- | --- | --- |
@@ -382,6 +382,7 @@ T: text · I: image · V: video · A: audio. [Scope and labels](docs/methodology
 | [VARGPT-v1.1](#vargpt-v1-1) | Unified | T, I → T, I |
 | [Versatile Diffusion](#versatile-diffusion) | Latent U-Net | T, I → I, T |
 | [VILA-U](#vila-u) | Unified | T, I, V → T, I, V |
+| [VisualCloze](#visualcloze) | DiT / flow | T, I → I |
 | [VL-GPT](#vl-gpt) | Unified | T, I → T, I |
 | [VQ-Diffusion](#vq-diffusion) | Masked token | T, I → I |
 | [VUGEN](#vugen) | DiT / flow | T → I |
@@ -4564,6 +4565,18 @@ VILA-U, from Tsinghua, MIT, NVIDIA, UC Berkeley and UC San Diego, is a unified f
 ![VILA-U — Figure 1](assets/architectures/vila-u.png)
 
 *Figure 1 · [Source](https://arxiv.org/abs/2409.04429)*
+
+<a id="visualcloze"></a>
+
+### VisualCloze
+
+VisualCloze is a universal image-generation framework that defines a task by showing it rather than naming it. In-context example rows and a query row with blank targets are concatenated into one grid, and an infilling diffusion model completes the masked cells, like solving a visual cloze puzzle. Because this objective matches general image infilling, the authors fine-tune FLUX.1-Fill-dev without architectural changes, using their Graph200K dataset of interrelated tasks. A three-part instruction describes the grid layout, the task and optionally the target content. The same weights cover conditional generation, image restoration, editing, subject-driven generation and style transfer, and the examples help the model generalize to tasks it did not see in training.
+
+[Paper](https://arxiv.org/abs/2504.07960) · [GitHub](https://github.com/lzyhha/VisualCloze) · [Model card](https://huggingface.co/VisualCloze/VisualClozePipeline-384) · [Details](models/dit.md#visualcloze)
+
+![VisualCloze — Figure 5](assets/architectures/visualcloze.png)
+
+*Figure 5 · [Source](https://arxiv.org/abs/2504.07960)*
 
 <a id="vl-gpt"></a>
 

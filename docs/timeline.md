@@ -4,7 +4,7 @@
 
 [← Model index](../README.md#models)
 
-Reviewed as of **2026-09-29**. 353 entries have a verified source date; 4 are undated in this catalog.
+Reviewed as of **2026-11-09**. 354 entries have a verified source date; 4 are undated in this catalog.
 
 These are dates of the linked paper or explicitly dated announcement. An arXiv submission can precede or follow model, weights or API availability. A paper's first submission date can also precede the release of variants discussed in later revisions. Repository updates, API snapshot suffixes and model training cutoffs are not treated as release dates.
 
@@ -153,6 +153,7 @@ These are dates of the linked paper or explicitly dated announcement. An arXiv s
 | 2025-04-15 | [Seedream 3.0](../models/dit.md#seedream-3) | paper | [Paper](https://arxiv.org/abs/2504.11346) |
 | 2025-04-15 | [Kolors 2.0](../models/api.md#kolors-2) | announcement | [Announcement](https://www.nasdaq.com/press-release/kling-ai-advances-20-era-empowering-everyone-tell-great-stories-ai-2025-04-15) |
 | 2025-04-14 | [Omni-Dish](../models/dit.md#omni-dish) | paper | [Paper](https://arxiv.org/abs/2504.09948) · [GitHub](https://github.com/LiuHuijie6410/OmniDish) · [Project](https://liuhuijie6410.github.io/OmniDish/) |
+| 2025-04-10 | [VisualCloze](../models/dit.md#visualcloze) | paper | [Paper](https://arxiv.org/abs/2504.07960) · [GitHub](https://github.com/lzyhha/VisualCloze) · [Model card](https://huggingface.co/VisualCloze/VisualClozePipeline-384) |
 | 2025-04-10 | [PixelFlow](../models/pixel-diffusion.md#pixelflow) | paper | [Paper](https://arxiv.org/abs/2504.07963) · [GitHub](https://github.com/ShoufaChen/PixelFlow) · [Model card](https://huggingface.co/ShoufaChen/PixelFlow-Text2Image) |
 | 2025-04-08 | [MetaQuery](../models/unified.md#metaquery) | paper | [Paper](https://arxiv.org/abs/2504.06256) · [GitHub](https://github.com/facebookresearch/metaquery) |
 | 2025-04-03 | [VARGPT-v1.1](../models/unified.md#vargpt-v1-1) | paper | [Paper](https://arxiv.org/abs/2504.02949) · [GitHub](https://github.com/VARGPT-family/VARGPT-v1.1) · [Model card](https://huggingface.co/VARGPT-family/VARGPT-v1.1) · [Project](https://vargpt1-1.github.io/) |

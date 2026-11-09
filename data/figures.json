@@ -9592,6 +9592,14 @@
    "locator": "Figure 1",
    "sha256": "b5d77c955c62702fc2e5d7b8f0ca5cf631b9dab826a7a8f8614517faeb0fbd3a"
   },
+  "visualcloze": {
+   "kind": "source-figure",
+   "path": "assets/architectures/visualcloze.png",
+   "source_url": "https://arxiv.org/abs/2504.07960",
+   "origin_url": "https://arxiv.org/html/2504.07960v4/concatenation.png",
+   "locator": "Figure 5",
+   "sha256": "2f5ab802ce1f72d278df30bbd549da0a3c15d323154b4b7505de25351b42ab2f"
+  },
   "vl-gpt": {
    "kind": "source-figure",
    "path": "assets/architectures/vl-gpt.png",

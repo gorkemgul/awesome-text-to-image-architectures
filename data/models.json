@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "as_of": "2026-09-29",
+ "as_of": "2026-11-09",
  "models": [
   {
    "id": "adobe-firefly",
@@ -14757,6 +14757,56 @@
      "title": "mit-han-lab/vila-u-7b-256 — model card",
      "url": "https://huggingface.co/mit-han-lab/vila-u-7b-256",
      "reviewed_on": "2026-09-29",
+     "review_level": "model-card"
+    }
+   ]
+  },
+  {
+   "id": "visualcloze",
+   "name": "VisualCloze",
+   "category": "dit",
+   "inputs": [
+    "T",
+    "I"
+   ],
+   "outputs": [
+    "I"
+   ],
+   "interaction": "editing",
+   "architecture": "FLUX.1-Fill-dev rectified-flow infilling transformer fine-tuned with a rank-256 LoRA to complete the masked target cells of a grid of in-context examples and a query, with grid rows concatenated along the RoPE temporal axis",
+   "description": "VisualCloze is a universal image-generation framework that defines a task by showing it rather than naming it. In-context example rows and a query row with blank targets are concatenated into one grid, and an infilling diffusion model completes the masked cells, like solving a visual cloze puzzle. Because this objective matches general image infilling, the authors fine-tune FLUX.1-Fill-dev without architectural changes, using their Graph200K dataset of interrelated tasks. A three-part instruction describes the grid layout, the task and optionally the target content. The same weights cover conditional generation, image restoration, editing, subject-driven generation and style transfer, and the examples help the model generalize to tasks it did not see in training.",
+   "notes": "The paper (Section 4.2) formulates the model as infilling a concatenated grid given a language instruction and a binary mask, and (Figure 5) concatenates images horizontally within a row and concatenates rows temporally in the position embedding to handle mismatched aspect ratios. Section 4.3 fine-tunes FLUX.1-Fill-dev with a rank-256 LoRA for 20,000 iterations, using up to 2 in-context examples and 2 to 4 images per task during training, and resizes each image to an area of 384 x 384 or 512 x 512 before concatenation. Appendix B reports a separate FLUX.1-dev adaptation for comparison. The published diffusers pipeline adds an SDEdit upsampling stage through FLUX Fill. Weights are released as full pipelines and as LoRA files for each resolution. The model-card metadata states Apache-2.0, but the weights are built on FLUX.1-Fill-dev, which the FLUX.1 card records under the FLUX.1-dev Non-Commercial License. The official repository had no LICENSE file when reviewed, so no code license is recorded.",
+   "variants": [
+    "VisualCloze 384",
+    "VisualCloze 512"
+   ],
+   "source_date": "2025-04-10",
+   "source_date_kind": "paper",
+   "license": {
+    "code": null,
+    "weights": "Apache-2.0"
+   },
+   "github_status": "author-linked",
+   "sources": [
+    {
+     "kind": "paper",
+     "title": "VisualCloze: A Universal Image Generation Framework via Visual In-Context Learning",
+     "url": "https://arxiv.org/abs/2504.07960",
+     "reviewed_on": "2026-11-09",
+     "review_level": "paper"
+    },
+    {
+     "kind": "repository",
+     "title": "lzyhha/VisualCloze — official repository",
+     "url": "https://github.com/lzyhha/VisualCloze",
+     "reviewed_on": "2026-11-09",
+     "review_level": "readme"
+    },
+    {
+     "kind": "model-card",
+     "title": "VisualCloze/VisualClozePipeline-384 — diffusers pipeline",
+     "url": "https://huggingface.co/VisualCloze/VisualClozePipeline-384",
+     "reviewed_on": "2026-11-09",
      "review_level": "model-card"
     }
    ]
